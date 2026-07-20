@@ -6,9 +6,17 @@ implementation, Docker packaging, mutation metadata, prepared benchmark
 provenance, complete stored experiment outputs, evaluation artifacts, and
 TestPilot baseline results.
 
-The artifact is intended to support the **Artifacts Evaluated - Reusable** and
-**Artifacts Available** badges. See [`STATUS.md`](STATUS.md) for the badge
-request, justification, and limitations.
+The complete research artifact is also preserved in a public
+[Zenodo archive](https://doi.org/10.5281/zenodo.21055452). See
+[`REPRODUCIBILITY.md`](REPRODUCIBILITY.md) for the reproduction scope and known
+limitations.
+
+## Paper Reference
+
+Farideh Khalili, Aidan Domondon, Harshit Garg, and Frank Tip. 2026.
+**LLMutantKiller: Using Large Language Models to Generate Tests That Kill
+Mutants.** *Proc. ACM Softw. Eng. 3, ISSTA*, Article ISSTA007 (October 2026),
+23 pages. <https://doi.org/10.1145/3832098>
 
 ## Artifact Contents
 
@@ -22,7 +30,8 @@ request, justification, and limitations.
 | [`run-docker.sh`](run-docker.sh)                       | Convenience script that builds the image and starts an interactive container with persistent host-mounted output directories.      |
 | [`CLAIMS.md`](CLAIMS.md)                               | Claim-by-claim map from the paper's research questions and tables to artifact evidence, expected results, and reproduction status. |
 | [`REQUIREMENTS.md`](REQUIREMENTS.md)                   | Tested platform, container runtime, hardware, storage, network, runtime, and API-expense requirements.                             |
-| [`STATUS.md`](STATUS.md)                               | Requested badges, reusable-badge rationale, available-badge DOI, and known limitations.                                            |
+| [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md)             | Archived version, reproduction scope, and known limitations.                                                                       |
+| [`CITATION.cff`](CITATION.cff)                         | Citation metadata for the repository and its associated paper.                                                                     |
 | [`LICENSE`](LICENSE)                                   | License terms for software, data, documentation, and third-party material.                                                         |
 
 ## Quick Start

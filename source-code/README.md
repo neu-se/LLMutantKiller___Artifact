@@ -43,7 +43,7 @@ npm run build
    `../subject_repositories/`. This startup step requires internet access and
    took less than 2 minutes on the tested system; allow up to 15 minutes
    depending on network and GitHub performance.
-   - Use the repositories in the anonymous
+   - Use the prepared benchmark repositories in the
      [`mutant-survivor-testgen-benchchmark`](https://github.com/mutant-survivor-testgen-benchchmark)
      GitHub organization, not the original upstream repositories.
    - The prepared repositories

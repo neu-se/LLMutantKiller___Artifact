@@ -42,7 +42,7 @@ Approximate storage sizes are:
 
 | Item                             |                 Size |
 | -------------------------------- | -------------------: |
-| Zenodo submission ZIP            | approximately 1.7 GB |
+| Zenodo archive ZIP               | approximately 1.7 GB |
 | Extracted artifact tree          |   approximately 9 GB |
 | Built `linux/amd64` Docker image | approximately 1.5 GB |
 
@@ -132,5 +132,5 @@ prices recorded for the paper experiments:
 These historical amounts are not quotes for a new execution. OpenRouter model
 prices, caching behavior, token usage, provider routing, and generated outputs
 can change. Review current pricing and set an account spending limit before
-starting a live run. The 13-mutant reduced workflow is intended for artifact
-evaluation; the full workflow is not expected to complete within one day.
+starting a live run. The 13-mutant reduced workflow provides a practical live
+demonstration; the full workflow is not expected to complete within one day.
