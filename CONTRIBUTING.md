@@ -22,10 +22,7 @@ welcome.
 2. Keep changes focused and avoid unrelated formatting or generated-file
    updates.
 3. Do not commit `.env` files, API keys, tokens, or other credentials.
-4. Use clean clones of subject repositories when exercising LLMutantKiller;
-   the runner changes branches and may install dependencies.
-5. Explain any proposed change to stored paper results, mutation metadata, or
-   manual classifications and preserve the provenance of the original record.
+4. Explain any proposed change and preserve the provenance of the original record.
 
 For implementation changes, build the TypeScript project before submitting a
 pull request:
