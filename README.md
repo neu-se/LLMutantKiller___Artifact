@@ -1,4 +1,4 @@
-# LLMutantKiller Artifact
+# LLMutantKiller
 
 This repository is the public paper companion and replication package for
 **LLMutantKiller: Using Large Language Models to Generate Tests that Kill
@@ -18,6 +18,23 @@ Mutants.** _Proc. ACM Softw. Eng. 3, ISSTA_, Article ISSTA007 (October 2026),
 
 If you use LLMutantKiller or these research materials, please cite the paper
 above.
+
+```bibtex
+@article{Khalili2026LLMutantKiller,
+  author    = {Farideh Khalili and Aidan Domondon and Harshit Garg and Frank Tip},
+  title     = {{LLMutantKiller}: Using Large Language Models to Generate Tests That Kill Mutants},
+  journal   = {Proceedings of the ACM on Software Engineering},
+  year      = {2026},
+  volume    = {3},
+  number    = {ISSTA},
+  articleno = {ISSTA007},
+  numpages  = {23},
+  month     = oct,
+  publisher = {ACM},
+  doi       = {10.1145/3832098},
+  url       = {https://doi.org/10.1145/3832098}
+}
+```
 
 ## What LLMutantKiller Does
 
@@ -44,6 +61,7 @@ and reports needed to inspect each attempt.
 | [`REPRODUCING.md`](REPRODUCING.md)                     | Detailed instructions and configurations for full live reproduction.                                                               |
 | [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md)             | Reproduction scope, preserved evidence, and known limitations.                                                                      |
 | [`CITATION.cff`](CITATION.cff)                         | Citation metadata for the repository and its associated paper.                                                                     |
+| [`CONTRIBUTING.md`](CONTRIBUTING.md)                   | Guidelines for reporting problems and contributing changes.                                                                        |
 | [`LICENSE`](LICENSE)                                   | License terms for software, data, documentation, and third-party material.                                                         |
 
 ## Quick Start
@@ -291,3 +309,10 @@ collections referenced by it are:
   stored evidence and running the reduced workflow.
 - Subject repositories are modified during execution through branch checkouts
   and dependency installation. Use clean clones.
+
+## Questions and Bug Reports
+
+Please use the repository's [GitHub Issues](https://github.com/neu-se/LLMutantKiller___Artifact/issues)
+to ask questions, report documentation problems, or report reproducibility and
+software issues. See [`CONTRIBUTING.md`](CONTRIBUTING.md) before proposing a
+change.

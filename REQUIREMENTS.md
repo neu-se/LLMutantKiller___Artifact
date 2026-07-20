@@ -49,6 +49,13 @@ Approximate storage sizes are:
 The values are conservative estimates; actual sizes may be slightly smaller
 and may change with minor artifact edits.
 
+The complete repository tracks approximately 396,000 files and expands to
+roughly 9 GB because it includes the per-attempt experimental record. Initial
+download and checkout can therefore take substantial time and may be slower
+than the compressed size suggests. Readers who do not need Git history may
+prefer the source archive offered from the repository's GitHub page, but that
+archive expands to the same complete artifact tree.
+
 Additional working space is needed for the 13 cloned subject repositories,
 their npm dependencies, `docker_output/generated_tests`,
 `docker_output/llm-cache`, and `docker_output/analysis_outputs`.

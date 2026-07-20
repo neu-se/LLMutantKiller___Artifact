@@ -88,7 +88,7 @@ The paper's Figure 3 shows:
 
 **Interpretation**: Figure 6 illustrates how some LLM-generated tests kill mutants by inspecting implementation details (e.g., checking string representations via `toString()`) rather than exercising observable behavior through the public API. Such tests are classified as behaviorally invalid.
 
-**Reproduction**: The artifact contains multiple examples of invalid tests identified during manual test validation. Evaluators can inspect any test marked "Invalid" in the validation results to observe similar patterns. Due to LLM nondeterminism, live runs will not reproduce the exact same invalid tests, but may produce different instances of behaviorally invalid tests.
+**Reproduction**: The artifact contains multiple examples of invalid tests identified during manual test validation. Readers can inspect any test marked "Invalid" in the validation results to observe similar patterns. Due to LLM nondeterminism, live runs will not reproduce the exact same invalid tests, but may produce different instances of behaviorally invalid tests.
 
 ---
 
@@ -148,7 +148,7 @@ The paper's Figure 3 shows:
 - Stored results can be inspected directly
 - Live reproduction requires running: `node dist/src/run.js --mutationFilter ./mutations/requiredSample_list.json --model anthropic/claude-sonnet-4.6 --attempts 10 --temperature 0.5 --withTests false`
 - Exact results cannot be reproduced due to LLM nondeterminism; expect similar but not identical success counts. Round 2 results ([`paper_results/Experiment Results/Round 2/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/2026-04-29_23-38/reports/summary.txt`](paper_results/Experiment%20Results/Round%202/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/2026-04-29_23-38/reports/summary.txt)) and pairwise agreement analysis ([`paper_results/Evaluation/twoRunResultsAggregated.html`](paper_results/Evaluation/twoRunResultsAggregated.html) or [Google Sheets version](https://docs.google.com/spreadsheets/d/17b4HRTL_eiztd4v2AndyibzKf3x-EEE2Ply7CQpSZYM/edit?gid=1132907401#gid=1132907401)) demonstrate the degree of variation across independent runs
-- Manual test validation and equivalence classification cannot be automated; however, the stored classifications can be inspected and verified by evaluators
+- Manual test validation and equivalence classification cannot be automated; however, readers can inspect and audit the stored classifications
 
 ---
 
@@ -177,7 +177,7 @@ The paper's Figure 3 shows:
 - Stored results can be inspected directly
 - Live reproduction: same command as RQ1 but with `--withTests true`
 - Exact results cannot be reproduced due to LLM nondeterminism. Round 2 results ([`paper_results/Experiment Results/Round 2/anthropic_claude-sonnet-4.6/temp_0.5/withTests/2026-04-29_17-41/reports/summary.txt`](paper_results/Experiment%20Results/Round%202/anthropic_claude-sonnet-4.6/temp_0.5/withTests/2026-04-29_17-41/reports/summary.txt)) and pairwise agreement analysis ([`paper_results/Evaluation/twoRunResultsAggregated.html`](paper_results/Evaluation/twoRunResultsAggregated.html) or [Google Sheets version](https://docs.google.com/spreadsheets/d/17b4HRTL_eiztd4v2AndyibzKf3x-EEE2Ply7CQpSZYM/edit?gid=1132907401#gid=1132907401)) demonstrate the degree of variation across independent runs
-- Manual test validation and equivalence classification cannot be automated; however, the stored classifications can be inspected and verified by evaluators
+- Manual test validation and equivalence classification cannot be automated; however, readers can inspect and audit the stored classifications
 
 ---
 
@@ -208,7 +208,7 @@ The paper's Figure 3 shows:
 - Live reproduction for Devstral: `node dist/src/run.js --mutationFilter ./mutations/requiredSample_list.json --model mistralai/devstral-2512 --attempts 10 --temperature 0.5 --withTests false`
 - Live reproduction for Llama: `node dist/src/run.js --mutationFilter ./mutations/requiredSample_list.json --model meta-llama/llama-3.3-70b-instruct --attempts 10 --temperature 0.5 --withTests false`
 - Exact results cannot be reproduced due to LLM nondeterminism. Round 2 results for Devstral ([`paper_results/Experiment Results/Round 2/mistralai_devstral-2512/temp_0.5/withoutTests/2026-04-29_10-13/reports/summary.txt`](paper_results/Experiment%20Results/Round%202/mistralai_devstral-2512/temp_0.5/withoutTests/2026-04-29_10-13/reports/summary.txt)) and Llama ([`paper_results/Experiment Results/Round 2/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/2026-04-29_10-09/reports/summary.txt`](paper_results/Experiment%20Results/Round%202/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/2026-04-29_10-09/reports/summary.txt)) and pairwise agreement analysis ([`paper_results/Evaluation/twoRunResultsAggregated.html`](paper_results/Evaluation/twoRunResultsAggregated.html) or [Google Sheets version](https://docs.google.com/spreadsheets/d/17b4HRTL_eiztd4v2AndyibzKf3x-EEE2Ply7CQpSZYM/edit?gid=1132907401#gid=1132907401)) demonstrate the degree of variation across independent runs
-- Manual test validation and equivalence classification cannot be automated; however, the stored classifications can be inspected and verified by evaluators
+- Manual test validation and equivalence classification cannot be automated; however, readers can inspect and audit the stored classifications
 
 ---
 
@@ -232,7 +232,7 @@ The paper's Figure 3 shows:
 
 - Stored classifications can be inspected directly
 - Manual test validation cannot be automated (requires human judgment about behavioral validity)
-- Evaluators can spot-check the test classifications by reading the generated tests or the mutation equivalence classifications by inspecting the corresponding mutated codes
+- Readers can spot-check the test classifications by reading the generated tests, and audit the mutation-equivalence classifications by inspecting the corresponding mutated code
 
 ---
 
@@ -343,4 +343,4 @@ The paper's Figure 3 shows:
 
 **Relationship between stored results and live reproduction:**
 
-The artifact provides complete stored results (Round 1 and Round 2 for all configurations) as the authoritative record for exact paper claims. Live reproduction demonstrates that LLMutantKiller remains functional and produces similar outcomes, but exact numbers will differ due to LLM nondeterminism. Evaluators can compare live results against the stored Round 1 and Round 2 data to verify that the tool produces consistent outcomes.
+The artifact provides complete stored results (Round 1 and Round 2 for all configurations) as the authoritative record for exact paper claims. Live reproduction demonstrates that LLMutantKiller remains functional and produces similar outcomes, but exact numbers will differ due to LLM nondeterminism. Readers can compare live results against the stored Round 1 and Round 2 data to assess whether the tool produces consistent outcomes.
