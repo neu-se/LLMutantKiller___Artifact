@@ -1,0 +1,12 @@
+import Queue = require("../../../../../../../../../../../subject_repositories/q/queue.js");
+
+describe('Queue', () => {
+    it('should correctly retrieve the head of the queue', () => {
+        const queue = new Queue();
+        queue.put('test value');
+        const getPromise = queue.get();
+        expect(getPromise).rejects.toThrowError('Can\'t get value from closed queue');
+        queue.close();
+        expect(queue.closed).resolves.toThrowError('Can\'t get value from closed queue');
+    });
+});

@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-be3ff82/testCase.test.ts
+  gettype function
+    ✕ should return correct type for same level urls with index.html (4 ms)
+    ✕ should return incorrect type for same level urls with index.html on mutated code
+
+  ● gettype function › should return correct type for same level urls with index.html
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "samelevel"
+    Received: "uplevel"
+
+       6 |         const pageUrl = "http://sub.domain.com/aaa/bbb/ccc";
+       7 |         const result = gettype(linkUrl, pageUrl);
+    >  8 |         expect(result).toBe("samelevel");
+         |                        ^
+       9 |     });
+      10 |
+      11 |     it('should return incorrect type for same level urls with index.html on mutated code', () => {
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-be3ff82/testCase.test.ts:8:24)
+
+  ● gettype function › should return incorrect type for same level urls with index.html on mutated code
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "samelevel"
+
+      13 |         const pageUrl = "http://sub.domain.com/aaa/bbb/ccc";
+      14 |         const result = gettype(linkUrl, pageUrl);
+    > 15 |         expect(result).not.toBe("samelevel");
+         |                            ^
+      16 |     });
+      17 | });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-be3ff82/testCase.test.ts:15:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.43 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-be3ff82/testCase.test.ts".

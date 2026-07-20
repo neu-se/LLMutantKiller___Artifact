@@ -1,0 +1,12 @@
+import Complex from "../../../../../../../../../../../subject_repositories/Complex.js/complex.js";
+
+describe("Complex asech", () => {
+  it("should return the correct complex inverse hyperbolic secant for a real number", () => {
+    const c = new Complex(0.5, 0);
+    const result = c.asech();
+    // asech(0.5) = acosh(1/0.5) = acosh(2) ≈ 1.3169578969248166
+    expect(result).not.toBeUndefined();
+    expect(result.re).toBeCloseTo(1.3169578969248166, 10);
+    expect(result.im).toBeCloseTo(0, 10);
+  });
+});

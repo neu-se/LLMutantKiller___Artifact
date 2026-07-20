@@ -1,0 +1,34 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_7/pending_category/mutant-db182e4/testCase.test.ts[0m:[93m1[0m:[93m23[0m - [91merror[0m[90m TS2306: [0mFile '/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/image-downloader/index.d.ts' is not a module.
+
+[7m1[0m import { image } from '../../../../../../../../../../../subject_repositories/image-downloader/index';
+[7m [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_7/pending_category/mutant-db182e4/testCase.test.ts[0m:[93m10[0m:[93m16[0m - [91merror[0m[90m TS7031: [0mBinding element 'filename' implicitly has an 'any' type.
+
+[7m10[0m       .then(({ filename }) => {
+[7m  [0m [91m               ~~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_7/pending_category/mutant-db182e4/testCase.test.ts
+  image downloader
+    ✕ should resolve relative path correctly when extractFilename is false (97 ms)
+
+  ● image downloader › should resolve relative path correctly when extractFilename is false
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/test-image"
+    Received: "/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/image-downloader/test-image"
+
+       9 |     return image({ url, dest, extractFilename: false })
+      10 |       .then(({ filename }) => {
+    > 11 |         expect(filename).toBe(path.resolve(dest));
+         |                          ^
+      12 |       });
+      13 |   });
+      14 | });
+
+      at toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_7/pending_category/mutant-db182e4/testCase.test.ts:11:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.536 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_7/pending_category/mutant-db182e4/testCase.test.ts".

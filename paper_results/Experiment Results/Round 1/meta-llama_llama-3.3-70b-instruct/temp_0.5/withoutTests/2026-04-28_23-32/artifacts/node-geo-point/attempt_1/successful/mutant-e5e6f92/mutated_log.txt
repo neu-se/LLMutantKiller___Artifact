@@ -1,0 +1,32 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-e5e6f92/testCase.test.ts
+  GeoPoint
+    ✕ should throw TypeError when creating a GeoPoint from a GeoJSON object without type and coordinates properties (23 ms)
+
+  ● GeoPoint › should throw TypeError when creating a GeoPoint from a GeoJSON object without type and coordinates properties
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "Object must have type and coordinates"
+    Received message:   "The value of type should be 'Point'"
+
+          66 |
+          67 |     if (point.type !== 'Point') {
+        > 68 |       throw new TypeError('The value of type should be \'Point\'');
+             |             ^
+          69 |     }
+          70 |
+          71 |     if (!Array.isArray(point.coordinates) || point.coordinates.length !== 2) {
+
+      at Function.fromGeoJSON (../subject_repositories/node-geo-point/src/geo-point.ts:68:13)
+      at fromGeoJSON (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-e5e6f92/testCase.test.ts:7:27)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-e5e6f92/testCase.test.ts:7:54)
+      at Object.toThrow (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-e5e6f92/testCase.test.ts:7:54)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.417 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-e5e6f92/testCase.test.ts".

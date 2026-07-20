@@ -1,0 +1,32 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-3f09ca6/testCase.test.ts
+  GeoPoint
+    ✕ should throw TypeError when creating GeoPoint from invalid GeoJSON (18 ms)
+
+  ● GeoPoint › should throw TypeError when creating GeoPoint from invalid GeoJSON
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "GeoPoint: Argument must be an object"
+    Received message:   "Cannot read properties of null (reading 'hasOwnProperty')"
+
+          63 |     }
+          64 |
+        > 65 |     if (!point.hasOwnProperty('type') || !point.hasOwnProperty('coordinates')) {
+             |                ^
+          66 |       throw new TypeError('Object must have type and coordinates');
+          67 |     }
+          68 |
+
+      at Function.hasOwnProperty [as fromGeoJSON] (../subject_repositories/node-geo-point/src/geo-point.ts:65:16)
+      at fromGeoJSON (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-3f09ca6/testCase.test.ts:5:27)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-3f09ca6/testCase.test.ts:5:46)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-3f09ca6/testCase.test.ts:5:46)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.106 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-3f09ca6/testCase.test.ts".

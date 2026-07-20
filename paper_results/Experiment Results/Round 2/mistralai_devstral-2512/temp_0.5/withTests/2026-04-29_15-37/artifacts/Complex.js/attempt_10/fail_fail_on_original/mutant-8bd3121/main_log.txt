@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-8bd3121/testCase.test.ts
+  Complex.asech()
+    ✕ should fail when imaginary part is accessed incorrectly (2 ms)
+
+  ● Complex.asech() › should fail when imaginary part is accessed incorrectly
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       7 |     // The mutation changes this['im'] to this[""] which will be undefined
+       8 |     // This should cause the calculation to produce NaN results
+    >  9 |     expect(isNaN(result.re)).toBe(true);
+         |                              ^
+      10 |     expect(isNaN(result.im)).toBe(true);
+      11 |   });
+      12 | });
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-8bd3121/testCase.test.ts:9:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.056 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-8bd3121/testCase.test.ts".

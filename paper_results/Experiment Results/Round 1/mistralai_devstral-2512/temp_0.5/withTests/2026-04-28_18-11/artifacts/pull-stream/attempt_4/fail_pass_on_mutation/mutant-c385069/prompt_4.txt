@@ -1,0 +1,51 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-c385069/testCase.test.ts (6.636 s)
+  asyncMap abort behavior
+    ✕ should propagate abort when not busy (5005 ms)
+
+  ● asyncMap abort behavior › should propagate abort when not busy
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: undefined
+
+      28 |     read(null, (end: any, data: any) => {
+      29 |       firstReadCompleted = true;
+    > 30 |       expect(data).toBe(1);
+         |                    ^
+      31 |     });
+      32 |
+      33 |     read(error, (end: any) => {
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-c385069/testCase.test.ts:30:20)
+      at cb (../subject_repositories/pull-stream/throughs/async-map.js:35:17)
+      at Immediate.cb (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-c385069/testCase.test.ts:23:11)
+
+  ● asyncMap abort behavior › should propagate abort when not busy
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      3 |
+      4 | describe("asyncMap abort behavior", () => {
+    > 5 |   it("should propagate abort when not busy", (done) => {
+        |   ^
+      6 |     const error = new Error("test abort");
+      7 |     let abortReceived = false;
+      8 |     let firstReadCompleted = false;
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-c385069/testCase.test.ts:5:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-c385069/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.848 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-c385069/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

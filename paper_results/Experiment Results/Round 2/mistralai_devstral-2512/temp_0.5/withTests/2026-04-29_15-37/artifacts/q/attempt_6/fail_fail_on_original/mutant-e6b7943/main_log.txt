@@ -1,0 +1,34 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-e6b7943/testCase.test.ts
+  isStopIteration mutation detection
+    ✕ should correctly identify non-QReturnValue exceptions (9 ms)
+
+  ● isStopIteration mutation detection › should correctly identify non-QReturnValue exceptions
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "This is a regular error"
+    Received: "Right-hand side of 'instanceof' is not an object"
+
+      32 |       (error: Error) => {
+      33 |         // This is the expected path for regular errors in original code
+    > 34 |         expect(error.message).toBe("This is a regular error");
+         |                               ^
+      35 |       }
+      36 |     );
+      37 |   });
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-e6b7943/testCase.test.ts:34:31)
+      at rejected (../subject_repositories/q/q.js:864:24)
+      at _rejected (../subject_repositories/q/q.js:890:30)
+      at Promise.rejected (../subject_repositories/q/q.js:1142:31)
+      at Promise.apply [as promiseDispatch] (../subject_repositories/q/q.js:808:41)
+      at promiseDispatch (../subject_repositories/q/q.js:877:14)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.245 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-e6b7943/testCase.test.ts".

@@ -1,0 +1,53 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-87bd40c/testCase.test.ts[0m:[93m4[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m4[0m import * as rimraf from 'rimraf';
+[7m [0m [91m                        ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-87bd40c/testCase.test.ts (7.451 s)
+  Dirty db file close
+    ✕ should destroy read stream when closing (5002 ms)
+
+  ● Dirty db file close › should destroy read stream when closing
+
+    ENOENT: no such file or directory, open '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-87bd40c/tmp/close.dirty'
+
+
+
+  ● Dirty db file close › should destroy read stream when closing
+
+    Cannot call write after a stream was destroyed
+
+      186 |       const data = `${JSON.stringify({key, val: this._data.get(key)})}\n`;
+      187 |       ++this._inFlightWrites;
+    > 188 |       this._waitForDrain = !this._writeStream.write(data, (err) => {
+          |                                               ^
+      189 |         if (!cbs.length && err != null) this.emit('error', err);
+      190 |         if (--this._inFlightWrites <= 0 && !this._waitForDrain) this.emit('drain');
+      191 |         for (const cb of cbs) cb(err);
+
+      at Dirty.write [as _flush] (../subject_repositories/node-dirty/lib/dirty/dirty.js:188:47)
+      at Dirty._flush [as set] (../subject_repositories/node-dirty/lib/dirty/dirty.js:37:12)
+      at Dirty.set (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-87bd40c/testCase.test.ts:12:10)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:114:18)
+
+  ● Dirty db file close › should destroy read stream when closing
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       5 |
+       6 | describe('Dirty db file close', () => {
+    >  7 |   it('should destroy read stream when closing', (done) => {
+         |   ^
+       8 |     const filePath = path.join(__dirname, 'tmp', 'close.dirty');
+       9 |     const db = new Dirty(filePath);
+      10 |
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-87bd40c/testCase.test.ts:7:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-87bd40c/testCase.test.ts:6:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.679 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-87bd40c/testCase.test.ts".

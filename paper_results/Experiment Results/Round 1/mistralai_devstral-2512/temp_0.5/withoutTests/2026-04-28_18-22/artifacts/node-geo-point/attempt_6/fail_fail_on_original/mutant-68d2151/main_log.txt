@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_6/pending_category/mutant-68d2151/testCase.test.ts
+  GeoPoint.calculateDestination
+    ✕ should calculate correct destination for movement near equator with bearing 45 degrees (2 ms)
+
+  ● GeoPoint.calculateDestination › should calculate correct destination for movement near equator with bearing 45 degrees
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.5412
+    Received: 0.4179550311675629
+
+    Expected precision:    4
+    Expected difference: < 0.00005
+    Received difference:   0.12324496883243713
+
+      10 |     // Verify the destination coordinates are calculated correctly
+      11 |     // The mutation will cause significant difference in the calculation
+    > 12 |     expect(destination.latitude).toBeCloseTo(0.5412, 4);
+         |                                  ^
+      13 |     expect(destination.longitude).toBeCloseTo(0.5412, 4);
+      14 |   });
+      15 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_6/pending_category/mutant-68d2151/testCase.test.ts:12:34)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.152 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_6/pending_category/mutant-68d2151/testCase.test.ts".

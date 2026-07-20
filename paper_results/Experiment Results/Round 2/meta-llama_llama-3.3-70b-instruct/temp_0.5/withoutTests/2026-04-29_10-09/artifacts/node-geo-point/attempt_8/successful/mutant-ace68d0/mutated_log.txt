@@ -1,0 +1,40 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_8/pending_category/mutant-ace68d0/testCase.test.ts[0m:[93m1[0m:[93m26[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import { GeoPoint } from "../../../../../../../../../../../subject_repositories/node-geo-point/src/geo-point.ts";
+[7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_8/pending_category/mutant-ace68d0/testCase.test.ts[0m:[93m5[0m:[93m38[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'LatLng'.
+
+[7m5[0m     expect(() => GeoPoint.fromObject('string')).toThrowError('GeoPoint: Argument must be an object');
+[7m [0m [91m                                     ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_8/pending_category/mutant-ace68d0/testCase.test.ts
+  GeoPoint
+    ✕ should throw TypeError when creating GeoPoint from non-object (24 ms)
+
+  ● GeoPoint › should throw TypeError when creating GeoPoint from non-object
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "GeoPoint: Argument must be an object"
+    Received message:   "Object must have latitude and longitude"
+
+          89 |
+          90 |     if (!object.hasOwnProperty('latitude') || !object.hasOwnProperty('longitude')) {
+        > 91 |       throw new TypeError('Object must have latitude and longitude');
+             |             ^
+          92 |     }
+          93 |
+          94 |     return new GeoPoint(object.latitude, object.longitude);
+
+      at Function.fromObject (../subject_repositories/node-geo-point/src/geo-point.ts:91:13)
+      at fromObject (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_8/pending_category/mutant-ace68d0/testCase.test.ts:5:27)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_8/pending_category/mutant-ace68d0/testCase.test.ts:5:49)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_8/pending_category/mutant-ace68d0/testCase.test.ts:5:49)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.9 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_8/pending_category/mutant-ace68d0/testCase.test.ts".

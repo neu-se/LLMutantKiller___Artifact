@@ -1,0 +1,58 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-ea0ab98/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/util/prop.js"' has no exported member 'prop'.
+
+[7m1[0m import { prop } from '../../../../../../../../../../../subject_repositories/pull-stream/util/prop.js';
+[7m [0m [91m         ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-ea0ab98/testCase.test.ts
+  prop function
+    ✕ should return a function that extracts a property from an object when given a string key (2 ms)
+    ✕ should return a function that extracts a match from a string when given a RegExp key
+    ✕ should return the key itself when given a non-string and non-RegExp key
+
+  ● prop function › should return a function that extracts a property from an object when given a string key
+
+    TypeError: (0 , prop_js_1.prop) is not a function
+
+      4 |   it('should return a function that extracts a property from an object when given a string key', () => {
+      5 |     const data = { foo: 'bar' };
+    > 6 |     const propFunction = prop('foo');
+        |                              ^
+      7 |     expect(propFunction(data)).toBe('bar');
+      8 |   });
+      9 |
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-ea0ab98/testCase.test.ts:6:30)
+
+  ● prop function › should return a function that extracts a match from a string when given a RegExp key
+
+    TypeError: (0 , prop_js_1.prop) is not a function
+
+      10 |   it('should return a function that extracts a match from a string when given a RegExp key', () => {
+      11 |     const data = 'hello world';
+    > 12 |     const propFunction = prop(/world/);
+         |                              ^
+      13 |     expect(propFunction(data)).toBe('world');
+      14 |   });
+      15 |
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-ea0ab98/testCase.test.ts:12:30)
+
+  ● prop function › should return the key itself when given a non-string and non-RegExp key
+
+    TypeError: (0 , prop_js_1.prop) is not a function
+
+      16 |   it('should return the key itself when given a non-string and non-RegExp key', () => {
+      17 |     const data = 'hello world';
+    > 18 |     const propFunction = prop(123);
+         |                              ^
+      19 |     expect(propFunction(data)).toBe(123);
+      20 |   });
+      21 | });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-ea0ab98/testCase.test.ts:18:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        3.541 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-ea0ab98/testCase.test.ts".

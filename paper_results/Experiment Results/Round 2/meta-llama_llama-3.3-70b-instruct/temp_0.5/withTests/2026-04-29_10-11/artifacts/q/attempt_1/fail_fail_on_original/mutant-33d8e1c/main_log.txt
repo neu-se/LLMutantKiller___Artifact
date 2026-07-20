@@ -1,0 +1,70 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-33d8e1c/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-33d8e1c/testCase.test.ts[0m:[93m21[0m:[93m15[0m - [91merror[0m[90m TS7034: [0mVariable 'progressValues' implicitly has type 'any[]' in some locations where its type cannot be determined.
+
+[7m21[0m         const progressValues = [];
+[7m  [0m [91m              ~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-33d8e1c/testCase.test.ts[0m:[93m27[0m:[93m14[0m - [91merror[0m[90m TS7006: [0mParameter 'value' implicitly has an 'any' type.
+
+[7m27[0m             (value) => {
+[7m  [0m [91m             ~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-33d8e1c/testCase.test.ts[0m:[93m37[0m:[93m20[0m - [91merror[0m[90m TS7005: [0mVariable 'progressValues' implicitly has an 'any[]' type.
+
+[7m37[0m             expect(progressValues).toEqual([1, 2]);
+[7m  [0m [91m                   ~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-33d8e1c/testCase.test.ts
+  Q function
+    ✕ should result in a fulfilled promise when given a value (1 ms)
+    ✕ should be the identity when given promise (1 ms)
+    ✕ should handle progress notifications
+
+  ● Q function › should result in a fulfilled promise when given a value
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      3 | describe("Q function", () => {
+      4 |     it("should result in a fulfilled promise when given a value", () => {
+    > 5 |         const promise = Q(5);
+        |                          ^
+      6 |         expect(promise.isFulfilled()).toBe(true);
+      7 |     });
+      8 |
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-33d8e1c/testCase.test.ts:5:26)
+
+  ● Q function › should be the identity when given promise
+
+    TypeError: Cannot read properties of undefined (reading 'fulfill')
+
+       8 |
+       9 |     it("should be the identity when given promise", () => {
+    > 10 |         const f = Q.fulfill(5);
+         |                     ^
+      11 |         const r = Q.reject(new Error("aaargh"));
+      12 |         const p = Q.promise(() => {});
+      13 |
+
+      at Object.fulfill (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-33d8e1c/testCase.test.ts:10:21)
+
+  ● Q function › should handle progress notifications
+
+    TypeError: Cannot read properties of undefined (reading 'defer')
+
+      18 |
+      19 |     it("should handle progress notifications", () => {
+    > 20 |         const deferred = Q.defer();
+         |                            ^
+      21 |         const progressValues = [];
+      22 |
+      23 |         const promise = Q.when(
+
+      at Object.defer (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-33d8e1c/testCase.test.ts:20:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        3.027 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-33d8e1c/testCase.test.ts".

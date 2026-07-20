@@ -1,0 +1,15 @@
+import Q from "../../../../../../../../../../../subject_repositories/q/q.js";
+
+describe("Q", () => {
+    it("should resolve a promise when the input is a deferred promise that is resolved later with a promise", (done) => {
+        const deferred = Q.defer();
+        const innerDeferred = Q.defer();
+        const promise = deferred.promise;
+        promise.then((value: any) => {
+            expect(value).toBe("test");
+            done();
+        });
+        deferred.resolve(innerDeferred.promise);
+        innerDeferred.resolve("test");
+    });
+});

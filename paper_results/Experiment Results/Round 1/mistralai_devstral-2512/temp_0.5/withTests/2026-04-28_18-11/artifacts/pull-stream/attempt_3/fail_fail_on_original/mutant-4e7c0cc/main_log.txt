@@ -1,0 +1,37 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-4e7c0cc/testCase.test.ts[0m:[93m47[0m:[93m21[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 2.
+
+[7m 47[0m       collect(null, (err: any, result?: number[]) => {
+[7m   [0m [91m                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m 48[0m         if (err) {
+[7m   [0m [91m~~~~~~~~~~~~~~~~~~[0m
+[7m...[0m 
+[7m 53[0m         done();
+[7m   [0m [91m~~~~~~~~~~~~~~~[0m
+[7m 54[0m       })
+[7m   [0m [91m~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-4e7c0cc/testCase.test.ts
+  pull with 4 arguments
+    ✕ should correctly handle 4 arguments in partial application (1 ms)
+
+  ● pull with 4 arguments › should correctly handle 4 arguments in partial application
+
+    TypeError: read is not a function
+
+      28 |       const result: number[] = [];
+      29 |       return (abort: any, cb: (end: any, data?: number[]) => void) => {
+    > 30 |         read(abort, (end: any, data?: number) => {
+         |         ^
+      31 |           if (end) {
+      32 |             if (end === true) cb(null, result);
+      33 |             else cb(end, result);
+
+      at read (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-4e7c0cc/testCase.test.ts:30:9)
+      at s (../subject_repositories/pull-stream/pull.js:41:14)
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-4e7c0cc/testCase.test.ts:41:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.741 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-4e7c0cc/testCase.test.ts".

@@ -1,0 +1,10 @@
+import { GeoPoint } from "../../../../../../../../../../../subject_repositories/node-geo-point/src/geo-point.ts";
+
+describe('GeoPoint constructor validation', () => {
+  it('should throw RangeError when latitude or longitude is not a number', () => {
+    expect(() => new GeoPoint("invalid" as any, 0)).toThrow(RangeError);
+    expect(() => new GeoPoint(0, "invalid" as any)).toThrow(RangeError);
+    expect(() => new GeoPoint(null as any, 0)).toThrow(RangeError);
+    expect(() => new GeoPoint(0, undefined as any)).toThrow(RangeError);
+  });
+});

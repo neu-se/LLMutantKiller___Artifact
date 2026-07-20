@@ -1,0 +1,35 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-d062889/testCase.test.ts[0m:[93m1[0m:[93m26[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import { GeoPoint } from "../../../../../../../../../../../subject_repositories/node-geo-point/src/geo-point.ts";
+[7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-d062889/testCase.test.ts
+  GeoPoint
+    ✕ should throw a TypeError with a meaningful message when creating a GeoPoint from an object that is not an object (18 ms)
+
+  ● GeoPoint › should throw a TypeError with a meaningful message when creating a GeoPoint from an object that is not an object
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "GeoPoint: Argument must be an object"
+    Received message:   ""
+
+          84 |   static fromObject(object: LatLng): GeoPoint {
+          85 |     if (!isObject(object)) {
+        > 86 |          throw new TypeError("");
+             |                ^
+          87 |
+          88 |     }
+          89 |
+
+      at Function.fromObject (../subject_repositories/node-geo-point/src/geo-point.ts:86:16)
+      at fromObject (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-d062889/testCase.test.ts:6:27)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-d062889/testCase.test.ts:6:45)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-d062889/testCase.test.ts:6:45)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.916 s, estimated 1 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-d062889/testCase.test.ts".

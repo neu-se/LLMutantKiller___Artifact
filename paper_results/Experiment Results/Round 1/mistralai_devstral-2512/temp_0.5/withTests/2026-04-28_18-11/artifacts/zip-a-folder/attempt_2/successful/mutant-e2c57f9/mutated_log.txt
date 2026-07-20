@@ -1,0 +1,31 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_2/pending_category/mutant-e2c57f9/testCase.test.ts[0m:[93m4[0m:[93m34[0m - [91merror[0m[90m TS6133: [0m'ZipAFolder' is declared but its value is never read.
+
+[7m4[0m import { COMPRESSION_LEVEL, zip, ZipAFolder } from '../../../../../../../../../../../subject_repositories/zip-a-folder/lib/ZipAFolder';
+[7m [0m [91m                                 ~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_2/pending_category/mutant-e2c57f9/testCase.test.ts
+  ZipAFolder uncompressed zip store behavior
+    ✕ should verify uncompressed zip uses store method (15 ms)
+
+  ● ZipAFolder uncompressed zip store behavior › should verify uncompressed zip uses store method
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      32 |         // We verify this by checking the file contains uncompressed data
+      33 |         const zipContent = await fs.promises.readFile(outputPath);
+    > 34 |         expect(zipContent.includes(Buffer.from('content1'))).toBe(true);
+         |                                                              ^
+      35 |         expect(zipContent.includes(Buffer.from('content2'))).toBe(true);
+      36 |
+      37 |         // Additional verification: the size should be roughly the size of the original files
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_2/pending_category/mutant-e2c57f9/testCase.test.ts:34:62)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.377 s, estimated 2 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_2/pending_category/mutant-e2c57f9/testCase.test.ts".

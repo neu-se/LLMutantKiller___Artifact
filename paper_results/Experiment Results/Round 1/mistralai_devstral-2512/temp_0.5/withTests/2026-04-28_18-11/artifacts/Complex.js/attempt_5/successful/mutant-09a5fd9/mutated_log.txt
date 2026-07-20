@@ -1,0 +1,30 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-09a5fd9/testCase.test.ts
+  Complex.sech() method
+    ✕ should correctly compute the hyperbolic secant for non-zero real part (2 ms)
+
+  ● Complex.sech() method › should correctly compute the hyperbolic secant for non-zero real part
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.6480542736638853
+    Received: 0.2721661669121462
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   0.37588810675173917
+
+       8 |     const expectedRe = 2 * Math.cosh(1) * Math.cos(0) / (Math.cos(0) + Math.cosh(2 * 1));
+       9 |     const expectedIm = -2 * Math.sinh(1) * Math.sin(0) / (Math.cos(0) + Math.cosh(2 * 1));
+    > 10 |     expect(result.re).toBeCloseTo(expectedRe, 10);
+         |                       ^
+      11 |     expect(result.im).toBeCloseTo(expectedIm, 10);
+      12 |   });
+      13 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-09a5fd9/testCase.test.ts:10:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.877 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-09a5fd9/testCase.test.ts".

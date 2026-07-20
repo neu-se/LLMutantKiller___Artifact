@@ -1,0 +1,45 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_6/pending_category/mutant-56cf9b4/testCase.test.ts
+  invert() with delete operation
+    ✕ should correctly invert a delete operation with retain (6 ms)
+
+  ● invert() with delete operation › should correctly invert a delete operation with retain
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+    @@ -2,9 +2,9 @@
+        "ops": Array [
+          Object {
+            "retain": 2,
+          },
+          Object {
+    -       "insert": "2",
+    +       "insert": "3",
+          },
+        ],
+      }
+
+       7 |     const expected = new Delta().retain(2).insert('2');
+       8 |     const inverted = delta.invert(base);
+    >  9 |     expect(inverted).toEqual(expected);
+         |                      ^
+      10 |     expect(base.compose(delta).compose(inverted)).toEqual(base);
+      11 |   });
+      12 | });
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_6/pending_category/mutant-56cf9b4/testCase.test.ts:9:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.755 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_6/pending_category/mutant-56cf9b4/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

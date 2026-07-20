@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-ccef39b/testCase.test.ts (6.43 s)
+  Dirty close behavior with pending operations
+    ✕ should close immediately when queue is empty but writes are in flight (5004 ms)
+
+  ● Dirty close behavior with pending operations › should close immediately when queue is empty but writes are in flight
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      43 |             // Mutated code: would wait for drain (which never comes)
+      44 |             expect(writeCloseEmitted).toBe(true);
+    > 45 |             expect(drainEmitted).toBe(false);
+         |                                  ^
+      46 |             done();
+      47 |           }
+      48 |         });
+
+      at Dirty.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-ccef39b/testCase.test.ts:45:34)
+      at WriteStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:177:12)
+
+  ● Dirty close behavior with pending operations › should close immediately when queue is empty but writes are in flight
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      19 |   });
+      20 |
+    > 21 |   it('should close immediately when queue is empty but writes are in flight', (done) => {
+         |   ^
+      22 |     const db = new Dirty(dbPath);
+      23 |
+      24 |     db.on('load', () => {
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-ccef39b/testCase.test.ts:21:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-ccef39b/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.603 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-ccef39b/testCase.test.ts".

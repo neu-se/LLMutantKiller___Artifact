@@ -1,0 +1,234 @@
+Your task is to write a Jest test case that exposes a specific mutation in a JavaScript/TypeScript project.
+
+MUTATION DETAILS
+The mutation affects the following file:
+lib/TimeoutError.js
+Here is the full content of that file (shown with a <PLACEHOLDER> marker):
+class TimeoutError extends Error {
+  constructor() {
+    <PLACEHOLDER>
+  }
+}
+
+module.exports.TimeoutError = TimeoutError;
+
+In the original code, <PLACEHOLDER> has the value:
+
+-       super('TimeoutError');
+In the mutated code, <PLACEHOLDER> has the value:
+
++       super("");
+
+
+YOUR TASK
+Write one Jest test file that:
+    1. Passes when run against the original code.
+    2. Fails when run against the mutated code.
+    3. Tests the behavior of the mutated file in a way that reliably detects the mutation.
+The test will be saved at the following path, relative to this test-generation project’s root:
+llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-181a7b4/testCase.test.ts
+
+RESOURCES AVAILABLE
+Existing test cases you may use for style or structure inspiration, focusing on how they reflect the project’s expected behavior and typical inputs:
+// test/index.js
+
+/* eslint-disable no-sync */
+/* eslint-disable sort-keys */
+/* eslint-disable arrow-body-style */
+/* eslint-disable max-lines-per-function */
+/* eslint-disable require-unicode-regexp */
+/* global describe it expect */
+
+'use strict';
+
+const fs = require('fs');
+const path = require('path');
+const nock = require('nock');
+
+nock('http://someurl.com')
+  .get(/success/)
+  .times(100)
+  .replyWithFile(200, path.join(__dirname, 'fixtures/android.jpg'), {
+    'Content-Type': 'image/jpeg',
+  });
+
+nock('https://someurl.com')
+  .get(/success/)
+  .times(100)
+  .replyWithFile(200, path.join(__dirname, 'fixtures/android.jpg'), {
+    'Content-Type': 'image/jpeg',
+  });
+
+nock('https://someurl.com')
+  .get(/timeout/)
+  .delayConnection(5000)
+  .times(100)
+  .replyWithFile(200, path.join(__dirname, 'fixtures/android.jpg'), {
+    'Content-Type': 'image/jpeg',
+  });
+
+nock('http://someurl.com')
+  .get(/error/)
+  .times(100)
+  .reply(404, 'Not Found');
+
+nock('http://cdn.shopify.com')
+  .get('/s/files/1/0516/7244/9178/products/SteelCutOats1.jpg')
+  .reply(301, '', { location: 'http://someurl.com/image-success.png' });
+
+const download = require('..');
+const { TimeoutError } = require('../lib/TimeoutError');
+
+describe('options', () => {
+  it('should failed with !options.url === true', (done) => {
+    download.image({ url: null, dest: '/tmp' })
+      .then(() => done(new Error('Should throw an error')))
+      .catch(() => done());
+  });
+
+  it('should failed with !options.dest === true', (done) => {
+    download.image({ url: 'http://someurl.com/image.jpg', dest: null })
+      .then(() => done(new Error('Should throw an error')))
+      .catch(() => done());
+  });
+})
+
+describe('download an image', () => {
+  it('should save image with the original filename', () => {
+    return download.image({ url: 'http://someurl.com/image%20success.png', dest: '/tmp' }).then(({ filename }) => {
+      expect(filename).toEqual('/tmp/image success.png');
+      expect(() => fs.accessSync(filename)).not.toThrow();
+    });
+  });
+
+  it('should failed with too short timeout', (done) => {
+    download.image({ url: 'https://someurl.com/image-timeout.png', timeout: 2000, dest: '/tmp' })
+      .then(() => done(new Error('Should throw an error')))
+      .catch((err) => {
+        expect(err).toBeInstanceOf(TimeoutError);
+        done();
+      });
+  });
+
+  it('should succeed with HTTPS', () => {
+    return download.image({ url: 'https://someurl.com/image%20success.png', dest: '/tmp' }).then(({ filename }) => {
+      expect(filename).toEqual('/tmp/image success.png');
+      expect(() => fs.accessSync(filename)).not.toThrow();
+    });
+  });
+
+  it('should save image with the decoded filename', () => {
+    return download.image({ url: 'http://someurl.com/image-success.png', dest: '/tmp' }).then(({ filename }) => {
+      expect(filename).toEqual('/tmp/image-success.png');
+      expect(() => fs.accessSync(filename)).not.toThrow();
+    });
+  });
+
+  it('should save image with an another filename', () => {
+    return download.image({ url: 'http://someurl.com/image-success.jpg', dest: '/tmp/image-newname.jpg' }).then(({ filename }) => {
+      expect(filename).toEqual('/tmp/image-newname.jpg');
+      expect(() => fs.accessSync(filename)).not.toThrow();
+    });
+  });
+
+  it('should save image with options.extractFilename and a defined options.dest without file extension', () => {
+    const options = {
+      url: 'http://someurl.com/image-success.jpg',
+      dest: '/tmp/image-newname',
+      extractFilename: false,
+    };
+
+    return download.image(options).then(({ filename }) => {
+      expect(filename).toEqual('/tmp/image-newname');
+      expect(() => fs.accessSync(filename)).not.toThrow();
+    });
+  });
+
+  it('should failed with an error', (done) => {
+    download.image({ url: 'http://someurl.com/image-error.jpg', dest: '/tmp' })
+      .then(() => done(new Error('Should throw an error')))
+      .catch((err) => {
+        expect(err).toBeInstanceOf(Error);
+        done();
+      });
+  });
+
+  it('should save image with a complex url params', () => {
+    const options = {
+      url: 'http://someurl.com/success-image-with-complex-params.jpg?_nc_cat=1&_nc_ht=scontent.fdad3-1.fna&oh=88171697ef1cf5baf3f887436259273d&oe=5CAD866C',
+      dest: '/tmp',
+    };
+
+    return download.image(options).then(({ filename }) => {
+      expect(filename).toBeDefined();
+      expect(() => fs.accessSync(filename)).not.toThrow();
+    });
+  });
+});
+
+describe('Issues', () => {
+  it('#27 - dest: directory cannot contain a dot', () => {
+    return download.image({ url: 'http://someurl.com/image-success.png', dest: './test/fixtures/someurl.com' }).then(({ filename }) => {
+      expect(filename).toMatch(/test\/fixtures\/someurl\.com$/);
+      expect(() => fs.accessSync(filename)).not.toThrow();
+    });
+  });
+
+  it('#29 - 301 status code while downloading image', () => {
+    return download.image({ url: 'http://cdn.shopify.com/s/files/1/0516/7244/9178/products/SteelCutOats1.jpg', dest: '/tmp/SteelCutOats1.jpg' }).then(({ filename }) => {
+      expect(filename).toMatch(/tmp\/SteelCutOats1\.jpg$/);
+      expect(() => fs.accessSync(filename)).not.toThrow();
+    });
+  });
+});
+
+The test runner configuration (package.json):
+{
+  "name": "image-downloader",
+  "version": "4.3.0",
+  "description": "A Nodejs module for downloading image to disk from a given URL",
+  "main": "index.js",
+  "engines": {
+    "node": ">=6.10.1"
+  },
+  "scripts": {
+    "test": "jest --coverage",
+    "lint": "eslint index.js index.d.ts test",
+    "lint:fix": "eslint --fix index.js index.d.ts test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/demsking/image-downloader.git"
+  },
+  "keywords": [
+    "image",
+    "download",
+    "downloader",
+    "images"
+  ],
+  "author": "Sébastien Demanou",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/demsking/image-downloader/issues"
+  },
+  "homepage": "https://gitlab.com/demsking/image-downloader",
+  "dependencies": {
+    "follow-redirects": "^1.15.0"
+  },
+  "devDependencies": {
+    "@types/follow-redirects": "^1.14.1",
+    "@typescript-eslint/eslint-plugin": "^5.18.0",
+    "@typescript-eslint/parser": "^5.18.0",
+    "eslint": "^8.13.0",
+    "jest": "^28.0.3",
+    "nock": "^13.0.5"
+  }
+}
+
+ALLOWED LIBRARIES
+You may use:
+    1. Any built-in Node.js modules (e.g., fs, path, crypto, etc.).
+    2. The following external libraries are explicitly permitted:
+    - nock
+    - follow-redirects 
+You may not use any other third-party libraries.

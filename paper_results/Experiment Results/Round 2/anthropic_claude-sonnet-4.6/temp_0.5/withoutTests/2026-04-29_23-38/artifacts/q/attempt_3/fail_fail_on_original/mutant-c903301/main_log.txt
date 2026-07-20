@@ -1,0 +1,57 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-c903301/testCase.test.ts (6.16 s)
+  Q progress error propagation
+    ✕ throws error via uncaughtException when progress callback throws without Q.onerror (5002 ms)
+
+  ● Q progress error propagation › throws error via uncaughtException when progress callback throws without Q.onerror
+
+    unique-test-progress-error-12345
+
+       6 |     
+       7 |     const deferred = Q.defer();
+    >  8 |     const testError = new Error("unique-test-progress-error-12345");
+         |                       ^
+       9 |
+      10 |     delete (Q as any).onerror;
+      11 |
+
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-c903301/testCase.test.ts:8:23)
+
+  ● Q progress error propagation › throws error via uncaughtException when progress callback throws without Q.onerror
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      30 |       setImmediate(() => {
+      31 |         process.removeListener("uncaughtException", uncaughtHandler);
+    > 32 |         expect(errorCaught).toBe(true);
+         |                             ^
+      33 |         done();
+      34 |       });
+      35 |     });
+
+      at Immediate.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-c903301/testCase.test.ts:32:29)
+
+  ● Q progress error propagation › throws error via uncaughtException when progress callback throws without Q.onerror
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("Q progress error propagation", () => {
+    > 4 |   it("throws error via uncaughtException when progress callback throws without Q.onerror", (done) => {
+        |   ^
+      5 |     jest.setTimeout(1000);
+      6 |     
+      7 |     const deferred = Q.defer();
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-c903301/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-c903301/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.319 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-c903301/testCase.test.ts".

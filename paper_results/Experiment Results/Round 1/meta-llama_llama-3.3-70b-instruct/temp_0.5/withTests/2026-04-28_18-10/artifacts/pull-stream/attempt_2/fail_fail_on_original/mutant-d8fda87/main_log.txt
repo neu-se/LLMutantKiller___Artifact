@@ -1,0 +1,58 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-d8fda87/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/sources/once.js"' has no exported member 'once'.
+
+[7m1[0m import { once } from '../../../../../../../../../../../subject_repositories/pull-stream/sources/once.js';
+[7m [0m [91m         ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-d8fda87/testCase.test.ts
+  once
+    ✕ should call cb with value when value is not null and abort is false (2 ms)
+    ✕ should call cb with error when value is null and abort is false (1 ms)
+    ✕ should call onAbort when abort is true
+
+  ● once › should call cb with value when value is not null and abort is false
+
+    TypeError: (0 , once_js_1.once) is not a function
+
+       5 |     const cbSpy = jest.fn();
+       6 |     const onAbortSpy = jest.fn();
+    >  7 |     const onceFn = once('test', onAbortSpy);
+         |                        ^
+       8 |     onceFn(false, cbSpy);
+       9 |     expect(cbSpy).toHaveBeenCalledTimes(1);
+      10 |     expect(cbSpy).toHaveBeenCalledWith(null, 'test');
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-d8fda87/testCase.test.ts:7:24)
+
+  ● once › should call cb with error when value is null and abort is false
+
+    TypeError: (0 , once_js_1.once) is not a function
+
+      15 |     const cbSpy = jest.fn();
+      16 |     const onAbortSpy = jest.fn();
+    > 17 |     const onceFn = once(null, onAbortSpy);
+         |                        ^
+      18 |     onceFn(false, cbSpy);
+      19 |     expect(cbSpy).toHaveBeenCalledTimes(1);
+      20 |     expect(cbSpy).toHaveBeenCalledWith(true, undefined);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-d8fda87/testCase.test.ts:17:24)
+
+  ● once › should call onAbort when abort is true
+
+    TypeError: (0 , once_js_1.once) is not a function
+
+      25 |     const cbSpy = jest.fn();
+      26 |     const onAbortSpy = jest.fn();
+    > 27 |     const onceFn = once('test', onAbortSpy);
+         |                        ^
+      28 |     onceFn(true, cbSpy);
+      29 |     expect(onAbortSpy).toHaveBeenCalledTimes(1);
+      30 |   });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-d8fda87/testCase.test.ts:27:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        3.661 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-d8fda87/testCase.test.ts".

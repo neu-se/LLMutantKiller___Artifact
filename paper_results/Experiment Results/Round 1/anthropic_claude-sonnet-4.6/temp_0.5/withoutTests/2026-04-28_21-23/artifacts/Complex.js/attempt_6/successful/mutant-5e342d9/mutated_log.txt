@@ -1,0 +1,29 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-5e342d9/testCase.test.ts
+  Complex mutation detection via pow
+    ✕ pow uses logHypot not hypot, so test abs directly with exact integer check (2 ms)
+
+  ● Complex mutation detection via pow › pow uses logHypot not hypot, so test abs directly with exact integer check
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 6000
+    Received: 82944000000.00014
+
+    Expected precision:    5
+    Expected difference: < 0.000005
+    Received difference:   82943994000.00014
+
+       7 |     // Try 3600, 4800, 6000 (3-4-5 scaled by 1200)
+       8 |     const z = new Complex(3600, 4800);
+    >  9 |     expect(z.abs()).toBeCloseTo(6000, 5);
+         |                     ^
+      10 |   });
+      11 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-5e342d9/testCase.test.ts:9:21)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.151 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-5e342d9/testCase.test.ts".

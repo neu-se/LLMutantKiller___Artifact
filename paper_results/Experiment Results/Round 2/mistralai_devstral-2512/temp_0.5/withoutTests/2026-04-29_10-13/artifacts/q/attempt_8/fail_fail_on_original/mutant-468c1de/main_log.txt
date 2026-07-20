@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-468c1de/testCase.test.ts
+  Q promise stack trace filtering
+    ✕ should properly filter stack traces based on stack counter comparison (3 ms)
+
+  ● Q promise stack trace filtering › should properly filter stack traces based on stack counter comparison
+
+    expect(received).toBeLessThan(expected)
+
+    Expected: < 15
+    Received:   28
+
+      38 |         // We expect a reasonable number of frames (not too many)
+      39 |         // In the mutated code, ALL frames would be included making it much longer
+    > 40 |         expect(stackLines).toBeLessThan(15);
+         |                            ^
+      41 |
+      42 |         // Also verify the stack contains our error message
+      43 |         expect(capturedStack).toContain("Original error");
+
+      at Object.toBeLessThan (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-468c1de/testCase.test.ts:40:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.16 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-468c1de/testCase.test.ts".

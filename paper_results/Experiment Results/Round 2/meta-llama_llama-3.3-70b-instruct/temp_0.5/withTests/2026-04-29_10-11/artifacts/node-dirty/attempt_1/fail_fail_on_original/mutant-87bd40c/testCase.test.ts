@@ -1,0 +1,22 @@
+import { Dirty } from '../../../../../../../../subject_repositories/node-dirty/lib/dirty/dirty.js';
+import fs from 'fs';
+import rimraf from 'rimraf';
+import path from 'path';
+
+describe('Dirty', () => {
+  it('should close the read stream when closing the database', (done) => {
+    const tmpPath = path.join(__dirname, 'tmp.dirty');
+    const db = new Dirty(tmpPath);
+
+    db.on('load', () => {
+      db.set('key', 'value');
+      db.on('drain', () => {
+        db.close();
+        db.on('read_close', () => {
+          rimraf.sync(tmpPath);
+          done();
+        });
+      });
+    });
+  });
+});

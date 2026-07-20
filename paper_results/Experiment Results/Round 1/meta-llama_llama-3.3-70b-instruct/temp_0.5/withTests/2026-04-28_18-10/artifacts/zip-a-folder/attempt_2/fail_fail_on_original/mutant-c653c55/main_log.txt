@@ -1,0 +1,31 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_2/pending_category/mutant-c653c55/testCase.test.ts[0m:[93m2[0m:[93m1[0m - [91merror[0m[90m TS6133: [0m'fs' is declared but its value is never read.
+
+[7m2[0m import * as fs from 'fs';
+[7m [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_2/pending_category/mutant-c653c55/testCase.test.ts[0m:[93m10[0m:[93m37[0m - [91merror[0m[90m TS2339: [0mProperty 'COMPRESSION_LEVEL' does not exist on type 'typeof ZipAFolder'.
+
+[7m10[0m             compression: ZipAFolder.COMPRESSION_LEVEL.uncompressed,
+[7m  [0m [91m                                    ~~~~~~~~~~~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_2/pending_category/mutant-c653c55/testCase.test.ts
+  Zip-A-Folder Test
+    ✕ should throw an error when compression level is uncompressed and no store option is provided (1 ms)
+
+  ● Zip-A-Folder Test › should throw an error when compression level is uncompressed and no store option is provided
+
+    TypeError: Cannot read properties of undefined (reading 'uncompressed')
+
+       8 |         const testUNCOMPRESSEDZIP = path.resolve(__dirname, 'testUNCOMPRESSED.zip');
+       9 |         await expect(ZipAFolder.zip(path.resolve(__dirname, 'data/'), testUNCOMPRESSEDZIP, {
+    > 10 |             compression: ZipAFolder.COMPRESSION_LEVEL.uncompressed,
+         |                                                       ^
+      11 |         })).rejects.toThrow();
+      12 |     });
+      13 | });
+
+      at Object.uncompressed (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_2/pending_category/mutant-c653c55/testCase.test.ts:10:55)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.317 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_2/pending_category/mutant-c653c55/testCase.test.ts".

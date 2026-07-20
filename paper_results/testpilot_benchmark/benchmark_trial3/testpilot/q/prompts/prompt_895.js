@@ -1,0 +1,68 @@
+The test:
+```
+let mocha = require('mocha');
+let assert = require('assert');
+let q = require('q');
+
+describe('test q', function() {
+    it('test q.isRejected', function(done) {
+        // Test 1: isRejected should return true for a rejected promise
+        let rejectedPromise = q.reject(new Error('test error'));
+        assert.strictEqual(q.isRejected(rejectedPromise), true);
+        
+        // Test 2: isRejected should return false for a fulfilled promise
+        let fulfilledPromise = q.resolve('success');
+        assert.strictEqual(q.isRejected(fulfilledPromise), false);
+        
+        // Test 3: isRejected should return false for a pending promise
+        let pendingPromise = q.defer().promise;
+        assert.strictEqual(q.isRejected(pendingPromise), false);
+        
+        // Test 4: isRejected should return false for non-promise objects
+        assert.strictEqual(q.isRejected({}), false);
+        assert.strictEqual(q.isRejected(null), false);
+        assert.strictEqual(q.isRejected(undefined), false);
+        assert.strictEqual(q.isRejected('string'), false);
+        assert.strictEqual(q.isRejected(42), false);
+        assert.strictEqual(q.isRejected([]), false);
+        
+        // Test 5: isRejected should return false for native Promise objects
+        let nativePromise = Promise.resolve('test');
+        assert.strictEqual(q.isRejected(nativePromise), false);
+        
+        done();
+    });
+});
+``` 
+failed with the following error message:
+```
+
+Error: Cannot find module 'mocha'
+Require stack:
+- /path/to/test/test_1401.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1224:15)
+    at Module._load (node:internal/modules/cjs/loader:1050:27)
+    at Module.require (node:internal/modules/cjs/loader:1310:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (/path/to/test/test_1401.js:1:13)
+    at Module._compile (node:internal/modules/cjs/loader:1480:14)
+    at Module.replacementCompile (/Users/anon/testpilot2/node_modules/append-transform/index.js:60:13)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1564:10)
+    at Object.<anonymous> (/Users/anon/testpilot2/node_modules/append-transform/index.js:64:4)
+    at Module.load (node:internal/modules/cjs/loader:1287:32)
+    at Module._load (node:internal/modules/cjs/loader:1103:12)
+    at cjsLoader (node:internal/modules/esm/translators:318:15)
+    at ModuleWrap.<anonymous> (node:internal/modules/esm/translators:258:7)
+    at ModuleJob.run (node:internal/modules/esm/module_job:262:25)
+    at async ModuleLoader.import (node:internal/modules/esm/loader:474:24)
+    at async formattedImport (/Users/anon/testpilot2/node_modules/mocha/lib/nodejs/esm-utils.js:7:14)
+    at async exports.requireOrImport (/Users/anon/testpilot2/node_modules/mocha/lib/nodejs/esm-utils.js:38:28)
+    at async exports.loadFilesAsync (/Users/anon/testpilot2/node_modules/mocha/lib/nodejs/esm-utils.js:91:20)
+    at async singleRun (/Users/anon/testpilot2/node_modules/mocha/lib/cli/run-helpers.js:125:3)
+    at async exports.handler (/Users/anon/testpilot2/node_modules/mocha/lib/cli/run.js:370:5)
+  
+```
+
+Your task is to modify the above code to fix the test. 
+
+Provide your answer as a fenced code block.

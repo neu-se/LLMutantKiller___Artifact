@@ -1,0 +1,33 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-32ad9ce/testCase.test.ts
+  Complex number parsing with NaN values
+    ✕ should create a non-NaN complex number when only one component is NaN (3 ms)
+
+  ● Complex number parsing with NaN values › should create a non-NaN complex number when only one component is NaN
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+       5 |   it('should create a non-NaN complex number when only one component is NaN', () => {
+       6 |     const result = new Complex({ re: 5, im: NaN });
+    >  7 |     expect(result.isNaN()).toBe(false);
+         |                            ^
+       8 |     expect(result.re).toBe(5);
+       9 |     expect(result.im).toBe(0);
+      10 |   });
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-32ad9ce/testCase.test.ts:7:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-32ad9ce/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

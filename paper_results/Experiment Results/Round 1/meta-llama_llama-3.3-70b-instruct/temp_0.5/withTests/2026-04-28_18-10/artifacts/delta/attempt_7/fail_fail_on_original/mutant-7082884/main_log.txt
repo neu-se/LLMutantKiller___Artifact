@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_7/pending_category/mutant-7082884/testCase.test.ts
+  Delta
+    ✕ diff() should not call fast-diff when the two input Deltas are the same (4 ms)
+
+  ● Delta › diff() should not call fast-diff when the two input Deltas are the same
+
+    Property `default` does not exist in the provided object
+
+       5 |     const delta1 = new Delta().insert('Hello, World!');
+       6 |     const delta2 = new Delta().insert('Hello, World!');
+    >  7 |     const fastDiffSpy = jest.spyOn(require('fast-diff'), 'default');
+         |                              ^
+       8 |     delta1.diff(delta2);
+       9 |     expect(fastDiffSpy).not.toHaveBeenCalled(); // This line should fail on the mutated code
+      10 |   });
+
+      at ModuleMocker.spyOn (node_modules/jest-mock/build/index.js:731:13)
+      at Object.spyOn (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_7/pending_category/mutant-7082884/testCase.test.ts:7:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.191 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_7/pending_category/mutant-7082884/testCase.test.ts".

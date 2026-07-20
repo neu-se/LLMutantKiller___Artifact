@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-79747e0/testCase.test.ts
+  drain without done callback
+    ✕ should not throw when stream ends normally and no done callback is provided (5 ms)
+
+  ● drain without done callback › should not throw when stream ends normally and no done callback is provided
+
+    TypeError: done is not a function
+
+      24 |             if(end = end || abort) {
+      25 |               loop = false
+    > 26 |                  if(true) done(end === true ? null : end)
+         |                           ^
+      27 |
+      28 |               else if(end && end !== true) {
+      29 |                 console.warn(doneLackingErr)
+
+      at done (../subject_repositories/pull-stream/sinks/drain.js:26:27)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-79747e0/testCase.test.ts:13:9)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:46:8)
+      at Object.sink (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-79747e0/testCase.test.ts:22:7)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.865 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-79747e0/testCase.test.ts".

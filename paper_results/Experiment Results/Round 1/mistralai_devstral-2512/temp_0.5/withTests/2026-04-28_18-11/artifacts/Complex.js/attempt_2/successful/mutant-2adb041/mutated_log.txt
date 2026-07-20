@@ -1,0 +1,30 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-2adb041/testCase.test.ts
+  Complex number cosm1 function
+    ✕ should correctly compute cos(x) - 1 for small x values (2 ms)
+
+  ● Complex number cosm1 function › should correctly compute cos(x) - 1 for small x values
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: -0.0049958347219742905
+    Received: -0.005867617633974236
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   0.0008717829119999458
+
+      10 |     // This should affect the real part of expm1 for purely imaginary inputs
+      11 |     const expectedRe = Math.expm1(0) * Math.cos(x) + (Math.cos(x) - 1.0);
+    > 12 |     expect(expm1Result.re).toBeCloseTo(expectedRe, 10);
+         |                            ^
+      13 |     expect(expm1Result.im).toBeCloseTo(Math.sin(x), 10);
+      14 |   });
+      15 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-2adb041/testCase.test.ts:12:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.09 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-2adb041/testCase.test.ts".

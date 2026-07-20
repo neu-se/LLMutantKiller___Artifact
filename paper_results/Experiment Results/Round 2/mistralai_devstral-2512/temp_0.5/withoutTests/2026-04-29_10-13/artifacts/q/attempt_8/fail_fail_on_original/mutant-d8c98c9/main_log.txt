@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-d8c98c9/testCase.test.ts (6.145 s)
+  Q promise domain handling
+    ✕ should properly exit domain context after task execution (5001 ms)
+
+  ● Q promise domain handling › should properly exit domain context after task execution
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 3
+
+      29 |           // In original code: domain.exit should be called once after task completes
+      30 |           // In mutated code: domain.exit is never called
+    > 31 |           expect(exitCallCount).toBe(1);
+         |                                 ^
+      32 |           expect(enterCallCount).toBeGreaterThan(0);
+      33 |           done();
+      34 |         }, 50);
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-d8c98c9/testCase.test.ts:31:33)
+
+  ● Q promise domain handling › should properly exit domain context after task execution
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("Q promise domain handling", () => {
+    > 4 |   it("should properly exit domain context after task execution", (done) => {
+        |   ^
+      5 |     // Create a domain to test domain handling
+      6 |     const domain = require('domain').create();
+      7 |     let exitCallCount = 0;
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-d8c98c9/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-d8c98c9/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.294 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-d8c98c9/testCase.test.ts".

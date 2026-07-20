@@ -1,0 +1,1494 @@
+{
+  "metaData": {
+    "packageName": "zip-a-folder",
+    "useDocSnippets": true,
+    "useCodeSnippets": false,
+    "numSnippets": "all",
+    "snippetLength": 20,
+    "numCompletions": 5
+  },
+  "prompts": [
+    {
+      "id": 0,
+      "file": "prompt_0.js",
+      "temperature": 0,
+      "completions": [
+        "```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let zipPath;\n    \n    beforeEach(function() {\n        // Create a temporary directory for testing\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        zipPath = path.join(testDir, 'test.zip');\n        \n        // Create test folder structure\n        let sourceDir = path.join(testDir, 'source');\n        fs.mkdirSync(sourceDir);\n        fs.writeFileSync(path.join(sourceDir, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(sourceDir, 'file2.txt'), 'Test Content');\n        \n        let subDir = path.join(sourceDir, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n    \n    afterEach(function() {\n        // Clean up test files\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should create ZipAFolder instance', function() {\n        let zipper = new zip_a_folder.ZipAFolder();\n        assert(zipper instanceof zip_a_folder.ZipAFolder);\n    });\n\n    it('should zip a folder successfully', function(done) {\n        let zipper = new zip_a_folder.ZipAFolder();\n        let sourceDir = path.join(testDir, 'source');\n        \n        zipper.zip(sourceDir, zipPath).then(() => {\n            // Verify zip file was created\n            assert(fs.existsSync(zipPath));\n            assert(fs.statSync(zipPath).size > 0);\n            done();\n        }).catch(done);\n    });\n\n    it('should handle empty folder', function(done) {\n        let zipper = new zip_a_folder.ZipAFolder();\n        let emptyDir = path.join(testDir, 'empty');\n        fs.mkdirSync(emptyDir);\n        \n        zipper.zip(emptyDir, zipPath).then(() => {\n            assert(fs.existsSync(zipPath));\n            done();\n        }).catch(done);\n    });\n\n    it('should reject when source folder does not exist', function(done) {\n        let zipper = new zip_a_folder.ZipAFolder();\n        let nonExistentDir = path.join(testDir, 'nonexistent');\n        \n        zipper.zip(nonExistentDir, zipPath).then(() => {\n            done(new Error('Should have rejected'));\n        }).catch((err) => {\n            assert(err instanceof Error);\n            done();\n        });\n    });\n\n    it('should reject when zip path is invalid', function(done) {\n        let zipper = new zip_a_folder.ZipAFolder();\n        let sourceDir = path.join(testDir, 'source');\n        let invalidZipPath = path.join('/invalid/path/test.zip');\n        \n        zipper.zip(sourceDir, invalidZipPath).then(() => {\n            done(new Error('Should have rejected'));\n        }).catch((err) => {\n            assert(err instanceof Error);\n            done();\n        });\n    });\n});\n```"
+      ],
+      "tests": [
+        "test_0.js",
+        "test_1.js",
+        "test_2.js",
+        "test_3.js",
+        "test_4.js"
+      ],
+      "provenance": []
+    },
+    {
+      "id": 1,
+      "file": "prompt_1.js",
+      "temperature": 0,
+      "completions": [
+        "```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let srcFolder;\n    let targetFolder;\n\n    beforeEach(async function() {\n        // Create temporary directories for testing\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(testDir, 'source');\n        targetFolder = path.join(testDir, 'target');\n        \n        fs.mkdirSync(srcFolder);\n        fs.mkdirSync(targetFolder);\n        \n        // Create test files in source folder\n        fs.writeFileSync(path.join(srcFolder, 'test1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'test2.txt'), 'Test content');\n        \n        // Create a subdirectory with a file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up test directories\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should create a zip file with compression', async function() {\n        const zipPath = path.join(targetFolder, 'test.zip');\n        \n        await zip_a_folder.ZipAFolder.zip(srcFolder, zipPath);\n        \n        assert(fs.existsSync(zipPath), 'Zip file should be created');\n        assert(fs.statSync(zipPath).size > 0, 'Zip file should not be empty');\n    });\n\n    it('should create a zip file without compression', async function() {\n        const zipPath = path.join(targetFolder, 'test-uncompressed.zip');\n        const options = { compression: zip_a_folder.COMPRESSION_LEVEL.uncompressed };\n        \n        await zip_a_folder.ZipAFolder.zip(srcFolder, zipPath, options);\n        \n        assert(fs.existsSync(zipPath), 'Uncompressed zip file should be created');\n        assert(fs.statSync(zipPath).size > 0, 'Uncompressed zip file should not be empty');\n    });\n\n    it('should create a tar file with compression', async function() {\n        const tarPath = path.join(targetFolder, 'test.tar.gz');\n        \n        await zip_a_folder.ZipAFolder.tar(srcFolder, tarPath);\n        \n        assert(fs.existsSync(tarPath), 'Tar file should be created');\n        assert(fs.statSync(tarPath).size > 0, 'Tar file should not be empty');\n    });\n\n    it('should create a tar file without compression', async function() {\n        const tarPath = path.join(targetFolder, 'test-uncompressed.tar');\n        const options = { compression: zip_a_folder.COMPRESSION_LEVEL.uncompressed };\n        \n        await zip_a_folder.ZipAFolder.tar(srcFolder, tarPath, options);\n        \n        assert(fs.existsSync(tarPath), 'Uncompressed tar file should be created');\n        assert(fs.statSync(tarPath).size > 0, 'Uncompressed tar file should not be empty');\n    });\n\n    it('should throw error when source and target are the same', async function() {\n        const zipPath = path.join(srcFolder, 'test.zip');\n        \n        try {\n            await zip_a_folder.ZipAFolder.zip(srcFolder, zipPath);\n            assert.fail('Should have thrown an error');\n        } catch (error) {\n            assert(error.message.includes('Source and target folder must be different'), \n                   'Should throw error about same source and target folder');\n        }\n    });\n\n    it('should work with custom write stream', async function() {\n        const zipPath = path.join(targetFolder, 'custom-stream.zip');\n        const writeStream = fs.createWriteStream(zipPath);\n        const options = { customWriteStream: writeStream };\n        \n        await zip_a_folder.ZipAFolder.compress({\n            srcFolder: srcFolder,\n            targetFilePath: null,\n            format: 'zip',\n            zipAFolderOptions: options\n        });\n        \n        assert(fs.existsSync(zipPath), 'Zip file should be created with custom stream');\n        assert(fs.statSync(zipPath).size > 0, 'Zip file should not be empty');\n    });\n\n    it('should throw error when no target path or custom stream provided', async function() {\n        try {\n            await zip_a_folder.ZipAFolder.compress({\n                srcFolder: srcFolder,\n                targetFilePath: null,\n                format: 'zip',\n                zipAFolderOptions: {}\n            });\n            assert.fail('Should have thrown an error');\n        } catch (error) {\n            assert(error.message.includes('You must either provide a target file path or a custom write stream'), \n                   'Should throw error about missing target or stream');\n        }\n    });\n});\n```"
+      ],
+      "tests": [
+        "test_5.js",
+        "test_6.js",
+        "test_7.js",
+        "test_8.js",
+        "test_9.js",
+        "test_10.js",
+        "test_11.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 0,
+          "test": 4,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 9,
+          "test": 19,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 0,
+          "test": 3,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 10,
+          "test": 20,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 0,
+          "test": 2,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 11,
+          "test": 21,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 0,
+          "test": 1,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 12,
+          "test": 22,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 0,
+          "test": 0,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 13,
+          "test": 23,
+          "refiner": "FunctionBodyIncluder"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "file": "prompt_2.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The test is trying to require mocha directly, but mocha is typically used as a test runner rather than being imported as a module. Here's the fixed version:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let srcFolder;\n    let targetFolder;\n\n    beforeEach(async function() {\n        // Create temporary directories for testing\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(testDir, 'source');\n        targetFolder = path.join(testDir, 'target');\n        \n        fs.mkdirSync(srcFolder);\n        fs.mkdirSync(targetFolder);\n        \n        // Create test files in source folder\n        fs.writeFileSync(path.join(srcFolder, 'test1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'test2.txt'), 'Test content');\n        \n        // Create a subdirectory with a file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up test directories\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should throw error when no target path or custom stream provided', async function() {\n        try {\n            await zip_a_folder.ZipAFolder.compress({\n                srcFolder: srcFolder,\n                targetFilePath: null,\n                format: 'zip',\n                zipAFolderOptions: {}\n            });\n            assert.fail('Should have thrown an error');\n        } catch (error) {\n            assert(error.message.includes('You must either provide a target file path or a custom write stream'), \n                   'Should throw error about missing target or stream');\n        }\n    });\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since mocha provides the global functions (`describe`, `it`, `beforeEach`, `afterEach`) when running as a test runner, and doesn't need to be explicitly required as a module."
+      ],
+      "tests": [
+        "test_12.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 1,
+          "test": 11,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "file": "prompt_3.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The issue is that the test is trying to require `mocha` directly, but when running tests with Mocha, you don't need to require it explicitly - Mocha provides the testing functions globally.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let srcFolder;\n    let targetFolder;\n\n    beforeEach(async function() {\n        // Create temporary directories for testing\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(testDir, 'source');\n        targetFolder = path.join(testDir, 'target');\n        \n        fs.mkdirSync(srcFolder);\n        fs.mkdirSync(targetFolder);\n        \n        // Create test files in source folder\n        fs.writeFileSync(path.join(srcFolder, 'test1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'test2.txt'), 'Test content');\n        \n        // Create a subdirectory with a file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up test directories\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should work with custom write stream', async function() {\n        const zipPath = path.join(targetFolder, 'custom-stream.zip');\n        const writeStream = fs.createWriteStream(zipPath);\n        const options = { customWriteStream: writeStream };\n        \n        await zip_a_folder.ZipAFolder.compress({\n            srcFolder: srcFolder,\n            targetFilePath: null,\n            format: 'zip',\n            zipAFolderOptions: options\n        });\n        \n        assert(fs.existsSync(zipPath), 'Zip file should be created with custom stream');\n        assert(fs.statSync(zipPath).size > 0, 'Zip file should not be empty');\n    });\n\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since Mocha provides the testing functions (`describe`, `it`, `beforeEach`, `afterEach`) globally when running tests through the Mocha test runner."
+      ],
+      "tests": [
+        "test_13.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 1,
+          "test": 10,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "file": "prompt_4.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The issue is that the test is trying to require `mocha` directly, but when running tests with Mocha, the testing framework globals are already available. Here's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let srcFolder;\n    let targetFolder;\n\n    beforeEach(async function() {\n        // Create temporary directories for testing\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(testDir, 'source');\n        targetFolder = path.join(testDir, 'target');\n        \n        fs.mkdirSync(srcFolder);\n        fs.mkdirSync(targetFolder);\n        \n        // Create test files in source folder\n        fs.writeFileSync(path.join(srcFolder, 'test1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'test2.txt'), 'Test content');\n        \n        // Create a subdirectory with a file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up test directories\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should throw error when source and target are the same', async function() {\n        const zipPath = path.join(srcFolder, 'test.zip');\n        \n        try {\n            await zip_a_folder.ZipAFolder.zip(srcFolder, zipPath);\n            assert.fail('Should have thrown an error');\n        } catch (error) {\n            assert(error.message.includes('Source and target folder must be different'), \n                   'Should throw error about same source and target folder');\n        }\n    });\n\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since Mocha provides the global functions (`describe`, `it`, `beforeEach`, `afterEach`) automatically when running tests. These don't need to be explicitly required."
+      ],
+      "tests": [
+        "test_14.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 1,
+          "test": 9,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "file": "prompt_5.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The issue is that the test is trying to require `mocha` directly, but when running tests with Mocha, you don't need to require it explicitly. The test framework provides the global functions like `describe`, `it`, `beforeEach`, and `afterEach`.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let srcFolder;\n    let targetFolder;\n\n    beforeEach(async function() {\n        // Create temporary directories for testing\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(testDir, 'source');\n        targetFolder = path.join(testDir, 'target');\n        \n        fs.mkdirSync(srcFolder);\n        fs.mkdirSync(targetFolder);\n        \n        // Create test files in source folder\n        fs.writeFileSync(path.join(srcFolder, 'test1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'test2.txt'), 'Test content');\n        \n        // Create a subdirectory with a file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up test directories\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should create a tar file without compression', async function() {\n        const tarPath = path.join(targetFolder, 'test-uncompressed.tar');\n        const options = { compression: zip_a_folder.COMPRESSION_LEVEL.uncompressed };\n        \n        await zip_a_folder.ZipAFolder.tar(srcFolder, tarPath, options);\n        \n        assert(fs.existsSync(tarPath), 'Uncompressed tar file should be created');\n        assert(fs.statSync(tarPath).size > 0, 'Uncompressed tar file should not be empty');\n    });\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since Mocha provides the testing functions globally when running tests, and explicitly requiring it is not necessary and can cause module resolution issues."
+      ],
+      "tests": [
+        "test_15.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 1,
+          "test": 8,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "file": "prompt_6.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The issue is that the test is trying to require `mocha` directly, but when running tests with Mocha, you don't need to require it explicitly. The test framework provides the global functions like `describe`, `it`, `beforeEach`, and `afterEach`.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let srcFolder;\n    let targetFolder;\n\n    beforeEach(async function() {\n        // Create temporary directories for testing\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(testDir, 'source');\n        targetFolder = path.join(testDir, 'target');\n        \n        fs.mkdirSync(srcFolder);\n        fs.mkdirSync(targetFolder);\n        \n        // Create test files in source folder\n        fs.writeFileSync(path.join(srcFolder, 'test1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'test2.txt'), 'Test content');\n        \n        // Create a subdirectory with a file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up test directories\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should create a tar file with compression', async function() {\n        const tarPath = path.join(targetFolder, 'test.tar.gz');\n        \n        await zip_a_folder.ZipAFolder.tar(srcFolder, tarPath);\n        \n        assert(fs.existsSync(tarPath), 'Tar file should be created');\n        assert(fs.statSync(tarPath).size > 0, 'Tar file should not be empty');\n    });\n\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since Mocha provides the testing functions globally when running tests, and explicitly requiring it is not necessary and can cause module resolution issues."
+      ],
+      "tests": [
+        "test_16.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 1,
+          "test": 7,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "file": "prompt_7.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The test is trying to require mocha directly, but mocha is typically used as a test runner rather than being imported in the test file itself. Here's the corrected version:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let srcFolder;\n    let targetFolder;\n\n    beforeEach(async function() {\n        // Create temporary directories for testing\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(testDir, 'source');\n        targetFolder = path.join(testDir, 'target');\n        \n        fs.mkdirSync(srcFolder);\n        fs.mkdirSync(targetFolder);\n        \n        // Create test files in source folder\n        fs.writeFileSync(path.join(srcFolder, 'test1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'test2.txt'), 'Test content');\n        \n        // Create a subdirectory with a file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up test directories\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should create a zip file without compression', async function() {\n        const zipPath = path.join(targetFolder, 'test-uncompressed.zip');\n        const options = { compression: zip_a_folder.COMPRESSION_LEVEL.uncompressed };\n        \n        await zip_a_folder.ZipAFolder.zip(srcFolder, zipPath, options);\n        \n        assert(fs.existsSync(zipPath), 'Uncompressed zip file should be created');\n        assert(fs.statSync(zipPath).size > 0, 'Uncompressed zip file should not be empty');\n    });\n});\n```\n\nThe main changes:\n1. Removed the `let mocha = require('mocha');` line since mocha doesn't need to be imported in test files\n2. Fixed the missing closing brace for the `describe` block\n\nThe test should now run properly when executed with the mocha test runner (e.g., `npx mocha test_6.js`)."
+      ],
+      "tests": [
+        "test_17.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 1,
+          "test": 6,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "file": "prompt_8.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The issue is that the test is trying to require `mocha` directly, but when running tests with Mocha, you don't need to require it explicitly - Mocha provides the testing functions globally.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let srcFolder;\n    let targetFolder;\n\n    beforeEach(async function() {\n        // Create temporary directories for testing\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(testDir, 'source');\n        targetFolder = path.join(testDir, 'target');\n        \n        fs.mkdirSync(srcFolder);\n        fs.mkdirSync(targetFolder);\n        \n        // Create test files in source folder\n        fs.writeFileSync(path.join(srcFolder, 'test1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'test2.txt'), 'Test content');\n        \n        // Create a subdirectory with a file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up test directories\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should create a zip file with compression', async function() {\n        const zipPath = path.join(targetFolder, 'test.zip');\n        \n        await zip_a_folder.ZipAFolder.zip(srcFolder, zipPath);\n        \n        assert(fs.existsSync(zipPath), 'Zip file should be created');\n        assert(fs.statSync(zipPath).size > 0, 'Zip file should not be empty');\n    });\n\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since Mocha provides the testing functions (`describe`, `it`, `beforeEach`, `afterEach`) globally when running tests. These functions are automatically available in the test environment without needing to require the mocha module explicitly."
+      ],
+      "tests": [
+        "test_18.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 1,
+          "test": 5,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "file": "prompt_9.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The issue is that the test is trying to require `mocha` directly, but when running tests with Mocha, you don't need to require it explicitly - Mocha provides the testing functions globally.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let zipPath;\n    \n    beforeEach(function() {\n        // Create a temporary directory for testing\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        zipPath = path.join(testDir, 'test.zip');\n        \n        // Create test folder structure\n        let sourceDir = path.join(testDir, 'source');\n        fs.mkdirSync(sourceDir);\n        fs.writeFileSync(path.join(sourceDir, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(sourceDir, 'file2.txt'), 'Test Content');\n        \n        let subDir = path.join(sourceDir, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n    \n    afterEach(function() {\n        // Clean up test files\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should reject when zip path is invalid', function(done) {\n        let zipper = new zip_a_folder.ZipAFolder();\n        let sourceDir = path.join(testDir, 'source');\n        let invalidZipPath = path.join('/invalid/path/test.zip');\n        \n        zipper.zip(sourceDir, invalidZipPath).then(() => {\n            done(new Error('Should have rejected'));\n        }).catch((err) => {\n            assert(err instanceof Error);\n            done();\n        });\n    });\n});\n```\n\nThe key change is removing the line `let mocha = require('mocha');` since Mocha provides the testing functions (`describe`, `it`, `beforeEach`, `afterEach`) globally when running tests through the Mocha test runner."
+      ],
+      "tests": [
+        "test_19.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 0,
+          "test": 4,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "file": "prompt_10.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The issue is that the test is trying to require `mocha` directly, but when running tests with Mocha, the testing framework globals are already available. Here's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let zipPath;\n    \n    beforeEach(function() {\n        // Create a temporary directory for testing\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        zipPath = path.join(testDir, 'test.zip');\n        \n        // Create test folder structure\n        let sourceDir = path.join(testDir, 'source');\n        fs.mkdirSync(sourceDir);\n        fs.writeFileSync(path.join(sourceDir, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(sourceDir, 'file2.txt'), 'Test Content');\n        \n        let subDir = path.join(sourceDir, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n    \n    afterEach(function() {\n        // Clean up test files\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should reject when source folder does not exist', function(done) {\n        let zipper = new zip_a_folder.ZipAFolder();\n        let nonExistentDir = path.join(testDir, 'nonexistent');\n        \n        zipper.zip(nonExistentDir, zipPath).then(() => {\n            done(new Error('Should have rejected'));\n        }).catch((err) => {\n            assert(err instanceof Error);\n            done();\n        });\n    });\n\n});\n```\n\nThe main changes:\n1. Removed the `let mocha = require('mocha');` line since Mocha globals (`describe`, `it`, `beforeEach`, `afterEach`) are automatically available when running tests with the Mocha test runner\n2. Fixed the missing closing parenthesis and brace for the `describe` block"
+      ],
+      "tests": [
+        "test_20.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 0,
+          "test": 3,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "file": "prompt_11.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The issue is that the test is trying to require `mocha` directly, but when running tests with Mocha, you don't need to require it explicitly - Mocha provides the testing functions globally.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let zipPath;\n    \n    beforeEach(function() {\n        // Create a temporary directory for testing\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        zipPath = path.join(testDir, 'test.zip');\n        \n        // Create test folder structure\n        let sourceDir = path.join(testDir, 'source');\n        fs.mkdirSync(sourceDir);\n        fs.writeFileSync(path.join(sourceDir, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(sourceDir, 'file2.txt'), 'Test Content');\n        \n        let subDir = path.join(sourceDir, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n    \n    afterEach(function() {\n        // Clean up test files\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should handle empty folder', function(done) {\n        let zipper = new zip_a_folder.ZipAFolder();\n        let emptyDir = path.join(testDir, 'empty');\n        fs.mkdirSync(emptyDir);\n        \n        zipper.zip(emptyDir, zipPath).then(() => {\n            assert(fs.existsSync(zipPath));\n            done();\n        }).catch(done);\n    });\n\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since Mocha provides the testing functions (`describe`, `it`, `beforeEach`, `afterEach`) globally when running tests. The test should now run without the module resolution error."
+      ],
+      "tests": [
+        "test_21.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 0,
+          "test": 2,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "file": "prompt_12.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The issue is that the test is trying to require `mocha` directly, but when running tests with Mocha, you don't need to require it explicitly - Mocha provides the testing functions globally.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let zipPath;\n    \n    beforeEach(function() {\n        // Create a temporary directory for testing\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        zipPath = path.join(testDir, 'test.zip');\n        \n        // Create test folder structure\n        let sourceDir = path.join(testDir, 'source');\n        fs.mkdirSync(sourceDir);\n        fs.writeFileSync(path.join(sourceDir, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(sourceDir, 'file2.txt'), 'Test Content');\n        \n        let subDir = path.join(sourceDir, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n    \n    afterEach(function() {\n        // Clean up test files\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should zip a folder successfully', function(done) {\n        let zipper = new zip_a_folder.ZipAFolder();\n        let sourceDir = path.join(testDir, 'source');\n        \n        zipper.zip(sourceDir, zipPath).then(() => {\n            // Verify zip file was created\n            assert(fs.existsSync(zipPath));\n            assert(fs.statSync(zipPath).size > 0);\n            done();\n        }).catch(done);\n    });\n\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since Mocha provides the testing functions (`describe`, `it`, `beforeEach`, `afterEach`) globally when running tests. Also fixed the missing closing parenthesis and brace at the end."
+      ],
+      "tests": [
+        "test_22.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 0,
+          "test": 1,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "file": "prompt_13.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The issue is that the test is trying to require `mocha` directly, but when running tests with Mocha, you don't need to require it explicitly - Mocha provides the testing functions globally.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let zipPath;\n    \n    beforeEach(function() {\n        // Create a temporary directory for testing\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        zipPath = path.join(testDir, 'test.zip');\n        \n        // Create test folder structure\n        let sourceDir = path.join(testDir, 'source');\n        fs.mkdirSync(sourceDir);\n        fs.writeFileSync(path.join(sourceDir, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(sourceDir, 'file2.txt'), 'Test Content');\n        \n        let subDir = path.join(sourceDir, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n    \n    afterEach(function() {\n        // Clean up test files\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should create ZipAFolder instance', function() {\n        let zipper = new zip_a_folder.ZipAFolder();\n        assert(zipper instanceof zip_a_folder.ZipAFolder);\n    });\n\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since Mocha provides the testing functions (`describe`, `it`, `beforeEach`, `afterEach`) globally when running tests. These functions are automatically available in the test environment without needing to require the mocha module explicitly."
+      ],
+      "tests": [
+        "test_23.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 0,
+          "test": 0,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "file": "prompt_14.js",
+      "temperature": 0,
+      "completions": [
+        "```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let srcFolder;\n    let tarFilePath;\n\n    beforeEach(function() {\n        // Create a temporary directory for each test\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(testDir, 'source');\n        tarFilePath = path.join(testDir, 'output.tar');\n        \n        // Create source folder with test files\n        fs.mkdirSync(srcFolder);\n        fs.writeFileSync(path.join(srcFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'file2.txt'), 'Test Content');\n        \n        // Create a subdirectory with a file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up temporary directory\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should create tar file from folder', async function() {\n        await zip_a_folder.ZipAFolder.tar(srcFolder, tarFilePath);\n        \n        // Verify tar file was created\n        assert(fs.existsSync(tarFilePath), 'Tar file should exist');\n        \n        // Verify tar file has content (size > 0)\n        const stats = fs.statSync(tarFilePath);\n        assert(stats.size > 0, 'Tar file should not be empty');\n    });\n\n    it('should create tar file with custom options', async function() {\n        const options = {\n            compression: 'gzip'\n        };\n        \n        await zip_a_folder.ZipAFolder.tar(srcFolder, tarFilePath, options);\n        \n        // Verify tar file was created\n        assert(fs.existsSync(tarFilePath), 'Tar file should exist');\n        \n        const stats = fs.statSync(tarFilePath);\n        assert(stats.size > 0, 'Tar file should not be empty');\n    });\n\n    it('should handle empty folder', async function() {\n        const emptyFolder = path.join(testDir, 'empty');\n        fs.mkdirSync(emptyFolder);\n        \n        await zip_a_folder.ZipAFolder.tar(emptyFolder, tarFilePath);\n        \n        // Verify tar file was created even for empty folder\n        assert(fs.existsSync(tarFilePath), 'Tar file should exist for empty folder');\n    });\n\n    it('should throw error for non-existent source folder', async function() {\n        const nonExistentFolder = path.join(testDir, 'does-not-exist');\n        \n        try {\n            await zip_a_folder.ZipAFolder.tar(nonExistentFolder, tarFilePath);\n            assert.fail('Should have thrown an error for non-existent folder');\n        } catch (error) {\n            assert(error instanceof Error, 'Should throw an Error object');\n        }\n    });\n\n    it('should create tar file in non-existent directory', async function() {\n        const nestedTarPath = path.join(testDir, 'nested', 'dir', 'output.tar');\n        \n        await zip_a_folder.ZipAFolder.tar(srcFolder, nestedTarPath);\n        \n        // Verify tar file was created and directories were created\n        assert(fs.existsSync(nestedTarPath), 'Tar file should exist in nested directory');\n        \n        const stats = fs.statSync(nestedTarPath);\n        assert(stats.size > 0, 'Tar file should not be empty');\n    });\n});\n```"
+      ],
+      "tests": [
+        "test_24.js",
+        "test_25.js",
+        "test_26.js",
+        "test_27.js",
+        "test_28.js"
+      ],
+      "provenance": []
+    },
+    {
+      "id": 15,
+      "file": "prompt_15.js",
+      "temperature": 0,
+      "completions": [
+        "```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let srcFolder;\n    \n    beforeEach(function() {\n        // Create a temporary directory for each test\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(testDir, 'source');\n        fs.mkdirSync(srcFolder);\n        \n        // Create some test files\n        fs.writeFileSync(path.join(srcFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'file2.txt'), 'Test Content');\n        \n        // Create a subdirectory with a file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n    \n    afterEach(function() {\n        // Clean up temporary directory\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with default compression', async function() {\n        const tarFilePath = path.join(testDir, 'test.tar.gz');\n        \n        await zip_a_folder.ZipAFolder.tar(srcFolder, tarFilePath);\n        \n        // Verify the tar file was created\n        assert(fs.existsSync(tarFilePath), 'Tar file should be created');\n        \n        // Verify the file has content (should be compressed)\n        const stats = fs.statSync(tarFilePath);\n        assert(stats.size > 0, 'Tar file should have content');\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with high compression', async function() {\n        const tarFilePath = path.join(testDir, 'test-high.tar.gz');\n        const options = { compression: zip_a_folder.COMPRESSION_LEVEL.high };\n        \n        await zip_a_folder.ZipAFolder.tar(srcFolder, tarFilePath, options);\n        \n        // Verify the tar file was created\n        assert(fs.existsSync(tarFilePath), 'Tar file should be created');\n        \n        const stats = fs.statSync(tarFilePath);\n        assert(stats.size > 0, 'Tar file should have content');\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with uncompressed option', async function() {\n        const tarFilePath = path.join(testDir, 'test-uncompressed.tar');\n        const options = { compression: zip_a_folder.COMPRESSION_LEVEL.uncompressed };\n        \n        await zip_a_folder.ZipAFolder.tar(srcFolder, tarFilePath, options);\n        \n        // Verify the tar file was created\n        assert(fs.existsSync(tarFilePath), 'Tar file should be created');\n        \n        const stats = fs.statSync(tarFilePath);\n        assert(stats.size > 0, 'Tar file should have content');\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with medium compression', async function() {\n        const tarFilePath = path.join(testDir, 'test-medium.tar.gz');\n        const options = { compression: zip_a_folder.COMPRESSION_LEVEL.medium };\n        \n        await zip_a_folder.ZipAFolder.tar(srcFolder, tarFilePath, options);\n        \n        // Verify the tar file was created\n        assert(fs.existsSync(tarFilePath), 'Tar file should be created');\n        \n        const stats = fs.statSync(tarFilePath);\n        assert(stats.size > 0, 'Tar file should have content');\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with empty folder', async function() {\n        const emptyFolder = path.join(testDir, 'empty');\n        fs.mkdirSync(emptyFolder);\n        const tarFilePath = path.join(testDir, 'empty.tar.gz');\n        \n        await zip_a_folder.ZipAFolder.tar(emptyFolder, tarFilePath);\n        \n        // Verify the tar file was created even for empty folder\n        assert(fs.existsSync(tarFilePath), 'Tar file should be created for empty folder');\n    });\n});\n```"
+      ],
+      "tests": [
+        "test_29.js",
+        "test_30.js",
+        "test_31.js",
+        "test_32.js",
+        "test_33.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 14,
+          "test": 28,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 23,
+          "test": 41,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 14,
+          "test": 27,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 26,
+          "test": 44,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 14,
+          "test": 26,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 27,
+          "test": 45,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 14,
+          "test": 25,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 28,
+          "test": 46,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 14,
+          "test": 24,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 29,
+          "test": 47,
+          "refiner": "FunctionBodyIncluder"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "file": "prompt_16.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The issue is that the test is trying to require `mocha` directly, but when running tests with Mocha, you don't need to require it explicitly - Mocha provides the testing functions globally.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let srcFolder;\n    \n    beforeEach(function() {\n        // Create a temporary directory for each test\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(testDir, 'source');\n        fs.mkdirSync(srcFolder);\n        \n        // Create some test files\n        fs.writeFileSync(path.join(srcFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'file2.txt'), 'Test Content');\n        \n        // Create a subdirectory with a file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n    \n    afterEach(function() {\n        // Clean up temporary directory\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with empty folder', async function() {\n        const emptyFolder = path.join(testDir, 'empty');\n        fs.mkdirSync(emptyFolder);\n        const tarFilePath = path.join(testDir, 'empty.tar.gz');\n        \n        await zip_a_folder.ZipAFolder.tar(emptyFolder, tarFilePath);\n        \n        // Verify the tar file was created even for empty folder\n        assert(fs.existsSync(tarFilePath), 'Tar file should be created for empty folder');\n    });\n});\n```\n\nThe key change is removing the line `let mocha = require('mocha');` since Mocha provides the testing functions (`describe`, `it`, `beforeEach`, `afterEach`) globally when running tests through the Mocha test runner."
+      ],
+      "tests": [
+        "test_34.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 15,
+          "test": 33,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "file": "prompt_17.js",
+      "temperature": 0,
+      "completions": [
+        "```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let srcFolder;\n    let tarFilePath;\n\n    beforeEach(function() {\n        // Create a temporary directory for testing\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(testDir, 'source');\n        tarFilePath = path.join(testDir, 'archive.tar.gz');\n        \n        // Create source folder with test files\n        fs.mkdirSync(srcFolder);\n        fs.writeFileSync(path.join(srcFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'file2.txt'), 'Test Content');\n        \n        // Create a subdirectory with a file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'file3.txt'), 'Nested Content');\n    });\n\n    afterEach(function() {\n        // Clean up temporary directory\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with default compression', function(done) {\n        zip_a_folder.ZipAFolder.tar(srcFolder, tarFilePath)\n            .then(() => {\n                // Verify the tar file was created\n                assert(fs.existsSync(tarFilePath), 'Tar file should be created');\n                assert(fs.statSync(tarFilePath).size > 0, 'Tar file should not be empty');\n                done();\n            })\n            .catch(done);\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with high compression', function(done) {\n        const options = { compression: zip_a_folder.COMPRESSION_LEVEL.high };\n        \n        zip_a_folder.ZipAFolder.tar(srcFolder, tarFilePath, options)\n            .then(() => {\n                // Verify the tar file was created\n                assert(fs.existsSync(tarFilePath), 'Tar file should be created');\n                assert(fs.statSync(tarFilePath).size > 0, 'Tar file should not be empty');\n                done();\n            })\n            .catch(done);\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with uncompressed option', function(done) {\n        const options = { compression: zip_a_folder.COMPRESSION_LEVEL.uncompressed };\n        const uncompressedTarPath = path.join(testDir, 'archive.tar');\n        \n        zip_a_folder.ZipAFolder.tar(srcFolder, uncompressedTarPath, options)\n            .then(() => {\n                // Verify the tar file was created\n                assert(fs.existsSync(uncompressedTarPath), 'Uncompressed tar file should be created');\n                assert(fs.statSync(uncompressedTarPath).size > 0, 'Tar file should not be empty');\n                done();\n            })\n            .catch(done);\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with medium compression', function(done) {\n        const options = { compression: zip_a_folder.COMPRESSION_LEVEL.medium };\n        \n        zip_a_folder.ZipAFolder.tar(srcFolder, tarFilePath, options)\n            .then(() => {\n                // Verify the tar file was created\n                assert(fs.existsSync(tarFilePath), 'Tar file should be created');\n                assert(fs.statSync(tarFilePath).size > 0, 'Tar file should not be empty');\n                done();\n            })\n            .catch(done);\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with non-existent source folder', function(done) {\n        const nonExistentFolder = path.join(testDir, 'does-not-exist');\n        \n        zip_a_folder.ZipAFolder.tar(nonExistentFolder, tarFilePath)\n            .then(() => {\n                done(new Error('Should have thrown an error for non-existent folder'));\n            })\n            .catch((error) => {\n                // Expect an error when source folder doesn't exist\n                assert(error, 'Should throw an error for non-existent source folder');\n                done();\n            });\n    });\n});\n```"
+      ],
+      "tests": [
+        "test_35.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 16,
+          "test": 34,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 15,
+          "test": 33,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 19,
+          "test": 37,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 15,
+          "test": 32,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 20,
+          "test": 38,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 15,
+          "test": 31,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 21,
+          "test": 39,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 15,
+          "test": 30,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 22,
+          "test": 40,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 15,
+          "test": 29,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 24,
+          "test": 42,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 25,
+          "test": 43,
+          "refiner": "FunctionBodyIncluder"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "file": "prompt_18.js",
+      "temperature": 0,
+      "completions": [
+        "Looking at the error, the issue is that the test is trying to require 'mocha' but it's not needed since mocha is already running the test. The `mocha` require statement should be removed.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let srcFolder;\n    let tarFilePath;\n\n    beforeEach(function() {\n        // Create a temporary directory for testing\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(testDir, 'source');\n        tarFilePath = path.join(testDir, 'archive.tar.gz');\n        \n        // Create source folder with test files\n        fs.mkdirSync(srcFolder);\n        fs.writeFileSync(path.join(srcFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'file2.txt'), 'Test Content');\n        \n        // Create a subdirectory with a file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'file3.txt'), 'Nested Content');\n    });\n\n    afterEach(function() {\n        // Clean up temporary directory\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with default compression', function(done) {\n        zip_a_folder.ZipAFolder.tar(srcFolder, tarFilePath)\n            .then(() => {\n                // Verify the tar file was created\n                assert(fs.existsSync(tarFilePath), 'Tar file should be created');\n                assert(fs.statSync(tarFilePath).size > 0, 'Tar file should not be empty');\n                done();\n            })\n            .catch(done);\n    });\n\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since mocha is already the test runner and doesn't need to be explicitly required in the test file."
+      ],
+      "tests": [
+        "test_36.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 17,
+          "test": 35,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "file": "prompt_19.js",
+      "temperature": 0,
+      "completions": [
+        "Looking at the error, the issue is that the test is trying to require 'mocha' but it's not available as a module to import. When running tests with Mocha, the testing framework is already loaded, so we don't need to require it explicitly.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let srcFolder;\n    \n    beforeEach(function() {\n        // Create a temporary directory for each test\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(testDir, 'source');\n        fs.mkdirSync(srcFolder);\n        \n        // Create some test files\n        fs.writeFileSync(path.join(srcFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'file2.txt'), 'Test Content');\n        \n        // Create a subdirectory with a file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n    \n    afterEach(function() {\n        // Clean up temporary directory\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with medium compression', async function() {\n        const tarFilePath = path.join(testDir, 'test-medium.tar.gz');\n        const options = { compression: zip_a_folder.COMPRESSION_LEVEL.medium };\n        \n        await zip_a_folder.ZipAFolder.tar(srcFolder, tarFilePath, options);\n        \n        // Verify the tar file was created\n        assert(fs.existsSync(tarFilePath), 'Tar file should be created');\n        \n        const stats = fs.statSync(tarFilePath);\n        assert(stats.size > 0, 'Tar file should have content');\n    });\n\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since Mocha is already available when running the test and doesn't need to be explicitly required."
+      ],
+      "tests": [
+        "test_37.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 15,
+          "test": 32,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "file": "prompt_20.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The issue is that the test is trying to require `mocha` directly, but when running tests with Mocha, you don't need to require it explicitly - Mocha provides the testing functions globally.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let srcFolder;\n    \n    beforeEach(function() {\n        // Create a temporary directory for each test\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(testDir, 'source');\n        fs.mkdirSync(srcFolder);\n        \n        // Create some test files\n        fs.writeFileSync(path.join(srcFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'file2.txt'), 'Test Content');\n        \n        // Create a subdirectory with a file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n    \n    afterEach(function() {\n        // Clean up temporary directory\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with uncompressed option', async function() {\n        const tarFilePath = path.join(testDir, 'test-uncompressed.tar');\n        const options = { compression: zip_a_folder.COMPRESSION_LEVEL.uncompressed };\n        \n        await zip_a_folder.ZipAFolder.tar(srcFolder, tarFilePath, options);\n        \n        // Verify the tar file was created\n        assert(fs.existsSync(tarFilePath), 'Tar file should be created');\n        \n        const stats = fs.statSync(tarFilePath);\n        assert(stats.size > 0, 'Tar file should have content');\n    });\n\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since Mocha provides the testing functions (`describe`, `it`, `beforeEach`, `afterEach`) globally when running tests through the Mocha test runner."
+      ],
+      "tests": [
+        "test_38.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 15,
+          "test": 31,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "file": "prompt_21.js",
+      "temperature": 0,
+      "completions": [
+        "Looking at the error, the issue is that the test is trying to require 'mocha' but it's not available as a module in the test file itself. When running tests with Mocha, the testing framework is already loaded, so we don't need to require it explicitly.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let srcFolder;\n    \n    beforeEach(function() {\n        // Create a temporary directory for each test\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(testDir, 'source');\n        fs.mkdirSync(srcFolder);\n        \n        // Create some test files\n        fs.writeFileSync(path.join(srcFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'file2.txt'), 'Test Content');\n        \n        // Create a subdirectory with a file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n    \n    afterEach(function() {\n        // Clean up temporary directory\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with high compression', async function() {\n        const tarFilePath = path.join(testDir, 'test-high.tar.gz');\n        const options = { compression: zip_a_folder.COMPRESSION_LEVEL.high };\n        \n        await zip_a_folder.ZipAFolder.tar(srcFolder, tarFilePath, options);\n        \n        // Verify the tar file was created\n        assert(fs.existsSync(tarFilePath), 'Tar file should be created');\n        \n        const stats = fs.statSync(tarFilePath);\n        assert(stats.size > 0, 'Tar file should have content');\n    });\n\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since Mocha is already available when running the test and doesn't need to be explicitly required in the test file."
+      ],
+      "tests": [
+        "test_39.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 15,
+          "test": 30,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "file": "prompt_22.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The issue is that the test is trying to require `mocha` directly, but when running tests with Mocha, you don't need to require it explicitly. The test framework provides the global functions like `describe`, `it`, `beforeEach`, and `afterEach`.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let srcFolder;\n    \n    beforeEach(function() {\n        // Create a temporary directory for each test\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(testDir, 'source');\n        fs.mkdirSync(srcFolder);\n        \n        // Create some test files\n        fs.writeFileSync(path.join(srcFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'file2.txt'), 'Test Content');\n        \n        // Create a subdirectory with a file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n    \n    afterEach(function() {\n        // Clean up temporary directory\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with default compression', async function() {\n        const tarFilePath = path.join(testDir, 'test.tar.gz');\n        \n        await zip_a_folder.ZipAFolder.tar(srcFolder, tarFilePath);\n        \n        // Verify the tar file was created\n        assert(fs.existsSync(tarFilePath), 'Tar file should be created');\n        \n        // Verify the file has content (should be compressed)\n        const stats = fs.statSync(tarFilePath);\n        assert(stats.size > 0, 'Tar file should have content');\n    });\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since Mocha provides the testing functions globally when running tests, and requiring it explicitly is not necessary and causes the module resolution error."
+      ],
+      "tests": [
+        "test_40.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 15,
+          "test": 29,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "file": "prompt_23.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The test is trying to require mocha explicitly, but when running tests with mocha, these modules are already available globally. Here's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let srcFolder;\n    let tarFilePath;\n\n    beforeEach(function() {\n        // Create a temporary directory for each test\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(testDir, 'source');\n        tarFilePath = path.join(testDir, 'output.tar');\n        \n        // Create source folder with test files\n        fs.mkdirSync(srcFolder);\n        fs.writeFileSync(path.join(srcFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'file2.txt'), 'Test Content');\n        \n        // Create a subdirectory with a file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up temporary directory\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should create tar file in non-existent directory', async function() {\n        const nestedTarPath = path.join(testDir, 'nested', 'dir', 'output.tar');\n        \n        await zip_a_folder.ZipAFolder.tar(srcFolder, nestedTarPath);\n        \n        // Verify tar file was created and directories were created\n        assert(fs.existsSync(nestedTarPath), 'Tar file should exist in nested directory');\n        \n        const stats = fs.statSync(nestedTarPath);\n        assert(stats.size > 0, 'Tar file should not be empty');\n    });\n});\n```\n\nThe main change is removing the explicit `require('mocha')` line at the top. When running tests with the mocha test runner, the mocha globals (`describe`, `it`, `beforeEach`, `afterEach`, etc.) are automatically available and don't need to be explicitly required."
+      ],
+      "tests": [
+        "test_41.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 14,
+          "test": 28,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "file": "prompt_24.js",
+      "temperature": 0,
+      "completions": [
+        "```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    let tarFilePath;\n\n    beforeEach(function() {\n        // Create temporary directory for testing\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        tarFilePath = path.join(tempDir, 'test-archive.tgz');\n        \n        // Create test folder structure\n        fs.mkdirSync(testFolder);\n        fs.writeFileSync(path.join(testFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(testFolder, 'file2.txt'), 'Test Content');\n        \n        // Create subdirectory\n        const subDir = path.join(testFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should create tar archive from folder', function(done) {\n        zip_a_folder.tar(testFolder, tarFilePath)\n            .then(() => {\n                // Verify tar file was created\n                assert(fs.existsSync(tarFilePath), 'Tar file should exist');\n                \n                // Verify file size is greater than 0\n                const stats = fs.statSync(tarFilePath);\n                assert(stats.size > 0, 'Tar file should not be empty');\n                \n                done();\n            })\n            .catch(done);\n    });\n\n    it('should create tar archive with custom options', function(done) {\n        const options = { compression: 'gzip' };\n        \n        zip_a_folder.tar(testFolder, tarFilePath, options)\n            .then(() => {\n                assert(fs.existsSync(tarFilePath), 'Tar file should exist');\n                \n                const stats = fs.statSync(tarFilePath);\n                assert(stats.size > 0, 'Tar file should not be empty');\n                \n                done();\n            })\n            .catch(done);\n    });\n\n    it('should handle empty folder', function(done) {\n        const emptyFolder = path.join(tempDir, 'empty-folder');\n        fs.mkdirSync(emptyFolder);\n        const emptyTarPath = path.join(tempDir, 'empty.tgz');\n        \n        zip_a_folder.tar(emptyFolder, emptyTarPath)\n            .then(() => {\n                assert(fs.existsSync(emptyTarPath), 'Tar file should exist even for empty folder');\n                done();\n            })\n            .catch(done);\n    });\n\n    it('should reject when source folder does not exist', function(done) {\n        const nonExistentFolder = path.join(tempDir, 'does-not-exist');\n        \n        zip_a_folder.tar(nonExistentFolder, tarFilePath)\n            .then(() => {\n                done(new Error('Should have rejected for non-existent folder'));\n            })\n            .catch((error) => {\n                assert(error, 'Should throw error for non-existent folder');\n                done();\n            });\n    });\n\n    it('should reject when target directory does not exist', function(done) {\n        const invalidTarPath = path.join(tempDir, 'non-existent-dir', 'archive.tgz');\n        \n        zip_a_folder.tar(testFolder, invalidTarPath)\n            .then(() => {\n                done(new Error('Should have rejected for invalid target path'));\n            })\n            .catch((error) => {\n                assert(error, 'Should throw error for invalid target path');\n                done();\n            });\n    });\n});\n```"
+      ],
+      "tests": [
+        "test_42.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 23,
+          "test": 41,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 14,
+          "test": 28,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 26,
+          "test": 44,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 14,
+          "test": 27,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 27,
+          "test": 45,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 14,
+          "test": 26,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 28,
+          "test": 46,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 14,
+          "test": 25,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 29,
+          "test": 47,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 14,
+          "test": 24,
+          "refiner": "SnippetIncluder"
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "file": "prompt_25.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The issue is that the test is trying to require `mocha` directly, but when running tests with Mocha, you don't need to require it explicitly. The test framework provides the global functions like `describe`, `it`, `beforeEach`, and `afterEach`.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    let tarFilePath;\n\n    beforeEach(function() {\n        // Create temporary directory for testing\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        tarFilePath = path.join(tempDir, 'test-archive.tgz');\n        \n        // Create test folder structure\n        fs.mkdirSync(testFolder);\n        fs.writeFileSync(path.join(testFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(testFolder, 'file2.txt'), 'Test Content');\n        \n        // Create subdirectory\n        const subDir = path.join(testFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should create tar archive from folder', function(done) {\n        zip_a_folder.tar(testFolder, tarFilePath)\n            .then(() => {\n                // Verify tar file was created\n                assert(fs.existsSync(tarFilePath), 'Tar file should exist');\n                \n                // Verify file size is greater than 0\n                const stats = fs.statSync(tarFilePath);\n                assert(stats.size > 0, 'Tar file should not be empty');\n                \n                done();\n            })\n            .catch(done);\n    });\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since Mocha provides the testing functions globally when running tests, and explicitly requiring it is not necessary and causes the error."
+      ],
+      "tests": [
+        "test_43.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 24,
+          "test": 42,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "file": "prompt_26.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The test is trying to require mocha explicitly, but when running tests with mocha, these modules are already available globally. Here's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let srcFolder;\n    let tarFilePath;\n\n    beforeEach(function() {\n        // Create a temporary directory for each test\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(testDir, 'source');\n        tarFilePath = path.join(testDir, 'output.tar');\n        \n        // Create source folder with test files\n        fs.mkdirSync(srcFolder);\n        fs.writeFileSync(path.join(srcFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'file2.txt'), 'Test Content');\n        \n        // Create a subdirectory with a file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up temporary directory\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should throw error for non-existent source folder', async function() {\n        const nonExistentFolder = path.join(testDir, 'does-not-exist');\n        \n        try {\n            await zip_a_folder.ZipAFolder.tar(nonExistentFolder, tarFilePath);\n            assert.fail('Should have thrown an error for non-existent folder');\n        } catch (error) {\n            assert(error instanceof Error, 'Should throw an Error object');\n        }\n    });\n\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since mocha provides the testing framework globally when running tests, and explicitly requiring it is not necessary and can cause module resolution issues."
+      ],
+      "tests": [
+        "test_44.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 14,
+          "test": 27,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "file": "prompt_27.js",
+      "temperature": 0,
+      "completions": [
+        "Looking at the error, the issue is that the test is trying to require 'mocha' but it's not needed since mocha is already running the test. The `mocha` require statement should be removed.\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let srcFolder;\n    let tarFilePath;\n\n    beforeEach(function() {\n        // Create a temporary directory for each test\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(testDir, 'source');\n        tarFilePath = path.join(testDir, 'output.tar');\n        \n        // Create source folder with test files\n        fs.mkdirSync(srcFolder);\n        fs.writeFileSync(path.join(srcFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'file2.txt'), 'Test Content');\n        \n        // Create a subdirectory with a file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up temporary directory\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should handle empty folder', async function() {\n        const emptyFolder = path.join(testDir, 'empty');\n        fs.mkdirSync(emptyFolder);\n        \n        await zip_a_folder.ZipAFolder.tar(emptyFolder, tarFilePath);\n        \n        // Verify tar file was created even for empty folder\n        assert(fs.existsSync(tarFilePath), 'Tar file should exist for empty folder');\n    });\n\n});\n```"
+      ],
+      "tests": [
+        "test_45.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 14,
+          "test": 26,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "file": "prompt_28.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The issue is that the test is trying to require `mocha` directly, but when running tests with Mocha, you don't need to require it explicitly - Mocha provides the testing functions globally.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let srcFolder;\n    let tarFilePath;\n\n    beforeEach(function() {\n        // Create a temporary directory for each test\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(testDir, 'source');\n        tarFilePath = path.join(testDir, 'output.tar');\n        \n        // Create source folder with test files\n        fs.mkdirSync(srcFolder);\n        fs.writeFileSync(path.join(srcFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'file2.txt'), 'Test Content');\n        \n        // Create a subdirectory with a file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up temporary directory\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should create tar file with custom options', async function() {\n        const options = {\n            compression: 'gzip'\n        };\n        \n        await zip_a_folder.ZipAFolder.tar(srcFolder, tarFilePath, options);\n        \n        // Verify tar file was created\n        assert(fs.existsSync(tarFilePath), 'Tar file should exist');\n        \n        const stats = fs.statSync(tarFilePath);\n        assert(stats.size > 0, 'Tar file should not be empty');\n    });\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since Mocha provides the testing functions (`describe`, `it`, `beforeEach`, `afterEach`) globally when running tests. Also fixed the missing closing brace for the `describe` block."
+      ],
+      "tests": [
+        "test_46.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 14,
+          "test": 25,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "file": "prompt_29.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The issue is that the test is trying to require `mocha` directly, but when running tests with Mocha, the testing framework is already available globally. Here's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let srcFolder;\n    let tarFilePath;\n\n    beforeEach(function() {\n        // Create a temporary directory for each test\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(testDir, 'source');\n        tarFilePath = path.join(testDir, 'output.tar');\n        \n        // Create source folder with test files\n        fs.mkdirSync(srcFolder);\n        fs.writeFileSync(path.join(srcFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'file2.txt'), 'Test Content');\n        \n        // Create a subdirectory with a file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up temporary directory\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should create tar file from folder', async function() {\n        await zip_a_folder.ZipAFolder.tar(srcFolder, tarFilePath);\n        \n        // Verify tar file was created\n        assert(fs.existsSync(tarFilePath), 'Tar file should exist');\n        \n        // Verify tar file has content (size > 0)\n        const stats = fs.statSync(tarFilePath);\n        assert(stats.size > 0, 'Tar file should not be empty');\n    });\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since Mocha's global functions (`describe`, `it`, `beforeEach`, `afterEach`) are automatically available when running tests with the Mocha test runner. You don't need to explicitly require the mocha module in your test files."
+      ],
+      "tests": [
+        "test_47.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 14,
+          "test": 24,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "file": "prompt_30.js",
+      "temperature": 0,
+      "completions": [
+        "```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    let zipFilePath;\n\n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        zipFilePath = path.join(tempDir, 'test.zip');\n        \n        // Create test folder structure\n        fs.mkdirSync(testFolder);\n        fs.writeFileSync(path.join(testFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(testFolder, 'file2.txt'), 'Test Content');\n        \n        // Create subdirectory with file\n        const subDir = path.join(testFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should zip a folder successfully', async function() {\n        await zip_a_folder.ZipAFolder.zip(testFolder, zipFilePath);\n        \n        // Verify zip file was created\n        assert(fs.existsSync(zipFilePath), 'Zip file should exist');\n        \n        // Verify zip file has content (size > 0)\n        const stats = fs.statSync(zipFilePath);\n        assert(stats.size > 0, 'Zip file should not be empty');\n    });\n\n    it('should zip a folder with custom options', async function() {\n        const options = {\n            compression: 'DEFLATE'\n        };\n        \n        await zip_a_folder.ZipAFolder.zip(testFolder, zipFilePath, options);\n        \n        assert(fs.existsSync(zipFilePath), 'Zip file should exist with custom options');\n        const stats = fs.statSync(zipFilePath);\n        assert(stats.size > 0, 'Zip file should not be empty');\n    });\n\n    it('should handle empty folder', async function() {\n        const emptyFolder = path.join(tempDir, 'empty-folder');\n        fs.mkdirSync(emptyFolder);\n        const emptyZipPath = path.join(tempDir, 'empty.zip');\n        \n        await zip_a_folder.ZipAFolder.zip(emptyFolder, emptyZipPath);\n        \n        assert(fs.existsSync(emptyZipPath), 'Zip file should be created even for empty folder');\n    });\n\n    it('should throw error for non-existent source folder', async function() {\n        const nonExistentFolder = path.join(tempDir, 'does-not-exist');\n        \n        try {\n            await zip_a_folder.ZipAFolder.zip(nonExistentFolder, zipFilePath);\n            assert.fail('Should have thrown an error for non-existent folder');\n        } catch (error) {\n            assert(error instanceof Error, 'Should throw an Error object');\n        }\n    });\n\n    it('should create zip file in non-existent directory', async function() {\n        const nestedZipPath = path.join(tempDir, 'nested', 'dir', 'test.zip');\n        \n        await zip_a_folder.ZipAFolder.zip(testFolder, nestedZipPath);\n        \n        assert(fs.existsSync(nestedZipPath), 'Zip file should be created in nested directory');\n    });\n});\n```"
+      ],
+      "tests": [
+        "test_48.js",
+        "test_49.js",
+        "test_50.js",
+        "test_51.js",
+        "test_52.js"
+      ],
+      "provenance": []
+    },
+    {
+      "id": 31,
+      "file": "prompt_31.js",
+      "temperature": 0,
+      "completions": [
+        "```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    let zipFilePath;\n\n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        zipFilePath = path.join(tempDir, 'test.zip');\n        \n        // Create test folder structure\n        fs.mkdirSync(testFolder);\n        fs.writeFileSync(path.join(testFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(testFolder, 'file2.txt'), 'Test Content');\n        \n        // Create subdirectory\n        const subDir = path.join(testFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'file3.txt'), 'Subdirectory file');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should zip folder with default compression', async function() {\n        await zip_a_folder.ZipAFolder.zip(testFolder, zipFilePath);\n        \n        // Verify zip file was created\n        assert(fs.existsSync(zipFilePath), 'Zip file should be created');\n        \n        // Verify zip file has content (size > 0)\n        const stats = fs.statSync(zipFilePath);\n        assert(stats.size > 0, 'Zip file should not be empty');\n    });\n\n    it('should zip folder with high compression', async function() {\n        const options = {\n            compression: zip_a_folder.COMPRESSION_LEVEL.high\n        };\n        \n        await zip_a_folder.ZipAFolder.zip(testFolder, zipFilePath, options);\n        \n        assert(fs.existsSync(zipFilePath), 'Zip file should be created');\n        const stats = fs.statSync(zipFilePath);\n        assert(stats.size > 0, 'Zip file should not be empty');\n    });\n\n    it('should zip folder with uncompressed option', async function() {\n        const options = {\n            compression: zip_a_folder.COMPRESSION_LEVEL.uncompressed\n        };\n        \n        await zip_a_folder.ZipAFolder.zip(testFolder, zipFilePath, options);\n        \n        assert(fs.existsSync(zipFilePath), 'Zip file should be created');\n        const stats = fs.statSync(zipFilePath);\n        assert(stats.size > 0, 'Zip file should not be empty');\n    });\n\n    it('should zip folder with medium compression', async function() {\n        const options = {\n            compression: zip_a_folder.COMPRESSION_LEVEL.medium\n        };\n        \n        await zip_a_folder.ZipAFolder.zip(testFolder, zipFilePath, options);\n        \n        assert(fs.existsSync(zipFilePath), 'Zip file should be created');\n        const stats = fs.statSync(zipFilePath);\n        assert(stats.size > 0, 'Zip file should not be empty');\n    });\n\n    it('should handle empty folder', async function() {\n        const emptyFolder = path.join(tempDir, 'empty-folder');\n        fs.mkdirSync(emptyFolder);\n        \n        await zip_a_folder.ZipAFolder.zip(emptyFolder, zipFilePath);\n        \n        assert(fs.existsSync(zipFilePath), 'Zip file should be created even for empty folder');\n    });\n\n    it('should throw error for non-existent source folder', async function() {\n        const nonExistentFolder = path.join(tempDir, 'does-not-exist');\n        \n        try {\n            await zip_a_folder.ZipAFolder.zip(nonExistentFolder, zipFilePath);\n            assert.fail('Should have thrown an error for non-existent folder');\n        } catch (error) {\n            assert(error, 'Should throw an error for non-existent source folder');\n        }\n    });\n});\n```"
+      ],
+      "tests": [
+        "test_53.js",
+        "test_54.js",
+        "test_55.js",
+        "test_56.js",
+        "test_57.js",
+        "test_58.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 30,
+          "test": 52,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 40,
+          "test": 67,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 30,
+          "test": 51,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 43,
+          "test": 70,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 30,
+          "test": 50,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 44,
+          "test": 71,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 30,
+          "test": 49,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 45,
+          "test": 72,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 30,
+          "test": 48,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 46,
+          "test": 73,
+          "refiner": "FunctionBodyIncluder"
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "file": "prompt_32.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The test is trying to require mocha explicitly, but when running tests with mocha, these modules are already available globally. Here's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    let zipFilePath;\n\n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        zipFilePath = path.join(tempDir, 'test.zip');\n        \n        // Create test folder structure\n        fs.mkdirSync(testFolder);\n        fs.writeFileSync(path.join(testFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(testFolder, 'file2.txt'), 'Test Content');\n        \n        // Create subdirectory\n        const subDir = path.join(testFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'file3.txt'), 'Subdirectory file');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should throw error for non-existent source folder', async function() {\n        const nonExistentFolder = path.join(tempDir, 'does-not-exist');\n        \n        try {\n            await zip_a_folder.ZipAFolder.zip(nonExistentFolder, zipFilePath);\n            assert.fail('Should have thrown an error for non-existent folder');\n        } catch (error) {\n            assert(error, 'Should throw an error for non-existent source folder');\n        }\n    });\n});\n```\n\nThe main change is removing the unnecessary `let mocha = require('mocha');` line at the top. When running tests with the mocha test runner, the mocha globals (like `describe`, `it`, `beforeEach`, `afterEach`) are automatically available and don't need to be explicitly required."
+      ],
+      "tests": [
+        "test_59.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 31,
+          "test": 58,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "file": "prompt_33.js",
+      "temperature": 0,
+      "completions": [
+        "```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    let zipFilePath;\n\n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        zipFilePath = path.join(tempDir, 'test.zip');\n        \n        // Create test folder structure\n        fs.mkdirSync(testFolder, { recursive: true });\n        fs.writeFileSync(path.join(testFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(testFolder, 'file2.json'), '{\"test\": true}');\n        \n        const subDir = path.join(testFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'file3.txt'), 'Nested file');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should zip folder with default compression', async function() {\n        await zip_a_folder.ZipAFolder.zip(testFolder, zipFilePath);\n        \n        // Verify zip file was created\n        assert(fs.existsSync(zipFilePath), 'Zip file should exist');\n        \n        // Verify zip file has content\n        const stats = fs.statSync(zipFilePath);\n        assert(stats.size > 0, 'Zip file should not be empty');\n    });\n\n    it('should zip folder with high compression', async function() {\n        await zip_a_folder.ZipAFolder.zip(testFolder, zipFilePath, {\n            compression: zip_a_folder.COMPRESSION_LEVEL.high\n        });\n        \n        assert(fs.existsSync(zipFilePath), 'Zip file should exist');\n        const stats = fs.statSync(zipFilePath);\n        assert(stats.size > 0, 'Zip file should not be empty');\n    });\n\n    it('should zip folder with uncompressed option', async function() {\n        await zip_a_folder.ZipAFolder.zip(testFolder, zipFilePath, {\n            compression: zip_a_folder.COMPRESSION_LEVEL.uncompressed\n        });\n        \n        assert(fs.existsSync(zipFilePath), 'Zip file should exist');\n        const stats = fs.statSync(zipFilePath);\n        assert(stats.size > 0, 'Zip file should not be empty');\n    });\n\n    it('should zip folder with custom write stream', async function() {\n        const customZipPath = path.join(tempDir, 'custom.zip');\n        const customWS = fs.createWriteStream(customZipPath);\n        \n        await zip_a_folder.ZipAFolder.zip(testFolder, undefined, {\n            customWriteStream: customWS\n        });\n        \n        assert(fs.existsSync(customZipPath), 'Custom zip file should exist');\n        const stats = fs.statSync(customZipPath);\n        assert(stats.size > 0, 'Custom zip file should not be empty');\n    });\n\n    it('should handle empty options object', async function() {\n        await zip_a_folder.ZipAFolder.zip(testFolder, zipFilePath, {});\n        \n        assert(fs.existsSync(zipFilePath), 'Zip file should exist');\n        const stats = fs.statSync(zipFilePath);\n        assert(stats.size > 0, 'Zip file should not be empty');\n    });\n\n    it('should handle null options', async function() {\n        await zip_a_folder.ZipAFolder.zip(testFolder, zipFilePath, null);\n        \n        assert(fs.existsSync(zipFilePath), 'Zip file should exist');\n        const stats = fs.statSync(zipFilePath);\n        assert(stats.size > 0, 'Zip file should not be empty');\n    });\n});\n```"
+      ],
+      "tests": [
+        "test_60.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 32,
+          "test": 59,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 31,
+          "test": 58,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 35,
+          "test": 62,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 31,
+          "test": 57,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 36,
+          "test": 63,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 31,
+          "test": 56,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 37,
+          "test": 64,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 31,
+          "test": 55,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 38,
+          "test": 65,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 31,
+          "test": 54,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 39,
+          "test": 66,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 31,
+          "test": 53,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 41,
+          "test": 68,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 42,
+          "test": 69,
+          "refiner": "FunctionBodyIncluder"
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "file": "prompt_34.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The issue is that the test is trying to require `mocha` directly, but when running tests with Mocha, you don't need to require it explicitly - Mocha provides the testing functions globally.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    let zipFilePath;\n\n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        zipFilePath = path.join(tempDir, 'test.zip');\n        \n        // Create test folder structure\n        fs.mkdirSync(testFolder, { recursive: true });\n        fs.writeFileSync(path.join(testFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(testFolder, 'file2.json'), '{\"test\": true}');\n        \n        const subDir = path.join(testFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'file3.txt'), 'Nested file');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should zip folder with default compression', async function() {\n        await zip_a_folder.ZipAFolder.zip(testFolder, zipFilePath);\n        \n        // Verify zip file was created\n        assert(fs.existsSync(zipFilePath), 'Zip file should exist');\n        \n        // Verify zip file has content\n        const stats = fs.statSync(zipFilePath);\n        assert(stats.size > 0, 'Zip file should not be empty');\n    });\n\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since Mocha provides the testing functions (`describe`, `it`, `beforeEach`, `afterEach`) globally when running tests through the Mocha test runner."
+      ],
+      "tests": [
+        "test_61.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 33,
+          "test": 60,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "file": "prompt_35.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The test is trying to require mocha explicitly, but when running tests with mocha, these modules are already available globally. Here's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    let zipFilePath;\n\n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        zipFilePath = path.join(tempDir, 'test.zip');\n        \n        // Create test folder structure\n        fs.mkdirSync(testFolder);\n        fs.writeFileSync(path.join(testFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(testFolder, 'file2.txt'), 'Test Content');\n        \n        // Create subdirectory\n        const subDir = path.join(testFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'file3.txt'), 'Subdirectory file');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should handle empty folder', async function() {\n        const emptyFolder = path.join(tempDir, 'empty-folder');\n        fs.mkdirSync(emptyFolder);\n        \n        await zip_a_folder.ZipAFolder.zip(emptyFolder, zipFilePath);\n        \n        assert(fs.existsSync(zipFilePath), 'Zip file should be created even for empty folder');\n    });\n\n});\n```\n\nThe main changes:\n1. Removed the explicit `require('mocha')` line since mocha provides the testing functions (`describe`, `it`, `beforeEach`, `afterEach`) globally when running tests\n2. Removed the unused mocha variable\n\nThe test should now run properly when executed with the mocha test runner."
+      ],
+      "tests": [
+        "test_62.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 31,
+          "test": 57,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "file": "prompt_36.js",
+      "temperature": 0,
+      "completions": [
+        "Looking at the error, the issue is that the test is trying to require 'mocha' but it's not available as a module to import. In Mocha tests, you don't need to explicitly require mocha itself - the test framework provides the global functions like `describe`, `it`, `beforeEach`, etc.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    let zipFilePath;\n\n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        zipFilePath = path.join(tempDir, 'test.zip');\n        \n        // Create test folder structure\n        fs.mkdirSync(testFolder);\n        fs.writeFileSync(path.join(testFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(testFolder, 'file2.txt'), 'Test Content');\n        \n        // Create subdirectory\n        const subDir = path.join(testFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'file3.txt'), 'Subdirectory file');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should zip folder with medium compression', async function() {\n        const options = {\n            compression: zip_a_folder.COMPRESSION_LEVEL.medium\n        };\n        \n        await zip_a_folder.ZipAFolder.zip(testFolder, zipFilePath, options);\n        \n        assert(fs.existsSync(zipFilePath), 'Zip file should be created');\n        const stats = fs.statSync(zipFilePath);\n        assert(stats.size > 0, 'Zip file should not be empty');\n    });\n\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since Mocha provides the testing functions globally when running tests, and you don't need to import the mocha module itself."
+      ],
+      "tests": [
+        "test_63.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 31,
+          "test": 56,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "file": "prompt_37.js",
+      "temperature": 0,
+      "completions": [
+        "Looking at the error, the issue is that the test is trying to require 'mocha' but it's not available as a module in the test file itself. When running tests with Mocha, the testing framework is already loaded, so we don't need to require it explicitly.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    let zipFilePath;\n\n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        zipFilePath = path.join(tempDir, 'test.zip');\n        \n        // Create test folder structure\n        fs.mkdirSync(testFolder);\n        fs.writeFileSync(path.join(testFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(testFolder, 'file2.txt'), 'Test Content');\n        \n        // Create subdirectory\n        const subDir = path.join(testFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'file3.txt'), 'Subdirectory file');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should zip folder with uncompressed option', async function() {\n        const options = {\n            compression: zip_a_folder.COMPRESSION_LEVEL.uncompressed\n        };\n        \n        await zip_a_folder.ZipAFolder.zip(testFolder, zipFilePath, options);\n        \n        assert(fs.existsSync(zipFilePath), 'Zip file should be created');\n        const stats = fs.statSync(zipFilePath);\n        assert(stats.size > 0, 'Zip file should not be empty');\n    });\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since Mocha is already available when running the test and doesn't need to be explicitly required in the test file."
+      ],
+      "tests": [
+        "test_64.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 31,
+          "test": 55,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "file": "prompt_38.js",
+      "temperature": 0,
+      "completions": [
+        "Looking at the error, the issue is that the test is trying to require 'mocha' but it's not available as a module to import. In Mocha tests, you don't need to explicitly require mocha itself - the test framework provides the global functions like `describe`, `it`, `beforeEach`, etc.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    let zipFilePath;\n\n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        zipFilePath = path.join(tempDir, 'test.zip');\n        \n        // Create test folder structure\n        fs.mkdirSync(testFolder);\n        fs.writeFileSync(path.join(testFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(testFolder, 'file2.txt'), 'Test Content');\n        \n        // Create subdirectory\n        const subDir = path.join(testFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'file3.txt'), 'Subdirectory file');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should zip folder with high compression', async function() {\n        const options = {\n            compression: zip_a_folder.COMPRESSION_LEVEL.high\n        };\n        \n        await zip_a_folder.ZipAFolder.zip(testFolder, zipFilePath, options);\n        \n        assert(fs.existsSync(zipFilePath), 'Zip file should be created');\n        const stats = fs.statSync(zipFilePath);\n        assert(stats.size > 0, 'Zip file should not be empty');\n    });\n\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since Mocha provides the testing functions globally when running tests, and you don't need to import the mocha module itself."
+      ],
+      "tests": [
+        "test_65.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 31,
+          "test": 54,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "file": "prompt_39.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The test is trying to require mocha directly, but mocha is typically used as a test runner rather than being imported in the test file itself. Here's the corrected version:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    let zipFilePath;\n\n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        zipFilePath = path.join(tempDir, 'test.zip');\n        \n        // Create test folder structure\n        fs.mkdirSync(testFolder);\n        fs.writeFileSync(path.join(testFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(testFolder, 'file2.txt'), 'Test Content');\n        \n        // Create subdirectory\n        const subDir = path.join(testFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'file3.txt'), 'Subdirectory file');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should zip folder with default compression', async function() {\n        await zip_a_folder.ZipAFolder.zip(testFolder, zipFilePath);\n        \n        // Verify zip file was created\n        assert(fs.existsSync(zipFilePath), 'Zip file should be created');\n        \n        // Verify zip file has content (size > 0)\n        const stats = fs.statSync(zipFilePath);\n        assert(stats.size > 0, 'Zip file should not be empty');\n    });\n\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since mocha provides the global functions (`describe`, `it`, `beforeEach`, `afterEach`) when running as a test runner, and doesn't need to be explicitly required in the test file."
+      ],
+      "tests": [
+        "test_66.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 31,
+          "test": 53,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "file": "prompt_40.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The test is trying to require mocha explicitly, but when running tests with mocha, these globals are already available. Here's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    let zipFilePath;\n\n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        zipFilePath = path.join(tempDir, 'test.zip');\n        \n        // Create test folder structure\n        fs.mkdirSync(testFolder);\n        fs.writeFileSync(path.join(testFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(testFolder, 'file2.txt'), 'Test Content');\n        \n        // Create subdirectory with file\n        const subDir = path.join(testFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should create zip file in non-existent directory', async function() {\n        const nestedZipPath = path.join(tempDir, 'nested', 'dir', 'test.zip');\n        \n        await zip_a_folder.ZipAFolder.zip(testFolder, nestedZipPath);\n        \n        assert(fs.existsSync(nestedZipPath), 'Zip file should be created in nested directory');\n    });\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since mocha provides the testing globals (`describe`, `it`, `beforeEach`, `afterEach`) automatically when running tests, and explicitly requiring it is unnecessary and causing the module resolution error."
+      ],
+      "tests": [
+        "test_67.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 30,
+          "test": 52,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "file": "prompt_41.js",
+      "temperature": 0,
+      "completions": [
+        "```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    \n    beforeEach(function() {\n        // Create temporary directory for tests\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        fs.mkdirSync(testFolder);\n        \n        // Create test files\n        fs.writeFileSync(path.join(testFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(testFolder, 'file2.json'), '{\"test\": true}');\n        \n        // Create subdirectory with file\n        const subDir = path.join(testFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'file3.txt'), 'Nested file');\n    });\n    \n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should zip a folder with default options', async function() {\n        const zipPath = path.join(tempDir, 'test.zip');\n        \n        await zip_a_folder.zip(testFolder, zipPath);\n        \n        assert(fs.existsSync(zipPath), 'Zip file should be created');\n        assert(fs.statSync(zipPath).size > 0, 'Zip file should not be empty');\n    });\n\n    it('should zip a folder with high compression', async function() {\n        const zipPath = path.join(tempDir, 'test-compressed.zip');\n        \n        await zip_a_folder.zip(testFolder, zipPath, {\n            compression: zip_a_folder.COMPRESSION_LEVEL.high\n        });\n        \n        assert(fs.existsSync(zipPath), 'Compressed zip file should be created');\n        assert(fs.statSync(zipPath).size > 0, 'Compressed zip file should not be empty');\n    });\n\n    it('should zip using custom write stream', async function() {\n        const zipPath = path.join(tempDir, 'custom-stream.zip');\n        const customWS = fs.createWriteStream(zipPath);\n        \n        await zip_a_folder.zip(testFolder, undefined, {\n            customWriteStream: customWS\n        });\n        \n        assert(fs.existsSync(zipPath), 'Zip file should be created with custom stream');\n        assert(fs.statSync(zipPath).size > 0, 'Zip file should not be empty');\n    });\n\n    it('should zip specific file patterns', async function() {\n        const zipPath = path.join(tempDir, 'pattern.zip');\n        \n        // Test zipping only JSON files\n        await zip_a_folder.zip('**/*.json', zipPath);\n        \n        assert(fs.existsSync(zipPath), 'Pattern-based zip file should be created');\n        assert(fs.statSync(zipPath).size > 0, 'Pattern-based zip file should not be empty');\n    });\n\n    it('should handle empty folder', async function() {\n        const emptyFolder = path.join(tempDir, 'empty');\n        fs.mkdirSync(emptyFolder);\n        const zipPath = path.join(tempDir, 'empty.zip');\n        \n        await zip_a_folder.zip(emptyFolder, zipPath);\n        \n        assert(fs.existsSync(zipPath), 'Zip file should be created even for empty folder');\n    });\n\n    it('should throw error for non-existent source folder', async function() {\n        const nonExistentFolder = path.join(tempDir, 'does-not-exist');\n        const zipPath = path.join(tempDir, 'error.zip');\n        \n        try {\n            await zip_a_folder.zip(nonExistentFolder, zipPath);\n            assert.fail('Should have thrown an error for non-existent folder');\n        } catch (error) {\n            assert(error instanceof Error, 'Should throw an Error object');\n        }\n    });\n});\n```"
+      ],
+      "tests": [
+        "test_68.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 40,
+          "test": 67,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 30,
+          "test": 52,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 43,
+          "test": 70,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 30,
+          "test": 51,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 44,
+          "test": 71,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 30,
+          "test": 50,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 45,
+          "test": 72,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 30,
+          "test": 49,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 46,
+          "test": 73,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 30,
+          "test": 48,
+          "refiner": "SnippetIncluder"
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "file": "prompt_42.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The issue is that the test is trying to require `mocha` directly, but when running tests with Mocha, the testing framework globals are already available. Here's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    \n    beforeEach(function() {\n        // Create temporary directory for tests\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        fs.mkdirSync(testFolder);\n        \n        // Create test files\n        fs.writeFileSync(path.join(testFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(testFolder, 'file2.json'), '{\"test\": true}');\n        \n        // Create subdirectory with file\n        const subDir = path.join(testFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'file3.txt'), 'Nested file');\n    });\n    \n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should zip a folder with default options', async function() {\n        const zipPath = path.join(tempDir, 'test.zip');\n        \n        await zip_a_folder.zip(testFolder, zipPath);\n        \n        assert(fs.existsSync(zipPath), 'Zip file should be created');\n        assert(fs.statSync(zipPath).size > 0, 'Zip file should not be empty');\n    });\n\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since Mocha provides the testing globals (`describe`, `it`, `beforeEach`, `afterEach`) automatically when running tests. These functions are available in the global scope when the test is executed by the Mocha test runner."
+      ],
+      "tests": [
+        "test_69.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 41,
+          "test": 68,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "file": "prompt_43.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The test is trying to require mocha explicitly, but when running tests with mocha, these modules are already available globally. Here's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    let zipFilePath;\n\n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        zipFilePath = path.join(tempDir, 'test.zip');\n        \n        // Create test folder structure\n        fs.mkdirSync(testFolder);\n        fs.writeFileSync(path.join(testFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(testFolder, 'file2.txt'), 'Test Content');\n        \n        // Create subdirectory with file\n        const subDir = path.join(testFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should throw error for non-existent source folder', async function() {\n        const nonExistentFolder = path.join(tempDir, 'does-not-exist');\n        \n        try {\n            await zip_a_folder.ZipAFolder.zip(nonExistentFolder, zipFilePath);\n            assert.fail('Should have thrown an error for non-existent folder');\n        } catch (error) {\n            assert(error instanceof Error, 'Should throw an Error object');\n        }\n    });\n\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since mocha provides the testing framework globally when running tests, and explicitly requiring it is not necessary and can cause module resolution issues."
+      ],
+      "tests": [
+        "test_70.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 30,
+          "test": 51,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "file": "prompt_44.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The test is trying to require mocha as a dependency, but mocha is typically used as a test runner rather than a required module in test files. Here's the fixed version:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    let zipFilePath;\n\n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        zipFilePath = path.join(tempDir, 'test.zip');\n        \n        // Create test folder structure\n        fs.mkdirSync(testFolder);\n        fs.writeFileSync(path.join(testFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(testFolder, 'file2.txt'), 'Test Content');\n        \n        // Create subdirectory with file\n        const subDir = path.join(testFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should handle empty folder', async function() {\n        const emptyFolder = path.join(tempDir, 'empty-folder');\n        fs.mkdirSync(emptyFolder);\n        const emptyZipPath = path.join(tempDir, 'empty.zip');\n        \n        await zip_a_folder.ZipAFolder.zip(emptyFolder, emptyZipPath);\n        \n        assert(fs.existsSync(emptyZipPath), 'Zip file should be created even for empty folder');\n    });\n\n});\n```\n\nThe main changes:\n1. Removed the unnecessary `let mocha = require('mocha');` line - mocha is the test runner and doesn't need to be required in test files\n2. Fixed the missing closing parenthesis and brace for the `describe` block\n\nThe test should now run properly when executed with the mocha test runner (e.g., `npx mocha test_file.js`)."
+      ],
+      "tests": [
+        "test_71.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 30,
+          "test": 50,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "file": "prompt_45.js",
+      "temperature": 0,
+      "completions": [
+        "Looking at the error, the issue is that the test is trying to require 'mocha' but it's not needed since mocha provides the global functions like `describe`, `it`, `beforeEach`, and `afterEach` when running tests.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    let zipFilePath;\n\n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        zipFilePath = path.join(tempDir, 'test.zip');\n        \n        // Create test folder structure\n        fs.mkdirSync(testFolder);\n        fs.writeFileSync(path.join(testFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(testFolder, 'file2.txt'), 'Test Content');\n        \n        // Create subdirectory with file\n        const subDir = path.join(testFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should zip a folder with custom options', async function() {\n        const options = {\n            compression: 'DEFLATE'\n        };\n        \n        await zip_a_folder.ZipAFolder.zip(testFolder, zipFilePath, options);\n        \n        assert(fs.existsSync(zipFilePath), 'Zip file should exist with custom options');\n        const stats = fs.statSync(zipFilePath);\n        assert(stats.size > 0, 'Zip file should not be empty');\n    });\n\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since mocha provides its testing functions globally when running tests, and explicitly requiring it is not necessary and was causing the module not found error."
+      ],
+      "tests": [
+        "test_72.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 30,
+          "test": 49,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "file": "prompt_46.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The issue is that the test is trying to require `mocha` directly, but when running tests with Mocha, the testing framework globals are already available. Here's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    let zipFilePath;\n\n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        zipFilePath = path.join(tempDir, 'test.zip');\n        \n        // Create test folder structure\n        fs.mkdirSync(testFolder);\n        fs.writeFileSync(path.join(testFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(testFolder, 'file2.txt'), 'Test Content');\n        \n        // Create subdirectory with file\n        const subDir = path.join(testFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should zip a folder successfully', async function() {\n        await zip_a_folder.ZipAFolder.zip(testFolder, zipFilePath);\n        \n        // Verify zip file was created\n        assert(fs.existsSync(zipFilePath), 'Zip file should exist');\n        \n        // Verify zip file has content (size > 0)\n        const stats = fs.statSync(zipFilePath);\n        assert(stats.size > 0, 'Zip file should not be empty');\n    });\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since Mocha provides the global functions (`describe`, `it`, `beforeEach`, `afterEach`) automatically when running tests. These don't need to be explicitly required."
+      ],
+      "tests": [
+        "test_73.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 30,
+          "test": 48,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "file": "prompt_47.js",
+      "temperature": 0,
+      "completions": [
+        "```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    \n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        fs.mkdirSync(testFolder);\n    });\n    \n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should compress a folder with a single file', async function() {\n        // Create test file\n        const testFile = path.join(testFolder, 'test.txt');\n        fs.writeFileSync(testFile, 'Hello World');\n        \n        const targetZip = path.join(tempDir, 'output.zip');\n        \n        await zip_a_folder.ZipAFolder.compress({\n            srcFolder: testFolder,\n            targetFilePath: targetZip\n        });\n        \n        // Verify zip file was created\n        assert(fs.existsSync(targetZip), 'Zip file should be created');\n        assert(fs.statSync(targetZip).size > 0, 'Zip file should not be empty');\n    });\n\n    it('should compress a folder with multiple files and subdirectories', async function() {\n        // Create test structure\n        fs.writeFileSync(path.join(testFolder, 'file1.txt'), 'Content 1');\n        fs.writeFileSync(path.join(testFolder, 'file2.txt'), 'Content 2');\n        \n        const subDir = path.join(testFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested content');\n        \n        const targetZip = path.join(tempDir, 'multi-file.zip');\n        \n        await zip_a_folder.ZipAFolder.compress({\n            srcFolder: testFolder,\n            targetFilePath: targetZip\n        });\n        \n        assert(fs.existsSync(targetZip), 'Zip file should be created');\n        assert(fs.statSync(targetZip).size > 0, 'Zip file should not be empty');\n    });\n\n    it('should handle empty folder compression', async function() {\n        const targetZip = path.join(tempDir, 'empty.zip');\n        \n        await zip_a_folder.ZipAFolder.compress({\n            srcFolder: testFolder,\n            targetFilePath: targetZip\n        });\n        \n        assert(fs.existsSync(targetZip), 'Zip file should be created even for empty folder');\n    });\n\n    it('should accept custom archiver options', async function() {\n        fs.writeFileSync(path.join(testFolder, 'test.txt'), 'Test content for compression');\n        \n        const targetZip = path.join(tempDir, 'compressed.zip');\n        \n        await zip_a_folder.ZipAFolder.compress({\n            srcFolder: testFolder,\n            targetFilePath: targetZip,\n            archiverOptions: {\n                zlib: { level: 9 } // Maximum compression\n            }\n        });\n        \n        assert(fs.existsSync(targetZip), 'Zip file should be created with custom options');\n        assert(fs.statSync(targetZip).size > 0, 'Zip file should not be empty');\n    });\n\n    it('should throw error for non-existent source folder', async function() {\n        const nonExistentFolder = path.join(tempDir, 'does-not-exist');\n        const targetZip = path.join(tempDir, 'should-fail.zip');\n        \n        try {\n            await zip_a_folder.ZipAFolder.compress({\n                srcFolder: nonExistentFolder,\n                targetFilePath: targetZip\n            });\n            assert.fail('Should have thrown an error for non-existent folder');\n        } catch (error) {\n            assert(error instanceof Error, 'Should throw an Error object');\n        }\n    });\n});\n```"
+      ],
+      "tests": [
+        "test_74.js",
+        "test_75.js",
+        "test_76.js",
+        "test_77.js",
+        "test_78.js"
+      ],
+      "provenance": []
+    },
+    {
+      "id": 48,
+      "file": "prompt_48.js",
+      "temperature": 0,
+      "completions": [
+        "```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let srcFolder;\n    let targetFilePath;\n\n    beforeEach(async function() {\n        // Create temporary directory structure for testing\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(tempDir, 'source');\n        targetFilePath = path.join(tempDir, 'output.zip');\n        \n        // Create source folder with test files\n        fs.mkdirSync(srcFolder);\n        fs.writeFileSync(path.join(srcFolder, 'test1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'test2.txt'), 'Test Content');\n        \n        // Create subdirectory with file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should successfully compress a folder to zip file', async function() {\n        await zip_a_folder.ZipAFolder.compress({\n            srcFolder: srcFolder,\n            targetFilePath: targetFilePath,\n            format: 'zip'\n        });\n        \n        // Verify the zip file was created\n        assert(fs.existsSync(targetFilePath), 'Zip file should be created');\n        assert(fs.statSync(targetFilePath).size > 0, 'Zip file should not be empty');\n    });\n\n    it('should throw error when source and target are in same directory', async function() {\n        const invalidTargetPath = path.join(srcFolder, 'output.zip');\n        \n        try {\n            await zip_a_folder.ZipAFolder.compress({\n                srcFolder: srcFolder,\n                targetFilePath: invalidTargetPath,\n                format: 'zip'\n            });\n            assert.fail('Should have thrown an error');\n        } catch (error) {\n            assert(error.message.includes('Source and target folder must be different'));\n        }\n    });\n\n    it('should throw error when no target file path or custom write stream provided', async function() {\n        try {\n            await zip_a_folder.ZipAFolder.compress({\n                srcFolder: srcFolder,\n                format: 'zip'\n            });\n            assert.fail('Should have thrown an error');\n        } catch (error) {\n            assert(error.message.includes('You must either provide a target file path or a custom write stream'));\n        }\n    });\n\n    it('should work with custom write stream', async function() {\n        const customStream = fs.createWriteStream(targetFilePath);\n        \n        await zip_a_folder.ZipAFolder.compress({\n            srcFolder: srcFolder,\n            format: 'zip',\n            zipAFolderOptions: {\n                customWriteStream: customStream\n            }\n        });\n        \n        // Verify the zip file was created\n        assert(fs.existsSync(targetFilePath), 'Zip file should be created');\n        assert(fs.statSync(targetFilePath).size > 0, 'Zip file should not be empty');\n    });\n\n    it('should throw permission error for non-existent source folder', async function() {\n        const nonExistentFolder = path.join(tempDir, 'nonexistent');\n        \n        try {\n            await zip_a_folder.ZipAFolder.compress({\n                srcFolder: nonExistentFolder,\n                targetFilePath: targetFilePath,\n                format: 'zip'\n            });\n            assert.fail('Should have thrown an error');\n        } catch (error) {\n            assert(error.message.includes('Permission error'));\n        }\n    });\n\n    it('should work with archiver options', async function() {\n        await zip_a_folder.ZipAFolder.compress({\n            srcFolder: srcFolder,\n            targetFilePath: targetFilePath,\n            format: 'zip',\n            archiverOptions: {\n                zlib: { level: 9 }\n            }\n        });\n        \n        // Verify the zip file was created\n        assert(fs.existsSync(targetFilePath), 'Zip file should be created');\n        assert(fs.statSync(targetFilePath).size > 0, 'Zip file should not be empty');\n    });\n});\n```"
+      ],
+      "tests": [
+        "test_79.js",
+        "test_80.js",
+        "test_81.js",
+        "test_82.js",
+        "test_83.js",
+        "test_84.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 47,
+          "test": 78,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 55,
+          "test": 91,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 47,
+          "test": 77,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 56,
+          "test": 92,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 47,
+          "test": 76,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 57,
+          "test": 93,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 47,
+          "test": 75,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 58,
+          "test": 94,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 47,
+          "test": 74,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 59,
+          "test": 95,
+          "refiner": "FunctionBodyIncluder"
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "file": "prompt_49.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The issue is that the test is trying to require `mocha` directly, but when running tests with Mocha, the testing framework is already available globally. We need to remove the unnecessary `require('mocha')` statement.\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let srcFolder;\n    let targetFilePath;\n\n    beforeEach(async function() {\n        // Create temporary directory structure for testing\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(tempDir, 'source');\n        targetFilePath = path.join(tempDir, 'output.zip');\n        \n        // Create source folder with test files\n        fs.mkdirSync(srcFolder);\n        fs.writeFileSync(path.join(srcFolder, 'test1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'test2.txt'), 'Test Content');\n        \n        // Create subdirectory with file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should work with archiver options', async function() {\n        await zip_a_folder.ZipAFolder.compress({\n            srcFolder: srcFolder,\n            targetFilePath: targetFilePath,\n            format: 'zip',\n            archiverOptions: {\n                zlib: { level: 9 }\n            }\n        });\n        \n        // Verify the zip file was created\n        assert(fs.existsSync(targetFilePath), 'Zip file should be created');\n        assert(fs.statSync(targetFilePath).size > 0, 'Zip file should not be empty');\n    });\n});\n```"
+      ],
+      "tests": [
+        "test_85.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 48,
+          "test": 84,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "file": "prompt_50.js",
+      "temperature": 0,
+      "completions": [
+        "Looking at the error, the issue is that the test is trying to require 'mocha' but it's not available as a module in the test file itself. When running tests with Mocha, the testing framework is already loaded, so we don't need to require it. We also need to remove the unused mocha variable.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let srcFolder;\n    let targetFilePath;\n\n    beforeEach(async function() {\n        // Create temporary directory structure for testing\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(tempDir, 'source');\n        targetFilePath = path.join(tempDir, 'output.zip');\n        \n        // Create source folder with test files\n        fs.mkdirSync(srcFolder);\n        fs.writeFileSync(path.join(srcFolder, 'test1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'test2.txt'), 'Test Content');\n        \n        // Create subdirectory with file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should throw permission error for non-existent source folder', async function() {\n        const nonExistentFolder = path.join(tempDir, 'nonexistent');\n        \n        try {\n            await zip_a_folder.ZipAFolder.compress({\n                srcFolder: nonExistentFolder,\n                targetFilePath: targetFilePath,\n                format: 'zip'\n            });\n            assert.fail('Should have thrown an error');\n        } catch (error) {\n            assert(error.message.includes('Permission error'));\n        }\n    });\n\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since Mocha is already available when running the test, and we don't actually use the mocha variable anywhere in the code."
+      ],
+      "tests": [
+        "test_86.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 48,
+          "test": 83,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "file": "prompt_51.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The issue is that the test is trying to require `mocha` directly, but when running tests with Mocha, you don't need to require it explicitly - Mocha provides the testing functions globally.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let srcFolder;\n    let targetFilePath;\n\n    beforeEach(async function() {\n        // Create temporary directory structure for testing\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(tempDir, 'source');\n        targetFilePath = path.join(tempDir, 'output.zip');\n        \n        // Create source folder with test files\n        fs.mkdirSync(srcFolder);\n        fs.writeFileSync(path.join(srcFolder, 'test1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'test2.txt'), 'Test Content');\n        \n        // Create subdirectory with file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should work with custom write stream', async function() {\n        const customStream = fs.createWriteStream(targetFilePath);\n        \n        await zip_a_folder.ZipAFolder.compress({\n            srcFolder: srcFolder,\n            format: 'zip',\n            zipAFolderOptions: {\n                customWriteStream: customStream\n            }\n        });\n        \n        // Verify the zip file was created\n        assert(fs.existsSync(targetFilePath), 'Zip file should be created');\n        assert(fs.statSync(targetFilePath).size > 0, 'Zip file should not be empty');\n    });\n\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since Mocha provides the testing functions (`describe`, `it`, `beforeEach`, `afterEach`) globally when running tests through the Mocha test runner."
+      ],
+      "tests": [
+        "test_87.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 48,
+          "test": 82,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "file": "prompt_52.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The issue is that the test is trying to require `mocha` directly, but when running tests with Mocha, you don't need to require it explicitly. The test framework provides the global functions like `describe`, `it`, `beforeEach`, and `afterEach`.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let srcFolder;\n    let targetFilePath;\n\n    beforeEach(async function() {\n        // Create temporary directory structure for testing\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(tempDir, 'source');\n        targetFilePath = path.join(tempDir, 'output.zip');\n        \n        // Create source folder with test files\n        fs.mkdirSync(srcFolder);\n        fs.writeFileSync(path.join(srcFolder, 'test1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'test2.txt'), 'Test Content');\n        \n        // Create subdirectory with file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should throw error when no target file path or custom write stream provided', async function() {\n        try {\n            await zip_a_folder.ZipAFolder.compress({\n                srcFolder: srcFolder,\n                format: 'zip'\n            });\n            assert.fail('Should have thrown an error');\n        } catch (error) {\n            assert(error.message.includes('You must either provide a target file path or a custom write stream'));\n        }\n    });\n\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since Mocha provides the testing functions globally when running tests."
+      ],
+      "tests": [
+        "test_88.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 48,
+          "test": 81,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "file": "prompt_53.js",
+      "temperature": 0,
+      "completions": [
+        "Looking at the error, the issue is that the `mocha` module cannot be found. The test is trying to require mocha directly, but mocha is typically used as a test runner rather than being imported as a module in the test file itself.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let srcFolder;\n    let targetFilePath;\n\n    beforeEach(async function() {\n        // Create temporary directory structure for testing\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(tempDir, 'source');\n        targetFilePath = path.join(tempDir, 'output.zip');\n        \n        // Create source folder with test files\n        fs.mkdirSync(srcFolder);\n        fs.writeFileSync(path.join(srcFolder, 'test1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'test2.txt'), 'Test Content');\n        \n        // Create subdirectory with file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should throw error when source and target are in same directory', async function() {\n        const invalidTargetPath = path.join(srcFolder, 'output.zip');\n        \n        try {\n            await zip_a_folder.ZipAFolder.compress({\n                srcFolder: srcFolder,\n                targetFilePath: invalidTargetPath,\n                format: 'zip'\n            });\n            assert.fail('Should have thrown an error');\n        } catch (error) {\n            assert(error.message.includes('Source and target folder must be different'));\n        }\n    });\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since mocha provides the global functions like `describe`, `it`, `beforeEach`, and `afterEach` when running as a test runner, and doesn't need to be explicitly required in the test file."
+      ],
+      "tests": [
+        "test_89.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 48,
+          "test": 80,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "file": "prompt_54.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The issue is that the test is trying to require `mocha` directly, but when running tests with Mocha, you don't need to require it explicitly. The test framework provides the global functions like `describe`, `it`, `beforeEach`, and `afterEach`.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let srcFolder;\n    let targetFilePath;\n\n    beforeEach(async function() {\n        // Create temporary directory structure for testing\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(tempDir, 'source');\n        targetFilePath = path.join(tempDir, 'output.zip');\n        \n        // Create source folder with test files\n        fs.mkdirSync(srcFolder);\n        fs.writeFileSync(path.join(srcFolder, 'test1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'test2.txt'), 'Test Content');\n        \n        // Create subdirectory with file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should successfully compress a folder to zip file', async function() {\n        await zip_a_folder.ZipAFolder.compress({\n            srcFolder: srcFolder,\n            targetFilePath: targetFilePath,\n            format: 'zip'\n        });\n        \n        // Verify the zip file was created\n        assert(fs.existsSync(targetFilePath), 'Zip file should be created');\n        assert(fs.statSync(targetFilePath).size > 0, 'Zip file should not be empty');\n    });\n\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since Mocha provides the testing functions globally when running tests, and explicitly requiring it is not necessary and can cause module resolution issues."
+      ],
+      "tests": [
+        "test_90.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 48,
+          "test": 79,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 55,
+      "file": "prompt_55.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The issue is that the test is trying to require `mocha` directly, but when running tests with Mocha, the testing framework is already available globally. We need to remove the unnecessary `require('mocha')` statement.\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    \n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        fs.mkdirSync(testFolder);\n    });\n    \n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should throw error for non-existent source folder', async function() {\n        const nonExistentFolder = path.join(tempDir, 'does-not-exist');\n        const targetZip = path.join(tempDir, 'should-fail.zip');\n        \n        try {\n            await zip_a_folder.ZipAFolder.compress({\n                srcFolder: nonExistentFolder,\n                targetFilePath: targetZip\n            });\n            assert.fail('Should have thrown an error for non-existent folder');\n        } catch (error) {\n            assert(error instanceof Error, 'Should throw an Error object');\n        }\n    });\n});\n```"
+      ],
+      "tests": [
+        "test_91.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 47,
+          "test": 78,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 56,
+      "file": "prompt_56.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The issue is that the test is trying to require `mocha` directly, but when running tests with Mocha, the testing framework globals (`describe`, `it`, `beforeEach`, `afterEach`) are automatically available. We don't need to require `mocha` explicitly.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    \n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        fs.mkdirSync(testFolder);\n    });\n    \n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should accept custom archiver options', async function() {\n        fs.writeFileSync(path.join(testFolder, 'test.txt'), 'Test content for compression');\n        \n        const targetZip = path.join(tempDir, 'compressed.zip');\n        \n        await zip_a_folder.ZipAFolder.compress({\n            srcFolder: testFolder,\n            targetFilePath: targetZip,\n            archiverOptions: {\n                zlib: { level: 9 } // Maximum compression\n            }\n        });\n        \n        assert(fs.existsSync(targetZip), 'Zip file should be created with custom options');\n        assert(fs.statSync(targetZip).size > 0, 'Zip file should not be empty');\n    });\n});\n```\n\nThe main changes:\n1. Removed the `let mocha = require('mocha');` line since Mocha globals are automatically available when running tests\n2. Fixed the missing closing brace for the `describe` block (there was an extra closing brace and parenthesis at the end)"
+      ],
+      "tests": [
+        "test_92.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 47,
+          "test": 77,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "file": "prompt_57.js",
+      "temperature": 0,
+      "completions": [
+        "Looking at the error, the issue is that the test is trying to require 'mocha' but it's not needed since mocha provides the global functions like `describe`, `it`, `beforeEach`, etc. when running tests. The `require('mocha')` line should be removed.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    \n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        fs.mkdirSync(testFolder);\n    });\n    \n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should handle empty folder compression', async function() {\n        const targetZip = path.join(tempDir, 'empty.zip');\n        \n        await zip_a_folder.ZipAFolder.compress({\n            srcFolder: testFolder,\n            targetFilePath: targetZip\n        });\n        \n        assert(fs.existsSync(targetZip), 'Zip file should be created even for empty folder');\n    });\n\n});\n```\n\nThe main change is removing the `let mocha = require('mocha');` line at the top, as mocha's global functions are automatically available when running tests with the mocha test runner."
+      ],
+      "tests": [
+        "test_93.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 47,
+          "test": 76,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 58,
+      "file": "prompt_58.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The issue is that the test is trying to require `mocha` directly, but when running tests with Mocha, you don't need to require it explicitly. The test framework provides the global functions like `describe`, `it`, `beforeEach`, and `afterEach`.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    \n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        fs.mkdirSync(testFolder);\n    });\n    \n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should compress a folder with multiple files and subdirectories', async function() {\n        // Create test structure\n        fs.writeFileSync(path.join(testFolder, 'file1.txt'), 'Content 1');\n        fs.writeFileSync(path.join(testFolder, 'file2.txt'), 'Content 2');\n        \n        const subDir = path.join(testFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested content');\n        \n        const targetZip = path.join(tempDir, 'multi-file.zip');\n        \n        await zip_a_folder.ZipAFolder.compress({\n            srcFolder: testFolder,\n            targetFilePath: targetZip\n        });\n        \n        assert(fs.existsSync(targetZip), 'Zip file should be created');\n        assert(fs.statSync(targetZip).size > 0, 'Zip file should not be empty');\n    });\n});\n```\n\nThe main changes:\n1. Removed the `let mocha = require('mocha');` line since Mocha provides the testing functions globally when running tests\n2. Fixed the missing closing parenthesis and brace for the `describe` block"
+      ],
+      "tests": [
+        "test_94.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 47,
+          "test": 75,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 59,
+      "file": "prompt_59.js",
+      "temperature": 0,
+      "completions": [
+        "The error indicates that the `mocha` module cannot be found. The issue is that the test is trying to require `mocha` directly, but when running tests with Mocha, the testing framework is already available globally. The `mocha` module doesn't need to be explicitly required in test files.\n\nHere's the fixed code:\n\n```javascript\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    \n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        fs.mkdirSync(testFolder);\n    });\n    \n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should compress a folder with a single file', async function() {\n        // Create test file\n        const testFile = path.join(testFolder, 'test.txt');\n        fs.writeFileSync(testFile, 'Hello World');\n        \n        const targetZip = path.join(tempDir, 'output.zip');\n        \n        await zip_a_folder.ZipAFolder.compress({\n            srcFolder: testFolder,\n            targetFilePath: targetZip\n        });\n        \n        // Verify zip file was created\n        assert(fs.existsSync(targetZip), 'Zip file should be created');\n        assert(fs.statSync(targetZip).size > 0, 'Zip file should not be empty');\n    });\n});\n```\n\nThe main change is removing the line `let mocha = require('mocha');` since Mocha's global functions (`describe`, `it`, `beforeEach`, `afterEach`) are automatically available when running tests with the Mocha test runner."
+      ],
+      "tests": [
+        "test_95.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 47,
+          "test": 74,
+          "refiner": "RetryWithError"
+        }
+      ]
+    }
+  ]
+}

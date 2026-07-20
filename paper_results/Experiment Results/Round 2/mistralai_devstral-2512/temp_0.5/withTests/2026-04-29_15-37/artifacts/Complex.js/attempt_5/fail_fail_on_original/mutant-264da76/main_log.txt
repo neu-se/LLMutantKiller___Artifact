@@ -1,0 +1,30 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-264da76/testCase.test.ts
+  Complex.acoth()
+    ✕ should correctly compute acoth for a complex number with specific real and imaginary parts (2 ms)
+
+  ● Complex.acoth() › should correctly compute acoth for a complex number with specific real and imaginary parts
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.5
+    Received: 0.726839080679596
+
+    Expected precision:    1
+    Expected difference: < 0.05
+    Received difference:   0.22683908067959602
+
+       8 |     // The mutation changes -b/d to -b*d, which would drastically change the result
+       9 |     // We'll check the relationship between real and imaginary parts that would be affected
+    > 10 |     expect(Math.abs(result.re / result.im)).toBeCloseTo(0.5, 1);
+         |                                             ^
+      11 |   });
+      12 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-264da76/testCase.test.ts:10:45)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.013 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-264da76/testCase.test.ts".

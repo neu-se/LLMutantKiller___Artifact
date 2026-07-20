@@ -1,0 +1,41 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-f7d6ed4/testCase.test.ts[0m:[93m5[0m:[93m13[0m - [91merror[0m[90m TS2740: [0mType '{}' is missing the following properties from type 'Process': stdout, stderr, stdin, argv, and 64 more.
+
+[7m5[0m             global.process = { };
+[7m [0m [91m            ~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-f7d6ed4/testCase.test.ts[0m:[93m8[0m:[93m96[0m - [91merror[0m[90m TS2339: [0mProperty 'domain' does not exist on type 'Process'.
+
+[7m8[0m                     if (typeof global.process === "object" && global.process && global.process.domain) {
+[7m [0m [91m                                                                                               ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-f7d6ed4/testCase.test.ts[0m:[93m14[0m:[93m38[0m - [91merror[0m[90m TS2551: [0mProperty 'toHaveThrownError' does not exist on type 'Matchers<void, Mock<void, [fulfilled: any, rejected: any, progress: any], any>>'. Did you mean 'toThrowError'?
+
+[7m14[0m             expect(promise.done).not.toHaveThrownError();
+[7m  [0m [91m                                     ~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/jest/index.d.ts[0m:[93m1140[0m:[93m9[0m
+    [7m1140[0m         toThrowError(error?: string | Constructable | RegExp | Error): R;
+    [7m    [0m [96m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'toThrowError' is declared here.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-f7d6ed4/testCase.test.ts
+  Q
+    ✕ should handle process.domain correctly (1 ms)
+
+  ● Q › should handle process.domain correctly
+
+    TypeError: expect(...).not.toHaveThrownError is not a function
+
+      12 |             }) };
+      13 |             promise.done(() => {}, () => {}, () => {});
+    > 14 |             expect(promise.done).not.toHaveThrownError();
+         |                                      ^
+      15 |         } finally {
+      16 |             global.process = originalProcess;
+      17 |         }
+
+      at Object.toHaveThrownError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-f7d6ed4/testCase.test.ts:14:38)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.057 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-f7d6ed4/testCase.test.ts".

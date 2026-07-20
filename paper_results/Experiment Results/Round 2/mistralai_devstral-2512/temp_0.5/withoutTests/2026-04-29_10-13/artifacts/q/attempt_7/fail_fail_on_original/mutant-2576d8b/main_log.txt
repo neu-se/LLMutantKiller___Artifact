@@ -1,0 +1,34 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-2576d8b/testCase.test.ts
+  makeStackTraceLong mutation test
+    ✕ should properly build long stack traces through promise chain (8 ms)
+
+  ● makeStackTraceLong mutation test › should properly build long stack traces through promise chain
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /From previous event/
+    Received string:  "Error: Test error
+
+      4 |     it("should properly build long stack traces through promise chain", () => {
+      5 |         // Create a chain of promises that will be rejected
+    > 6 |         const error = new Error("Test error");
+        |                       ^
+      7 |         const promise1 = q.reject(error);
+      8 |         const promise2 = promise1.then(() => {});
+      9 |         const promise3 = promise2.then(() => {});
+
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-2576d8b/testCase.test.ts:6:23)
+      at toMatch (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-2576d8b/testCase.test.ts:23:43)
+      at rejected (../subject_repositories/q/q.js:864:24)
+      at _rejected (../subject_repositories/q/q.js:890:30)
+      at Promise.rejected (../subject_repositories/q/q.js:1142:31)
+      at Promise.apply [as promiseDispatch] (../subject_repositories/q/q.js:808:41)
+      at apply (../subject_repositories/q/q.js:624:44)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.382 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-2576d8b/testCase.test.ts".

@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-6008da4/testCase.test.ts
+  Q library behavior
+    ✕ should correctly handle promise resolution when process is defined but not Node.js (1 ms)
+
+  ● Q library behavior › should correctly handle promise resolution when process is defined but not Node.js
+
+    TypeError: process.nextTick is not a function
+
+      195 |
+      196 |         requestTick = function () {
+    > 197 |             process.nextTick(flush);
+          |                     ^
+      198 |         };
+      199 |
+      200 |     } else if (typeof setImmediate === "function") {
+
+      at nextTick (../subject_repositories/q/q.js:197:21)
+      at Function.requestTick [as nextTick] (../subject_repositories/q/q.js:180:13)
+      at Promise.nextTick [as then] (../subject_repositories/q/q.js:876:7)
+      at Object.then (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-6008da4/testCase.test.ts:22:15)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.886 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-6008da4/testCase.test.ts".

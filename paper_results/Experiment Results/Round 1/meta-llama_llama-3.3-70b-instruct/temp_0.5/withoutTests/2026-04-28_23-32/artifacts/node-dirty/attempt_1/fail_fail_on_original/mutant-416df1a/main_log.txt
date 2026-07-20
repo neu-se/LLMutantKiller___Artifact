@@ -1,0 +1,37 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-416df1a/testCase.test.ts[0m:[93m4[0m:[93m24[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m4[0m import { rimraf } from 'rimraf';
+[7m [0m [91m                       ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-416df1a/testCase.test.ts[0m:[93m12[0m:[93m5[0m - [91merror[0m[90m TS18047: [0m'dirty._writeStream' is possibly 'null'.
+
+[7m12[0m     dirty._writeStream.write = () => {
+[7m  [0m [91m    ~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-416df1a/testCase.test.ts[0m:[93m16[0m:[93m5[0m - [91merror[0m[90m TS18047: [0m'dirty._writeStream' is possibly 'null'.
+
+[7m16[0m     dirty._writeStream.emit('error', error);
+[7m  [0m [91m    ~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-416df1a/testCase.test.ts
+  Dirty
+    ✕ should emit error when there are no callbacks and an error occurs (5 ms)
+
+  ● Dirty › should emit error when there are no callbacks and an error occurs
+
+    Unhandled error. (Error: Test error
+
+       8 |     const dbPath = join(__dirname, 'test.db');
+       9 |     const dirty = new Dirty(dbPath);
+    > 10 |     const error = new Error('Test error');
+         |                   ^
+      11 |
+      12 |     dirty._writeStream.write = () => {
+      13 |       return false;
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-416df1a/testCase.test.ts:10:19)
+      at Object.emit (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-416df1a/testCase.test.ts:16:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.422 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-416df1a/testCase.test.ts".

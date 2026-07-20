@@ -1,0 +1,37 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_7/pending_category/mutant-f4c40af/testCase.test.ts
+  GeoPoint.calculateDestination
+    ✕ should calculate correct destination point for given coordinate, distance, and bearing (2 ms)
+
+  ● GeoPoint.calculateDestination › should calculate correct destination point for given coordinate, distance, and bearing
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 14.28
+    Received: 12.61589491017503
+
+    Expected precision:    2
+    Expected difference: < 0.005
+    Received difference:   1.6641050898249699
+
+      12 |     // This will produce significantly different results for large distances
+      13 |     // Original formula should produce longitude around 14.28 degrees east
+    > 14 |     expect(result.longitude).toBeCloseTo(14.28, 2);
+         |                              ^
+      15 |     expect(result.latitude).toBeCloseTo(45, 2);
+      16 |   });
+      17 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_7/pending_category/mutant-f4c40af/testCase.test.ts:14:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.975 s, estimated 1 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_7/pending_category/mutant-f4c40af/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

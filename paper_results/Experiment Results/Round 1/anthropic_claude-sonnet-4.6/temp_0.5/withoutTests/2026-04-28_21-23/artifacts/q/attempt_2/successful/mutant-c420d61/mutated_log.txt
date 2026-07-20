@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-c420d61/testCase.test.ts
+  isNodeFrame stack filtering
+    ✕ should filter out lines containing (node.js: from long stack traces (5 ms)
+
+  ● isNodeFrame stack filtering › should filter out lines containing (node.js: from long stack traces
+
+    expect(received).not.toContain(expected) // indexOf
+
+    Expected substring: not "(node.js:"
+    Received string:        "Error: test error
+
+      20 |                 .then(function step1(v: any) { return v; })
+      21 |                 .then(function triggerRejection() {
+    > 22 |                     const err = new Error("test error");
+         |                                 ^
+      23 |                     // Inject a node.js internal frame into the error's stack
+      24 |                     err.stack = (err.stack || "") + "\n" + nodeJsFrame;
+      25 |                     throw err;
+
+      at triggerRejection (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-c420d61/testCase.test.ts:22:33)
+      From previous event:
+      at then (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-c420d61/testCase.test.ts:21:18)
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-c420d61/testCase.test.ts:15:15)
+      at Object.toContain (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-c420d61/testCase.test.ts:42:41)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.758 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-c420d61/testCase.test.ts".

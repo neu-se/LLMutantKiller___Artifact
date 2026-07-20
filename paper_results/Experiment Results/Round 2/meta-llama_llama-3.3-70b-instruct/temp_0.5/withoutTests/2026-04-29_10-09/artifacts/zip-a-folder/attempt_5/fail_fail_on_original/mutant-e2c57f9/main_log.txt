@@ -1,0 +1,38 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_5/pending_category/mutant-e2c57f9/testCase.test.ts[0m:[93m17[0m:[93m15[0m - [91merror[0m[90m TS6133: [0m'unzipBuffer' is declared but its value is never read.
+
+[7m17[0m         const unzipBuffer = await fs.promises.readFile(`${src}/test.txt`);
+[7m  [0m [91m              ~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_5/pending_category/mutant-e2c57f9/testCase.test.ts[0m:[93m19[0m:[93m48[0m - [91merror[0m[90m TS2345: [0mArgument of type 'Buffer' is not assignable to parameter of type 'InputType'.
+  Type 'Buffer' is not assignable to type 'Uint8Array<ArrayBufferLike> | DataView<ArrayBufferLike>'.
+    Type 'Buffer' is not assignable to type 'Uint8Array<ArrayBufferLike>'.
+      The types of 'slice(...).buffer' are incompatible between these types.
+        Type 'ArrayBufferLike' is not assignable to type 'ArrayBuffer'.
+          Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+            Types of property '[Symbol.toStringTag]' are incompatible.
+              Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.
+
+[7m19[0m         const inflatedBuffer = zlib.gunzipSync(zipBuffer);
+[7m  [0m [91m                                               ~~~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_5/pending_category/mutant-e2c57f9/testCase.test.ts
+  ZipAFolder
+    ✕ should create a zip archive with store option set to true (20 ms)
+
+  ● ZipAFolder › should create a zip archive with store option set to true
+
+    incorrect header check
+
+      17 |         const unzipBuffer = await fs.promises.readFile(`${src}/test.txt`);
+      18 |
+    > 19 |         const inflatedBuffer = zlib.gunzipSync(zipBuffer);
+         |                                     ^
+      20 |         expect(inflatedBuffer.toString()).toContain('Hello World!');
+      21 |
+      22 |         await rm(src, { recursive: true });
+
+      at Object.gunzipSync (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_5/pending_category/mutant-e2c57f9/testCase.test.ts:19:37)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.454 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_5/pending_category/mutant-e2c57f9/testCase.test.ts".

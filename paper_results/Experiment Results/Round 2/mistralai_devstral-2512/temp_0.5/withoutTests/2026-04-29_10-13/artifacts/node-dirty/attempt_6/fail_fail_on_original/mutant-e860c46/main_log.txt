@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-e860c46/testCase.test.ts (6.44 s)
+  Dirty close behavior with in-flight writes
+    ✕ should properly wait for in-flight writes before closing (5002 ms)
+
+  ● Dirty close behavior with in-flight writes › should properly wait for in-flight writes before closing
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      28 |       // Check if close completed immediately (which would be wrong)
+      29 |       setTimeout(() => {
+    > 30 |         expect(closeCompleted).toBe(false);
+         |                                ^
+      31 |
+      32 |         // Manually trigger drain to complete close
+      33 |         dirty._inFlightWrites = 0;
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-e860c46/testCase.test.ts:30:32)
+
+  ● Dirty close behavior with in-flight writes › should properly wait for in-flight writes before closing
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       5 |
+       6 | describe('Dirty close behavior with in-flight writes', () => {
+    >  7 |   it('should properly wait for in-flight writes before closing', (done) => {
+         |   ^
+       8 |     const testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'dirty-test-'));
+       9 |     const dbPath = path.join(testDir, 'test.db');
+      10 |     const dirty = new Dirty(dbPath);
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-e860c46/testCase.test.ts:7:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-e860c46/testCase.test.ts:6:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.618 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-e860c46/testCase.test.ts".

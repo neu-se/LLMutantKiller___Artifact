@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-c5595ee/testCase.test.ts
+  Q stack trace filtering
+    ✕ filters anonymous Firefox-style internal Q frames where function name is empty (5 ms)
+
+  ● Q stack trace filtering › filters anonymous Firefox-style internal Q frames where function name is empty
+
+    expect(received).toBe(expected) // Object.is equality
+    Expected: false
+    Received: true
+
+      26 |         // Original: "@q.js:900" is parsed → recognized as internal frame → filtered out
+      27 |         // Mutant: "@q.js:900" is NOT parsed (. needs one char before @) → kept in stack
+    > 28 |         expect(hasInternalLine).toBe(false);
+         |                                 ^
+      29 |
+      30 |         Q.longStackSupport = false;
+      31 |       }
+
+      at toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-c5595ee/testCase.test.ts:28:33)
+      From previous event:
+      at Object.then (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-c5595ee/testCase.test.ts:20:38)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.189 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-c5595ee/testCase.test.ts".

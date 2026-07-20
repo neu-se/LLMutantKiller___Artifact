@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-77cc422/testCase.test.ts
+  count source - abort/end handling
+    ✕ should call cb with the end signal when end is truthy (abort) (3 ms)
+
+  ● count source - abort/end handling › should call cb with the end signal when end is truthy (abort)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: [Error: abort]
+    Received: null
+
+      17 |         // In the mutated code: if(false) means abort is never handled,
+      18 |         // so the stream continues and cb(null, i++) is called instead
+    > 19 |         expect(end).toBe(abortError);
+         |                     ^
+      20 |         done();
+      21 |       });
+      22 |     });
+
+      at toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-77cc422/testCase.test.ts:19:21)
+      at cb (../subject_repositories/pull-stream/sources/count.js:10:5)
+      at source (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-77cc422/testCase.test.ts:14:7)
+      at cb (../subject_repositories/pull-stream/sources/count.js:10:5)
+      at Object.source (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-77cc422/testCase.test.ts:8:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.552 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-77cc422/testCase.test.ts".

@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-54958bd/testCase.test.ts
+  Complex.acosh()
+    ✕ should correctly handle the acosh transformation for complex numbers with specific negative imaginary values (2 ms)
+
+  ● Complex.acosh() › should correctly handle the acosh transformation for complex numbers with specific negative imaginary values
+
+    expect(received).toBeCloseTo(expected)
+
+    Expected: 0.881373587019543
+    Received: 0.7328576759736453
+
+    Expected precision:    2
+    Expected difference: < 0.005
+    Received difference:   0.14851591104589779
+
+       7 |     // This test specifically targets the branch where res['im'] < 0 in acosh
+       8 |     // The mutation changes tmp = res['re'] to tmp = res[""] which should break the transformation
+    >  9 |     expect(result.re).toBeCloseTo(0.881373587019543);
+         |                       ^
+      10 |     expect(result.im).toBeCloseTo(-0.48121182505960347);
+      11 |   });
+      12 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-54958bd/testCase.test.ts:9:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.05 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-54958bd/testCase.test.ts".

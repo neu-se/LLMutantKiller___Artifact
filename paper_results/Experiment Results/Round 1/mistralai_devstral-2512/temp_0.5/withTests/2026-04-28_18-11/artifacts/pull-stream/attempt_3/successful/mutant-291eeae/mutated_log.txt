@@ -1,0 +1,34 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/pull-stream/sinks/log.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/pull-stream/sinks/log.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-291eeae/testCase.test.ts
+  log sink behavior
+    ✕ should log data to console (3 ms)
+
+  ● log sink behavior › should log data to console
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 3
+    Received number of calls: 0
+
+      15 |       log((err: any) => {
+      16 |         console.log = originalConsoleLog;
+    > 17 |         expect(mockConsoleLog).toHaveBeenCalledTimes(testData.length);
+         |                                ^
+      18 |         expect(mockConsoleLog).toHaveBeenCalledWith('test1');
+      19 |         expect(mockConsoleLog).toHaveBeenCalledWith('test2');
+      20 |         expect(mockConsoleLog).toHaveBeenCalledWith('test3');
+
+      at toHaveBeenCalledTimes (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-291eeae/testCase.test.ts:17:32)
+      at done (../subject_repositories/pull-stream/sinks/drain.js:26:24)
+      at cb (../subject_repositories/pull-stream/sources/values.js:19:7)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:45:8)
+      at s (../subject_repositories/pull-stream/pull.js:41:14)
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-291eeae/testCase.test.ts:13:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.511 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-291eeae/testCase.test.ts".

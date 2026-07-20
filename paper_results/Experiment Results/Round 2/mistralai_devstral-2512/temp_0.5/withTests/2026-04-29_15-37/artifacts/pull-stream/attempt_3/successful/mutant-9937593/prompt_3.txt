@@ -1,0 +1,47 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-9937593/testCase.test.ts[0m:[93m19[0m:[93m7[0m - [91merror[0m[90m TS2349: [0mThis expression is not callable.
+  Type 'typeof export=' has no call signatures.
+
+[7m19[0m       pull(source, sink);
+[7m  [0m [91m      ~~~~[0m
+
+  [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-9937593/testCase.test.ts[0m:[93m1[0m:[93m1[0m
+    [7m1[0m import * as pull from "../../../../../../../../../../../subject_repositories/pull-stream/pull.js";
+    [7m [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    Type originates at this import. A namespace-style import cannot be called or constructed, and will cause a failure at runtime. Consider using a default import or import require here instead.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-9937593/testCase.test.ts
+  drain error handling
+    ✕ should throw error when end is an error object and no done callback (19 ms)
+
+  ● drain error handling › should throw error when end is an error object and no done callback
+
+    expect(received).toThrow(expected)
+
+    Expected message: "test error"
+    Received message: "pull is not a function"
+
+          17 |
+          18 |     expect(() => {
+        > 19 |       pull(source, sink);
+             |       ^
+          20 |     }).toThrow(error);
+          21 |
+          22 |     done();
+
+      at pull (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-9937593/testCase.test.ts:19:7)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-9937593/testCase.test.ts:20:8)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-9937593/testCase.test.ts:20:8)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.146 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-9937593/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-0af9d8e/testCase.test.ts
+  drain event timing correctness
+    ✕ should emit drain only after all write callbacks have fired (12 ms)
+
+  ● drain event timing correctness › should emit drain only after all write callbacks have fired
+
+    drain fired before all write callbacks: only 2/3 completed
+
+      33 |         // so callbackCount will be less than totalSets
+      34 |         if (callbackCount < totalSets) {
+    > 35 |           done(new Error(`drain fired before all write callbacks: only ${callbackCount}/${totalSets} completed`));
+         |                ^
+      36 |         } else {
+      37 |           done();
+      38 |         }
+
+      at Dirty.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-0af9d8e/testCase.test.ts:35:16)
+      at emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:190:70)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.454 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-0af9d8e/testCase.test.ts".

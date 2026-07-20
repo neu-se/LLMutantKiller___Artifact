@@ -1,0 +1,24 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-22f4ba7/testCase.test.ts
+  close behavior with pending operations
+    ✕ should delay close until all operations complete (4 ms)
+
+  ● close behavior with pending operations › should delay close until all operations complete
+
+    Close was called without waiting for pending writes
+
+      57 |         if (closeCalledImmediately && !writeCloseFired) {
+      58 |           // This is the mutated behavior - close was called but write_close didn't fire
+    > 59 |           done(new Error('Close was called without waiting for pending writes'));
+         |                ^
+      60 |         } else {
+      61 |           // Original behavior - close waited for drain
+      62 |           done();
+
+      at Immediate.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-22f4ba7/testCase.test.ts:59:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.182 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-22f4ba7/testCase.test.ts".

@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-5c4ed2a/testCase.test.ts
+  parse function with baseUrlStr containing multi-character fragment
+    ✕ should completely strip multi-character fragments from baseUrlStr (5 ms)
+
+  ● parse function with baseUrlStr containing multi-character fragment › should completely strip multi-character fragments from baseUrlStr
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "http://www.example.com/path/"
+    Received: "http://www.example.com/path/#longsection"
+
+      13 |     // In mutant: baseUrlStr fragment is NOT stripped (more than 1 char after #),
+      14 |     // so the baseurl stored in result will contain the fragment
+    > 15 |     expect(result!.baseurl).toBe("http://www.example.com/path/");
+         |                             ^
+      16 |   });
+      17 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-5c4ed2a/testCase.test.ts:15:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.308 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-5c4ed2a/testCase.test.ts".

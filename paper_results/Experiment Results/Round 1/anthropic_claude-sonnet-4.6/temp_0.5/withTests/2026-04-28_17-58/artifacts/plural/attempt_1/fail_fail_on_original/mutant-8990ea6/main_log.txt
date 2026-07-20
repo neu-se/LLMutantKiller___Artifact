@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/plural/attempt_1/pending_category/mutant-8990ea6/testCase.test.ts
+  plural rule for quy ending
+    ✕ should not pluralize a word containing 'quy' not at the end (4 ms)
+
+  ● plural rule for quy ending › should not pluralize a word containing 'quy' not at the end
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "quyss"
+    Received: "quyses"
+
+       8 |     // Original: no rule matches, returns 'quys' + 's' = 'quyss'
+       9 |     // Mutated: matches 'quy' inside 'quys', returns 'quyies'
+    > 10 |     expect(plural("quys")).toBe("quyss");
+         |                            ^
+      11 |   });
+      12 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/plural/attempt_1/pending_category/mutant-8990ea6/testCase.test.ts:10:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.665 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/plural/attempt_1/pending_category/mutant-8990ea6/testCase.test.ts".

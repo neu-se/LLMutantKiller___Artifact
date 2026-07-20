@@ -1,0 +1,30 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-fe4b62b/testCase.test.ts[0m:[93m11[0m:[93m16[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 2.
+
+[7m11[0m       cb(null, 'data');
+[7m  [0m [91m               ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-fe4b62b/testCase.test.ts (6.202 s)
+  drain sink abort behavior
+    ✕ should abort with true when callback is provided as first argument (5001 ms)
+
+  ● drain sink abort behavior › should abort with true when callback is provided as first argument
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      3 |
+      4 | describe('drain sink abort behavior', () => {
+    > 5 |   it('should abort with true when callback is provided as first argument', (done) => {
+        |   ^
+      6 |     const source = (abort: any, cb: (err: any) => void) => {
+      7 |       if (abort) {
+      8 |         cb(abort);
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-fe4b62b/testCase.test.ts:5:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-fe4b62b/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.385 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-fe4b62b/testCase.test.ts".

@@ -1,0 +1,32 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-b49a520/testCase.test.ts
+  Dirty database
+    ✕ should handle chunks without newlines correctly (1 ms)
+
+  ● Dirty database › should handle chunks without newlines correctly
+
+    TypeError: Cannot redefine property: createReadStream
+        at Function.defineProperty (<anonymous>)
+
+      16 |     // Mock createReadStream to deliver specific chunks
+      17 |     const mockReadStream = new Readable({ read() {} });
+    > 18 |     jest.spyOn(fs, 'createReadStream').mockReturnValueOnce(mockReadStream as any);
+         |          ^
+      19 |     
+      20 |     const db = new Dirty(dbPath);
+      21 |     
+
+      at ModuleMocker.spyOn (node_modules/jest-mock/build/index.js:776:16)
+      at Object.spyOn (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-b49a520/testCase.test.ts:18:10)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.373 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-b49a520/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

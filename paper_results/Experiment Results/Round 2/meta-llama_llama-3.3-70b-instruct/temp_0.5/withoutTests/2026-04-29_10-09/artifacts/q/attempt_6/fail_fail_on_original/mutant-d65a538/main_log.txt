@@ -1,0 +1,42 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-d65a538/testCase.test.ts[0m:[93m8[0m:[93m29[0m - [91merror[0m[90m TS18046: [0m'e' is of type 'unknown'.
+
+[7m8[0m                 var lines = e.stack.split("\n");
+[7m [0m [91m                            ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-d65a538/testCase.test.ts[0m:[93m13[0m:[93m47[0m - [91merror[0m[90m TS7006: [0mParameter 'stackLine' implicitly has an 'any' type.
+
+[7m13[0m             function getFileNameAndLineNumber(stackLine) {
+[7m  [0m [91m                                              ~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-d65a538/testCase.test.ts[0m:[93m34[0m:[93m10[0m - [91merror[0m[90m TS2552: [0mCannot find name 'getFileNameAndLineNumber'. Did you mean 'originalGetFileNameAndLineNumber'?
+
+[7m34[0m         (getFileNameAndLineNumber as any) = () => null;
+[7m  [0m [91m         ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-d65a538/testCase.test.ts[0m:[93m4[0m:[93m15[0m
+    [7m4[0m         const originalGetFileNameAndLineNumber = (function () {
+    [7m [0m [96m              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'originalGetFileNameAndLineNumber' is declared here.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-d65a538/testCase.test.ts
+  Q
+    ✕ should return undefined for qFileName when getFileNameAndLineNumber returns null in the mutated code (4 ms)
+
+  ● Q › should return undefined for qFileName when getFileNameAndLineNumber returns null in the mutated code
+
+    Cannot find module '../../../../../../../../../subject_repositories/q/q.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-d65a538/testCase.test.ts'
+
+      35 |
+      36 |         // Try to access qFileName
+    > 37 |         const q = new (require('../../../../../../../../../subject_repositories/q/q.js'))();
+         |                        ^
+      38 |         const qFileName = (q as any).qFileName;
+      39 |
+      40 |         // Expect qFileName to be undefined
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-d65a538/testCase.test.ts:37:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.219 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-d65a538/testCase.test.ts".

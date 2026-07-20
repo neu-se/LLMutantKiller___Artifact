@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-f79c5f3/testCase.test.ts
+  Q.all
+    ✕ should test the mutation (4 ms)
+
+  ● Q.all › should test the mutation
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 2
+    Received: 3
+
+       8 |
+       9 |         return q.all([promise1, promise2, promise3]).then((values: any[]) => {
+    > 10 |             expect(values.length).toBe(2); // This should fail on the original code and the mutated code should pass
+         |                                   ^
+      11 |         });
+      12 |     });
+      13 | });
+
+      at toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-f79c5f3/testCase.test.ts:10:35)
+      at fulfilled (../subject_repositories/q/q.js:854:54)
+      at _fulfilled (../subject_repositories/q/q.js:883:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:816:13)
+      at apply (../subject_repositories/q/q.js:570:49)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.301 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-f79c5f3/testCase.test.ts".

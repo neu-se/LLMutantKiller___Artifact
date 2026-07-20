@@ -1,0 +1,15 @@
+import { Q } from "../../../../../../../../subject_repositories/q/q.js";
+
+describe('Q Promise', () => {
+    it('should return a promise that is pending when the value is a promise', (done) => {
+        const promise = Q(new Promise((resolve) => {
+            setTimeout(() => {
+                resolve({ a: 5 });
+            }, 100);
+        }));
+        promise.then((value) => {
+            expect(value).toEqual({ a: 5 });
+            done();
+        });
+    });
+});

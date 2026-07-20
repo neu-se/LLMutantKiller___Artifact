@@ -1,0 +1,24 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-fda66fb/testCase.test.ts
+  Dirty database flush behavior
+    ✕ should not emit drain when queue is not empty (114 ms)
+
+  ● Dirty database flush behavior › should not emit drain when queue is not empty
+
+    Drain was emitted when queue was not empty
+
+      32 |           db.close();
+      33 |           fs.rmSync(testDir, { recursive: true, force: true });
+    > 34 |           done(new Error('Drain was emitted when queue was not empty'));
+         |                ^
+      35 |         } else {
+      36 |           db.close();
+      37 |           fs.rmSync(testDir, { recursive: true, force: true });
+
+      at Timeout._onTimeout (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-fda66fb/testCase.test.ts:34:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.533 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-fda66fb/testCase.test.ts".

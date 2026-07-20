@@ -1,0 +1,12 @@
+import Delta from "../../../../../../../../../../../subject_repositories/delta/src/Delta.ts";
+
+describe("Delta transform function", () => {
+  it("should correctly transform data with null otherData", () => {
+    const delta1 = new Delta();
+    delta1.retain(10);
+    const delta2 = new Delta();
+    delta2.retain(null);
+
+    expect(() => delta1.transform(delta2, true)).toThrowError("retain() expects a number or an object, but got null");
+  });
+});

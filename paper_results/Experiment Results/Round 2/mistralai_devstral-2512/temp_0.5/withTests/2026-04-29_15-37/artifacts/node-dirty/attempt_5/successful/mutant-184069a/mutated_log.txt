@@ -1,0 +1,24 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-184069a/testCase.test.ts
+  mutant detection test
+    ✕ should emit error event for non-ENOENT errors during file read (7 ms)
+
+  ● mutant detection test › should emit error event for non-ENOENT errors during file read
+
+    Expected error event for EACCES, not load event
+
+      30 |     db.on('load', () => {
+      31 |       // If we get here, the mutant code is executing
+    > 32 |       done(new Error('Expected error event for EACCES, not load event'));
+         |            ^
+      33 |     });
+      34 |   });
+      35 | });
+
+      at Dirty.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-184069a/testCase.test.ts:32:12)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:115:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.005 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-184069a/testCase.test.ts".

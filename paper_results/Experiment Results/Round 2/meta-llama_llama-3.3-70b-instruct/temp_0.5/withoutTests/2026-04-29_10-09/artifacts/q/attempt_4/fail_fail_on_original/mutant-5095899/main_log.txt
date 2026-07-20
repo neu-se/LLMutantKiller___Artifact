@@ -1,0 +1,37 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-5095899/testCase.test.ts[0m:[93m6[0m:[93m34[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m6[0m         const previousQ = global.q;
+[7m [0m [91m                                 ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-5095899/testCase.test.ts[0m:[93m7[0m:[93m16[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m7[0m         global.q = q;
+[7m [0m [91m               ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-5095899/testCase.test.ts[0m:[93m46[0m:[93m16[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m46[0m         global.q = previousQ;
+[7m  [0m [91m               ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-5095899/testCase.test.ts
+  Q
+    ✕ should create a Q promise in a browser environment (2 ms)
+
+  ● Q › should create a Q promise in a browser environment
+
+    TypeError: Cannot redefine property: window
+        at Function.defineProperty (<anonymous>)
+
+      17 |             q(1);
+      18 |         }).not.toThrow();
+    > 19 |         Object.defineProperty(global, 'window', {
+         |                ^
+      20 |             value: undefined,
+      21 |             writable: true
+      22 |         });
+
+      at Object.defineProperty (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-5095899/testCase.test.ts:19:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.586 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-5095899/testCase.test.ts".

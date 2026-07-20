@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-3daf8f6/testCase.test.ts
+  Complex.js logHypot mutation test
+    ✕ should correctly compute log for complex number with a=3000 and b=1 using optimized path (6 ms)
+
+  ● Complex.js logHypot mutation test › should correctly compute log for complex number with a=3000 and b=1 using optimized path
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 8.699514803765744
+    Received: 8.006367623205799
+
+    Expected precision:    12
+    Expected difference: < 0.0000000000005
+    Received difference:   0.6931471805599454
+
+      10 |     // Both should produce the same result using the fallback calculation
+      11 |     const expectedRe = 0.5 * Math.log(3000*3000 + 1*1) + Math.LN2;
+    > 12 |     expect(result.re).toBeCloseTo(expectedRe, 12);
+         |                       ^
+      13 |     expect(result.im).toBeCloseTo(Math.atan2(1, 3000), 12);
+      14 |   });
+      15 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-3daf8f6/testCase.test.ts:12:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.379 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-3daf8f6/testCase.test.ts".

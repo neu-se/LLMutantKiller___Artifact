@@ -1,0 +1,30 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-565699c/testCase.test.ts
+  Complex cosm1 function
+    ✕ should correctly compute cos(x) - 1 for x = 0.1 (within Taylor series range) (2 ms)
+
+  ● Complex cosm1 function › should correctly compute cos(x) - 1 for x = 0.1 (within Taylor series range)
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: -0.004997916927067836
+    Received: -0.004995834721974235
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   0.000002082205093601429
+
+      10 |     // The mutation changes division to multiplication, which would produce a very different result
+      11 |     // The real part of expm1(0 + 0.1i) should be: expm1(0)*cos(0.1) + cosm1(0.1) = 0 + cosm1(0.1)
+    > 12 |     expect(result.re).toBeCloseTo(-0.004997916927067836, 10);
+         |                       ^
+      13 |   });
+      14 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-565699c/testCase.test.ts:12:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.382 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-565699c/testCase.test.ts".

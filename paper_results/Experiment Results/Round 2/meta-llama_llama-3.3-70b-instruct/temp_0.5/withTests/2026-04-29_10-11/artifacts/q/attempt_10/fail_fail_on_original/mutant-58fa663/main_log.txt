@@ -1,0 +1,123 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-58fa663/testCase.test.ts (5.789 s)
+  Q
+    ✕ should correctly handle unhandled rejections (1003 ms)
+    ✕ should correctly handle process.emit when rejecting a promise (1002 ms)
+    ✕ should not call process.emit when rejecting a promise with a non-error (1003 ms)
+
+  ● Q › should correctly handle unhandled rejections
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    - Expected
+    + Received
+
+      "unhandledRejection",
+      [Error: Test error],
+      Promise {
+    -   "inspect": [Function anonymous],
+    +   "exception": [Error: Test error],
+    +   "inspect": [Function inspect],
+        "promiseDispatch": [Function anonymous],
+        "valueOf": [Function anonymous],
+      },
+
+    Number of calls: 1
+
+      14 |         setTimeout(() => {
+      15 |             expect(processEmitSpy).toHaveBeenCalledTimes(1);
+    > 16 |             expect(processEmitSpy).toHaveBeenCalledWith('unhandledRejection', error, promise);
+         |                                    ^
+      17 |             done();
+      18 |         }, 10);
+      19 |     }, 1000); // increase the timeout to 1000ms
+
+      at Timeout.toHaveBeenCalledWith [as _onTimeout] (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-58fa663/testCase.test.ts:16:36)
+
+  ● Q › should correctly handle unhandled rejections
+
+    thrown: "Exceeded timeout of 1000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("Q", () => {
+    > 4 |     it("should correctly handle unhandled rejections", (done) => {
+        |     ^
+      5 |         const processEmitSpy = jest.spyOn(process, 'emit');
+      6 |         const deferred = Q.defer();
+      7 |         const promise = deferred.promise;
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-58fa663/testCase.test.ts:4:5)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-58fa663/testCase.test.ts:3:1)
+
+  ● Q › should correctly handle process.emit when rejecting a promise
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 1
+    Received number of calls: 2
+
+      30 |
+      31 |         setTimeout(() => {
+    > 32 |             expect(processEmitSpy).toHaveBeenCalledTimes(1);
+         |                                    ^
+      33 |             expect(processEmitSpy).toHaveBeenCalledWith('unhandledRejection', error, promise);
+      34 |             done();
+      35 |         }, 10);
+
+      at Timeout.toHaveBeenCalledTimes [as _onTimeout] (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-58fa663/testCase.test.ts:32:36)
+
+  ● Q › should correctly handle process.emit when rejecting a promise
+
+    thrown: "Exceeded timeout of 1000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      19 |     }, 1000); // increase the timeout to 1000ms
+      20 |
+    > 21 |     it("should correctly handle process.emit when rejecting a promise", (done) => {
+         |     ^
+      22 |         const processEmitSpy = jest.spyOn(process, 'emit');
+      23 |         const deferred = Q.defer();
+      24 |         const promise = deferred.promise;
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-58fa663/testCase.test.ts:21:5)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-58fa663/testCase.test.ts:3:1)
+
+  ● Q › should not call process.emit when rejecting a promise with a non-error
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 1
+    Received number of calls: 3
+
+      47 |
+      48 |         setTimeout(() => {
+    > 49 |             expect(processEmitSpy).toHaveBeenCalledTimes(1);
+         |                                    ^
+      50 |             expect(processEmitSpy).toHaveBeenCalledWith('unhandledRejection', rejectionReason, promise);
+      51 |             done();
+      52 |         }, 10);
+
+      at Timeout.toHaveBeenCalledTimes [as _onTimeout] (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-58fa663/testCase.test.ts:49:36)
+
+  ● Q › should not call process.emit when rejecting a promise with a non-error
+
+    thrown: "Exceeded timeout of 1000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      36 |     }, 1000); // increase the timeout to 1000ms
+      37 |
+    > 38 |     it("should not call process.emit when rejecting a promise with a non-error", (done) => {
+         |     ^
+      39 |         const processEmitSpy = jest.spyOn(process, 'emit');
+      40 |         const deferred = Q.defer();
+      41 |         const promise = deferred.promise;
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-58fa663/testCase.test.ts:38:5)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-58fa663/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        5.992 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-58fa663/testCase.test.ts".

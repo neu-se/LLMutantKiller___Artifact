@@ -1,0 +1,35 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-2a53823/testCase.test.ts[0m:[93m1[0m:[93m1[0m - [91merror[0m[90m TS6133: [0m'fs' is declared but its value is never read.
+
+[7m1[0m import * as fs from 'fs';
+[7m [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-2a53823/testCase.test.ts[0m:[93m4[0m:[93m10[0m - [91merror[0m[90m TS6133: [0m'tar' is declared but its value is never read.
+
+[7m4[0m import { tar, ZipAFolder as zipafolder } from '../../../../../../../../../../../subject_repositories/zip-a-folder/lib/ZipAFolder';
+[7m [0m [91m         ~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-2a53823/testCase.test.ts[0m:[93m7[0m:[93m11[0m - [91merror[0m[90m TS6133: [0m'testTAR' is declared but its value is never read.
+
+[7m7[0m     const testTAR = path.resolve(__dirname, 'test.tgz');
+[7m [0m [91m          ~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-2a53823/testCase.test.ts
+  Zip-A-Folder Test
+    ✕ TGZ test folder with compression rate (1 ms)
+
+  ● Zip-A-Folder Test › TGZ test folder with compression rate
+
+    ReferenceError: COMPRESSION_LEVEL is not defined
+
+      16 |         await expect(
+      17 |             zipafolder.tar(path.resolve(__dirname, 'data/'), testUNCOMPRESSEDTAR, {
+    > 18 |                 compression: COMPRESSION_LEVEL.uncompressed,
+         |                              ^
+      19 |             })
+      20 |         ).rejects.toThrow();
+      21 |     });
+
+      at Object.COMPRESSION_LEVEL (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-2a53823/testCase.test.ts:18:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.219 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-2a53823/testCase.test.ts".

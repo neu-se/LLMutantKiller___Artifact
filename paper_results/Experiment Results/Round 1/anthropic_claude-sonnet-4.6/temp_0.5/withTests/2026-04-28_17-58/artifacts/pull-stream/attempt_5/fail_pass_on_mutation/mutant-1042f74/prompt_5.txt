@@ -1,0 +1,38 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-1042f74/testCase.test.ts
+  drain sink
+    ✕ should invoke op for each item when op never returns false (2 ms)
+
+  ● drain sink › should invoke op for each item when op never returns false
+
+    expect(received).toBeNull()
+
+    Received: true
+
+      24 |       if (data === 3) return false
+      25 |     }, (err: any) => {
+    > 26 |       expect(err).toBeNull()
+         |                   ^
+      27 |       expect(received).toEqual([1, 2, 3])
+      28 |       expect(abortCalled).toBe(true)
+      29 |       done()
+
+      at toBeNull (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-1042f74/testCase.test.ts:26:19)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-1042f74/testCase.test.ts:14:16)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:34:15)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-1042f74/testCase.test.ts:17:7)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:45:8)
+      at Object.sink (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-1042f74/testCase.test.ts:32:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.778 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-1042f74/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

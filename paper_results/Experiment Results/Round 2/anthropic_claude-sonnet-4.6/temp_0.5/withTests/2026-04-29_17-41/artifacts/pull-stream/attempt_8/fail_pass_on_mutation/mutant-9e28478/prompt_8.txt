@@ -1,0 +1,46 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-9e28478/testCase.test.ts[0m:[93m66[0m:[93m28[0m - [91merror[0m[90m TS2339: [0mProperty 'map' does not exist on type '(a: any, ...args: any[]) => any'.
+
+[7m66[0m     const mapDouble = pull.map((x: number) => x * 2);
+[7m  [0m [91m                           ~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-9e28478/testCase.test.ts[0m:[93m67[0m:[93m28[0m - [91merror[0m[90m TS2339: [0mProperty 'map' does not exist on type '(a: any, ...args: any[]) => any'.
+
+[7m67[0m     const mapAddTen = pull.map((x: number) => x + 10);
+[7m  [0m [91m                           ~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-9e28478/testCase.test.ts[0m:[93m77[0m:[93m12[0m - [91merror[0m[90m TS2339: [0mProperty 'values' does not exist on type '(a: any, ...args: any[]) => any'.
+
+[7m77[0m       pull.values([1, 2, 3]),
+[7m  [0m [91m           ~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-9e28478/testCase.test.ts[0m:[93m79[0m:[93m12[0m - [91merror[0m[90m TS2339: [0mProperty 'collect' does not exist on type '(a: any, ...args: any[]) => any'.
+
+[7m79[0m       pull.collect((err: any, results: number[]) => {
+[7m  [0m [91m           ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-9e28478/testCase.test.ts
+  pull case 2 mutation detection
+    ✕ partial sink composed with another partial sink should work correctly (1 ms)
+
+  ● pull case 2 mutation detection › partial sink composed with another partial sink should work correctly
+
+    TypeError: pull_js_1.default.map is not a function
+
+      64 |     // Use pull's own utilities to create a pipeline with exactly 2 throughs
+      65 |     // as a partial sink, then connect to a source
+    > 66 |     const mapDouble = pull.map((x: number) => x * 2);
+         |                            ^
+      67 |     const mapAddTen = pull.map((x: number) => x + 10);
+      68 |     
+      69 |     // This creates a partial sink with length===2
+
+      at Object.map (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-9e28478/testCase.test.ts:66:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.283 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-9e28478/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

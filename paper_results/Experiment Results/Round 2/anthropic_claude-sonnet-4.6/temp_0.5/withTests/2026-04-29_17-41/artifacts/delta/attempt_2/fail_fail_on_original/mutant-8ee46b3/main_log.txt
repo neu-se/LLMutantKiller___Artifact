@@ -1,0 +1,36 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-8ee46b3/testCase.test.ts
+  transform()
+    ✕ retain number + retain number produces a numeric retain op not a boolean retain (5 ms)
+
+  ● transform() › retain number + retain number produces a numeric retain op not a boolean retain
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 5
+    + Received  + 1
+
+      Delta {
+    -   "ops": Array [
+    -     Object {
+    -       "retain": 2,
+    -     },
+    -   ],
+    +   "ops": Array [],
+      }
+
+       8 |     // The result should be a retain with numeric value 2, not boolean true/false
+       9 |     const expected = new Delta().retain(2);
+    > 10 |     expect(result).toEqual(expected);
+         |                    ^
+      11 |     expect(result.ops.length).toEqual(1);
+      12 |     expect(typeof result.ops[0].retain).toEqual('number');
+      13 |   });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-8ee46b3/testCase.test.ts:10:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.802 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-8ee46b3/testCase.test.ts".

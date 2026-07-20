@@ -1,0 +1,50 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-08d1e81/testCase.test.ts[0m:[93m6[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType 'undefined' is not assignable to type '{ (event: "beforeExit", code: number): boolean; (event: "disconnect"): boolean; (event: "exit", code: number): boolean; (event: "rejectionHandled", promise: Promise<unknown>): boolean; (event: "uncaughtException", error: Error): boolean; (event: "uncaughtExceptionMonitor", error: Error): boolean; (event: "unhandledR...'.
+
+[7m6[0m     process.emit = undefined;
+[7m [0m [91m    ~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-08d1e81/testCase.test.ts (6.537 s)
+  Q
+    ✕ should not track unhandled rejections when process.emit is not a function (5003 ms)
+
+  ● Q › should not track unhandled rejections when process.emit is not a function
+
+    expect(received).toHaveLength(expected)
+
+    Expected length: 0
+    Received length: 1
+    Received array:  ["(no stack) test"]
+
+       7 |     const promise = Q.reject("test");
+       8 |     Q.nextTick.runAfter(() => {
+    >  9 |       expect(Q.getUnhandledReasons()).toHaveLength(0);
+         |                                       ^
+      10 |       process.emit = originalProcessEmit;
+      11 |       done();
+      12 |     });
+
+      at toHaveLength (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-08d1e81/testCase.test.ts:9:39)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:130:13)
+
+  ● Q › should not track unhandled rejections when process.emit is not a function
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("Q", () => {
+    > 4 |   it("should not track unhandled rejections when process.emit is not a function", (done) => {
+        |   ^
+      5 |     const originalProcessEmit = process.emit;
+      6 |     process.emit = undefined;
+      7 |     const promise = Q.reject("test");
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-08d1e81/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-08d1e81/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.718 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-08d1e81/testCase.test.ts".

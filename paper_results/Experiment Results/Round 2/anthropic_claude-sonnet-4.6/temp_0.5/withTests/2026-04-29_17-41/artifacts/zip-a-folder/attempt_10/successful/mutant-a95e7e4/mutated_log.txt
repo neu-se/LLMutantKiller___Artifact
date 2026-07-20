@@ -1,0 +1,33 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_10/pending_category/mutant-a95e7e4/testCase.test.ts[0m:[93m6[0m:[93m7[0m - [91merror[0m[90m TS6133: [0m'mockArchiver' is declared but its value is never read.
+
+[7m6[0m const mockArchiver = jest.fn();
+[7m [0m [91m      ~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_10/pending_category/mutant-a95e7e4/testCase.test.ts
+  ZIP uncompressed uses store option
+    ✕ should call archiver with store:true when compression is uncompressed (7 ms)
+
+  ● ZIP uncompressed uses store option › should call archiver with store:true when compression is uncompressed
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: "zip", ObjectContaining {"store": true}
+    Received: "zip", {"zlib": {"level": 0}}
+
+    Number of calls: 1
+
+      52 |             });
+      53 |
+    > 54 |             expect(archiverModule).toHaveBeenCalledWith('zip', expect.objectContaining({ store: true }));
+         |                                    ^
+      55 |         } finally {
+      56 |             (fs as any).createWriteStream = originalCreateWriteStream;
+      57 |             fs.rmSync(tmpDir, { recursive: true, force: true });
+
+      at Object.toHaveBeenCalledWith (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_10/pending_category/mutant-a95e7e4/testCase.test.ts:54:36)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.119 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_10/pending_category/mutant-a95e7e4/testCase.test.ts".

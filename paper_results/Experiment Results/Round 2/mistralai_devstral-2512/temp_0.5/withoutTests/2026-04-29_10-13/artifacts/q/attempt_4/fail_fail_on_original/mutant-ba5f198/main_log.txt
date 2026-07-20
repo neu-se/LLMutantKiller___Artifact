@@ -1,0 +1,62 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-ba5f198/testCase.test.ts[0m:[93m21[0m:[93m35[0m - [91merror[0m[90m TS7006: [0mParameter 'resolve' implicitly has an 'any' type.
+
+[7m21[0m                 return Q.Promise((resolve, reject) => {
+[7m  [0m [91m                                  ~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-ba5f198/testCase.test.ts[0m:[93m21[0m:[93m44[0m - [91merror[0m[90m TS7006: [0mParameter 'reject' implicitly has an 'any' type.
+
+[7m21[0m                 return Q.Promise((resolve, reject) => {
+[7m  [0m [91m                                           ~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-ba5f198/testCase.test.ts[0m:[93m23[0m:[93m40[0m - [91merror[0m[90m TS2349: [0mThis expression is not callable.
+  Type 'Promise<void>' has no call signatures.
+
+[7m23[0m                         const result = originalSetImmediate?.__promisify__?.()(arg);
+[7m  [0m [91m                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-ba5f198/testCase.test.ts[0m:[93m32[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType '{ (fn: Function): { unref: () => void; }; __promisify__(): (arg: any) => any; }' is not assignable to type 'typeof setImmediate'.
+  The types returned by '__promisify__(...)' are incompatible between these types.
+    Type '(arg: any) => any' is not assignable to type 'Promise<T>'.
+
+[7m32[0m         global.setImmediate = mockSetImmediate;
+[7m  [0m [91m        ~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-ba5f198/testCase.test.ts (11.143 s)
+  Q promise library setImmediate detection
+    ✕ should correctly use setImmediate when available for async scheduling (10003 ms)
+
+  ● Q promise library setImmediate detection › should correctly use setImmediate when available for async scheduling
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      47 |                 // In the original code, setImmediate should be called when available
+      48 |                 // In the mutated code, the condition is reversed so it won't be called
+    > 49 |                 expect(setImmediateCalled).toBe(true);
+         |                                            ^
+      50 |                 expect(resolvedValue).toBe("test");
+      51 |                 done();
+      52 |             }, 100);
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-ba5f198/testCase.test.ts:49:44)
+
+  ● Q promise library setImmediate detection › should correctly use setImmediate when available for async scheduling
+
+    thrown: "Exceeded timeout of 10000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      3 |
+      4 | describe("Q promise library setImmediate detection", () => {
+    > 5 |     it("should correctly use setImmediate when available for async scheduling", (done) => {
+        |     ^
+      6 |         // Save original setImmediate if it exists
+      7 |         const originalSetImmediate = global.setImmediate;
+      8 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-ba5f198/testCase.test.ts:5:5)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-ba5f198/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        11.297 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-ba5f198/testCase.test.ts".

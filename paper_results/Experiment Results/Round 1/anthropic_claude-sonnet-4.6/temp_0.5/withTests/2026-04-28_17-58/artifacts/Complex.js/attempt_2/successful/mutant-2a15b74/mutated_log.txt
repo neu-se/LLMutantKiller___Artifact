@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/Complex.js/complex.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/Complex.js/complex.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-2a15b74/testCase.test.ts
+  Complex div mutation detection
+    ✕ should correctly compute division of complex numbers when |re(divisor)| >= |im(divisor)| (2 ms)
+
+  ● Complex div mutation detection › should correctly compute division of complex numbers when |re(divisor)| >= |im(divisor)|
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 2
+    Received: 4.4
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   2.4000000000000004
+
+       8 |     // Mutated:  (a + b/x)/t = incorrect result
+       9 |     const result = new Complex(3, 4).div(new Complex(2, 1));
+    > 10 |     expect(result.re).toBeCloseTo(2, 10);
+         |                       ^
+      11 |     expect(result.im).toBeCloseTo(1, 10);
+      12 |   });
+      13 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-2a15b74/testCase.test.ts:10:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.234 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-2a15b74/testCase.test.ts".

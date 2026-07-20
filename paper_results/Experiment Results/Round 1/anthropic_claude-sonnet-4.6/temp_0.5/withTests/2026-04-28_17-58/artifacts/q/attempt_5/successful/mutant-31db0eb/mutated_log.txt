@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-31db0eb/testCase.test.ts
+  Q module loads correctly in browser-like environment
+    ✕ should initialize requestTick correctly when window is absent (26 ms)
+
+  ● Q module loads correctly in browser-like environment › should initialize requestTick correctly when window is absent
+
+    The error below may be caused by using the wrong test environment, see https://jestjs.io/docs/configuration#testenvironment-string.
+    Consider using the "jsdom" test environment.
+
+    ReferenceError: window is not defined
+
+      202 |            if (true) {
+      203 |
+    > 204 |             requestTick = setImmediate.bind(window, flush);
+          |                                             ^
+      205 |         } else {
+      206 |             requestTick = function () {
+      207 |                 setImmediate(flush);
+
+      at window (../subject_repositories/q/q.js:204:45)
+      at ../subject_repositories/q/q.js:249:2
+      at definition (../subject_repositories/q/q.js:43:26)
+      at Object.<anonymous> (../subject_repositories/q/q.js:79:2)
+      at Object.require (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-31db0eb/testCase.test.ts:33:17)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.429 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-31db0eb/testCase.test.ts".

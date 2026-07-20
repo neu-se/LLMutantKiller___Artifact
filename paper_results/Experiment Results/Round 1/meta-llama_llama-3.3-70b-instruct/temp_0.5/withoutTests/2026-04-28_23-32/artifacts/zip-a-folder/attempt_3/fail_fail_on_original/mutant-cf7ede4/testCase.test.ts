@@ -1,0 +1,13 @@
+import { zip } from '../../../../../../../../../../../subject_repositories/zip-a-folder/lib/ZipAFolder';
+
+describe('ZipAFolder', () => {
+    it('should use high compression by default when no options are provided', async () => {
+        const src = './test';
+        const zipFilePath = './output.zip';
+        await zip(src, zipFilePath);
+        const stats = await import('fs/promises').then(fs => fs.stat(zipFilePath));
+        const fileSize = stats.size;
+        // The file size should be smaller than a certain threshold when high compression is used
+        expect(fileSize).toBeLessThan(1000);
+    });
+});

@@ -1,0 +1,30 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-ee0d53a/testCase.test.ts
+  Complex abs with large real component
+    ✕ should correctly compute the absolute value when real part is >= 3000 and imaginary part is < 3000 (2 ms)
+
+  ● Complex abs with large real component › should correctly compute the absolute value when real part is >= 3000 and imaginary part is < 3000
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 1e+200
+    Received: Infinity
+
+    Expected precision:    -190
+    Expected difference: < 5e+189
+    Received difference:   Infinity
+
+       9 |     
+      10 |     // The correct result should be approximately 1e200 (not Infinity)
+    > 11 |     expect(result).toBeCloseTo(1e200, -190);
+         |                    ^
+      12 |     expect(isFinite(result)).toBe(true);
+      13 |   });
+      14 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-ee0d53a/testCase.test.ts:11:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.144 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-ee0d53a/testCase.test.ts".

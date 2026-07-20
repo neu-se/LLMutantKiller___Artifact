@@ -1,0 +1,33 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-c653c55/testCase.test.ts
+  ZipAFolder
+    ✕ should create a zip file with the correct compression level (17 ms)
+
+  ● ZipAFolder › should create a zip file with the correct compression level
+
+    expect(received).toBeLessThan(expected)
+
+    Expected: < 12
+    Received:   144
+
+      22 |         const zipBufferSize = fs.statSync(zipFilePath).size;
+      23 |         const fileSize = fs.statSync(filePath).size;
+    > 24 |         expect(zipBufferSize).toBeLessThan(fileSize); // If compression is applied, the size of the zip file should be less than the original file size
+         |                               ^
+      25 |
+      26 |         // Clean up
+      27 |         rimraf.sync(tempDir);
+
+      at Object.toBeLessThan (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-c653c55/testCase.test.ts:24:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.398 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-c653c55/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

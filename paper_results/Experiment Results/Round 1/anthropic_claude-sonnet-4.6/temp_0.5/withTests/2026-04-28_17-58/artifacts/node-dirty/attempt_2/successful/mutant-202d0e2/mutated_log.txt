@@ -1,0 +1,40 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/node-dirty/lib/dirty/dirty.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/node-dirty/lib/dirty/dirty.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-202d0e2/testCase.test.ts (6.443 s)
+  drain event triggers flush of remaining queue items
+    ✕ should call all set callbacks even when write stream emits drain mid-flush (5002 ms)
+
+  ● drain event triggers flush of remaining queue items › should call all set callbacks even when write stream emits drain mid-flush
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       5 |
+       6 | describe('drain event triggers flush of remaining queue items', () => {
+    >  7 |   it('should call all set callbacks even when write stream emits drain mid-flush', (done) => {
+         |   ^
+       8 |     const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'dirty-test-'));
+       9 |     const file = path.join(tmpDir, 'test.dirty');
+      10 |
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-202d0e2/testCase.test.ts:7:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-202d0e2/testCase.test.ts:6:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.604 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-202d0e2/testCase.test.ts".
+Jest did not exit one second after the test run has completed.
+
+'This usually means that there are asynchronous operations that weren't stopped in your tests. Consider running Jest with `--detectOpenHandles` to troubleshoot this issue.
+node:internal/process/promises:391
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+Error: Test timed out - not all callbacks were called (mutation likely detected)
+    at Timeout._onTimeout (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-202d0e2/testCase.test.ts:13:12)
+    at listOnTimeout (node:internal/timers:581:17)
+    at processTimers (node:internal/timers:519:7)
+
+Node.js v20.19.4

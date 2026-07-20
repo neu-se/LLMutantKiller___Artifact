@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-4bfabdc/testCase.test.ts
+  Stack trace filtering behavior
+    ✕ should correctly filter frames that are both internal and node frames (4 ms)
+
+  ● Stack trace filtering behavior › should correctly filter frames that are both internal and node frames
+
+    expect(received).toBe(expected) // Object.is equality
+    Expected: 2
+    Received: 4
+
+      41 |         // The original should keep only user frames (2 lines)
+      42 |         // The mutated will keep more lines due to the OR logic
+    > 43 |         expect(nonErrorLines).toBe(2);
+         |                               ^
+      44 |
+      45 |         // Restore original setting
+      46 |         Q.longStackSupport = false;
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-4bfabdc/testCase.test.ts:43:31)
+      From previous event:
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-4bfabdc/testCase.test.ts:27:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.517 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-4bfabdc/testCase.test.ts".

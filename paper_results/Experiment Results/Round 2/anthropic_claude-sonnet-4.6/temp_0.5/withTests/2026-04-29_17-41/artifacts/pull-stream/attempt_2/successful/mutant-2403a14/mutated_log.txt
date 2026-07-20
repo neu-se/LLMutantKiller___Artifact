@@ -1,0 +1,30 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-2403a14/testCase.test.ts
+  through onEnd callback receives null on normal stream end
+    ✕ should call onEnd with null when the stream ends normally (abort === true) (3 ms)
+
+  ● through onEnd callback receives null on normal stream end › should call onEnd with null when the stream ends normally (abort === true)
+
+    expect(received).toBeNull()
+
+    Received: true
+
+      21 |       // At this point onEnd should have been called with null (original)
+      22 |       // but with true (mutant)
+    > 23 |       expect(onEndArg).toBeNull();
+         |                        ^
+      24 |       done();
+      25 |     });
+      26 |   });
+
+      at toBeNull (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-2403a14/testCase.test.ts:23:24)
+      at cb (../subject_repositories/pull-stream/throughs/through.js:20:9)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-2403a14/testCase.test.ts:15:7)
+      at read (../subject_repositories/pull-stream/throughs/through.js:17:14)
+      at Object.readable (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-2403a14/testCase.test.ts:20:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.69 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-2403a14/testCase.test.ts".

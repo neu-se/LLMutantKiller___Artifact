@@ -1,0 +1,25 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-2a78613/testCase.test.ts
+  Complex mul
+    ✕ should return positive zero imaginary part when multiplying real numbers with negative zero imaginary parts (3 ms)
+
+  ● Complex mul › should return positive zero imaginary part when multiplying real numbers with negative zero imaginary parts
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+       9 |     // Original: short circuit returns new Complex(12, 0) - im is literal +0
+      10 |     // Mutated: im = 3*(-0) + (-0)*4 = -0 + -0 = -0
+    > 11 |     expect(Object.is(result.im, -0)).toBe(false);
+         |                                      ^
+      12 |   });
+      13 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-2a78613/testCase.test.ts:11:38)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.077 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-2a78613/testCase.test.ts".

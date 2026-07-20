@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_4/pending_category/mutant-7640531/testCase.test.ts
+  extract URLs with HTML-encoded newline in fragment
+    ✕ should handle href with HTML-encoded newline after fragment (7 ms)
+
+  ● extract URLs with HTML-encoded newline in fragment › should handle href with HTML-encoded newline after fragment
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      18 |     // With mutated: "http://example.com/path\n\nmore" -> URL.parse -> path includes \n\nmore
+      19 |     // So results should differ!
+    > 20 |     expect(result.length).toBeGreaterThan(0);
+         |                           ^
+      21 |     const urlObj = result[0];
+      22 |     expect(urlObj.url).toBe('http://example.com/path');
+      23 |   });
+
+      at Object.toBeGreaterThan (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_4/pending_category/mutant-7640531/testCase.test.ts:20:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.645 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_4/pending_category/mutant-7640531/testCase.test.ts".

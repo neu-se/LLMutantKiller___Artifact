@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-6d0900f/testCase.test.ts (6.9 s)
+  Q unhandled rejection tracking
+    ✕ should properly disable unhandled rejection tracking when stopUnhandledRejectionTracking is called (5001 ms)
+
+  ● Q unhandled rejection tracking › should properly disable unhandled rejection tracking when stopUnhandledRejectionTracking is called
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+      23 |         // Original code: should still be 1 (second rejection not tracked)
+      24 |         // Mutated code: will be 2 (both tracked despite stopUnhandledRejectionTracking)
+    > 25 |         expect(reasons.length).toBe(1);
+         |                                ^
+      26 |         done();
+      27 |       }, 50);
+      28 |     }, 50);
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-6d0900f/testCase.test.ts:25:32)
+
+  ● Q unhandled rejection tracking › should properly disable unhandled rejection tracking when stopUnhandledRejectionTracking is called
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("Q unhandled rejection tracking", () => {
+    > 4 |   it("should properly disable unhandled rejection tracking when stopUnhandledRejectionTracking is called", (done) => {
+        |   ^
+      5 |     // First enable tracking and create a rejection
+      6 |     Q.resetUnhandledRejections();
+      7 |     const promise1 = Q.reject(new Error("First error"));
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-6d0900f/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-6d0900f/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.129 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-6d0900f/testCase.test.ts".

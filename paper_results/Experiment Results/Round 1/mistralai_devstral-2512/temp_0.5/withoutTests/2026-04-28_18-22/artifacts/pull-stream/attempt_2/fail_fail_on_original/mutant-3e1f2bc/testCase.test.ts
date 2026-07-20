@@ -1,0 +1,35 @@
+import pull from "../../../../../../../../../../../subject_repositories/pull-stream/pull.js";
+
+describe('pull function with object sink', () => {
+  it('should correctly handle object sinks in the pipeline', () => {
+    const source = {
+      source: function(read: (end: boolean | null, data?: string) => void) {
+        read(null, 'data');
+        read(true);
+      }
+    };
+
+    const sink = {
+      sink: function(read: (end: boolean | null, data?: string) => void) {
+        let data: string[] = [];
+        read(null, function end(err: Error | null, chunk: string | null) {
+          if (err) throw err;
+          if (chunk === null) return;
+          data.push(chunk);
+        });
+        return {
+          source: function(read: (end: boolean | null, data?: string) => void) {
+            for (const chunk of data) {
+              read(null, chunk);
+            }
+            read(true);
+          }
+        };
+      }
+    };
+
+    const result = pull(source, sink);
+    expect(typeof result).toBe('object');
+    expect(result).toHaveProperty('source');
+  });
+});

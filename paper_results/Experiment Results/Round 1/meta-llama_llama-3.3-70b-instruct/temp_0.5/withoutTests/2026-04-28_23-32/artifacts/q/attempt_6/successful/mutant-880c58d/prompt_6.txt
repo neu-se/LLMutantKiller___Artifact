@@ -1,0 +1,53 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-880c58d/testCase.test.ts[0m:[93m10[0m:[93m18[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type 'typeof export='.
+
+[7m10[0m         expect(q.Q.longStackSupport).toBe(true);
+[7m  [0m [91m                 ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-880c58d/testCase.test.ts[0m:[93m22[0m:[93m18[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type 'typeof export='.
+
+[7m22[0m         expect(q.Q.longStackSupport).toBe(false);
+[7m  [0m [91m                 ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-880c58d/testCase.test.ts
+  Q
+    ✕ should set long stack support to true when Q_DEBUG is set (1 ms)
+    ✕ should set long stack support to false when Q_DEBUG is not set (1 ms)
+
+  ● Q › should set long stack support to true when Q_DEBUG is set
+
+    TypeError: Cannot read properties of undefined (reading 'longStackSupport')
+
+       8 |
+       9 |         // Then
+    > 10 |         expect(q.Q.longStackSupport).toBe(true);
+         |                    ^
+      11 |
+      12 |         // Restore original process.env
+      13 |         process.env = originalProcessEnv;
+
+      at Object.longStackSupport (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-880c58d/testCase.test.ts:10:20)
+
+  ● Q › should set long stack support to false when Q_DEBUG is not set
+
+    TypeError: Cannot read properties of undefined (reading 'longStackSupport')
+
+      20 |
+      21 |         // Then
+    > 22 |         expect(q.Q.longStackSupport).toBe(false);
+         |                    ^
+      23 |
+      24 |         // Restore original process.env
+      25 |         process.env = originalProcessEnv;
+
+      at Object.longStackSupport (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-880c58d/testCase.test.ts:22:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.91 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-880c58d/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

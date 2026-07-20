@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-cef90e3/testCase.test.ts
+  Promise.prototype.then - done flag prevents double callback invocation
+    ✕ rejected callback should be called at most once even with multiple notifications (3 ms)
+
+  ● Promise.prototype.then - done flag prevents double callback invocation › rejected callback should be called at most once even with multiple notifications
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+      24 |     // Original: rejected called once (first notify, done=false)
+      25 |     // Mutated: rejected called twice (second notify doesn't return early)
+    > 26 |     expect(rejectedCallCount).toBe(1);
+         |                               ^
+      27 |   });
+      28 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-cef90e3/testCase.test.ts:26:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.447 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-cef90e3/testCase.test.ts".

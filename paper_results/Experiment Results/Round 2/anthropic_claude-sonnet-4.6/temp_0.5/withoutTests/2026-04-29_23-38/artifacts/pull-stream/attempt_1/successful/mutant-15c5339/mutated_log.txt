@@ -1,0 +1,38 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-15c5339/testCase.test.ts
+  take - terminate passes error from upstream
+    ✕ should pass the actual error from upstream when terminating, not just true (3 ms)
+
+  ● take - terminate passes error from upstream › should pass the actual error from upstream when terminating, not just true
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: [Error: upstream abort error]
+    Received: true
+
+      39 |         // In original code, end should be the upstreamError
+      40 |         // In mutated code, end would be just `true`
+    > 41 |         expect(end).toBe(upstreamError);
+         |                     ^
+      42 |         done();
+      43 |       });
+      44 |     });
+
+      at toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-15c5339/testCase.test.ts:41:21)
+      at cb (../subject_repositories/pull-stream/throughs/take.js:19:26)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-15c5339/testCase.test.ts:13:9)
+      at read (../subject_repositories/pull-stream/throughs/take.js:18:7)
+      at terminate (../subject_repositories/pull-stream/throughs/take.js:35:37)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-15c5339/testCase.test.ts:20:9)
+      at read (../subject_repositories/pull-stream/throughs/take.js:28:9)
+      at sink (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-15c5339/testCase.test.ts:38:7)
+      at cb (../subject_repositories/pull-stream/throughs/take.js:38:13)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-15c5339/testCase.test.ts:18:9)
+      at read (../subject_repositories/pull-stream/throughs/take.js:28:9)
+      at Object.sink (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-15c5339/testCase.test.ts:30:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.303 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-15c5339/testCase.test.ts".

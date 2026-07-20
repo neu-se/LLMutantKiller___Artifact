@@ -1,0 +1,35 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-1d6e663/testCase.test.ts[0m:[93m1[0m:[93m26[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import AttributeMap from "../../../../../../../../../../../subject_repositories/delta/src/AttributeMap.ts";
+[7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-1d6e663/testCase.test.ts
+  AttributeMap.invert
+    ✕ should not set null for key in attr when attr[key] equals base[key] (both undefined via explicit undefined value) (5 ms)
+
+  ● AttributeMap.invert › should not set null for key in attr when attr[key] equals base[key] (both undefined via explicit undefined value)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Object {}
+    + Object {
+    +   "bold": null,
+    + }
+
+      12 |     // Original: bold is undefined === undefined, condition fails, bold not set to null -> {}
+      13 |     // Mutated: condition is true, bold set to null -> { bold: null }
+    > 14 |     expect(result).toEqual({});
+         |                    ^
+      15 |   });
+      16 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-1d6e663/testCase.test.ts:14:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.445 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-1d6e663/testCase.test.ts".

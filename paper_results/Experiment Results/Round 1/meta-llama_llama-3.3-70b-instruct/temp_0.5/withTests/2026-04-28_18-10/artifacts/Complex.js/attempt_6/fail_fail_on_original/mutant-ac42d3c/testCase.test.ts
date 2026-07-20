@@ -1,0 +1,17 @@
+import { Complex } from '../../complex.js';
+
+describe('Complex.js', () => {
+  it('should return a result for atan when b is -1', () => {
+    const complex = new Complex(0, -1);
+    const result = complex.atan();
+    expect(result).toHaveProperty('re');
+    expect(result).toHaveProperty('im');
+  });
+
+  it('should return a result for atan when b is not -1', () => {
+    const complex = new Complex(0, 1);
+    const result = complex.atan();
+    expect(result).toHaveProperty('re');
+    expect(result).toHaveProperty('im');
+  });
+});

@@ -1,0 +1,30 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-f7d009c/testCase.test.ts
+  Complex.js hypot function mutation
+    ✕ should expose the mutation by testing the exact boundary where b equals 3000 with values that trigger different calculation paths (2 ms)
+
+  ● Complex.js hypot function mutation › should expose the mutation by testing the exact boundary where b equals 3000 with values that trigger different calculation paths
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 3905.124837953327
+    Received: 3905.1248379533276
+
+    Expected precision:    15
+    Expected difference: < 5e-16
+    Received difference:   4.547473508864641e-13
+
+      12 |     const expectedNonOptimized = Math.sqrt(2500*2500 + 3000*3000);
+      13 |     // The test should fail on mutated code because it will use the optimized path
+    > 14 |     expect(absValue).toBeCloseTo(expectedNonOptimized, 15);
+         |                      ^
+      15 |   });
+      16 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-f7d009c/testCase.test.ts:14:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.285 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-f7d009c/testCase.test.ts".

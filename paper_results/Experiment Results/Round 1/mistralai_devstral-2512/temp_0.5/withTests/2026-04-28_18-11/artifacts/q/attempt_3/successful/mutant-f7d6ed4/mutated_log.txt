@@ -1,0 +1,29 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-f7d6ed4/testCase.test.ts[0m:[93m10[0m:[93m11[0m - [91merror[0m[90m TS2339: [0mProperty 'onerror' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'.
+
+[7m10[0m         Q.onerror = (err: any) => {
+[7m  [0m [91m          ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-f7d6ed4/testCase.test.ts
+  done method with domain
+    ✕ should handle errors correctly when process.domain exists (1 ms)
+
+  ● done method with domain › should handle errors correctly when process.domain exists
+
+    TypeError: Cannot read properties of null (reading 'bind')
+
+      1822 |        if (typeof process === "object" && process || process.domain) {
+      1823 |
+    > 1824 |         onUnhandledError = process.domain.bind(onUnhandledError);
+           |                                           ^
+      1825 |     }
+      1826 |
+      1827 |     promise.then(void 0, onUnhandledError);
+
+      at Promise.bind (../subject_repositories/q/q.js:1824:43)
+      at Object.done (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-f7d6ed4/testCase.test.ts:16:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.571 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-f7d6ed4/testCase.test.ts".

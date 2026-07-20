@@ -1,0 +1,29 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ERROR: /var/folders/hj/385qyhcj33q7n5tssd7_jvkh0000gn/T/jsonfile-mutation-test-fallback/test.json: Cannot read properties of undefined (reading 'readFileSync')
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_10/pending_category/mutant-d9833fc/testCase.test.ts
+  jsonfile fallback to fs when graceful-fs is unavailable
+    ✕ should successfully read a JSON file when graceful-fs is unavailable by falling back to fs (54 ms)
+
+  ● jsonfile fallback to fs when graceful-fs is unavailable › should successfully read a JSON file when graceful-fs is unavailable by falling back to fs
+
+    expect(received).toBeNull()
+
+    Received: [Error: Command failed: node /var/folders/hj/385qyhcj33q7n5tssd7_jvkh0000gn/T/jsonfile-mutation-test-fallback/test-script.js
+    ERROR: /var/folders/hj/385qyhcj33q7n5tssd7_jvkh0000gn/T/jsonfile-mutation-test-fallback/test.json: Cannot read properties of undefined (reading 'readFileSync')
+    ]
+
+      57 |     // Original: catch block sets _fs = require('fs'), readFileSync works, prints result
+      58 |     // Mutated: catch block is empty, _fs is undefined, readFileSync throws TypeError, exits with 1
+    > 59 |     expect(error).toBeNull();
+         |                   ^
+      60 |     expect(JSON.parse(output!)).toEqual(obj);
+      61 |   });
+      62 | });
+
+      at Object.toBeNull (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_10/pending_category/mutant-d9833fc/testCase.test.ts:59:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.502 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_10/pending_category/mutant-d9833fc/testCase.test.ts".

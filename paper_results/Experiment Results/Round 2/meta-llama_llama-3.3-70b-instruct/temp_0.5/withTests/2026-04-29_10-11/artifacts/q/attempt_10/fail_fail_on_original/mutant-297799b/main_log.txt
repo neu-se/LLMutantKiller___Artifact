@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-297799b/testCase.test.ts
+  Q
+    ✕ should correctly filter stack traces (3 ms)
+
+  ● Q › should correctly filter stack traces
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      3 |         const isNodeFrame = (stackLine: string) => stackLine.indexOf("(module.js:") !== -1 || stackLine.indexOf("(node.js:") !== -1;
+      4 |         const stackLine = "    at module.js:123:45";
+    > 5 |         expect(isNodeFrame(stackLine)).toBe(true);
+        |                                        ^
+      6 |         const anotherStackLine = "    at browser.js:123:45";
+      7 |         expect(isNodeFrame(anotherStackLine)).toBe(false);
+      8 |     });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-297799b/testCase.test.ts:5:40)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.439 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-297799b/testCase.test.ts".

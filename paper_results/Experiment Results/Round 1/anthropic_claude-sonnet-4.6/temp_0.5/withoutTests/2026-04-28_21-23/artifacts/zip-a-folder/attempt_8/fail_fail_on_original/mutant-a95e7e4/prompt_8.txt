@@ -1,0 +1,33 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_7/pending_category/mutant-a95e7e4/testCase.test.ts
+  ZipAFolder.zip
+    ✕ stored zip should have CRC32 in local file header (not deferred to data descriptor) (106 ms)
+
+  ● ZipAFolder.zip › stored zip should have CRC32 in local file header (not deferred to data descriptor)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      36 |             // With store: true (original): archiver can write CRC upfront, no data descriptor needed
+      37 |             // With zlib/deflate (mutated): archiver uses streaming, sets bit 3, uses data descriptor
+    > 38 |             expect(hasDataDescriptor).toBe(false);
+         |                                       ^
+      39 |         } finally {
+      40 |             fs.rmSync(tmpDir, { recursive: true, force: true });
+      41 |         }
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_7/pending_category/mutant-a95e7e4/testCase.test.ts:38:39)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.713 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_7/pending_category/mutant-a95e7e4/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

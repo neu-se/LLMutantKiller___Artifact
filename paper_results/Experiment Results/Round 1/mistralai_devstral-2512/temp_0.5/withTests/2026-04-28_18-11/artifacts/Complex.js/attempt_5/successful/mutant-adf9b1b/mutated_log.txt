@@ -1,0 +1,29 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-adf9b1b/testCase.test.ts
+  cosm1 function mutation test
+    ✕ should correctly compute cos(x) - 1 for small x values (2 ms)
+
+  ● cosm1 function mutation test › should correctly compute cos(x) - 1 for small x values
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: -0.0049958347219742905
+    Received: -0.004516806802855574
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   0.0004790279191187168
+
+      12 |     // The mutation changes the Taylor series calculation in cosm1
+      13 |     const expectedReal = Math.cos(x) - 1;
+    > 14 |     expect(result.re).toBeCloseTo(expectedReal, 10);
+         |                       ^
+      15 |   });
+      16 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-adf9b1b/testCase.test.ts:14:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.982 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-adf9b1b/testCase.test.ts".

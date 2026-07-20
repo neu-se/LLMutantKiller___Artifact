@@ -1,0 +1,42 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-844505d/testCase.test.ts[0m:[93m5[0m:[93m36[0m - [91merror[0m[90m TS2339: [0mProperty 'domain' does not exist on type 'Process'.
+
+[7m5[0m     const originalDomain = process.domain;
+[7m [0m [91m                                   ~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-844505d/testCase.test.ts[0m:[93m11[0m:[93m13[0m - [91merror[0m[90m TS2339: [0mProperty 'domain' does not exist on type 'Process'.
+
+[7m11[0m     process.domain = mockDomain;
+[7m  [0m [91m            ~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-844505d/testCase.test.ts[0m:[93m24[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'domain' does not exist on type 'Process'.
+
+[7m24[0m           process.domain = originalDomain;
+[7m  [0m [91m                  ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-844505d/testCase.test.ts
+  Q.done with domain
+    ✕ should bind error handler to domain when process.domain exists (2 ms)
+
+  ● Q.done with domain › should bind error handler to domain when process.domain exists
+
+    TypeError: Cannot set property domain of [object process] which has only a getter
+
+       9 |
+      10 |     // Mock process.domain
+    > 11 |     process.domain = mockDomain;
+         |                   ^
+      12 |
+      13 |     const domain = require('domain').create();
+      14 |     domain.run(() => {
+
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-844505d/testCase.test.ts:11:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.17 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-844505d/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

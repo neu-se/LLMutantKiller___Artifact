@@ -1,0 +1,63 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/q/q.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/q/q.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-85f38d8/testCase.test.ts
+  Q.isRejected
+    ✕ should return false for a non-rejected promise and true for a rejected promise (11 ms)
+    ✕ should return false for a non-promise value
+    ✕ should return false for a non-rejected promise and true for a rejected promise when mutated code returns true for all inputs
+
+  ● Q.isRejected › should return false for a non-rejected promise and true for a rejected promise
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+       5 |     const rejectedPromise = q.reject("test");
+       6 |     const nonRejectedPromise = q.resolve("test");
+    >  7 |     expect(q.isRejected(nonRejectedPromise)).toBe(false);
+         |                                              ^
+       8 |     expect(q.isRejected(rejectedPromise)).toBe(true);
+       9 |   });
+      10 |
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-85f38d8/testCase.test.ts:7:46)
+
+  ● Q.isRejected › should return false for a non-promise value
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      11 |   it("should return false for a non-promise value", () => {
+      12 |     const value = "test";
+    > 13 |     expect(q.isRejected(value)).toBe(false);
+         |                                 ^
+      14 |   });
+      15 |
+      16 |   it("should return false for a non-rejected promise and true for a rejected promise when mutated code returns true for all inputs", () => {
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-85f38d8/testCase.test.ts:13:33)
+
+  ● Q.isRejected › should return false for a non-rejected promise and true for a rejected promise when mutated code returns true for all inputs
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not true
+
+      17 |     const rejectedPromise = q.reject("test");
+      18 |     const nonRejectedPromise = q.resolve("test");
+    > 19 |     expect(q.isRejected(nonRejectedPromise)).not.toBe(true);
+         |                                                  ^
+      20 |     expect(q.isRejected(rejectedPromise)).not.toBe(false);
+      21 |   });
+      22 | });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-85f38d8/testCase.test.ts:19:50)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        4.218 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-85f38d8/testCase.test.ts".

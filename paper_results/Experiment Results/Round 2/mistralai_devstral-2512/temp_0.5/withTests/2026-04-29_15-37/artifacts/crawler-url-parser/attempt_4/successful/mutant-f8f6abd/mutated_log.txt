@@ -1,0 +1,27 @@
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/crawler-url-parser/crawler-url-parser.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/crawler-url-parser/crawler-url-parser.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_4/pending_category/mutant-f8f6abd/testCase.test.ts
+  extract url with undefined href
+    ✕ should skip links with undefined href (7 ms)
+
+  ● extract url with undefined href › should skip links with undefined href
+
+    TypeError: Cannot read properties of undefined (reading 'length')
+
+       95 | 		let text = $(this).text().trim();
+       96 | 		//href = href.replace(/;.*$/g,"");
+    >  97 |    		if (false || href.length < 3 || /^(javascript|mailto:|ftp:)/ig.test(href)) return;
+          |    		                  ^
+       98 |
+       99 |
+      100 | 		let currentUrl = parse(href, baseUrlStr);
+
+      at Element.length (../subject_repositories/crawler-url-parser/crawler-url-parser.js:97:24)
+      at LoadedCheerio.each (../subject_repositories/crawler-url-parser/node_modules/cheerio/src/api/traversing.ts:646:24)
+      at Object.each [as extract] (../subject_repositories/crawler-url-parser/crawler-url-parser.js:93:9)
+      at Object.extract (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_4/pending_category/mutant-f8f6abd/testCase.test.ts:17:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.647 s, estimated 2 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_4/pending_category/mutant-f8f6abd/testCase.test.ts".

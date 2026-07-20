@@ -1,0 +1,32 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-457f51c/testCase.test.ts
+  Q promise exception property
+    ✕ should set exception property only when promise is rejected (3 ms)
+
+  ● Q promise exception property › should set exception property only when promise is rejected
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      10 |     // In the mutated code, exception is always set (if (true))
+      11 |     // So we check that the exception property exists
+    > 12 |     expect(promise.exception).toBeDefined();
+         |                               ^
+      13 |     expect(promise.exception).toBeInstanceOf(Error);
+      14 |     expect(promise.exception.message).toBe("test error");
+      15 |   });
+
+      at Object.toBeDefined (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-457f51c/testCase.test.ts:12:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.589 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-457f51c/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

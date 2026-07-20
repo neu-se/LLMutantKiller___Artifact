@@ -1,0 +1,42 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-1c771fa/testCase.test.ts (5.952 s)
+  Dirty - corrupted row error handling
+    ✕ should emit an error event when a corrupted row is encountered during load (5002 ms)
+
+  ● Dirty - corrupted row error handling › should emit an error event when a corrupted row is encountered during load
+
+    TypeError: Cannot read properties of undefined (reading 'val')
+
+      138 |
+      139 |
+    > 140 |             if (row.val === undefined) {
+          |                     ^
+      141 |               this._data.delete(row.key);
+      142 |             } else {
+      143 |               this._data.set(row.key, row.val);
+
+      at val (../subject_repositories/node-dirty/lib/dirty/dirty.js:140:21)
+          at Array.forEach (<anonymous>)
+      at ReadStream.forEach (../subject_repositories/node-dirty/lib/dirty/dirty.js:125:15)
+
+  ● Dirty - corrupted row error handling › should emit an error event when a corrupted row is encountered during load
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       5 |
+       6 | describe('Dirty - corrupted row error handling', () => {
+    >  7 |   it('should emit an error event when a corrupted row is encountered during load', (done) => {
+         |   ^
+       8 |     const tmpDir = os.tmpdir();
+       9 |     const dbPath = path.join(tmpDir, `dirty-test-corrupted-${Date.now()}.db`);
+      10 |
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-1c771fa/testCase.test.ts:7:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-1c771fa/testCase.test.ts:6:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.079 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-1c771fa/testCase.test.ts".

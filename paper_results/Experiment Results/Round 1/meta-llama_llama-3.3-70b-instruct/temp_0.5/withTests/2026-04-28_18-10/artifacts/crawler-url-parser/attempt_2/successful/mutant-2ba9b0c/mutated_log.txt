@@ -1,0 +1,47 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-2ba9b0c/split_pass_only.test.ts
+  gettype function
+    ✕ should return "samelevel" for same level urls (4 ms)
+    ✕ should return "samelevel" for same level urls without protocol
+    ○ skipped should return "internal" for internal urls without trailing slash
+    ○ skipped should return "internal" for internal urls with trailing slash
+
+  ● gettype function › should return "samelevel" for same level urls
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "samelevel"
+    Received: "internal"
+
+      4 |     it('should return "samelevel" for same level urls', function () {
+      5 |         let res = gettype("//sub.domain.com/aaa/bbb/", "//sub.domain.com/aaa/bbb/");
+    > 6 |         expect(res).toBe("samelevel");
+        |                     ^
+      7 |     });
+      8 |
+      9 |     it('should return "samelevel" for same level urls without protocol', function () {
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-2ba9b0c/split_pass_only.test.ts:6:21)
+
+  ● gettype function › should return "samelevel" for same level urls without protocol
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "samelevel"
+    Received: "internal"
+
+       9 |     it('should return "samelevel" for same level urls without protocol', function () {
+      10 |         let res = gettype("sub.domain.com/aaa/bbb/", "sub.domain.com/aaa/bbb/");
+    > 11 |         expect(res).toBe("samelevel");
+         |                     ^
+      12 |     });
+      13 |
+      14 |     it.skip('should return "internal" for internal urls without trailing slash', function () {
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-2ba9b0c/split_pass_only.test.ts:11:21)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 skipped, 4 total
+Snapshots:   0 total
+Time:        1.304 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-2ba9b0c/split_pass_only.test.ts".

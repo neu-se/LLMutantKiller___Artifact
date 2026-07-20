@@ -1,0 +1,58 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-443975f/testCase.test.ts[0m:[93m14[0m:[93m5[0m - [91merror[0m[90m TS2741: [0mProperty '__promisify__' is missing in type '(callback: (...args: any[]) => void) => Immediate' but required in type 'typeof setImmediate'.
+
+[7m14[0m     global.setImmediate = function(callback: (...args: any[]) => void) {
+[7m  [0m [91m    ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/node/timers.d.ts[0m:[93m180[0m:[93m22[0m
+    [7m180[0m             export { __promisify__ };
+    [7m   [0m [96m                     ~~~~~~~~~~~~~[0m
+    '__promisify__' is declared here.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-443975f/testCase.test.ts (5.975 s)
+  setImmediate fallback detection
+    ✕ should use setImmediate when available for scheduling tasks (5003 ms)
+
+  ● setImmediate fallback detection › should use setImmediate when available for scheduling tasks
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      32 |       setTimeout(() => {
+      33 |         global.setImmediate = originalSetImmediate;
+    > 34 |         expect(setImmediateUsed).toBe(true);
+         |                                  ^
+      35 |         expect(resolved).toBe(true);
+      36 |         done();
+      37 |       }, 100);
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-443975f/testCase.test.ts:34:34)
+
+  ● setImmediate fallback detection › should use setImmediate when available for scheduling tasks
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      3 |
+      4 | describe("setImmediate fallback detection", () => {
+    > 5 |   it("should use setImmediate when available for scheduling tasks", (done) => {
+        |   ^
+      6 |     // This test verifies that Q uses setImmediate when it's available
+      7 |     // The mutation changes the condition to `false`, which would prevent setImmediate from being used
+      8 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-443975f/testCase.test.ts:5:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-443975f/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.109 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-443975f/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

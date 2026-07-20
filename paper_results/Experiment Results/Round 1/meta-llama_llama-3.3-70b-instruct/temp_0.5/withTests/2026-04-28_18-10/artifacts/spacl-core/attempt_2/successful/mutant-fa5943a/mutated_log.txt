@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-fa5943a/testCase.test.ts
+  matcher
+    ✕ rejects paths with invalid characters in spec (13 ms)
+
+  ● matcher › rejects paths with invalid characters in spec
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "Path contains invalid characters"
+    Received message:   ""
+
+          11 |   constructor (spec: string, version: '1' | '1.0' | '1.1' = '1.1') {
+          12 |     if (spec.match(/^[a-zA-Z0-9_/:~.$+*-]*$/) === null) {
+        > 13 |          throw new Error("")
+             |                ^
+          14 |
+          15 |     }
+          16 |     if (spec.match(/^\//) === null) {
+
+      at new Matcher (../subject_repositories/spacl-core/src/matcher.ts:13:16)
+      at Function.for (../subject_repositories/spacl-core/src/matcher.ts:50:12)
+      at llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-fa5943a/testCase.test.ts:6:29
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-fa5943a/testCase.test.ts:6:37)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-fa5943a/testCase.test.ts:6:37)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.249 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-fa5943a/testCase.test.ts".

@@ -1,0 +1,51 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-c15634f/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-c15634f/testCase.test.ts[0m:[93m8[0m:[93m13[0m - [91merror[0m[90m TS2740: [0mType '{ warn: Mock<any, any, any>; }' is missing the following properties from type 'Console': assert, clear, count, countReset, and 18 more.
+
+[7m8[0m             console = { warn: jest.fn() };
+[7m [0m [91m            ~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-c15634f/testCase.test.ts[0m:[93m24[0m:[93m13[0m - [91merror[0m[90m TS2740: [0mType '{ warn: Mock<any, any, any>; }' is missing the following properties from type 'Console': assert, clear, count, countReset, and 18 more.
+
+[7m24[0m             console = { warn: jest.fn() };
+[7m  [0m [91m            ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-c15634f/testCase.test.ts
+  Q
+    ✕ should not print a deprecation warning to the console when using a deprecated function in a non-verbose environment (1 ms)
+    ✕ should print a deprecation warning to the console when using a deprecated function (2 ms)
+
+  ● Q › should not print a deprecation warning to the console when using a deprecated function in a non-verbose environment
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      4 |     it("should not print a deprecation warning to the console when using a deprecated function in a non-verbose environment", () => {
+      5 |         const consoleWarnSpy = jest.spyOn(console, "warn");
+    > 6 |         Q(function () { 
+        |          ^
+      7 |             const originalConsole = console;
+      8 |             console = { warn: jest.fn() };
+      9 |             const deprecatedWrapper = function () { 
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-c15634f/testCase.test.ts:6:10)
+
+  ● Q › should print a deprecation warning to the console when using a deprecated function
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      20 |     it("should print a deprecation warning to the console when using a deprecated function", () => {
+      21 |         const consoleWarnSpy = jest.spyOn(console, "warn");
+    > 22 |         Q(function () { 
+         |          ^
+      23 |             const originalConsole = console;
+      24 |             console = { warn: jest.fn() };
+      25 |             const deprecatedWrapper = function () { 
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-c15634f/testCase.test.ts:22:10)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        3.608 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-c15634f/testCase.test.ts".

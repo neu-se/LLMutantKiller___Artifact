@@ -1,0 +1,48 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-1042f74/testCase.test.ts[0m:[93m13[0m:[93m27[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 1.
+
+[7m13[0m         if (abort) return cb(abort);
+[7m  [0m [91m                          ~~[0m
+
+  [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-1042f74/testCase.test.ts[0m:[93m12[0m:[93m42[0m
+    [7m12[0m       return (abort: any, cb: (end: any, data: any) => void) => {
+    [7m  [0m [96m                                         ~~~~~~~~~[0m
+    An argument for 'data' was not provided.
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-1042f74/testCase.test.ts[0m:[93m14[0m:[93m36[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 1.
+
+[7m14[0m         if (i >= readCount) return cb(true);
+[7m  [0m [91m                                   ~~[0m
+
+  [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-1042f74/testCase.test.ts[0m:[93m12[0m:[93m42[0m
+    [7m12[0m       return (abort: any, cb: (end: any, data: any) => void) => {
+    [7m  [0m [96m                                         ~~~~~~~~~[0m
+    An argument for 'data' was not provided.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-1042f74/testCase.test.ts
+  drain
+    ✕ should handle mutation in drain function (1 ms)
+
+  ● drain › should handle mutation in drain function
+
+    TypeError: read is not a function
+
+      24 |     const read = drainStream(source());
+      25 |
+    > 26 |     read(null, () => {});
+         |     ^
+      27 |     read(null, () => {});
+      28 |     read(null, () => {});
+      29 |     read(null, () => {});
+
+      at Object.read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-1042f74/testCase.test.ts:26:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.49 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-1042f74/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

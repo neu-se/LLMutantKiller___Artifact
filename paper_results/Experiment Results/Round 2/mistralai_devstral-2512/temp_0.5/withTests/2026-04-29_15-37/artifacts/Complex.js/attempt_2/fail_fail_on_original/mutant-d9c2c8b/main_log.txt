@@ -1,0 +1,30 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-d9c2c8b/testCase.test.ts
+  Complex.atanh
+    ✕ should correctly compute the imaginary part for a specific complex number (2 ms)
+
+  ● Complex.atanh › should correctly compute the imaginary part for a specific complex number
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.19634954084936207
+    Received: 0.5535743588970452
+
+    Expected precision:    6
+    Expected difference: < 0.0000005
+    Received difference:   0.35722481804768313
+
+       7 |     // The correct imaginary part should be approximately 0.25 * atan2(0.5, 0.5)
+       8 |     // The mutated version would produce 2 * atan2(0.5, 0.5) which is significantly different
+    >  9 |     expect(result.im).toBeCloseTo(0.25 * Math.atan2(0.5, 0.5), 6);
+         |                       ^
+      10 |   });
+      11 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-d9c2c8b/testCase.test.ts:9:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.96 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-d9c2c8b/testCase.test.ts".

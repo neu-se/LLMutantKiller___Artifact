@@ -1,0 +1,9 @@
+import { Complex } from "../../../../../../../../../../../subject_repositories/Complex.js/complex.js";
+
+describe("Complex.acsch", () => {
+  it("should return Infinity for zero real input", () => {
+    const result = new Complex(0, 0).acsch();
+    expect(result.re).toBe(Infinity);
+    expect(result.im).toBe(0);
+  });
+});

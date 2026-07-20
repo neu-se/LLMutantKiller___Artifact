@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-843a21a/testCase.test.ts
+  Complex asech
+    ✕ computes asech for complex number with zero denominator by checking the a/0 produces Infinity (3 ms)
+
+  ● Complex asech › computes asech for complex number with zero denominator by checking the a/0 produces Infinity
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      17 |     // d = 2e-600, a/d = 1e-300 / 2e-600 = 5e299 (large but finite)
+      18 |     // This goes through d!==0 branch
+    > 19 |     expect(isFinite(result.re) || isFinite(result.im)).toBe(true);
+         |                                                        ^
+      20 |   });
+      21 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-843a21a/testCase.test.ts:19:56)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.756 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-843a21a/testCase.test.ts".

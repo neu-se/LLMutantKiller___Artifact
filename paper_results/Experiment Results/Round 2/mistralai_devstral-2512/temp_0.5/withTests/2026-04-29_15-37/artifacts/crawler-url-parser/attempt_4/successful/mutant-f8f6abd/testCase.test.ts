@@ -1,0 +1,21 @@
+// test/09_undefined-href-test.js
+
+const assert = require('assert');
+const cup = require("../../../../../../../../../../../subject_repositories/crawler-url-parser/crawler-url-parser.js");
+
+describe('extract url with undefined href', function() {
+    it('should skip links with undefined href', function() {
+        const html = `
+            <html>
+                <body>
+                    <a href="/valid">Valid Link</a>
+                    <a>Undefined Href</a>
+                    <a href="http://example.com">Another Valid Link</a>
+                </body>
+            </html>
+        `;
+        const result = cup.extract(html, "http://example.com");
+        assert.ok(result.length >= 1);
+        assert.equal(result[0].url, "http://example.com/valid");
+    });
+});

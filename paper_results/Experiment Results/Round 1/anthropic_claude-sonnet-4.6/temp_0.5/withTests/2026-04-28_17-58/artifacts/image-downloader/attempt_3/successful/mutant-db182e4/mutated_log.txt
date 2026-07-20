@@ -1,0 +1,25 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_3/pending_category/mutant-db182e4/testCase.test.ts
+  dest path resolution
+    ✕ should not call path.resolve on an already absolute dest path (23 ms)
+
+  ● dest path resolution › should not call path.resolve on an already absolute dest path
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "/tmp/../tmp/img.png"
+    Received: "/tmp/img.png"
+
+      21 |     // Mutated code: if(true) always resolves, path.resolve(__dirname, '/tmp/../tmp/img.png') === '/tmp/img.png'
+      22 |     // filename becomes '/tmp/img.png'
+    > 23 |     expect(filename).toEqual('/tmp/../tmp/img.png');
+         |                      ^
+      24 |   });
+      25 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_3/pending_category/mutant-db182e4/testCase.test.ts:23:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.586 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_3/pending_category/mutant-db182e4/testCase.test.ts".

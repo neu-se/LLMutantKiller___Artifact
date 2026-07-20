@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-a201b28/testCase.test.ts[0m:[93m17[0m:[93m7[0m - [91merror[0m[90m TS18047: [0m'dirty._readStream' is possibly 'null'.
+
+[7m17[0m       dirty._readStream.emit('data', '{"key":"test"}\n');
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~[0m
+PASS llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-a201b28/testCase.test.ts
+  Dirty
+    ✓ should emit error event with correct event name when loading corrupted row (7 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        1.243 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-a201b28/testCase.test.ts".
+Jest did not exit one second after the test run has completed.
+
+'This usually means that there are asynchronous operations that weren't stopped in your tests. Consider running Jest with `--detectOpenHandles` to troubleshoot this issue.
+node:events:502
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: EMFILE: too many open files, open 'test.db'
+Emitted 'error' event on WriteStream instance at:
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  errno: -24,
+  code: 'EMFILE',
+  syscall: 'open',
+  path: 'test.db'
+}
+
+Node.js v20.19.4

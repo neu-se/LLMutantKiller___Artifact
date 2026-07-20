@@ -1,0 +1,38 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-f96bf22/testCase.test.ts
+  filterStackString
+    ✕ filters internal Q frames so the long stack section is shorter than the raw promise stack (3 ms)
+
+  ● filterStackString › filters internal Q frames so the long stack section is shorter than the raw promise stack
+
+    expect(received).toBeLessThan(expected)
+
+    Expected: < 14
+    Received:   14
+
+      39 |         // Mutation (if true): all lines kept, nothing removed
+      40 |         //   → filteredLines.length == rawPromiseLines.length
+    > 41 |         expect(filteredLines.length).toBeLessThan(rawPromiseLines.length);
+         |                                      ^
+      42 |       }
+      43 |     );
+      44 |   });
+
+      at toBeLessThan (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-f96bf22/testCase.test.ts:41:38)
+      at rejected (../subject_repositories/q/q.js:865:24)
+      at _rejected (../subject_repositories/q/q.js:891:30)
+      at Promise.rejected (../subject_repositories/q/q.js:1143:31)
+      at Promise.apply [as promiseDispatch] (../subject_repositories/q/q.js:809:41)
+      at apply (../subject_repositories/q/q.js:571:49)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+      From previous event:
+      at defer (../subject_repositories/q/q.js:597:19)
+      at Promise.defer [as then] (../subject_repositories/q/q.js:849:20)
+      at Object.then (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-f96bf22/testCase.test.ts:12:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.062 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-f96bf22/testCase.test.ts".

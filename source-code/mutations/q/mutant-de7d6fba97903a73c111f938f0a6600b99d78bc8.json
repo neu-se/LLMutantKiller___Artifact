@@ -1,0 +1,47 @@
+{
+  "file": "q.js",
+  "startLine": 1942,
+  "startColumn": 47,
+  "endLine": 1955,
+  "endColumn": 5,
+  "originalCode": "\n-   Q.denodeify = function (callback /*...args*/) {\n-       if (callback === undefined) {\n-           throw new Error(\"Q can't wrap an undefined function\");\n-       }\n-       var baseArgs = array_slice(arguments, 1);\n-       return function () {\n-           var nodeArgs = baseArgs.concat(array_slice(arguments));\n-           var deferred = defer();\n-           nodeArgs.push(deferred.makeNodeResolver());\n-           Q(callback).fapply(nodeArgs).fail(deferred.reject);\n-           return deferred.promise;\n-       };\n-   };",
+  "replacement": "\n+   Q.denodeify = function (callback /*...args*/) {};\n",
+  "removedLines": [
+    "   Q.denodeify = function (callback /*...args*/) {",
+    "       if (callback === undefined) {",
+    "           throw new Error(\"Q can't wrap an undefined function\");",
+    "       }",
+    "       var baseArgs = array_slice(arguments, 1);",
+    "       return function () {",
+    "           var nodeArgs = baseArgs.concat(array_slice(arguments));",
+    "           var deferred = defer();",
+    "           nodeArgs.push(deferred.makeNodeResolver());",
+    "           Q(callback).fapply(nodeArgs).fail(deferred.reject);",
+    "           return deferred.promise;",
+    "       };",
+    "   };"
+  ],
+  "addedLines": [
+    "   Q.denodeify = function (callback /*...args*/) {};",
+    ""
+  ],
+  "lineSummary": [
+    "-   Q.denodeify = function (callback /*...args*/) {",
+    "-       if (callback === undefined) {",
+    "-           throw new Error(\"Q can't wrap an undefined function\");",
+    "-       }",
+    "-       var baseArgs = array_slice(arguments, 1);",
+    "-       return function () {",
+    "-           var nodeArgs = baseArgs.concat(array_slice(arguments));",
+    "-           var deferred = defer();",
+    "-           nodeArgs.push(deferred.makeNodeResolver());",
+    "-           Q(callback).fapply(nodeArgs).fail(deferred.reject);",
+    "-           return deferred.promise;",
+    "-       };",
+    "-   };",
+    "+   Q.denodeify = function (callback /*...args*/) {};",
+    ""
+  ],
+  "mutatorName": "BlockStatement",
+  "strykerMutationId": "1006"
+}

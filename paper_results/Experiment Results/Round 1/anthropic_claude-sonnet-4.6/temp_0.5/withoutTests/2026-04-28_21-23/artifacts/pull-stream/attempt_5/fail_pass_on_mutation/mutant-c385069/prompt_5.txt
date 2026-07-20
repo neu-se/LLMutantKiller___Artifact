@@ -1,0 +1,32 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-c385069/testCase.test.ts
+  asyncMap
+    ✕ correctly handles abort when source delivers data after abort is requested (2 ms)
+
+  ● asyncMap › correctly handles abort when source delivers data after abort is requested
+
+    expect(received).not.toBeNull()
+
+    Received: null
+
+      39 |     // This causes mapper to start, busy=true
+      40 |     storedDataCb!(null, 42);
+    > 41 |     expect(storedMapCb).not.toBeNull(); // mapper is now running
+         |                             ^
+      42 |     
+      43 |     // Step 4: Source responds to abort
+      44 |     // At this point busy=true
+
+      at Object.toBeNull (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-c385069/testCase.test.ts:41:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.401 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-c385069/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

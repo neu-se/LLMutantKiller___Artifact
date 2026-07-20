@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_8/pending_category/mutant-0bb3819/testCase.test.ts[0m:[93m7[0m:[93m5[0m - [91merror[0m[90m TS2588: [0mCannot assign to 'linkUrl' because it is a constant.
+
+[7m7[0m     linkUrl = linkUrl.replace(/\/index\.[a-z]+$/, '/').replace(/\/default\.[a-z]+$/, '/');
+[7m [0m [91m    ~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_8/pending_category/mutant-0bb3819/testCase.test.ts[0m:[93m8[0m:[93m5[0m - [91merror[0m[90m TS2588: [0mCannot assign to 'pageUrl' because it is a constant.
+
+[7m8[0m     pageUrl = pageUrl.replace(/\/index\.[a-z]+$/, '/').replace(/\/default\.[a-z]+$/, '/');
+[7m [0m [91m    ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_8/pending_category/mutant-0bb3819/testCase.test.ts
+  gettype function
+    ✕ should return correct type for URLs with index.html and default.html removed (2 ms)
+
+  ● gettype function › should return correct type for URLs with index.html and default.html removed
+
+    TypeError: Assignment to constant variable.
+
+       5 |     const linkUrl = "http://sub.domain.com/aaa/bbb/index.html";
+       6 |     const pageUrl = "http://sub.domain.com/aaa/bbb/default.html";
+    >  7 |     linkUrl = linkUrl.replace(/\/index\.[a-z]+$/, '/').replace(/\/default\.[a-z]+$/, '/');
+         |            ^
+       8 |     pageUrl = pageUrl.replace(/\/index\.[a-z]+$/, '/').replace(/\/default\.[a-z]+$/, '/');
+       9 |     const result = gettype(linkUrl, pageUrl);
+      10 |     expect(result).toBe("samelevel");
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_8/pending_category/mutant-0bb3819/testCase.test.ts:7:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.144 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_8/pending_category/mutant-0bb3819/testCase.test.ts".

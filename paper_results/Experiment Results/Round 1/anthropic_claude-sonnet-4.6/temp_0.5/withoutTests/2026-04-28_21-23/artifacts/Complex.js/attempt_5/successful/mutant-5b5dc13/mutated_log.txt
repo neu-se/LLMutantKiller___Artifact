@@ -1,0 +1,25 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-5b5dc13/testCase.test.ts
+  Complex acsch
+    ✕ acsch fallback with a=0 and subnormal b: original passes 0 to asinh, mutated passes NaN (30 ms)
+
+  ● Complex acsch › acsch fallback with a=0 and subnormal b: original passes 0 to asinh, mutated passes NaN
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: NaN
+
+      23 |     // Mutated: asinh called with re=NaN
+      24 |     expect(capturedRe.length).toBeGreaterThan(0);
+    > 25 |     expect(capturedRe[0]).toBe(0); // passes on original, fails on mutated (NaN !== 0)
+         |                           ^
+      26 |   });
+      27 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-5b5dc13/testCase.test.ts:25:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.956 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-5b5dc13/testCase.test.ts".

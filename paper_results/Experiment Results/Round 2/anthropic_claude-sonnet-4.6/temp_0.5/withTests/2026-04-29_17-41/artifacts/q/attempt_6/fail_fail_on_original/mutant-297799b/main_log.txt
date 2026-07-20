@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-297799b/testCase.test.ts
+  isNodeFrame filtering in long stack traces
+    ✕ filtered stack should not contain the stack jump separator with original isNodeFrame (4 ms)
+
+  ● isNodeFrame filtering in long stack traces › filtered stack should not contain the stack jump separator with original isNodeFrame
+
+    expect(received).toBe(expected) // Object.is equality
+    Expected: false
+    Received: true
+
+      17 |       // Original isNodeFrame: this line doesn't match "(module.js:" or "(node.js:" → filtered OUT
+      18 |       // Mutated isNodeFrame (return true): this line is kept → appears in stack
+    > 19 |       expect(stack.includes("From previous event:")).toBe(false);
+         |                                                      ^
+      20 |     });
+      21 |
+      22 |     d.reject(error);
+
+      at toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-297799b/testCase.test.ts:19:54)
+      From previous event:
+      at Object.then (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-297799b/testCase.test.ts:13:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.574 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-297799b/testCase.test.ts".

@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-551e201/testCase.test.ts (6.355 s)
+  drain error handling
+    ✕ should throw error when end is not true and no done callback (5001 ms)
+
+  ● drain error handling › should throw error when end is not true and no done callback
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      28 |       console.warn = originalWarn;
+      29 |       expect(hasThrown).toBe(true);
+    > 30 |       expect(warnCalled).toBe(true);
+         |                          ^
+      31 |       done();
+      32 |     });
+      33 |   });
+
+      at Immediate.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-551e201/testCase.test.ts:30:26)
+
+  ● drain error handling › should throw error when end is not true and no done callback
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 |
+      5 | describe("drain error handling", () => {
+    > 6 |   it("should throw error when end is not true and no done callback", (done) => {
+        |   ^
+      7 |     const error = new Error("test error");
+      8 |     const source = values([1, 2, 3]);
+      9 |     const sink = drain(null, undefined);
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-551e201/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-551e201/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.524 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-551e201/testCase.test.ts".

@@ -1,0 +1,24 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-d7d374d/testCase.test.ts
+  Q.deprecate
+    ✕ should call console.warn when the deprecated function is called
+
+  ● Q.deprecate › should call console.warn when the deprecated function is called
+
+    ENOENT: no such file or directory, open './q.js'
+
+      2 |   it("should call console.warn when the deprecated function is called", () => {
+      3 |     const fs = require('fs');
+    > 4 |     const qCode = fs.readFileSync('./q.js', 'utf8');
+        |                      ^
+      5 |     const Q = eval(qCode);
+      6 |     const deprecatedFunction = Q.deprecate(function () {}, "testFunction", "newFunction");
+      7 |     const originalWarn = console.warn;
+
+      at Object.readFileSync (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-d7d374d/testCase.test.ts:4:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.378 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-d7d374d/testCase.test.ts".

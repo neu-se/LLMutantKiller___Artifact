@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-6099c93/testCase.test.ts (7.362 s)
+  Q unhandled rejection tracking
+    ✕ should properly track and untrack unhandled rejections (5003 ms)
+
+  ● Q unhandled rejection tracking › should properly track and untrack unhandled rejections
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      31 |           expect(afterHandling.length).toBeLessThan(trackedRejections.length);
+      32 |           // Verify rejectionHandled event was emitted
+    > 33 |           expect(rejectionHandledEmitted).toBe(true);
+         |                                           ^
+      34 |           done();
+      35 |         }, 50);
+      36 |       });
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-6099c93/testCase.test.ts:33:43)
+
+  ● Q unhandled rejection tracking › should properly track and untrack unhandled rejections
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("Q unhandled rejection tracking", () => {
+    > 4 |   it("should properly track and untrack unhandled rejections", (done) => {
+        |   ^
+      5 |     // Create a rejected promise
+      6 |     const rejectedPromise = Q.reject("test error");
+      7 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-6099c93/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-6099c93/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.603 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-6099c93/testCase.test.ts".

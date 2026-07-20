@@ -1,0 +1,46 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-1c771fa/testCase.test.ts[0m:[93m4[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m4[0m import * as rimraf from "rimraf";
+[7m [0m [91m                        ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-1c771fa/testCase.test.ts (6.447 s)
+  test-corrupted-row-error-handling
+    ✕ should emit error when encountering corrupted row during load (5004 ms)
+
+  ● test-corrupted-row-error-handling › should emit error when encountering corrupted row during load
+
+    TypeError: Cannot read properties of undefined (reading 'val')
+
+      138 |
+      139 |
+    > 140 |             if (row.val === undefined) {
+          |                     ^
+      141 |               this._data.delete(row.key);
+      142 |             } else {
+      143 |               this._data.set(row.key, row.val);
+
+      at val (../subject_repositories/node-dirty/lib/dirty/dirty.js:140:21)
+          at Array.forEach (<anonymous>)
+      at ReadStream.forEach (../subject_repositories/node-dirty/lib/dirty/dirty.js:125:15)
+
+  ● test-corrupted-row-error-handling › should emit error when encountering corrupted row during load
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      16 |   });
+      17 |
+    > 18 |   it("should emit error when encountering corrupted row during load", (done) => {
+         |   ^
+      19 |     // Create a file with a corrupted row
+      20 |     fs.writeFileSync(testFile, '{"key":"valid","val":"data"}\ncorrupted row\n{"key":"another","val":"entry"}\n');
+      21 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-1c771fa/testCase.test.ts:18:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-1c771fa/testCase.test.ts:6:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.612 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-1c771fa/testCase.test.ts".

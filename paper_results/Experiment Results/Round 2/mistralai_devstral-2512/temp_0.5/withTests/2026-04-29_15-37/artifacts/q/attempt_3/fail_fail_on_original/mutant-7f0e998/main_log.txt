@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-7f0e998/testCase.test.ts
+  filterStackString behavior
+    ✕ should filter out internal frames from stack traces (4 ms)
+
+  ● filterStackString behavior › should filter out internal frames from stack traces
+
+    expect(received).toBeDefined()
+    Received: undefined
+
+      28 |                 // when the original code is used (with !isInternalFrame)
+      29 |                 // but will contain them when mutated (with isInternalFrame)
+    > 30 |                 expect(stack).toBeDefined();
+         |                               ^
+      31 |                 // This assertion will fail with the mutated code because
+      32 |                 // internal frames will be included in the stack trace
+      33 |                 expect(stack?.includes("q.js")).toBe(false);
+
+      at toBeDefined (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-7f0e998/testCase.test.ts:30:31)
+      From previous event:
+      at Object.then (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-7f0e998/testCase.test.ts:26:37)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.219 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-7f0e998/testCase.test.ts".

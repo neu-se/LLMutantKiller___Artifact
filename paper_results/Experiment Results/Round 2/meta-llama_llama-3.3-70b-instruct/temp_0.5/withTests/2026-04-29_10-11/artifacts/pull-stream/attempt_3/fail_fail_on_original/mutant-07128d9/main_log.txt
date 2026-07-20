@@ -1,0 +1,27 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-07128d9/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/sinks/drain.js"' has no exported member 'drain'.
+
+[7m1[0m import { drain } from "../../../../../../../../../../../subject_repositories/pull-stream/sinks/drain.js";
+[7m [0m [91m         ~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-07128d9/testCase.test.ts
+  drain
+    ✕ should call done with error when end is an object
+
+  ● drain › should call done with error when end is an object
+
+    TypeError: (0 , drain_js_1.drain) is not a function
+
+      4 |   it('should call done with error when end is an object', () => {
+      5 |     const done = jest.fn();
+    > 6 |     const sink = drain(() => {}, done);
+        |                       ^
+      7 |     sink({ foo: 'bar' }, () => {});
+      8 |     expect(done).toHaveBeenCalledTimes(1);
+      9 |     expect(done).toHaveBeenCalledWith({ foo: 'bar' });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-07128d9/testCase.test.ts:6:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.012 s, estimated 2 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-07128d9/testCase.test.ts".

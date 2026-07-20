@@ -1,0 +1,36 @@
+import { drain } from '../../../../../../../../../../../subject_repositories/pull-stream/sinks/drain.js';
+import * as pull from '../../../../../../../../../../../subject_repositories/pull-stream/index.js';
+
+describe('pull-stream drain', () => {
+  it('should handle end correctly', (done) => {
+    const source = () => {
+      let i = 0;
+      return (end: any, cb: any) => {
+        if (end) return cb(end);
+        if (i < 5) {
+          cb(null, i++);
+        } else {
+          cb(true);
+        }
+      };
+    };
+
+    const sink = drain(
+      (data: any) => {
+        // do nothing
+      },
+      (err: any) => {
+        if (err) {
+          done.fail(err);
+        } else {
+          done();
+        }
+      }
+    );
+
+    pull(
+      source(),
+      sink
+    );
+  });
+});

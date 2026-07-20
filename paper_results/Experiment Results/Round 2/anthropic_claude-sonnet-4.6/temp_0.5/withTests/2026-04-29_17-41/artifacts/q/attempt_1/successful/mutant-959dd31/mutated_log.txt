@@ -1,0 +1,42 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-959dd31/testCase.test.ts (6.157 s)
+  timeout with no custom error
+    ✕ should reject with a timeout error message when the promise is too slow and no error is provided (5002 ms)
+
+  ● timeout with no custom error › should reject with a timeout error message when the promise is too slow and no error is provided
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      23 |       setTimeout(() => {
+      24 |         expect(resolved).toBe(false);
+    > 25 |         expect(rejectedError).toBeDefined();
+         |                               ^
+      26 |         expect(rejectedError).toBeInstanceOf(Error);
+      27 |         expect(/time/i.test(rejectedError!.message)).toBe(true);
+      28 |         resolve();
+
+      at Timeout.toBeDefined [as _onTimeout] (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-959dd31/testCase.test.ts:25:31)
+
+  ● timeout with no custom error › should reject with a timeout error message when the promise is too slow and no error is provided
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("timeout with no custom error", () => {
+    > 4 |   it("should reject with a timeout error message when the promise is too slow and no error is provided", () => {
+        |   ^
+      5 |     jest.useFakeTimers();
+      6 |
+      7 |     const deferred = Q.defer();
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-959dd31/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-959dd31/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.307 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-959dd31/testCase.test.ts".

@@ -1,0 +1,32 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_1/pending_category/mutant-fa5943a/testCase.test.ts
+  Matcher invalid character error message
+    ✕ should throw an error with descriptive message for invalid characters (13 ms)
+
+  ● Matcher invalid character error message › should throw an error with descriptive message for invalid characters
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "Path contains invalid characters"
+    Received message:   ""
+
+          11 |   constructor (spec: string, version: '1' | '1.0' | '1.1' = '1.1') {
+          12 |     if (spec.match(/^[a-zA-Z0-9_/:~.$+*-]*$/) === null) {
+        > 13 |          throw new Error("")
+             |                ^
+          14 |
+          15 |     }
+          16 |     if (spec.match(/^\//) === null) {
+
+      at new Matcher (../subject_repositories/spacl-core/src/matcher.ts:13:16)
+      at llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_1/pending_category/mutant-fa5943a/testCase.test.ts:7:7
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_1/pending_category/mutant-fa5943a/testCase.test.ts:8:8)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_1/pending_category/mutant-fa5943a/testCase.test.ts:8:8)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.65 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_1/pending_category/mutant-fa5943a/testCase.test.ts".

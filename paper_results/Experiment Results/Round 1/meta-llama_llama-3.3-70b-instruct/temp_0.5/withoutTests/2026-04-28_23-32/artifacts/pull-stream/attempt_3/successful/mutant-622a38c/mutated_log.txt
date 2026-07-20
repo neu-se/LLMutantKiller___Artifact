@@ -1,0 +1,29 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/subject_repositories/pull-stream/sinks/reduce.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/subject_repositories/pull-stream/sinks/reduce.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-622a38c/testCase.test.ts
+  reduce function
+    ✕ should handle ended stream correctly (2 ms)
+
+  ● reduce function › should handle ended stream correctly
+
+    Failed: true
+
+       8 |     const cb = (err: any, result: any) => {
+       9 |       if (err) {
+    > 10 |         done(err);
+         |         ^
+      11 |       } else {
+      12 |         if (result!== null) {
+      13 |           done(); // Changed to pass when result is not null
+
+      at done (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-622a38c/testCase.test.ts:10:9)
+      at cb (../subject_repositories/pull-stream/sinks/reduce.js:16:27)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-622a38c/testCase.test.ts:20:7)
+      at source (../subject_repositories/pull-stream/sinks/reduce.js:14:7)
+      at Object.sink (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-622a38c/testCase.test.ts:24:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.22 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-622a38c/testCase.test.ts".

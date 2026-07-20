@@ -1,0 +1,51 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6d0900f/testCase.test.ts
+  unhandled rejection tracking
+    ✕ should still list a handled rejection in unhandledReasons when tracking is enabled (11 ms)
+
+  ● unhandled rejection tracking › should still list a handled rejection in unhandledReasons when tracking is enabled
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 16
+    + Received  +  1
+
+    - Array [
+    -   "Error: test rejection
+    -     at Object.<anonymous> (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6d0900f/testCase.test.ts:7:19)
+    -     at Promise.then.completed (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/node_modules/jest-circus/build/utils.js:298:28)
+    -     at new Promise (<anonymous>)
+    -     at callAsyncCircusFn (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/node_modules/jest-circus/build/utils.js:231:10)
+    -     at _callCircusTest (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/node_modules/jest-circus/build/run.js:316:40)
+    -     at _runTest (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/node_modules/jest-circus/build/run.js:252:3)
+    -     at _runTestsForDescribeBlock (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/node_modules/jest-circus/build/run.js:126:9)
+    -     at _runTestsForDescribeBlock (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/node_modules/jest-circus/build/run.js:121:9)
+    -     at run (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/node_modules/jest-circus/build/run.js:71:3)
+    -     at runAndTransformResultsToJestFormat (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    -     at jestAdapter (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    -     at runTestInternal (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/node_modules/jest-runner/build/runTest.js:367:16)
+    -     at runTest (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/node_modules/jest-runner/build/runTest.js:444:34)",
+    - ]
+    + Array []
+
+      17 |       // With mutated code: untrackRejection always runs, removing the rejection
+      18 |       // unhandledReasons becomes empty
+    > 19 |       expect(Q.getUnhandledReasons()).toEqual([error.stack]);
+         |                                       ^
+      20 |     });
+      21 |   });
+      22 | });
+
+      at toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6d0900f/testCase.test.ts:19:39)
+      at fulfilled (../subject_repositories/q/q.js:854:54)
+      at _fulfilled (../subject_repositories/q/q.js:883:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:816:13)
+      at apply (../subject_repositories/q/q.js:570:49)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.358 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6d0900f/testCase.test.ts".

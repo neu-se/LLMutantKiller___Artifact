@@ -1,0 +1,41 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_4/pending_category/mutant-952ac07/testCase.test.ts[0m:[93m1[0m:[93m18[0m - [91merror[0m[90m TS2307: [0mCannot find module 'nock' or its corresponding type declarations.
+
+[7m1[0m import nock from 'nock';
+[7m [0m [91m                 ~~~~~~[0m
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/image-downloader/lib/request.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/image-downloader/lib/request.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_4/pending_category/mutant-952ac07/testCase.test.ts (6.366 s)
+  request
+    ✕ should reject with an error when the request emits an error event (5003 ms)
+
+  ● request › should reject with an error when the request emits an error event
+
+    Unhandled error. (Error: Mocked error
+
+      at start (../subject_repositories/image-downloader/node_modules/nock/lib/playback_interceptor.js:136:17)
+      at Immediate.<anonymous> (../subject_repositories/image-downloader/node_modules/nock/lib/playback_interceptor.js:322:7)
+      at processImmediate (node:internal/timers:483:21))
+      at OverriddenClientRequest.eventHandlers.<computed> (../subject_repositories/image-downloader/node_modules/follow-redirects/index.js:14:24)
+      at Socket.<anonymous> (../subject_repositories/image-downloader/node_modules/propagate/index.js:64:17)
+      at ../subject_repositories/image-downloader/node_modules/nock/lib/socket.js:100:14
+
+  ● request › should reject with an error when the request emits an error event
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      3 |
+      4 | describe('request', () => {
+    > 5 |   it('should reject with an error when the request emits an error event', async () => {
+        |   ^
+      6 |     const url = 'http://someurl.com/image-error.jpg';
+      7 |     nock(url)
+      8 |       .get(/error/)
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_4/pending_category/mutant-952ac07/testCase.test.ts:5:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_4/pending_category/mutant-952ac07/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.553 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_4/pending_category/mutant-952ac07/testCase.test.ts".

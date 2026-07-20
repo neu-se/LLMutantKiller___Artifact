@@ -1,0 +1,34 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-00531ff/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/util/tester.js"' has no exported member 'tester'.
+
+[7m1[0m import { tester } from "../../../../../../../../../../../subject_repositories/pull-stream/util/tester.js"
+[7m [0m [91m         ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-00531ff/testCase.test.ts
+  tester with regexp
+    ✕ should use test.test method when test is an object with a function test property (like a RegExp) (1 ms)
+
+  ● tester with regexp › should use test.test method when test is an object with a function test property (like a RegExp)
+
+    TypeError: (0 , tester_js_1.tester) is not a function
+
+      4 |   it("should use test.test method when test is an object with a function test property (like a RegExp)", () => {
+      5 |     const regex = /hello/;
+    > 6 |     const testerFn = tester(regex);
+        |                            ^
+      7 |     
+      8 |     // With original code: 'object' === typeof regex && 'function' === typeof regex.test
+      9 |     // This is true, so testerFn = function(data) { return regex.test(data) }
+
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-00531ff/testCase.test.ts:6:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.72 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-00531ff/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,29 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-c385069/testCase.test.ts
+  asyncMap abort when not busy
+    ✕ should call the pending read callback before the abort callback when source is slow (4 ms)
+
+  ● asyncMap abort when not busy › should call the pending read callback before the abort callback when source is slow
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      34 |       // In original: first read cb was called (with abort), then this
+      35 |       // In mutated: first read cb never called (source never resolved it)
+    > 36 |       expect(firstReadCallbackCalled).toBe(true);
+         |                                       ^
+      37 |       expect(err).toBe(abortError);
+      38 |       done();
+      39 |     });
+
+      at toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-c385069/testCase.test.ts:36:39)
+      at cb (../subject_repositories/pull-stream/throughs/async-map.js:18:11)
+      at Object.sourceAbortCb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-c385069/testCase.test.ts:42:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.022 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-c385069/testCase.test.ts".

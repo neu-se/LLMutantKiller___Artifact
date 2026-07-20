@@ -1,0 +1,30 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-184069a/testCase.test.ts
+  mutant detection test
+    ✕ should emit error event when file exists but is corrupted (6 ms)
+
+  ● mutant detection test › should emit error event when file exists but is corrupted
+
+    Expected error event to be emitted for corrupted file
+
+      30 |     db.on('load', () => {
+      31 |       // If we get here, the test failed because no error was emitted
+    > 32 |       done(new Error('Expected error event to be emitted for corrupted file'));
+         |            ^
+      33 |     });
+      34 |   });
+      35 | });
+
+      at Dirty.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-184069a/testCase.test.ts:32:12)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:154:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.963 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-184069a/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

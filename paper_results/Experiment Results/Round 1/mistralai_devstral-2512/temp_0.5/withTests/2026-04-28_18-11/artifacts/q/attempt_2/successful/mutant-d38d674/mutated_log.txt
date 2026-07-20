@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-d38d674/testCase.test.ts
+  Q.makePromise fallback behavior
+    ✕ should use fallback when descriptor is missing an operation (2 ms)
+
+  ● Q.makePromise fallback behavior › should use fallback when descriptor is missing an operation
+
+    Promise does not support operation: nonexistent
+
+      790 |
+      791 |         fallback = function (op) {
+    > 792 |             return reject(new Error(
+          |                           ^
+      793 |                 "Promise does not support operation: " + op
+      794 |             ));
+      795 |         };
+
+      at Promise.fallback (../subject_repositories/q/q.js:792:27)
+      at Promise.call [as promiseDispatch] (../subject_repositories/q/q.js:811:35)
+      at promiseDispatch (../subject_repositories/q/q.js:1412:14)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.785 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-d38d674/testCase.test.ts".

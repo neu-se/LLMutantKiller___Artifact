@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-8e468c1/testCase.test.ts
+  Delta compose
+    ✕ should skip initial retain when composing with insert (6 ms)
+
+  ● Delta compose › should skip initial retain when composing with insert
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        Object {
+    -     "insert": "abx",
+    +     "insert": "abxc",
+        },
+      ]
+
+       7 |     const result = delta1.compose(delta2);
+       8 |     const expected = new Delta().insert('abx');
+    >  9 |     expect(result.ops).toEqual(expected.ops);
+         |                        ^
+      10 |   });
+      11 | });
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-8e468c1/testCase.test.ts:9:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.94 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-8e468c1/testCase.test.ts".

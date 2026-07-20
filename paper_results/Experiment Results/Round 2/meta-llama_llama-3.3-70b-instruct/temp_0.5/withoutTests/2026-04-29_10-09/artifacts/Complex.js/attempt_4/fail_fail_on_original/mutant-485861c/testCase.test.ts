@@ -1,0 +1,8 @@
+import { Complex } from "../complex.js";
+
+describe('Complex', () => {
+  it('should handle null input correctly', () => {
+    const complex = new Complex(null);
+    expect(Object.keys(complex)).not.toContain('');
+  });
+});

@@ -1,0 +1,32 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-eac3cc0/testCase.test.ts
+  drain abort when op returns false
+    ✕ should call done callback when op returns false, properly aborting the source (2 ms)
+
+  ● drain abort when op returns false › should call done callback when op returns false, properly aborting the source
+
+    expect(received).toBeNull()
+
+    Received: true
+
+      24 |       (err: any) => {
+      25 |         // done should be called with null (no error)
+    > 26 |         expect(err).toBeNull();
+         |                     ^
+      27 |         
+      28 |         // Verify that the source was called with a truthy abort signal
+      29 |         // In the original code: read(abort || true, ...) -> read(true, ...)
+
+      at toBeNull (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-eac3cc0/testCase.test.ts:26:21)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-eac3cc0/testCase.test.ts:13:9)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:34:15)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-eac3cc0/testCase.test.ts:16:7)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:45:8)
+      at Object.sink (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-eac3cc0/testCase.test.ts:40:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.972 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-eac3cc0/testCase.test.ts".

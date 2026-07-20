@@ -1,0 +1,38 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+(node:52575) [DEP0147] DeprecationWarning: In future versions of Node.js, fs.rmdir(path, { recursive: true }) will be removed. Use fs.rm(path, { recursive: true }) instead
+(Use `node --trace-deprecation ...` to show where the warning was created)
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_9/pending_category/mutant-a95e7e4/testCase.test.ts
+  ZipAFolder
+    ✕ should create a zip file with the correct compression level when compression is set to uncompressed (21 ms)
+
+  ● ZipAFolder › should create a zip file with the correct compression level when compression is set to uncompressed
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 11
+    Received: 141
+
+    Expected precision:    -1
+    Expected difference: < 5
+    Received difference:   130
+
+      20 |       // Check if the zip file is not empty
+      21 |       const stats = fs.statSync(zipFilePath);
+    > 22 |       expect(stats.size).toBeCloseTo(fs.statSync('./test-data/test.txt').size, -1); // uncompressed size should be close to the original size
+         |                          ^
+      23 |
+      24 |       // Remove the test directory and zip file
+      25 |       fs.rmdirSync(src, { recursive: true });
+
+      at Object.toBeCloseTo (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_9/pending_category/mutant-a95e7e4/testCase.test.ts:22:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.438 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_9/pending_category/mutant-a95e7e4/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

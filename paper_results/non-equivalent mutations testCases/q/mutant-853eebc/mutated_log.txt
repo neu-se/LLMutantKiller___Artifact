@@ -1,0 +1,27 @@
+FAIL q/mutant-853eebc/testCase.test.js
+  Q array_map fallback behavior
+    ✕ keeps allSettled results when Array.prototype.map is unavailable (6 ms)
+
+  ● Q array_map fallback behavior › keeps allSettled results when Array.prototype.map is unavailable
+
+    expect(received).toHaveLength(expected)
+
+    Expected length: 2
+    Received length: 0
+    Received array:  []
+
+      23 |
+      24 |     const states = await context.Q.allSettled([1, 2]);
+    > 25 |     expect(states).toHaveLength(2);
+         |                    ^
+      26 |     expect(states[0].state).toBe('fulfilled');
+      27 |     expect(states[0].value).toBe(1);
+      28 |     expect(states[1].state).toBe('fulfilled');
+
+      at Object.toHaveLength (q/mutant-853eebc/testCase.test.js:25:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.195 s, estimated 1 s
+Ran all test suites within paths "q/mutant-853eebc/testCase.test.js".

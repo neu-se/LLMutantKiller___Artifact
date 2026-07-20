@@ -1,0 +1,34 @@
+The test:
+```
+let mocha = require('mocha');
+let assert = require('assert');
+let q = require('q');
+
+describe('test q', function() {
+    it('test q.makePromise.prototype.fapply with empty arguments', function(done) {
+        // Create a function that takes no arguments
+        function getValue() {
+            return 'hello world';
+        }
+        
+        let promisedGetValue = q.denodeify(getValue);
+        
+        // Test fapply with empty arguments array
+        promisedGetValue.fapply([])
+            .then(function(result) {
+                assert.equal(result, 'hello world');
+                done();
+            })
+            .catch(done);
+    });
+
+    })
+``` 
+failed with the following error message:
+```
+promisedGetValue.fapply is not a function  
+```
+
+Your task is to modify the above code to fix the test. 
+
+Provide your answer as a fenced code block.

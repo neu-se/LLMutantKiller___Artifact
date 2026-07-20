@@ -1,0 +1,24 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-9a3bb96/testCase.test.ts
+  Dirty close behavior
+    ✕ should defer close when there are pending writes (62 ms)
+
+  ● Dirty close behavior › should defer close when there are pending writes
+
+    Streams were closed immediately when they should have been deferred
+
+      38 |         // In mutated code, streams will be closed immediately
+      39 |         if (dirty._writeStream === null) {
+    > 40 |           done(new Error('Streams were closed immediately when they should have been deferred'));
+         |                ^
+      41 |           return;
+      42 |         }
+      43 |
+
+      at Timeout._onTimeout (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-9a3bb96/testCase.test.ts:40:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.041 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-9a3bb96/testCase.test.ts".

@@ -1,0 +1,45 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-a0e2021/testCase.test.ts[0m:[93m16[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'undefined' is not assignable to type 'Process'.
+
+[7m16[0m         globalThis.process = undefined;
+[7m  [0m [91m        ~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-a0e2021/testCase.test.ts
+  Q
+    ✕ should enable long stack support when Q_DEBUG is set and process is an object (3 ms)
+    ✕ should not enable long stack support when process is not an object (1 ms)
+
+  ● Q › should enable long stack support when Q_DEBUG is set and process is an object
+
+    Cannot find module '../../../../../../../../subject_repositories/q/q.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-a0e2021/testCase.test.ts'
+
+       5 |
+       6 |         // Create a new instance of Q
+    >  7 |         const Q = require('../../../../../../../../subject_repositories/q/q.js');
+         |                   ^
+       8 |
+       9 |         // Check if long stack support is enabled
+      10 |         expect(Q.longStackSupport).toBe(true);
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-a0e2021/testCase.test.ts:7:19)
+
+  ● Q › should not enable long stack support when process is not an object
+
+    Cannot find module '../../../../../../../../subject_repositories/q/q.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-a0e2021/testCase.test.ts'
+
+      17 |
+      18 |         // Create a new instance of Q
+    > 19 |         const Q = require('../../../../../../../../subject_repositories/q/q.js');
+         |                   ^
+      20 |
+      21 |         // Check if long stack support is enabled
+      22 |         expect(Q.longStackSupport).toBe(false);
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-a0e2021/testCase.test.ts:19:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.922 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-a0e2021/testCase.test.ts".

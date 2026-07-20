@@ -1,0 +1,43 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-79747e0/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/sinks/drain.js"' has no exported member 'drain'.
+
+[7m1[0m import { drain } from '../../../../../../../../../../../subject_repositories/pull-stream/sinks/drain.js';
+[7m [0m [91m         ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-79747e0/testCase.test.ts
+  drain
+    ✕ should call done callback when end is true and done is provided (1 ms)
+    ✕ should not call done callback when end is true and done is not provided
+
+  ● drain › should call done callback when end is true and done is provided
+
+    TypeError: (0 , drain_js_1.drain) is not a function
+
+       7 |       cb(end, null);
+       8 |     });
+    >  9 |     const sink = drain(() => {}, done);
+         |                       ^
+      10 |     sink(read);
+      11 |     sink(true, () => {});
+      12 |     expect(done).toHaveBeenCalledTimes(1);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-79747e0/testCase.test.ts:9:23)
+
+  ● drain › should not call done callback when end is true and done is not provided
+
+    TypeError: (0 , drain_js_1.drain) is not a function
+
+      19 |       cb(end, null);
+      20 |     });
+    > 21 |     const sink = drain(() => {}, null);
+         |                       ^
+      22 |     sink(read);
+      23 |     sink(true, () => {});
+      24 |     expect(done).not.toHaveBeenCalled();
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-79747e0/testCase.test.ts:21:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.443 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-79747e0/testCase.test.ts".

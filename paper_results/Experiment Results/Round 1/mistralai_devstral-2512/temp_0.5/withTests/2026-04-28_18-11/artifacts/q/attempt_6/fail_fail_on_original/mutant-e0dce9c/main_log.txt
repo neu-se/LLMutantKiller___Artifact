@@ -1,0 +1,49 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-e0dce9c/testCase.test.ts
+  Promise valueOf behavior
+    ✕ should return the promise itself when rejected (7 ms)
+
+  ● Promise valueOf behavior › should return the promise itself when rejected
+
+    expect(received).toBe(expected) // Object.is equality
+
+    - Expected  - 1
+    + Received  + 2
+
+    @@ -8,18 +8,19 @@
+        "delay": [Function anonymous],
+        "delete": [Function anonymous],
+        "denodeify": [Function anonymous],
+        "dispatch": [Function anonymous],
+        "done": [Function anonymous],
+    +   "exception": [Error: test error],
+        "fail": [Function anonymous],
+        "fapply": [Function anonymous],
+        "fbind": [Function anonymous],
+        "fcall": [Function anonymous],
+        "fin": [Function anonymous],
+        "finally": [Function anonymous],
+        "get": [Function anonymous],
+    -   "inspect": [Function anonymous],
+    +   "inspect": [Function inspect],
+        "invoke": [Function anonymous],
+        "isFulfilled": [Function anonymous],
+        "isPending": [Function anonymous],
+        "isRejected": [Function anonymous],
+        "join": [Function anonymous],
+
+      13 |     // We need to check the actual behavior of valueOf for rejected promises
+      14 |     const result = promise.valueOf();
+    > 15 |     expect(result).toBe(promise);
+         |                    ^
+      16 |     // Also verify it's not returning the error object
+      17 |     expect(result).not.toBe(error);
+      18 |     // And verify it's not returning undefined
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-e0dce9c/testCase.test.ts:15:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.515 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-e0dce9c/testCase.test.ts".

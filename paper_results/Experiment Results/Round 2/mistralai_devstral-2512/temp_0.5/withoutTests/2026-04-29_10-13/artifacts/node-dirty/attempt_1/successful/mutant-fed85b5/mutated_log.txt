@@ -1,0 +1,41 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-fed85b5/testCase.test.ts[0m:[93m28[0m:[93m17[0m - [91merror[0m[90m TS7006: [0mParameter 'key' implicitly has an 'any' type.
+
+[7m28[0m     db.forEach((key, val) => {
+[7m  [0m [91m                ~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-fed85b5/testCase.test.ts[0m:[93m28[0m:[93m22[0m - [91merror[0m[90m TS7006: [0mParameter 'val' implicitly has an 'any' type.
+
+[7m28[0m     db.forEach((key, val) => {
+[7m  [0m [91m                     ~~~[0m
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/node-dirty/lib/dirty/dirty.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/node-dirty/lib/dirty/dirty.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-fed85b5/testCase.test.ts
+  Dirty forEach behavior
+    ✕ should continue iteration when callback returns true (9 ms)
+
+  ● Dirty forEach behavior › should continue iteration when callback returns true
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 0
+
+      Array [
+        "key1",
+    -   "key2",
+    -   "key3",
+      ]
+
+      33 |     // In the original code, returning true should NOT break the loop
+      34 |     // In the mutated code, returning true WILL break the loop
+    > 35 |     expect(visitedKeys).toEqual(['key1', 'key2', 'key3']);
+         |                         ^
+      36 |
+      37 |     // Clean up
+      38 |     db.close();
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-fed85b5/testCase.test.ts:35:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.891 s, estimated 2 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-fed85b5/testCase.test.ts".

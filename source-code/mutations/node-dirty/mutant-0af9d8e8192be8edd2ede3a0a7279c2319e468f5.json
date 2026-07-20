@@ -1,0 +1,23 @@
+{
+  "file": "lib/dirty/dirty.js",
+  "startLine": 169,
+  "startColumn": 13,
+  "endLine": 170,
+  "endColumn": 61,
+  "originalCode": "\n-           if (this._inFlightWrites <= 0) this.emit('drain');",
+  "replacement": "\n+           if (this._inFlightWrites > 0) this.emit('drain');\n",
+  "removedLines": [
+    "           if (this._inFlightWrites <= 0) this.emit('drain');"
+  ],
+  "addedLines": [
+    "           if (this._inFlightWrites > 0) this.emit('drain');",
+    ""
+  ],
+  "lineSummary": [
+    "-           if (this._inFlightWrites <= 0) this.emit('drain');",
+    "+           if (this._inFlightWrites > 0) this.emit('drain');",
+    ""
+  ],
+  "mutatorName": "EqualityOperator",
+  "strykerMutationId": "123"
+}

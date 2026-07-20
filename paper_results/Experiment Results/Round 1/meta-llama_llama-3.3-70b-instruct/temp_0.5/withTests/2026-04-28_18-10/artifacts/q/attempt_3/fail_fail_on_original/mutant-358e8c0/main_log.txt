@@ -1,0 +1,58 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-358e8c0/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-358e8c0/testCase.test.ts
+  Promise inspection
+    ✕ should inspect a promise and return its state (1 ms)
+    ✕ should inspect a rejected promise and return its state (1 ms)
+    ✕ should inspect a pending promise and return its state
+
+  ● Promise inspection › should inspect a promise and return its state
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      3 | describe('Promise inspection', () => {
+      4 |     it('should inspect a promise and return its state', () => {
+    > 5 |         const promise = Q(5);
+        |                          ^
+      6 |         const snapshot = promise.inspect();
+      7 |         if ((snapshot as any).state === "fulfilled") {
+      8 |             expect((snapshot as any).value).toBe(5);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-358e8c0/testCase.test.ts:5:26)
+
+  ● Promise inspection › should inspect a rejected promise and return its state
+
+    TypeError: Cannot read properties of undefined (reading 'reject')
+
+      14 |     it('should inspect a rejected promise and return its state', () => {
+      15 |         const error = new Error('Test error');
+    > 16 |         const promise = Q.reject(error);
+         |                           ^
+      17 |         const snapshot = promise.inspect();
+      18 |         if ((snapshot as any).state === "rejected") {
+      19 |             expect((snapshot as any).reason).toBe(error);
+
+      at Object.reject (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-358e8c0/testCase.test.ts:16:27)
+
+  ● Promise inspection › should inspect a pending promise and return its state
+
+    TypeError: Cannot read properties of undefined (reading 'defer')
+
+      24 |
+      25 |     it('should inspect a pending promise and return its state', () => {
+    > 26 |         const deferred = Q.defer();
+         |                            ^
+      27 |         const promise = deferred.promise;
+      28 |         const snapshot = promise.inspect();
+      29 |         if ((snapshot as any).state === "pending") {
+
+      at Object.defer (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-358e8c0/testCase.test.ts:26:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        1.562 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-358e8c0/testCase.test.ts".

@@ -1,0 +1,107 @@
+The test:
+```
+let mocha = require('mocha');
+let assert = require('assert');
+let _spacl_core = require('@spacl/core');
+
+describe('test _spacl_core', function() {
+    it('test @spacl/core.Rule.prototype.query', function(done) {
+        // Create mock Rule instances for testing
+        let userRule = new _spacl_core.Rule();
+        let adminRule = new _spacl_core.Rule();
+        
+        // Mock the matches method and verbs property for userRule
+        userRule.matches = function(path, ctx) {
+            if (path === '/user/foo' && ctx.name === 'foo') return true;
+            if (path === '/user/bar' && ctx.name === 'foo') return true;
+            return false;
+        };
+        userRule.verbs = {
+            'get': true,
+            'put': true
+            // 'delete' is intentionally missing to test null return
+        };
+        
+        // Mock the matches method and verbs property for adminRule
+        adminRule.matches = function(path, ctx) {
+            return true; // Admin matches all paths
+        };
+        adminRule.verbs = {
+            'get': true,
+            'put': true,
+            'delete': false // Explicitly denied for /user/foo, allowed for others
+        };
+        
+        // Test context
+        const ctx = { name: 'foo' };
+        
+        // Test user rule queries
+        assert.strictEqual(userRule.query('/user/foo', 'get', ctx), true, 'User should be able to GET /user/foo');
+        assert.strictEqual(userRule.query('/user/foo', 'put', ctx), true, 'User should be able to PUT /user/foo');
+        assert.strictEqual(userRule.query('/user/foo', 'delete', ctx), null, 'User DELETE /user/foo should return null (implicitly denied)');
+        assert.strictEqual(userRule.query('/user/bar', 'get', ctx), true, 'User should be able to GET /user/bar');
+        assert.strictEqual(userRule.query('/user/bar', 'put', ctx), true, 'User should be able to PUT /user/bar');
+        assert.strictEqual(userRule.query('/user/bar', 'delete', ctx), null, 'User DELETE /user/bar should return null (implicitly denied)');
+        
+        // Test admin rule queries
+        assert.strictEqual(adminRule.query('/user/foo', 'get', ctx), true, 'Admin should be able to GET /user/foo');
+        assert.strictEqual(adminRule.query('/user/foo', 'put', ctx), true, 'Admin should be able to PUT /user/foo');
+        assert.strictEqual(adminRule.query('/user/foo', 'delete', ctx), false, 'Admin DELETE /user/foo should return false (explicitly denied)');
+        assert.strictEqual(adminRule.query('/user/bar', 'get', ctx), true, 'Admin should be able to GET /user/bar');
+        assert.strictEqual(adminRule.query('/user/bar', 'put', ctx), true, 'Admin should be able to PUT /user/bar');
+        assert.strictEqual(adminRule.query('/user/bar', 'delete', ctx), false, 'Admin DELETE /user/bar should return false');
+        
+        // Test case where path doesn't match
+        let noMatchRule = new _spacl_core.Rule();
+        noMatchRule.matches = function(path, ctx) {
+            return false; // Never matches
+        };
+        noMatchRule.verbs = { 'get': true };
+        
+        assert.strictEqual(noMatchRule.query('/any/path', 'get', ctx), null, 'Should return null when path does not match');
+        
+        // Test case where verb doesn't exist
+        let noVerbRule = new _spacl_core.Rule();
+        noVerbRule.matches = function(path, ctx) {
+            return true; // Always matches
+        };
+        noVerbRule.verbs = {}; // No verbs defined
+        
+        assert.strictEqual(noVerbRule.query('/any/path', 'get', ctx), null, 'Should return null when verb does not exist');
+        
+        done();
+    });
+});
+``` 
+failed with the following error message:
+```
+
+Error: Cannot find module 'mocha'
+Require stack:
+- /path/to/test/test_114.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1224:15)
+    at Module._load (node:internal/modules/cjs/loader:1050:27)
+    at Module.require (node:internal/modules/cjs/loader:1310:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (/path/to/test/test_114.js:1:13)
+    at Module._compile (node:internal/modules/cjs/loader:1480:14)
+    at Module.replacementCompile (/Users/anon/testpilot2/node_modules/append-transform/index.js:60:13)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1564:10)
+    at Object.<anonymous> (/Users/anon/testpilot2/node_modules/append-transform/index.js:64:4)
+    at Module.load (node:internal/modules/cjs/loader:1287:32)
+    at Module._load (node:internal/modules/cjs/loader:1103:12)
+    at cjsLoader (node:internal/modules/esm/translators:318:15)
+    at ModuleWrap.<anonymous> (node:internal/modules/esm/translators:258:7)
+    at ModuleJob.run (node:internal/modules/esm/module_job:262:25)
+    at async ModuleLoader.import (node:internal/modules/esm/loader:474:24)
+    at async formattedImport (/Users/anon/testpilot2/node_modules/mocha/lib/nodejs/esm-utils.js:7:14)
+    at async exports.requireOrImport (/Users/anon/testpilot2/node_modules/mocha/lib/nodejs/esm-utils.js:38:28)
+    at async exports.loadFilesAsync (/Users/anon/testpilot2/node_modules/mocha/lib/nodejs/esm-utils.js:91:20)
+    at async singleRun (/Users/anon/testpilot2/node_modules/mocha/lib/cli/run-helpers.js:125:3)
+    at async exports.handler (/Users/anon/testpilot2/node_modules/mocha/lib/cli/run.js:370:5)
+  
+```
+
+Your task is to modify the above code to fix the test. 
+
+Provide your answer as a fenced code block.

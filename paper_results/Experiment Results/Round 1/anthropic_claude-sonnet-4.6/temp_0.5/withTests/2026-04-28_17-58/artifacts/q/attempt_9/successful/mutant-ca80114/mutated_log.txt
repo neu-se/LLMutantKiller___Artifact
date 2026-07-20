@@ -1,0 +1,42 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-ca80114/testCase.test.ts (5.922 s)
+  Q in non-node context
+    ✕ flush continues after throw (5002 ms)
+
+  ● Q in non-node context › flush continues after throw
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "task2"
+    Received: "timeout"
+
+      37 |     
+      38 |     setTimeout(() => {
+    > 39 |       expect(order[0]).toBe("task2");
+         |                        ^
+      40 |       done();
+      41 |     }, 300);
+      42 |   });
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-ca80114/testCase.test.ts:39:24)
+
+  ● Q in non-node context › flush continues after throw
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       5 |
+       6 | describe("Q in non-node context", () => {
+    >  7 |   it("flush continues after throw", done => {
+         |   ^
+       8 |     const qPath = require.resolve("../../../../../../../../../../../subject_repositories/q/q.js");
+       9 |     const qSource = fs.readFileSync(qPath, "utf8");
+      10 |     
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-ca80114/testCase.test.ts:7:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-ca80114/testCase.test.ts:6:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.079 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-ca80114/testCase.test.ts".

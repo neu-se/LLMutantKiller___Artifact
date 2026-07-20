@@ -1,0 +1,27 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_4/pending_category/mutant-186b7fc/testCase.test.ts[0m:[93m16[0m:[93m111[0m - [91merror[0m[90m TS2339: [0mProperty 'COMPRESSION_LEVEL' does not exist on type 'typeof ZipAFolder'.
+
+[7m16[0m         await ZipAFolder.tar(path.resolve(__dirname, 'data/'), testUNCOMPRESSEDTAR, { compression: ZipAFolder.COMPRESSION_LEVEL.uncompressed });
+[7m  [0m [91m                                                                                                              ~~~~~~~~~~~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_4/pending_category/mutant-186b7fc/testCase.test.ts
+  Zip-A-Folder Test
+    ✕ tar function should create a tar file with the correct compression level (1 ms)
+
+  ● Zip-A-Folder Test › tar function should create a tar file with the correct compression level
+
+    TypeError: Cannot read properties of undefined (reading 'uncompressed')
+
+      14 |
+      15 |     it('tar function should create a tar file with the correct compression level', async () => {
+    > 16 |         await ZipAFolder.tar(path.resolve(__dirname, 'data/'), testUNCOMPRESSEDTAR, { compression: ZipAFolder.COMPRESSION_LEVEL.uncompressed });
+         |                                                                                                                                 ^
+      17 |         await ZipAFolder.tar(path.resolve(__dirname, 'data/'), testTAR);
+      18 |         const statsUncompressed = fs.statSync(testUNCOMPRESSEDTAR);
+      19 |         const statsCompressed = fs.statSync(testTAR);
+
+      at Object.uncompressed (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_4/pending_category/mutant-186b7fc/testCase.test.ts:16:129)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.14 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_4/pending_category/mutant-186b7fc/testCase.test.ts".

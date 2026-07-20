@@ -1,0 +1,30 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-246ab6e/testCase.test.ts
+  cosh fallback used in complex sin computation
+    ✕ detects wrong cosh fallback by temporarily removing Math.cosh before module evaluation (8 ms)
+
+  ● cosh fallback used in complex sin computation › detects wrong cosh fallback by temporarily removing Math.cosh before module evaluation
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 1.2984575814159773
+    Received: 2.2873552871788423
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   0.988897705762865
+
+      29 |     const expectedIm = Math.cos(1) * Math.sinh(1);
+      30 |     
+    > 31 |     expect(result.re).toBeCloseTo(expectedRe, 10);
+         |                       ^
+      32 |     expect(result.im).toBeCloseTo(expectedIm, 10);
+      33 |   });
+      34 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-246ab6e/testCase.test.ts:31:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.429 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-246ab6e/testCase.test.ts".

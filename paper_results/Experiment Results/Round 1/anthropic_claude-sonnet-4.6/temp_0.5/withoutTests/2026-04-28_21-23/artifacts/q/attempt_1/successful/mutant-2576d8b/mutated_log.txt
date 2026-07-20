@@ -1,0 +1,29 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-2576d8b/testCase.test.ts
+  makeStackTraceLong with longStackSupport enabled
+    ✕ should concatenate stack traces with 'From previous event:' separator when a rejection propagates through a promise chain (6 ms)
+
+  ● makeStackTraceLong with longStackSupport enabled › should concatenate stack traces with 'From previous event:' separator when a rejection propagates through a promise chain
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "From previous event:"
+    Received string:    "Error: original error
+
+       8 |
+       9 |     await new Promise<void>((resolve) => {
+    > 10 |       Q.reject(new Error("original error"))
+         |                ^
+      11 |         .then(function step1() {
+      12 |           // This won't be called since we're rejected
+      13 |         })
+
+      at llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-2576d8b/testCase.test.ts:10:16
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-2576d8b/testCase.test.ts:9:11)
+      at Object.toContain (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-2576d8b/testCase.test.ts:25:34)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.977 s, estimated 4 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-2576d8b/testCase.test.ts".

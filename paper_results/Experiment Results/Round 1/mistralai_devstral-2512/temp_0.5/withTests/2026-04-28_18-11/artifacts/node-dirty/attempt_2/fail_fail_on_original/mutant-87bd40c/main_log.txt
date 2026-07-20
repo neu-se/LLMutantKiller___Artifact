@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-87bd40c/testCase.test.ts (6.017 s)
+  close method behavior
+    ✕ should destroy read stream when close is called (5003 ms)
+
+  ● close method behavior › should destroy read stream when close is called
+
+    expect(received).not.toBeNull()
+
+    Received: null
+
+      25 |       db.on('drain', () => {
+      26 |         const readStream = db._readStream;
+    > 27 |         expect(readStream).not.toBeNull();
+         |                                ^
+      28 |         db.close();
+      29 |         setImmediate(() => {
+      30 |           expect(db._readStream).toBeNull();
+
+      at Dirty.toBeNull (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-87bd40c/testCase.test.ts:27:32)
+      at emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:190:70)
+
+  ● close method behavior › should destroy read stream when close is called
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      19 |   });
+      20 |
+    > 21 |   it('should destroy read stream when close is called', (done) => {
+         |   ^
+      22 |     db = new Dirty(testFile);
+      23 |     db.on('load', () => {
+      24 |       db.set('key', 'value');
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-87bd40c/testCase.test.ts:21:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-87bd40c/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.15 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-87bd40c/testCase.test.ts".

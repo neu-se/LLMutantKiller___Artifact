@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-f3c696f/testCase.test.ts
+  Complex acot
+    ✕ should compute acot correctly when d underflows to zero with positive imaginary part (2 ms)
+
+  ● Complex acot › should compute acot correctly when d underflows to zero with positive imaginary part
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: NaN
+    Received: NaN
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   NaN
+
+      17 |     // Mutated: new Complex(0, -Infinity).atan()
+      18 |     // The two results should be negatives of each other in imaginary part
+    > 19 |     expect(result.im).toBeCloseTo(-result2.im, 10);
+         |                       ^
+      20 |     // More specifically, for acot(0 + tiny*i) with tiny>0:
+      21 |     // Original gives atan(0, -Inf) which has negative im
+      22 |     // Mutated gives atan(0, +Inf) which has positive im
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-f3c696f/testCase.test.ts:19:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.677 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-f3c696f/testCase.test.ts".

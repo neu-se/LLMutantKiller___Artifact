@@ -1,0 +1,26 @@
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/crawler-url-parser/crawler-url-parser.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/crawler-url-parser/crawler-url-parser.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-602e947/testCase.test.ts
+  parse function with localhost URL
+    ✕ should correctly handle localhost URLs without protocol (3 ms)
+
+  ● parse function with localhost URL › should correctly handle localhost URLs without protocol
+
+    expect(received).not.toBeNull()
+
+    Received: null
+
+      4 |   it("should correctly handle localhost URLs without protocol", () => {
+      5 |     const result = parse("localhost:8080/path");
+    > 6 |     expect(result).not.toBeNull();
+        |                        ^
+      7 |     expect(result?.url).toBe("http://localhost:8080/path");
+      8 |     expect(result?.protocol).toBe("http:");
+      9 |     expect(result?.host).toBe("localhost:8080");
+
+      at Object.toBeNull (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-602e947/testCase.test.ts:6:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.67 s, estimated 2 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-602e947/testCase.test.ts".

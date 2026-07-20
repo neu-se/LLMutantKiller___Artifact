@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/countries-and-timezones/attempt_1/pending_category/mutant-dc12450/testCase.test.ts
+  buildCountry caching behavior
+    ✕ should use cached timezone map and not rebuild it on subsequent calls with different data (3 ms)
+
+  ● buildCountry caching behavior › should use cached timezone map and not rebuild it on subsequent calls with different data
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: "America/New_York"
+    Received array: ["Europe/London"]
+
+      28 |     // Original: still uses cached map from data1, so "America/New_York" should still be there
+      29 |     // Mutated: rebuilds with data2, so "Europe/London" would be there instead
+    > 30 |     expect(result2!.timezones).toContain("America/New_York");
+         |                                ^
+      31 |     expect(result2!.timezones).not.toContain("Europe/London");
+      32 |   });
+      33 | });
+
+      at Object.toContain (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/countries-and-timezones/attempt_1/pending_category/mutant-dc12450/testCase.test.ts:30:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.405 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/countries-and-timezones/attempt_1/pending_category/mutant-dc12450/testCase.test.ts".

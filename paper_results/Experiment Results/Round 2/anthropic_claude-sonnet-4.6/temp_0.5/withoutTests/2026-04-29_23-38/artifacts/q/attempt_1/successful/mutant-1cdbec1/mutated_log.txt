@@ -1,0 +1,25 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts
+  Q browser environment detection
+    ✕ should initialize Q when only self is defined (not window) (5 ms)
+
+  ● Q browser environment detection › should initialize Q when only self is defined (not window)
+
+    expect(received).toBeNull()
+
+    Received: [Error: This environment was not anticipated by Q. Please file a bug.]
+
+      30 |
+      31 |     // Original code should NOT throw; mutated code WILL throw
+    > 32 |     expect(error).toBeNull();
+         |                   ^
+      33 |     // Also verify Q was set on the self object
+      34 |     expect((context.self as Record<string, unknown>).Q).toBeDefined();
+      35 |   });
+
+      at Object.toBeNull (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts:32:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.023 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts".

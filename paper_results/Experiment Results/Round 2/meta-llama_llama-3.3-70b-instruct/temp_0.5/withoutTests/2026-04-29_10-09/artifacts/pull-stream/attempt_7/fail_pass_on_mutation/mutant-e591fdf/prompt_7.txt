@@ -1,0 +1,32 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-e591fdf/testCase.test.ts
+  pull-stream
+    ✕ should only return a partial sink when the first argument is a function with length 1 (2 ms)
+
+  ● pull-stream › should only return a partial sink when the first argument is a function with length 1
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "function"
+
+       6 |     Object.defineProperty(funcArg, 'length', { value: 2 });
+       7 |     const result = pull(funcArg);
+    >  8 |     expect(typeof result).not.toBe('function');
+         |                               ^
+       9 |     const funcArg2 = () => {};
+      10 |     Object.defineProperty(funcArg2, 'length', { value: 1 });
+      11 |     const result2 = pull(funcArg2);
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-e591fdf/testCase.test.ts:8:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.321 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-e591fdf/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

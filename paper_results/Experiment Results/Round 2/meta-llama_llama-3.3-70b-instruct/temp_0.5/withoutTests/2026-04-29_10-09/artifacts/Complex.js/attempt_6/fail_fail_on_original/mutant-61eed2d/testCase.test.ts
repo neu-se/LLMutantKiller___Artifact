@@ -1,0 +1,8 @@
+import { Complex } from "../../../../../../../../../../../subject_repositories/Complex.js/complex.js";
+
+describe('Complex', () => {
+  it('should throw an error when trying to access a non-existent property on the parsed complex number object', () => {
+    const complex = new Complex('1+2i');
+    expect(() => complex[""]).toThrowError();
+  });
+});

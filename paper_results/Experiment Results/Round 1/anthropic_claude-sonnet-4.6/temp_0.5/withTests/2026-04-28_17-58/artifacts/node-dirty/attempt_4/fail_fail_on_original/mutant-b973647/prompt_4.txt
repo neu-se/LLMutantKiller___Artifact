@@ -1,0 +1,65 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-b973647/testCase.test.ts[0m:[93m27[0m:[93m91[0m - [91merror[0m[90m TS2339: [0mProperty 'code' does not exist on type 'Error'.
+
+[7m27[0m       if (this === db && typeof event === 'string' && args[0] instanceof Error && args[0].code === 'EISDIR') {
+[7m  [0m [91m                                                                                          ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-b973647/testCase.test.ts (6.725 s)
+  Dirty error event emission on read stream error
+    ✕ should emit "error" event when a non-ENOENT read stream error occurs (5002 ms)
+
+  ● Dirty error event emission on read stream error › should emit "error" event when a non-ENOENT read stream error occurs
+
+    EISDIR: illegal operation on a directory, open '/var/folders/hj/385qyhcj33q7n5tssd7_jvkh0000gn/T/dirty-dir-test-1777311329361'
+
+
+
+  ● Dirty error event emission on read stream error › should emit "error" event when a non-ENOENT read stream error occurs
+
+    EISDIR: illegal operation on a directory, read
+
+
+
+  ● Dirty error event emission on read stream error › should emit "error" event when a non-ENOENT read stream error occurs
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "error"
+    Received: null
+
+      45 |
+      46 |       // Original code emits 'error', mutated code emits ''
+    > 47 |       expect(capturedEvent).toBe('error');
+         |                             ^
+      48 |       done();
+      49 |     }, 500);
+      50 |   });
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-b973647/testCase.test.ts:47:29)
+
+  ● Dirty error event emission on read stream error › should emit "error" event when a non-ENOENT read stream error occurs
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       6 |
+       7 | describe('Dirty error event emission on read stream error', () => {
+    >  8 |   it('should emit "error" event when a non-ENOENT read stream error occurs', (done) => {
+         |   ^
+       9 |     const tmpDir = os.tmpdir();
+      10 |     // Create a directory at the path so opening it as a file causes EISDIR
+      11 |     const dirPath = path.join(tmpDir, `dirty-dir-test-${Date.now()}`);
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-b973647/testCase.test.ts:8:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-b973647/testCase.test.ts:7:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.981 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-b973647/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

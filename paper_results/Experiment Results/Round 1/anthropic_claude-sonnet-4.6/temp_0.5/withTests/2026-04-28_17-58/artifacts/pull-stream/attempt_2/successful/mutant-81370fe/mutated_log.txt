@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/pull-stream/pull.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/pull-stream/pull.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-81370fe/testCase.test.ts
+  pull with object-style duplex stream
+    ✕ should correctly connect through an object stream that has sink and source properties (4 ms)
+
+  ● pull with object-style duplex stream › should correctly connect through an object stream that has sink and source properties
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Array [
+    +   1,
+        2,
+    -   4,
+    -   6,
+    +   3,
+      ]
+
+      34 |     read(null, function next(end: any, data: any) {
+      35 |       if (end) {
+    > 36 |         expect(results).toEqual([2, 4, 6]);
+         |                         ^
+      37 |         done();
+      38 |         return;
+      39 |       }
+
+      at toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-81370fe/testCase.test.ts:36:25)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-81370fe/testCase.test.ts:26:38)
+      at read (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-81370fe/testCase.test.ts:41:7)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-81370fe/testCase.test.ts:27:7)
+      at read (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-81370fe/testCase.test.ts:41:7)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-81370fe/testCase.test.ts:27:7)
+      at read (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-81370fe/testCase.test.ts:41:7)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-81370fe/testCase.test.ts:27:7)
+      at Object.read (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-81370fe/testCase.test.ts:34:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.477 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-81370fe/testCase.test.ts".

@@ -1,0 +1,33 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-58fa663/testCase.test.ts[0m:[93m8[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType '(event: "unhandledRejection" | "message" | "multipleResolves", reason: unknown, promise: unknown) => void' is not assignable to type '{ (event: "beforeExit", code: number): boolean; (event: "disconnect"): boolean; (event: "exit", code: number): boolean; (event: "rejectionHandled", promise: Promise<unknown>): boolean; (event: "uncaughtException", error: Error): boolean; (event: "uncaughtExceptionMonitor", error: Error): boolean; (event: "unhandledR...'.
+  Target signature provides too few arguments. Expected 3 or more, but got 2.
+
+[7m8[0m         process.emit = (event, reason, promise) => {
+[7m [0m [91m        ~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-58fa663/testCase.test.ts[0m:[93m13[0m:[93m11[0m - [91merror[0m[90m TS2339: [0mProperty 'untrackRejection' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'.
+
+[7m13[0m         Q.untrackRejection(promise);
+[7m  [0m [91m          ~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-58fa663/testCase.test.ts
+  Q
+    ✕ should correctly handle unhandled rejections (1 ms)
+
+  ● Q › should correctly handle unhandled rejections
+
+    TypeError: q_js_1.default.untrackRejection is not a function
+
+      11 |             }
+      12 |         };
+    > 13 |         Q.untrackRejection(promise);
+         |           ^
+      14 |         process.emit = originalProcessEmit;
+      15 |         expect(emitted).toBe(false);
+      16 |     });
+
+      at Object.untrackRejection (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-58fa663/testCase.test.ts:13:11)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.596 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-58fa663/testCase.test.ts".

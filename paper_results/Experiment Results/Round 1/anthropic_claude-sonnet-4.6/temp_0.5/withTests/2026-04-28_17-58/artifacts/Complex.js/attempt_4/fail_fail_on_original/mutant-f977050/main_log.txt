@@ -1,0 +1,30 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-f977050/testCase.test.ts
+  acosh
+    ✕ detects mutation in else branch by checking im value for input hitting else branch (2 ms)
+
+  ● acosh › detects mutation in else branch by checking im value for input hitting else branch
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: -3.141592653589793
+    Received: 3.141592653589793
+
+    Expected precision:    5
+    Expected difference: < 0.000005
+    Received difference:   6.283185307179586
+
+       9 |     const result = new Complex(-2, 0).acosh();
+      10 |     // im should be -π in original, NaN in mutated
+    > 11 |     expect(result.im).toBeCloseTo(-Math.PI, 5);
+         |                       ^
+      12 |   });
+      13 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-f977050/testCase.test.ts:11:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.699 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-f977050/testCase.test.ts".

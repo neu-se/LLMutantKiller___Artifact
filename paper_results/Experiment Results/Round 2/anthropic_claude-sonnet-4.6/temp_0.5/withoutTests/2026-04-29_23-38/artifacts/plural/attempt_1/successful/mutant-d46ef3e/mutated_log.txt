@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/plural/attempt_1/pending_category/mutant-d46ef3e/testCase.test.ts
+  plural
+    ✕ should pluralize words containing 'x' not at the end correctly, without adding 'es' incorrectly (2 ms)
+
+  ● plural › should pluralize words containing 'x' not at the end correctly, without adding 'es' incorrectly
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "taxis"
+    Received: "taxies"
+
+       8 |     // Original: no match on this rule → falls through → "taxis"
+       9 |     // Mutated: matches /x|.../ → returns "taxi" + "es" = "taxies"
+    > 10 |     expect(plural("taxi")).toBe("taxis");
+         |                            ^
+      11 |   });
+      12 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/plural/attempt_1/pending_category/mutant-d46ef3e/testCase.test.ts:10:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.993 s, estimated 1 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/plural/attempt_1/pending_category/mutant-d46ef3e/testCase.test.ts".

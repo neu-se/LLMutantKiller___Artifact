@@ -1,0 +1,60 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-697096c/testCase.test.ts
+  database file validation
+    ✕ should skip empty lines without error (8 ms)
+
+  ● database file validation › should skip empty lines without error
+
+    Unexpected error: Empty lines never appear in a healthy database
+
+      29 |     db.on('error', (error) => {
+      30 |       hasError = true;
+    > 31 |       done(new Error(`Unexpected error: ${error.message}`));
+         |            ^
+      32 |     });
+      33 |
+      34 |     db.on('load', (length) => {
+
+      at Dirty.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-697096c/testCase.test.ts:31:12)
+      at emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:127:20)
+          at Array.forEach (<anonymous>)
+      at ReadStream.forEach (../subject_repositories/node-dirty/lib/dirty/dirty.js:125:15)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.152 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-697096c/testCase.test.ts".
+node:internal/process/promises:391
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+JestAssertionError: expect(received).toBe(expected) // Object.is equality
+
+Expected: false
+Received: true
+    at Dirty.toBe (/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-697096c/testCase.test.ts:36:26)
+    at Dirty.emit (node:events:524:28)
+    at ReadStream.emit (/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/node-dirty/lib/dirty/dirty.js:154:16)
+    at ReadStream.emit (node:events:524:28)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  matcherResult: {
+    actual: true,
+    expected: false,
+    message: 'expect(received).toBe(expected) // Object.is equality\n' +
+      '\n' +
+      'Expected: false\n' +
+      'Received: true',
+    name: 'toBe',
+    pass: false
+  }
+}
+
+Node.js v20.19.4
+
+---
+Please try again and give me a new test case.

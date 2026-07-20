@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-b973647/testCase.test.ts (11.123 s)
+  Dirty error event on read stream error
+    ✕ should emit "error" event (not empty string) when a non-ENOENT read stream error occurs (10003 ms)
+
+  ● Dirty error event on read stream error › should emit "error" event (not empty string) when a non-ENOENT read stream error occurs
+
+    expect(received).not.toContain(expected) // indexOf
+
+    Expected value: not ""
+    Received array:     ["resume", "open", "ready", Symbol(kConstruct), "error", "close", "write_close", "error", "", "close", "read_close"]
+
+      46 |       // In mutated code: '' should be emitted instead of 'error'
+      47 |       expect(emittedEvents).toContain('error');
+    > 48 |       expect(emittedEvents).not.toContain('');
+         |                                 ^
+      49 |       done();
+      50 |     }, 1000);
+      51 |   }, 10000);
+
+      at Timeout.toContain [as _onTimeout] (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-b973647/testCase.test.ts:48:33)
+
+  ● Dirty error event on read stream error › should emit "error" event (not empty string) when a non-ENOENT read stream error occurs
+
+    thrown: "Exceeded timeout of 10000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       5 |
+       6 | describe('Dirty error event on read stream error', () => {
+    >  7 |   it('should emit "error" event (not empty string) when a non-ENOENT read stream error occurs', (done) => {
+         |   ^
+       8 |     const tmpDir = os.tmpdir();
+       9 |     const dirPath = path.join(tmpDir, `dirty-dir-${Date.now()}`);
+      10 |     fs.mkdirSync(dirPath);
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-b973647/testCase.test.ts:7:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-b973647/testCase.test.ts:6:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        11.283 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-b973647/testCase.test.ts".

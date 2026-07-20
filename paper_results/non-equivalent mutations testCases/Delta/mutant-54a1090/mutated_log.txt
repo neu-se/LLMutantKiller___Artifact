@@ -1,0 +1,36 @@
+FAIL Delta/mutant-54a1090/testCase.test.js
+  Delta compose raw op preservation
+    ✕ preserves separate leading raw insert ops under a plain retain (84 ms)
+
+  ● Delta compose raw op preservation › preserves separate leading raw insert ops under a plain retain
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 4
+    + Received  + 1
+
+      Array [
+        Object {
+    -     "insert": "A",
+    -   },
+    -   Object {
+    -     "insert": "B",
+    +     "insert": "AB",
+        },
+      ]
+
+      19 |     const result = left.compose(right);
+      20 |
+    > 21 |     expect(result.ops).toEqual([{ insert: 'A' }, { insert: 'B' }]);
+         |                        ^
+      22 |   });
+      23 | });
+      24 |
+
+      at Object.toEqual (Delta/mutant-54a1090/testCase.test.js:21:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.376 s
+Ran all test suites matching /Delta\/mutant-54a1090\/testCase.test.js/i.

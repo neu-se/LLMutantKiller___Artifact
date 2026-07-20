@@ -1,0 +1,29 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-7342f80/testCase.test.ts
+  drain without done callback
+    ✕ should warn and throw when stream ends with error and no done callback is provided (5 ms)
+
+  ● drain without done callback › should warn and throw when stream ends with error and no done callback is provided
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: Error
+
+    Received value has no prototype
+    Received value: undefined
+
+      33 |       // because the `if (!done)` block runs and creates doneLackingErr
+      34 |       expect(warnCalls.length).toBe(1)
+    > 35 |       expect(warnCalls[0][0]).toBeInstanceOf(Error)
+         |                               ^
+      36 |       expect(warnCalls[0][0].message).toBe('no done callback supplied')
+      37 |     } finally {
+      38 |       console.warn = originalWarn
+
+      at Object.toBeInstanceOf (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-7342f80/testCase.test.ts:35:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.67 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-7342f80/testCase.test.ts".

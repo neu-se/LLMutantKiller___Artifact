@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-ccef39b/testCase.test.ts
+  close behavior with queue but no in-flight writes
+    ✕ should close immediately when queue has items but no in-flight writes (10 ms)
+
+  ● close behavior with queue but no in-flight writes › should close immediately when queue has items but no in-flight writes
+
+    Mutation detected - drain was called before write_close
+
+      48 |         db.on("write_close", () => {
+      49 |           if (drainCalled) {
+    > 50 |             done(new Error("Mutation detected - drain was called before write_close"));
+         |                  ^
+      51 |           } else {
+      52 |             done();
+      53 |           }
+
+      at Dirty.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-ccef39b/testCase.test.ts:50:18)
+      at WriteStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:177:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.644 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-ccef39b/testCase.test.ts".

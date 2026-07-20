@@ -1,0 +1,46 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-d44b51f/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-d44b51f/testCase.test.ts
+  Promise.join
+    ✕ should throw an error when the values are not the same (2 ms)
+    ✕ should throw an error with a different message when the mutation is present
+
+  ● Promise.join › should throw an error when the values are not the same
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Q can't join: not the same: 1 2"
+    Received string:    "(0 , q_js_1.Q) is not a function"
+
+       6 |             Q(1).join(Q(2));
+       7 |         } catch (error: any) {
+    >  8 |             expect(error.message).toContain("Q can't join: not the same: 1 2");
+         |                                   ^
+       9 |         }
+      10 |     });
+      11 |
+
+      at Object.toContain (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-d44b51f/testCase.test.ts:8:35)
+
+  ● Promise.join › should throw an error with a different message when the mutation is present
+
+    TypeError: Cannot read properties of undefined (reading 'Promise')
+
+      11 |
+      12 |     it("should throw an error with a different message when the mutation is present", () => {
+    > 13 |         const originalJoin = Q.Promise.prototype.join;
+         |                                ^
+      14 |         Q.Promise.prototype.join = function(that: any) {
+      15 |             return Q([this, that]).spread(function (x: any, y: any) {
+      16 |                 if (x === y) {
+
+      at Object.Promise (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-d44b51f/testCase.test.ts:13:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        2.235 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-d44b51f/testCase.test.ts".

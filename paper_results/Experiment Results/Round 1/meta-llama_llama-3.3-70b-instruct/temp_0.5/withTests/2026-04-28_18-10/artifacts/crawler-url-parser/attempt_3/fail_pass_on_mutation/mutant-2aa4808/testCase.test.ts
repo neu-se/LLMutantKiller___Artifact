@@ -1,0 +1,10 @@
+import { parse } from "../../../../../../../../../../../subject_repositories/crawler-url-parser/crawler-url-parser.js";
+
+describe('parse function', () => {
+    it('should correctly parse URLs with a base URL and fragment', () => {
+        const currentUrlStr = '../ddd#fragment';
+        const baseUrlStr = 'http://www.stackoverflow.com/aaa/bbb/ccc#baseFragment';
+        const result = parse(currentUrlStr, baseUrlStr);
+        expect(result.url).toBe('http://www.stackoverflow.com/aaa/ddd');
+    });
+});

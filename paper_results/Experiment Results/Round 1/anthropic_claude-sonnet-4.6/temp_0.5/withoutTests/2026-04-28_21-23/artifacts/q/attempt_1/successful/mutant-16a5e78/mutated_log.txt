@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/q/q.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/q/q.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-16a5e78/testCase.test.ts
+  Q.isFulfilled
+    ✕ should return true for a non-promise value (plain object) (1 ms)
+
+  ● Q.isFulfilled › should return true for a non-promise value (plain object)
+
+    TypeError: object.inspect is not a function
+
+      1031 | Q.isFulfilled = isFulfilled;
+      1032 | function isFulfilled(object) {
+    > 1033 |        return !isPromise(object) && object.inspect().state === "fulfilled";
+           |                                            ^
+      1034 |
+      1035 | }
+      1036 |
+
+      at Function.inspect [as isFulfilled] (../subject_repositories/q/q.js:1033:44)
+      at Object.isFulfilled (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-16a5e78/testCase.test.ts:13:14)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.669 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-16a5e78/testCase.test.ts".

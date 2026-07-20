@@ -1,0 +1,39 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-088b3dd/testCase.test.ts
+  getFileNameAndLineNumber via long stack trace filtering
+    ✕ should correctly parse named function stack frames so that Q internal frames are filtered from long stack traces (6 ms)
+
+  ● getFileNameAndLineNumber via long stack trace filtering › should correctly parse named function stack frames so that Q internal frames are filtered from long stack traces
+
+    expect(received).not.toMatch(expected)
+
+    Expected pattern: not /\brunSingle\b.*q\.js/
+    Received string:      "Error: test error
+
+       8 |       const error = await Q.fcall(function outerFunction() {
+       9 |         return Q.fcall(function innerFunction() {
+    > 10 |           throw new Error("test error");
+         |                 ^
+      11 |         });
+      12 |       }).then(undefined, function(err: Error) {
+      13 |         return err;
+
+      at innerFunction (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-088b3dd/testCase.test.ts:10:17)
+      at Promise.apply (../subject_repositories/q/q.js:1186:26)
+      at Promise.apply [as promiseDispatch] (../subject_repositories/q/q.js:809:41)
+      at promiseDispatch (../subject_repositories/q/q.js:1412:14)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+      From previous event:
+      at defer (../subject_repositories/q/q.js:597:19)
+      at Promise.defer [as dispatch] (../subject_repositories/q/q.js:1410:20)
+      at Function.dispatch [as fcall] (../subject_repositories/q/q.js:1524:22)
+      at Object.fcall (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-088b3dd/testCase.test.ts:8:29)
+      at Object.toMatch (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-088b3dd/testCase.test.ts:36:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.72 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-088b3dd/testCase.test.ts".

@@ -1,0 +1,51 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-202d0e2/testCase.test.ts[0m:[93m4[0m:[93m28[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m4[0m import { rimrafSync } from 'rimraf';
+[7m [0m [91m                           ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-202d0e2/testCase.test.ts (16.32 s)
+  dirty drain triggers flush of remaining queue
+    ✕ should invoke callbacks for all writes even when backpressure occurs (15003 ms)
+
+  ● dirty drain triggers flush of remaining queue › should invoke callbacks for all writes even when backpressure occurs
+
+    TypeError: (0 , rimraf_1.rimrafSync) is not a function
+
+      21 |           completed++;
+      22 |           if (completed === totalWrites) {
+    > 23 |             rimrafSync(tmpDir);
+         |                       ^
+      24 |             done();
+      25 |           }
+      26 |         });
+
+      at llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-202d0e2/testCase.test.ts:23:23
+      at cb (../subject_repositories/node-dirty/lib/dirty/dirty.js:191:31)
+
+  ● dirty drain triggers flush of remaining queue › should invoke callbacks for all writes even when backpressure occurs
+
+    thrown: "Exceeded timeout of 15000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       7 |
+       8 | describe('dirty drain triggers flush of remaining queue', () => {
+    >  9 |   it('should invoke callbacks for all writes even when backpressure occurs', (done) => {
+         |   ^
+      10 |     const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'dirty-drain-'));
+      11 |     const file = path.join(tmpDir, 'test.dirty');
+      12 |     const db = new Dirty(file);
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-202d0e2/testCase.test.ts:9:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-202d0e2/testCase.test.ts:8:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        16.494 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-202d0e2/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

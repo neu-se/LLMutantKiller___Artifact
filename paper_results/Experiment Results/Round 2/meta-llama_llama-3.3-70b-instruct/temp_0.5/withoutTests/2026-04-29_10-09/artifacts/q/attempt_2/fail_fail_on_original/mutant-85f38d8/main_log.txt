@@ -1,0 +1,58 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-85f38d8/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-85f38d8/testCase.test.ts
+  Q.isRejected
+    ✕ should return false for a non-promise value (9 ms)
+    ✕ should return false for a non-rejected promise
+    ✕ should return true for a rejected promise
+
+  ● Q.isRejected › should return false for a non-promise value
+
+    TypeError: Cannot read properties of undefined (reading 'isRejected')
+
+      4 |   it("should return false for a non-promise value", () => {
+      5 |     const value = "test";
+    > 6 |     expect(Q.isRejected(value)).toBe(false);
+        |              ^
+      7 |   });
+      8 |
+      9 |   it("should return false for a non-rejected promise", () => {
+
+      at Object.isRejected (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-85f38d8/testCase.test.ts:6:14)
+
+  ● Q.isRejected › should return false for a non-rejected promise
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+       8 |
+       9 |   it("should return false for a non-rejected promise", () => {
+    > 10 |     const promise = Q("test");
+         |                      ^
+      11 |     expect(Q.isRejected(promise)).toBe(false);
+      12 |   });
+      13 |
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-85f38d8/testCase.test.ts:10:22)
+
+  ● Q.isRejected › should return true for a rejected promise
+
+    TypeError: Cannot read properties of undefined (reading 'reject')
+
+      13 |
+      14 |   it("should return true for a rejected promise", () => {
+    > 15 |     const promise = Q.reject("test");
+         |                       ^
+      16 |     expect(Q.isRejected(promise)).toBe(true);
+      17 |   });
+      18 | });
+
+      at Object.reject (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-85f38d8/testCase.test.ts:15:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        3.575 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-85f38d8/testCase.test.ts".

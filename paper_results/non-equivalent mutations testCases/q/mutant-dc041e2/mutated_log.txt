@@ -1,0 +1,26 @@
+FAIL q/mutant-dc041e2/testCase.test.js
+  Q SES bootstrap behavior
+    ✕ registers a working SES factory when ses.ok() returns true (5 ms)
+
+  ● Q SES bootstrap behavior › registers a working SES factory when ses.ok() returns true
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "function"
+    Received: "undefined"
+
+      20 |     vm.runInContext(qSource, context);
+      21 |
+    > 22 |     expect(typeof context.ses.makeQ).toBe('function');
+         |                                      ^
+      23 |
+      24 |     const Q = context.ses.makeQ();
+      25 |     expect(typeof Q).toBe('function');
+
+      at Object.toBe (q/mutant-dc041e2/testCase.test.js:22:38)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.296 s, estimated 1 s
+Ran all test suites within paths "q/mutant-dc041e2/testCase.test.js".

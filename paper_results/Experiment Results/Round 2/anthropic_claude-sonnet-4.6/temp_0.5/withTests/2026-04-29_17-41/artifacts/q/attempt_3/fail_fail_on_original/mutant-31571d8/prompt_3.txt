@@ -1,0 +1,53 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-31571d8/testCase.test.ts[0m:[93m14[0m:[93m24[0m - [91merror[0m[90m TS2749: [0m'Q.Promise' refers to a value, but is being used as a type here. Did you mean 'typeof Q.Promise'?
+
+[7m14[0m       function hop4(): Q.Promise<never> {
+[7m  [0m [91m                       ~~~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-31571d8/testCase.test.ts[0m:[93m18[0m:[93m24[0m - [91merror[0m[90m TS2749: [0m'Q.Promise' refers to a value, but is being used as a type here. Did you mean 'typeof Q.Promise'?
+
+[7m18[0m       function hop3(): Q.Promise<never> {
+[7m  [0m [91m                       ~~~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-31571d8/testCase.test.ts[0m:[93m22[0m:[93m24[0m - [91merror[0m[90m TS2749: [0m'Q.Promise' refers to a value, but is being used as a type here. Did you mean 'typeof Q.Promise'?
+
+[7m22[0m       function hop2(): Q.Promise<never> {
+[7m  [0m [91m                       ~~~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-31571d8/testCase.test.ts[0m:[93m28[0m:[93m24[0m - [91merror[0m[90m TS2749: [0m'Q.Promise' refers to a value, but is being used as a type here. Did you mean 'typeof Q.Promise'?
+
+[7m28[0m       function hop1(): Q.Promise<never> {
+[7m  [0m [91m                       ~~~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-31571d8/testCase.test.ts[0m:[93m34[0m:[93m24[0m - [91merror[0m[90m TS2749: [0m'Q.Promise' refers to a value, but is being used as a type here. Did you mean 'typeof Q.Promise'?
+
+[7m34[0m       function hop0(): Q.Promise<never> {
+[7m  [0m [91m                       ~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-31571d8/testCase.test.ts
+  long stack traces stack counter comparison
+    ✕ should include stack frames from all promises earlier in the chain, not just the first one found (4 ms)
+
+  ● long stack traces stack counter comparison › should include stack frames from all promises earlier in the chain, not just the first one found
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 2
+    Received:    1
+
+      58 |       // stackCounters are skipped, resulting in fewer separators.
+      59 |       // We expect at least 2 separators with the original code (3 hops with .then).
+    > 60 |       expect(separatorCount).toBeGreaterThanOrEqual(2);
+         |                              ^
+      61 |     } finally {
+      62 |       Q.longStackSupport = originalLongStackSupport;
+      63 |     }
+
+      at Object.toBeGreaterThanOrEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-31571d8/testCase.test.ts:60:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.562 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-31571d8/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

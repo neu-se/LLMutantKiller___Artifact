@@ -1,0 +1,30 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-8b8202a/testCase.test.ts
+  Dirty database drain event timing
+    ✕ should not emit drain event when writes are still in flight (58 ms)
+
+  ● Dirty database drain event timing › should not emit drain event when writes are still in flight
+
+    drain event emitted while write was still in progress
+
+      36 |       setTimeout(() => {
+      37 |         if (drainEmittedDuringWrite) {
+    > 38 |           done(new Error('drain event emitted while write was still in progress'));
+         |                ^
+      39 |         } else {
+      40 |           done();
+      41 |         }
+
+      at Timeout._onTimeout (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-8b8202a/testCase.test.ts:38:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.164 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-8b8202a/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

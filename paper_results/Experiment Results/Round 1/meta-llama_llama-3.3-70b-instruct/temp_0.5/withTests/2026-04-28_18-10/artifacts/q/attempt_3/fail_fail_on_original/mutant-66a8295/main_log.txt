@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-66a8295/testCase.test.ts[0m:[93m7[0m:[93m11[0m - [91merror[0m[90m TS2339: [0mProperty 'trackRejection' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'.
+
+[7m7[0m         Q.trackRejection(deferred.promise, 'Test rejection');
+[7m [0m [91m          ~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-66a8295/testCase.test.ts
+  Q
+    ✕ should track unhandled rejections (1 ms)
+
+  ● Q › should track unhandled rejections
+
+    TypeError: q_js_1.default.trackRejection is not a function
+
+       5 |         Q.resetUnhandledRejections();
+       6 |         var deferred = Q.defer();
+    >  7 |         Q.trackRejection(deferred.promise, 'Test rejection');
+         |           ^
+       8 |         expect(Q.getUnhandledReasons().length).toBe(1);
+       9 |     });
+      10 | });
+
+      at Object.trackRejection (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-66a8295/testCase.test.ts:7:11)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.769 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-66a8295/testCase.test.ts".

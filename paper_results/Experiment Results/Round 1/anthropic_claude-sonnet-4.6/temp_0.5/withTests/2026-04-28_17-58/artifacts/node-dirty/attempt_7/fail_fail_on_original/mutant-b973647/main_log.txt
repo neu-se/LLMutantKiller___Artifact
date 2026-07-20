@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-b973647/testCase.test.ts
+  Dirty error event emission on read stream error
+    ✕ should emit "error" event for non-ENOENT read stream errors (2 ms)
+
+  ● Dirty error event emission on read stream error › should emit "error" event for non-ENOENT read stream errors
+
+    TypeError: Cannot redefine property: createReadStream
+        at Function.defineProperty (<anonymous>)
+
+      16 |     let fakeStream: Readable | null = null;
+      17 |
+    > 18 |     jest.spyOn(fs, 'createReadStream').mockImplementationOnce((...args: any[]) => {
+         |          ^
+      19 |       fakeStream = new Readable({ read() {} });
+      20 |       (fakeStream as any).destroy = function(err?: Error) {
+      21 |         this.emit('close');
+
+      at ModuleMocker.spyOn (node_modules/jest-mock/build/index.js:776:16)
+      at Object.spyOn (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-b973647/testCase.test.ts:18:10)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.924 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-b973647/testCase.test.ts".

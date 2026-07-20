@@ -1,0 +1,44 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-5212880/testCase.test.ts[0m:[93m7[0m:[93m11[0m - [91merror[0m[90m TS2540: [0mCannot assign to 'done' because it is a read-only property.
+
+[7m7[0m         q.done = function (fulfilled, rejected, progress) {
+[7m [0m [91m          ~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-5212880/testCase.test.ts[0m:[93m7[0m:[93m28[0m - [91merror[0m[90m TS7006: [0mParameter 'fulfilled' implicitly has an 'any' type.
+
+[7m7[0m         q.done = function (fulfilled, rejected, progress) {
+[7m [0m [91m                           ~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-5212880/testCase.test.ts[0m:[93m7[0m:[93m39[0m - [91merror[0m[90m TS7006: [0mParameter 'rejected' implicitly has an 'any' type.
+
+[7m7[0m         q.done = function (fulfilled, rejected, progress) {
+[7m [0m [91m                                      ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-5212880/testCase.test.ts[0m:[93m7[0m:[93m49[0m - [91merror[0m[90m TS7006: [0mParameter 'progress' implicitly has an 'any' type.
+
+[7m7[0m         q.done = function (fulfilled, rejected, progress) {
+[7m [0m [91m                                                ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-5212880/testCase.test.ts[0m:[93m12[0m:[93m46[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m12[0m         q.reject(error).done(null, function (err) {
+[7m  [0m [91m                                             ~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-5212880/testCase.test.ts
+  Q
+    ✕ should call the error handler when done is called with a rejected promise and no errback (1 ms)
+
+  ● Q › should call the error handler when done is called with a rejected promise and no errback
+
+    TypeError: Cannot set property done of #<Object> which has only a getter
+
+       5 |         var error = new Error("Test error");
+       6 |         var called = false;
+    >  7 |         q.done = function (fulfilled, rejected, progress) {
+         |               ^
+       8 |             if (rejected) {
+       9 |                 rejected(error);
+      10 |             }
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-5212880/testCase.test.ts:7:15)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.853 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-5212880/testCase.test.ts".

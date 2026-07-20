@@ -1,0 +1,46 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-545198e/testCase.test.ts[0m:[93m45[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'message' does not exist on type 'never'.
+
+[7m45[0m         expect(results.error.message).toContain('Corrupted row at the end of the db');
+[7m  [0m [91m                             ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-545198e/testCase.test.ts
+  Dirty database chunk processing
+    ✕ should not process incomplete lines when chunk contains no newlines (5 ms)
+
+  ● Dirty database chunk processing › should not process incomplete lines when chunk contains no newlines
+
+    Expected done to be called once, but it was called multiple times. Reason: [Error: Both load and error events fired]
+
+      40 |       if (results.loadSize !== null && results.error !== null) {
+      41 |         // Both events fired - this shouldn't happen
+    > 42 |         done(new Error('Both load and error events fired'));
+         |         ^
+      43 |       } else if (results.error !== null) {
+      44 |         // Original code path - error should be thrown for incomplete line
+      45 |         expect(results.error.message).toContain('Corrupted row at the end of the db');
+
+      at done (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-545198e/testCase.test.ts:42:9)
+      at Dirty.checkResults (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-545198e/testCase.test.ts:31:7)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:154:16)
+
+  ● Dirty database chunk processing › should not process incomplete lines when chunk contains no newlines
+
+    Expected done to be called once, but it was called multiple times. Reason: [Error: Both load and error events fired]
+
+      40 |       if (results.loadSize !== null && results.error !== null) {
+      41 |         // Both events fired - this shouldn't happen
+    > 42 |         done(new Error('Both load and error events fired'));
+         |         ^
+      43 |       } else if (results.error !== null) {
+      44 |         // Original code path - error should be thrown for incomplete line
+      45 |         expect(results.error.message).toContain('Corrupted row at the end of the db');
+
+      at done (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-545198e/testCase.test.ts:42:9)
+      at Dirty.checkResults (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-545198e/testCase.test.ts:31:7)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:154:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.625 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-545198e/testCase.test.ts".

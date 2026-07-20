@@ -1,0 +1,56 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-2b60afb/testCase.test.ts[0m:[93m22[0m:[93m5[0m - [91merror[0m[90m TS2740: [0mType 'Dirty' is missing the following properties from type 'typeof Dirty': prototype, Dirty, getEventListeners, addAbortListener, and 6 more.
+
+[7m22[0m     db = new Dirty(testFile);
+[7m  [0m [91m    ~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-2b60afb/testCase.test.ts[0m:[93m23[0m:[93m11[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 2, '(emitter: EventEmitter<DefaultEventMap>, eventName: string | symbol, options?: StaticEventEmitterIteratorOptions | undefined): AsyncIterator<...>', gave the following error.
+    Argument of type 'string' is not assignable to parameter of type 'EventEmitter<DefaultEventMap>'.
+  Overload 2 of 2, '(emitter: EventTarget, eventName: string, options?: StaticEventEmitterIteratorOptions | undefined): AsyncIterator<any[], any, any>', gave the following error.
+    Argument of type 'string' is not assignable to parameter of type 'EventTarget'.
+
+[7m23[0m     db.on('load', () => {
+[7m  [0m [91m          ~~~~~~[0m
+
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-2b60afb/testCase.test.ts[0m:[93m24[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'set' does not exist on type 'typeof Dirty'.
+
+[7m24[0m       db.set('key1', 'value1', () => {
+[7m  [0m [91m         ~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-2b60afb/testCase.test.ts[0m:[93m26[0m:[93m15[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 2, '(emitter: EventEmitter<DefaultEventMap>, eventName: string | symbol, options?: StaticEventEmitterIteratorOptions | undefined): AsyncIterator<...>', gave the following error.
+    Argument of type 'string' is not assignable to parameter of type 'EventEmitter<DefaultEventMap>'.
+  Overload 2 of 2, '(emitter: EventTarget, eventName: string, options?: StaticEventEmitterIteratorOptions | undefined): AsyncIterator<any[], any, any>', gave the following error.
+    Argument of type 'string' is not assignable to parameter of type 'EventTarget'.
+
+[7m26[0m         db.on('drain', () => {
+[7m  [0m [91m              ~~~~~~~[0m
+
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-2b60afb/testCase.test.ts[0m:[93m28[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'size' does not exist on type 'typeof Dirty'.
+
+[7m28[0m           expect(db.size()).toBe(1);
+[7m  [0m [91m                    ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-2b60afb/testCase.test.ts (5.929 s)
+  drain event emission
+    ✕ should emit drain event when queue is empty after write (5002 ms)
+
+  ● drain event emission › should emit drain event when queue is empty after write
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      19 |   });
+      20 |
+    > 21 |   it('should emit drain event when queue is empty after write', (done) => {
+         |   ^
+      22 |     db = new Dirty(testFile);
+      23 |     db.on('load', () => {
+      24 |       db.set('key1', 'value1', () => {
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-2b60afb/testCase.test.ts:21:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-2b60afb/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.078 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-2b60afb/testCase.test.ts".

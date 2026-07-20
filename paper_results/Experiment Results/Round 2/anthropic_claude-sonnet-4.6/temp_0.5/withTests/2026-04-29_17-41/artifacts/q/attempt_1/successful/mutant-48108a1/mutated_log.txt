@@ -1,0 +1,32 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-48108a1/testCase.test.ts
+  deferred promise inspect
+    ✕ should return an object with state 'pending' for an unresolved deferred promise (3 ms)
+
+  ● deferred promise inspect › should return an object with state 'pending' for an unresolved deferred promise
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 3
+    + Received  + 1
+
+    - Object {
+    -   "state": "pending",
+    - }
+    + Object {}
+
+       5 |     const deferred = Q.defer();
+       6 |     const inspected = deferred.promise.inspect();
+    >  7 |     expect(inspected).toEqual({ state: "pending" });
+         |                       ^
+       8 |     expect(inspected.state).toBe("pending");
+       9 |   });
+      10 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-48108a1/testCase.test.ts:7:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.299 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-48108a1/testCase.test.ts".

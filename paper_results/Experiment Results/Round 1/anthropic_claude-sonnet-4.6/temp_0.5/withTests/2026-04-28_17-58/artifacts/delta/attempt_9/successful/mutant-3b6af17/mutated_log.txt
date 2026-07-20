@@ -1,0 +1,53 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) [96m../subject_repositories/delta/src/Delta.ts[0m:[93m517[0m:[93m43[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 2, '(o: {}): string[]', gave the following error.
+    Argument of type 'number | Record<string, unknown> | undefined' is not assignable to parameter of type '{}'.
+      Type 'undefined' is not assignable to type '{}'.
+  Overload 2 of 2, '(o: object): string[]', gave the following error.
+    Argument of type 'number | Record<string, unknown> | undefined' is not assignable to parameter of type 'object'.
+      Type 'undefined' is not assignable to type 'object'.
+
+[7m517[0m             const embedType = Object.keys(thisData)[0];
+[7m   [0m [91m                                          ~~~~~~~~[0m
+
+[96m../subject_repositories/delta/src/Delta.ts[0m:[93m523[0m:[93m21[0m - [91merror[0m[90m TS18048: [0m'thisData' is possibly 'undefined'.
+
+[7m523[0m                     thisData[embedType],
+[7m   [0m [91m                    ~~~~~~~~[0m
+[96m../subject_repositories/delta/src/Delta.ts[0m:[93m523[0m:[93m21[0m - [91merror[0m[90m TS7053: [0mElement implicitly has an 'any' type because expression of type 'string' can't be used to index type 'number | Record<string, unknown>'.
+  No index signature with a parameter of type 'string' was found on type 'number | Record<string, unknown>'.
+
+[7m523[0m                     thisData[embedType],
+[7m   [0m [91m                    ~~~~~~~~~~~~~~~~~~~[0m
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_9/pending_category/mutant-3b6af17/testCase.test.ts
+  transform
+    ✕ transform number retain against empty object retain does not throw (27 ms)
+
+  ● transform › transform number retain against empty object retain does not throw
+
+    expect(received).not.toThrow()
+
+    Error name:    "Error"
+    Error message: "no handlers for embed type \"undefined\""
+
+          50 |     const handler = this.handlers[embedType];
+          51 |     if (!handler) {
+        > 52 |       throw new Error(`no handlers for embed type "${embedType}"`);
+             |             ^
+          53 |     }
+          54 |     return handler;
+          55 |   }
+
+      at Function.getHandler (../subject_repositories/delta/src/Delta.ts:52:13)
+      at Delta.getHandler [as transform] (../subject_repositories/delta/src/Delta.ts:519:37)
+      at transform (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_9/pending_category/mutant-3b6af17/testCase.test.ts:11:9)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_9/pending_category/mutant-3b6af17/testCase.test.ts:12:12)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_9/pending_category/mutant-3b6af17/testCase.test.ts:12:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.862 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_9/pending_category/mutant-3b6af17/testCase.test.ts".

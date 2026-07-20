@@ -1,0 +1,30 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-e6b7943/testCase.test.ts
+  isStopIteration mutation detection
+    ✕ should reject with a regular error thrown in a SpiderMonkey-style generator, not treat it as StopIteration (2 ms)
+
+  ● isStopIteration mutation detection › should reject with a regular error thrown in a SpiderMonkey-style generator, not treat it as StopIteration
+
+    Should have been rejected but got fulfilled with: undefined
+
+      40 |           delete globalAny.StopIteration;
+      41 |         }
+    > 42 |         throw new Error("Should have been rejected but got fulfilled with: " + val);
+         |               ^
+      43 |       },
+      44 |       (err: any) => {
+      45 |         // Restore StopIteration
+
+      at asyncFn.then.globalAny.StopIteration (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-e6b7943/testCase.test.ts:42:15)
+      at fulfilled (../subject_repositories/q/q.js:854:54)
+      at _fulfilled (../subject_repositories/q/q.js:883:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:816:13)
+      at promiseDispatch (../subject_repositories/q/q.js:877:14)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.568 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-e6b7943/testCase.test.ts".

@@ -1,0 +1,41 @@
+{
+  "file": "q.js",
+  "startLine": 597,
+  "startColumn": 21,
+  "endLine": 607,
+  "endColumn": 12,
+  "originalCode": "\n-           } catch (e) {\n-               // NOTE: don't try to use `Error.captureStackTrace` or transfer the\n-               // accessor around; that causes memory leaks as per GH-111. Just\n-               // reify the stack trace as a string ASAP.\n-               //\n-               // At the same time, cut off the first line; it's always just\n-               // \"[object Promise]\\n\", as per the `toString`.\n-               promise.stack = e.stack.substring(e.stack.indexOf(\"\\n\") + 1);\n-               promise.stackCounter = longStackCounter++;\n-           }",
+  "replacement": "\n+           } catch (e) {}\n",
+  "removedLines": [
+    "           } catch (e) {",
+    "               // NOTE: don't try to use `Error.captureStackTrace` or transfer the",
+    "               // accessor around; that causes memory leaks as per GH-111. Just",
+    "               // reify the stack trace as a string ASAP.",
+    "               //",
+    "               // At the same time, cut off the first line; it's always just",
+    "               // \"[object Promise]\\n\", as per the `toString`.",
+    "               promise.stack = e.stack.substring(e.stack.indexOf(\"\\n\") + 1);",
+    "               promise.stackCounter = longStackCounter++;",
+    "           }"
+  ],
+  "addedLines": [
+    "           } catch (e) {}",
+    ""
+  ],
+  "lineSummary": [
+    "-           } catch (e) {",
+    "-               // NOTE: don't try to use `Error.captureStackTrace` or transfer the",
+    "-               // accessor around; that causes memory leaks as per GH-111. Just",
+    "-               // reify the stack trace as a string ASAP.",
+    "-               //",
+    "-               // At the same time, cut off the first line; it's always just",
+    "-               // \"[object Promise]\\n\", as per the `toString`.",
+    "-               promise.stack = e.stack.substring(e.stack.indexOf(\"\\n\") + 1);",
+    "-               promise.stackCounter = longStackCounter++;",
+    "-           }",
+    "+           } catch (e) {}",
+    ""
+  ],
+  "mutatorName": "BlockStatement",
+  "strykerMutationId": "433"
+}

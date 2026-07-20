@@ -1,0 +1,39 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-d5b8874/testCase.test.ts
+  compose()
+    ✕ retain number with attributes composed with delete should produce delete (5 ms)
+
+  ● compose() › retain number with attributes composed with delete should produce delete
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 3
+
+    @@ -1,8 +1,11 @@
+      Delta {
+        "ops": Array [
+          Object {
+    +       "attributes": Object {
+    +         "bold": true,
+    +       },
+            "retain": 1,
+          },
+          Object {
+            "delete": 1,
+          },
+
+       6 |     const b = new Delta().retain(1).delete(1);
+       7 |     const expected = new Delta().retain(1).delete(1);
+    >  8 |     expect(a.compose(b)).toEqual(expected);
+         |                          ^
+       9 |   });
+      10 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-d5b8874/testCase.test.ts:8:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.202 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-d5b8874/testCase.test.ts".

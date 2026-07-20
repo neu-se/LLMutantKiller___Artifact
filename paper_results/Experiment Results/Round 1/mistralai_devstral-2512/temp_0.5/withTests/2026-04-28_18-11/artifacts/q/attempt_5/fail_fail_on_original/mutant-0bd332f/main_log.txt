@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-0bd332f/testCase.test.ts[0m:[93m2[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m2[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-0bd332f/testCase.test.ts
+  array_reduce mutation test
+    ✕ should throw TypeError when reduce is called on empty array without initial value (1 ms)
+
+  ● array_reduce mutation test › should throw TypeError when reduce is called on empty array without initial value
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+       6 |     // Create a test that directly exercises the array_reduce shim
+       7 |     // by using Q to wrap an empty array and trigger the reduce operation
+    >  8 |     return Q([]).then((emptyArray: any[]) => {
+         |             ^
+       9 |       // This will use the internal array_reduce shim
+      10 |       const testFunc = () => {
+      11 |         return emptyArray.reduce((acc: number) => acc);
+
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-0bd332f/testCase.test.ts:8:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.406 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-0bd332f/testCase.test.ts".

@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-0c04e45/testCase.test.ts
+  Q.async SpiderMonkey generator path
+    ✕ resolves with correct value from generator in SpiderMonkey mode (1 ms)
+
+  ● Q.async SpiderMonkey generator path › resolves with correct value from generator in SpiderMonkey mode
+
+    thrown: StopIteration {
+      "value": "final-step1",
+    }
+
+      2 |
+      3 | describe("Q.async SpiderMonkey generator path", () => {
+    > 4 |   it("resolves with correct value from generator in SpiderMonkey mode", async () => {
+        |   ^
+      5 |     const originalStopIteration = (global as any).StopIteration;
+      6 |     (global as any).StopIteration = function StopIteration(val: any) {
+      7 |       this.value = val;
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-0c04e45/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-0c04e45/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.277 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-0c04e45/testCase.test.ts".

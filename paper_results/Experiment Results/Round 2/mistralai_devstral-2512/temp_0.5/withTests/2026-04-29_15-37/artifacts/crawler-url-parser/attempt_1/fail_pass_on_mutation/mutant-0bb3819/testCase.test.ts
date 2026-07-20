@@ -1,0 +1,10 @@
+import { gettype } from "../../../../../../../../../../../subject_repositories/crawler-url-parser/crawler-url-parser.js";
+
+describe('gettype function with default.aspx path', () => {
+    it('should correctly handle default.aspx paths and return "samelevel"', () => {
+        const linkUrl = "http://example.com/path/default.aspx";
+        const pageUrl = "http://example.com/path/";
+        const result = gettype(linkUrl, pageUrl);
+        expect(result).toBe("samelevel");
+    });
+});

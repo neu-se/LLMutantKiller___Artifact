@@ -1,0 +1,50 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-8b8202a/testCase.test.ts (8.126 s)
+  dirty db
+    ✕ should not trigger drain event when there are still pending writes (5004 ms)
+
+  ● dirty db › should not trigger drain event when there are still pending writes
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      16 |     db.set('key1', 'value1');
+      17 |     db.set('key2', 'value2', () => {
+    > 18 |       expect(drainTriggered).toBe(false);
+         |                              ^
+      19 |       db.close();
+      20 |       fs.readFile(file, 'utf8', (err, data) => {
+      21 |         if (err) throw err;
+
+      at toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-8b8202a/testCase.test.ts:18:30)
+      at Object.cb [as callback] (../subject_repositories/node-dirty/lib/dirty/dirty.js:191:31)
+
+  ● dirty db › should not trigger drain event when there are still pending writes
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 |
+      5 | describe('dirty db', () => {
+    > 6 |   it('should not trigger drain event when there are still pending writes', (done) => {
+        |   ^
+      7 |     const file = 'test.dirty';
+      8 |     fs.unlinkSync(file);
+      9 |     const db = new Dirty(file);
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-8b8202a/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-8b8202a/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        8.47 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-8b8202a/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

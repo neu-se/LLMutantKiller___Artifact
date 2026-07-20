@@ -1,0 +1,43 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-2d2076b/testCase.test.ts[0m:[93m13[0m:[93m22[0m - [91merror[0m[90m TS7006: [0mParameter 'error' implicitly has an 'any' type.
+
+[7m13[0m         }, function (error) {
+[7m  [0m [91m                     ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-2d2076b/testCase.test.ts
+  Q.delay
+    ✕ should delay fulfillment (1 ms)
+    ✕ should not delay rejection
+
+  ● Q.delay › should delay fulfillment
+
+    ReferenceError: Q is not defined
+
+      1 | describe('Q.delay', function () {
+      2 |     it('should delay fulfillment', function () {
+    > 3 |         var promise = Q.delay(50);
+        |                       ^
+      4 |         return promise.then(function () {
+      5 |             expect(true).toBe(true);
+      6 |         });
+
+      at Object.Q (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-2d2076b/testCase.test.ts:3:23)
+
+  ● Q.delay › should not delay rejection
+
+    ReferenceError: Q is not defined
+
+       8 |
+       9 |     it('should not delay rejection', function () {
+    > 10 |         var promise = Q.delay(Q.reject(new Error("haha!")), 50);
+         |                       ^
+      11 |         return promise.then(function () {
+      12 |             expect(true).toBe(false);
+      13 |         }, function (error) {
+
+      at Object.Q (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-2d2076b/testCase.test.ts:10:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        3.056 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-2d2076b/testCase.test.ts".

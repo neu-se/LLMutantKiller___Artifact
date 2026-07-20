@@ -1,0 +1,8 @@
+describe('Complex', () => {
+  it('should handle atanh correctly for a = -1.1', () => {
+    const complex = new Complex(-1.1, 0);
+    const result = complex.atanh();
+    expect(result.re).toBeCloseTo(-Infinity);
+    expect(result.im).toBeCloseTo(0);
+  });
+});

@@ -1,0 +1,37 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-16f1215/testCase.test.ts[0m:[93m30[0m:[93m12[0m - [91merror[0m[90m TS2367: [0mThis comparison appears to be unintentional because the types '5e-324' and '0' have no overlap.
+
+[7m30[0m     expect(tinyB === 0).toBe(false); // b is not zero
+[7m  [0m [91m           ~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-16f1215/testCase.test.ts
+  Complex acsc
+    ✕ acsc with a=-0 and subnormal b: original returns non-NaN re, mutated returns NaN (3 ms)
+
+  ● Complex acsc › acsc with a=-0 and subnormal b: original returns non-NaN re, mutated returns NaN
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      36 |     const r1 = new Complex(0, Infinity).asin();
+      37 |     const r2 = new Complex(NaN, Infinity).asin();
+    > 38 |     expect(isNaN(r1.re)).toBe(false);
+         |                          ^
+      39 |     expect(isNaN(r2.re)).toBe(true);
+      40 |   });
+      41 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-16f1215/testCase.test.ts:38:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.444 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-16f1215/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

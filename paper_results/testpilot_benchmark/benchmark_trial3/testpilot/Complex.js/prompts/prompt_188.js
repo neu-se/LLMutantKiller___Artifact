@@ -1,0 +1,41 @@
+Your task is to write a test for the following function:
+```
+// Calculate the complex asinh
+// @returns {Complex}
+
+complex.js.ZERO.asinh()
+```
+
+This function is defined as follows:
+```
+function() {
+
+      // asinh(c) = log(c + sqrt(c^2 + 1))
+
+      var tmp = this['im'];
+      this['im'] = -this['re'];
+      this['re'] = tmp;
+      var res = this['asin']();
+
+      this['re'] = -this['im'];
+      this['im'] = tmp;
+      tmp = res['re'];
+
+      res['re'] = -res['im'];
+      res['im'] = tmp;
+      return res;
+    }
+```
+
+Please proceed by modifying the following code fragment:
+```
+let mocha = require('mocha');
+let assert = require('assert');
+let complex_js = require('complex.js');
+describe('test complex_js', function() {
+    it('test complex.js.ZERO.asinh', function(done) {
+``` 
+so that it becomes a test suite containing a few self-contained unit tests.  The tests should not rely on any 
+external resources. For example, a test should not attempt to access files that it does not create itself.
+
+Provide your answer as a fenced code block.

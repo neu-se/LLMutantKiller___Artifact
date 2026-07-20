@@ -1,0 +1,26 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-90b49f6/testCase.test.ts
+  Complex number parsing
+    ✕ should correctly parse complex numbers with trailing minus operator (1 ms)
+
+  ● Complex number parsing › should correctly parse complex numbers with trailing minus operator
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: SyntaxError
+
+    Received function did not throw
+
+       7 |     // The original code checks if (plus + minus > 0) which should fail for trailing operators
+       8 |     // The mutated code checks if (plus - minus > 0) which might not catch this case
+    >  9 |     expect(() => new Complex("5-3i-")).toThrow(SyntaxError);
+         |                                        ^
+      10 |   });
+      11 | });
+
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-90b49f6/testCase.test.ts:9:40)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.06 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-90b49f6/testCase.test.ts".

@@ -1,0 +1,48 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-67fa498/testCase.test.ts (6.229 s)
+  laterQueue processing
+    ✕ should process tasks in the laterQueue after the main queue (5002 ms)
+
+  ● laterQueue processing › should process tasks in the laterQueue after the main queue
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 0
+
+      Array [
+        "main",
+    -   "later",
+      ]
+
+      17 |     // Wait for both queues to be processed
+      18 |     setTimeout(() => {
+    > 19 |       expect(executionOrder).toEqual(["main", "later"]);
+         |                              ^
+      20 |       done();
+      21 |     }, 100);
+      22 |   });
+
+      at Timeout.toEqual [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-67fa498/testCase.test.ts:19:30)
+
+  ● laterQueue processing › should process tasks in the laterQueue after the main queue
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("laterQueue processing", () => {
+    > 4 |   it("should process tasks in the laterQueue after the main queue", (done) => {
+        |   ^
+      5 |     let executionOrder: string[] = [];
+      6 |
+      7 |     // Schedule a task in the main queue
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-67fa498/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-67fa498/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.393 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-67fa498/testCase.test.ts".

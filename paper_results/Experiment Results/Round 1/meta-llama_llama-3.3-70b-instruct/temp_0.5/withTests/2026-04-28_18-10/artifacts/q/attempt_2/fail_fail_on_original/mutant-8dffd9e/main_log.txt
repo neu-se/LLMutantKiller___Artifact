@@ -1,0 +1,58 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-8dffd9e/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-8dffd9e/testCase.test.ts
+  Q.isPending
+    ✕ should return false for a pending promise that is not pending (1 ms)
+    ✕ should return false for a fulfilled promise
+    ✕ should return false for a rejected promise (1 ms)
+
+  ● Q.isPending › should return false for a pending promise that is not pending
+
+    TypeError: Cannot read properties of undefined (reading 'defer')
+
+      3 | describe("Q.isPending", () => {
+      4 |     it("should return false for a pending promise that is not pending", () => {
+    > 5 |         const deferred = Q.defer();
+        |                            ^
+      6 |         const promise = deferred.promise;
+      7 |         deferred.resolve();
+      8 |         expect(Q.isPending(promise)).toBe(false);
+
+      at Object.defer (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-8dffd9e/testCase.test.ts:5:28)
+
+  ● Q.isPending › should return false for a fulfilled promise
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      10 |
+      11 |     it("should return false for a fulfilled promise", () => {
+    > 12 |         const promise = Q(10);
+         |                          ^
+      13 |         expect(Q.isPending(promise)).toBe(false);
+      14 |     });
+      15 |
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-8dffd9e/testCase.test.ts:12:26)
+
+  ● Q.isPending › should return false for a rejected promise
+
+    TypeError: Cannot read properties of undefined (reading 'reject')
+
+      15 |
+      16 |     it("should return false for a rejected promise", () => {
+    > 17 |         const promise = Q.reject(new Error("Test"));
+         |                           ^
+      18 |         expect(Q.isPending(promise)).toBe(false);
+      19 |     });
+      20 | });
+
+      at Object.reject (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-8dffd9e/testCase.test.ts:17:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        2.291 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-8dffd9e/testCase.test.ts".

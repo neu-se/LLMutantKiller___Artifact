@@ -1,0 +1,36 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-340bfb0/testCase.test.ts
+  Q long stack traces
+    ✕ should correctly set __minimumStackCounter__ property on error objects (9 ms)
+
+  ● Q long stack traces › should correctly set __minimumStackCounter__ property on error objects
+
+    expect(received).toHaveProperty(path)
+
+    Expected path: "__minimumStackCounter__"
+    Received path: []
+
+    Received value: [Error: Test error]
+
+      16 |       try {
+      17 |         // Verify the error has the correct property
+    > 18 |         expect(error).toHaveProperty("__minimumStackCounter__");
+         |                       ^
+      19 |         expect(typeof (error as any).__minimumStackCounter__).toBe("number");
+      20 |         done();
+      21 |       } catch (e) {
+
+      at toHaveProperty (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-340bfb0/testCase.test.ts:18:23)
+      at rejected (../subject_repositories/q/q.js:865:24)
+      at _rejected (../subject_repositories/q/q.js:891:30)
+      at Promise.rejected (../subject_repositories/q/q.js:1143:31)
+      at Promise.apply [as promiseDispatch] (../subject_repositories/q/q.js:809:41)
+      at apply (../subject_repositories/q/q.js:625:44)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.648 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-340bfb0/testCase.test.ts".

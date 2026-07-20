@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-d7d374d/testCase.test.ts[0m:[93m2[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m2[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-d7d374d/testCase.test.ts
+  deprecate function behavior
+    ✕ should not call console.warn when console is undefined in the mutated version (1 ms)
+
+  ● deprecate function behavior › should not call console.warn when console is undefined in the mutated version
+
+    TypeError: Cannot read properties of undefined (reading 'deprecate')
+
+      15 |     // Create a test function to deprecate
+      16 |     const testFn = () => "test result";
+    > 17 |     const deprecatedFn = Q.deprecate(testFn, "testFn", "newFn");
+         |                            ^
+      18 |
+      19 |     // In the original code, console.warn should be called
+      20 |     // In the mutated code, console.warn should not be called because the condition is always true
+
+      at Object.deprecate (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-d7d374d/testCase.test.ts:17:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.684 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-d7d374d/testCase.test.ts".

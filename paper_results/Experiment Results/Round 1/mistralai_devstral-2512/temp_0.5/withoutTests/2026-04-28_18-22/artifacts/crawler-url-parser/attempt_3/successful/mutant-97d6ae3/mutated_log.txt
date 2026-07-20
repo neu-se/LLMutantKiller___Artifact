@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-97d6ae3/testCase.test.ts
+  extract function
+    ✕ should handle links that parse to null currentUrl (8 ms)
+
+  ● extract function › should handle links that parse to null currentUrl
+
+    TypeError: Cannot read properties of null (reading 'url')
+
+       99 | 		let currentUrl = parse(href, baseUrlStr);
+      100 |
+    > 101 | 		if (currentUrl || currentUrl.url) {
+          | 		                             ^
+      102 | 			if (urlMap.has(currentUrl.url)) {
+      103 | 				let tmpUrl = urlMap.get(currentUrl.url);
+      104 | 				if (!tmpUrl.text.includes(text)) {
+
+      at Element.url (../subject_repositories/crawler-url-parser/crawler-url-parser.js:101:32)
+      at LoadedCheerio.each (../subject_repositories/crawler-url-parser/node_modules/cheerio/src/api/traversing.ts:648:24)
+      at each (../subject_repositories/crawler-url-parser/crawler-url-parser.js:93:9)
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-97d6ae3/testCase.test.ts:14:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.637 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-97d6ae3/testCase.test.ts".

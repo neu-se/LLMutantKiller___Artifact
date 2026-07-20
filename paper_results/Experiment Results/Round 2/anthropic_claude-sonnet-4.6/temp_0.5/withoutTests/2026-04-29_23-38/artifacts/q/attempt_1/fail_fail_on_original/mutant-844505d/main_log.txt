@@ -1,0 +1,37 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-844505d/testCase.test.ts[0m:[93m2[0m:[93m10[0m - [91merror[0m[90m TS2724: [0m'"domain"' has no exported member named 'domain'. Did you mean 'Domain'?
+
+[7m2[0m import { domain } from "domain";
+[7m [0m [91m         ~~~~~~[0m
+
+  [96mnode_modules/@types/node/domain.d.ts[0m:[93m25[0m:[93m11[0m
+    [7m25[0m     class Domain extends EventEmitter {
+    [7m  [0m [96m          ~~~~~~[0m
+    'Domain' is declared here.
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-844505d/testCase.test.ts[0m:[93m11[0m:[93m20[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m11[0m     d.on("error", (err) => {
+[7m  [0m [91m                   ~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-844505d/testCase.test.ts
+  Q.done with process.domain
+    ✕ should bind onUnhandledError to process.domain when domain is active
+
+  ● Q.done with process.domain › should bind onUnhandledError to process.domain when domain is active
+
+    TypeError: Cannot read properties of undefined (reading 'create')
+
+      4 | describe("Q.done with process.domain", () => {
+      5 |   it("should bind onUnhandledError to process.domain when domain is active", (done) => {
+    > 6 |     const d = domain.create();
+        |                      ^
+      7 |     
+      8 |     let domainCaughtError = false;
+      9 |     let errorMessage = "test rejection error";
+
+      at Object.create (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-844505d/testCase.test.ts:6:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.346 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-844505d/testCase.test.ts".

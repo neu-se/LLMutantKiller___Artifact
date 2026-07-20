@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_9/pending_category/mutant-894c254/testCase.test.ts
+  removeQueryParameters configuration
+    ✕ should handle UTM parameters with different case patterns in mixed case (3 ms)
+
+  ● removeQueryParameters configuration › should handle UTM parameters with different case patterns in mixed case
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "?ref=keep"
+    Received: "?UTM_SOURCE=test&ref=keep"
+
+      11 |         // The original code should remove UTM_SOURCE (case-insensitive match)
+      12 |         // The mutated code would not remove it (case-sensitive match)
+    > 13 |         expect(result?.search).toBe("?ref=keep");
+         |                                ^
+      14 |     });
+      15 | });
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_9/pending_category/mutant-894c254/testCase.test.ts:13:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.38 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_9/pending_category/mutant-894c254/testCase.test.ts".

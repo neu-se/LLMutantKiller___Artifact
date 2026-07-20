@@ -1,0 +1,41 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-a247cac/testCase.test.ts
+  compose() optimization with retain end
+    ✕ should apply retain end optimization when composing with delete (5 ms)
+
+  ● compose() optimization with retain end › should apply retain end optimization when composing with delete
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 4
+
+    @@ -2,9 +2,12 @@
+        "ops": Array [
+          Object {
+            "attributes": Object {
+              "bold": true,
+            },
+    -       "insert": "AC",
+    +       "insert": "A",
+    +     },
+    +     Object {
+    +       "insert": "B",
+          },
+        ],
+      }
+
+      11 |       .insert('A', { bold: true })
+      12 |       .insert('C', { bold: true });
+    > 13 |     expect(a.compose(b)).toEqual(expected);
+         |                          ^
+      14 |   });
+      15 | });
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-a247cac/testCase.test.ts:13:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.453 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-a247cac/testCase.test.ts".

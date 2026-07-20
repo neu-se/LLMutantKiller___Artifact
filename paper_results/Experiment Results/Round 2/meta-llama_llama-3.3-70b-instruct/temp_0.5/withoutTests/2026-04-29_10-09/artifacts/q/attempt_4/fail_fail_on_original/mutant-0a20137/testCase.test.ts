@@ -1,0 +1,15 @@
+import { Q } from './q';
+
+describe('Q.join', () => {
+    it('should return a promise that resolves with the joined value if the two promises resolve with the same value', () => {
+        const promise1 = Q(5);
+        const promise2 = Q(5);
+        return expect(Q.join(promise1, promise2)).resolves.toEqual(5);
+    });
+
+    it('should throw an error when the two promises resolve with different values', () => {
+        const promise1 = Q(5);
+        const promise2 = Q(10);
+        return expect(Q.join(promise1, promise2)).rejects.toThrowError("Q can't join: not the same: 5 10");
+    });
+});

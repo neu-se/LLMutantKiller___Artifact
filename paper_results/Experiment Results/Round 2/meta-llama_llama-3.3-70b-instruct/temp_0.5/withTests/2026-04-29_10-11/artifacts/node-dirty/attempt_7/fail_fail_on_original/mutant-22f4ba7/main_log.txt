@@ -1,0 +1,23 @@
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-22f4ba7/testCase.test.ts
+  Dirty
+    ✕ should close the write stream after drain event when there are pending writes (4 ms)
+
+  ● Dirty › should close the write stream after drain event when there are pending writes
+
+    File was not closed
+
+      22 |     const stats = fs.statSync(filePath);
+      23 |     if (stats.nlink > 0) {
+    > 24 |       throw new Error('File was not closed');
+         |             ^
+      25 |     }
+      26 |   });
+      27 | });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-22f4ba7/testCase.test.ts:24:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.29 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-22f4ba7/testCase.test.ts".

@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-4d10e5e/testCase.test.ts
+  hasStacks mutation detection
+    ✕ should not modify error stack traces when longStackSupport is disabled (hasStacks=false original behavior) (2 ms)
+
+  ● hasStacks mutation detection › should not modify error stack traces when longStackSupport is disabled (hasStacks=false original behavior)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      24 |       // Original: hasStacks=false => promise.stack is NOT set => promiseHasStack=false
+      25 |       // Mutation: hasStacks=true  => promise.stack IS set     => promiseHasStack=true
+    > 26 |       expect(promiseHasStack).toBe(false);
+         |                               ^
+      27 |       
+      28 |       deferred.resolve(42);
+      29 |       await deferred.promise;
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-4d10e5e/testCase.test.ts:26:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.413 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-4d10e5e/testCase.test.ts".

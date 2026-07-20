@@ -1,0 +1,30 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_10/pending_category/mutant-68d2151/testCase.test.ts
+  GeoPoint.calculateDestination
+    ✕ should calculate correct destination for 45 degree latitude with 45 degree bearing (2 ms)
+
+  ● GeoPoint.calculateDestination › should calculate correct destination for 45 degree latitude with 45 degree bearing
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 45.53
+    Received: 45.31706939733646
+
+    Expected precision:    2
+    Expected difference: < 0.005
+    Received difference:   0.21293060266354047
+
+      11 |     // The mutation will cause significant divergence in both coordinates
+      12 |     // due to the change in y calculation (division vs multiplication)
+    > 13 |     expect(result.latitude).toBeCloseTo(45.53, 2);
+         |                             ^
+      14 |     expect(result.longitude).toBeCloseTo(0.53, 2);
+      15 |   });
+      16 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_10/pending_category/mutant-68d2151/testCase.test.ts:13:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.886 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_10/pending_category/mutant-68d2151/testCase.test.ts".

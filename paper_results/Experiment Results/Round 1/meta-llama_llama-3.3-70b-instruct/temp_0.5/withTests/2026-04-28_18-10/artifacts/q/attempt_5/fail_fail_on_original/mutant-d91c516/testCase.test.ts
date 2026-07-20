@@ -1,0 +1,13 @@
+import { Q } from "../../../../../../../../subject_repositories/q/q.js";
+
+describe("Q", () => {
+    it("should test the behavior of Q.keys", () => {
+        var obj = { a: 1, b: 2 };
+        expect(typeof Q.keys).toBe('function');
+        var promise = Q.keys(obj);
+        expect(typeof promise.then).toBe('function');
+        return promise.then(function(keys) {
+            expect(keys.sort()).toEqual(["a", "b"]);
+        });
+    });
+});

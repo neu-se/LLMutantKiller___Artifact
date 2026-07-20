@@ -1,0 +1,21 @@
+[
+  [
+    "parse",
+    [
+      "const cup = require('crawler-url-parser');\n\n//// parse(current_url[,base_url])\nlet result = cup.parse(\"http://question.stackoverflow.com/aaa/bbb/ddd?q1=query1&q2=query2\");\n\nconsole.log(result.url);\n// http://question.stackoverflow.com/aaa/bbb/ddd?q1=query1&q2=query2\n\nconsole.log(result.baseurl);\n// null\n\nconsole.log(result.normalized);\n// http://question.stackoverflow.com/aaa/bbb/ddd?q1=query1&q2=query2\n\nconsole.log(result.host); \n// question.stackoverflow.com\n\nconsole.log(result.domain); \n// stackoverflow.com\n",
+      "const cup = require('crawler-url-parser');\n\n//// parse(current_url[,base_url])\nlet result = cup.parse(\"../ddd?q1=query1&q2=query2\",\"http://question.stackoverflow.com/aaa/bbb/ccc/\");\n\nconsole.log(result.url);\n// http://question.stackoverflow.com/aaa/bbb/ddd?q1=query1&q2=query2\n\nconsole.log(result.baseurl);\n// http://question.stackoverflow.com/aaa/bbb/ccc\n\nconsole.log(result.normalized);\n// http://question.stackoverflow.com/aaa/bbb/ddd?q1=query1&q2=query2\n\nconsole.log(result.host); \n// question.stackoverflow.com\n\nconsole.log(result.domain); \n// stackoverflow.com\n"
+    ]
+  ],
+  [
+    "extract",
+    [
+      "const cup = require('crawler-url-parser');\n\n//// extract(html_str,current_url);\nlet htmlStr='<html><body> \\\n    <a href=\"http://best.question.stackoverflow.com\">subdomain</a><br /> \\\n    <a href=\"http://faq.stackoverflow.com\">subdomain</a><br /> \\\n    <a href=\"http://stackoverflow.com\">updomain</a><br /> \\\n    <a href=\"http://www.google.com\">external</a><br /> \\\n    <a href=\"http://www.facebook.com\">external</a><br /> \\\n    <a href=\"http://question.stackoverflow.com/aaa/bbb/ccc\">sublevel</a><br /> \\\n    <a href=\"http://question.stackoverflow.com/aaa/bbb/zzz\">sublevel</a><br /> \\\n    <a href=\"http://question.stackoverflow.com/aaa/\">uplevel</a><br /> \\\n    <a href=\"http://question.stackoverflow.com/aaa/ddd\">samelevel</a><br /> \\\n    <a href=\"http://question.stackoverflow.com/aaa/eee\">samelevel</a><br /> \\\n    <a href=\"http://question.stackoverflow.com/aaa/ddd/eee\">internal</a><br /> \\\n    <a href=\"http://question.stackoverflow.com/zzz\">internal</a><br /> \\\n</body></html>';\n\nlet currentUrl= \"http://question.stackoverflow.com/aaa/bbb\";\nlet urls = cup.extract(htmlStr,currentUrl);"
+    ]
+  ],
+  [
+    "gettype",
+    [
+      "const cup = require('crawler-url-parser');\n\n//// gettype(current_url,base_url);\nlet level = cup.gettype(\"sub.domain.com/aaa/bbb/\",\"sub.domain.com/aaa/bbb/ccc\");\nconsole.log(level); //sublevel\n\nlevel = cup.gettype(\"sub.domain.com/aaa/bbb/ccc/ddd\",\"sub.domain.com/aaa/bbb/ccc\");\nconsole.log(level); //uplevel\n\nlevel = cup.gettype(\"sub.domain.com/aaa/bbb/eee\",\"sub.domain.com/aaa/bbb/ccc\");\nconsole.log(level); //samelevel\n\nlevel = cup.gettype(\"sub.domain.com/aaa/bbb/eee\",\"sub.anotherdomain.com/aaa/bbb/ccc\");\nconsole.log(level); //external"
+    ]
+  ]
+]

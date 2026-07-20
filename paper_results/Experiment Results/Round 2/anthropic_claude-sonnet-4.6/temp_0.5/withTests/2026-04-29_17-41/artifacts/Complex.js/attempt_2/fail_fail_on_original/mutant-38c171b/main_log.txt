@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-38c171b/testCase.test.ts
+  Complex acsch mutation detection
+    ✕ detects mutation in acsch when d=0 with non-zero b via subnormal underflow (3 ms)
+
+  ● Complex acsch mutation detection › detects mutation in acsch when d=0 with non-zero b via subnormal underflow
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: NaN
+    Received: NaN
+
+    Expected precision:    5
+    Expected difference: < 0.000005
+    Received difference:   NaN
+
+      15 |     const originalArg = new Complex(0, -Infinity); // what original computes before asinh  
+      16 |     const originalResult = originalArg.asinh();
+    > 17 |     expect(result.re).toBeCloseTo(originalResult.re, 5);
+         |                       ^
+      18 |     expect(result.im).toBeCloseTo(originalResult.im, 5);
+      19 |   });
+      20 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-38c171b/testCase.test.ts:17:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.268 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-38c171b/testCase.test.ts".

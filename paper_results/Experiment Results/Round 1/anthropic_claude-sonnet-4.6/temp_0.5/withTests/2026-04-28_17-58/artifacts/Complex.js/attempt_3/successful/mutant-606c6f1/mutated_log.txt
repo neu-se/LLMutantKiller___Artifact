@@ -1,0 +1,25 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-606c6f1/testCase.test.ts
+  Complex add method with infinity
+    ✕ should return INFINITY (not NaN) when adding finite complex to infinite complex (3 ms)
+
+  ● Complex add method with infinity › should return INFINITY (not NaN) when adding finite complex to infinite complex
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: Infinity
+    Received: 4
+
+      13 |     // Mutated: falls through to new Complex(Infinity+3, 0+4) = new Complex(Infinity, 4)
+      14 |     // new Complex(Infinity, 4).isInfinite() = true but im !== Infinity
+    > 15 |     expect(result2.im).toBe(Infinity);
+         |                        ^
+      16 |   });
+      17 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-606c6f1/testCase.test.ts:15:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.19 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-606c6f1/testCase.test.ts".

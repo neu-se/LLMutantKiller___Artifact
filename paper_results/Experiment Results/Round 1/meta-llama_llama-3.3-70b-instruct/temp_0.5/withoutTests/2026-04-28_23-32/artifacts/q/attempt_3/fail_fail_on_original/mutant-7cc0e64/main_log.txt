@@ -1,0 +1,36 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-7cc0e64/testCase.test.ts[0m:[93m7[0m:[93m40[0m - [91merror[0m[90m TS7006: [0mParameter 'fn' implicitly has an 'any' type.
+
+[7m7[0m         const processDomain = { bind: (fn) => fn };
+[7m [0m [91m                                       ~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-7cc0e64/testCase.test.ts[0m:[93m8[0m:[93m29[0m - [91merror[0m[90m TS2345: [0mArgument of type '"domain"' is not assignable to parameter of type 'keyof Process'.
+
+[7m8[0m         jest.spyOn(process, 'domain', 'get').mockReturnValue(processDomain);
+[7m [0m [91m                            ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-7cc0e64/testCase.test.ts[0m:[93m8[0m:[93m62[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ bind: (fn: any) => any; }' is not assignable to parameter of type 'string | number | boolean | (<K>(error: Error, event: string | symbol, ...args: AnyRest) => void) | (WriteStream & { fd: 1; }) | (WriteStream & { ...; }) | ... 66 more ... | undefined'.
+  Type '{ bind: (fn: any) => any; }' is missing the following properties from type 'ProcessVersions': http_parser, node, v8, ares, and 4 more.
+
+[7m8[0m         jest.spyOn(process, 'domain', 'get').mockReturnValue(processDomain);
+[7m [0m [91m                                                             ~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-7cc0e64/testCase.test.ts[0m:[93m11[0m:[93m18[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 0.
+
+[7m11[0m         Q.done(Q.resolve(), null, null, null, onUnhandledErrorSpy);
+[7m  [0m [91m                 ~~~~~~~[0m
+
+  [96m../subject_repositories/q/q.js[0m:[93m497[0m:[93m12[0m
+    [7m497[0m function Q(value) {
+    [7m   [0m [96m           ~~~~~[0m
+    An argument for 'value' was not provided.
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-7cc0e64/testCase.test.ts[0m:[93m11[0m:[93m47[0m - [91merror[0m[90m TS2554: [0mExpected 4 arguments, but got 5.
+
+[7m11[0m         Q.done(Q.resolve(), null, null, null, onUnhandledErrorSpy);
+[7m  [0m [91m                                              ~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/subject_repositories/q/q.js:123
+          domain.enter();
+                 ^
+
+TypeError: domain.enter is not a function
+    at enter (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/subject_repositories/q/q.js:123:24)
+    at processTicksAndRejections (node:internal/process/task_queues:77:11)
+
+Node.js v20.19.4

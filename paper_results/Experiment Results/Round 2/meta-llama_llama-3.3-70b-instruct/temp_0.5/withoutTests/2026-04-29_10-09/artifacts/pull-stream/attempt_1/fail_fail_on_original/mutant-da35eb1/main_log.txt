@@ -1,0 +1,36 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-da35eb1/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/sinks/find.js"' has no exported member 'find'.
+
+[7m1[0m import { find } from "../../../../../../../../../../../subject_repositories/pull-stream/sinks/find.js";
+[7m [0m [91m         ~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-da35eb1/testCase.test.ts[0m:[93m16[0m:[93m25[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m16[0m     find(testFunction, (err, data) => {
+[7m  [0m [91m                        ~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-da35eb1/testCase.test.ts[0m:[93m16[0m:[93m30[0m - [91merror[0m[90m TS7006: [0mParameter 'data' implicitly has an 'any' type.
+
+[7m16[0m     find(testFunction, (err, data) => {
+[7m  [0m [91m                             ~~~~[0m
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/pull-stream/sinks/find.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/pull-stream/sinks/find.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-da35eb1/testCase.test.ts
+  find function
+    ✕ should call the callback with the correct error when the stream ends with an error (2 ms)
+
+  ● find function › should call the callback with the correct error when the stream ends with an error
+
+    TypeError: (0 , find_js_1.find) is not a function
+
+      14 |
+      15 |     const testFunction = () => false;
+    > 16 |     find(testFunction, (err, data) => {
+         |         ^
+      17 |       callback(err, data);
+      18 |       expect(err).toBeInstanceOf(Error);
+      19 |       expect(err.message).toBe("Test error");
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-da35eb1/testCase.test.ts:16:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.451 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-da35eb1/testCase.test.ts".

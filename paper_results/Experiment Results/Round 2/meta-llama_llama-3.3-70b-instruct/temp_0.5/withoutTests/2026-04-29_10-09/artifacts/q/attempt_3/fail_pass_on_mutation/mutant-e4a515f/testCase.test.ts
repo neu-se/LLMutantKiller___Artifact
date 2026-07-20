@@ -1,0 +1,7 @@
+import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+
+describe('Q promise', () => {
+    it('should throw TypeError when resolver is not a function', () => {
+        expect(() => Q(function() {})).toThrow(TypeError);
+    });
+});

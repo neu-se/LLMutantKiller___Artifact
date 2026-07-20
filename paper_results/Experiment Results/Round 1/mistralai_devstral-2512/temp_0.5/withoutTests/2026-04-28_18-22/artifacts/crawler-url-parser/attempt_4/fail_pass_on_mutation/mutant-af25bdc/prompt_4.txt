@@ -1,0 +1,54 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+node:internal/modules/cjs/loader:1215
+  throw err;
+  ^
+
+Error: Cannot find module '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-af25bdc/crawler-url-parser.js'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1212:15)
+    at Module._load (node:internal/modules/cjs/loader:1043:27)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v20.19.4
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-af25bdc/testCase.test.ts
+  crawler-url-parser main module execution
+    ✕ should log "for testing purpose" when run as main module (100 ms)
+
+  ● crawler-url-parser main module execution › should log "for testing purpose" when run as main module
+
+    Command failed: node /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-af25bdc/crawler-url-parser.js
+    node:internal/modules/cjs/loader:1215
+      throw err;
+      ^
+
+    Error: Cannot find module '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-af25bdc/crawler-url-parser.js'
+
+       5 |   it('should log "for testing purpose" when run as main module', () => {
+       6 |     const modulePath = path.resolve(__dirname, 'crawler-url-parser.js');
+    >  7 |     const output = execSync(`node ${modulePath}`, { encoding: 'utf8' }).trim();
+         |                            ^
+       8 |
+       9 |     // Original code logs "for testing purpose", mutant logs ""
+      10 |     expect(output).toBe('for testing purpose');
+
+      at node:internal/main/run_main_module:28:49 {
+        code: 'MODULE_NOT_FOUND',
+        requireStack: []
+      }
+      Node.js v20.19.4
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-af25bdc/testCase.test.ts:7:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.491 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-af25bdc/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

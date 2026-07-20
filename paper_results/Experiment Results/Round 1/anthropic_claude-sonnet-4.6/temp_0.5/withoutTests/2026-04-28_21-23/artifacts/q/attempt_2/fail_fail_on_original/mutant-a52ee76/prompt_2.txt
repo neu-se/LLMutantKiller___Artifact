@@ -1,0 +1,33 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-a52ee76/testCase.test.ts
+  Q.longStackSupport with Q_DEBUG environment variable
+    ✕ should set Q.longStackSupport to true when Q_DEBUG environment variable is set (2 ms)
+
+  ● Q.longStackSupport with Q_DEBUG environment variable › should set Q.longStackSupport to true when Q_DEBUG environment variable is set
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      24 |       // In the original code, Q.longStackSupport should be true when Q_DEBUG is set
+      25 |       // In the mutated code, Q.longStackSupport remains false even when Q_DEBUG is set
+    > 26 |       expect(QReloaded.longStackSupport).toBe(true);
+         |                                          ^
+      27 |     } finally {
+      28 |       // Restore original values
+      29 |       if (originalQDebug === undefined) {
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-a52ee76/testCase.test.ts:26:42)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.024 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-a52ee76/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

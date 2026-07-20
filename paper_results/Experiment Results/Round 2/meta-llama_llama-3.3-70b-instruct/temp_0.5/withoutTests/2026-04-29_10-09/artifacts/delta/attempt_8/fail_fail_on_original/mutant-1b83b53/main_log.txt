@@ -1,0 +1,32 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_8/pending_category/mutant-1b83b53/testCase.test.ts
+  Delta
+    ✕ should correctly compose two deltas with embeds (6 ms)
+
+  ● Delta › should correctly compose two deltas with embeds
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+    -   "image": "image1",
+    +   "image": "image2",
+      }
+
+      12 |       expect(embedType).toBe('image');
+      13 |     } else if (composed.ops.length === 2) {
+    > 14 |       expect(composed.ops[0].insert).toEqual({ image: 'image1' });
+         |                                      ^
+      15 |       expect(composed.ops[1].insert).toEqual({ image: 'image2' });
+      16 |     } else {
+      17 |       throw new Error('Expected retain to be an object or two separate inserts');
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_8/pending_category/mutant-1b83b53/testCase.test.ts:14:38)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.732 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_8/pending_category/mutant-1b83b53/testCase.test.ts".

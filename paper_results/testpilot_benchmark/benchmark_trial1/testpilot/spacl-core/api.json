@@ -1,0 +1,222 @@
+[
+  {
+    "accessPath": "@spacl/core.Matcher",
+    "descriptor": {
+      "type": "function",
+      "signature": "(spec, version = '1.1')",
+      "implementation": "class Matcher extends RegExp {\n    /** @param spec Path specification.\n      * @param version Specification language version. */\n    constructor(spec, version = '1.1') {\n        if (spec.match(/^[a-zA-Z0-9_/:~.$+*-]*$/) === null) {\n            throw new Error('Path contains invalid characters');\n        }\n        if (spec.match(/^\\//) === null) {\n            throw new Error('Path must begin with a slash');\n        }\n        if (spec.match(/\\/\\//) !== null) {\n            throw new Error('Path contains empty segments');\n        }\n        if (spec.match(version === '1' || version === '1.0'\n            ? /[*+][^/]|[^/][*+]/\n            : /\\*[^*/]|\\+[^+/]|[^/*]\\*|[^/+]\\+|\\*\\*\\*|\\+\\+\\+/) !== null) {\n            throw new Error('Path contains malformed wildcards');\n        }\n        if (spec.match(/[^/]:|:\\/|:$/) !== null) {\n            throw new Error('Path contains malformed captures');\n        }\n        if (spec.match(/^.+\\/$/) !== null) {\n            throw new Error('Path must not end with a slash');\n        }\n        const { regex, props } = compile(spec);\n        super(regex);\n        this.spec = spec;\n        this.props = props;\n    }\n    [Symbol.match](string) {\n        if (string.length > 1 && string.endsWith('/')) {\n            return null;\n        }\n        return super[Symbol.match](string);\n    }\n    /** Static constructor function; returns a new Matcher.\n      * @param spec Path specification.\n      * @param version Specification language version. */\n    static for(spec, version = '1.1') {\n        return new Matcher(spec, version);\n    }\n}",
+      "isAsync": false,
+      "isConstructor": true
+    },
+    "packageName": "@spacl/core"
+  },
+  {
+    "accessPath": "@spacl/core.Matcher.for",
+    "descriptor": {
+      "type": "function",
+      "signature": "(spec, version = '1.1')",
+      "implementation": "for(spec, version = '1.1') {\n        return new Matcher(spec, version);\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "@spacl/core"
+  },
+  {
+    "accessPath": "@spacl/core.Rule",
+    "descriptor": {
+      "type": "function",
+      "signature": "(spec)",
+      "implementation": "class Rule {\n    /** @param spec Path specification or pre-compiled matcher for\n      *             determining which paths this rule will apply to. */\n    constructor(spec) {\n        /** Set of verbs governed by this rule; allowed verbs\n          * are marked as `true`, denied verbs as `false`. */\n        this.verbs = {};\n        this.regex = spec instanceof matcher_1.Matcher\n            ? spec\n            : new matcher_1.Matcher(spec);\n    }\n    /** Mark one or more verbs as allowed.\n      * @note Deny overrides allow within SPACL policies;\n      *       this method will have no effect on verbs\n      *       previously marked as denied. */\n    allow(...verbs) {\n        for (const verb of verbs) {\n            if (!(verb in this.verbs)) {\n                this.verbs[verb] = true;\n            }\n        }\n        return this;\n    }\n    /** Mark one or more verbs as denied. */\n    deny(...verbs) {\n        for (const verb of verbs) {\n            this.verbs[verb] = false;\n        }\n        return this;\n    }\n    /** Check whether an action is allowed on a path.\n      * @param path Path to be acted on.\n      * @param verb Action to be performed.\n      * @param ctx Query context for resolving context-dependent paths.\n      * @returns Returns `true` if the action is explicitly allowed,\n      *          `false` if the action is explicitly denied, or\n      *          `null` if the combination of path and action\n      *          is not governed by this rule. */\n    query(path, verb, ctx) {\n        if (this.matches(path, ctx) && verb in this.verbs) {\n            return this.verbs[verb];\n        }\n        return null;\n    }\n    /** Check whether a path is governed by this rule.\n      * @param path Path to be checked.\n      * @param ctx Query context for resolving context-dependent paths. */\n    matches(path, ctx) {\n        const match = path.match(this.regex);\n        if (match === null) {\n            return false;\n        }\n        const count = this.regex.props.length;\n        if (count > 0) {\n            if (ctx === undefined) {\n                return false;\n            }\n            for (let index = 0; index < count; index++) {\n                const prop = ctx[this.regex.props[index]];\n                if (prop === undefined || match[index + 1] !== prop) {\n                    return false;\n                }\n            }\n        }\n        return true;\n    }\n    /** Create clone of a rule.\n      * @param spec Replacement path specification for the new rule. */\n    clone(spec = this.regex) {\n        const rule = new Rule(spec);\n        for (const verb in this.verbs) {\n            rule.verbs[verb] = this.verbs[verb];\n        }\n        return rule;\n    }\n    /** Static constructor function; returns a new Rule.\n      * @param spec Path specification or pre-compiled matcher for\n      *             determining which paths this rule will apply to. */\n    static for(spec) {\n        return new Rule(spec);\n    }\n}",
+      "isAsync": false,
+      "isConstructor": true
+    },
+    "packageName": "@spacl/core"
+  },
+  {
+    "accessPath": "@spacl/core.Rule.prototype.allow",
+    "descriptor": {
+      "type": "function",
+      "signature": "(...verbs)",
+      "implementation": "allow(...verbs) {\n        for (const verb of verbs) {\n            if (!(verb in this.verbs)) {\n                this.verbs[verb] = true;\n            }\n        }\n        return this;\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "@spacl/core"
+  },
+  {
+    "accessPath": "@spacl/core.Rule.prototype.deny",
+    "descriptor": {
+      "type": "function",
+      "signature": "(...verbs)",
+      "implementation": "deny(...verbs) {\n        for (const verb of verbs) {\n            this.verbs[verb] = false;\n        }\n        return this;\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "@spacl/core"
+  },
+  {
+    "accessPath": "@spacl/core.Rule.prototype.query",
+    "descriptor": {
+      "type": "function",
+      "signature": "(path, verb, ctx)",
+      "implementation": "query(path, verb, ctx) {\n        if (this.matches(path, ctx) && verb in this.verbs) {\n            return this.verbs[verb];\n        }\n        return null;\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "@spacl/core"
+  },
+  {
+    "accessPath": "@spacl/core.Rule.prototype.matches",
+    "descriptor": {
+      "type": "function",
+      "signature": "(path, ctx)",
+      "implementation": "matches(path, ctx) {\n        const match = path.match(this.regex);\n        if (match === null) {\n            return false;\n        }\n        const count = this.regex.props.length;\n        if (count > 0) {\n            if (ctx === undefined) {\n                return false;\n            }\n            for (let index = 0; index < count; index++) {\n                const prop = ctx[this.regex.props[index]];\n                if (prop === undefined || match[index + 1] !== prop) {\n                    return false;\n                }\n            }\n        }\n        return true;\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "@spacl/core"
+  },
+  {
+    "accessPath": "@spacl/core.Rule.prototype.clone",
+    "descriptor": {
+      "type": "function",
+      "signature": "(spec = this.regex)",
+      "implementation": "clone(spec = this.regex) {\n        const rule = new Rule(spec);\n        for (const verb in this.verbs) {\n            rule.verbs[verb] = this.verbs[verb];\n        }\n        return rule;\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "@spacl/core"
+  },
+  {
+    "accessPath": "@spacl/core.Rule.for",
+    "descriptor": {
+      "type": "function",
+      "signature": "(spec)",
+      "implementation": "for(spec) {\n        return new Rule(spec);\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "@spacl/core"
+  },
+  {
+    "accessPath": "@spacl/core.Policy",
+    "descriptor": {
+      "type": "function",
+      "signature": "(name, ...rules)",
+      "implementation": "class Policy {\n    constructor(name, ...rules) {\n        this.name = name;\n        this.rules = rules;\n    }\n    /** Add rules to a policy. */\n    push(...rules) {\n        this.rules.push(...rules);\n        return this;\n    }\n    /** Check whether an action is allowed on a path.\n      * @param path Path to be acted on.\n      * @param verb Action to be performed.\n      * @param ctx Query context for resolving context-dependent paths.\n      * @returns Returns `true` if the action is explicitly allowed,\n      *          `false` if the action is explicitly denied, or\n      *          `null` if the combination of path and action\n      *          is not governed by this policy. */\n    query(path, verb, ctx) {\n        let allow = null;\n        for (const rule of this.rules) {\n            const res = rule.query(path, verb, ctx);\n            if (res === false) {\n                return false;\n            }\n            if (res === true) {\n                allow = true;\n            }\n        }\n        return allow;\n    }\n    /** Check whether a path is governed by this policy.\n      * @param path Path to be checked.\n      * @param ctx Query context for resolving context-dependent paths. */\n    matches(path, ctx) {\n        for (const rule of this.rules) {\n            if (rule.matches(path, ctx)) {\n                return true;\n            }\n        }\n        return false;\n    }\n    /** Create clone of a policy.\n      * @param name Replacement name for new policy.\n      * @param deep Deep copy; clone underlying rules as well. */\n    clone(name = this.name, deep = true) {\n        return deep\n            ? new Policy(name, ...this.rules.map((rule) => rule.clone()))\n            : new Policy(name, ...this.rules);\n    }\n    /** Static constructor function; returns a new Policy. */\n    static for(name, ...rules) {\n        return new Policy(name, ...rules);\n    }\n}",
+      "isAsync": false,
+      "isConstructor": true
+    },
+    "packageName": "@spacl/core"
+  },
+  {
+    "accessPath": "@spacl/core.Policy.prototype.push",
+    "descriptor": {
+      "type": "function",
+      "signature": "(...rules)",
+      "implementation": "push(...rules) {\n        this.rules.push(...rules);\n        return this;\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "@spacl/core"
+  },
+  {
+    "accessPath": "@spacl/core.Policy.prototype.query",
+    "descriptor": {
+      "type": "function",
+      "signature": "(path, verb, ctx)",
+      "implementation": "query(path, verb, ctx) {\n        let allow = null;\n        for (const rule of this.rules) {\n            const res = rule.query(path, verb, ctx);\n            if (res === false) {\n                return false;\n            }\n            if (res === true) {\n                allow = true;\n            }\n        }\n        return allow;\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "@spacl/core"
+  },
+  {
+    "accessPath": "@spacl/core.Policy.prototype.matches",
+    "descriptor": {
+      "type": "function",
+      "signature": "(path, ctx)",
+      "implementation": "matches(path, ctx) {\n        for (const rule of this.rules) {\n            if (rule.matches(path, ctx)) {\n                return true;\n            }\n        }\n        return false;\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "@spacl/core"
+  },
+  {
+    "accessPath": "@spacl/core.Policy.prototype.clone",
+    "descriptor": {
+      "type": "function",
+      "signature": "(name = this.name, deep = true)",
+      "implementation": "clone(name = this.name, deep = true) {\n        return deep\n            ? new Policy(name, ...this.rules.map((rule) => rule.clone()))\n            : new Policy(name, ...this.rules);\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "@spacl/core"
+  },
+  {
+    "accessPath": "@spacl/core.Policy.for",
+    "descriptor": {
+      "type": "function",
+      "signature": "(name, ...rules)",
+      "implementation": "for(name, ...rules) {\n        return new Policy(name, ...rules);\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "@spacl/core"
+  },
+  {
+    "accessPath": "@spacl/core.PolicyMap",
+    "descriptor": {
+      "type": "function",
+      "signature": "(...policies)",
+      "implementation": "class PolicyMap extends Map {\n    constructor(...policies) {\n        super(policies.map((policy) => [policy.name, policy]));\n    }\n    /** Add policies to colllection. */\n    push(...policies) {\n        for (const policy of policies) {\n            this.set(policy.name, policy);\n        }\n        return this;\n    }\n    /** Check whether an action is allowed on a path.\n      * @param name Policy to be queried.\n      * @param path Path to be acted on.\n      * @param verb Action to be performed.\n      * @param ctx Query context for resolving context-dependent paths.\n      * @returns Returns `true` if the action is explicitly allowed,\n      *          `false` if the action is explicitly denied, or\n      *          `null` if the combination of policy, path and\n      *          action is not governed by this collection. */\n    query(name, path, verb, ctx) {\n        const policy = this.get(name);\n        return policy !== undefined\n            ? policy.query(path, verb, ctx)\n            : null;\n    }\n    /** Check whether a path is governed by a policy in this collection.\n      * @param name Policy to be queried.\n      * @param path Path to be checked.\n      * @param ctx Query context for resolving context-dependent paths. */\n    matches(name, path, ctx) {\n        const policy = this.get(name);\n        return policy !== undefined\n            ? policy.matches(path, ctx)\n            : false;\n    }\n    /** Static constructor function; returns a new PolicyMap. */\n    static for(...policies) {\n        return new PolicyMap(...policies);\n    }\n}",
+      "isAsync": false,
+      "isConstructor": true
+    },
+    "packageName": "@spacl/core"
+  },
+  {
+    "accessPath": "@spacl/core.PolicyMap.prototype.push",
+    "descriptor": {
+      "type": "function",
+      "signature": "(...policies)",
+      "implementation": "push(...policies) {\n        for (const policy of policies) {\n            this.set(policy.name, policy);\n        }\n        return this;\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "@spacl/core"
+  },
+  {
+    "accessPath": "@spacl/core.PolicyMap.prototype.query",
+    "descriptor": {
+      "type": "function",
+      "signature": "(name, path, verb, ctx)",
+      "implementation": "query(name, path, verb, ctx) {\n        const policy = this.get(name);\n        return policy !== undefined\n            ? policy.query(path, verb, ctx)\n            : null;\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "@spacl/core"
+  },
+  {
+    "accessPath": "@spacl/core.PolicyMap.prototype.matches",
+    "descriptor": {
+      "type": "function",
+      "signature": "(name, path, ctx)",
+      "implementation": "matches(name, path, ctx) {\n        const policy = this.get(name);\n        return policy !== undefined\n            ? policy.matches(path, ctx)\n            : false;\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "@spacl/core"
+  },
+  {
+    "accessPath": "@spacl/core.PolicyMap.for",
+    "descriptor": {
+      "type": "function",
+      "signature": "(...policies)",
+      "implementation": "for(...policies) {\n        return new PolicyMap(...policies);\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "@spacl/core"
+  }
+]

@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/pull-stream/sinks/drain.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/pull-stream/sinks/drain.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-7342f80/testCase.test.ts
+  drain without done callback
+    ✕ should warn when no done callback is provided and stream ends with error (3 ms)
+
+  ● drain without done callback › should warn when no done callback is provided and stream ends with error
+
+    TypeError: Cannot read properties of undefined (reading 'message')
+
+      20 |       expect(consoleWarnSpy).toHaveBeenCalled();
+      21 |       const warningMessage = consoleWarnSpy.mock.calls[0][0];
+    > 22 |       expect(warningMessage.message).toBe('no done callback supplied');
+         |                             ^
+      23 |       expect(e).toBe(error);
+      24 |
+      25 |       consoleWarnSpy.mockRestore();
+
+      at Object.message (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-7342f80/testCase.test.ts:22:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.963 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-7342f80/testCase.test.ts".

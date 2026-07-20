@@ -1,0 +1,91 @@
+import { Dirty } from "../../../../../../../../../../../subject_repositories/node-dirty/lib/dirty/dirty.js";
+import fs from 'fs';
+import path from 'path';
+import os from 'os';
+
+describe('Dirty database flush behavior', () => {
+  it('should properly handle backpressure in write stream', (done) => {
+    const testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'dirty-test-'));
+    const dbPath = path.join(testDir, 'test.db');
+    const db = new Dirty(dbPath);
+
+    let writeCount = 0;
+    let drainCount = 0;
+    let errorOccurred = false;
+
+    db.on('load', () => {
+      // Force backpressure by creating a slow write stream
+      const originalWrite = db._writeStream.write;
+      let writeCallCount = 0;
+      db._writeStream.write = function(chunk: any, cb: any) {
+        writeCallCount++;
+        // Simulate backpressure by returning false after first write
+        if (writeCallCount === 1) {
+          db._waitForDrain = true;
+          return false;
+        }
+        return originalWrite.call(this, chunk, cb);
+      };
+
+      db.on('drain', () => {
+        drainCount++;
+        if (drainCount === 1) {
+          // After first drain, verify we can continue writing
+          db.set('key2', { value: 2 }, (err: unknown) => {
+            if (err) {
+              errorOccurred = true;
+              done(err as Error);
+              return;
+            }
+            writeCount++;
+            checkCompletion();
+          });
+        }
+      });
+
+      // First write that should trigger backpressure
+      db.set('key1', { value: 1 }, (err: unknown) => {
+        if (err) {
+          errorOccurred = true;
+          done(err as Error);
+          return;
+        }
+        writeCount++;
+      });
+    });
+
+    const checkCompletion = () => {
+      if (writeCount === 2 && drainCount >= 1) {
+        expect(db.get('key1')).toEqual({ value: 1 });
+        expect(db.get('key2')).toEqual({ value: 2 });
+
+        cleanup();
+        done();
+      }
+    };
+
+    const cleanup = () => {
+      try {
+        db.close();
+        if (fs.existsSync(dbPath)) fs.unlinkSync(dbPath);
+        fs.rmdirSync(testDir);
+      } catch (e) {
+        // Ignore cleanup errors
+      }
+    };
+
+    db.on('error', (err) => {
+      errorOccurred = true;
+      cleanup();
+      done(err);
+    });
+
+    // Final timeout
+    setTimeout(() => {
+      if (!errorOccurred) {
+        cleanup();
+        done(new Error('Test timed out'));
+      }
+    }, 2000);
+  });
+});

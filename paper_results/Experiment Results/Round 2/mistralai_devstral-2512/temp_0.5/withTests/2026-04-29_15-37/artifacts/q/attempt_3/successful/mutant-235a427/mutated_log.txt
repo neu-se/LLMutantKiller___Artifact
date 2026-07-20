@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/q/q.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/q/q.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-235a427/testCase.test.ts
+  Q.promised mutation test
+    ✕ should correctly pass 'this' context and arguments to the callback (2 ms)
+
+  ● Q.promised mutation test › should correctly pass 'this' context and arguments to the callback
+
+    TypeError: Cannot read properties of undefined (reading 'value')
+
+       8 |
+       9 |     const testFunc = Q.promised(function(this: any, a: number, b: number) {
+    > 10 |       return this.value + a + b;
+         |                   ^
+      11 |     });
+      12 |
+      13 |     const result = await testFunc.call(context, arg1, arg2);
+
+      at value (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-235a427/testCase.test.ts:10:19)
+      at apply (../subject_repositories/q/q.js:1391:29)
+      at apply (../subject_repositories/q/q.js:1249:26)
+      at fulfilled (../subject_repositories/q/q.js:854:54)
+      at _fulfilled (../subject_repositories/q/q.js:883:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:816:13)
+      at apply (../subject_repositories/q/q.js:570:49)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.689 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-235a427/testCase.test.ts".

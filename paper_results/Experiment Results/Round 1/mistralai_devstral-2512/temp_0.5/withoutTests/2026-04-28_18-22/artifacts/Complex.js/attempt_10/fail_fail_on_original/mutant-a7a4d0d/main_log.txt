@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-a7a4d0d/testCase.test.ts
+  Complex.acosh()
+    ✕ should produce different results for positive vs negative imaginary parts (2 ms)
+
+  ● Complex.acosh() › should produce different results for positive vs negative imaginary parts
+
+    expect(received).not.toBeCloseTo(expected, precision)
+
+    Expected: not 1.0612750619050357
+    Received:     1.0612750619050355
+
+    Expected precision:        10
+    Expected difference: not < 5e-11
+    Received difference:       2.220446049250313e-16
+
+      10 |     // The mutation changes the condition from `res['im'] <= 0` to `if (true)`
+      11 |     // This should make the results identical when they should be different
+    > 12 |     expect(result1.re).not.toBeCloseTo(result2.re, 10);
+         |                            ^
+      13 |     expect(result1.im).not.toBeCloseTo(result2.im, 10);
+      14 |   });
+      15 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-a7a4d0d/testCase.test.ts:12:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.348 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-a7a4d0d/testCase.test.ts".

@@ -1,0 +1,30 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-9a3bb96/testCase.test.ts
+  Dirty close behavior
+    ✕ should emit drain event before closing when there are pending writes (8 ms)
+
+  ● Dirty close behavior › should emit drain event before closing when there are pending writes
+
+    Drain event was not emitted before closing
+
+      29 |         } else {
+      30 |           // In mutated code, drain won't be emitted because close() returns immediately
+    > 31 |           done(new Error('Drain event was not emitted before closing'));
+         |                ^
+      32 |         }
+      33 |       });
+      34 |     });
+
+      at Immediate.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-9a3bb96/testCase.test.ts:31:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.284 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-9a3bb96/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

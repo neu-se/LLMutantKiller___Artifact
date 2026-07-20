@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/Complex.js/complex.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/Complex.js/complex.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-09a5fd9/testCase.test.ts
+  Complex.sech() method
+    ✕ should correctly compute the hyperbolic secant for a complex number with non-zero real part (2 ms)
+
+  ● Complex.sech() method › should correctly compute the hyperbolic secant for a complex number with non-zero real part
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.6480542736638853
+    Received: 0.2721661669121462
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   0.37588810675173917
+
+       6 |     const result = c.sech();
+       7 |     const expectedRe = 2 * Math.cosh(1) * Math.cos(0) / (Math.cos(0) + Math.cosh(2 * 1));
+    >  8 |     expect(result.re).toBeCloseTo(expectedRe, 10);
+         |                       ^
+       9 |     expect(result.im).toBeCloseTo(0, 10);
+      10 |   });
+      11 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-09a5fd9/testCase.test.ts:8:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.491 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-09a5fd9/testCase.test.ts".

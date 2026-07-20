@@ -1,0 +1,37 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_9/pending_category/mutant-31d74e9/testCase.test.ts
+  request error handling
+    ✕ should handle stream errors correctly (109 ms)
+
+  ● request error handling › should handle stream errors correctly
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "Pipe error"
+    Received message:   "Request Failed.
+    Status Code: 404"
+
+          11 |         // Consume response data to free up memory
+          12 |         res.resume();
+        > 13 |         reject(new Error('Request Failed.\n' +
+             |                ^
+          14 |                          `Status Code: ${res.statusCode}`));
+          15 |
+          16 |         return;
+
+      at RedirectableRequest.<anonymous> (../subject_repositories/image-downloader/lib/request.js:13:16)
+      at RedirectableRequest.Object.<anonymous>.RedirectableRequest._processResponse (../subject_repositories/image-downloader/node_modules/follow-redirects/index.js:346:10)
+      at ClientRequest.RedirectableRequest._onNativeResponse (../subject_repositories/image-downloader/node_modules/follow-redirects/index.js:57:10)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_9/pending_category/mutant-31d74e9/testCase.test.ts:56:59)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.085 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_9/pending_category/mutant-31d74e9/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

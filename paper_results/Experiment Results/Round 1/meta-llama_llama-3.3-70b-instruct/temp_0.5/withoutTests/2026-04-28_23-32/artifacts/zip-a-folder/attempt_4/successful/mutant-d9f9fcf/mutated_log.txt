@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_4/pending_category/mutant-d9f9fcf/testCase.test.ts[0m:[93m4[0m:[93m1[0m - [91merror[0m[90m TS6133: [0m'rimraf' is declared but its value is never read.
+
+[7m4[0m import rimraf from 'rimraf';
+[7m [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_4/pending_category/mutant-d9f9fcf/testCase.test.ts
+  ZipAFolder
+    ✕ should create an uncompressed zip archive when compression level is set to uncompressed (2 ms)
+
+  ● ZipAFolder › should create an uncompressed zip archive when compression level is set to uncompressed
+
+    ENOENT: no such file or directory, stat 'uncompressed.zip'
+
+      13 |     await fs.promises.writeFile(path.join(testDir, src, 'file.txt'), 'Hello World!');
+      14 |     await ZipAFolder.zip(path.join(testDir, src), zipFilePath, { compression: 0 });
+    > 15 |     const stats = await fs.promises.stat(zipFilePath);
+         |                   ^
+      16 |     expect(stats.size).toBeGreaterThan(0);
+      17 |     await fs.promises.rmdir(testDir, { recursive: true });
+      18 |     await fs.promises.unlink(zipFilePath);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_4/pending_category/mutant-d9f9fcf/testCase.test.ts:15:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.32 s, estimated 2 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_4/pending_category/mutant-d9f9fcf/testCase.test.ts".

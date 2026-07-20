@@ -1,0 +1,37 @@
+The test:
+```
+let mocha = require('mocha');
+let assert = require('assert');
+let pull_stream = require('pull-stream');
+
+describe('test pull_stream', function() {
+    it('test pull-stream.values with array', function(done) {
+        const testArray = [1, 2, 3, 'hello', 'world'];
+        const source = pull_stream.values(testArray);
+        const results = [];
+        
+        pull_stream(
+            source,
+            pull_stream.drain(function(data) {
+                results.push(data);
+            }, function(err) {
+                assert.strictEqual(err, true); // true indicates end of stream
+                assert.deepStrictEqual(results, testArray);
+                done();
+            })
+        );
+    });
+
+    })
+``` 
+failed with the following error message:
+```
+Expected values to be strictly equal:
+
+null !== true
+  
+```
+
+Your task is to modify the above code to fix the test. 
+
+Provide your answer as a fenced code block.

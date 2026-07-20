@@ -1,0 +1,35 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_1/pending_category/mutant-599afee/testCase.test.ts[0m:[93m13[0m:[93m33[0m - [91merror[0m[90m TS2345: [0mArgument of type 'RegExp' is not assignable to parameter of type 'string'.
+
+[7m13[0m     const matcher = new Matcher(/^\/profile(\/\w+)?$/)
+[7m  [0m [91m                                ~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_1/pending_category/mutant-599afee/testCase.test.ts
+  Rule
+    ✕ should not match when context property is undefined and capture group is also undefined (1 ms)
+
+  ● Rule › should not match when context property is undefined and capture group is also undefined
+
+    TypeError: spec.match is not a function
+
+      10 |     * @param version Specification language version. */
+      11 |   constructor (spec: string, version: '1' | '1.0' | '1.1' = '1.1') {
+    > 12 |     if (spec.match(/^[a-zA-Z0-9_/:~.$+*-]*$/) === null) {
+         |              ^
+      13 |       throw new Error('Path contains invalid characters')
+      14 |     }
+      15 |     if (spec.match(/^\//) === null) {
+
+      at new match (../subject_repositories/spacl-core/src/matcher.ts:12:14)
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_1/pending_category/mutant-599afee/testCase.test.ts:13:21)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.951 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_1/pending_category/mutant-599afee/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

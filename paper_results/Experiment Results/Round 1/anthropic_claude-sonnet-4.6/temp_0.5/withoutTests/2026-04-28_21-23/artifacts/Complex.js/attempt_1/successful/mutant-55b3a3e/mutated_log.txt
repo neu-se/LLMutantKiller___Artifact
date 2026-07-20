@@ -1,0 +1,26 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-55b3a3e/testCase.test.ts
+  Complex acsc method
+    ✕ should return a finite result for acsc(1) (non-zero real input), not the infinity result for zero input (3 ms)
+
+  ● Complex acsc method › should return a finite result for acsc(1) (non-zero real input), not the infinity result for zero input
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      18 |     // The result should be finite (not infinity) for a non-zero input
+      19 |     // acsc(i) = asin(1/i) = asin(-i) which should give a finite complex number
+    > 20 |     expect(result.isInfinite()).toBe(false);
+         |                                 ^
+      21 |     expect(isFinite(result.re)).toBe(true);
+      22 |     expect(isFinite(result.im)).toBe(true);
+      23 |   });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-55b3a3e/testCase.test.ts:20:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.23 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-55b3a3e/testCase.test.ts".

@@ -1,0 +1,36 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_6/pending_category/mutant-68d2151/testCase.test.ts
+  GeoPoint.calculateDestination
+    ✕ should calculate correct destination for point near equator with bearing 45 (2 ms)
+
+  ● GeoPoint.calculateDestination › should calculate correct destination for point near equator with bearing 45
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.8983
+    Received: 0.6360283364105044
+
+    Expected precision:    4
+    Expected difference: < 0.00005
+    Received difference:   0.2622716635894956
+
+       5 |     const startPoint = new GeoPoint(0.5, 0);
+       6 |     const result = GeoPoint.calculateDestination(startPoint, 100000, 45);
+    >  7 |     expect(result.longitude).toBeCloseTo(0.8983, 4);
+         |                              ^
+       8 |     expect(result.latitude).toBeCloseTo(0.6458, 4);
+       9 |   });
+      10 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_6/pending_category/mutant-68d2151/testCase.test.ts:7:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.789 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_6/pending_category/mutant-68d2151/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,49 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-7cc0e64/testCase.test.ts[0m:[93m7[0m:[93m40[0m - [91merror[0m[90m TS2339: [0mProperty 'domain' does not exist on type 'Process'.
+
+[7m7[0m         const originalDomain = process.domain;
+[7m [0m [91m                                       ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-7cc0e64/testCase.test.ts[0m:[93m8[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'domain' does not exist on type 'Process'.
+
+[7m8[0m         process.domain = { bind: (fn) => fn };
+[7m [0m [91m                ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-7cc0e64/testCase.test.ts[0m:[93m8[0m:[93m35[0m - [91merror[0m[90m TS7006: [0mParameter 'fn' implicitly has an 'any' type.
+
+[7m8[0m         process.domain = { bind: (fn) => fn };
+[7m [0m [91m                                  ~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-7cc0e64/testCase.test.ts[0m:[93m11[0m:[93m18[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 0.
+
+[7m11[0m         Q.done(Q.resolve(), null, null, null);
+[7m  [0m [91m                 ~~~~~~~[0m
+
+  [96m../subject_repositories/q/q.js[0m:[93m497[0m:[93m12[0m
+    [7m497[0m function Q(value) {
+    [7m   [0m [96m           ~~~~~[0m
+    An argument for 'value' was not provided.
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-7cc0e64/testCase.test.ts[0m:[93m17[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'domain' does not exist on type 'Process'.
+
+[7m17[0m         process.domain = originalDomain;
+[7m  [0m [91m                ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-7cc0e64/testCase.test.ts
+  Q
+    ✕ should call onUnhandledError with the correct context when process.domain is defined (1 ms)
+
+  ● Q › should call onUnhandledError with the correct context when process.domain is defined
+
+    TypeError: Cannot set property domain of [object process] which has only a getter
+
+       6 |         const onUnhandledErrorSpy = jest.fn();
+       7 |         const originalDomain = process.domain;
+    >  8 |         process.domain = { bind: (fn) => fn };
+         |                       ^
+       9 |
+      10 |         // Act
+      11 |         Q.done(Q.resolve(), null, null, null);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-7cc0e64/testCase.test.ts:8:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.098 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-7cc0e64/testCase.test.ts".

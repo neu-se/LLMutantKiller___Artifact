@@ -1,0 +1,41 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-ae354e2/testCase.test.ts
+  deprecate function
+    ✕ should warn with correct message (2 ms)
+    ✕ should fail when mutated
+
+  ● deprecate function › should warn with correct message
+
+    Cannot find module '../../q.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-ae354e2/testCase.test.ts'
+
+      1 | describe("deprecate function", () => {
+      2 |     it("should warn with correct message", () => {
+    > 3 |         const Q = require('../../q.js');
+        |                   ^
+      4 |         const originalWarn = console.warn;
+      5 |         const warnSpy = jest.fn();
+      6 |         console.warn = warnSpy;
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-ae354e2/testCase.test.ts:3:19)
+
+  ● deprecate function › should fail when mutated
+
+    Cannot find module '../../q.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-ae354e2/testCase.test.ts'
+
+      15 |
+      16 |     it("should fail when mutated", () => {
+    > 17 |         const Q = require('../../q.js');
+         |                   ^
+      18 |         const originalWarn = console.warn;
+      19 |         const warnSpy = jest.fn();
+      20 |         console.warn = warnSpy;
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-ae354e2/testCase.test.ts:17:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        2.23 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-ae354e2/testCase.test.ts".

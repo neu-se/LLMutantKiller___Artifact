@@ -1,0 +1,59 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-9f3959c/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2614: [0mModule '"../../../../../../../../../../../subject_repositories/delta/src/AttributeMap.ts"' has no exported member 'AttributeMap'. Did you mean to use 'import AttributeMap from "../../../../../../../../../../../subject_repositories/delta/src/AttributeMap.ts"' instead?
+
+[7m1[0m import { AttributeMap } from '../../../../../../../../../../../subject_repositories/delta/src/AttributeMap.ts';
+[7m [0m [91m         ~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-9f3959c/testCase.test.ts[0m:[93m1[0m:[93m30[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import { AttributeMap } from '../../../../../../../../../../../subject_repositories/delta/src/AttributeMap.ts';
+[7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-9f3959c/testCase.test.ts[0m:[93m14[0m:[93m29[0m - [91merror[0m[90m TS7006: [0mParameter 'a' implicitly has an 'any' type.
+
+[7m14[0m     AttributeMap.compose = (a, b, keepNull) => {
+[7m  [0m [91m                            ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-9f3959c/testCase.test.ts[0m:[93m14[0m:[93m32[0m - [91merror[0m[90m TS7006: [0mParameter 'b' implicitly has an 'any' type.
+
+[7m14[0m     AttributeMap.compose = (a, b, keepNull) => {
+[7m  [0m [91m                               ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-9f3959c/testCase.test.ts[0m:[93m14[0m:[93m35[0m - [91merror[0m[90m TS7006: [0mParameter 'keepNull' implicitly has an 'any' type.
+
+[7m14[0m     AttributeMap.compose = (a, b, keepNull) => {
+[7m  [0m [91m                                  ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-9f3959c/testCase.test.ts
+  AttributeMap compose
+    ✕ should correctly compose attribute maps (1 ms)
+    ✕ should fail when mutation is present
+
+  ● AttributeMap compose › should correctly compose attribute maps
+
+    TypeError: Cannot read properties of undefined (reading 'compose')
+
+       5 |     const a = { a: 1, b: 2 };
+       6 |     const b = { b: null, c: 3 };
+    >  7 |     const result = AttributeMap.compose(a, b);
+         |                                 ^
+       8 |     expect(result).toEqual({ a: 1, c: 3 });
+       9 |   });
+      10 |
+
+      at Object.compose (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-9f3959c/testCase.test.ts:7:33)
+
+  ● AttributeMap compose › should fail when mutation is present
+
+    TypeError: Cannot read properties of undefined (reading 'compose')
+
+      11 |   it('should fail when mutation is present', () => {
+      12 |     // Simulate the mutation by modifying the compose function
+    > 13 |     const originalCompose = AttributeMap.compose;
+         |                                          ^
+      14 |     AttributeMap.compose = (a, b, keepNull) => {
+      15 |       if (true && b['b'] === undefined) {
+      16 |         a['b'] = b['b'];
+
+      at Object.compose (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-9f3959c/testCase.test.ts:13:42)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.096 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-9f3959c/testCase.test.ts".

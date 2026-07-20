@@ -1,0 +1,25 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-f716ea3/testCase.test.ts
+  Complex atanh mutation detection
+    ✕ should return correct real part for atanh(1+0i) (3 ms)
+
+  ● Complex atanh mutation detection › should return correct real part for atanh(1+0i)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: Infinity
+    Received: -Infinity
+
+      10 |     // Mutated: atan2(0, 0)/2 = 0, re = -Inf => atanh(1) = -Inf + 0i
+      11 |     const result = new Complex(1, 0).atanh();
+    > 12 |     expect(result.re).toBe(Infinity);
+         |                       ^
+      13 |   });
+      14 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-f716ea3/testCase.test.ts:12:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.338 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-f716ea3/testCase.test.ts".

@@ -1,0 +1,39 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-8816f5e/testCase.test.ts
+  Delta transform
+    ✕ should produce correct output when thisOp has empty object retain and otherOp has numeric retain (5 ms)
+
+  ● Delta transform › should produce correct output when thisOp has empty object retain and otherOp has numeric retain
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+      Array [
+        Object {
+    -     "retain": 1,
+    +     "retain": Object {
+    +       "undefined": "transformed",
+    +     },
+        },
+        Object {
+          "insert": "y",
+        },
+      ]
+
+      24 |       // Actually retain(1) followed by insert('y') - chop removes trailing plain retains
+      25 |       // retain(1) is not trailing (insert follows), so result = [{ retain: 1 }, { insert: 'y' }]
+    > 26 |       expect(result.ops).toEqual([{ retain: 1 }, { insert: 'y' }]);
+         |                          ^
+      27 |     } finally {
+      28 |       Delta.unregisterEmbed('undefined');
+      29 |     }
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-8816f5e/testCase.test.ts:26:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.391 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-8816f5e/testCase.test.ts".

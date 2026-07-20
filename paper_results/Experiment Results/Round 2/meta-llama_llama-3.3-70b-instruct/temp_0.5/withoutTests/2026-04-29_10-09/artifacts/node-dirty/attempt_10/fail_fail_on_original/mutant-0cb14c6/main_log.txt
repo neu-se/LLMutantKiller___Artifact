@@ -1,0 +1,50 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-0cb14c6/testCase.test.ts[0m:[93m15[0m:[93m7[0m - [91merror[0m[90m TS18047: [0m'dirty._writeStream' is possibly 'null'.
+
+[7m15[0m       dirty._writeStream.emit('drain');
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-0cb14c6/testCase.test.ts[0m:[93m20[0m:[93m11[0m - [91merror[0m[90m TS18047: [0m'dirty._writeStream' is possibly 'null'.
+
+[7m20[0m           dirty._writeStream.emit('drain');
+[7m  [0m [91m          ~~~~~~~~~~~~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-0cb14c6/testCase.test.ts (6.132 s)
+  Dirty
+    ✕ should not emit drain event when _inFlightWrites is negative (5004 ms)
+
+  ● Dirty › should not emit drain event when _inFlightWrites is negative
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      15 |       dirty._writeStream.emit('drain');
+      16 |       setTimeout(() => {
+    > 17 |         expect(drainEmitted).toBe(false);
+         |                              ^
+      18 |         dirty.set('key2', 'value2', () => {
+      19 |           dirty._inFlightWrites = 0;
+      20 |           dirty._writeStream.emit('drain');
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-0cb14c6/testCase.test.ts:17:30)
+
+  ● Dirty › should not emit drain event when _inFlightWrites is negative
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 |
+      5 | describe('Dirty', () => {
+    > 6 |   it('should not emit drain event when _inFlightWrites is negative', (done) => {
+        |   ^
+      7 |     const dbPath = path.join(__dirname, 'test.db');
+      8 |     const dirty = new Dirty(dbPath);
+      9 |     let drainEmitted = false;
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-0cb14c6/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-0cb14c6/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.305 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-0cb14c6/testCase.test.ts".

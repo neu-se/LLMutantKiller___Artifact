@@ -1,0 +1,40 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-42b52b7/testCase.test.ts[0m:[93m9[0m:[93m30[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 13, '(event: "unhandledRejection", reason: unknown, promise: Promise<unknown>): boolean', gave the following error.
+    Argument of type '"rejectionHandled"' is not assignable to parameter of type '"unhandledRejection"'.
+  Overload 2 of 13, '(event: "message", message: unknown, sendHandle: SendHandle): Process', gave the following error.
+    Argument of type '"rejectionHandled"' is not assignable to parameter of type '"message"'.
+  Overload 3 of 13, '(event: "workerMessage", value: any, source: number): Process', gave the following error.
+    Argument of type '"rejectionHandled"' is not assignable to parameter of type '"workerMessage"'.
+
+[7m9[0m                 process.emit("rejectionHandled", "Test rejection", promise);
+[7m [0m [91m                             ~~~~~~~~~~~~~~~~~~[0m
+/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/q/q.js:152
+          throw e;
+          ^
+
+JestAssertionError: expect(received).toHaveLength(expected)
+
+Expected length: 0
+Received length: 1
+Received array:  ["(no stack) Test rejection"]
+    at toHaveLength (/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-42b52b7/testCase.test.ts:12:29)
+    at task (/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/q/q.js:137:13)
+    at runSingle (/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/q/q.js:130:13)
+    at processTicksAndRejections (node:internal/process/task_queues:77:11) {
+  matcherResult: {
+    message: 'expect(received).toHaveLength(expected)\n' +
+      '\n' +
+      'Expected length: 0\n' +
+      'Received length: 1\n' +
+      'Received array:  ["(no stack) Test rejection"]',
+    pass: false
+  }
+}
+
+Node.js v20.19.4
+
+---
+Please try again and give me a new test case.

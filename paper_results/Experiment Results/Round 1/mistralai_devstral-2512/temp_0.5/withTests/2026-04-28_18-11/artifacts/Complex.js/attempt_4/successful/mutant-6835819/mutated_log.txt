@@ -1,0 +1,30 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-6835819/testCase.test.ts
+  Complex.atanh
+    ✕ should correctly compute atanh for a complex number with non-zero imaginary part (2 ms)
+
+  ● Complex.atanh › should correctly compute atanh for a complex number with non-zero imaginary part
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.40235947810852507
+    Received: 0.36172974573408134
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   0.04062973237444373
+
+       9 |     // For b = 0.5, b*b = 0.25 while b/b = 1, which will produce different results
+      10 |     // We test both real and imaginary parts to ensure the mutation is caught
+    > 11 |     expect(result.re).toBeCloseTo(0.40235947810852507, 10);
+         |                       ^
+      12 |     expect(result.im).toBeCloseTo(0.5535743588970452, 10);
+      13 |   });
+      14 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-6835819/testCase.test.ts:11:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.57 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-6835819/testCase.test.ts".

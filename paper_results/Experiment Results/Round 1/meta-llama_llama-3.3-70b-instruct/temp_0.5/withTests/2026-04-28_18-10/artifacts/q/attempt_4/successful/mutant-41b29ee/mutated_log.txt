@@ -1,0 +1,58 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/subject_repositories/q/q.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/subject_repositories/q/q.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-41b29ee/testCase.test.ts
+  Q.all
+    ✕ should resolve with an array of values when all promises are resolved (4 ms)
+    ✕ should reject with the reason of the first rejected promise (1 ms)
+
+  ● Q.all › should resolve with an array of values when all promises are resolved
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: [1, 2, 3]
+    Received: undefined
+
+       8 |
+       9 |         return q.all([promise1, promise2, promise3]).then((values: any[]) => {
+    > 10 |             expect(values).toEqual([1, 2, 3]);
+         |                            ^
+      11 |         });
+      12 |     });
+      13 |
+
+      at toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-41b29ee/testCase.test.ts:10:28)
+      at fulfilled (../subject_repositories/q/q.js:854:54)
+      at _fulfilled (../subject_repositories/q/q.js:883:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:816:13)
+      at apply (../subject_repositories/q/q.js:570:49)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+  ● Q.all › should reject with the reason of the first rejected promise
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      18 |
+      19 |         return q.all([promise1, promise2, promise3]).then(() => {
+    > 20 |             expect(true).toBe(false);
+         |                          ^
+      21 |         }, (reason: any) => {
+      22 |             expect(reason).toBe("Error");
+      23 |         });
+
+      at toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-41b29ee/testCase.test.ts:20:26)
+      at fulfilled (../subject_repositories/q/q.js:854:54)
+      at _fulfilled (../subject_repositories/q/q.js:883:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:816:13)
+      at apply (../subject_repositories/q/q.js:570:49)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.717 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-41b29ee/testCase.test.ts".

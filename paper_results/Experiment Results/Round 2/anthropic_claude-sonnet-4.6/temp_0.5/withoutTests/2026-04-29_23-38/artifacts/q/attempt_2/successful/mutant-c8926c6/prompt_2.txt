@@ -1,0 +1,32 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-c8926c6/testCase.test.ts
+  Q Node.js environment detection
+    ✕ uses process.toString() to distinguish real Node.js from fake environments (35 ms)
+
+  ● Q Node.js environment detection › uses process.toString() to distinguish real Node.js from fake environments
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   -1
+
+      55 |     // Original (isNodeJS=false, uses setImmediate): Q-nextTick fires at same time or after setImmediate
+      56 |     // Mutated (isNodeJS=true, uses process.nextTick): Q-nextTick fires before setImmediate
+    > 57 |     expect(qNextTickIndex).toBeGreaterThan(setImmediateIndex - 1); // Q fires after or with setImmediate
+         |                            ^
+      58 |   });
+      59 | });
+
+      at Object.toBeGreaterThan (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-c8926c6/testCase.test.ts:57:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.413 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-c8926c6/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

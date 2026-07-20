@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-66a8295/testCase.test.ts (7.328 s)
+  Q
+    ✕ should track unhandled rejections (5002 ms)
+
+  ● Q › should track unhandled rejections
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      14 |         });
+      15 |         setTimeout(function () {
+    > 16 |             expect(Q.getUnhandledReasons().length).toBe(0);
+         |                                                    ^
+      17 |             done();
+      18 |         }, 100);
+      19 |     });
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-66a8295/testCase.test.ts:16:52)
+
+  ● Q › should track unhandled rejections
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe('Q', () => {
+    > 4 |     it('should track unhandled rejections', (done) => {
+        |     ^
+      5 |         Q.resetUnhandledRejections();
+      6 |         Q.stopUnhandledRejectionTracking();
+      7 |         Q.resetUnhandledRejections();
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-66a8295/testCase.test.ts:4:5)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-66a8295/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.629 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-66a8295/testCase.test.ts".

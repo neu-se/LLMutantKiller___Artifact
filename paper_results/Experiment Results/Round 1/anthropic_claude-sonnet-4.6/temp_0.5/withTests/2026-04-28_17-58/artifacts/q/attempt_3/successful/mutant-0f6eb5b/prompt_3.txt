@@ -1,0 +1,35 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-0f6eb5b/testCase.test.ts[0m:[93m1[0m:[93m15[0m - [91merror[0m[90m TS2307: [0mCannot find module '../q.js' or its corresponding type declarations.
+
+[7m1[0m import Q from "../q.js";
+[7m [0m [91m              ~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-0f6eb5b/testCase.test.ts
+  Q.longStackSupport with Q_DEBUG environment variable
+    ✕ should set Q.longStackSupport to true when Q_DEBUG is set (1 ms)
+
+  ● Q.longStackSupport with Q_DEBUG environment variable › should set Q.longStackSupport to true when Q_DEBUG is set
+
+    Cannot find module '../q.js' from 'llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-0f6eb5b/testCase.test.ts'
+
+       6 |     process.env.Q_DEBUG = "1";
+       7 |
+    >  8 |     const modulePath = require.resolve("../q.js");
+         |                                ^
+       9 |     delete require.cache[modulePath];
+      10 |
+      11 |     let freshQ: any;
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.resolve (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-0f6eb5b/testCase.test.ts:8:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.265 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-0f6eb5b/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

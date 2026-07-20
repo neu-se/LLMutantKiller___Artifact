@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_4/pending_category/mutant-be3ff82/testCase.test.ts
+  gettype function
+    ✕ should return different results for original and mutated code (4 ms)
+
+  ● gettype function › should return different results for original and mutated code
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "samelevel"
+    Received: "uplevel"
+
+      11 |         // will not replace '/index.js' because [^a-z] matches any character that is not a lowercase letter, 
+      12 |         // so '/index.js' will not be replaced and the function will return 'samelevel' as well, but this test case will check for the replacement.
+    > 13 |         expect(result).toBe('samelevel');
+         |                        ^
+      14 |         const pageurlPath = pageurl.path.replace(/\/index\.[a-z]+$/, '/').replace(/\/default\.[a-z]+$/, '/');
+      15 |         expect(pageurlPath).toBe('/aaa/bbb/');
+      16 |     });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_4/pending_category/mutant-be3ff82/testCase.test.ts:13:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.519 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_4/pending_category/mutant-be3ff82/testCase.test.ts".

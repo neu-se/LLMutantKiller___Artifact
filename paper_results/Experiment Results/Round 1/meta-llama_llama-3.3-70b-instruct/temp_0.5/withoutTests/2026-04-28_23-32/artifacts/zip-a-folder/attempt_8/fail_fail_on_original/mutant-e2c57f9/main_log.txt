@@ -1,0 +1,24 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_8/pending_category/mutant-e2c57f9/testCase.test.ts
+  ZipAFolder
+    ✕ should create a zip archive with store compression when compression is set to uncompressed (1 ms)
+
+  ● ZipAFolder › should create a zip archive with store compression when compression is set to uncompressed
+
+    TypeError: Cannot read properties of undefined (reading 'mkdirSync')
+
+       9 |         const zipFilePath = 'test-data.zip';
+      10 |
+    > 11 |         fs.mkdirSync(src, { recursive: true });
+         |            ^
+      12 |         fs.writeFileSync('test-data/file.txt', 'Hello World');
+      13 |
+      14 |         await ZipAFolder.zip(src, zipFilePath, { compression: 0 });
+
+      at Object.mkdirSync (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_8/pending_category/mutant-e2c57f9/testCase.test.ts:11:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.454 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_8/pending_category/mutant-e2c57f9/testCase.test.ts".

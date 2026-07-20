@@ -1,0 +1,24 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-fdf297b/testCase.test.ts
+  Complex sub
+    ✕ finite minus Infinity should return Infinity in original but not in mutated (2 ms)
+
+  ● Complex sub › finite minus Infinity should return Infinity in original but not in mutated
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not -Infinity
+
+      12 |     // So let's check isNaN instead
+      13 |     expect(result.isNaN()).toBe(false);
+    > 14 |     expect(result.re).not.toBe(3 - Infinity); // mutated would compute actual subtraction
+         |                           ^
+      15 |   });
+      16 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-fdf297b/testCase.test.ts:14:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.135 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-fdf297b/testCase.test.ts".

@@ -1,0 +1,24 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6099c93/testCase.test.ts[0m:[93m8[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '(event: "beforeExit" | "disconnect" | "exit" | "rejectionHandled" | "uncaughtException" | "uncaughtExceptionMonitor" | "unhandledRejection" | "warning" | "message" | Signals | "multipleResolves" | "worker", args_0: unknown, args_1: unknown, args_2: unknown) => Process' is not assignable to type '{ (event: "beforeExit", code: number): boolean; (event: "disconnect"): boolean; (event: "exit", code: number): boolean; (event: "rejectionHandled", promise: Promise<unknown>): boolean; (event: "uncaughtException", error: Error): boolean; (event: "uncaughtExceptionMonitor", error: Error): boolean; (event: "unhandledR...'.
+  Target signature provides too few arguments. Expected 4 or more, but got 2.
+
+[7m8[0m     process.emit = function(event, ...args) {
+[7m [0m [91m    ~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6099c93/testCase.test.ts[0m:[93m12[0m:[93m43[0m - [91merror[0m[90m TS2322: [0mType '"beforeExit" | "disconnect" | "exit" | "rejectionHandled" | "uncaughtException" | "uncaughtExceptionMonitor" | "unhandledRejection" | "warning" | "message" | Signals | "multipleResolves" | "worker"' is not assignable to type '"worker"'.
+  Type '"beforeExit"' is not assignable to type '"worker"'.
+
+[7m12[0m       return originalEmit.apply(process, [event, ...args]);
+[7m  [0m [91m                                          ~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6099c93/testCase.test.ts[0m:[93m12[0m:[93m50[0m - [91merror[0m[90m TS2322: [0mType 'unknown' is not assignable to type 'WorkerListener'.
+
+[7m12[0m       return originalEmit.apply(process, [event, ...args]);
+[7m  [0m [91m                                                 ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+PASS llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6099c93/testCase.test.ts
+  unhandled rejection tracking
+    ✓ should emit 'rejectionHandled' event when a rejected promise is handled (167 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        3.126 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6099c93/testCase.test.ts".

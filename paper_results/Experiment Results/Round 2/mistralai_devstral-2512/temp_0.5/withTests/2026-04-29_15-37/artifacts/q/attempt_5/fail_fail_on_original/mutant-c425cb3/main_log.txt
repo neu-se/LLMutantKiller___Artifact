@@ -1,0 +1,52 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-c425cb3/testCase.test.ts
+  progress notification behavior
+    ✕ should not notify downstream listeners when progress listener throws (6 ms)
+
+  ● progress notification behavior › should not notify downstream listeners when progress listener throws
+
+    Progress error
+
+      23 |       () => {
+      24 |         firstProgressCalled = true;
+    > 25 |         throw new Error("Progress error");
+         |               ^
+      26 |       }
+      27 |     );
+      28 |
+
+      at llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-c425cb3/testCase.test.ts:25:15
+      at progressed (../subject_repositories/q/q.js:873:51)
+      at _progressed (../subject_repositories/q/q.js:899:24)
+      at progressListener (../subject_repositories/q/q.js:662:17)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+  ● progress notification behavior › should not notify downstream listeners when progress listener throws
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      10 |       () => {
+      11 |         expect(firstProgressCalled).toBe(true);
+    > 12 |         expect(secondProgressCalled).toBe(false);
+         |                                      ^
+      13 |       },
+      14 |       () => {
+      15 |         expect(true).toBe(false);
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-c425cb3/testCase.test.ts:12:38)
+      at fulfilled (../subject_repositories/q/q.js:854:54)
+      at _fulfilled (../subject_repositories/q/q.js:883:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:816:13)
+      at apply (../subject_repositories/q/q.js:570:49)
+      at task (../subject_repositories/q/q.js:137:13)
+      at Timeout.runSingle [as _onTimeout] (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.162 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-c425cb3/testCase.test.ts".

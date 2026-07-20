@@ -1,0 +1,47 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-291eeae/testCase.test.ts[0m:[93m13[0m:[93m12[0m - [91merror[0m[90m TS2339: [0mProperty 'values' does not exist on type '{ (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { ...; }; }; }; }; }; }; }'.
+
+[7m13[0m       pull.values([1, 2, 3]),
+[7m  [0m [91m           ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/pull-stream/sinks/log.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/pull-stream/sinks/log.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/pull-stream/index.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/pull-stream/index.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/pull-stream/sinks/index.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/pull-stream/sinks/index.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-291eeae/testCase.test.ts
+  sinks/log
+    ✕ should call console.log for each data item passing through the stream (5 ms)
+
+  ● sinks/log › should call console.log for each data item passing through the stream
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 5
+    + Received  + 1
+
+    - Array [
+    -   1,
+    -   2,
+    -   3,
+    - ]
+    + Array []
+
+      14 |       log(function (err: Error | null) {
+      15 |         console.log = originalConsoleLog;
+    > 16 |         expect(logged).toEqual([1, 2, 3]);
+         |                        ^
+      17 |         done(err || undefined);
+      18 |       })
+      19 |     );
+
+      at toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-291eeae/testCase.test.ts:16:24)
+      at done (../subject_repositories/pull-stream/sinks/drain.js:26:24)
+      at cb (../subject_repositories/pull-stream/sources/values.js:19:7)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:45:8)
+      at s (../subject_repositories/pull-stream/pull.js:41:14)
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-291eeae/testCase.test.ts:12:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.605 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-291eeae/testCase.test.ts".

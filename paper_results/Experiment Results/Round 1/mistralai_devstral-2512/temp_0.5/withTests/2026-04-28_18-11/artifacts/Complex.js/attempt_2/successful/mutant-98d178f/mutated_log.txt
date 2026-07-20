@@ -1,0 +1,25 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-98d178f/testCase.test.ts
+  Complex.atanh
+    ✕ should correctly compute atanh for a complex number with non-zero real and imaginary parts (1 ms)
+
+  ● Complex.atanh › should correctly compute atanh for a complex number with non-zero real and imaginary parts
+
+    expect(received).not.toBeNaN()
+
+    Received: NaN
+
+       7 |     const result = c.atanh();
+       8 |     // The mutation changes x['im'] to x[""], which should cause NaN in the imaginary part
+    >  9 |     expect(result.im).not.toBeNaN();
+         |                           ^
+      10 |     // Also verify the result is a valid complex number
+      11 |     expect(result.re).toBeDefined();
+      12 |     expect(result.im).toBeDefined();
+
+      at Object.toBeNaN (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-98d178f/testCase.test.ts:9:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.823 s, estimated 1 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-98d178f/testCase.test.ts".

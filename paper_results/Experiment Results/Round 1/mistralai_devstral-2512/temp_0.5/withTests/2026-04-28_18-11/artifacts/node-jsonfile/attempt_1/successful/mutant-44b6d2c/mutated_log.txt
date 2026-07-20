@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_1/pending_category/mutant-44b6d2c/testCase.test.ts
+  stripBom
+    ✕ should only remove BOM at the start of content (2 ms)
+
+  ● stripBom › should only remove BOM at the start of content
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "{\"name\":\"﻿test\"}"
+    Received: "{\"name\":\"test\"}"
+
+      10 |     expect(stripBom(contentWithBomAtStart)).toBe("{\"name\":\"test\"}");
+      11 |     // Mutated would incorrectly remove BOM anywhere in string
+    > 12 |     expect(stripBom(contentWithBomInMiddle)).toBe("{\"name\":\"\uFEFFtest\"}");
+         |                                              ^
+      13 |     expect(stripBom(contentWithBomAtEnd)).toBe("{\"name\":\"test\"}\uFEFF");
+      14 |   });
+      15 | });
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_1/pending_category/mutant-44b6d2c/testCase.test.ts:12:46)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.476 s, estimated 2 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_1/pending_category/mutant-44b6d2c/testCase.test.ts".

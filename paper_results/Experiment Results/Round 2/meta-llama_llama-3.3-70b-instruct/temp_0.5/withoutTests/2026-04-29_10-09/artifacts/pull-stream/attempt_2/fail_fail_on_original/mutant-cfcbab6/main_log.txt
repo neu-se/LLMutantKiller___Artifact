@@ -1,0 +1,42 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-cfcbab6/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/pull.js"' has no exported member 'pull'.
+
+[7m1[0m import { pull } from "../../../../../../../../../../../subject_repositories/pull-stream/pull.js"
+[7m [0m [91m         ~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-cfcbab6/testCase.test.ts[0m:[93m6[0m:[93m28[0m - [91merror[0m[90m TS7006: [0mParameter 'read' implicitly has an 'any' type.
+
+[7m6[0m     const sink1 = function(read) {
+[7m [0m [91m                           ~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-cfcbab6/testCase.test.ts[0m:[93m9[0m:[93m28[0m - [91merror[0m[90m TS7006: [0mParameter 'read' implicitly has an 'any' type.
+
+[7m9[0m     const sink2 = function(read) {
+[7m [0m [91m                           ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-cfcbab6/testCase.test.ts
+  pull function
+    ✕ should not throw an error when called with two functions (14 ms)
+
+  ● pull function › should not throw an error when called with two functions
+
+    expect(received).not.toThrow()
+
+    Error name:    "TypeError"
+    Error message: "(0 , pull_js_1.pull) is not a function"
+
+          10 |       return read
+          11 |     }
+        > 12 |     expect(() => pull(read, sink1, sink2)).not.toThrow()
+             |                      ^
+          13 |   })
+          14 | })
+
+      at llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-cfcbab6/testCase.test.ts:12:22
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-cfcbab6/testCase.test.ts:12:48)
+      at Object.toThrow (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-cfcbab6/testCase.test.ts:12:48)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.791 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-cfcbab6/testCase.test.ts".

@@ -1,0 +1,36 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-22f4ba7/testCase.test.ts
+  Dirty close behavior with pending writes
+    ✕ should wait for pending writes before closing (12 ms)
+
+  ● Dirty close behavior with pending writes › should wait for pending writes before closing
+
+    Close completed before drain was emitted
+
+      31 |       const checkCompletion = () => {
+      32 |         if (closeCompleted && !drainEmitted) {
+    > 33 |           done(new Error('Close completed before drain was emitted'));
+         |                ^
+      34 |         } else if (closeCompleted && drainEmitted) {
+      35 |           done();
+      36 |         }
+
+      at checkCompletion (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-22f4ba7/testCase.test.ts:33:16)
+      at Dirty.checkCompletion [as close] (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-22f4ba7/testCase.test.ts:23:9)
+      at Dirty.close (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-22f4ba7/testCase.test.ts:39:10)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:114:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.239 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-22f4ba7/testCase.test.ts".
+node:internal/process/promises:391
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+Error: Test timed out
+    at Timeout._onTimeout (/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-22f4ba7/testCase.test.ts:47:12)
+    at listOnTimeout (node:internal/timers:581:17)
+    at processTimers (node:internal/timers:519:7)
+
+Node.js v20.19.4

@@ -1,0 +1,39 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-de5a53e/testCase.test.ts[0m:[93m23[0m:[93m29[0m - [91merror[0m[90m TS18047: [0m'db._writeStream' is possibly 'null'.
+
+[7m23[0m         const originalEnd = db._writeStream.end;
+[7m  [0m [91m                            ~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-de5a53e/testCase.test.ts[0m:[93m24[0m:[93m9[0m - [91merror[0m[90m TS18047: [0m'db._writeStream' is possibly 'null'.
+
+[7m24[0m         db._writeStream.end = function(callback) {
+[7m  [0m [91m        ~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-de5a53e/testCase.test.ts[0m:[93m25[0m:[93m38[0m - [91merror[0m[90m TS2554: [0mExpected 3-4 arguments, but got 2.
+
+[7m25[0m           const result = originalEnd.call(this, () => {
+[7m  [0m [91m                                     ~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-de5a53e/testCase.test.ts[0m:[93m27[0m:[93m17[0m - [91merror[0m[90m TS2531: [0mObject is possibly 'null'.
+
+[7m27[0m             if (this.destroyed) {
+[7m  [0m [91m                ~~~~[0m
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-de5a53e/testCase.test.ts
+  Dirty close method stream destruction
+    ✕ should properly destroy the write stream when closing (6 ms)
+
+  ● Dirty close method stream destruction › should properly destroy the write stream when closing
+
+    Write stream destroy was not called
+
+      29 |             } else {
+      30 |               // This indicates the mutation where destroy isn't called
+    > 31 |               done(new Error('Write stream destroy was not called'));
+         |                    ^
+      32 |             }
+      33 |           });
+      34 |           return result;
+
+      at Array.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-de5a53e/testCase.test.ts:31:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.453 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-de5a53e/testCase.test.ts".

@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-cff6f83/testCase.test.ts
+  Complex.acsch
+    ✕ should correctly compute the inverse hyperbolic cosecant for a complex number with real=1, imag=2 (3 ms)
+
+  ● Complex.acsch › should correctly compute the inverse hyperbolic cosecant for a complex number with real=1, imag=2
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.22996
+    Received: 0.21561241855582974
+
+    Expected precision:    4
+    Expected difference: < 0.00005
+    Received difference:   0.014347581444170254
+
+       8 |     // The mutation changes a/d to a*d in the acsch calculation
+       9 |     // This test verifies the correct division behavior
+    > 10 |     expect(result.re).toBeCloseTo(0.22996, 4);
+         |                       ^
+      11 |     expect(result.im).toBeCloseTo(-0.40276, 4);
+      12 |   });
+      13 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-cff6f83/testCase.test.ts:10:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.52 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-cff6f83/testCase.test.ts".

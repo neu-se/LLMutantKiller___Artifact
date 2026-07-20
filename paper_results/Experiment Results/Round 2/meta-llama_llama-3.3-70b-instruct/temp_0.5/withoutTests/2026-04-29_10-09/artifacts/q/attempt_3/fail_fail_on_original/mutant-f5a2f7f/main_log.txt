@@ -1,0 +1,47 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-f5a2f7f/testCase.test.ts[0m:[93m7[0m:[93m26[0m - [91merror[0m[90m TS18048: [0m'error.stack' is possibly 'undefined'.
+
+[7m7[0m       const stackLines = error.stack.split('\n');
+[7m [0m [91m                         ~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-f5a2f7f/testCase.test.ts[0m:[93m21[0m:[93m26[0m - [91merror[0m[90m TS18048: [0m'error.stack' is possibly 'undefined'.
+
+[7m21[0m       const stackLines = error.stack.split('\n');
+[7m  [0m [91m                         ~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-f5a2f7f/testCase.test.ts
+  Q
+    ✕ should correctly handle the hasStacks variable (1 ms)
+    ✕ should not handle the hasStacks variable when it is set to false (1 ms)
+
+  ● Q › should correctly handle the hasStacks variable
+
+    ReferenceError: Q is not defined
+
+      1 | describe('Q', () => {
+      2 |   it('should correctly handle the hasStacks variable', () => {
+    > 3 |     const originalQ = Q;
+        |                       ^
+      4 |     try {
+      5 |       Q.hasStacks = true;
+      6 |       const error = new Error();
+
+      at Object.Q (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-f5a2f7f/testCase.test.ts:3:23)
+
+  ● Q › should not handle the hasStacks variable when it is set to false
+
+    ReferenceError: Q is not defined
+
+      15 |
+      16 |   it('should not handle the hasStacks variable when it is set to false', () => {
+    > 17 |     const originalQ = Q;
+         |                       ^
+      18 |     try {
+      19 |       Q.hasStacks = false;
+      20 |       const error = new Error();
+
+      at Object.Q (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-f5a2f7f/testCase.test.ts:17:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        3.709 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-f5a2f7f/testCase.test.ts".

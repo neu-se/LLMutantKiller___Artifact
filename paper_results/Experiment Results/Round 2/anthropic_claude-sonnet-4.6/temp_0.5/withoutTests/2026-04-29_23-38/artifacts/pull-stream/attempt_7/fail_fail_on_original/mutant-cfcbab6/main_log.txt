@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-cfcbab6/testCase.test.ts
+  pull
+    ✕ should call sink.sink exactly once when connecting source to sink object (2 ms)
+
+  ● pull › should call sink.sink exactly once when connecting source to sink object
+
+    expect(received).toHaveLength(expected)
+
+    Expected length: 2
+    Received length: 1
+    Received array:  [[Function source]]
+
+      22 |     // In original: sink.sink is called once in inner loop, then again in outer loop body
+      23 |     // In mutated: sink.sink is called once in inner loop, outer loop body uses s=undefined (no-op)
+    > 24 |     expect(sinkCalls).toHaveLength(2);
+         |                       ^
+      25 |   });
+      26 | });
+
+      at Object.toHaveLength (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-cfcbab6/testCase.test.ts:24:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.417 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-cfcbab6/testCase.test.ts".

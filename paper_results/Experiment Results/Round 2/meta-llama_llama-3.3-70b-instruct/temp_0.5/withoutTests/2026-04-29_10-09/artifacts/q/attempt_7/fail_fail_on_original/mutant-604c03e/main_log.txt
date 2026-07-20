@@ -1,0 +1,33 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-604c03e/testCase.test.ts[0m:[93m10[0m:[93m35[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 3, '(object: { (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 more ...; noConflict(): never; }, method: "nextTick" | ... 1 more ... | "makePromise"): SpyInstance<...>', gave the following error.
+    Argument of type '"untrackRejection"' is not assignable to parameter of type '"nextTick" | "defer" | "makePromise"'.
+  Overload 2 of 3, '(object: { (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 more ...; noConflict(): never; }, method: "resolve" | ... 67 more ... | "noConflict"): SpyInstance<...>', gave the following error.
+    Argument of type '"untrackRejection"' is not assignable to parameter of type '"resolve" | "nextTick" | "defer" | "Promise" | "promise" | "passByCopy" | "join" | "race" | "makePromise" | "tap" | "when" | "thenResolve" | "thenReject" | "nearer" | "isPromise" | ... 53 more ... | "noConflict"'.
+
+[7m10[0m         const spy = jest.spyOn(Q, 'untrackRejection');
+[7m  [0m [91m                                  ~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-604c03e/testCase.test.ts
+  Q
+    ✕ should correctly handle promise rejection (1 ms)
+
+  ● Q › should correctly handle promise rejection
+
+    Property `untrackRejection` does not exist in the provided object
+
+       8 |             throw reason;
+       9 |         });
+    > 10 |         const spy = jest.spyOn(Q, 'untrackRejection');
+         |                          ^
+      11 |         Q.nextTick(() => {
+      12 |             expect(spy).toHaveBeenCalledTimes(1);
+      13 |         });
+
+      at ModuleMocker.spyOn (node_modules/jest-mock/build/index.js:731:13)
+      at Object.spyOn (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-604c03e/testCase.test.ts:10:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.387 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-604c03e/testCase.test.ts".

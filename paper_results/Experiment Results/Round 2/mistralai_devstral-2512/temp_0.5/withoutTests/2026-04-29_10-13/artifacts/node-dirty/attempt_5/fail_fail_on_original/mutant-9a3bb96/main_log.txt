@@ -1,0 +1,24 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-9a3bb96/testCase.test.ts
+  Dirty close behavior
+    ✕ should wait for pending writes before closing (28 ms)
+
+  ● Dirty close behavior › should wait for pending writes before closing
+
+    Write stream closed too quickly
+
+      33 |           clearTimeout(closeTimer);
+      34 |           if (closeCompleted && dirty._writeStream === null) {
+    > 35 |             done(new Error('Write stream closed too quickly'));
+         |                  ^
+      36 |           } else {
+      37 |             done();
+      38 |           }
+
+      at Timeout._onTimeout (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-9a3bb96/testCase.test.ts:35:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.472 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-9a3bb96/testCase.test.ts".

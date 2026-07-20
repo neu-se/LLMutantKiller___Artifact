@@ -1,0 +1,30 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-56e874a/testCase.test.ts
+  Dirty
+    ✕ should not call callback when queue is empty or waiting for drain (123 ms)
+
+  ● Dirty › should not call callback when queue is empty or waiting for drain
+
+    Callback was called unexpectedly
+
+      23 |           // because the _flush method will call the callback even when the queue is empty or waiting for drain
+      24 |           if (callbackCalled) {
+    > 25 |             done(new Error('Callback was called unexpectedly'));
+         |                  ^
+      26 |           } else {
+      27 |             done();
+      28 |           }
+
+      at Timeout._onTimeout (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-56e874a/testCase.test.ts:25:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.782 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-56e874a/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

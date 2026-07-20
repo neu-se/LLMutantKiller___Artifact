@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-3f7a416/testCase.test.ts
+  Promise.prototype.allSettled
+    ✕ should return a promise that resolves with inspection states of all input promises (3 ms)
+
+  ● Promise.prototype.allSettled › should return a promise that resolves with inspection states of all input promises
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: [{"state": "fulfilled", "value": 42}, {"reason": [Error: test error], "state": "rejected"}, {"state": "fulfilled", "value": 10}]
+    Received: undefined
+
+      14 |     const result = await Q.allSettled(promises);
+      15 |
+    > 16 |     expect(result).toEqual([
+         |                    ^
+      17 |       { state: "fulfilled", value: 42 },
+      18 |       { state: "rejected", reason: new Error("test error") },
+      19 |       { state: "fulfilled", value: 10 }
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-3f7a416/testCase.test.ts:16:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.839 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-3f7a416/testCase.test.ts".

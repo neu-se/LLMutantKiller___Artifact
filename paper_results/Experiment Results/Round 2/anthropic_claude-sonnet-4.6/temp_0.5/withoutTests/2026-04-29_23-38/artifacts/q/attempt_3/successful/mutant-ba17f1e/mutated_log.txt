@@ -1,0 +1,39 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-ba17f1e/testCase.test.ts[0m:[93m9[0m:[93m30[0m - [91merror[0m[90m TS2558: [0mExpected 0 type arguments, but got 1.
+
+[7m9[0m     const deferred = Q.defer<void>();
+[7m [0m [91m                             ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-ba17f1e/testCase.test.ts
+  getFileNameAndLineNumber named frame parsing
+    ✕ should correctly parse named function frames to enable Q internal frame filtering (4 ms)
+
+  ● getFileNameAndLineNumber named frame parsing › should correctly parse named function frames to enable Q internal frame filtering
+
+    expect(received).toHaveLength(expected)
+
+    Expected length: 0
+    Received length: 8
+    Received array:  ["    at fulfilled (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js:855:54)", "    at _fulfilled (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js:884:30)", "    at Promise.resolve [as promiseDispatch] (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js:817:13)", "    at apply (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js:571:49)", "    at task (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js:137:13)", "    at runSingle (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js:125:13)", "    at defer (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js:597:19)", "    at Promise.defer [as then] (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js:849:20)"]
+
+      45 |           // Original: no q.js frames in stack (they're filtered)
+      46 |           // Mutated: q.js frames present in stack (not filtered)
+    > 47 |           expect(qInternalLines).toHaveLength(0);
+         |                                  ^
+      48 |           done();
+      49 |         } catch (testError) {
+      50 |           done(testError);
+
+      at toHaveLength (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-ba17f1e/testCase.test.ts:47:34)
+      at rejected (../subject_repositories/q/q.js:865:24)
+      at _rejected (../subject_repositories/q/q.js:891:30)
+      at Promise.rejected (../subject_repositories/q/q.js:1143:31)
+      at Promise.apply [as promiseDispatch] (../subject_repositories/q/q.js:809:41)
+      at apply (../subject_repositories/q/q.js:625:44)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.288 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-ba17f1e/testCase.test.ts".

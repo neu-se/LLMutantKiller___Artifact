@@ -1,0 +1,39 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-85dac84/testCase.test.ts
+  Q
+    ✕ should reject the promise when thenReject is called (1 ms)
+    ✕ should throw an error when thenReject is called with no implementation on the mutated code
+
+  ● Q › should reject the promise when thenReject is called
+
+    ReferenceError: Q is not defined
+
+      1 | describe('Q', () => {
+      2 |     it('should reject the promise when thenReject is called', () => {
+    > 3 |         const promise = Q.resolve();
+        |                         ^
+      4 |         const thenRejectSpy = jest.fn((error) => {
+      5 |             throw error;
+      6 |         });
+
+      at Object.Q (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-85dac84/testCase.test.ts:3:25)
+
+  ● Q › should throw an error when thenReject is called with no implementation on the mutated code
+
+    ReferenceError: Q is not defined
+
+      10 |
+      11 |     it('should throw an error when thenReject is called with no implementation on the mutated code', () => {
+    > 12 |         const promise = Q.resolve();
+         |                         ^
+      13 |         promise.thenReject = () => {};
+      14 |         expect(() => promise.thenReject(new Error('Test error'))).toThrowError();
+      15 |     });
+
+      at Object.Q (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-85dac84/testCase.test.ts:12:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        2.897 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-85dac84/testCase.test.ts".

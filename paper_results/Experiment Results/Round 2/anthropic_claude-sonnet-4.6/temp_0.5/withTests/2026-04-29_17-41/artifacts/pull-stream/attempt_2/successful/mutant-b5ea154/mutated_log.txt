@@ -1,0 +1,29 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/pull-stream/throughs/map.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/pull-stream/throughs/map.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-b5ea154/testCase.test.ts
+  map with no mapper argument
+    ✕ should act as identity function when called with no argument, passing data through unchanged (4 ms)
+
+  ● map with no mapper argument › should act as identity function when called with no argument, passing data through unchanged
+
+    TypeError: mapper is not a function
+
+      12 |       read(abort, function (end, data) {
+      13 |         try {
+    > 14 |         data = !end ? mapper(data) : null
+         |                       ^
+      15 |         } catch (err) {
+      16 |           return read(err, function () {
+      17 |             return cb(err)
+
+      at mapper (../subject_repositories/pull-stream/throughs/map.js:14:23)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-b5ea154/testCase.test.ts:22:7)
+      at read (../subject_repositories/pull-stream/throughs/map.js:12:7)
+      at reader (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-b5ea154/testCase.test.ts:29:7)
+      at Object.readNext (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-b5ea154/testCase.test.ts:44:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.034 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-b5ea154/testCase.test.ts".

@@ -1,0 +1,24 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_8/pending_category/mutant-c7be9b5/testCase.test.ts
+  crawler-url-parser
+    ✕ should execute the console.log statement when the original code is used (2 ms)
+
+  ● crawler-url-parser › should execute the console.log statement when the original code is used
+
+    ENOENT: no such file or directory, open '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_8/pending_category/mutant-c7be9b5/crawler-url-parser.js'
+
+       8 |     console.log = logSpy;
+       9 |     const crawlerUrlParserPath = path.join(__dirname, 'crawler-url-parser.js');
+    > 10 |     const code = fs.readFileSync(crawlerUrlParserPath, 'utf8');
+         |                     ^
+      11 |     const originalCode = code.replace('if (false) {', 'if (true) {');
+      12 |     fs.writeFileSync(crawlerUrlParserPath, originalCode);
+      13 |     const { parse } = require('./crawler-url-parser.js');
+
+      at Object.readFileSync (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_8/pending_category/mutant-c7be9b5/testCase.test.ts:10:21)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.526 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_8/pending_category/mutant-c7be9b5/testCase.test.ts".

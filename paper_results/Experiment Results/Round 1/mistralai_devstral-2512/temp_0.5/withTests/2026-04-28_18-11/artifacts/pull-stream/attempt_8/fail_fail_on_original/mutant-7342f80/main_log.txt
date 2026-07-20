@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-7342f80/testCase.test.ts (6.549 s)
+  drain without done callback
+    ✕ should warn when no done callback is provided (5003 ms)
+
+  ● drain without done callback › should warn when no done callback is provided
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: Any<Error>
+
+    Number of calls: 0
+
+      18 |
+      19 |     setTimeout(() => {
+    > 20 |       expect(consoleWarnSpy).toHaveBeenCalledWith(expect.any(Error));
+         |                              ^
+      21 |       const error = consoleWarnSpy.mock.calls[0][0];
+      22 |       expect(error.message).toBe('no done callback supplied');
+      23 |
+
+      at Timeout.toHaveBeenCalledWith [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-7342f80/testCase.test.ts:20:30)
+
+  ● drain without done callback › should warn when no done callback is provided
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      3 |
+      4 | describe("drain without done callback", () => {
+    > 5 |   it("should warn when no done callback is provided", (done) => {
+        |   ^
+      6 |     const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation();
+      7 |     const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();
+      8 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-7342f80/testCase.test.ts:5:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-7342f80/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.718 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-7342f80/testCase.test.ts".

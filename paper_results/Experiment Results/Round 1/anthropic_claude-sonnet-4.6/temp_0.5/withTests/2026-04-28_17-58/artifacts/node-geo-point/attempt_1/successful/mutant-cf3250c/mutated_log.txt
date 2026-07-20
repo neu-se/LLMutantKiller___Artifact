@@ -1,0 +1,31 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-cf3250c/testCase.test.ts[0m:[93m1[0m:[93m26[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import { GeoPoint } from "../../../../../../../../../../../subject_repositories/node-geo-point/src/geo-point.ts";
+[7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-cf3250c/testCase.test.ts
+  GeoPoint.calculateDestination
+    ✕ should calculate the correct destination point when moving east (3 ms)
+
+  ● GeoPoint.calculateDestination › should calculate the correct destination point when moving east
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   -1.001124811708678
+
+      14 |     // With the mutation (λ2 = λ1 - atan2(y, x)), the longitude would be negative (~-1)
+      15 |     expect(destination.latitude).toBeCloseTo(0, 1);
+    > 16 |     expect(destination.longitude).toBeGreaterThan(0);
+         |                                   ^
+      17 |     expect(destination.longitude).toBeCloseTo(1, 0);
+      18 |   });
+      19 | });
+
+      at Object.toBeGreaterThan (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-cf3250c/testCase.test.ts:16:35)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.232 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-cf3250c/testCase.test.ts".

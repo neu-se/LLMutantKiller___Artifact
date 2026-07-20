@@ -1,0 +1,39 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-d369761/testCase.test.ts
+  Q.keys
+    ✕ should return own enumerable keys of a fulfilled object promise (33 ms)
+
+  ● Q.keys › should return own enumerable keys of a fulfilled object promise
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 4
+    + Received  + 1
+
+    - Array [
+    -   "x",
+    -   "y",
+    - ]
+    + Array []
+
+      23 |     const obj = { x: 1, y: 2 };
+      24 |     return QFresh.keys(obj).then((keys: string[]) => {
+    > 25 |       expect(keys.sort()).toEqual(["x", "y"]);
+         |                           ^
+      26 |     });
+      27 |   });
+      28 | });
+
+      at toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-d369761/testCase.test.ts:25:27)
+      at fulfilled (../subject_repositories/q/q.js:851:54)
+      at _fulfilled (../subject_repositories/q/q.js:880:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:813:13)
+      at apply (../subject_repositories/q/q.js:567:49)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.31 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-d369761/testCase.test.ts".

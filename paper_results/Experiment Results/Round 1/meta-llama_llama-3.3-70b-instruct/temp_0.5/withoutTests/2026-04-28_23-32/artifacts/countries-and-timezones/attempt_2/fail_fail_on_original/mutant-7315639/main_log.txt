@@ -1,0 +1,37 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/countries-and-timezones/attempt_2/pending_category/mutant-7315639/testCase.test.ts
+  buildCountry function
+    ✕ should return the correct country data (4 ms)
+
+  ● buildCountry function › should return the correct country data
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 3
+    + Received  + 1
+
+      Object {
+        "allTimezones": Array [],
+        "id": "US",
+        "name": "United States",
+    -   "timezones": Array [
+    -     "Stryker was here",
+    -   ],
+    +   "timezones": Array [],
+      }
+
+      11 |
+      12 |     const country = buildCountry(data, 'US');
+    > 13 |     expect(country).toEqual({
+         |                     ^
+      14 |       id: 'US',
+      15 |       name: 'United States',
+      16 |       timezones: ["Stryker was here"],
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/countries-and-timezones/attempt_2/pending_category/mutant-7315639/testCase.test.ts:13:21)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.367 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/countries-and-timezones/attempt_2/pending_category/mutant-7315639/testCase.test.ts".

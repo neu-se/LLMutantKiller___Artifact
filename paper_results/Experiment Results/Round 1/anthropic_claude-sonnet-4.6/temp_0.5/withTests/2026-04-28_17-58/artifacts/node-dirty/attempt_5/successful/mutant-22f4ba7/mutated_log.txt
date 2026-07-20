@@ -1,0 +1,35 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-22f4ba7/testCase.test.ts
+  close() defers when queue has pending items
+    ✕ should call close again after drain when there are items in the queue (30 ms)
+
+  ● close() defers when queue has pending items › should call close again after drain when there are items in the queue
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 4
+    + Received  + 0
+
+      Array [
+        "k1",
+    -   "k2",
+    -   "k3",
+    -   "k4",
+    -   "k5",
+      ]
+
+      67 |       // Original: all 5 keys persisted because close() waits for drain
+      68 |       // Mutated: some keys lost because stream closed before queue flushed
+    > 69 |       expect(keys.sort()).toEqual(['k1', 'k2', 'k3', 'k4', 'k5']);
+         |                           ^
+      70 |     } finally {
+      71 |       try { fs.rmSync(tmpDir, { recursive: true }); } catch (_) { /* ignore */ }
+      72 |     }
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-22f4ba7/testCase.test.ts:69:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.635 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-22f4ba7/testCase.test.ts".

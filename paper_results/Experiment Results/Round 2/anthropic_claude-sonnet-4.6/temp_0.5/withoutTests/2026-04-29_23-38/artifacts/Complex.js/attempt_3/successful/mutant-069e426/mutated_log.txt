@@ -1,0 +1,25 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-069e426/testCase.test.ts
+  Complex asec
+    ✕ returns NaN for extremely small non-zero real input where d underflows to 0 (2 ms)
+
+  ● Complex asec › returns NaN for extremely small non-zero real input where d underflows to 0
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       7 |     // Original: (a !== 0) ? a/0 : 0 => Infinity => new Complex(Infinity, 0).acos() => NaN
+       8 |     // Mutated: (a === 0) ? a/0 : 0 => 0 => new Complex(0, 0).acos() => ~PI/2 (finite)
+    >  9 |     expect(result.isNaN()).toBe(true);
+         |                            ^
+      10 |   });
+      11 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-069e426/testCase.test.ts:9:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.147 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-069e426/testCase.test.ts".

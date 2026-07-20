@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-900109a/testCase.test.ts
+  AttributeMap.compose() with non-object first argument
+    ✕ should treat a non-object first argument as empty object and return only b attributes (7 ms)
+
+  ● AttributeMap.compose() with non-object first argument › should treat a non-object first argument as empty object and return only b attributes
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  0
+    + Received  + 13
+
+      Object {
+    +   "0": "n",
+    +   "1": "o",
+    +   "10": "e",
+    +   "11": "c",
+    +   "12": "t",
+    +   "2": "t",
+    +   "3": "-",
+    +   "4": "a",
+    +   "5": "n",
+    +   "6": "-",
+    +   "7": "o",
+    +   "8": "b",
+    +   "9": "j",
+        "bold": true,
+        "color": "red",
+      }
+
+      11 |     const result = AttributeMap.compose('not-an-object' as unknown as AttributeMap, b);
+      12 |     // With original code: a becomes {}, so result is just b's attributes
+    > 13 |     expect(result).toEqual({ bold: true, color: 'red' });
+         |                    ^
+      14 |   });
+      15 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-900109a/testCase.test.ts:13:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.201 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-900109a/testCase.test.ts".

@@ -1,0 +1,35 @@
+import { Complex } from "../../../../../../../../../../../subject_repositories/Complex.js/complex.js";
+
+describe('Complex', () => {
+  it('should correctly calculate atanh for a = 1 and b === 0', () => {
+    const complex = new Complex(1, 0);
+    const result = complex.atanh();
+    expect(result.re).toBeCloseTo(Infinity, 10);
+    expect(result.im).toBeCloseTo(0, 10);
+  });
+
+  it.skip('should correctly calculate atanh for a = 1.00001 and b === 0', () => {
+    const complex = new Complex(1.00001, 0);
+    const result = complex.atanh();
+    expect(result.re).toBeCloseTo(0.5493061443340548, 10);
+    expect(result.im).toBeCloseTo(0, 10);
+  });
+
+  it.skip('should correctly calculate atanh for a = 1 and b === 0, and a = 1.00001 and b === 0', () => {
+    const complex1 = new Complex(1, 0);
+    const result1 = complex1.atanh();
+    expect(result1.re).toBeCloseTo(Infinity, 10);
+    expect(result1.im).toBeCloseTo(0, 10);
+
+    const complex2 = new Complex(1.00001, 0);
+    const result2 = complex2.atanh();
+    expect(result2.re).toBeCloseTo(0.5493061443340548, 10);
+    expect(result2.im).toBeCloseTo(0, 10);
+
+    expect(result1.re).not.toBeCloseTo(result2.re, 10);
+    expect(result1.re).toBeCloseTo(Infinity, 10);
+    expect(result2.re).not.toBeCloseTo(Infinity, 10);
+    expect(result1.re).toBeGreaterThan(Number.MAX_VALUE);
+    expect(result2.re).toBeLessThan(Number.MAX_VALUE);
+  });
+});

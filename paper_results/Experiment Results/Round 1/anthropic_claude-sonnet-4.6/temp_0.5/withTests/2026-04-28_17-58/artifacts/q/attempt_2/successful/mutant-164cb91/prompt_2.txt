@@ -1,0 +1,51 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-164cb91/testCase.test.ts (7.654 s)
+  unhandledRejection event emission
+    ✕ should emit the unhandledRejection process event when a promise is rejected and unhandled (5004 ms)
+
+  ● unhandledRejection event emission › should emit the unhandledRejection process event when a promise is rejected and unhandled
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: [Error: test unhandled rejection]
+    Received: undefined
+
+      23 |       process.removeListener("unhandledRejection", handler);
+      24 |
+    > 25 |       expect(emittedReason).toBe(reason);
+         |                             ^
+      26 |       expect(emittedPromise).toBe(rejectedPromise);
+      27 |
+      28 |       Q.resetUnhandledRejections();
+
+      at toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-164cb91/testCase.test.ts:25:29)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:130:13)
+
+  ● unhandledRejection event emission › should emit the unhandledRejection process event when a promise is rejected and unhandled
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("unhandledRejection event emission", () => {
+    > 4 |   it("should emit the unhandledRejection process event when a promise is rejected and unhandled", (done) => {
+        |   ^
+      5 |     Q.resetUnhandledRejections();
+      6 |
+      7 |     const reason = new Error("test unhandled rejection");
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-164cb91/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-164cb91/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.951 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-164cb91/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

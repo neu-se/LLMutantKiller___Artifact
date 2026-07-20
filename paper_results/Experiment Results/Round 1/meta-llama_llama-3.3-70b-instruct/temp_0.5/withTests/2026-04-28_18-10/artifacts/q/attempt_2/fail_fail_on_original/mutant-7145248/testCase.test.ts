@@ -1,0 +1,18 @@
+import { Q } from "../../../../../../../../subject_repositories/q/q.js";
+
+describe("defer", () => {
+    it("should reject with error when error is provided and arguments length is greater than 2", () => {
+        const deferred = Q.defer();
+        const error = new Error("Test error");
+        const arg1 = "arg1";
+        const arg2 = "arg2";
+
+        deferred.makeNodeResolver()(error, arg1, arg2);
+
+        return deferred.promise.then(() => {
+            expect(true).toBe(false);
+        }).catch((err) => {
+            expect(err).toBe(error);
+        });
+    });
+});

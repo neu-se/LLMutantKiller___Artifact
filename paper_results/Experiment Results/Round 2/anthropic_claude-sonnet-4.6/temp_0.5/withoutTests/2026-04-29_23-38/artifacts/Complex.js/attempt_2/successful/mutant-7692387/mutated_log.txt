@@ -1,0 +1,25 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-7692387/testCase.test.ts
+  Complex asinh
+    ✕ should not mutate the original complex number's im property after asinh call (2 ms)
+
+  ● Complex asinh › should not mutate the original complex number's im property after asinh call
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 2
+    Received: -1
+
+      16 |     // After asinh(), the original object should have its im restored
+      17 |     // In the mutant, z.im will be wrong (it was set to -z.re = -1 and never restored)
+    > 18 |     expect(z.im).toBe(originalIm);
+         |                  ^
+      19 |   });
+      20 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-7692387/testCase.test.ts:18:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.169 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-7692387/testCase.test.ts".

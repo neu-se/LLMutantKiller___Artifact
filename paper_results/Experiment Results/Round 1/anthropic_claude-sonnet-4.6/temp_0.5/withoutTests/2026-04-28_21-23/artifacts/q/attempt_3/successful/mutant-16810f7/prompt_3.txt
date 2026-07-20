@@ -1,0 +1,49 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-16810f7/testCase.test.ts (11.425 s)
+  untrackRejection emits rejectionHandled
+    ✕ should emit rejectionHandled process event when a reported rejection is handled (10002 ms)
+
+  ● untrackRejection emits rejectionHandled › should emit rejectionHandled process event when a reported rejection is handled
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      21 |         process.removeListener("rejectionHandled", rejectionHandledHandler);
+      22 |         process.removeListener("unhandledRejection", unhandledRejectionHandler);
+    > 23 |         expect(rejectionHandledEvents.length).toBeGreaterThan(0);
+         |                                               ^
+      24 |         done();
+      25 |       }, 500);
+      26 |     };
+
+      at Timeout.toBeGreaterThan [as _onTimeout] (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-16810f7/testCase.test.ts:23:47)
+
+  ● untrackRejection emits rejectionHandled › should emit rejectionHandled process event when a reported rejection is handled
+
+    thrown: "Exceeded timeout of 10000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("untrackRejection emits rejectionHandled", () => {
+    > 4 |   it("should emit rejectionHandled process event when a reported rejection is handled", (done) => {
+        |   ^
+      5 |     Q.resetUnhandledRejections();
+      6 |     
+      7 |     const rejectionHandledEvents: any[] = [];
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-16810f7/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-16810f7/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        11.594 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-16810f7/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

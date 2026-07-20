@@ -1,0 +1,89 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-a02b4fd/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-a02b4fd/testCase.test.ts[0m:[93m7[0m:[93m52[0m - [91merror[0m[90m TS7006: [0mParameter 'result' implicitly has an 'any' type.
+
+[7m7[0m         return promise.post(null, [1, 2, 3]).then((result) => {
+[7m [0m [91m                                                   ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-a02b4fd/testCase.test.ts[0m:[93m19[0m:[93m50[0m - [91merror[0m[90m TS7006: [0mParameter 'result' implicitly has an 'any' type.
+
+[7m19[0m         return promise.post("add", [1, 2]).then((result) => {
+[7m  [0m [91m                                                 ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-a02b4fd/testCase.test.ts[0m:[93m31[0m:[93m13[0m - [91merror[0m[90m TS7006: [0mParameter 'error' implicitly has an 'any' type.
+
+[7m31[0m         }, (error) => {
+[7m  [0m [91m            ~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-a02b4fd/testCase.test.ts[0m:[93m41[0m:[93m49[0m - [91merror[0m[90m TS7006: [0mParameter 'result' implicitly has an 'any' type.
+
+[7m41[0m         return promise.post(null, [1, 2]).then((result) => {
+[7m  [0m [91m                                                ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-a02b4fd/testCase.test.ts
+  post function
+    ✕ should call a function with no name (1 ms)
+    ✕ should call a function with a name
+    ✕ should reject if the function does not exist
+    ✕ should pass when name is null in original code and fail when name is not null in mutated code
+
+  ● post function › should call a function with no name
+
+    TypeError: (0 , q_1.Q) is not a function
+
+      4 |     it("should call a function with no name", () => {
+      5 |         const func = jest.fn();
+    > 6 |         const promise = Q(func);
+        |                          ^
+      7 |         return promise.post(null, [1, 2, 3]).then((result) => {
+      8 |             expect(func).toHaveBeenCalledTimes(1);
+      9 |             expect(func).toHaveBeenCalledWith(1, 2, 3);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-a02b4fd/testCase.test.ts:6:26)
+
+  ● post function › should call a function with a name
+
+    TypeError: (0 , q_1.Q) is not a function
+
+      16 |             add: jest.fn(),
+      17 |         };
+    > 18 |         const promise = Q(obj);
+         |                          ^
+      19 |         return promise.post("add", [1, 2]).then((result) => {
+      20 |             expect(obj.add).toHaveBeenCalledTimes(1);
+      21 |             expect(obj.add).toHaveBeenCalledWith(1, 2);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-a02b4fd/testCase.test.ts:18:26)
+
+  ● post function › should reject if the function does not exist
+
+    TypeError: (0 , q_1.Q) is not a function
+
+      26 |     it("should reject if the function does not exist", () => {
+      27 |         const obj = {};
+    > 28 |         const promise = Q(obj);
+         |                          ^
+      29 |         return promise.post("add", [1, 2]).then(() => {
+      30 |             expect(true).toBe(false);
+      31 |         }, (error) => {
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-a02b4fd/testCase.test.ts:28:26)
+
+  ● post function › should pass when name is null in original code and fail when name is not null in mutated code
+
+    TypeError: (0 , q_1.Q) is not a function
+
+      38 |             add: jest.fn(),
+      39 |         };
+    > 40 |         const promise = Q(obj);
+         |                          ^
+      41 |         return promise.post(null, [1, 2]).then((result) => {
+      42 |             expect(obj.add).toHaveBeenCalledTimes(0);
+      43 |             expect(result).toBeUndefined();
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-a02b4fd/testCase.test.ts:40:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       4 failed, 4 total
+Snapshots:   0 total
+Time:        1.5 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-a02b4fd/testCase.test.ts".

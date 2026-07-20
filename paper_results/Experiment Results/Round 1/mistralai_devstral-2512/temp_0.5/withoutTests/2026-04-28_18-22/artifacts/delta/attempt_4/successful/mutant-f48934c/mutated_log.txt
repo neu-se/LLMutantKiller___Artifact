@@ -1,0 +1,36 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-f48934c/testCase.test.ts[0m:[93m2[0m:[93m19[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m2[0m import Delta from "../../../../../../../../../../../subject_repositories/delta/src/Delta.ts";
+[7m [0m [91m                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-f48934c/testCase.test.ts
+  Delta insert method
+    ✕ should handle null insertion correctly (19 ms)
+
+  ● Delta insert method › should handle null insertion correctly
+
+    expect(received).not.toThrow()
+
+    Error name:    "TypeError"
+    Error message: "Cannot read properties of null (reading 'length')"
+
+          72 |   ): this {
+          73 |     const newOp: Op = {};
+        > 74 |        if (true && arg.length === 0) {
+             |                        ^
+          75 |
+          76 |       return this;
+          77 |     }
+
+      at Delta.length (../subject_repositories/delta/src/Delta.ts:74:24)
+      at insert (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-f48934c/testCase.test.ts:12:13)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-f48934c/testCase.test.ts:13:12)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-f48934c/testCase.test.ts:13:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.231 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-f48934c/testCase.test.ts".

@@ -1,0 +1,43 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-6954c2a/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/image-downloader/lib/request.js"' has no exported member 'request'.
+
+[7m1[0m import { request } from "../../../../../../../../../../../subject_repositories/image-downloader/lib/request.js";
+[7m [0m [91m         ~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-6954c2a/testCase.test.ts[0m:[93m2[0m:[93m18[0m - [91merror[0m[90m TS2307: [0mCannot find module 'nock' or its corresponding type declarations.
+
+[7m2[0m import nock from "nock";
+[7m [0m [91m                 ~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-6954c2a/testCase.test.ts[0m:[93m19[0m:[93m14[0m - [91merror[0m[90m TS18046: [0m'error' is of type 'unknown'.
+
+[7m19[0m       expect(error.message).toContain("Request Failed.");
+[7m  [0m [91m             ~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-6954c2a/testCase.test.ts[0m:[93m20[0m:[93m14[0m - [91merror[0m[90m TS18046: [0m'error' is of type 'unknown'.
+
+[7m20[0m       expect(error.message).toContain("Status Code: 404");
+[7m  [0m [91m             ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-6954c2a/testCase.test.ts
+  request module error handling
+    ✕ should reject with a properly formatted error message for non-200 status codes (2 ms)
+
+  ● request module error handling › should reject with a properly formatted error message for non-200 status codes
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Request Failed."
+    Received string:    "(0 , request_js_1.request) is not a function"
+
+      17 |     } catch (error) {
+      18 |       expect(error).toBeInstanceOf(Error);
+    > 19 |       expect(error.message).toContain("Request Failed.");
+         |                             ^
+      20 |       expect(error.message).toContain("Status Code: 404");
+      21 |     } finally {
+      22 |       // Clean up the test file if it exists
+
+      at Object.toContain (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-6954c2a/testCase.test.ts:19:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.154 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-6954c2a/testCase.test.ts".

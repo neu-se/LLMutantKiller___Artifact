@@ -1,0 +1,25 @@
+[
+  [
+    "ZipAFolder",
+    []
+  ],
+  [
+    "tar",
+    [
+      "import { tar } from 'zip-a-folder';\n\nclass TestMe {\n\n    static async main() {\n        await tar('/path/to/the/folder', '/path/to/archive.tgz');\n    }\n}\n\nTestMe.main();"
+    ]
+  ],
+  [
+    "zip",
+    [
+      "import { zip } from 'zip-a-folder';\n\nclass TestMe {\n\n    static async main() {\n        await zip('/path/to/the/folder', '/path/to/archive.zip');\n    }\n}\n\nTestMe.main();",
+      "import { zip, COMPRESSION_LEVEL } from 'zip-a-folder';\n\nclass TestMe {\n\n    static async main() {\n        await zip('/path/to/the/folder', '/path/to/archive.zip', {compression: COMPRESSION_LEVEL.high});\n    }\n}\n\nTestMe.main();",
+      "import { zip, COMPRESSION_LEVEL } from 'zip-a-folder';\nimport { fs } from 'fs';\n\nclass TestMe {\n    static async main() {\n        const customWS = fs.createWriteStream('test/1234.zip');\n        await zipafolder.zip(path.resolve(__dirname, 'data/'), undefined, {customWriteStream: customWS});    \n    }\n}\n\nTestMe.main();",
+      "import { zip} from 'zip-a-folder';\n\nclass TestMe {\n\n    static async main() {\n        // zip all json into an archive\n        await zip('**/*.json', '/path/to/archive.zip');\n        // zip all json AND txt files into a second archive\n        await zip('**/*.json, **/*.txt', '/path/to/archive2.zip');\n    }\n}\n\nTestMe.main();"
+    ]
+  ],
+  [
+    "compress",
+    []
+  ]
+]

@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-4d8a830/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-4d8a830/testCase.test.ts
+  Q.post behavior with null name
+    ✕ should apply the function when name is null (1 ms)
+
+  ● Q.post behavior with null name › should apply the function when name is null
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      4 |     it("should apply the function when name is null", async () => {
+      5 |         const testFn = jest.fn((a: number, b: number, c: number) => a + b + c);
+    > 6 |         const result = await Q(testFn).post(null, [1, 2, 3]);
+        |                               ^
+      7 |         expect(result).toBe(6);
+      8 |         expect(testFn).toHaveBeenCalledWith(1, 2, 3);
+      9 |     });
+
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-4d8a830/testCase.test.ts:6:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.717 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-4d8a830/testCase.test.ts".

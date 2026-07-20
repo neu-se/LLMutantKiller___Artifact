@@ -1,0 +1,39 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-0cb14c6/testCase.test.ts[0m:[93m10[0m:[93m5[0m - [91merror[0m[90m TS2683: [0m'this' implicitly has type 'any' because it does not have a type annotation.
+
+[7m10[0m     this.timeout(10000);
+[7m  [0m [91m    ~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-0cb14c6/testCase.test.ts
+  ● Dirty › should emit drain event when inFlightWrites is less than or equal to 0
+
+    TypeError: this.timeout is not a function
+
+       8 |
+       9 |   it('should emit drain event when inFlightWrites is less than or equal to 0', function (done) {
+    > 10 |     this.timeout(10000);
+         |          ^
+      11 |     const file = 'test.dirty';
+      12 |     const db = new Dirty(file);
+      13 |
+
+      at Object.timeout (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-0cb14c6/testCase.test.ts:10:10)
+
+
+  ● Test suite failed to run
+
+    ENOENT: no such file or directory, lstat 'test.dirty'
+
+      4 | describe('Dirty', function () {
+      5 |   afterAll(() => {
+    > 6 |     rmSync('test.dirty');
+        |           ^
+      7 |   });
+      8 |
+      9 |   it('should emit drain event when inFlightWrites is less than or equal to 0', function (done) {
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-0cb14c6/testCase.test.ts:6:11)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.181 s, estimated 7 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-0cb14c6/testCase.test.ts".

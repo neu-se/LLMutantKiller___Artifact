@@ -1,0 +1,41 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-08d1e81/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-08d1e81/testCase.test.ts[0m:[93m9[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '(event: string, ...args: any[]) => boolean' is not assignable to type '{ (event: "beforeExit", code: number): boolean; (event: "disconnect"): boolean; (event: "exit", code: number): boolean; (event: "rejectionHandled", promise: Promise<unknown>): boolean; (event: "uncaughtException", error: Error): boolean; (event: "uncaughtExceptionMonitor", error: Error): boolean; (event: "unhandledR...'.
+  Type 'boolean' is not assignable to type 'Process'.
+
+[7m9[0m     process.emit = function(event: string, ...args: any[]): boolean {
+[7m [0m [91m    ~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-08d1e81/testCase.test.ts[0m:[93m13[0m:[93m14[0m - [91merror[0m[90m TS2352: [0mConversion of type 'Process' to type 'boolean' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+
+[7m13[0m       return originalEmit.call(process, event, ...args) as boolean;
+[7m  [0m [91m             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-08d1e81/testCase.test.ts[0m:[93m13[0m:[93m48[0m - [91merror[0m[90m TS2556: [0mA spread argument must either have a tuple type or be passed to a rest parameter.
+
+[7m13[0m       return originalEmit.call(process, event, ...args) as boolean;
+[7m  [0m [91m                                               ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-08d1e81/testCase.test.ts
+  Q unhandled rejection tracking
+    ✕ should not emit unhandledRejection when process.emit is not a function (1 ms)
+
+  ● Q unhandled rejection tracking › should not emit unhandledRejection when process.emit is not a function
+
+    TypeError: Cannot read properties of undefined (reading 'reject')
+
+      15 |
+      16 |     // Create a rejected promise without handling it
+    > 17 |     const rejectedPromise = Q.reject(new Error("Test error"));
+         |                               ^
+      18 |
+      19 |     // Give time for the unhandled rejection tracking to occur
+      20 |     setTimeout(() => {
+
+      at Object.reject (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-08d1e81/testCase.test.ts:17:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.076 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-08d1e81/testCase.test.ts".

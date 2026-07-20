@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-c903301/testCase.test.ts
+  Q promise
+    ✕ should reject promise when error is thrown in progress callback (18 ms)
+
+  ● Q promise › should reject promise when error is thrown in progress callback
+
+    Cannot find module '../../../../../../../../subject_repositories/q/q' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-c903301/testCase.test.ts'
+
+      1 | describe('Q promise', () => {
+      2 |     it('should reject promise when error is thrown in progress callback', () => {
+    > 3 |         const Q = require('../../../../../../../../subject_repositories/q/q').Q;
+        |                   ^
+      4 |         const promise = Q.resolve();
+      5 |         const progressCallback = () => { throw new Error('Test error'); };
+      6 |         const rejectCallback = jest.fn();
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-c903301/testCase.test.ts:3:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.145 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-c903301/testCase.test.ts".

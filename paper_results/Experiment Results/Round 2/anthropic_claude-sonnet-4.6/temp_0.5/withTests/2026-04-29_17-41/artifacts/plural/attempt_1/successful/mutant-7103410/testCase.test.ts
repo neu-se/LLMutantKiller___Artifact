@@ -1,0 +1,10 @@
+import plural from "../../../../../../../../../../../subject_repositories/plural/index.js";
+
+describe("monkeyPatch", () => {
+  it("should add a working plural method to String.prototype that returns the pluralized form", () => {
+    plural.monkeyPatch();
+    const result = ("cherry" as any).plural();
+    plural.unmonkeyPatch();
+    expect(result).toBe("cherries");
+  });
+});

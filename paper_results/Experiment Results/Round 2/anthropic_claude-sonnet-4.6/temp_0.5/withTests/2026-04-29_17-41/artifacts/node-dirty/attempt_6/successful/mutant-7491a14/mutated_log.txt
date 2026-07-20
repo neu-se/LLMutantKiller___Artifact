@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-7491a14/testCase.test.ts
+  dirty db stream encoding
+    ✕ should correctly load a record whose multi-byte UTF-8 character is split exactly at the 65536-byte stream chunk boundary (14 ms)
+
+  ● dirty db stream encoding › should correctly load a record whose multi-byte UTF-8 character is split exactly at the 65536-byte stream chunk boundary
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "xxxxxxxxxxxxxxxxx€"
+    Received: "xxxxxxxxxxxxxxxxx���"
+
+      79 |       try {
+      80 |         expect(errors.length).toBe(0);
+    > 81 |         expect(db.get('eurokey')).toBe(padding + euro);
+         |                                   ^
+      82 |         fs.unlinkSync(file);
+      83 |         done();
+      84 |       } catch (err) {
+
+      at Dirty.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-7491a14/testCase.test.ts:81:35)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:152:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.224 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-7491a14/testCase.test.ts".

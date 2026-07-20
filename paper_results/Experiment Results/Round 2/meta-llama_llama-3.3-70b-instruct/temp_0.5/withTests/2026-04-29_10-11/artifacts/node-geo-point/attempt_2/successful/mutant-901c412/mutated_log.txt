@@ -1,0 +1,32 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_2/pending_category/mutant-901c412/testCase.test.ts
+  GeoPoint
+    ✕ should throw an error for latitude less than -90 (18 ms)
+
+  ● GeoPoint › should throw an error for latitude less than -90
+
+    expect(received).not.toThrowError()
+
+    Error name:    "RangeError"
+    Error message: "bad latitude value"
+
+          42 |        if (latitude <= -90 || latitude > 90) {
+          43 |
+        > 44 |       throw new RangeError('bad latitude value');
+             |             ^
+          45 |     }
+          46 |
+          47 |     if (longitude < -180 || longitude > 180) {
+
+      at new GeoPoint (../subject_repositories/node-geo-point/src/geo-point.ts:44:13)
+      at llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_2/pending_category/mutant-901c412/testCase.test.ts:6:18
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_2/pending_category/mutant-901c412/testCase.test.ts:6:44)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_2/pending_category/mutant-901c412/testCase.test.ts:6:44)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.095 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_2/pending_category/mutant-901c412/testCase.test.ts".

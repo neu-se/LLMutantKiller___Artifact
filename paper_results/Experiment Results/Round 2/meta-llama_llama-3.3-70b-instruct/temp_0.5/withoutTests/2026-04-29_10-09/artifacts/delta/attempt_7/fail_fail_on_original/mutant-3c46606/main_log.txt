@@ -1,0 +1,44 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_7/pending_category/mutant-3c46606/testCase.test.ts[0m:[93m10[0m:[93m17[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m10[0m       compose: (a: any, b: any, keepNull: boolean) => b,
+[7m  [0m [91m                ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_7/pending_category/mutant-3c46606/testCase.test.ts[0m:[93m10[0m:[93m33[0m - [91merror[0m[90m TS6133: [0m'keepNull' is declared but its value is never read.
+
+[7m10[0m       compose: (a: any, b: any, keepNull: boolean) => b,
+[7m  [0m [91m                                ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_7/pending_category/mutant-3c46606/testCase.test.ts[0m:[93m11[0m:[93m16[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m11[0m       invert: (a: any, b: any) => b,
+[7m  [0m [91m               ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_7/pending_category/mutant-3c46606/testCase.test.ts
+  Delta
+    ✕ should transform embeds correctly (4 ms)
+
+  ● Delta › should transform embeds correctly
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+    -   "image": "image1",
+    +   "image": "image2",
+      }
+
+      19 |     });
+      20 |     const transformedDelta = delta1.transform(delta2, false);
+    > 21 |     expect(transformedDelta.ops[0].insert).toEqual({ image: 'image1' });
+         |                                            ^
+      22 |     Delta.unregisterEmbed('image');
+      23 |   });
+      24 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_7/pending_category/mutant-3c46606/testCase.test.ts:21:44)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.661 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_7/pending_category/mutant-3c46606/testCase.test.ts".

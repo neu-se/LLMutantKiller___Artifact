@@ -1,0 +1,39 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-e0dce9c/split_pass_only.test.ts[0m:[93m11[0m:[93m25[0m - [91merror[0m[90m TS2349: [0mThis expression is not callable.
+  Type 'typeof export=' has no call signatures.
+
+[7m11[0m         const promise = q(10);
+[7m  [0m [91m                        ~[0m
+
+  [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-e0dce9c/split_pass_only.test.ts[0m:[93m1[0m:[93m1[0m
+    [7m1[0m import * as q from "../../../../../../../../../../../subject_repositories/q/q.js";
+    [7m [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    Type originates at this import. A namespace-style import cannot be called or constructed, and will cause a failure at runtime. Consider using a default import or import require here instead.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/subject_repositories/q/q.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/subject_repositories/q/q.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-e0dce9c/split_pass_only.test.ts
+  Promise.prototype.valueOf
+    ✓ should return the promise itself when the promise is pending (10 ms)
+    ✕ should return the promise itself when the promise is rejected (3 ms)
+    ○ skipped should return the value when the promise is fulfilled
+
+  ● Promise.prototype.valueOf › should return the promise itself when the promise is rejected
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: {"exception": [Error: Test], "inspect": [Function inspect], "promiseDispatch": [Function anonymous], "valueOf": [Function anonymous]}
+    Received: undefined
+
+      15 |     it("should return the promise itself when the promise is rejected", () => {
+      16 |         const promise = q.reject(new Error("Test"));
+    > 17 |         expect(promise.valueOf()).toBe(promise);
+         |                                   ^
+      18 |     });
+      19 | });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-e0dce9c/split_pass_only.test.ts:17:35)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 skipped, 1 passed, 3 total
+Snapshots:   0 total
+Time:        2.889 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-e0dce9c/split_pass_only.test.ts".

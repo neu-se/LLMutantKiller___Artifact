@@ -1,0 +1,32 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-4b16ea7/testCase.test.ts
+  Q library setImmediate detection
+    ✕ should correctly detect and use setImmediate when available (3 ms)
+
+  ● Q library setImmediate detection › should correctly detect and use setImmediate when available
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      23 |     Q.resolve("test").then((result: string) => {
+      24 |       expect(result).toBe("test");
+    > 25 |       expect(setImmediateCalled).toBe(true);
+         |                                  ^
+      26 |
+      27 |       // Restore original environment
+      28 |       global.window = originalWindow;
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-4b16ea7/testCase.test.ts:25:34)
+      at fulfilled (../subject_repositories/q/q.js:854:54)
+      at _fulfilled (../subject_repositories/q/q.js:883:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:816:13)
+      at promiseDispatch (../subject_repositories/q/q.js:877:14)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.021 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-4b16ea7/testCase.test.ts".

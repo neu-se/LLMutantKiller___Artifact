@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-bd72408/testCase.test.ts
+  progress listener registration on pending promise
+    ✕ should call the progress listener when notify is called before the promise is resolved (3 ms)
+
+  ● progress listener registration on pending promise › should call the progress listener when notify is called before the promise is resolved
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      10 |       function onFulfilled() {
+      11 |         try {
+    > 12 |           expect(progressCalled).toBe(true);
+         |                                  ^
+      13 |           expect(progressValue).toBe(42);
+      14 |           done();
+      15 |         } catch (e) {
+
+      at toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-bd72408/testCase.test.ts:12:34)
+      at fulfilled (../subject_repositories/q/q.js:853:54)
+      at _fulfilled (../subject_repositories/q/q.js:882:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:815:13)
+      at apply (../subject_repositories/q/q.js:569:49)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.326 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-bd72408/testCase.test.ts".

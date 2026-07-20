@@ -1,0 +1,33 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_5/pending_category/mutant-7f88a67/testCase.test.ts
+  parse
+    ✕ should strip www from https URL showing normalize-url options are applied (4 ms)
+
+  ● parse › should strip www from https URL showing normalize-url options are applied
+
+    expect(received).not.toContain(expected) // indexOf
+
+    Expected substring: not "www."
+    Received string:        "www.example.com"
+
+       9 |     expect(result).not.toBeNull();
+      10 |     // stripWWW is true, so www should be removed
+    > 11 |     expect(result!.host).not.toContain("www.");
+         |                              ^
+      12 |     // normalizeHttps: false (original) means https stays as https
+      13 |     // normalizeHttps: true (mutant) means https -> http
+      14 |     expect(result!.protocol).toBe("https:");
+
+      at Object.toContain (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_5/pending_category/mutant-7f88a67/testCase.test.ts:11:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.451 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_5/pending_category/mutant-7f88a67/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,7 @@
+import { Matcher } from "../../../../../../../../../../../subject_repositories/spacl-core/src/matcher";
+
+describe('Matcher', () => {
+  it('should not throw an error for a path with a*/', () => {
+    expect(() => new Matcher('/a*/')).toThrowError('Path must not end with a slash');
+  });
+});

@@ -1,0 +1,30 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-d8c98c9/testCase.test.ts[0m:[93m20[0m:[93m49[0m - [91merror[0m[90m TS2339: [0mProperty 'domain' does not exist on type 'Process'.
+
+[7m20[0m           domainActiveAfterFirstTask = (process.domain === d);
+[7m  [0m [91m                                                ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-d8c98c9/testCase.test.ts
+  domain exit after task execution
+    ✕ should exit the domain after running a task so subsequent tasks are not inside the domain (1 ms)
+
+  ● domain exit after task execution › should exit the domain after running a task so subsequent tasks are not inside the domain
+
+    Domain was not exited after task execution - domain.exit() was not called
+
+      25 |           } else {
+      26 |             // Mutant behavior: domain was NOT exited, still active
+    > 27 |             done(new Error("Domain was not exited after task execution - domain.exit() was not called"));
+         |                  ^
+      28 |           }
+      29 |         });
+      30 |       });
+
+      at llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-d8c98c9/testCase.test.ts:27:18
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.97 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-d8c98c9/testCase.test.ts".

@@ -1,0 +1,66 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-0cb14c6/testCase.test.ts[0m:[93m15[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '() => void' is not assignable to type '<K extends keyof WriteStreamEvents>(event: K, listener: WriteStreamEvents[K]) => WriteStream'.
+  Type 'void' is not assignable to type 'WriteStream'.
+
+[7m15[0m       on: () => {},
+[7m  [0m [91m      ~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-0cb14c6/testCase.test.ts[0m:[93m18[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '() => void' is not assignable to type '{ (chunk: any, callback?: ((error: Error | null | undefined) => void) | undefined): boolean; (chunk: any, encoding: BufferEncoding, callback?: ((error: Error | null | undefined) => void) | undefined): boolean; }'.
+  Type 'void' is not assignable to type 'boolean'.
+
+[7m18[0m       write: () => {},
+[7m  [0m [91m      ~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-0cb14c6/testCase.test.ts[0m:[93m19[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '() => void' is not assignable to type '(error?: Error | undefined) => WriteStream'.
+  Type 'void' is not assignable to type 'WriteStream'.
+
+[7m19[0m       destroy: () => {},
+[7m  [0m [91m      ~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-0cb14c6/testCase.test.ts[0m:[93m20[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '() => void' is not assignable to type '{ (event: "close"): boolean; (event: "drain"): boolean; (event: "error", err: Error): boolean; (event: "finish"): boolean; (event: "pipe", src: Readable): boolean; (event: "unpipe", src: Readable): boolean; (event: string | symbol, ...args: any[]): boolean; }'.
+  Type 'void' is not assignable to type 'boolean'.
+
+[7m20[0m       emit: () => {}
+[7m  [0m [91m      ~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-0cb14c6/testCase.test.ts[0m:[93m22[0m:[93m5[0m - [91merror[0m[90m TS18047: [0m'dirty._writeStream' is possibly 'null'.
+
+[7m22[0m     dirty._writeStream.emit('drain');
+[7m  [0m [91m    ~~~~~~~~~~~~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-0cb14c6/testCase.test.ts (6.149 s)
+  Dirty
+    ✕ should emit drain event when _inFlightWrites is 0 (5003 ms)
+
+  ● Dirty › should emit drain event when _inFlightWrites is 0
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      22 |     dirty._writeStream.emit('drain');
+      23 |     setTimeout(() => {
+    > 24 |       expect(drainEmitted).toBe(true);
+         |                            ^
+      25 |       fs.unlink(dbPath, (err) => {
+      26 |         if (err) {
+      27 |           done(err);
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-0cb14c6/testCase.test.ts:24:28)
+
+  ● Dirty › should emit drain event when _inFlightWrites is 0
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 |
+      5 | describe('Dirty', () => {
+    > 6 |   it('should emit drain event when _inFlightWrites is 0', (done) => {
+        |   ^
+      7 |     const dbPath = path.join(__dirname, 'test.db');
+      8 |     const dirty = new Dirty(dbPath);
+      9 |     dirty._inFlightWrites = 0;
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-0cb14c6/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-0cb14c6/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.323 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-0cb14c6/testCase.test.ts".

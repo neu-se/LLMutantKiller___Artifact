@@ -1,0 +1,51 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-f48934c/testCase.test.ts[0m:[93m6[0m:[93m11[0m - [91merror[0m[90m TS7034: [0mVariable 'emptyArray' implicitly has type 'any[]' in some locations where its type cannot be determined.
+
+[7m6[0m     const emptyArray = []; // Has length property that equals 0
+[7m [0m [91m          ~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-f48934c/testCase.test.ts[0m:[93m8[0m:[93m20[0m - [91merror[0m[90m TS2345: [0mArgument of type 'any[]' is not assignable to parameter of type 'string | Record<string, unknown>'.
+  Type 'any[]' is not assignable to type 'Record<string, unknown>'.
+    Index signature for type 'string' is missing in type 'any[]'.
+
+[7m8[0m       delta.insert(emptyArray);
+[7m [0m [91m                   ~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-f48934c/testCase.test.ts[0m:[93m8[0m:[93m20[0m - [91merror[0m[90m TS7005: [0mVariable 'emptyArray' implicitly has an 'any[]' type.
+
+[7m8[0m       delta.insert(emptyArray);
+[7m [0m [91m                   ~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-f48934c/testCase.test.ts[0m:[93m11[0m:[93m23[0m - [91merror[0m[90m TS2339: [0mProperty 'toHaveLength' does not exist on type 'ArrayLikeMatchers<Op>'.
+
+[7m11[0m     expect(delta.ops).toHaveLength(1);
+[7m  [0m [91m                      ~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-f48934c/testCase.test.ts[0m:[93m12[0m:[93m36[0m - [91merror[0m[90m TS2322: [0mType 'never[]' is not assignable to type 'ExpectedRecursive<string | Record<string, unknown> | undefined>'.
+  Type 'never[]' is not assignable to type '{ [x: string]: unknown; }'.
+    Index signature for type 'string' is missing in type 'never[]'.
+
+[7m12[0m     expect(delta.ops[0]).toEqual({ insert: [] });
+[7m  [0m [91m                                   ~~~~~~[0m
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-f48934c/testCase.test.ts
+  insert() with empty array
+    ✕ should insert empty array as embed (3 ms)
+
+  ● insert() with empty array › should insert empty array as embed
+
+    expect(received).toHaveLength(expected)
+
+    Expected length: 1
+    Received length: 0
+    Received array:  []
+
+       9 |     }).not.toThrow();
+      10 |     // Should insert the array as an embed
+    > 11 |     expect(delta.ops).toHaveLength(1);
+         |                       ^
+      12 |     expect(delta.ops[0]).toEqual({ insert: [] });
+      13 |   });
+      14 | });
+
+      at Object.toHaveLength (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-f48934c/testCase.test.ts:11:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.761 s, estimated 2 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-f48934c/testCase.test.ts".

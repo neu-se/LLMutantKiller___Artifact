@@ -1,0 +1,42 @@
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-56536c0/testCase.test.ts
+  Q library
+    ✕ should handle nextTick correctly (14 ms)
+
+  ● Q library › should handle nextTick correctly
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "MessageChannel"
+    Received string:    "function (task) {
+          tail = tail.next = {
+            task: task,
+            domain: isNodeJS && process.domain,
+            next: null
+          };
+          if (!flushing) {
+            flushing = true;
+            requestTick();
+          }
+        }"
+
+      10 |         return q.delay(10, 10).then(() => {
+      11 |             expect(turn).toBe(1);
+    > 12 |             expect(q.nextTick.toString()).toContain("MessageChannel");
+         |                                           ^
+      13 |         });
+      14 |     });
+      15 | });
+
+      at toContain (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-56536c0/testCase.test.ts:12:43)
+      at fulfilled (../subject_repositories/q/q.js:854:54)
+      at _fulfilled (../subject_repositories/q/q.js:883:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:816:13)
+      at apply (../subject_repositories/q/q.js:624:44)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.223 s, estimated 2 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-56536c0/testCase.test.ts".

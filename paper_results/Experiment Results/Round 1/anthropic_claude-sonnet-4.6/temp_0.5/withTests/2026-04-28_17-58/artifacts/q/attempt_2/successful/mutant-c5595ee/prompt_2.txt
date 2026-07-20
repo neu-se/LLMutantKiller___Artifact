@@ -1,0 +1,32 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-c5595ee/testCase.test.ts
+  getFileNameAndLineNumber Firefox-style stack parsing
+    ✕ should correctly parse Firefox-style stack lines with multi-character function names using .* pattern (3 ms)
+
+  ● getFileNameAndLineNumber Firefox-style stack parsing › should correctly parse Firefox-style stack lines with multi-character function names using .* pattern
+
+    expect(received).toBeNull()
+
+    Received: ["e@/path/to/file.js:42", "/path/to/file.js", "42"]
+
+      37 |       
+      38 |       // Mutated should NOT match multi-char function names (this is what kills the mutant)
+    > 39 |       expect(mutatedMatchMulti).toBeNull();
+         |                                 ^
+      40 |       
+      41 |       deferred.resolve();
+      42 |     } finally {
+
+      at Object.toBeNull (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-c5595ee/testCase.test.ts:39:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.566 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-c5595ee/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

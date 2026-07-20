@@ -1,0 +1,44 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-215ac94/testCase.test.ts[0m:[93m10[0m:[93m23[0m - [91merror[0m[90m TS6133: [0m'keepNull' is declared but its value is never read.
+
+[7m10[0m       compose: (a, b, keepNull) => {
+[7m  [0m [91m                      ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-215ac94/testCase.test.ts[0m:[93m16[0m:[93m19[0m - [91merror[0m[90m TS6133: [0m'b' is declared but its value is never read.
+
+[7m16[0m       invert: (a, b) => a,
+[7m  [0m [91m                  ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-215ac94/testCase.test.ts[0m:[93m25[0m:[93m24[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 2, '(o: {}): string[]', gave the following error.
+    Argument of type 'number | Record<string, unknown> | undefined' is not assignable to parameter of type '{}'.
+      Type 'undefined' is not assignable to type '{}'.
+  Overload 2 of 2, '(o: object): string[]', gave the following error.
+    Argument of type 'number | Record<string, unknown> | undefined' is not assignable to parameter of type 'object'.
+      Type 'undefined' is not assignable to type 'object'.
+
+[7m25[0m     expect(Object.keys(transformedDelta.ops[0].retain).length).toBeGreaterThan(1);
+[7m  [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-215ac94/testCase.test.ts
+  Delta
+    ✕ should correctly transform data when retain types match (2 ms)
+
+  ● Delta › should correctly transform data when retain types match
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 1
+    Received:   1
+
+      23 |     });
+      24 |     const transformedDelta = delta1.transform(delta2, true);
+    > 25 |     expect(Object.keys(transformedDelta.ops[0].retain).length).toBeGreaterThan(1);
+         |                                                                ^
+      26 |   });
+      27 | });
+
+      at Object.toBeGreaterThan (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-215ac94/testCase.test.ts:25:64)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.852 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-215ac94/testCase.test.ts".

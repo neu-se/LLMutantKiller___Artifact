@@ -1,0 +1,42 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-1f17b8d/testCase.test.ts[0m:[93m13[0m:[93m14[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 1.
+
+[7m13[0m     return Q.delay(10).then(function() {
+[7m  [0m [91m             ~~~~~[0m
+
+  [96m../subject_repositories/q/q.js[0m:[93m1858[0m:[93m29[0m
+    [7m1858[0m Q.delay = function (object, timeout) {
+    [7m    [0m [96m                            ~~~~~~~[0m
+    An argument for 'timeout' was not provided.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-1f17b8d/testCase.test.ts
+  Q.all
+    ✕ should remain pending until deferred promises resolve, not resolve immediately with promise objects (21 ms)
+
+  ● Q.all › should remain pending until deferred promises resolve, not resolve immediately with promise objects
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      12 |     // Check state before resolving d - after enough ticks for Q.all internals
+      13 |     return Q.delay(10).then(function() {
+    > 14 |       expect(allResult.isPending()).toBe(true);
+         |                                     ^
+      15 |     }).then(function() {
+      16 |       d.resolve(42);
+      17 |       return allResult;
+
+      at toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-1f17b8d/testCase.test.ts:14:37)
+      at fulfilled (../subject_repositories/q/q.js:854:54)
+      at _fulfilled (../subject_repositories/q/q.js:883:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:816:13)
+      at apply (../subject_repositories/q/q.js:624:44)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.651 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-1f17b8d/testCase.test.ts".

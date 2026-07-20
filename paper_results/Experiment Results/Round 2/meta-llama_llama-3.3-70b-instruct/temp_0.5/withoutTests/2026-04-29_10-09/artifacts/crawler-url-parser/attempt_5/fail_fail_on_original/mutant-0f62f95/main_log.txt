@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_5/pending_category/mutant-0f62f95/testCase.test.ts[0m:[93m1[0m:[93m23[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../../../../../subject_repositories/crawler-url-parser/crawler-url-parser.js' or its corresponding type declarations.
+
+[7m1[0m import { parse } from '../../../../../../../../subject_repositories/crawler-url-parser/crawler-url-parser.js';
+[7m [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_5/pending_category/mutant-0f62f95/testCase.test.ts
+  parse function
+    ✕ should not log anything to the console when the module is required as a module (1 ms)
+
+  ● parse function › should not log anything to the console when the module is required as a module
+
+    TypeError: Cannot set property parent of [object Object] which has only a getter
+
+       5 |     const consoleLogSpy = jest.spyOn(console, 'log');
+       6 |     const originalModuleParent = module.parent;
+    >  7 |     module.parent = null;
+         |                  ^
+       8 |     require('../../../../../../../../subject_repositories/crawler-url-parser/crawler-url-parser.js');
+       9 |     module.parent = originalModuleParent;
+      10 |     expect(consoleLogSpy).not.toHaveBeenCalled();
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_5/pending_category/mutant-0f62f95/testCase.test.ts:7:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.474 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_5/pending_category/mutant-0f62f95/testCase.test.ts".

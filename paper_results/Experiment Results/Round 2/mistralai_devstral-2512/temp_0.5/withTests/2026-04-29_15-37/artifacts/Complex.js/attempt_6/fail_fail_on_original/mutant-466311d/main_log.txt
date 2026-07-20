@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-466311d/testCase.test.ts
+  Complex.logHypot
+    ✕ should correctly handle values that trigger overflow protection (2 ms)
+
+  ● Complex.logHypot › should correctly handle values that trigger overflow protection
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 9.333770410941947
+    Received: 8.640623230382
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   0.6931471805599472
+
+      21 |     // On mutated code, result will match mutatedExpectedRe
+      22 |     // We check that the result matches the original expected value
+    > 23 |     expect(result.re).toBeCloseTo(originalExpectedRe, 10);
+         |                       ^
+      24 |     expect(result.im).toBeCloseTo(Math.atan2(b, a), 10);
+      25 |   });
+      26 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-466311d/testCase.test.ts:23:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.261 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-466311d/testCase.test.ts".

@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-2dbaf61/testCase.test.ts
+  Q hasStacks initialization
+    ✕ correctly detects stack support by throwing an error during initialization (42 ms)
+
+  ● Q hasStacks initialization › correctly detects stack support by throwing an error during initialization
+
+    expect(received).toBeUndefined()
+
+    Received: "    at Function.defer (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/q/q.js:596:19)
+
+      29 |     
+      30 |     Q2.longStackSupport = true;
+    > 31 |     const deferred = Q2.defer();
+         |                         ^
+      32 |     
+      33 |     // Original: catch runs, hasStacks = !!undefined = false → promise.stack not set
+      34 |     // Mutated: catch never runs, hasStacks = true → promise.stack IS set
+
+      at Object.defer (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-2dbaf61/testCase.test.ts:31:25)
+      at Object.toBeUndefined (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-2dbaf61/testCase.test.ts:35:36)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.694 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-2dbaf61/testCase.test.ts".

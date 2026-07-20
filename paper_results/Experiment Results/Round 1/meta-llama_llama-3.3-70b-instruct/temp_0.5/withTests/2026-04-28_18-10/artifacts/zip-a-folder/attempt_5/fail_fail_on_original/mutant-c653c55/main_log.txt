@@ -1,0 +1,36 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_5/pending_category/mutant-c653c55/testCase.test.ts[0m:[93m24[0m:[93m56[0m - [91merror[0m[90m TS2345: [0mArgument of type 'Buffer' is not assignable to parameter of type 'string | number | Uint8Array<ArrayBufferLike>'.
+  Type 'Buffer' is not assignable to type 'Uint8Array<ArrayBufferLike>'.
+    The types of 'slice(...).buffer' are incompatible between these types.
+      Type 'ArrayBufferLike' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.
+
+[7m24[0m         const localFileHeaderStart = zipBuffer.indexOf(Buffer.from([0x50, 0x4B, 0x03, 0x04]));
+[7m  [0m [91m                                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_5/pending_category/mutant-c653c55/testCase.test.ts
+  Zip-A-Folder Test
+    ✕ should create an uncompressed zip file with store option (14 ms)
+
+  ● Zip-A-Folder Test › should create an uncompressed zip file with store option
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      23 |         // Check the local file header for the stored file
+      24 |         const localFileHeaderStart = zipBuffer.indexOf(Buffer.from([0x50, 0x4B, 0x03, 0x04]));
+    > 25 |         expect(localFileHeaderStart).toBeGreaterThan(0);
+         |                                      ^
+      26 |         // Check the compression method in the local file header
+      27 |         const compressionMethod = zipBuffer.slice(localFileHeaderStart + 8, localFileHeaderStart + 10);
+      28 |         expect(compressionMethod).toEqual(Buffer.from([0x00, 0x00])); // Store method
+
+      at Object.toBeGreaterThan (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_5/pending_category/mutant-c653c55/testCase.test.ts:25:38)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.098 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_5/pending_category/mutant-c653c55/testCase.test.ts".

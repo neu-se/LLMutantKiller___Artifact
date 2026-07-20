@@ -1,0 +1,53 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_9/pending_category/mutant-3b7b12c/testCase.test.ts[0m:[93m22[0m:[93m25[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m22[0m     readFile(file, {}, (err, data) => {
+[7m  [0m [91m                        ~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_9/pending_category/mutant-3b7b12c/testCase.test.ts[0m:[93m22[0m:[93m30[0m - [91merror[0m[90m TS7006: [0mParameter 'data' implicitly has an 'any' type.
+
+[7m22[0m     readFile(file, {}, (err, data) => {
+[7m  [0m [91m                             ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+(node:52392) [DEP0147] DeprecationWarning: In future versions of Node.js, fs.rmdir(path, { recursive: true }) will be removed. Use fs.rm(path, { recursive: true }) instead
+(Use `node --trace-deprecation ...` to show where the warning was created)
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_9/pending_category/mutant-3b7b12c/testCase.test.ts (6.513 s)
+  readFile
+    ✕ should throw an error when options is an empty object (5003 ms)
+
+  ● readFile › should throw an error when options is an empty object
+
+    expect(received).not.toBeNull()
+
+    Received: null
+
+      21 |
+      22 |     readFile(file, {}, (err, data) => {
+    > 23 |       expect(err).not.toBeNull();
+         |                       ^
+      24 |       expect(data).toBeUndefined();
+      25 |       done();
+      26 |     });
+
+      at toBeNull (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_9/pending_category/mutant-3b7b12c/testCase.test.ts:23:23)
+      at ../subject_repositories/node-jsonfile/node_modules/universalify/index.js:21:38
+
+  ● readFile › should throw an error when options is an empty object
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      15 |   });
+      16 |
+    > 17 |   it('should throw an error when options is an empty object', (done) => {
+         |   ^
+      18 |     const file = path.join(TEST_DIR, 'somefile.json');
+      19 |     const obj = { name: 'JP' };
+      20 |     fs.writeFileSync(file, JSON.stringify(obj));
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_9/pending_category/mutant-3b7b12c/testCase.test.ts:17:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_9/pending_category/mutant-3b7b12c/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.73 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_9/pending_category/mutant-3b7b12c/testCase.test.ts".

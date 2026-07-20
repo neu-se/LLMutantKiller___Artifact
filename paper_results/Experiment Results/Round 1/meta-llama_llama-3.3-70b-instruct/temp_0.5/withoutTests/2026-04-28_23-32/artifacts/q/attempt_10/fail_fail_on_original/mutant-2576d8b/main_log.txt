@@ -1,0 +1,36 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-2576d8b/testCase.test.ts
+  Q promise library
+    ✕ should correctly handle promise rejection with long stack traces (2 ms)
+
+  ● Q promise library › should correctly handle promise rejection with long stack traces
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Chained error"
+    Received string:    "Error: Test error
+
+      3 | describe("Q promise library", () => {
+      4 |     it("should correctly handle promise rejection with long stack traces", () => {
+    > 5 |         const promise = q.default(new Promise((resolve, reject) => reject(new Error("Test error"))));
+        |                                                                           ^
+      6 |         const chainedPromise = promise.then(() => {
+      7 |             throw new Error("Chained error");
+      8 |         });
+
+      at llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-2576d8b/testCase.test.ts:5:75
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-2576d8b/testCase.test.ts:5:35)
+      at toContain (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-2576d8b/testCase.test.ts:10:33)
+      at rejected (../subject_repositories/q/q.js:864:24)
+      at _rejected (../subject_repositories/q/q.js:890:30)
+      at Promise.rejected (../subject_repositories/q/q.js:1142:31)
+      at Promise.apply [as promiseDispatch] (../subject_repositories/q/q.js:808:41)
+      at apply (../subject_repositories/q/q.js:624:44)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.128 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-2576d8b/testCase.test.ts".

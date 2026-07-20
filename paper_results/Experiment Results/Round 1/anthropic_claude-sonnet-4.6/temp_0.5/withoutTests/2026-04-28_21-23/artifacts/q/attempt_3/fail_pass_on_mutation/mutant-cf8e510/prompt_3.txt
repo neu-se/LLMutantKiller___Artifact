@@ -1,0 +1,36 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-cf8e510/testCase.test.ts[0m:[93m12[0m:[93m20[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m12[0m       .then(null, (err) => {
+[7m  [0m [91m                   ~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-cf8e510/testCase.test.ts (7.265 s)
+  makeStackTraceLong operator precedence
+    ✕ should not corrupt non-object rejection reasons when long stack support is enabled (5004 ms)
+
+  ● makeStackTraceLong operator precedence › should not corrupt non-object rejection reasons when long stack support is enabled
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("makeStackTraceLong operator precedence", () => {
+    > 4 |   it("should not corrupt non-object rejection reasons when long stack support is enabled", async () => {
+        |   ^
+      5 |     Q.longStackSupport = true;
+      6 |
+      7 |     // Create a chain so that promise.stack is populated
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-cf8e510/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-cf8e510/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.487 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-cf8e510/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_8/pending_category/mutant-aafc8eb/testCase.test.ts
+  Complex.js
+    ✕ should return the correct result for the expm1 function with a small real part and a small imaginary part (2 ms)
+
+  ● Complex.js › should return the correct result for the expm1 function with a small real part and a small imaginary part
+
+    expect(received).toBeCloseTo(expected)
+
+    Expected: 1.0000999999996667
+    Received: 0.00009999999966665
+
+    Expected precision:    2
+    Expected difference: < 0.005
+    Received difference:   1
+
+       7 |     const expectedReal = Math.expm1(0.0001) * Math.cos(0.0001) + Math.cos(0.0001);
+       8 |     const expectedImaginary = Math.exp(0.0001) * Math.sin(0.0001);
+    >  9 |     expect(result.re).toBeCloseTo(expectedReal);
+         |                       ^
+      10 |     expect(result.im).toBeCloseTo(expectedImaginary);
+      11 |   });
+      12 | });
+
+      at Object.toBeCloseTo (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_8/pending_category/mutant-aafc8eb/testCase.test.ts:9:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.399 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_8/pending_category/mutant-aafc8eb/testCase.test.ts".

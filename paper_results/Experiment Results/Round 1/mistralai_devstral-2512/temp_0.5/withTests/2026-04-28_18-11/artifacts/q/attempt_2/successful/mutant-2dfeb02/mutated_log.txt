@@ -1,0 +1,30 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/q/queue.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/q/queue.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-2dfeb02/testCase.test.ts
+  Queue close method error handling
+    ✕ should reject with the provided error when queue is closed (3 ms)
+
+  ● Queue close method error handling › should reject with the provided error when queue is closed
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "Custom close error"
+
+    Received function did not throw
+
+       7 |         queue.close(customError);
+       8 |
+    >  9 |         await expect(queue.get()).rejects.toThrow("Custom close error");
+         |                                           ^
+      10 |         await expect(queue.get()).rejects.toThrow("Custom close error");
+      11 |
+      12 |         await expect(queue.closed).resolves.toEqual(customError);
+
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-2dfeb02/testCase.test.ts:9:43)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.332 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-2dfeb02/testCase.test.ts".

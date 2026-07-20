@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-c4ba1f4/testCase.test.ts
+  Q scheduling order
+    ✕ should schedule promise resolution after setTimeout(fn, 0) when using setImmediate (107 ms)
+
+  ● Q scheduling order › should schedule promise resolution after setTimeout(fn, 0) when using setImmediate
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "setTimeout"
+    Received: "promise"
+
+      25 |           try {
+      26 |             // Original uses setImmediate: setTimeout("setTimeout") runs before setImmediate("promise")
+    > 27 |             expect(order[0]).toBe("setTimeout");
+         |                              ^
+      28 |             expect(order[1]).toBe("promise");
+      29 |             resolve();
+      30 |           } catch (e) {
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-c4ba1f4/testCase.test.ts:27:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.845 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-c4ba1f4/testCase.test.ts".

@@ -1,0 +1,39 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-1ac7862/testCase.test.ts[0m:[93m4[0m:[93m20[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m4[0m import rimraf from 'rimraf';
+[7m [0m [91m                   ~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-1ac7862/testCase.test.ts[0m:[93m26[0m:[93m13[0m - [91merror[0m[90m TS7034: [0mVariable 'keys' implicitly has type 'any[]' in some locations where its type cannot be determined.
+
+[7m26[0m       const keys = [];
+[7m  [0m [91m            ~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-1ac7862/testCase.test.ts[0m:[93m43[0m:[93m11[0m - [91merror[0m[90m TS7005: [0mVariable 'keys' implicitly has an 'any[]' type.
+
+[7m43[0m           keys.forEach(key => {
+[7m  [0m [91m          ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-1ac7862/testCase.test.ts
+  Dirty database flush behavior with large writes
+    ✕ should write all entries when buffer fills and requires multiple flushes (140 ms)
+
+  ● Dirty database flush behavior with large writes › should write all entries when buffer fills and requires multiple flushes
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 10
+    Received: 3
+
+      38 |           const data = fs.readFileSync(dbPath, 'utf-8');
+      39 |           const lines = data.trim().split('\n');
+    > 40 |           expect(lines.length).toBe(entries);
+         |                                ^
+      41 |
+      42 |           const keysFound = lines.map(line => JSON.parse(line).key);
+      43 |           keys.forEach(key => {
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-1ac7862/testCase.test.ts:40:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.002 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-1ac7862/testCase.test.ts".

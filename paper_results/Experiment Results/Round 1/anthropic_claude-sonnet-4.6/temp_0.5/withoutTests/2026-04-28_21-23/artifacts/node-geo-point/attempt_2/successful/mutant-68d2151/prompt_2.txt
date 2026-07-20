@@ -1,0 +1,40 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-68d2151/testCase.test.ts[0m:[93m1[0m:[93m26[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import { GeoPoint } from "../../../../../../../../../../../subject_repositories/node-geo-point/src/geo-point.ts";
+[7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-68d2151/testCase.test.ts
+  GeoPoint.calculateDestination
+    ✕ should calculate the correct destination point using cosφ1 multiplication not division (2 ms)
+
+  ● GeoPoint.calculateDestination › should calculate the correct destination point using cosφ1 multiplication not division
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.898
+    Received: 1.7982003014232077
+
+    Expected precision:    1
+    Expected difference: < 0.05
+    Received difference:   0.9002003014232077
+
+      27 |     // With mutation (dividing by cos(60°)=0.5 instead of multiplying), 
+      28 |     // the longitude would be drastically different
+    > 29 |     expect(result.longitude).toBeCloseTo(0.898, 1);
+         |                              ^
+      30 |   });
+      31 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-68d2151/testCase.test.ts:29:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.688 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-68d2151/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

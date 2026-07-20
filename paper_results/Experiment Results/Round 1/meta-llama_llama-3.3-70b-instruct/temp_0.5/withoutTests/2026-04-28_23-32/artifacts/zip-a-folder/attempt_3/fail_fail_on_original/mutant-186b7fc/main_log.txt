@@ -1,0 +1,35 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-186b7fc/testCase.test.ts[0m:[93m3[0m:[93m1[0m - [91merror[0m[90m TS6133: [0m'path' is declared but its value is never read.
+
+[7m3[0m import * as path from 'path';
+[7m [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-186b7fc/testCase.test.ts[0m:[93m10[0m:[93m20[0m - [91merror[0m[90m TS2702: [0m'ZipAFolder' only refers to a type, but is being used as a namespace here.
+
+[7m10[0m     const options: ZipAFolder.ZipAFolderOptions = {
+[7m  [0m [91m                   ~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-186b7fc/testCase.test.ts
+  ZipAFolder
+    ✕ should create a tar archive with the correct compression level (42 ms)
+
+  ● ZipAFolder › should create a tar archive with the correct compression level
+
+    expect(received).toBeLessThan(expected)
+
+    Expected: < 100
+    Received:   23304704
+
+      15 |
+      16 |     const stats = fs.statSync(tarFilePath);
+    > 17 |     expect(stats.size).toBeLessThan(100); // uncompressed tar file should be smaller than a certain size
+         |                        ^
+      18 |
+      19 |     rimraf.sync(tarFilePath);
+      20 |   });
+
+      at Object.toBeLessThan (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-186b7fc/testCase.test.ts:17:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.453 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-186b7fc/testCase.test.ts".

@@ -1,0 +1,42 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-cd69f27/testCase.test.ts[0m:[93m1[0m:[93m19[0m - [91merror[0m[90m TS2307: [0mCannot find module './q' or its corresponding type declarations.
+
+[7m1[0m import { Q } from "./q";
+[7m [0m [91m                  ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-cd69f27/testCase.test.ts
+  Q library SES environment handling
+    ✕ should not throw error when ses.ok() returns false (16 ms)
+
+  ● Q library SES environment handling › should not throw error when ses.ok() returns false
+
+    expect(received).not.toThrow()
+
+    Error name:    "Error"
+    Error message: "Cannot find module './q' from 'llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-cd69f27/testCase.test.ts'"
+
+          18 |     expect(() => {
+          19 |       // Force re-evaluation of the Q module to trigger SES path
+        > 20 |       delete require.cache[require.resolve("./q")];
+             |                                    ^
+          21 |       const Q = require("./q");
+          22 |     }).not.toThrow();
+          23 |
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at resolve (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-cd69f27/testCase.test.ts:20:36)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-cd69f27/testCase.test.ts:22:12)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-cd69f27/testCase.test.ts:22:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.39 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-cd69f27/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

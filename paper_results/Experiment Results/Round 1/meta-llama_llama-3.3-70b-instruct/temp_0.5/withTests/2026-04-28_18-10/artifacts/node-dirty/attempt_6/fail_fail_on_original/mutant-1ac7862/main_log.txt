@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-1ac7862/testCase.test.ts (8.619 s)
+  Dirty
+    ✕ should write multiple values to disk in a single flush when callbacks are provided (5003 ms)
+
+  ● Dirty › should write multiple values to disk in a single flush when callbacks are provided
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 3
+    Received: 2
+
+      20 |     });
+      21 |     db.on('drain', () => {
+    > 22 |       expect(count).toBe(3);
+         |                     ^
+      23 |       const contents = fs.readFileSync(file, 'utf-8');
+      24 |       const lines = contents.split('\n');
+      25 |       expect(lines.length).toBe(4); // 3 values + 1 empty line
+
+      at Dirty.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-1ac7862/testCase.test.ts:22:21)
+      at Object.emit [as callback] (../subject_repositories/node-dirty/lib/dirty/dirty.js:190:70)
+
+  ● Dirty › should write multiple values to disk in a single flush when callbacks are provided
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      3 |
+      4 | describe('Dirty', () => {
+    > 5 |   it('should write multiple values to disk in a single flush when callbacks are provided', (done) => {
+        |   ^
+      6 |     const file = 'test.dirty';
+      7 |     try {
+      8 |       fs.unlinkSync(file);
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-1ac7862/testCase.test.ts:5:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-1ac7862/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        9.008 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-1ac7862/testCase.test.ts".

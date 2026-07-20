@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-9c25cec/testCase.test.ts (6.672 s)
+  Dirty
+    ✕ should load a valid row (5002 ms)
+
+  ● Dirty › should load a valid row
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "value"
+    Received: undefined
+
+       8 |     const dirty = new Dirty(dbPath);
+       9 |     dirty.on('load', () => {
+    > 10 |       expect(dirty.get('key')).toBe('value');
+         |                                ^
+      11 |       fs.unlinkSync(dbPath);
+      12 |       done();
+      13 |     });
+
+      at Dirty.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-9c25cec/testCase.test.ts:10:32)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:154:16)
+
+  ● Dirty › should load a valid row
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      3 |
+      4 | describe('Dirty', () => {
+    > 5 |   it('should load a valid row', (done) => {
+        |   ^
+      6 |     const dbPath = 'test.db';
+      7 |     fs.writeFileSync(dbPath, '{"key": "value"}\n');
+      8 |     const dirty = new Dirty(dbPath);
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-9c25cec/testCase.test.ts:5:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-9c25cec/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.87 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-9c25cec/testCase.test.ts".

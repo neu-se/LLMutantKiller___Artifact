@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-3e1f2bc/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/pull.js"' has no exported member 'pull'.
+
+[7m1[0m import { pull } from '../../../../../../../../../../../subject_repositories/pull-stream/pull.js';
+[7m [0m [91m         ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-3e1f2bc/testCase.test.ts
+  pull-stream
+    ✕ should pass when run against the original code and fail when run against the mutated code (1 ms)
+
+  ● pull-stream › should pass when run against the original code and fail when run against the mutated code
+
+    TypeError: Cannot read properties of undefined (reading 'values')
+
+      4 |   it('should pass when run against the original code and fail when run against the mutated code', () => {
+      5 |     const source = pull(
+    > 6 |       pull.values([1, 2, 3]),
+        |            ^
+      7 |       (s: any) => {
+      8 |         if (s && typeof s === 'object' && s!== null) {
+      9 |           throw new Error('Expected not an object');
+
+      at Object.values (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-3e1f2bc/testCase.test.ts:6:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.789 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-3e1f2bc/testCase.test.ts".

@@ -1,0 +1,51 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_10/pending_category/mutant-1a28cfc/testCase.test.ts[0m:[93m6[0m:[93m20[0m - [91merror[0m[90m TS6133: [0m'b' is declared but its value is never read.
+
+[7m6[0m       compose: (a, b, keepNull) => a,
+[7m [0m [91m                   ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_10/pending_category/mutant-1a28cfc/testCase.test.ts[0m:[93m6[0m:[93m23[0m - [91merror[0m[90m TS6133: [0m'keepNull' is declared but its value is never read.
+
+[7m6[0m       compose: (a, b, keepNull) => a,
+[7m [0m [91m                      ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_10/pending_category/mutant-1a28cfc/testCase.test.ts[0m:[93m7[0m:[93m22[0m - [91merror[0m[90m TS6133: [0m'b' is declared but its value is never read.
+
+[7m7[0m       transform: (a, b, priority) => a,
+[7m [0m [91m                     ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_10/pending_category/mutant-1a28cfc/testCase.test.ts[0m:[93m7[0m:[93m25[0m - [91merror[0m[90m TS6133: [0m'priority' is declared but its value is never read.
+
+[7m7[0m       transform: (a, b, priority) => a,
+[7m [0m [91m                        ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_10/pending_category/mutant-1a28cfc/testCase.test.ts[0m:[93m8[0m:[93m19[0m - [91merror[0m[90m TS6133: [0m'b' is declared but its value is never read.
+
+[7m8[0m       invert: (a, b) => a,
+[7m [0m [91m                  ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_10/pending_category/mutant-1a28cfc/testCase.test.ts[0m:[93m11[0m:[93m39[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'number | Record<string, unknown>'.
+
+[7m11[0m     const delta2 = new Delta().retain('test');
+[7m  [0m [91m                                      ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_10/pending_category/mutant-1a28cfc/testCase.test.ts
+  compose function
+    ✕ should correctly handle composing a Delta with an embed and a Delta with a string (3 ms)
+
+  ● compose function › should correctly handle composing a Delta with an embed and a Delta with a string
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "cannot retain a string"
+
+    Received function did not throw
+
+      10 |     const delta1 = new Delta().retain({ embed: 'test' });
+      11 |     const delta2 = new Delta().retain('test');
+    > 12 |     expect(() => delta1.compose(delta2)).toThrowError('cannot retain a string');
+         |                                          ^
+      13 |   });
+      14 | });
+
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_10/pending_category/mutant-1a28cfc/testCase.test.ts:12:42)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.441 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_10/pending_category/mutant-1a28cfc/testCase.test.ts".

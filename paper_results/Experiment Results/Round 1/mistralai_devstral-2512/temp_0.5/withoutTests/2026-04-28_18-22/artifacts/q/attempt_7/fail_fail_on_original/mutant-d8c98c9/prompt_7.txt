@@ -1,0 +1,48 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+(node:69007) [DEP0097] DeprecationWarning: Using a domain property in MakeCallback is deprecated. Use the async_context variant of MakeCallback or the AsyncResource class instead. (Triggered by calling processImmediate on process.)
+(Use `node --trace-deprecation ...` to show where the warning was created)
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-d8c98c9/testCase.test.ts
+  Q promise domain handling
+    ✕ should properly handle domain context when task throws in Node.js environment (106 ms)
+
+  ● Q promise domain handling › should properly handle domain context when task throws in Node.js environment
+
+    Test error
+
+      16 |
+      17 |         try {
+    > 18 |           throw new Error("Test error");
+         |                 ^
+      19 |         } catch (e) {
+      20 |           // Check if domain is still active after error is caught
+      21 |           domainActiveAfterError = domain.active;
+
+      at llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-d8c98c9/testCase.test.ts:18:17
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+  ● Q promise domain handling › should properly handle domain context when task throws in Node.js environment
+
+    Domain context not properly managed. During: undefined, After: undefined
+
+      31 |           done();
+      32 |         } else {
+    > 33 |           done(new Error(`Domain context not properly managed. During: ${domainActiveDuringError}, After: ${domainActiveAfterError}`));
+         |                ^
+      34 |         }
+      35 |       }, 100);
+      36 |     });
+
+      at Timeout._onTimeout (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-d8c98c9/testCase.test.ts:33:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.846 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-d8c98c9/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

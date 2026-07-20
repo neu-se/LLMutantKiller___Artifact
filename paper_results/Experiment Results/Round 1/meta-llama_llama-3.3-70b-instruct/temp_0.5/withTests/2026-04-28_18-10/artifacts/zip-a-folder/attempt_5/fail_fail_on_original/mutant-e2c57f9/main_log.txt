@@ -1,0 +1,25 @@
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_5/pending_category/mutant-e2c57f9/testCase.test.ts
+  Zip-A-Folder Test
+    ✕ should create a zip file with store: true (12 ms)
+
+  ● Zip-A-Folder Test › should create a zip file with store: true
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 205
+
+      27 |         const localHeader = zipFile.slice(localHeaderOffset - 30, localHeaderOffset);
+      28 |         const compressionMethod = localHeader.slice(10, 11);
+    > 29 |         expect(compressionMethod[0]).toBe(0); // STORE method
+         |                                      ^
+      30 |     });
+      31 | });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_5/pending_category/mutant-e2c57f9/testCase.test.ts:29:38)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.097 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_5/pending_category/mutant-e2c57f9/testCase.test.ts".

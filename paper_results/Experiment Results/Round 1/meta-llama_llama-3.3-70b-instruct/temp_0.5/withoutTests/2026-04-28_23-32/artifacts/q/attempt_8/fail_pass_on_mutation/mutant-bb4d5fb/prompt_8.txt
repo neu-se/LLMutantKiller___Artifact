@@ -1,0 +1,48 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-bb4d5fb/testCase.test.ts[0m:[93m7[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'isInternalFrame' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'.
+
+[7m7[0m         const isInternalFrame = Q.isInternalFrame;
+[7m [0m [91m                                  ~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-bb4d5fb/testCase.test.ts[0m:[93m8[0m:[93m35[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 3, '(object: { (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 more ...; noConflict(): never; }, method: "nextTick" | ... 1 more ... | "makePromise"): SpyInstance<...>', gave the following error.
+    Argument of type '"isInternalFrame"' is not assignable to parameter of type '"nextTick" | "defer" | "makePromise"'.
+  Overload 2 of 3, '(object: { (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 more ...; noConflict(): never; }, method: "resolve" | ... 67 more ... | "noConflict"): SpyInstance<...>', gave the following error.
+    Argument of type '"isInternalFrame"' is not assignable to parameter of type '"resolve" | "nextTick" | "defer" | "Promise" | "promise" | "passByCopy" | "join" | "race" | "makePromise" | "tap" | "when" | "thenResolve" | "thenReject" | "nearer" | "isPromise" | ... 53 more ... | "noConflict"'.
+
+[7m8[0m         const spy = jest.spyOn(Q, 'isInternalFrame');
+[7m [0m [91m                                  ~~~~~~~~~~~~~~~~~[0m
+
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-bb4d5fb/testCase.test.ts[0m:[93m9[0m:[93m29[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m9[0m         promise.then(null, (err) => {
+[7m [0m [91m                            ~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-bb4d5fb/testCase.test.ts
+  Q
+    ✕ should filter internal frames from stack traces (1 ms)
+
+  ● Q › should filter internal frames from stack traces
+
+    Property `isInternalFrame` does not exist in the provided object
+
+       6 |         const promise = Q.reject(error);
+       7 |         const isInternalFrame = Q.isInternalFrame;
+    >  8 |         const spy = jest.spyOn(Q, 'isInternalFrame');
+         |                          ^
+       9 |         promise.then(null, (err) => {
+      10 |             expect(spy).toHaveBeenCalledTimes(1);
+      11 |         });
+
+      at ModuleMocker.spyOn (node_modules/jest-mock/build/index.js:731:13)
+      at Object.spyOn (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-bb4d5fb/testCase.test.ts:8:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.795 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-bb4d5fb/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

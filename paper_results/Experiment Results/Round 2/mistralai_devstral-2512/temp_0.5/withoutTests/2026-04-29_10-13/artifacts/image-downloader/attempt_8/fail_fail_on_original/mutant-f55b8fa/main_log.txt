@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_8/pending_category/mutant-f55b8fa/testCase.test.ts[0m:[93m1[0m:[93m23[0m - [91merror[0m[90m TS2306: [0mFile '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/subject_repositories/image-downloader/index.d.ts' is not a module.
+
+[7m1[0m import { image } from "../../../../../../../../../../../subject_repositories/image-downloader/index.js";
+[7m [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_8/pending_category/mutant-f55b8fa/testCase.test.ts
+  image downloader path resolution
+    ✕ should resolve relative destination paths to absolute paths (1 ms)
+
+  ● image downloader path resolution › should resolve relative destination paths to absolute paths
+
+    TypeError: Cannot assign to read only property 'default' of object '#<Object>'
+
+      10 |     const requestModule = await import("../../../../../../../../../../../subject_repositories/image-downloader/lib/request.js");
+      11 |     const originalRequest = requestModule.default;
+    > 12 |     requestModule.default = jest.fn((options: any) => {
+         |                          ^
+      13 |       // Verify the path was resolved correctly
+      14 |       expect(path.isAbsolute(options.dest)).toBe(true);
+      15 |       expect(options.dest).toContain("downloads");
+
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_8/pending_category/mutant-f55b8fa/testCase.test.ts:12:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.737 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_8/pending_category/mutant-f55b8fa/testCase.test.ts".

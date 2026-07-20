@@ -1,0 +1,41 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/q/q.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/q/q.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-67fa498/testCase.test.ts (6.215 s)
+  nextTick runAfter functionality
+    ✕ should execute tasks in laterQueue after main queue is flushed (5001 ms)
+
+  ● nextTick runAfter functionality › should execute tasks in laterQueue after main queue is flushed
+
+    ReferenceError: fail is not defined
+
+      24 |         setTimeout(() => {
+      25 |             if (!laterTaskExecuted) {
+    > 26 |                 fail("Later task was not executed");
+         |                 ^
+      27 |                 done();
+      28 |             }
+      29 |         }, 100);
+
+      at Timeout.fail [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-67fa498/testCase.test.ts:26:17)
+
+  ● nextTick runAfter functionality › should execute tasks in laterQueue after main queue is flushed
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      3 |
+      4 | describe("nextTick runAfter functionality", () => {
+    > 5 |     it("should execute tasks in laterQueue after main queue is flushed", (done) => {
+        |     ^
+      6 |         let mainTaskExecuted = false;
+      7 |         let laterTaskExecuted = false;
+      8 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-67fa498/testCase.test.ts:5:5)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-67fa498/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.345 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-67fa498/testCase.test.ts".

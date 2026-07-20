@@ -1,0 +1,43 @@
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/node-dirty/lib/dirty/dirty.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/node-dirty/lib/dirty/dirty.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-a201b28/testCase.test.ts (6.36 s)
+  Dirty database error handling
+    ✕ should emit error event with proper event name when corrupted row is encountered (5005 ms)
+
+  ● Dirty database error handling › should emit error event with proper event name when corrupted row is encountered
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      38 |
+      39 |     setTimeout(() => {
+    > 40 |       expect(errorEventFired).toBe(true);
+         |                               ^
+      41 |       expect(emptyEventFired).toBe(false);
+      42 |       done();
+      43 |     }, 100);
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-a201b28/testCase.test.ts:40:31)
+
+  ● Dirty database error handling › should emit error event with proper event name when corrupted row is encountered
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      19 |   });
+      20 |
+    > 21 |   it('should emit error event with proper event name when corrupted row is encountered', (done) => {
+         |   ^
+      22 |     const corruptedData = '{"key":"test"}\n{"invalid": json}\n';
+      23 |     fs.writeFileSync(testDbPath, corruptedData);
+      24 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-a201b28/testCase.test.ts:21:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-a201b28/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.57 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-a201b28/testCase.test.ts".

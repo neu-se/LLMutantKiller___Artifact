@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-afb4899/testCase.test.ts
+  Q getFileNameAndLineNumber attempt2 regex end anchor
+    ✕ should use $ anchor so attempt2 only matches lines ending with :col (10 ms)
+
+  ● Q getFileNameAndLineNumber attempt2 regex end anchor › should use $ anchor so attempt2 only matches lines ending with :col
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js"
+    Received string:    "    at @/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-afb4899/testCase.test.ts:32:17 extra
+
+      53 |       // Mutated (no $): captureLine parses "at FILE:LINE:COL extra" → qFileName=qPath
+      54 |       //   → Q's own frames filtered out → caughtError.stack lacks qPath → FAIL
+    > 55 |       expect(caughtError.stack).toContain(qPath);
+         |                                 ^
+      56 |     } finally {
+      57 |       (Error as any).prepareStackTrace = originalPrepareStackTrace;
+      58 |     }
+
+      at node:internal/process/task_queues:77:11 extra
+      From previous event:
+      at llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-afb4899/testCase.test.ts:31:11 extra
+      at :0:0 extra
+      at llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-afb4899/testCase.test.ts:30:13 extra
+      at :0:0 extra
+      at Object.toContain (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-afb4899/testCase.test.ts:55:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.205 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-afb4899/testCase.test.ts".

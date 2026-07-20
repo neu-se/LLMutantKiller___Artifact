@@ -1,0 +1,29 @@
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_8/pending_category/mutant-0a781b7/testCase.test.ts
+  GeoPoint
+    ✕ should calculate destination correctly (3 ms)
+
+  ● GeoPoint › should calculate destination correctly
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: -0.00404389758460255
+    Received: 0.004043897584602549
+
+    Expected precision:    6
+    Expected difference: < 0.0000005
+    Received difference:   0.0080877951692051
+
+      13 |     // The mutation changes the sign in the calculation of sinφ2, which affects the result of calculateDestination.
+      14 |     // We can test this by checking if the product of latitudes and longitudes of the destinations is correct.
+    > 15 |     expect(destination1.latitude * destination1.longitude).toBeCloseTo(-destination2.latitude * destination2.longitude, 6);
+         |                                                            ^
+      16 |   });
+      17 | });
+
+      at Object.toBeCloseTo (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_8/pending_category/mutant-0a781b7/testCase.test.ts:15:60)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.923 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_8/pending_category/mutant-0a781b7/testCase.test.ts".

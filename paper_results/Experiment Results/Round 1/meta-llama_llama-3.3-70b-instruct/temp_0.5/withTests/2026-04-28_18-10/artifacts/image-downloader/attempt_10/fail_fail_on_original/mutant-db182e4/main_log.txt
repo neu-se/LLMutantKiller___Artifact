@@ -1,0 +1,52 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_10/pending_category/mutant-db182e4/testCase.test.ts[0m:[93m29[0m:[93m11[0m - [91merror[0m[90m TS2794: [0mExpected 1 arguments, but got 0. Did you forget to include 'void' in your type argument to 'Promise'?
+
+[7m29[0m           resolve();
+[7m  [0m [91m          ~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.es2015.promise.d.ts[0m:[93m31[0m:[93m34[0m
+    [7m31[0m     new <T>(executor: (resolve: (value: T | PromiseLike<T>) => void, reject: (reason?: any) => void) => void): Promise<T>;
+    [7m  [0m [96m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'value' was not provided.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_10/pending_category/mutant-db182e4/testCase.test.ts (6.133 s)
+  image downloader
+    ✕ should resolve relative path correctly (5003 ms)
+
+  ● image downloader › should resolve relative path correctly
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      25 |         setTimeout(() => {
+      26 |           const existsAfter = fs.existsSync(filename);
+    > 27 |           expect(existsAfter).toBe(true);
+         |                               ^
+      28 |           expect(existsAfter).not.toBe(existsBefore);
+      29 |           resolve();
+      30 |         }, 100);
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_10/pending_category/mutant-db182e4/testCase.test.ts:27:31)
+
+  ● image downloader › should resolve relative path correctly
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 |
+      5 | describe('image downloader', () => {
+    > 6 |   it('should resolve relative path correctly', () => {
+        |   ^
+      7 |     const options = {
+      8 |       url: 'http://someurl.com/image-success.png',
+      9 |       dest: './image.png',
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_10/pending_category/mutant-db182e4/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_10/pending_category/mutant-db182e4/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.315 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_10/pending_category/mutant-db182e4/testCase.test.ts".

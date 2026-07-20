@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-2834e3c/testCase.test.ts
+  Complex asech
+    ✕ detects mutation when a=0 and b is tiny causing d underflow (2 ms)
+
+  ● Complex asech › detects mutation when a=0 and b is tiny causing d underflow
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: NaN
+    Received: NaN
+
+    Expected precision:    5
+    Expected difference: < 0.000005
+    Received difference:   NaN
+
+      13 |     // Verify original and mutated expectations actually differ
+      14 |     // new Complex(0, -Infinity).acosh() vs new Complex(0, 0).acosh()
+    > 15 |     expect(result.re).toBeCloseTo(originalExpected.re, 5);
+         |                       ^
+      16 |     expect(result.im).toBeCloseTo(originalExpected.im, 5);
+      17 |   });
+      18 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-2834e3c/testCase.test.ts:15:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.816 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-2834e3c/testCase.test.ts".

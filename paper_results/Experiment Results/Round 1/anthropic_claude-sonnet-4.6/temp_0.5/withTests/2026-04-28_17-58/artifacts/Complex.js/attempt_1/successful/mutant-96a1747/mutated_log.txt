@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/Complex.js/complex.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/Complex.js/complex.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-96a1747/testCase.test.ts
+  atanh mutation detection
+    ✕ should correctly compute atanh for real values greater than 1 (3 ms)
+
+  ● atanh mutation detection › should correctly compute atanh for real values greater than 1
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: -1.5707963267948966
+    Received: NaN
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   NaN
+
+       6 |     // atanh(2) = ln(3)/2 - πi/2
+       7 |     expect(result.re).toBeCloseTo(Math.log(3) / 2, 10);
+    >  8 |     expect(result.im).toBeCloseTo(-Math.PI / 2, 10);
+         |                       ^
+       9 |     expect(isNaN(result.im)).toBe(false);
+      10 |   });
+      11 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-96a1747/testCase.test.ts:8:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.864 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-96a1747/testCase.test.ts".

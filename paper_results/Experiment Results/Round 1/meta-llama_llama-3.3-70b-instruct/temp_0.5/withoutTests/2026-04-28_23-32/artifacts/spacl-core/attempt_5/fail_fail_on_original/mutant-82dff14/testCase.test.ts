@@ -1,0 +1,9 @@
+import { Matcher } from "../../../../../../../../../../../subject_repositories/spacl-core/src/matcher";
+
+describe('Matcher', () => {
+  it('should not throw an error when version is provided', () => {
+    expect(() => new Matcher('/path', '1.1')).not.toThrowError();
+    // @ts-expect-error
+    expect(() => new Matcher('/path', '')).toThrowError();
+  });
+});

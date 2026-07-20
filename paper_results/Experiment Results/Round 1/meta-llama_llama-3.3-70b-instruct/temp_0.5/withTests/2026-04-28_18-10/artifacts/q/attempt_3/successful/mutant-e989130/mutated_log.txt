@@ -1,0 +1,60 @@
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-e989130/testCase.test.ts
+  Q defer
+    ✕ should resolve a promise when given a value (2 ms)
+    ✕ should reject a promise when given an error
+    ✕ should inspect a pending promise
+
+  ● Q defer › should resolve a promise when given a value
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       5 |         const deferred = q.defer();
+       6 |         deferred.resolve(5);
+    >  7 |         expect(deferred.promise.isFulfilled()).toBe(true);
+         |                                                ^
+       8 |     });
+       9 |
+      10 |     it("should reject a promise when given an error", () => {
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-e989130/testCase.test.ts:7:48)
+
+  ● Q defer › should reject a promise when given an error
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      12 |         const error = new Error("Test error");
+      13 |         deferred.reject(error);
+    > 14 |         expect(deferred.promise.isRejected()).toBe(true);
+         |                                               ^
+      15 |         expect(deferred.promise.inspect().reason).toBe(error);
+      16 |     });
+      17 |
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-e989130/testCase.test.ts:14:47)
+
+  ● Q defer › should inspect a pending promise
+
+    TypeError: Cannot read properties of undefined (reading 'inspect')
+
+      590 |             return { state: "pending" };
+      591 |         }
+    > 592 |         return resolvedPromise.inspect();
+          |                                ^
+      593 |     };
+      594 |
+      595 |     if (Q.longStackSupport && hasStacks) {
+
+      at Promise.inspect (../subject_repositories/q/q.js:592:32)
+      at Object.inspect (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-e989130/testCase.test.ts:20:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        0.963 s, estimated 1 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-e989130/testCase.test.ts".

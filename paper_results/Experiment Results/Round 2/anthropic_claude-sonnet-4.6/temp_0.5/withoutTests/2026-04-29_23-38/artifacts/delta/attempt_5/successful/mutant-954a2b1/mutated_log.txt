@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-954a2b1/testCase.test.ts
+  Delta compose
+    ✕ should correctly compose retain with attributes at start of other delta (6 ms)
+
+  ● Delta compose › should correctly compose retain with attributes at start of other delta
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 4
+
+      Array [
+        Object {
+    +     "insert": "Hi",
+    +   },
+    +   Object {
+          "attributes": Object {
+            "bold": true,
+          },
+    -     "insert": "Hi Wo",
+    +     "insert": " Wo",
+        },
+        Object {
+          "insert": "rld",
+        },
+      ]
+
+       9 |     
+      10 |     // Original correctly applies bold to first 5 chars: 'Hi Wo'
+    > 11 |     expect(result.ops).toEqual([
+         |                        ^
+      12 |       { insert: 'Hi Wo', attributes: { bold: true } },
+      13 |       { insert: 'rld' },
+      14 |     ]);
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-954a2b1/testCase.test.ts:11:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.574 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-954a2b1/testCase.test.ts".

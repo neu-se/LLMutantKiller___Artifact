@@ -1,0 +1,46 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_3/pending_category/mutant-ff1d529/testCase.test.ts[0m:[93m9[0m:[93m7[0m - [91merror[0m[90m TS7034: [0mVariable 'TEST_DIR' implicitly has type 'any' in some locations where its type cannot be determined.
+
+[7m9[0m   let TEST_DIR
+[7m [0m [91m      ~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_3/pending_category/mutant-ff1d529/testCase.test.ts[0m:[93m18[0m:[93m17[0m - [91merror[0m[90m TS7005: [0mVariable 'TEST_DIR' implicitly has an 'any' type.
+
+[7m18[0m     rimraf.sync(TEST_DIR)
+[7m  [0m [91m                ~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_3/pending_category/mutant-ff1d529/testCase.test.ts[0m:[93m23[0m:[93m28[0m - [91merror[0m[90m TS7005: [0mVariable 'TEST_DIR' implicitly has an 'any' type.
+
+[7m23[0m     const file = path.join(TEST_DIR, 'non-existent.json')
+[7m  [0m [91m                           ~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_3/pending_category/mutant-ff1d529/testCase.test.ts[0m:[93m27[0m:[93m9[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m27[0m     }, (err) => {
+[7m  [0m [91m        ~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_3/pending_category/mutant-ff1d529/testCase.test.ts
+  readFileSync encoding string option
+    ✕ should fail when encoding is passed as string to non-existent file (13 ms)
+
+  ● readFileSync encoding string option › should fail when encoding is passed as string to non-existent file
+
+    assert(received)
+
+    Expected value to be equal to:
+      true
+    Received:
+      false
+
+      26 |       jf.readFileSync(file, 'utf8')
+      27 |     }, (err) => {
+    > 28 |       assert(err instanceof Error)
+         |       ^
+      29 |       assert(err.message.includes('non-existent.json'))
+      30 |       return true
+      31 |     })
+
+      at Object.assert (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_3/pending_category/mutant-ff1d529/testCase.test.ts:28:7)
+      at Object.throws (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_3/pending_category/mutant-ff1d529/testCase.test.ts:25:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.429 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_3/pending_category/mutant-ff1d529/testCase.test.ts".

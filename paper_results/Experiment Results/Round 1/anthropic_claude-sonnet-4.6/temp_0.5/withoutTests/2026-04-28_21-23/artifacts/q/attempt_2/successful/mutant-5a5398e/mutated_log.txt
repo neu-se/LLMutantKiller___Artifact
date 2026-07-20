@@ -1,0 +1,38 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-5a5398e/testCase.test.ts
+  Q.denodeify source contains correct error message
+    ✕ should contain the error message "Q can't wrap an undefined function" in the denodeify source (3 ms)
+
+  ● Q.denodeify source contains correct error message › should contain the error message "Q can't wrap an undefined function" in the denodeify source
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Q can't wrap an undefined function"
+    Received string:    "function (callback /*...args*/) {
+        if (callback === undefined) {
+          throw new Error(\"\");
+        }
+        var baseArgs = array_slice(arguments, 1);
+        return function () {
+          var nodeArgs = baseArgs.concat(array_slice(arguments));
+          var deferred = defer();
+          nodeArgs.push(deferred.makeNodeResolver());
+          Q(callback).fapply(nodeArgs).fail(deferred.reject);
+          return deferred.promise;
+        };
+      }"
+
+       6 |     // Since the branch never executes, we must inspect the function source to detect the mutation.
+       7 |     const denodeifySource = Q.denodeify.toString();
+    >  8 |     expect(denodeifySource).toContain("Q can't wrap an undefined function");
+         |                             ^
+       9 |   });
+      10 | });
+
+      at Object.toContain (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-5a5398e/testCase.test.ts:8:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.826 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-5a5398e/testCase.test.ts".

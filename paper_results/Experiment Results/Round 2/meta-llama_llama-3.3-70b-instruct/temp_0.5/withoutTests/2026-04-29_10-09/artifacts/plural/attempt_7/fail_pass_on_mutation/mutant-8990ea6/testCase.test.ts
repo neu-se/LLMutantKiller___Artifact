@@ -1,0 +1,8 @@
+import plural from "../../../../../../../../../../../subject_repositories/plural/index.js";
+
+describe('plural function', () => {
+  it('should handle words that end with quy correctly', () => {
+    expect(plural('quy')).toBe(plural('quy'));
+    expect(plural('qu')).not.toBe(plural('quy'));
+  });
+});

@@ -1,0 +1,26 @@
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_5/pending_category/mutant-2a53823/testCase.test.ts
+  ZipAFolder
+    ✕ should create a tar archive when compression level is uncompressed (3 ms)
+
+  ● ZipAFolder › should create a tar archive when compression level is uncompressed
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      17 |         try {
+      18 |             await tar(src, tarFilePath, { compression: compressionLevel });
+    > 19 |             expect(fs.existsSync(tarFilePath)).toBe(true);
+         |                                                ^
+      20 |             const stats = fs.statSync(tarFilePath);
+      21 |             expect(stats.size).toBeGreaterThan(0);
+      22 |         } finally {
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_5/pending_category/mutant-2a53823/testCase.test.ts:19:48)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.404 s, estimated 2 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_5/pending_category/mutant-2a53823/testCase.test.ts".

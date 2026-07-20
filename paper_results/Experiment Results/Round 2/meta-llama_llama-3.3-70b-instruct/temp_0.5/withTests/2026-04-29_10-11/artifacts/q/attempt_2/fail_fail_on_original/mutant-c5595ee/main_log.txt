@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-c5595ee/testCase.test.ts[0m:[93m7[0m:[93m25[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type 'typeof export='.
+
+[7m7[0m         var promise = q.Q.reject(error);
+[7m [0m [91m                        ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-c5595ee/testCase.test.ts
+  q.js
+    ✕ should handle stack traces correctly (1 ms)
+
+  ● q.js › should handle stack traces correctly
+
+    TypeError: Cannot read properties of undefined (reading 'reject')
+
+       5 |         var error = new Error("Test error");
+       6 |         error.stack = "   at func1 (file1.js:10:20)\n   at func2 (file2.js:30:40)";
+    >  7 |         var promise = q.Q.reject(error);
+         |                           ^
+       8 |         return promise.catch((err: any) => {
+       9 |             expect(err.stack).toContain("func1");
+      10 |             expect(err.stack).toContain("func2");
+
+      at Object.reject (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-c5595ee/testCase.test.ts:7:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.24 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-c5595ee/testCase.test.ts".

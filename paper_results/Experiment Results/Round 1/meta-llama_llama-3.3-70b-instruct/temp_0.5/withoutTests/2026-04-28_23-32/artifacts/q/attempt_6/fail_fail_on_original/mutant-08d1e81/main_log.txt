@@ -1,0 +1,54 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-08d1e81/testCase.test.ts[0m:[93m7[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '(event: "unhandledRejection" | "message" | "multipleResolves", reason: unknown, promise: unknown) => void' is not assignable to type '{ (event: "beforeExit", code: number): boolean; (event: "disconnect"): boolean; (event: "exit", code: number): boolean; (event: "rejectionHandled", promise: Promise<unknown>): boolean; (event: "uncaughtException", error: Error): boolean; (event: "uncaughtExceptionMonitor", error: Error): boolean; (event: "unhandledR...'.
+  Target signature provides too few arguments. Expected 3 or more, but got 2.
+
+[7m7[0m     process.emit = (event, reason, promise) => {
+[7m [0m [91m    ~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-08d1e81/testCase.test.ts[0m:[93m13[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'undefined' is not assignable to type '{ (event: "beforeExit", code: number): boolean; (event: "disconnect"): boolean; (event: "exit", code: number): boolean; (event: "rejectionHandled", promise: Promise<unknown>): boolean; (event: "uncaughtException", error: Error): boolean; (event: "uncaughtExceptionMonitor", error: Error): boolean; (event: "unhandledR...'.
+
+[7m13[0m       process.emit = undefined;
+[7m  [0m [91m      ~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-08d1e81/testCase.test.ts (6.431 s)
+  Q
+    ✕ should track unhandled rejections when process.emit is a function and not when it is not (5003 ms)
+
+  ● Q › should track unhandled rejections when process.emit is a function and not when it is not
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      10 |     const promise1 = Q.reject("test1");
+      11 |     Q.nextTick.runAfter(() => {
+    > 12 |       expect(emitCalled).toBe(true);
+         |                          ^
+      13 |       process.emit = undefined;
+      14 |       emitCalled = false;
+      15 |       const promise2 = Q.reject("test2");
+
+      at toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-08d1e81/testCase.test.ts:12:26)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:130:13)
+
+  ● Q › should track unhandled rejections when process.emit is a function and not when it is not
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("Q", () => {
+    > 4 |   it("should track unhandled rejections when process.emit is a function and not when it is not", (done) => {
+        |   ^
+      5 |     const originalProcessEmit = process.emit;
+      6 |     let emitCalled = false;
+      7 |     process.emit = (event, reason, promise) => {
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-08d1e81/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-08d1e81/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.608 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-08d1e81/testCase.test.ts".

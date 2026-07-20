@@ -1,0 +1,43 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-4d8a830/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-4d8a830/testCase.test.ts
+  Q post method
+    ✕ should call the post method with the provided name and arguments when name is not null or undefined (9 ms)
+    ✕ should not call the post method when name is null or undefined in the original code
+
+  ● Q post method › should call the post method with the provided name and arguments when name is not null or undefined
+
+    TypeError: Cannot read properties of undefined (reading 'post')
+
+       7 |         };
+       8 |
+    >  9 |         return Q.post(obj, "method", [1, 2, 3]).then((result: number) => {
+         |                  ^
+      10 |             expect(result).toBe(6);
+      11 |         });
+      12 |     });
+
+      at Object.post (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-4d8a830/testCase.test.ts:9:18)
+
+  ● Q post method › should not call the post method when name is null or undefined in the original code
+
+    TypeError: Cannot read properties of undefined (reading 'post')
+
+      17 |         };
+      18 |
+    > 19 |         return Q.post(obj, null, [1, 2, 3]).then((result: number) => {
+         |                  ^
+      20 |             expect(result).toBeUndefined();
+      21 |         });
+      22 |     });
+
+      at Object.post (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-4d8a830/testCase.test.ts:19:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        2.981 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-4d8a830/testCase.test.ts".

@@ -1,0 +1,33 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_9/pending_category/mutant-7cd0f61/testCase.test.ts
+  Delta
+    ✕ should throw an error when calling diff() on two Deltas with a non-document (2 ms)
+
+  ● Delta › should throw an error when calling diff() on two Deltas with a non-document
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "diff() called on non-document"
+
+    Received function did not throw
+
+      5 |     const delta1 = new Delta();
+      6 |     const delta2 = new Delta([{ insert: 'Hello' }]);
+    > 7 |     expect(() => delta1.diff(delta2)).toThrowError('diff() called on non-document');
+        |                                       ^
+      8 |   });
+      9 | });
+
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_9/pending_category/mutant-7cd0f61/testCase.test.ts:7:39)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.605 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_9/pending_category/mutant-7cd0f61/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

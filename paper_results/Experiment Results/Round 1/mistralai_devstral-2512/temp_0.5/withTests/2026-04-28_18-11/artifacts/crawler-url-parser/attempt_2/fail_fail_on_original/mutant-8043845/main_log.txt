@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-8043845/testCase.test.ts
+  extract function should filter out invalid hrefs
+    ✕ should not include javascript: links in extracted URLs (10 ms)
+
+  ● extract function should filter out invalid hrefs › should not include javascript: links in extracted URLs
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+      17 |         const result = extract(html, "http://example.com");
+      18 |         const validUrls = result.filter((urlObj: any) => urlObj.url);
+    > 19 |         expect(validUrls.length).toBe(1);
+         |                                  ^
+      20 |         expect(validUrls[0].url).toBe("http://example.com/");
+      21 |     });
+      22 | });
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-8043845/testCase.test.ts:19:34)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.617 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-8043845/testCase.test.ts".

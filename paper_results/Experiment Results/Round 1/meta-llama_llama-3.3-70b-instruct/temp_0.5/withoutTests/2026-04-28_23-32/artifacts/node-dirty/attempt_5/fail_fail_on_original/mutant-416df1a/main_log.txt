@@ -1,0 +1,30 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-416df1a/testCase.test.ts[0m:[93m15[0m:[93m5[0m - [91merror[0m[90m TS2740: [0mType '{ write: () => false; }' is missing the following properties from type 'WriteStream': close, bytesWritten, path, pending, and 37 more.
+
+[7m15[0m     dirty._writeStream = {
+[7m  [0m [91m    ~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-416df1a/testCase.test.ts
+  Dirty
+    ✕ should not emit error when there are callbacks and an error occurs (2 ms)
+
+  ● Dirty › should not emit error when there are callbacks and an error occurs
+
+    TypeError: this._writeStream.cork is not a function
+
+      181 |   _flush() {
+      182 |     if (!this._queue.size || this._waitForDrain) return;
+    > 183 |     this._writeStream.cork();
+          |                       ^
+      184 |     for (const [key, cbs] of this._queue) {
+      185 |       this._queue.delete(key);
+      186 |       const data = `${JSON.stringify({key, val: this._data.get(key)})}\n`;
+
+      at Dirty.cork [as _flush] (../subject_repositories/node-dirty/lib/dirty/dirty.js:183:23)
+      at Dirty._flush [as set] (../subject_repositories/node-dirty/lib/dirty/dirty.js:37:12)
+      at Object.set (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-416df1a/testCase.test.ts:21:11)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.4 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-416df1a/testCase.test.ts".

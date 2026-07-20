@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-82a4eb9/testCase.test.ts
+  Q module export behavior
+    ✕ should only export Q when both exports and module are objects (AND condition) (2 ms)
+
+  ● Q module export behavior › should only export Q when both exports and module are objects (AND condition)
+
+    expect(received).toBeUndefined()
+
+    Received: [Function Q]
+
+      37 |         // In original code (AND condition), Q should NOT be exported when only exports is an object
+      38 |         // In mutated code (OR condition), Q might be exported
+    > 39 |         expect(qInMockEnv).toBeUndefined();
+         |                            ^
+      40 |
+      41 |         // Now test the normal case where both are objects
+      42 |         const normalQ = require("../../../../../../../../../../../subject_repositories/q/q.js");
+
+      at Object.toBeUndefined (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-82a4eb9/testCase.test.ts:39:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.132 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-82a4eb9/testCase.test.ts".

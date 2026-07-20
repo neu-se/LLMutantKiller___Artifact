@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-847146f/testCase.test.ts
+  Promise.prototype.fail
+    ✕ should reject with the given reason (3 ms)
+
+  ● Promise.prototype.fail › should reject with the given reason
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+       6 |         const rejectedPromise = promise["catch"](() => { throw new Error("Test error"); });
+       7 |         return rejectedPromise.then(
+    >  8 |             () => { expect(true).toBe(false); },
+         |                                  ^
+       9 |             (reason: Error) => { expect(reason.message).toBe("Test error"); }
+      10 |         );
+      11 |     });
+
+      at toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-847146f/testCase.test.ts:8:34)
+      at fulfilled (../subject_repositories/q/q.js:854:54)
+      at _fulfilled (../subject_repositories/q/q.js:883:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:816:13)
+      at apply (../subject_repositories/q/q.js:570:49)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.229 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-847146f/testCase.test.ts".

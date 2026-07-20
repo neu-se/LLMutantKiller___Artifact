@@ -1,0 +1,36 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-3c46606/testCase.test.ts[0m:[93m6[0m:[93m20[0m - [91merror[0m[90m TS6133: [0m'b' is declared but its value is never read.
+
+[7m6[0m       compose: (a, b) => a,
+[7m [0m [91m                   ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-3c46606/testCase.test.ts[0m:[93m8[0m:[93m19[0m - [91merror[0m[90m TS6133: [0m'b' is declared but its value is never read.
+
+[7m8[0m       invert: (a, b) => a,
+[7m [0m [91m                  ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-3c46606/testCase.test.ts
+  Delta
+    ✕ transform with embed handler and mismatched embed types (4 ms)
+
+  ● Delta › transform with embed handler and mismatched embed types
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "embed types not matched: test != other"
+
+    Received function did not throw
+
+      10 |     const deltaA = new Delta().retain({ test: 'a' });
+      11 |     const deltaB = new Delta().retain({ other: 'b' });
+    > 12 |     expect(() => deltaA.transform(deltaB)).toThrowError('embed types not matched: test != other');
+         |                                            ^
+      13 |     Delta.unregisterEmbed('test');
+      14 |   });
+      15 | });
+
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-3c46606/testCase.test.ts:12:44)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.861 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-3c46606/testCase.test.ts".

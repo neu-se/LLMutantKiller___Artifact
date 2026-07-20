@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-f1993ad/testCase.test.ts
+  prop with regexp key
+    ✕ should return a function that executes the regexp and returns the first match (5 ms)
+
+  ● prop with regexp key › should return a function that executes the regexp and returns the first match
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "function"
+    Received: "object"
+
+       8 |     // In original code: fn is a function that runs key.exec(data) and returns v[0]
+       9 |     // In mutated code: fn is the regexp itself (not a function that applies exec)
+    > 10 |     expect(typeof fn).toBe("function");
+         |                       ^
+      11 |
+      12 |     // The returned function should apply the regexp to data and return the match
+      13 |     const result = fn("say hello world");
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-f1993ad/testCase.test.ts:10:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.73 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-f1993ad/testCase.test.ts".

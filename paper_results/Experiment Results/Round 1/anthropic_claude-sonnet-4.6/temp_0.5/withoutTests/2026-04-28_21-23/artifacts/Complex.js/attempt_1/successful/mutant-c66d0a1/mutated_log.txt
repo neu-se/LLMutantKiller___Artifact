@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/Complex.js/complex.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/Complex.js/complex.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-c66d0a1/testCase.test.ts
+  Complex acsc function
+    ✕ should correctly compute the inverse cosecant of a complex number with non-zero magnitude (3 ms)
+
+  ● Complex acsc function › should correctly compute the inverse cosecant of a complex number with non-zero magnitude
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.5235987755982988
+    Received: NaN
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   NaN
+
+      10 |     // which is new Complex(0.5, 0).asin() = asin(0.5) = pi/6
+      11 |     // The mutated code returns (false) branch which would be new Complex(0, 0).asin() = 0
+    > 12 |     expect(result.re).toBeCloseTo(Math.PI / 6, 10);
+         |                       ^
+      13 |     expect(result.im).toBeCloseTo(0, 10);
+      14 |   });
+      15 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-c66d0a1/testCase.test.ts:12:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.689 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-c66d0a1/testCase.test.ts".

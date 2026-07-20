@@ -1,0 +1,47 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-cef90e3/testCase.test.ts[0m:[93m6[0m:[93m24[0m - [91merror[0m[90m TS7009: [0m'new' expression, whose target lacks a construct signature, implicitly has an 'any' type.
+
+[7m  6[0m     const badPromise = new Q.Promise({
+[7m   [0m [91m                       ~~~~~~~~~~~~~~~[0m
+[7m  7[0m       when: function(rejected: any) {
+[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m...[0m 
+[7m 24[0m       return { state: "fulfilled", value: 42 };
+[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m 25[0m     });
+[7m   [0m [91m~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-cef90e3/testCase.test.ts[0m:[93m10[0m:[93m8[0m - [91merror[0m[90m TS2554: [0mExpected 0-1 arguments, but got 3.
+
+[7m 10[0m     }, function fallback(op: string, args: any[]) {
+[7m   [0m [91m       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m 11[0m       if (op === "when") {
+[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m...[0m 
+[7m 24[0m       return { state: "fulfilled", value: 42 };
+[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m 25[0m     });
+[7m   [0m [91m~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-cef90e3/testCase.test.ts
+  Promise.prototype.then done guard
+    ✕ should only call the fulfilled callback once even if the underlying promise resolves and rejects (1 ms)
+
+  ● Promise.prototype.then done guard › should only call the fulfilled callback once even if the underlying promise resolves and rejects
+
+    TypeError: resolver must be a function.
+
+      696 | function promise(resolver) {
+      697 |     if (typeof resolver !== "function") {
+    > 698 |         throw new TypeError("resolver must be a function.");
+          |               ^
+      699 |     }
+      700 |     var deferred = defer();
+      701 |     try {
+
+      at new promise (../subject_repositories/q/q.js:698:15)
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-cef90e3/testCase.test.ts:6:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.5 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-cef90e3/testCase.test.ts".

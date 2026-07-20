@@ -1,0 +1,26 @@
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/plural/attempt_7/pending_category/mutant-ef08f1e/testCase.test.ts
+  plural function
+    ✕ should handle words that end with "io" correctly (3 ms)
+
+  ● plural function › should handle words that end with "io" correctly
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "photos"
+    Received: "photoes"
+
+      4 |   it('should handle words that end with "io" correctly', () => {
+      5 |     expect(plural('folio')).toBe('folios');
+    > 6 |     expect(plural('photo')).toBe('photos'); // This should be "photoes" in the mutated code
+        |                             ^
+      7 |     expect(plural('radio')).toBe('radios');
+      8 |     expect(plural('atio')).toBe('ations'); // This should be "atios" in the mutated code
+      9 |   });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/plural/attempt_7/pending_category/mutant-ef08f1e/testCase.test.ts:6:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.419 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/plural/attempt_7/pending_category/mutant-ef08f1e/testCase.test.ts".

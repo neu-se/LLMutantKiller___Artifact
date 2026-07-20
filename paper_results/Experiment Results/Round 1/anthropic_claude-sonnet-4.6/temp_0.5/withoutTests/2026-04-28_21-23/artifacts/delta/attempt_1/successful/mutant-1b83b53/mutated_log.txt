@@ -1,0 +1,62 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-1b83b53/testCase.test.ts[0m:[93m1[0m:[93m19[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import Delta from "../../../../../../../../../../../subject_repositories/delta/src/Delta.ts";
+[7m [0m [91m                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-1b83b53/testCase.test.ts[0m:[93m28[0m:[93m14[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m28[0m       invert(a: unknown, b: unknown): unknown {
+[7m  [0m [91m             ~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-1b83b53/testCase.test.ts[0m:[93m31[0m:[93m17[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m31[0m       transform(a: unknown, b: unknown, priority: boolean): unknown {
+[7m  [0m [91m                ~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-1b83b53/testCase.test.ts[0m:[93m31[0m:[93m41[0m - [91merror[0m[90m TS6133: [0m'priority' is declared but its value is never read.
+
+[7m31[0m       transform(a: unknown, b: unknown, priority: boolean): unknown {
+[7m  [0m [91m                                        ~~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-1b83b53/testCase.test.ts[0m:[93m38[0m:[93m13[0m - [91merror[0m[90m TS6133: [0m'base' is declared but its value is never read.
+
+[7m38[0m       const base = new Delta().insert({ [embedType]: { key: "value" } });
+[7m  [0m [91m            ~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-1b83b53/testCase.test.ts[0m:[93m54[0m:[93m28[0m - [91merror[0m[90m TS2339: [0mProperty 'toHaveLength' does not exist on type 'ArrayLikeMatchers<Op>'.
+
+[7m54[0m       expect(composed.ops).toHaveLength(1);
+[7m  [0m [91m                           ~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) [96m../subject_repositories/delta/src/Delta.ts[0m:[93m291[0m:[93m22[0m - [91merror[0m[90m TS2367: [0mThis comparison appears to be unintentional because the types '"insert" | "retain"' and '""' have no overlap.
+
+[7m291[0m                      action === "",
+[7m   [0m [91m                     ~~~~~~~~~~~~~[0m
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-1b83b53/testCase.test.ts
+  Delta compose with embed handler keepNull parameter
+    ✕ passes keepNull=true when composing retain embed operations (5 ms)
+
+  ● Delta compose with embed handler keepNull parameter › passes keepNull=true when composing retain embed operations
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 3
+    + Received  + 1
+
+      Object {
+    -   "test-embed": Object {
+    -     "key": null,
+    -   },
+    +   "test-embed": Object {},
+      }
+
+      53 |       
+      54 |       expect(composed.ops).toHaveLength(1);
+    > 55 |       expect(composed.ops[0].retain).toEqual({ [embedType]: { key: null } });
+         |                                      ^
+      56 |     } finally {
+      57 |       Delta.unregisterEmbed(embedType);
+      58 |     }
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-1b83b53/testCase.test.ts:55:38)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.036 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-1b83b53/testCase.test.ts".

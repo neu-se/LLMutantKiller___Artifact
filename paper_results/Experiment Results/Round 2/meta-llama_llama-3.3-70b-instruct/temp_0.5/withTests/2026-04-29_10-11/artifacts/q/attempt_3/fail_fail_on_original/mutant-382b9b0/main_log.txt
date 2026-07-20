@@ -1,0 +1,58 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-382b9b0/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-382b9b0/testCase.test.ts
+  nodeify function
+    ✕ should call the nodeback with the resolved value (1 ms)
+    ✕ should call the nodeback with the rejected error
+    ✕ should return the promise if no nodeback is provided
+
+  ● nodeify function › should call the nodeback with the resolved value
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      4 |     it("should call the nodeback with the resolved value", () => {
+      5 |         var spy = jest.fn();
+    > 6 |         var promise = Q(10);
+        |                        ^
+      7 |         promise.nodeify(spy);
+      8 |         expect(spy).toHaveBeenCalledTimes(1);
+      9 |         expect(spy).toHaveBeenCalledWith(null, 10);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-382b9b0/testCase.test.ts:6:24)
+
+  ● nodeify function › should call the nodeback with the rejected error
+
+    TypeError: Cannot read properties of undefined (reading 'reject')
+
+      12 |     it("should call the nodeback with the rejected error", () => {
+      13 |         var spy = jest.fn();
+    > 14 |         var promise = Q.reject(new Error("Test error"));
+         |                         ^
+      15 |         promise.nodeify(spy);
+      16 |         expect(spy).toHaveBeenCalledTimes(1);
+      17 |         expect(spy).toHaveBeenCalledWith(new Error("Test error"));
+
+      at Object.reject (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-382b9b0/testCase.test.ts:14:25)
+
+  ● nodeify function › should return the promise if no nodeback is provided
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      19 |
+      20 |     it("should return the promise if no nodeback is provided", () => {
+    > 21 |         var promise = Q(10);
+         |                        ^
+      22 |         var result = promise.nodeify();
+      23 |         expect(result).toBe(promise);
+      24 |     });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-382b9b0/testCase.test.ts:21:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        3.642 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-382b9b0/testCase.test.ts".

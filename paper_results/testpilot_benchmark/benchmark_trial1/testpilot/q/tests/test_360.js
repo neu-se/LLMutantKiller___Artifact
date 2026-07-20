@@ -1,0 +1,23 @@
+let mocha = require('mocha');
+let assert = require('assert');
+let q = require('q');
+
+describe('test q', function() {
+    it('test q.nbind with synchronous callback', function(done) {
+        const mockObject = {
+            syncMethod: function(value, callback) {
+                // Synchronous callback
+                callback(null, value * 2);
+            }
+        };
+
+        const promisifiedMethod = q.nbind(mockObject.syncMethod, mockObject);
+        
+        promisifiedMethod(5)
+            .then(result => {
+                assert.strictEqual(result, 10);
+                done();
+            })
+            .catch(done);
+    });
+});

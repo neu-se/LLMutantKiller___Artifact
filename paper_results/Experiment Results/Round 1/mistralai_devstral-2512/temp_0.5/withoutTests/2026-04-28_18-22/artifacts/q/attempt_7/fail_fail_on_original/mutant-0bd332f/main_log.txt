@@ -1,0 +1,36 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-0bd332f/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-0bd332f/testCase.test.ts[0m:[93m11[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType 'undefined' is not assignable to type '{ (callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: any[]) => any): any; (callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: any[]) => any, initialValue: any): any; <U>(callbackfn: (previousValue: U, currentValue: any, currentIndex: number, array: any[]) ...'.
+
+[7m11[0m     Array.prototype.reduce = undefined;
+[7m  [0m [91m    ~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-0bd332f/testCase.test.ts[0m:[93m32[0m:[93m25[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m32[0m         .catch(function(e) {
+[7m  [0m [91m                        ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-0bd332f/testCase.test.ts
+  Q library array_reduce shim
+    ✕ should throw TypeError when processing empty array with no initial value in Q's internal reduce (1 ms)
+
+  ● Q library array_reduce shim › should throw TypeError when processing empty array with no initial value in Q's internal reduce
+
+    TypeError: Cannot read properties of undefined (reading 'resolve')
+
+       5 |     // Create a scenario that forces Q to use its internal array_reduce shim
+       6 |     // by working with a promise that resolves to an empty array
+    >  7 |     const emptyArrayPromise = Q.resolve([]);
+         |                                 ^
+       8 |
+       9 |     // Override the native reduce to ensure we test Q's shim
+      10 |     const originalReduce = Array.prototype.reduce;
+
+      at Object.resolve (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-0bd332f/testCase.test.ts:7:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.736 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-0bd332f/testCase.test.ts".

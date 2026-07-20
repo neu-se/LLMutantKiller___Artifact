@@ -1,0 +1,58 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-22f4ba7/testCase.test.ts
+  Dirty
+    ✕ should close streams when queue is not empty and there are in-flight writes after setting a value and waiting for drain (1004 ms)
+
+  ● Dirty › should close streams when queue is not empty and there are in-flight writes after setting a value and waiting for drain
+
+    write after end
+
+      186 |       const data = `${JSON.stringify({key, val: this._data.get(key)})}\n`;
+      187 |       ++this._inFlightWrites;
+    > 188 |       this._waitForDrain = !this._writeStream.write(data, (err) => {
+          |                                               ^
+      189 |         if (!cbs.length && err != null) this.emit('error', err);
+      190 |         if (--this._inFlightWrites <= 0 && !this._waitForDrain) this.emit('drain');
+      191 |         for (const cb of cbs) cb(err);
+
+      at Dirty.write [as _flush] (../subject_repositories/node-dirty/lib/dirty/dirty.js:188:47)
+      at Dirty._flush [as set] (../subject_repositories/node-dirty/lib/dirty/dirty.js:37:12)
+      at set (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-22f4ba7/testCase.test.ts:13:13)
+      at cb (../subject_repositories/node-dirty/lib/dirty/dirty.js:191:31)
+
+  ● Dirty › should close streams when queue is not empty and there are in-flight writes after setting a value and waiting for drain
+
+    write after end
+
+      186 |       const data = `${JSON.stringify({key, val: this._data.get(key)})}\n`;
+      187 |       ++this._inFlightWrites;
+    > 188 |       this._waitForDrain = !this._writeStream.write(data, (err) => {
+          |                                               ^
+      189 |         if (!cbs.length && err != null) this.emit('error', err);
+      190 |         if (--this._inFlightWrites <= 0 && !this._waitForDrain) this.emit('drain');
+      191 |         for (const cb of cbs) cb(err);
+
+      at Dirty.write [as _flush] (../subject_repositories/node-dirty/lib/dirty/dirty.js:188:47)
+      at Dirty._flush [as set] (../subject_repositories/node-dirty/lib/dirty/dirty.js:37:12)
+      at set (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-22f4ba7/testCase.test.ts:13:13)
+      at cb (../subject_repositories/node-dirty/lib/dirty/dirty.js:191:31)
+
+  ● Dirty › should close streams when queue is not empty and there are in-flight writes after setting a value and waiting for drain
+
+    Write stream was not closed
+
+      25 |       setTimeout(() => {
+      26 |         if (!closed) {
+    > 27 |           reject(new Error('Write stream was not closed'));
+         |                  ^
+      28 |         } else {
+      29 |           resolve(true);
+      30 |         }
+
+      at Timeout._onTimeout (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-22f4ba7/testCase.test.ts:27:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.389 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-22f4ba7/testCase.test.ts".

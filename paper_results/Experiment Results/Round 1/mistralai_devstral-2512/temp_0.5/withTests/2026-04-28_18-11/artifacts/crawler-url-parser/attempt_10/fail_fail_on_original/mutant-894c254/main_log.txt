@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_10/pending_category/mutant-894c254/testCase.test.ts
+  removeQueryParameters configuration
+    ✕ should distinguish between UTM parameters at start vs middle of parameter name (3 ms)
+
+  ● removeQueryParameters configuration › should distinguish between UTM parameters at start vs middle of parameter name
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "?ref=keep"
+    Received: "?utm_source=test&ref=keep"
+
+      15 |         // Original would remove utm_source but keep my_utm_source
+      16 |         // Mutated would remove both utm_source and my_utm_source
+    > 17 |         expect(result1?.search).toBe("?ref=keep");
+         |                                 ^
+      18 |         expect(result2?.search).toBe("?my_utm_source=test&ref=keep");
+      19 |     });
+      20 | });
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_10/pending_category/mutant-894c254/testCase.test.ts:17:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.234 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_10/pending_category/mutant-894c254/testCase.test.ts".

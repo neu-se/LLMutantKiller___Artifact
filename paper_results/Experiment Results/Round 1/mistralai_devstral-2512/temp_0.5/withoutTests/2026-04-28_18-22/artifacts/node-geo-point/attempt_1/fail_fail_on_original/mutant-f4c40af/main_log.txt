@@ -1,0 +1,35 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-f4c40af/testCase.test.ts[0m:[93m1[0m:[93m26[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import { GeoPoint } from "../../../../../../../../../../../subject_repositories/node-geo-point/src/geo-point.ts";
+[7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-f4c40af/testCase.test.ts
+  GeoPoint.calculateDestination
+    ✕ should calculate correct destination point for given coordinate, distance, and bearing (2 ms)
+
+  ● GeoPoint.calculateDestination › should calculate correct destination point for given coordinate, distance, and bearing
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 5.147
+    Received: 0.08993216059187306
+
+    Expected precision:    3
+    Expected difference: < 0.0005
+    Received difference:   5.057067839408127
+
+      17 |
+      18 |     // Allow small floating point differences
+    > 19 |     expect(result.latitude).toBeCloseTo(expectedLatitude, 3);
+         |                             ^
+      20 |     expect(result.longitude).toBeCloseTo(expectedLongitude, 3);
+      21 |   });
+      22 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-f4c40af/testCase.test.ts:19:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.236 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-f4c40af/testCase.test.ts".

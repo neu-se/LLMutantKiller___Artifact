@@ -1,0 +1,30 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-12b073a/testCase.test.ts
+  sinh fallback mutation detection
+    ✕ detects * vs / 0.5 in sinh fallback (7 ms)
+
+  ● sinh fallback mutation detection › detects * vs / 0.5 in sinh fallback
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 3.6268604078470186
+    Received: 14.507441631388076
+
+    Expected precision:    5
+    Expected difference: < 0.000005
+    Received difference:   10.880581223541057
+
+      15 |     const c = new Complex(2, 0);
+      16 |     const result = c.sinh();
+    > 17 |     expect(result.re).toBeCloseTo(3.6268604078470186, 5);
+         |                       ^
+      18 |     expect(result.re).not.toBeCloseTo(14.5074416, 2);
+      19 |   });
+      20 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-12b073a/testCase.test.ts:17:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.561 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-12b073a/testCase.test.ts".

@@ -1,0 +1,89 @@
+let assert = require('assert');
+
+function take (test, opts) {
+  opts = opts || {}
+  var last = opts.last || false // whether the first item for which !test(item) should still pass
+  var ended = false
+  if('number' === typeof test) {
+    last = true
+    var n = test; test = function () {
+      return --n
+    }
+  }
+
+  return function (read) {
+
+    function terminate (cb) {
+      read(true, function (err) {
+        last = false; cb(err || true)
+      })
+    }
+
+    return function (end, cb) {
+      if(ended && !end) last ? terminate(cb) : cb(ended)
+      else if(ended = end) read(ended, cb)
+      else
+        read(null, function (end, data) {
+          if(ended = ended || end) {
+            //last ? terminate(cb) :
+            cb(ended)
+          }
+          else if(!test(data)) {
+            ended = true
+            last ? cb(null, data) : terminate(cb)
+          }
+          else
+            cb(null, data)
+        })
+    }
+  }
+}
+
+// Simple pull-stream implementation for testing
+const pull_stream = {
+  values: function(array) {
+    let index = 0;
+    return function(end, cb) {
+      if (end) return cb(end);
+      if (index >= array.length) return cb(true);
+      cb(null, array[index++]);
+    };
+  },
+  
+  drain: function(each, done) {
+    return function(read) {
+      (function next() {
+        read(null, function(end, data) {
+          if (end) return done(end === true ? null : end);
+          each(data);
+          next();
+        });
+      })();
+    };
+  }
+};
+
+function pullStream(source, ...transforms) {
+  let stream = source;
+  for (let transform of transforms) {
+    stream = transform(stream);
+  }
+}
+
+describe('test pull_stream', function() {
+    it('should handle stream shorter than requested count', function(done) {
+        const source = pull_stream.values([1, 2]);
+        const result = [];
+        
+        const takeTransform = take(5);
+        const drainTransform = pull_stream.drain(function(data) {
+            result.push(data);
+        }, function(err) {
+            assert.strictEqual(err, true); // Stream should end normally
+            assert.deepStrictEqual(result, [1, 2]);
+            done();
+        });
+        
+        drainTransform(takeTransform(source));
+    });
+});

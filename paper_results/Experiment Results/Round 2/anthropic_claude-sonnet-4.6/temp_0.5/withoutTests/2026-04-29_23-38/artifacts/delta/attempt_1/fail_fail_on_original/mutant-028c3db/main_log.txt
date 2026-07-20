@@ -1,0 +1,41 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-028c3db/testCase.test.ts[0m:[93m1[0m:[93m19[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import Delta from "../../../../../../../../../../../subject_repositories/delta/src/Delta.ts";
+[7m [0m [91m                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-028c3db/testCase.test.ts
+  Delta.compose
+    ✕ should correctly compose two deltas where the first op of other is a retain without attributes (5 ms)
+
+  ● Delta.compose › should correctly compose two deltas where the first op of other is a retain without attributes
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 4
+    + Received  + 1
+
+      Array [
+        Object {
+    -     "insert": "Hello!",
+    -   },
+    -   Object {
+    -     "insert": " World",
+    +     "insert": "Hello! World",
+        },
+      ]
+
+      18 |     // The optimization in compose() moves insert ops before the retain
+      19 |     // Expected: insert "Hello" (from optimization), insert "!", retain " World" -> "Hello! World"
+    > 20 |     expect(result.ops).toEqual([
+         |                        ^
+      21 |       { insert: "Hello!" },
+      22 |       { insert: " World" },
+      23 |     ]);
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-028c3db/testCase.test.ts:20:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.511 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-028c3db/testCase.test.ts".

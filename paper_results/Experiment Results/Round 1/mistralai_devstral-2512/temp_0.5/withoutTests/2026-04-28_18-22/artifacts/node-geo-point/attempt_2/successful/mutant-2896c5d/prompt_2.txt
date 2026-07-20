@@ -1,0 +1,40 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-2896c5d/testCase.test.ts[0m:[93m1[0m:[93m26[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import { GeoPoint } from "../../../../../../../../../../../subject_repositories/node-geo-point/src/geo-point.ts";
+[7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-2896c5d/testCase.test.ts
+  GeoPoint.calculateBearing
+    ✕ should return the correct bearing between two points (2 ms)
+
+  ● GeoPoint.calculateBearing › should return the correct bearing between two points
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 135.1
+    Received: 148.11561687105325
+
+    Expected precision:    1
+    Expected difference: < 0.05
+    Received difference:   13.015616871053254
+
+       6 |     const point2 = new GeoPoint(48.8566, 2.3522); // Paris
+       7 |     const bearing = point1.calculateBearing(point2);
+    >  8 |     expect(bearing).toBeCloseTo(135.1, 1);
+         |                     ^
+       9 |   });
+      10 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-2896c5d/testCase.test.ts:8:21)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.81 s, estimated 1 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-2896c5d/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

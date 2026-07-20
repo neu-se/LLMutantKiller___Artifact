@@ -1,0 +1,37 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_7/pending_category/mutant-f4c40af/testCase.test.ts
+  GeoPoint.calculateDestination
+    ✕ should correctly calculate destination point with bearing 45 degrees and distance 1000000m (3 ms)
+
+  ● GeoPoint.calculateDestination › should correctly calculate destination point with bearing 45 degrees and distance 1000000m
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 6.364
+    Received: 6.346051853235854
+
+    Expected precision:    3
+    Expected difference: < 0.0005
+    Received difference:   0.017948146764146244
+
+       5 |     const startPoint = new GeoPoint(0, 0);
+       6 |     const result = GeoPoint.calculateDestination(startPoint, 1000000, 45);
+    >  7 |     expect(result.latitude).toBeCloseTo(6.364, 3);
+         |                             ^
+       8 |     expect(result.longitude).toBeCloseTo(6.364, 3);
+       9 |   });
+      10 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_7/pending_category/mutant-f4c40af/testCase.test.ts:7:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.198 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_7/pending_category/mutant-f4c40af/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

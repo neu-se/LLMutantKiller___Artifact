@@ -1,0 +1,30 @@
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/image-downloader/index.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/image-downloader/index.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-dab3f5b/testCase.test.ts
+  image downloader
+    ✕ should reject with a meaningful error message when options.url is missing (15 ms)
+
+  ● image downloader › should reject with a meaningful error message when options.url is missing
+
+    expect(received).rejects.toThrowError(expected)
+
+    Expected substring: "The options.url is required"
+    Received message:   ""
+
+          4 | module.exports.image = ({ extractFilename = true, ...options } = {}) => {
+          5 |   if (!options.url) {
+        > 6 |        return Promise.reject(new Error(""));
+            |                              ^
+          7 |
+          8 |   }
+          9 |
+
+      at Object.<anonymous>.module.exports.image (../subject_repositories/image-downloader/index.js:6:30)
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-dab3f5b/testCase.test.ts:5:24)
+      at Object.toThrowError (node_modules/expect/build/index.js:218:22)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-dab3f5b/testCase.test.ts:5:52)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.392 s, estimated 2 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-dab3f5b/testCase.test.ts".

@@ -1,0 +1,35 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_8/pending_category/mutant-bc30f39/testCase.test.ts
+  OpIterator
+    ✕ should return the correct rest operations when there are two operations and the first one has been fully consumed (5 ms)
+
+  ● OpIterator › should return the correct rest operations when there are two operations and the first one has been fully consumed
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 3
+    + Received  + 0
+
+      Array [
+        Object {
+          "retain": 2,
+        },
+    -   Object {
+    -     "retain": Infinity,
+    -   },
+      ]
+
+      11 |     iterator.next(1);
+      12 |     const rest = iterator.rest();
+    > 13 |     expect(rest).toEqual([{ retain: 2 }, { retain: Infinity }]);
+         |                  ^
+      14 |   });
+      15 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_8/pending_category/mutant-bc30f39/testCase.test.ts:13:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.531 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_8/pending_category/mutant-bc30f39/testCase.test.ts".

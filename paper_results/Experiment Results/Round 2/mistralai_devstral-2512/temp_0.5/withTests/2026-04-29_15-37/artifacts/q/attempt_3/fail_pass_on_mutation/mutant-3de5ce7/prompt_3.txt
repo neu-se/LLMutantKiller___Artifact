@@ -1,0 +1,34 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-3de5ce7/testCase.test.ts[0m:[93m2[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m2[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-3de5ce7/testCase.test.ts
+  Stack trace parsing
+    ✕ should correctly parse Firefox-style stack traces with line numbers (1 ms)
+
+  ● Stack trace parsing › should correctly parse Firefox-style stack traces with line numbers
+
+    TypeError: Cannot read properties of undefined (reading 'reject')
+
+      10 |     // This test verifies that the regex correctly captures line numbers
+      11 |     // The mutation changes \d+ to \D+ which would fail to match digits
+    > 12 |     return Q.reject(error)
+         |              ^
+      13 |       .catch((e: Error) => {
+      14 |         // The original code should be able to parse this stack line
+      15 |         // The mutated code will fail because \D+ won't match digits
+
+      at Object.reject (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-3de5ce7/testCase.test.ts:12:14)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.482 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-3de5ce7/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

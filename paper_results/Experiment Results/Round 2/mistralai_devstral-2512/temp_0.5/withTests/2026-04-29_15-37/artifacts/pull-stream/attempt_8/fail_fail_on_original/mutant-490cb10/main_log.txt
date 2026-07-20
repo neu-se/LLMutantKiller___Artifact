@@ -1,0 +1,60 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+  console.warn
+    Error: no done callback supplied
+        at drain (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/pull-stream/sinks/drain.js:9:22)
+        at Object.<anonymous> (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-490cb10/testCase.test.ts:14:23)
+        at Promise.then.completed (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/node_modules/jest-circus/build/utils.js:290:26)
+        at new Promise (<anonymous>)
+        at callAsyncCircusFn (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/node_modules/jest-circus/build/utils.js:231:10)
+        at _callCircusTest (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/node_modules/jest-circus/build/run.js:316:40)
+        at _runTest (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/node_modules/jest-circus/build/run.js:252:3)
+        at _runTestsForDescribeBlock (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/node_modules/jest-circus/build/run.js:126:9)
+        at _runTestsForDescribeBlock (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/node_modules/jest-circus/build/run.js:121:9)
+        at run (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/node_modules/jest-circus/build/run.js:71:3)
+        at runAndTransformResultsToJestFormat (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+        at jestAdapter (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+        at runTestInternal (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/node_modules/jest-runner/build/runTest.js:367:16)
+        at runTest (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/node_modules/jest-runner/build/runTest.js:444:34)
+
+      26 |               if(done) done(end === true ? null : end)
+      27 |               else if(end && end !== true) {
+    > 28 |                 console.warn(doneLackingErr)
+         |                         ^
+      29 |                 throw end
+      30 |               }
+      31 |             }
+
+      at warn (../subject_repositories/pull-stream/sinks/drain.js:28:25)
+      at cb (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-490cb10/testCase.test.ts:10:7)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:45:8)
+      at s (../subject_repositories/pull-stream/pull.js:41:14)
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-490cb10/testCase.test.ts:26:9)
+
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-490cb10/testCase.test.ts
+  drain without done callback
+    ✕ should throw an error when stream ends without a done callback (26 ms)
+
+  ● drain without done callback › should throw an error when stream ends without a done callback
+
+    test error
+
+       8 |       if (abort) return cb(abort);
+       9 |       cb(null, 1);
+    > 10 |       cb(new Error('test error'));
+         |          ^
+      11 |     };
+      12 |
+      13 |     // Create a drain without a done callback
+
+      at source (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-490cb10/testCase.test.ts:10:10)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:45:8)
+      at s (../subject_repositories/pull-stream/pull.js:41:14)
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-490cb10/testCase.test.ts:26:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.265 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-490cb10/testCase.test.ts".

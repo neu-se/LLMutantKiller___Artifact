@@ -1,0 +1,51 @@
+{
+  "file": "q.js",
+  "startLine": 2051,
+  "startColumn": 49,
+  "endLine": 2066,
+  "endColumn": 5,
+  "originalCode": "\n-   Promise.prototype.nodeify = function (nodeback) {\n-       if (nodeback) {\n-           this.then(function (value) {\n-               Q.nextTick(function () {\n-                   nodeback(null, value);\n-               });\n-           }, function (error) {\n-               Q.nextTick(function () {\n-                   nodeback(error);\n-               });\n-           });\n-       } else {\n-           return this;\n-       }\n-   };",
+  "replacement": "\n+   Promise.prototype.nodeify = function (nodeback) {};\n",
+  "removedLines": [
+    "   Promise.prototype.nodeify = function (nodeback) {",
+    "       if (nodeback) {",
+    "           this.then(function (value) {",
+    "               Q.nextTick(function () {",
+    "                   nodeback(null, value);",
+    "               });",
+    "           }, function (error) {",
+    "               Q.nextTick(function () {",
+    "                   nodeback(error);",
+    "               });",
+    "           });",
+    "       } else {",
+    "           return this;",
+    "       }",
+    "   };"
+  ],
+  "addedLines": [
+    "   Promise.prototype.nodeify = function (nodeback) {};",
+    ""
+  ],
+  "lineSummary": [
+    "-   Promise.prototype.nodeify = function (nodeback) {",
+    "-       if (nodeback) {",
+    "-           this.then(function (value) {",
+    "-               Q.nextTick(function () {",
+    "-                   nodeback(null, value);",
+    "-               });",
+    "-           }, function (error) {",
+    "-               Q.nextTick(function () {",
+    "-                   nodeback(error);",
+    "-               });",
+    "-           });",
+    "-       } else {",
+    "-           return this;",
+    "-       }",
+    "-   };",
+    "+   Promise.prototype.nodeify = function (nodeback) {};",
+    ""
+  ],
+  "mutatorName": "BlockStatement",
+  "strykerMutationId": "1033"
+}

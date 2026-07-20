@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-ef0df48/testCase.test.ts
+  AttributeMap.compose
+    ✕ should correctly compose when b is a string with enumerable indices (1 ms)
+
+  ● AttributeMap.compose › should correctly compose when b is a string with enumerable indices
+
+    expect(received).toBeUndefined()
+
+    Received: {"0": "a", "1": "b", "2": "c"}
+
+       7 |     // Mutated: if(false) skips, so cloneDeep("abc") gives "abc" with Object.keys=["0","1","2"]
+       8 |     const result = AttributeMap.compose({}, "abc" as any);
+    >  9 |     expect(result).toBeUndefined();
+         |                    ^
+      10 |   });
+      11 | });
+
+      at Object.toBeUndefined (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-ef0df48/testCase.test.ts:9:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.307 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-ef0df48/testCase.test.ts".

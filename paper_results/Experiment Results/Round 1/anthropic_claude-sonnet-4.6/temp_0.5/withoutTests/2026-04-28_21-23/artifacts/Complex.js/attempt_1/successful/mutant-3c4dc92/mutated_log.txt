@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/Complex.js/complex.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/Complex.js/complex.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-3c4dc92/testCase.test.ts
+  Complex atanh mutation detection
+    ✕ should correctly compute atanh for a complex number where oneMinus differs from 1 (2 ms)
+
+  ● Complex atanh mutation detection › should correctly compute atanh for a complex number where oneMinus differs from 1
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.23887786125685911
+    Received: 0.0038760466339913136
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   0.2350018146228678
+
+      45 |     const expectedIm = (Math.PI - Math.atan(8)) / 2;
+      46 |     
+    > 47 |     expect(result.re).toBeCloseTo(expectedRe, 10);
+         |                       ^
+      48 |     expect(result.im).toBeCloseTo(expectedIm, 10);
+      49 |   });
+      50 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-3c4dc92/testCase.test.ts:47:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.194 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-3c4dc92/testCase.test.ts".

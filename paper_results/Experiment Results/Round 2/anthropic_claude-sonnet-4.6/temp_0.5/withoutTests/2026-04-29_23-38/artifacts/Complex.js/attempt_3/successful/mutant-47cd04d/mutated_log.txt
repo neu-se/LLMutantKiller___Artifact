@@ -1,0 +1,25 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-47cd04d/testCase.test.ts
+  Complex add
+    ✕ should return INFINITY when adding finite complex to half-infinite complex (2 ms)
+
+  ● Complex add › should return INFINITY when adding finite complex to half-infinite complex
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: Infinity
+    Received: 4
+
+       8 |     // Original: second check catches z.isInfinite() → returns Complex['INFINITY'] (im=Infinity)
+       9 |     // Mutated: arithmetic → re=Infinity, im=4
+    > 10 |     expect(result['im']).toBe(Infinity);
+         |                          ^
+      11 |   });
+      12 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-47cd04d/testCase.test.ts:10:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.015 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-47cd04d/testCase.test.ts".

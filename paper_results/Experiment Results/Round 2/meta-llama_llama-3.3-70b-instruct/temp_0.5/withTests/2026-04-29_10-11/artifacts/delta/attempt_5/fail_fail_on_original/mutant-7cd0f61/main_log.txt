@@ -1,0 +1,56 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-7cd0f61/testCase.test.ts
+  Delta
+    ✕ diff() should throw an error when called with the same delta (3 ms)
+    ✕ diff() should throw an error when called with a different delta (24 ms)
+
+  ● Delta › diff() should throw an error when called with the same delta
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "diff() called on non-document"
+
+    Received function did not throw
+
+      4 |   it('diff() should throw an error when called with the same delta', () => {
+      5 |     const a = new Delta().insert('Test');
+    > 6 |     expect(() => a.diff(a)).toThrowError('diff() called on non-document');
+        |                             ^
+      7 |   });
+      8 |
+      9 |   it('diff() should throw an error when called with a different delta', () => {
+
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-7cd0f61/testCase.test.ts:6:29)
+
+  ● Delta › diff() should throw an error when called with a different delta
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "diff() called with non-document"
+    Received message:   "diff() called on non-document"
+
+          348 |           }
+          349 |           const prep = delta === other ? 'on' : 'with';
+        > 350 |           throw new Error('diff() called ' + prep + ' non-document');
+              |                 ^
+          351 |         })
+          352 |         .join('');
+          353 |     });
+
+      at ../subject_repositories/delta/src/Delta.ts:350:17
+                at Array.map (<anonymous>)
+      at Delta.map (../subject_repositories/delta/src/Delta.ts:182:21)
+      at map (../subject_repositories/delta/src/Delta.ts:345:10)
+                at Array.map (<anonymous>)
+      at Delta.map [as diff] (../subject_repositories/delta/src/Delta.ts:343:35)
+      at diff (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-7cd0f61/testCase.test.ts:12:20)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-7cd0f61/testCase.test.ts:12:29)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-7cd0f61/testCase.test.ts:12:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        3.744 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-7cd0f61/testCase.test.ts".

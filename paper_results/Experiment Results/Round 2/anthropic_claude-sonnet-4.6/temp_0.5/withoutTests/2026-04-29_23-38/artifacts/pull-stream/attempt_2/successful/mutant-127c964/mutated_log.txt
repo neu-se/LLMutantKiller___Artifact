@@ -1,0 +1,37 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-127c964/testCase.test.ts
+  values source
+    ✕ should preserve sparse array holes when input is an array (2 ms)
+
+  ● values source › should preserve sparse array holes when input is an array
+
+    expect(received).toHaveLength(expected)
+
+    Expected length: 3
+    Received length: 2
+    Received array:  [1, 3]
+
+       9 |       source(null, (end: any, val: any) => {
+      10 |         if (end === true) {
+    > 11 |           expect(results).toHaveLength(3); // original preserves length=3, mutated gets length=2
+         |                           ^
+      12 |           done();
+      13 |         } else if (end) { done(end); } else { results.push(val); read(); }
+      14 |       });
+
+      at toHaveLength (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-127c964/testCase.test.ts:11:27)
+      at cb (../subject_repositories/pull-stream/sources/values.js:20:7)
+      at source (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-127c964/testCase.test.ts:9:7)
+      at read (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-127c964/testCase.test.ts:13:66)
+      at cb (../subject_repositories/pull-stream/sources/values.js:22:7)
+      at source (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-127c964/testCase.test.ts:9:7)
+      at read (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-127c964/testCase.test.ts:13:66)
+      at cb (../subject_repositories/pull-stream/sources/values.js:22:7)
+      at source (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-127c964/testCase.test.ts:9:7)
+      at Object.read (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-127c964/testCase.test.ts:16:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.254 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-127c964/testCase.test.ts".

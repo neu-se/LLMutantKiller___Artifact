@@ -1,0 +1,14 @@
+import { Q } from "../../../../../../../../subject_repositories/q/q.js";
+
+describe('Q.defer', () => {
+    it('should reject the promise when an error is passed to the resolver', () => {
+        const deferred = Q.defer();
+        const error = new Error('Test error');
+        deferred.makeNodeResolver()(error, null, null);
+        return deferred.promise.then(() => {
+            throw new Error('Promise should have been rejected');
+        }).catch((err) => {
+            expect(err).toBe(error);
+        });
+    });
+});

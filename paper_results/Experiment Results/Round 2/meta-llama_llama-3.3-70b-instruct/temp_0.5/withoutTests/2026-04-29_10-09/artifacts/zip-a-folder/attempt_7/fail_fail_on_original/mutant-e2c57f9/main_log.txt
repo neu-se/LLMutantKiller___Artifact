@@ -1,0 +1,55 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_7/pending_category/mutant-e2c57f9/testCase.test.ts[0m:[93m18[0m:[93m52[0m - [91merror[0m[90m TS2345: [0mArgument of type 'Buffer' is not assignable to parameter of type 'InputType'.
+  Type 'Buffer' is not assignable to type 'Uint8Array<ArrayBufferLike> | DataView<ArrayBufferLike>'.
+    Type 'Buffer' is not assignable to type 'Uint8Array<ArrayBufferLike>'.
+      The types of 'slice(...).buffer' are incompatible between these types.
+        Type 'ArrayBufferLike' is not assignable to type 'ArrayBuffer'.
+          Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+            Types of property '[Symbol.toStringTag]' are incompatible.
+              Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.
+
+[7m18[0m             const inflatedBuffer = zlib.gunzipSync(Buffer.from(zipBuffer));
+[7m  [0m [91m                                                   ~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_7/pending_category/mutant-e2c57f9/testCase.test.ts[0m:[93m18[0m:[93m64[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type 'Buffer' is not assignable to parameter of type 'WithImplicitCoercion<string> | { [Symbol.toPrimitive](hint: "string"): string; }'.
+      Type 'Buffer' is not assignable to type '{ valueOf(): string; }'.
+        The types returned by 'valueOf()' are incompatible between these types.
+          Type 'Buffer' is not assignable to type 'string'.
+
+[7m18[0m             const inflatedBuffer = zlib.gunzipSync(Buffer.from(zipBuffer));
+[7m  [0m [91m                                                               ~~~~~~~~~[0m
+
+  [96m../subject_repositories/zip-a-folder/node_modules/@types/node/buffer.d.ts[0m:[93m324[0m:[93m13[0m
+    [7m324[0m             from(
+    [7m   [0m [96m            ~~~~~[0m
+    [7m325[0m                 str:
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~[0m
+    [7m...[0m 
+    [7m330[0m                 encoding?: BufferEncoding,
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m331[0m             ): Buffer;
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~[0m
+    The last overload is declared here.
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_7/pending_category/mutant-e2c57f9/testCase.test.ts
+  ZipAFolder
+    ✕ should create a zip archive with store option set to true (22 ms)
+
+  ● ZipAFolder › should create a zip archive with store option set to true
+
+    Failed to inflate zip buffer
+
+      19 |             expect(inflatedBuffer.toString()).toContain('Hello World!');
+      20 |         } catch (error) {
+    > 21 |             throw new Error('Failed to inflate zip buffer');
+         |                   ^
+      22 |         }
+      23 |
+      24 |         await rm(src, { recursive: true });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_7/pending_category/mutant-e2c57f9/testCase.test.ts:21:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.465 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_7/pending_category/mutant-e2c57f9/testCase.test.ts".

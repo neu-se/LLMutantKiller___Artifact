@@ -1,0 +1,33 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-b04b979/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/throughs/async-map.js"' has no exported member 'asyncMap'.
+
+[7m1[0m import { asyncMap } from '../../../../../../../../../../../subject_repositories/pull-stream/throughs/async-map.js';
+[7m [0m [91m         ~~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-b04b979/testCase.test.ts
+  asyncMap
+    ✕ should return undefined when map function is empty (1 ms)
+
+  ● asyncMap › should return undefined when map function is empty
+
+    TypeError: (0 , async_map_js_1.asyncMap) is not a function
+
+      3 | describe('asyncMap', () => {
+      4 |   it('should return undefined when map function is empty', (done) => {
+    > 5 |     const source = asyncMap(function (data: any) {
+        |                            ^
+      6 |       return data;
+      7 |     });
+      8 |
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-b04b979/testCase.test.ts:5:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.351 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-b04b979/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

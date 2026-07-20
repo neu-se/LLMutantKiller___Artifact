@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_6/pending_category/mutant-186b7fc/testCase.test.ts
+  ZipAFolder tar with uncompressed compression level
+    ✕ should use uncompressed mode when compression level is set to uncompressed (2 ms)
+
+  ● ZipAFolder tar with uncompressed compression level › should use uncompressed mode when compression level is set to uncompressed
+
+    Property `archiver` does not exist in the provided object
+
+      19 |
+      20 |     it('should use uncompressed mode when compression level is set to uncompressed', async () => {
+    > 21 |         const archiveSpy = jest.spyOn(require('archiver'), 'archiver');
+         |                                 ^
+      22 |         await ZipAFolder.tar(testDir, outputFile, { compression: COMPRESSION_LEVEL.uncompressed });
+      23 |         expect(archiveSpy).toHaveBeenCalledWith('tar', { gzip: false });
+      24 |         archiveSpy.mockRestore();
+
+      at ModuleMocker.spyOn (node_modules/jest-mock/build/index.js:731:13)
+      at Object.spyOn (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_6/pending_category/mutant-186b7fc/testCase.test.ts:21:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.629 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_6/pending_category/mutant-186b7fc/testCase.test.ts".

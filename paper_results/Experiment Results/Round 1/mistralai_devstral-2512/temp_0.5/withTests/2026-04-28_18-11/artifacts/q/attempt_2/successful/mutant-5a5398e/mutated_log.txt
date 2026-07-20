@@ -1,0 +1,32 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-5a5398e/testCase.test.ts
+  Q.denodeify error message test
+    ✕ should throw an error with descriptive message when given undefined function (13 ms)
+
+  ● Q.denodeify error message test › should throw an error with descriptive message when given undefined function
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "Q can't wrap an undefined function"
+    Received message:   ""
+
+          1942 | Q.denodeify = function (callback /*...args*/) {
+          1943 |     if (callback === undefined) {
+        > 1944 |            throw new Error("");
+               |                  ^
+          1945 |
+          1946 |     }
+          1947 |     var baseArgs = array_slice(arguments, 1);
+
+      at Function.Q.nfbind.Q.denodeify (../subject_repositories/q/q.js:1944:18)
+      at denodeify (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-5a5398e/testCase.test.ts:7:9)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-5a5398e/testCase.test.ts:8:8)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-5a5398e/testCase.test.ts:8:8)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.314 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-5a5398e/testCase.test.ts".

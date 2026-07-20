@@ -1,0 +1,52 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-9a3bb96/testCase.test.ts
+  Dirty close() with pending writes
+    ✕ should re-schedule close via drain event when queue has pending items (5 ms)
+
+  ● Dirty close() with pending writes › should re-schedule close via drain event when queue has pending items
+
+    write after end
+
+      187 |       const data = `${JSON.stringify({key, val: this._data.get(key)})}\n`;
+      188 |       ++this._inFlightWrites;
+    > 189 |       this._waitForDrain = !this._writeStream.write(data, (err) => {
+          |                                               ^
+      190 |         if (!cbs.length && err != null) this.emit('error', err);
+      191 |         if (--this._inFlightWrites <= 0 && !this._waitForDrain) this.emit('drain');
+      192 |         for (const cb of cbs) cb(err);
+
+      at Dirty.write [as _flush] (../subject_repositories/node-dirty/lib/dirty/dirty.js:189:47)
+      at WriteStream._flush (../subject_repositories/node-dirty/lib/dirty/dirty.js:172:14)
+      at Dirty.emit (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-9a3bb96/testCase.test.ts:34:32)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:115:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.74 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-9a3bb96/testCase.test.ts".
+node:events:502
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: write after end
+    at _write (node:internal/streams/writable:489:11)
+    at WriteStream.Writable.write (node:internal/streams/writable:510:10)
+    at Dirty.write [as _flush] (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/node-dirty/lib/dirty/dirty.js:189:47)
+    at WriteStream._flush (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/node-dirty/lib/dirty/dirty.js:172:14)
+    at WriteStream.emit (node:events:524:28)
+    at Dirty.emit (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-9a3bb96/testCase.test.ts:34:32)
+    at Dirty.emit (node:events:524:28)
+    at ReadStream.emit (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/node-dirty/lib/dirty/dirty.js:115:18)
+    at ReadStream.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21)
+Emitted 'error' event on WriteStream instance at:
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'ERR_STREAM_WRITE_AFTER_END'
+}
+
+Node.js v20.19.4

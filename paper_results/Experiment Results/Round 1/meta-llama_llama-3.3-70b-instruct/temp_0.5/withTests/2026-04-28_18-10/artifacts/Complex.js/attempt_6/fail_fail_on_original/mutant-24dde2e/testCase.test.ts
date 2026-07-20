@@ -1,0 +1,11 @@
+import { Complex } from "./complex.js";
+
+describe('Complex', () => {
+  it('should calculate asec correctly', () => {
+    const c = new Complex(1, 0);
+    const result = c.asec();
+    const expected = new Complex(Math.PI / 2, 0);
+    expect(result.re).toBeCloseTo(expected.re, 10);
+    expect(result.im).toBeCloseTo(expected.im, 10);
+  });
+});

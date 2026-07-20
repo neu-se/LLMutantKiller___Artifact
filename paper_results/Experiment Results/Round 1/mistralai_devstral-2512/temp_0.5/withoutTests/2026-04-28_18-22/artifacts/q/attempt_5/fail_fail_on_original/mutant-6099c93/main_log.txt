@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-6099c93/testCase.test.ts
+  Q unhandled rejection tracking
+    ✕ should emit rejectionHandled event when handling previously unhandled rejection (106 ms)
+
+  ● Q unhandled rejection tracking › should emit rejectionHandled event when handling previously unhandled rejection
+
+    expect(received).toContain(expected) // indexOf
+
+    Matcher error: received value must not be null nor undefined
+
+    Received has value: undefined
+
+       9 |       if (event === "rejectionHandled") {
+      10 |         rejectionHandledEmitted = true;
+    > 11 |         expect(args[0]).toContain("test error");
+         |                         ^
+      12 |         expect(Q.isRejected(args[1])).toBe(true);
+      13 |       }
+      14 |       return (originalEmit as any).apply(this, [event, ...args]);
+
+      at process.toContain (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-6099c93/testCase.test.ts:11:25)
+      at emit (../subject_repositories/q/q.js:1104:29)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:130:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.691 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-6099c93/testCase.test.ts".

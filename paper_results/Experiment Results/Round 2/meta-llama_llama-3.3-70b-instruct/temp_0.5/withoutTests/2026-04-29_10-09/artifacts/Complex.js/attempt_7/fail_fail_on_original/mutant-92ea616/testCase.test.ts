@@ -1,0 +1,16 @@
+import { Complex } from '../../../../../../../../subject_repositories/Complex.js/complex.js';
+
+describe('Complex', () => {
+  it('should correctly calculate acot for non-zero values', () => {
+    const c = new Complex(1, 1);
+    const result = c.acot();
+    const d = c.re * c.re + c.im * c.im;
+    expect(d).not.toBe(0);
+    expect(result.re).not.toBe(0);
+    expect(result.im).not.toBe(0);
+    const expectedRe = c.re / (c.re * c.re + c.im * c.im);
+    const expectedIm = -c.im / (c.re * c.re + c.im * c.im);
+    expect(result.re).toBeCloseTo(expectedRe);
+    expect(result.im).toBeCloseTo(expectedIm);
+  });
+});

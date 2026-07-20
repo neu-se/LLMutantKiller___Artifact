@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-2b60afb/testCase.test.ts (10.931 s)
+  dirty drain event after write stream backpressure
+    ✕ should emit drain when queue is empty after write stream drain, with no pending write callbacks (10001 ms)
+
+  ● dirty drain event after write stream backpressure › should emit drain when queue is empty after write stream drain, with no pending write callbacks
+
+    thrown: "Exceeded timeout of 10000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       6 |
+       7 | describe('dirty drain event after write stream backpressure', () => {
+    >  8 |   it('should emit drain when queue is empty after write stream drain, with no pending write callbacks', (done) => {
+         |   ^
+       9 |     const tmpDir = os.tmpdir();
+      10 |     const file = path.join(tmpDir, `dirty-mutant-${process.pid}-${Date.now()}.dirty`);
+      11 |     try { fs.unlinkSync(file); } catch (e) { /* ignore */ }
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-2b60afb/testCase.test.ts:8:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-2b60afb/testCase.test.ts:7:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        11.061 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-2b60afb/testCase.test.ts".

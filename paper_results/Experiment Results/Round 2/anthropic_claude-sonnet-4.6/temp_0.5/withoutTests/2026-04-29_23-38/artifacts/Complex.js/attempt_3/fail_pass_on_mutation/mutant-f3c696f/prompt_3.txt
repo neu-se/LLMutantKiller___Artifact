@@ -1,0 +1,32 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-f3c696f/testCase.test.ts
+  Complex acot with subnormal inputs
+    ✕ should compute acot correctly when a and b are so small that a*a+b*b underflows to 0 (1 ms)
+
+  ● Complex acot with subnormal inputs › should compute acot correctly when a and b are so small that a*a+b*b underflows to 0
+
+    expect(received).toBeLessThan(expected)
+
+    Expected: < 0
+    Received:   NaN
+
+      23 |     // Original result.im should be negative (since -b/0 = -Inf for b>0)
+      24 |     // Mutated result.im would be positive
+    > 25 |     expect(result.im).toBeLessThan(0);
+         |                       ^
+      26 |   });
+      27 | });
+
+      at Object.toBeLessThan (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-f3c696f/testCase.test.ts:25:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.949 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-f3c696f/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

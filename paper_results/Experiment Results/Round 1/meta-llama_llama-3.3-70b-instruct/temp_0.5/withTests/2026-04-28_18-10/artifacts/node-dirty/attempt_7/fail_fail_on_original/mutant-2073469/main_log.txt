@@ -1,0 +1,24 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-2073469/testCase.test.ts
+  Dirty
+    ✕ should emit "drain" event after write and check event listener count (2 ms)
+
+  ● Dirty › should emit "drain" event after write and check event listener count
+
+    ReferenceError: EventEmitter is not defined
+
+      4 |   it('should emit "drain" event after write and check event listener count', function (done) {
+      5 |     const db = new Dirty('test.dirty');
+    > 6 |     const originalListenerCount = EventEmitter.listenerCount(db, 'drain');
+        |                                   ^
+      7 |     db.set('key', 'value');
+      8 |     db.on('drain', () => {
+      9 |       const newListenerCount = EventEmitter.listenerCount(db, 'drain');
+
+      at Object.EventEmitter (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-2073469/testCase.test.ts:6:35)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.924 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-2073469/testCase.test.ts".

@@ -1,0 +1,34 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-3dbd53a/testCase.test.ts[0m:[93m4[0m:[93m20[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m4[0m import rimraf from 'rimraf';
+[7m [0m [91m                   ~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-3dbd53a/testCase.test.ts[0m:[93m24[0m:[93m35[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m24[0m       db.set(testKey, testValue, (err) => {
+[7m  [0m [91m                                  ~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-3dbd53a/testCase.test.ts (6.733 s)
+  Dirty database encoding
+    ✕ should correctly write and read UTF-8 encoded data (5000 ms)
+
+  ● Dirty database encoding › should correctly write and read UTF-8 encoded data
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      16 |   });
+      17 |
+    > 18 |   it('should correctly write and read UTF-8 encoded data', (done) => {
+         |   ^
+      19 |     const db = new Dirty(dbPath);
+      20 |     const testKey = 'testKey';
+      21 |     const testValue = { message: 'Hello 世界' }; // Contains non-ASCII characters
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-3dbd53a/testCase.test.ts:18:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-3dbd53a/testCase.test.ts:6:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.915 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-3dbd53a/testCase.test.ts".

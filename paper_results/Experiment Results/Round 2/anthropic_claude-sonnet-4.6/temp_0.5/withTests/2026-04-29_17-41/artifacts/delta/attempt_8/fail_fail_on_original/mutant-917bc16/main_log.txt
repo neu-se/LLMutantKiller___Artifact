@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-917bc16/testCase.test.ts
+  compose()
+    ✕ retain end optimization with trailing retain in rest (5 ms)
+
+  ● compose() › retain end optimization with trailing retain in rest
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 3
+    Received: 4
+
+      36 |     // Without optimization: push insert(C) -> [A, B_bold, C], push insert(D) -> merges -> [A, B_bold, CD]
+      37 |     // Result: [A, B_bold, CD] - 3 ops
+    > 38 |     expect(result.ops.length).toBe(3);
+         |                               ^
+      39 |     expect(result.ops[2]).toEqual({ insert: "CD" });
+      40 |   });
+      41 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-917bc16/testCase.test.ts:38:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.066 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-917bc16/testCase.test.ts".

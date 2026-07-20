@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-103e5dc/testCase.test.ts
+  Complex.csc()
+    ✕ should correctly compute the cosecant for a complex number with real part 0.5 (3 ms)
+
+  ● Complex.csc() › should correctly compute the cosecant for a complex number with real part 0.5
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 4.3309
+    Received: 2.0858296429334886
+
+    Expected precision:    3
+    Expected difference: < 0.0005
+    Received difference:   2.245070357066511
+
+      10 |     // Mutated d = 0.5 * cosh(0) - 0.5 * cos(4) = 0.5 - 0.5 * (-0.6536) ≈ 0.5 + 0.3268 ≈ 0.8268
+      11 |     // This will produce different results
+    > 12 |     expect(result.re).toBeCloseTo(4.3309, 3);
+         |                       ^
+      13 |     expect(result.im).toBeCloseTo(0, 3);
+      14 |   });
+      15 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-103e5dc/testCase.test.ts:12:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.353 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-103e5dc/testCase.test.ts".

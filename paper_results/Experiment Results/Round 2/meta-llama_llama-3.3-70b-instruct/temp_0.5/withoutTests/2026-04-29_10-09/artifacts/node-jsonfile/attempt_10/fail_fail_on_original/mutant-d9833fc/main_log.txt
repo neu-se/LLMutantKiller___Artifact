@@ -1,0 +1,27 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-jsonfile/attempt_10/pending_category/mutant-d9833fc/testCase.test.ts[0m:[93m14[0m:[93m5[0m - [91merror[0m[90m TS2739: [0mType '(moduleName: string) => any' is missing the following properties from type 'Require': cache, extensions, main, resolve
+
+[7m14[0m     require = (moduleName: string) => {
+[7m  [0m [91m    ~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-jsonfile/attempt_10/pending_category/mutant-d9833fc/testCase.test.ts
+  jsonfile
+    ✕ should throw an error when fs and graceful-fs are not available (1 ms)
+
+  ● jsonfile › should throw an error when fs and graceful-fs are not available
+
+    EEXIST: file already exists, mkdir 'temp-test-dir'
+
+       6 |   it('should throw an error when fs and graceful-fs are not available', async () => {
+       7 |     const tempDir = 'temp-test-dir';
+    >  8 |     fs.mkdirSync(tempDir);
+         |        ^
+       9 |     const filePath = path.join(tempDir, 'test.json');
+      10 |     fs.writeFileSync(filePath, '{}');
+      11 |
+
+      at Object.mkdirSync (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-jsonfile/attempt_10/pending_category/mutant-d9833fc/testCase.test.ts:8:8)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.989 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-jsonfile/attempt_10/pending_category/mutant-d9833fc/testCase.test.ts".

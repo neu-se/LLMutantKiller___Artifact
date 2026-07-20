@@ -1,0 +1,24 @@
+import Delta from "../../../../../../../../../../../subject_repositories/delta/src/Delta";
+
+describe('Delta', () => {
+  it('should transform embeds correctly', () => {
+    const delta1 = new Delta();
+    delta1.insert({ image: 'image1' });
+    const delta2 = new Delta();
+    delta2.insert({ image: 'image2' });
+    Delta.registerEmbed('image', {
+      compose: (a: any, b: any, keepNull: boolean) => b,
+      invert: (a: any, b: any) => b,
+      transform: (a: any, b: any, priority: boolean) => {
+        if (priority) {
+          return b;
+        } else {
+          return null;
+        }
+      },
+    });
+    const transformedDelta = delta1.transform(delta2, false);
+    expect(transformedDelta.ops).toHaveLength(0);
+    Delta.unregisterEmbed('image');
+  });
+});

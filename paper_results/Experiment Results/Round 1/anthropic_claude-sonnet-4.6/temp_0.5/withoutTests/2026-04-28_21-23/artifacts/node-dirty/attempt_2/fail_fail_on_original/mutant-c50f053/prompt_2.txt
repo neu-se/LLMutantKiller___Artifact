@@ -1,0 +1,67 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-c50f053/testCase.test.ts[0m:[93m4[0m:[93m24[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m4[0m import { rimraf } from 'rimraf';
+[7m [0m [91m                       ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-c50f053/testCase.test.ts (6.249 s)
+  Dirty error emission without callbacks
+    ✕ should emit error event when write fails and no callback is provided (5004 ms)
+
+  ● Dirty error emission without callbacks › should emit error event when write fails and no callback is provided
+
+    TypeError: (0 , rimraf_1.rimraf) is not a function
+
+      34 |       db.once('error', (err) => {
+      35 |         clearTimeout(timeout);
+    > 36 |         rimraf(tmpDir).then(() => {
+         |               ^
+      37 |           expect(err).toBeTruthy();
+      38 |           done();
+      39 |         });
+
+      at Dirty.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-c50f053/testCase.test.ts:36:15)
+      at emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:189:46)
+
+  ● Dirty error emission without callbacks › should emit error event when write fails and no callback is provided
+
+    Unhandled error. (Error: Simulated write error
+
+      42 |       // Destroy the write stream to force a write error
+      43 |       if (db._writeStream) {
+    > 44 |         db._writeStream.destroy(new Error('Simulated write error'));
+         |                                 ^
+      45 |       }
+      46 |       
+      47 |       // Set a value WITHOUT a callback - this triggers the !cbs.length path
+
+      at Dirty.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-c50f053/testCase.test.ts:44:33)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:114:18)
+      at processTicksAndRejections (node:internal/process/task_queues:82:21))
+
+  ● Dirty error emission without callbacks › should emit error event when write fails and no callback is provided
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       6 |
+       7 | describe('Dirty error emission without callbacks', () => {
+    >  8 |   it('should emit error event when write fails and no callback is provided', (done) => {
+         |   ^
+       9 |     const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'dirty-test-'));
+      10 |     const dbPath = path.join(tmpDir, 'test.db');
+      11 |     
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-c50f053/testCase.test.ts:8:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-c50f053/testCase.test.ts:7:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.412 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-c50f053/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

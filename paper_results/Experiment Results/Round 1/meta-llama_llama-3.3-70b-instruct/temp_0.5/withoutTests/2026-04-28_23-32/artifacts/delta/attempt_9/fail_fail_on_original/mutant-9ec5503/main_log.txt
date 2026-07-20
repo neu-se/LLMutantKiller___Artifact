@@ -1,0 +1,31 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_9/pending_category/mutant-9ec5503/testCase.test.ts[0m:[93m6[0m:[93m31[0m - [91merror[0m[90m TS2322: [0mType 'null' is not assignable to type 'Op'.
+
+[7m6[0m     const delta2 = new Delta([null, { insert: 'Hello' }]);
+[7m [0m [91m                              ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_9/pending_category/mutant-9ec5503/testCase.test.ts
+  Delta
+    ✕ should correctly compose deltas when the first operation of the other delta is null (4 ms)
+
+  ● Delta › should correctly compose deltas when the first operation of the other delta is null
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "no handlers for embed type \"undefined\""
+
+    Received function did not throw
+
+      5 |     const delta1 = new Delta([{ retain: 5 }]);
+      6 |     const delta2 = new Delta([null, { insert: 'Hello' }]);
+    > 7 |     expect(() => delta1.compose(delta2)).toThrowError('no handlers for embed type "undefined"');
+        |                                          ^
+      8 |   });
+      9 | });
+
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_9/pending_category/mutant-9ec5503/testCase.test.ts:7:42)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.65 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_9/pending_category/mutant-9ec5503/testCase.test.ts".

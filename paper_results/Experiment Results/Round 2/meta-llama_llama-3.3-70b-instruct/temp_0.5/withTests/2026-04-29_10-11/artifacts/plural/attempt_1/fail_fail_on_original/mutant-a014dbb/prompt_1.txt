@@ -1,0 +1,577 @@
+Your task is to write a Jest test case that exposes a specific mutation in a JavaScript/TypeScript project.
+
+MUTATION DETAILS
+The mutation affects the following file:
+index.js
+Here is the full content of that file (shown with a <PLACEHOLDER> marker):
+'use strict';
+
+var rules = []
+
+function type(obj) {
+  return Object.prototype.toString.call(obj).slice(8, -1)
+}
+
+function addRule(match, result) {
+  rules.unshift([match, result])
+  return plural
+}
+
+// words like cherry, where a word ends in a y, but the letter before the y is a consonant
+// also contains unique rule for words that end with 'quy' (soliloquy)
+addRule(/[^aeiou]y$|quy$/i, function(w) { return w.substr(0, w.length - 1) + 'ies' })
+
+// words that end with ch, x, s append 'es'
+addRule(/x$|ch$|s$/i, function(w) { return w + 'es' })
+
+// words that maintain latin/greek plural
+addRule(/nucleus|syllabus|focus|fungus|cactus/i, function(w) { return w.substr(0, w.length - 2) + 'i' });
+addRule(/thesis|crisis/i, function(w) { return w.substr(0, w.length - 2) + 'es' });
+addRule(/appendix|index/i, function(w) { return w.substr(0, w.length - 2) + 'ices' });
+
+// stereo -> stereos
+addRule(/[aeiouy]o$/i, function(w) { return w + 's' });
+addRule(/[^aeiouy]o$/i, function(w) { return w + 'es' });
+
+// f/fe ending words gets switched to ves
+// unless it's dwarf or roof
+addRule(/(fe?$)/i, function(w, regex) {
+  <PLACEHOLDER>
+  return w.replace(regex, 'ves')
+})
+
+addRule('criterion', 'criteria')
+addRule('bacterium', 'bacteria')
+addRule('memo', 'memos')
+addRule('cello', 'cellos')
+addRule('die', 'dice')
+addRule('goose', 'geese')
+addRule('mouse', 'mice')
+addRule('person', 'people')
+addRule('chilli', 'chillies')
+
+addRule(/^(?:wo)?man$/i, function(w) { return w.replace(/a/, 'e') })
+
+// animals w/ no plural
+addRule(/\b(?:bison|cod|deer|fowl|halibut|moose|sheep)\b/i, function(w) { return w })
+
+// singular nouns that end in -s
+var tools = ['goggle', 'scissor', 'plier', 'tong', 'tweezer']
+var clothes = ['trouser', 'pant', 'pantie', 'clothe']
+var games = ['billiard', 'bowl', 'card', 'dart', 'skittle', 'draught']
+var illnesses = ['diabete', 'measle', 'mump', 'rabie', 'ricket', 'shingle']
+var misc = ['kudo', 'premise', 'shamble', 'glasse', 'spectacle', 'jitter',
+  'alm', 'fece', 'bowel', 'sud', 'entrail', 'electronic', 'outskirt', 'odd', 'tropic',
+  'riche', 'surrounding', 'thank', 'heroic', 'remain', 'amend'
+]
+addRule(new RegExp('\\b(?:' + tools.concat(clothes, games, illnesses, misc).join('|') + ')s\\b', 'i'), function(w) { return w})
+
+// most words ending in -ics are the same in their plural form
+// mathematics, statistics, linguistics, classics, acoustics
+addRule(/ics$/i, function(w) { return w })
+
+// uncountable
+addRule(/\b(?:tea|sugar|water|air|rice|knowledge|beauty|anger|fear|love|money|research|safety|evidence)\b/i, function(w) { return w })
+
+function plural(word, num) {
+  var i
+    , rule
+
+  if (num !== 1 || num === undefined) {
+    for (i = 0; i < rules.length; i++) {
+      rule = rules[i]
+
+      if (type(rule[0]) === 'RegExp' && rule[0].test(word)) {
+        return type(rule[1]) === 'Function' ? rule[1](word, rule[0]) : rule[1]
+      }
+      if (type(rule[0]) === 'String' && rule[0] === word) {
+        return type(rule[1]) === 'Function' ? rule[1](word) : rule[1]
+      }
+
+    }
+
+    return word + 's'
+  }
+  return word
+}
+
+module.exports = plural
+
+module.exports.addRule = addRule
+
+module.exports.unmonkeyPatch = function() {
+  String.prototype.plural = null;
+}
+
+module.exports.monkeyPatch = function() {
+  if (String.prototype.plural === undefined) {
+    String.prototype.plural = function(num) {
+      return plural(this, num)
+    }
+  }
+  else {
+    throw new Error('Unable to add plural function to String object')
+  }
+}
+
+module.exports.VERSION = require('./package.json').version
+
+In the original code, <PLACEHOLDER> has the value:
+
+-     if (w === 'dwarf' || w === 'roof') {
+-       return w + 's'
+-     }
+In the mutated code, <PLACEHOLDER> has the value:
+
++     if (w === 'dwarf' || w === 'roof') {}
+
+
+YOUR TASK
+Write one Jest test file that:
+    1. Passes when run against the original code.
+    2. Fails when run against the mutated code.
+    3. Tests the behavior of the mutated file in a way that reliably detects the mutation.
+The test will be saved at the following path, relative to this test-generation project’s root:
+llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/plural/attempt_1/pending_category/mutant-a014dbb/testCase.test.ts
+
+RESOURCES AVAILABLE
+Existing test cases you may use for style or structure inspiration, focusing on how they reflect the project’s expected behavior and typical inputs:
+// test.js
+
+'use strict';
+/* global it: false, describe: false */
+
+var plural = require('./index')
+  , assert = require('assert')
+
+describe('test monkey patching', function() {
+  describe('removing monkey patching (unmonkeyPatch)', function() {
+    it('should work as intended', function() {
+      plural.monkeyPatch()
+      assert.doesNotThrow(function() { String('test').plural() }, 'plural should be monkeypatched into String')
+      plural.unmonkeyPatch()
+      assert.throws(function() { String('test').plural() }, TypeError, 'plural should not be monkeypatched into String')
+    })
+  })
+})
+
+describe('plurals match', function() {
+  it('should match plurals', function() {
+    assert.equal(plural('test'), 'tests')
+    assert.equal(plural('hero'), 'heroes')
+    assert.equal(plural('embryo'), 'embryos')
+    assert.equal(plural('zero'), 'zeroes')
+    assert.equal(plural('cherry'), 'cherries')
+    assert.equal(plural('sky'), 'skies')
+    assert.equal(plural('seaway'), 'seaways')
+    assert.equal(plural('soliloquy'), 'soliloquies')
+    assert.equal(plural('monkey'), 'monkeys')
+    assert.equal(plural('day'), 'days')
+    assert.equal(plural('witch'), 'witches')
+    assert.equal(plural('box'), 'boxes')
+    assert.equal(plural('gallery'), 'galleries')
+    assert.equal(plural('stereo'), 'stereos')
+    assert.equal(plural('memo'), 'memos')
+    assert.equal(plural('hero'), 'heroes')
+    assert.equal(plural('omen'), 'omens')
+    assert.equal(plural('chilli'), 'chillies')
+  })
+
+  it('should match greek/latin plurals', function() {
+    assert.equal(plural('nucleus'), 'nuclei')
+    assert.equal(plural('syllabus'), 'syllabi')
+    assert.equal(plural('focus'), 'foci')
+    assert.equal(plural('fungus'), 'fungi')
+    assert.equal(plural('cactus'), 'cacti')
+
+    assert.equal(plural('thesis'), 'theses')
+    assert.equal(plural('crisis'), 'crises')
+
+    assert.equal(plural('appendix'), 'appendices')
+    assert.equal(plural('index'), 'indices')
+
+    assert.equal(plural('criterion'), 'criteria')
+  })
+
+  it('should convert f/fe ending words to "ves"', function() {
+    assert.equal(plural('knife'), 'knives')
+    assert.equal(plural('leaf'), 'leaves')
+    assert.equal(plural('hoof'), 'hooves')
+    assert.equal(plural('life'), 'lives')
+    assert.equal(plural('self'), 'selves')
+    assert.equal(plural('elf'), 'elves')
+  })
+
+  it('should handle man/woman/human', function() {
+    assert.equal(plural('man'), 'men')
+    assert.equal(plural('woman'), 'women')
+    assert.notEqual(plural('oman'), 'omen')
+    assert.equal(plural('human'), 'humans')
+  })
+
+  it('should handle words that are the same both singular/plural', function() {
+    assert.equal(plural('bison'), 'bison')
+    assert.equal(plural('cod'), 'cod')
+    assert.equal(plural('deer'), 'deer')
+    assert.equal(plural('fowl'), 'fowl')
+    assert.equal(plural('halibut'), 'halibut')
+    assert.equal(plural('moose'), 'moose')
+    assert.equal(plural('sheep'), 'sheep')
+    assert.equal(plural('kudos'), 'kudos')
+    assert.equal(plural('premises'), 'premises')
+    assert.equal(plural('shambles'), 'shambles')
+  })
+
+  it('should not flag anything that starts with those above words', function() {
+    assert.equal(plural('zipcode'), 'zipcodes')
+    assert.equal(plural('afowl'), 'afowls')
+    assert.equal(plural('moosed'), 'mooseds')
+  })
+
+  it('should handle some unique plurals', function() {
+    assert.equal(plural('die'), 'dice')
+    assert.equal(plural('goose'), 'geese')
+    assert.equal(plural('mouse'), 'mice')
+    assert.equal(plural('person'), 'people')
+  })
+
+  it('should handle plurals that are singular', function() {
+
+    var tools = ['goggle', 'scissor', 'plier', 'tong', 'tweezer']
+    var clothes = ['trouser', 'pant', 'pantie', 'clothe']
+    var games = ['billiard', 'bowl', 'card', 'dart', 'skittle', 'draught']
+    var illnesses = ['diabete', 'measle', 'mump', 'rabie', 'ricket', 'shingle']
+    var misc = ['kudo', 'premise', 'shamble', 'glasse', 'spectacle', 'jitter',
+      'alm', 'fece', 'bowel', 'sud', 'entrail', 'electronic', 'outskirt', 'odd', 'tropic',
+      'riche', 'surrounding', 'thank', 'heroic', 'remain', 'amend'
+    ]
+
+    tools.concat(clothes, games, illnesses, misc).forEach(function(w) {
+      assert.equal(plural(w + 's'), w + 's')
+    })
+  })
+
+  it('should handle -ics ending words', function() {
+    var words = [
+      'mathematics', 'statistics', 'linguistics', 'classics', 'acoustics',
+    ]
+    words.forEach(function(w) {
+      assert.equal(plural(w), w)
+    })
+  })
+
+  it('should make sure uncountable words aren\'t converted to plural form', function() {
+    var words = [
+      'tea', 'sugar', 'water', 'air', 'rice', 'knowledge', 'beauty',
+      'anger', 'fear', 'love', 'money', 'research', 'safety', 'evidence'
+    ]
+    words.forEach(function(w) {
+      assert.equal(plural(w), w)
+    })
+  })
+
+  it('should make sure addRule works', function() {
+    assert.notEqual(plural('zzz'), 'roh')
+
+    plural.addRule('zzz', 'yyy')
+
+    assert.equal(plural('zzz'), 'yyy')
+  })
+
+  it('should be case insensitive', function() {
+    assert.equal(plural('test'), 'tests')
+    assert.equal(plural('Test'), 'Tests')
+    assert.equal(plural('TesT'), 'TesTs')
+    assert.equal(plural('pennY'), 'pennies')
+    assert.equal(plural('PeNnY'), 'PeNnies')
+    assert.equal(plural('KudoS'), 'KudoS')
+  })
+})
+
+describe('addRule should return plural construct', function() {
+  it('should be equal', function() {
+    assert.equal(plural.addRule(/garababble/i, function(w) { return w }), plural)
+  })
+})
+
+The test runner configuration (package.json):
+{
+  "name": "plural",
+  "version": "1.1.0",
+  "description": "rule-based plural library",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swang/plural"
+  },
+  "keywords": [
+    "plural",
+    "rule-based"
+  ],
+  "devDependencies": {
+    "mocha": "~2.0.0"
+  },
+  "author": "Shuan Wang",
+  "license": "MIT",
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "commonjs": true,
+      "node": true
+    },
+    "rules": {
+      "accessor-pairs": "error",
+      "array-bracket-spacing": [
+        "error",
+        "never"
+      ],
+      "array-callback-return": "error",
+      "arrow-body-style": "error",
+      "arrow-parens": "error",
+      "arrow-spacing": "error",
+      "block-scoped-var": "error",
+      "block-spacing": [
+        "error",
+        "always"
+      ],
+      "brace-style": [
+        "error",
+        "stroustrup",
+        {
+          "allowSingleLine": true
+        }
+      ],
+      "callback-return": "error",
+      "camelcase": "error",
+      "comma-dangle": "error",
+      "comma-spacing": [
+        "error",
+        {
+          "after": true,
+          "before": false
+        }
+      ],
+      "comma-style": [
+        "error",
+        "first"
+      ],
+      "complexity": "error",
+      "computed-property-spacing": [
+        "error",
+        "never"
+      ],
+      "consistent-return": "error",
+      "consistent-this": "error",
+      "curly": "error",
+      "default-case": "error",
+      "dot-location": "error",
+      "dot-notation": [
+        "error",
+        {
+          "allowKeywords": true
+        }
+      ],
+      "eol-last": "error",
+      "eqeqeq": "error",
+      "func-names": [
+        "error",
+        "never"
+      ],
+      "func-style": [
+        "error",
+        "declaration"
+      ],
+      "generator-star-spacing": "error",
+      "global-require": "error",
+      "guard-for-in": "error",
+      "handle-callback-err": "error",
+      "id-blacklist": "error",
+      "id-length": "off",
+      "id-match": "error",
+      "indent": "off",
+      "init-declarations": "off",
+      "jsx-quotes": "error",
+      "key-spacing": "error",
+      "keyword-spacing": "error",
+      "linebreak-style": [
+        "error",
+        "unix"
+      ],
+      "lines-around-comment": "off",
+      "max-depth": "error",
+      "max-len": "off",
+      "max-lines": "error",
+      "max-nested-callbacks": "error",
+      "max-params": "error",
+      "max-statements": "off",
+      "max-statements-per-line": "off",
+      "multiline-ternary": "off",
+      "new-cap": "error",
+      "new-parens": "error",
+      "newline-after-var": [
+        "error",
+        "always"
+      ],
+      "newline-before-return": "off",
+      "newline-per-chained-call": "error",
+      "no-alert": "error",
+      "no-array-constructor": "error",
+      "no-bitwise": "error",
+      "no-caller": "error",
+      "no-catch-shadow": "error",
+      "no-confusing-arrow": "error",
+      "no-continue": "error",
+      "no-div-regex": "error",
+      "no-duplicate-imports": "error",
+      "no-else-return": "error",
+      "no-empty-function": "error",
+      "no-eq-null": "error",
+      "no-eval": "error",
+      "no-extend-native": "off",
+      "no-extra-bind": "error",
+      "no-extra-label": "error",
+      "no-extra-parens": "error",
+      "no-floating-decimal": "error",
+      "no-implicit-coercion": "error",
+      "no-implicit-globals": "error",
+      "no-implied-eval": "error",
+      "no-inline-comments": "error",
+      "no-invalid-this": "error",
+      "no-iterator": "error",
+      "no-label-var": "error",
+      "no-labels": "error",
+      "no-lone-blocks": "error",
+      "no-lonely-if": "error",
+      "no-loop-func": "error",
+      "no-magic-numbers": "off",
+      "no-mixed-operators": "error",
+      "no-mixed-requires": "error",
+      "no-multi-spaces": "error",
+      "no-multi-str": "error",
+      "no-multiple-empty-lines": "error",
+      "no-negated-condition": "error",
+      "no-nested-ternary": "error",
+      "no-new": "error",
+      "no-new-func": "error",
+      "no-new-object": "error",
+      "no-new-require": "error",
+      "no-new-wrappers": "error",
+      "no-octal-escape": "error",
+      "no-param-reassign": "error",
+      "no-path-concat": "error",
+      "no-plusplus": [
+        "error",
+        {
+          "allowForLoopAfterthoughts": true
+        }
+      ],
+      "no-process-env": "error",
+      "no-process-exit": "error",
+      "no-proto": "error",
+      "no-prototype-builtins": "error",
+      "no-restricted-globals": "error",
+      "no-restricted-imports": "error",
+      "no-restricted-modules": "error",
+      "no-restricted-syntax": "error",
+      "no-return-assign": "error",
+      "no-script-url": "error",
+      "no-self-compare": "error",
+      "no-sequences": "error",
+      "no-shadow": "error",
+      "no-shadow-restricted-names": "error",
+      "no-spaced-func": "error",
+      "no-sync": "error",
+      "no-tabs": "error",
+      "no-ternary": "off",
+      "no-throw-literal": "error",
+      "no-trailing-spaces": "error",
+      "no-undef-init": "error",
+      "no-undefined": "off",
+      "no-underscore-dangle": "error",
+      "no-unmodified-loop-condition": "error",
+      "no-unneeded-ternary": "error",
+      "no-unused-expressions": "error",
+      "no-use-before-define": "off",
+      "no-useless-call": "error",
+      "no-useless-computed-key": "error",
+      "no-useless-concat": "error",
+      "no-useless-constructor": "error",
+      "no-useless-escape": "error",
+      "no-useless-rename": "error",
+      "no-var": "off",
+      "no-void": "error",
+      "no-warning-comments": "error",
+      "no-whitespace-before-property": "error",
+      "no-with": "error",
+      "object-curly-newline": "error",
+      "object-curly-spacing": "error",
+      "object-property-newline": "error",
+      "object-shorthand": "error",
+      "one-var": "error",
+      "one-var-declaration-per-line": "error",
+      "operator-assignment": "error",
+      "operator-linebreak": "error",
+      "padded-blocks": "off",
+      "prefer-arrow-callback": "off",
+      "prefer-const": "error",
+      "prefer-reflect": "off",
+      "prefer-rest-params": "error",
+      "prefer-spread": "error",
+      "prefer-template": "off",
+      "quote-props": "error",
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "radix": "error",
+      "require-jsdoc": "off",
+      "rest-spread-spacing": "error",
+      "semi": "off",
+      "semi-spacing": [
+        "error",
+        {
+          "after": true,
+          "before": false
+        }
+      ],
+      "sort-imports": "error",
+      "sort-vars": "off",
+      "space-before-blocks": "error",
+      "space-before-function-paren": "off",
+      "space-in-parens": [
+        "error",
+        "never"
+      ],
+      "space-infix-ops": "error",
+      "space-unary-ops": "error",
+      "spaced-comment": [
+        "error",
+        "always"
+      ],
+      "strict": "error",
+      "template-curly-spacing": "error",
+      "unicode-bom": [
+        "error",
+        "never"
+      ],
+      "valid-jsdoc": "error",
+      "vars-on-top": "error",
+      "wrap-iife": "error",
+      "wrap-regex": "error",
+      "yield-star-spacing": "error",
+      "yoda": [
+        "error",
+        "never"
+      ]
+    }
+  }
+}
+
+ALLOWED LIBRARIES
+You may use:
+    1. Any built-in Node.js modules (e.g., fs, path, crypto, etc.).
+    
+You may not use any other third-party libraries.

@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-4a1a66d/testCase.test.ts
+  Q
+    ✕ should handle async function generator correctly (1 ms)
+
+  ● Q › should handle async function generator correctly
+
+    ReferenceError: QReturnValue is not defined
+
+       5 |         const asyncFunction = Q.async(function* () {
+       6 |             yield Promise.resolve(1);
+    >  7 |             throw new QReturnValue(2);
+         |             ^
+       8 |         });
+       9 |
+      10 |         const result = await asyncFunction();
+
+      at llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-4a1a66d/testCase.test.ts:7:13
+      at Function.continuer (../subject_repositories/q/q.js:1298:45)
+      at fulfilled (../subject_repositories/q/q.js:854:54)
+      at _fulfilled (../subject_repositories/q/q.js:883:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:816:13)
+      at apply (../subject_repositories/q/q.js:624:44)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.195 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-4a1a66d/testCase.test.ts".

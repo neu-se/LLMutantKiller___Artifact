@@ -1,0 +1,51 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-f1f5f73/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-f1f5f73/testCase.test.ts[0m:[93m7[0m:[93m38[0m - [91merror[0m[90m TS7006: [0mParameter 'value' implicitly has an 'any' type.
+
+[7m7[0m         return promise.tap(function (value) {
+[7m [0m [91m                                     ~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-f1f5f73/testCase.test.ts[0m:[93m18[0m:[93m38[0m - [91merror[0m[90m TS7006: [0mParameter 'value' implicitly has an 'any' type.
+
+[7m18[0m         return promise.tap(function (value) {
+[7m  [0m [91m                                     ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-f1f5f73/testCase.test.ts
+  Q.tap
+    ✕ should call the callback with the value of the promise (1 ms)
+    ✕ should not call the callback if the promise is rejected
+
+  ● Q.tap › should call the callback with the value of the promise
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      4 |     it("should call the callback with the value of the promise", () => {
+      5 |         var called = false;
+    > 6 |         var promise = Q("foo");
+        |                        ^
+      7 |         return promise.tap(function (value) {
+      8 |             called = true;
+      9 |             expect(value).toBe("foo");
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-f1f5f73/testCase.test.ts:6:24)
+
+  ● Q.tap › should not call the callback if the promise is rejected
+
+    TypeError: Cannot read properties of undefined (reading 'reject')
+
+      15 |     it("should not call the callback if the promise is rejected", () => {
+      16 |         var called = false;
+    > 17 |         var promise = Q.reject("error");
+         |                         ^
+      18 |         return promise.tap(function (value) {
+      19 |             called = true;
+      20 |         }).then(null, function () {
+
+      at Object.reject (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-f1f5f73/testCase.test.ts:17:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        3.173 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-f1f5f73/testCase.test.ts".

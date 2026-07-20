@@ -1,0 +1,47 @@
+{
+  "file": "q.js",
+  "startLine": 1963,
+  "startColumn": 50,
+  "endLine": 1976,
+  "endColumn": 5,
+  "originalCode": "\n-   Q.nbind = function (callback, thisp /*...args*/) {\n-       var baseArgs = array_slice(arguments, 2);\n-       return function () {\n-           var nodeArgs = baseArgs.concat(array_slice(arguments));\n-           var deferred = defer();\n-           nodeArgs.push(deferred.makeNodeResolver());\n-           function bound() {\n-               return callback.apply(thisp, arguments);\n-           }\n-           Q(bound).fapply(nodeArgs).fail(deferred.reject);\n-           return deferred.promise;\n-       };\n-   };",
+  "replacement": "\n+   Q.nbind = function (callback, thisp /*...args*/) {};\n",
+  "removedLines": [
+    "   Q.nbind = function (callback, thisp /*...args*/) {",
+    "       var baseArgs = array_slice(arguments, 2);",
+    "       return function () {",
+    "           var nodeArgs = baseArgs.concat(array_slice(arguments));",
+    "           var deferred = defer();",
+    "           nodeArgs.push(deferred.makeNodeResolver());",
+    "           function bound() {",
+    "               return callback.apply(thisp, arguments);",
+    "           }",
+    "           Q(bound).fapply(nodeArgs).fail(deferred.reject);",
+    "           return deferred.promise;",
+    "       };",
+    "   };"
+  ],
+  "addedLines": [
+    "   Q.nbind = function (callback, thisp /*...args*/) {};",
+    ""
+  ],
+  "lineSummary": [
+    "-   Q.nbind = function (callback, thisp /*...args*/) {",
+    "-       var baseArgs = array_slice(arguments, 2);",
+    "-       return function () {",
+    "-           var nodeArgs = baseArgs.concat(array_slice(arguments));",
+    "-           var deferred = defer();",
+    "-           nodeArgs.push(deferred.makeNodeResolver());",
+    "-           function bound() {",
+    "-               return callback.apply(thisp, arguments);",
+    "-           }",
+    "-           Q(bound).fapply(nodeArgs).fail(deferred.reject);",
+    "-           return deferred.promise;",
+    "-       };",
+    "-   };",
+    "+   Q.nbind = function (callback, thisp /*...args*/) {};",
+    ""
+  ],
+  "mutatorName": "BlockStatement",
+  "strykerMutationId": "1014"
+}

@@ -1,0 +1,41 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-ccef39b/testCase.test.ts
+  close behavior mutation test
+    ✕ should close immediately when queue has items but no in-flight writes (10 ms)
+
+  ● close behavior mutation test › should close immediately when queue has items but no in-flight writes
+
+    Mutation detected - drain was called after close
+
+      48 |         db.on("write_close", () => {
+      49 |           if (drainAfterClose) {
+    > 50 |             done(new Error("Mutation detected - drain was called after close"));
+         |                  ^
+      51 |           } else {
+      52 |             done();
+      53 |           }
+
+      at Dirty.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-ccef39b/testCase.test.ts:50:18)
+      at WriteStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:177:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.534 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-ccef39b/testCase.test.ts".
+node:internal/process/promises:391
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+Error: Timeout
+    at Timeout._onTimeout (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-ccef39b/testCase.test.ts:58:16)
+    at listOnTimeout (node:internal/timers:581:17)
+    at processTimers (node:internal/timers:519:7)
+
+Node.js v20.19.4
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) [96m../subject_repositories/delta/src/Delta.ts[0m:[93m45[0m:[93m29[0m - [91merror[0m[90m TS6133: [0m'embedType' is declared but its value is never read.
+
+[7m45[0m      static unregisterEmbed(embedType: string): void {}
+[7m  [0m [91m                            ~~~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-ce64cee/testCase.test.ts
+  Delta
+    ✕ should correctly unregister an embed handler (2 ms)
+
+  ● Delta › should correctly unregister an embed handler
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "no handlers for embed type \"testEmbed\""
+
+    Received function did not throw
+
+      13 |     Delta.unregisterEmbed(embedType);
+      14 |
+    > 15 |     expect(() => Delta.getHandler(embedType)).toThrowError(`no handlers for embed type "${embedType}"`);
+         |                                               ^
+      16 |   });
+      17 | });
+
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-ce64cee/testCase.test.ts:15:47)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.203 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-ce64cee/testCase.test.ts".

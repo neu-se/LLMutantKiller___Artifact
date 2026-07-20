@@ -1,0 +1,48 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+node:internal/modules/cjs/loader:1215
+  throw err;
+  ^
+
+Error: Cannot find module '/subject_repositories/crawler-url-parser/crawler-url-parser.js'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1212:15)
+    at Module._load (node:internal/modules/cjs/loader:1043:27)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v20.19.4
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_5/pending_category/mutant-af25bdc/testCase.test.ts
+  console.log output test
+    ✕ should verify console.log output when module is run directly (56 ms)
+
+  ● console.log output test › should verify console.log output when module is run directly
+
+    Command failed: node /subject_repositories/crawler-url-parser/crawler-url-parser.js
+    node:internal/modules/cjs/loader:1215
+      throw err;
+      ^
+
+    Error: Cannot find module '/subject_repositories/crawler-url-parser/crawler-url-parser.js'
+
+      14 |         const path = require('path');
+      15 |         const modulePath = path.resolve('../../../../../../../../../../../subject_repositories/crawler-url-parser/crawler-url-parser.js');
+    > 16 |         const output = execSync(`node ${modulePath}`, { encoding: 'utf8' }).trim();
+         |                        ^
+      17 |
+      18 |         // Restore console.log
+      19 |         console.log = originalLog;
+
+      at node:internal/main/run_main_module:28:49 {
+        code: 'MODULE_NOT_FOUND',
+        requireStack: []
+      }
+      Node.js v20.19.4
+      at Object.execSync (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_5/pending_category/mutant-af25bdc/testCase.test.ts:16:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.184 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_5/pending_category/mutant-af25bdc/testCase.test.ts".

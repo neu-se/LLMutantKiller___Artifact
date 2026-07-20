@@ -1,0 +1,10 @@
+import * as q from "../../../../../../../../../../../subject_repositories/q/q.js";
+
+describe("Q.nfapply function", () => {
+    it("should call the provided function with the given arguments", () => {
+        const callback = jest.fn();
+        q.nfapply(callback, [1, 2, 3]);
+        expect(callback).toHaveBeenCalledTimes(1);
+        expect(callback).toHaveBeenCalledWith(1, 2, 3);
+    });
+});

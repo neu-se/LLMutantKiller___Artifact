@@ -1,0 +1,47 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-91f9d07/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-91f9d07/testCase.test.ts[0m:[93m12[0m:[93m33[0m - [91merror[0m[90m TS7006: [0mParameter 'callback' implicitly has an 'any' type.
+
+[7m12[0m         Q.denodeify = function (callback) {
+[7m  [0m [91m                                ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-91f9d07/testCase.test.ts
+  Q.denodeify
+    ✕ should return a function when callback is defined (1 ms)
+    ✕ should throw an error when callback is undefined in the mutated code
+
+  ● Q.denodeify › should return a function when callback is defined
+
+    TypeError: Cannot read properties of undefined (reading 'denodeify')
+
+      4 |     it("should return a function when callback is defined", () => {
+      5 |         const callback = () => {};
+    > 6 |         const denodeified = Q.denodeify(callback);
+        |                               ^
+      7 |         expect(typeof denodeified).toBe("function");
+      8 |     });
+      9 |
+
+      at Object.denodeify (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-91f9d07/testCase.test.ts:6:31)
+
+  ● Q.denodeify › should throw an error when callback is undefined in the mutated code
+
+    TypeError: Cannot read properties of undefined (reading 'denodeify')
+
+       9 |
+      10 |     it("should throw an error when callback is undefined in the mutated code", () => {
+    > 11 |         const originalDenodeify = Q.denodeify;
+         |                                     ^
+      12 |         Q.denodeify = function (callback) {
+      13 |             if (true) {
+      14 |                 // do nothing
+
+      at Object.denodeify (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-91f9d07/testCase.test.ts:11:37)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.017 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-91f9d07/testCase.test.ts".

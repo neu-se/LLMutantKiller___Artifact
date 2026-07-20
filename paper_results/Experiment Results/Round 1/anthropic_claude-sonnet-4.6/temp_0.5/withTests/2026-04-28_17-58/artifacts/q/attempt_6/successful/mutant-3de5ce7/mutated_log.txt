@@ -1,0 +1,30 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-3de5ce7/testCase.test.ts
+  Firefox-style stack frame parsing in getFileNameAndLineNumber
+    ✕ should filter Firefox-style internal Q frames from long stack traces (4 ms)
+
+  ● Firefox-style stack frame parsing in getFileNameAndLineNumber › should filter Firefox-style internal Q frames from long stack traces
+
+    expect(received).not.toContain(expected) // indexOf
+
+    Expected substring: not "UNIQUE_FIREFOX_FRAME_MARKER"
+    Received string:        "Error: rejection
+
+      13 |
+      14 |       const MARKER = "UNIQUE_FIREFOX_FRAME_MARKER";
+    > 15 |       const testError = new Error("rejection");
+         |                         ^
+      16 |       const rejectedPromise = Q.reject(testError);
+      17 |
+      18 |       // Set a Firefox-style stack on the promise referencing Q's own file at line 500
+
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-3de5ce7/testCase.test.ts:15:25)
+      From previous event:
+      UNIQUE_FIREFOX_FRAME_MARKER@/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js:500"
+      at Object.toContain (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-3de5ce7/testCase.test.ts:30:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.065 s, estimated 4 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-3de5ce7/testCase.test.ts".

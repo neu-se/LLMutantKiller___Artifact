@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-08d1e81/testCase.test.ts (5.986 s)
+  trackRejection process.emit guard
+    ✕ emits unhandledRejection only when process is an object with emit function (5002 ms)
+
+  ● trackRejection process.emit guard › emits unhandledRejection only when process is an object with emit function
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      35 |       // Mutated:  condition is always true, so runAfter WAS scheduled,
+      36 |       //           and process.emit was restored by then, so event IS emitted
+    > 37 |       expect(emittedEvents.length).toBe(0);
+         |                                    ^
+      38 |       done();
+      39 |     }, 200);
+      40 |   });
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-08d1e81/testCase.test.ts:37:36)
+
+  ● trackRejection process.emit guard › emits unhandledRejection only when process is an object with emit function
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("trackRejection process.emit guard", () => {
+    > 4 |   it("emits unhandledRejection only when process is an object with emit function", (done) => {
+        |   ^
+      5 |     Q.resetUnhandledRejections();
+      6 |
+      7 |     const emittedEvents: Array<{ reason: any; promise: any }> = [];
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-08d1e81/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-08d1e81/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.114 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-08d1e81/testCase.test.ts".

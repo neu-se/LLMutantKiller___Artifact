@@ -1,0 +1,47 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-2f2fb49/testCase.test.ts[0m:[93m1[0m:[93m26[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import AttributeMap from "../../../../../../../../../../../subject_repositories/delta/src/AttributeMap.ts";
+[7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-2f2fb49/testCase.test.ts
+  AttributeMap.compose
+    ✕ should treat non-object b as empty object, not use it as-is (5 ms)
+
+  ● AttributeMap.compose › should treat non-object b as empty object, not use it as-is
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 13
+
+      Object {
+    -   "bold": true,
+    +   "0": "n",
+    +   "1": "o",
+    +   "10": "e",
+    +   "11": "c",
+    +   "12": "t",
+    +   "2": "t",
+    +   "3": "-",
+    +   "4": "a",
+    +   "5": "n",
+    +   "6": "-",
+    +   "7": "o",
+    +   "8": "b",
+    +   "9": "j",
+      }
+
+      22 |     // With mutated code: b remains "not-an-object", cloneDeep returns "not-an-object",
+      23 |     // and subsequent operations on it will produce unexpected results
+    > 24 |     expect(result).toEqual({ bold: true });
+         |                    ^
+      25 |   });
+      26 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-2f2fb49/testCase.test.ts:24:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.282 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-2f2fb49/testCase.test.ts".

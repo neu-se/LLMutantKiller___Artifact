@@ -1,0 +1,2177 @@
+Your task is to write a Jest test case that exposes a specific mutation in a JavaScript/TypeScript project.
+
+MUTATION DETAILS
+The mutation affects the following file:
+crawler-url-parser.js
+Here is the full content of that file (shown with a <PLACEHOLDER> marker):
+const URL = require('url');
+const psl = require('psl');
+const cheerio = require('cheerio');
+
+const result_normalize_options = {
+	removeDirectoryIndex: true,
+	removeTrailingSlash: true,
+	stripWWW: true,
+	stripFragment: true,
+	normalizeHttps: false,
+	normalizeProtocol: true,
+	removeQueryParameters: [/^utm_\w+/i, 'ref']
+}
+
+function _has_illegal_chars(str) {
+	return /[^a-z0-9\:\/\?\#\[\]\@\!\$\&\'\(\)\*\+\,\;\=\.\-\_\~\%]/i.test(str);
+}
+
+function parse(currentUrlStr, baseUrlStr) {
+	let ret = {
+		url: null,
+		baseurl: null,
+		protocol: null,
+		host: null,
+		domain: null,
+		subdomain: null,
+		path: null,
+		search: null,
+		querycount: 0
+	}
+	if (typeof currentUrlStr === 'undefined') return null;
+	if (currentUrlStr && _has_illegal_chars(currentUrlStr)) return null;
+	if (baseUrlStr && _has_illegal_chars(baseUrlStr)) return null;
+
+	currentUrlStr = currentUrlStr.replace(/^\/\//, 'http://');
+	currentUrlStr = currentUrlStr.replace(/#.*$/, '');
+
+	if (baseUrlStr) {
+		baseUrlStr = baseUrlStr.replace(/^\/\//, 'http://');
+		baseUrlStr = baseUrlStr.replace(/#.*$/, '');
+	} else {
+		if (!/^\.*\/|^(?!localhost)\w+:/.test(currentUrlStr)) {
+   			<PLACEHOLDER>
+
+		}
+	}
+
+	let parsedUrl = URL.parse(currentUrlStr, true, true);
+	delete parsedUrl.hash;
+
+
+	if (parsedUrl.protocol && parsedUrl.protocol != 'http:' && parsedUrl.protocol != 'https:') return null;
+
+	//current url is relative like "abc", "/abc" or "../abc"
+	if (parsedUrl.host == null && baseUrlStr) {
+		let parsedBaseUrl = URL.parse(baseUrlStr, true, true);
+		delete parsedUrl.hash;
+		ret.baseurl = URL.format(parsedBaseUrl);
+
+		let absoluteUrl = URL.parse(URL.resolve(parsedBaseUrl, parsedUrl));
+		currentUrlStr = URL.format(absoluteUrl);
+	}
+
+	parsedUrl = URL.parse(currentUrlStr, true, true);
+	delete parsedUrl.hash;
+
+	ret.url = URL.format(parsedUrl);
+	ret.protocol = parsedUrl.protocol;
+	ret.host = parsedUrl.host;
+	ret.path = parsedUrl.pathname;
+
+	if (ret.host) {
+		let parsedHost = psl.parse(ret.host);
+		ret.domain = parsedHost.domain;
+		ret.subdomain = parsedHost.subdomain;
+	}
+
+	ret.search = parsedUrl.search;
+	ret.querycount = parsedUrl.search ? parsedUrl.search.split("=").length - 1 : 0;
+
+	return ret;
+}
+
+function extract(data, sourceUrl) {
+	let urlMap = new Map();
+	var baseUrl = parse(sourceUrl);
+
+	let $ = typeof data === "string" ? cheerio.load(data) : data;
+	let embedBaseUrlStr = $('base').attr('href');
+	let embedBaseUrl = parse(embedBaseUrlStr);
+	baseUrl = embedBaseUrl ? embedBaseUrl : baseUrl;
+	let baseUrlStr = baseUrl ? baseUrl.url : null;
+
+	$('a').each(function (i, el) {
+		let href = $(this).attr('href');
+		let text = $(this).text().trim();
+		//href = href.replace(/;.*$/g,"");
+		if (typeof href == "undefined" || href.length < 3 || /^(javascript|mailto:|ftp:)/ig.test(href)) return;
+
+		let currentUrl = parse(href, baseUrlStr);
+
+		if (currentUrl && currentUrl.url) {
+			if (urlMap.has(currentUrl.url)) {
+				let tmpUrl = urlMap.get(currentUrl.url);
+				if (!tmpUrl.text.includes(text)) {
+					tmpUrl.text = `${tmpUrl.text} ${text}`;
+				}
+			} else {
+				currentUrl.text = text == null ? "" : text;
+				currentUrl.baseurl = baseUrlStr;
+				urlMap.set(currentUrl.url, currentUrl);
+			}
+		}
+	});
+
+	//remove base url
+	urlMap.delete(baseUrlStr);
+
+	for (let currentUrl of urlMap.values()) {
+		currentUrl.type = gettype(currentUrl, baseUrl);
+	}
+
+	let retArr = Array.from(urlMap.values());
+
+	retArr = retArr.map(function (el) {
+		return {
+			url: el.url,
+			text: el.text,
+			type: el.type
+		}
+	});
+
+	return retArr;
+}
+
+
+function gettype(linkurl, pageurl) {
+
+	if (typeof linkurl == "string") linkurl = parse(linkurl);
+	if (typeof pageurl == "string") pageurl = parse(pageurl);
+
+	let linkurl_subdomain_len = linkurl.subdomain ? linkurl.subdomain.length : 0;
+	let pageurl_subdomain_len = pageurl.subdomain ? pageurl.subdomain.length : 0;
+
+	let linkurl_path = linkurl.path ? linkurl.path : "";
+	let pageurl_path = pageurl.path ? pageurl.path : "";
+	linkurl_path = linkurl_path.replace(/\/index\.[a-z]+$/, '/').replace(/\/default\.[a-z]+$/, '/');
+	pageurl_path = pageurl_path.replace(/\/index\.[a-z]+$/, '/').replace(/\/default\.[a-z]+$/, '/');
+
+	let linkurl_parts = linkurl_path.split("/").filter(function (elem, index, array) {
+		return elem.length > 0
+	});
+	let pageurl_parts = pageurl_path.split("/").filter(function (elem, index, array) {
+		return elem.length > 0
+	});
+
+	if (pageurl.host == linkurl.host) {
+
+		let part_count_diff = linkurl_parts.length - pageurl_parts.length;
+
+		if (part_count_diff == 0) {
+			let linkurl_without_last_part = linkurl_path.replace(/(\/[^\/]*)[\/]?$/, "");
+			let pageurl_without_last_part = pageurl_path.replace(/(\/[^\/]*)[\/]?$/, "");
+			if (linkurl_without_last_part == pageurl_without_last_part) return "samelevel"
+		} else if (part_count_diff == 1) {
+			if (linkurl_path.includes(pageurl_path)) return "sublevel";
+		} else if (part_count_diff == -1) {
+			if (pageurl_path.includes(linkurl_path)) return "uplevel";
+		}
+
+		return "internal";
+	} else if (linkurl.domain == pageurl.domain) {
+		if (linkurl_subdomain_len < pageurl_subdomain_len) return "updomain";
+		return "subdomain";
+	}
+
+	return "external";
+}
+
+module.exports.parse = parse;
+module.exports.extract = extract;
+module.exports.gettype = gettype;
+
+
+//for testing purpose
+if (!module.parent) {
+	console.log("for testing purpose");
+	//getlevel("www.domain.com/aaa/bbb/","www.domain.com/aaa/bbb/ccc");
+	//let res1 = getlevel("sub.domain.com/aaa/bbb/","sub.domain.com/aaa/bbb/ccc");
+	//let res2 = getlevel("sub.domain.com/aaa/bbb/ccc/ddd","sub.domain.com/aaa/bbb/ccc");
+	//let res3 = getlevel("sub.domain.com/aaa/bbb/eee","sub.domain.com/aaa/bbb/ccc");
+	//debugger;
+
+	//let res = parse("ddd","http://www.stackoverflow.com/aaa/bbb/ccc/");
+
+	//let page = 'http://journals.tubitak.gov.tr/';
+	//let link = 'http://journals.tubitak.gov.tr/genel/telifhakki.pdf';
+	//let res = gettype(link, page);
+	//debugger
+	//res = gettype(page, link);
+	//debugger
+	//process.exit();
+
+
+	let url = "https ://www.npmjs.com/package/electron-window-manager";
+	let res = parse(url);
+	debugger;
+
+
+}
+
+In the original code, <PLACEHOLDER> has the value:
+
+-   			currentUrlStr = currentUrlStr.replace(/^(?!(?:\w+:)?\/\/)/, 'http://');
+In the mutated code, <PLACEHOLDER> has the value:
+
++   			currentUrlStr = currentUrlStr.replace(/^(?!(?:\W+:)?\/\/)/, 'http://');
+
+
+YOUR TASK
+Write one Jest test file that:
+    1. Passes when run against the original code.
+    2. Fails when run against the mutated code.
+    3. Tests the behavior of the mutated file in a way that reliably detects the mutation.
+The test will be saved at the following path, relative to this test-generation project’s root:
+llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-401702c/testCase.test.ts
+
+RESOURCES AVAILABLE
+Existing test cases you may use for style or structure inspiration, focusing on how they reflect the project’s expected behavior and typical inputs:
+// test/01_parse-test-html-01.html
+
+<html>
+    <!-- open html using chrome and check link location which chrome parses -->
+    <head>
+        <base href="http://www.stackoverflow.com/aaa/bbb/ccc" target="_blank">
+    </head>
+    <body>
+        <a href="/ddd">test-link-1</a><br />
+        <a href="ddd">test-link-2</a><br />
+        <a href="./ddd">test-link-3</a><br />
+        <a href="../ddd">test-link-3</a><br />
+        <a href="google.com">link without protocol</a><br />
+    </body>
+</html>
+---
+// test/01_parse-test-html-02.html
+
+<html>
+    <!-- open html using chrome and check link location which chrome parses -->
+    <head>
+        <base href="http://www.stackoverflow.com/aaa/bbb/ccc/" target="_blank">
+    </head>
+    <body>
+        <a href="/ddd">test-link-1</a><br />
+        <a href="ddd">test-link-2</a><br />
+        <a href="./ddd">test-link-3</a><br />
+        <a href="../ddd">test-link-3</a><br />
+    </body>
+</html>
+---
+// test/01_parse-test.js
+
+const assert = require('assert');
+const cup = require("../");
+
+//https://gist.github.com/paambaati/54d33e409b4f7cf059cc
+describe('parse paths like "/aaa"', function () {
+
+	it('should parse paths like "/aaa"', function () {
+		let res = cup.parse("/aaa");
+		assert.equal(res.url, "/aaa");
+	});
+
+	it('should parse paths like "/aaa#hhh"', function () {
+		let res = cup.parse("/aaa#hhh");
+		assert.equal(res.url, "/aaa");
+	});
+
+	it('should parse paths like "/aaa?q=query#hhh"', function () {
+		let res = cup.parse("/aaa?q=query#hhh");
+		assert.equal(res.url, "/aaa?q=query");
+	});
+
+	it('should parse paths like "/aaa?q1=query1&q2=query2#hhh"', function () {
+		let res = cup.parse("/aaa?q1=query1&q2=query2#hhh");
+		assert.equal(res.url, "/aaa?q1=query1&q2=query2");
+	});
+
+	it('should parse paths like "/aaa/bbb"', function () {
+		let res = cup.parse("/aaa/bbb");
+		assert.equal(res.url, "/aaa/bbb");
+	});
+
+	it('should parse paths like "/aaa/bbb#hhh"', function () {
+		let res = cup.parse("/aaa/bbb#hhh");
+		assert.equal(res.url, "/aaa/bbb");
+	});
+
+	it('should parse paths like "/aaa/bbb?q=query#hhh"', function () {
+		let res = cup.parse("/aaa/bbb?q=query#hhh");
+		assert.equal(res.url, "/aaa/bbb?q=query");
+	});
+
+	it('should parse paths like "/aaa/bbb?q1=query1&q2=query2#hhh"', function () {
+		let res = cup.parse("/aaa/bbb?q1=query1&q2=query2#hhh");
+		assert.equal(res.url, "/aaa/bbb?q1=query1&q2=query2");
+	});
+
+	it('should parse paths like "/aaa/"', function () {
+		let res = cup.parse("/aaa/");
+		assert.equal(res.url, "/aaa/");
+	});
+
+	it('should parse paths like "/aaa/#hhh"', function () {
+		let res = cup.parse("/aaa/#hhh");
+		assert.equal(res.url, "/aaa/");
+	});
+
+	it('should parse paths like "/aaa/bbb/"', function () {
+		let res = cup.parse("/aaa/bbb/");
+		assert.equal(res.url, "/aaa/bbb/");
+	});
+
+	it('should parse paths like "/aaa/bbb/#hhh"', function () {
+		let res = cup.parse("/aaa/bbb/#hhh");
+		assert.equal(res.url, "/aaa/bbb/");
+	});
+
+});
+
+describe('parse paths like "aaa"', function () {
+
+	it('should parse paths like "aaa"', function () {
+		let res = cup.parse("aaa");
+		assert.equal(res.url, "http://aaa/");
+	});
+
+	it('should parse paths like "aaa#hhh"', function () {
+		let res = cup.parse("aaa#hhh");
+		assert.equal(res.url, "http://aaa/");
+	});
+
+	it('should parse paths like "aaa?q=query#hhh"', function () {
+		let res = cup.parse("aaa?q=query#hhh");
+		assert.equal(res.url, "http://aaa/?q=query");
+	});
+
+	it('should parse paths like "aaa?q1=query1&q2=query2#hhh"', function () {
+		let res = cup.parse("aaa?q1=query1&q2=query2#hhh");
+		assert.equal(res.url, "http://aaa/?q1=query1&q2=query2");
+	});
+
+	it('should parse paths like "aaa/bbb"', function () {
+		let res = cup.parse("aaa/bbb");
+		assert.equal(res.url, "http://aaa/bbb");
+	});
+
+	it('should parse paths like "aaa/bbb#hhh"', function () {
+		let res = cup.parse("aaa/bbb#hhh");
+		assert.equal(res.url, "http://aaa/bbb");
+	});
+
+	it('should parse paths like "aaa/bbb?q=query#hhh"', function () {
+		let res = cup.parse("aaa/bbb?q=query#hhh");
+		assert.equal(res.url, "http://aaa/bbb?q=query");
+	});
+
+	it('should parse paths like "aaa/bbb?q1=query1&q2=query2#hhh"', function () {
+		let res = cup.parse("aaa/bbb?q1=query1&q2=query2#hhh");
+		assert.equal(res.url, "http://aaa/bbb?q1=query1&q2=query2");
+	});
+
+	it('should parse paths like "aaa/"', function () {
+		let res = cup.parse("aaa/");
+		assert.equal(res.url, "http://aaa/");
+	});
+
+	it('should parse paths like "aaa/#hhh"', function () {
+		let res = cup.parse("aaa/#hhh");
+		assert.equal(res.url, "http://aaa/");
+	});
+
+	it('should parse paths like "aaa/bbb/"', function () {
+		let res = cup.parse("aaa/bbb/");
+		assert.equal(res.url, "http://aaa/bbb/");
+	});
+
+	it('should parse paths like "aaa/bbb/#hhh"', function () {
+		let res = cup.parse("aaa/bbb/#hhh");
+		assert.equal(res.url, "http://aaa/bbb/");
+	});
+
+});
+
+describe('parse paths like "../aaa"', function () {
+
+	it('should parse paths like "../aaa"', function () {
+		let res = cup.parse("../aaa");
+		assert.equal(res.url, "../aaa");
+	});
+
+	it('should parse paths like "../aaa#hhh"', function () {
+		let res = cup.parse("../aaa#hhh");
+		assert.equal(res.url, "../aaa");
+	});
+
+	it('should parse paths like "../aaa?q=query#hhh"', function () {
+		let res = cup.parse("../aaa?q=query#hhh");
+		assert.equal(res.url, "../aaa?q=query");
+	});
+
+	it('should parse paths like "../aaa?q1=query1&q2=query2#hhh"', function () {
+		let res = cup.parse("../aaa?q1=query1&q2=query2#hhh");
+		assert.equal(res.url, "../aaa?q1=query1&q2=query2");
+	});
+
+	it('should parse paths like "../aaa/bbb"', function () {
+		let res = cup.parse("../aaa/bbb");
+		assert.equal(res.url, "../aaa/bbb");
+	});
+
+	it('should parse paths like "../aaa/bbb#hhh"', function () {
+		let res = cup.parse("../aaa/bbb#hhh");
+		assert.equal(res.url, "../aaa/bbb");
+	});
+
+	it('should parse paths like "../aaa/bbb?q=query#hhh"', function () {
+		let res = cup.parse("../aaa/bbb?q=query#hhh");
+		assert.equal(res.url, "../aaa/bbb?q=query");
+	});
+
+	it('should parse paths like "../aaa/bbb?q1=query1&q2=query2#hhh"', function () {
+		let res = cup.parse("../aaa/bbb?q1=query1&q2=query2#hhh");
+		assert.equal(res.url, "../aaa/bbb?q1=query1&q2=query2");
+	});
+
+	it('should parse paths like "../aaa/"', function () {
+		let res = cup.parse("../aaa/");
+		assert.equal(res.url, "../aaa/");
+	});
+
+	it('should parse paths like "../aaa/#hhh"', function () {
+		let res = cup.parse("../aaa/#hhh");
+		assert.equal(res.url, "../aaa/");
+	});
+
+	it('should parse paths like "../aaa/bbb/"', function () {
+		let res = cup.parse("../aaa/bbb/");
+		assert.equal(res.url, "../aaa/bbb/");
+	});
+
+	it('should parse paths like "../aaa/bbb/#hhh"', function () {
+		let res = cup.parse("../aaa/bbb/#hhh");
+		assert.equal(res.url, "../aaa/bbb/");
+	});
+
+});
+
+describe('parse paths with subdomain "http://www.google.com"', function () {
+	it('should remove default subdomain "http://www.google.com"', function () {
+		let res = cup.parse("http://www.google.com");
+		assert.equal(res.url, "http://www.google.com/");
+	});
+
+	it('should not remove subdomain except default subdomain "http://mail.google.com"', function () {
+		let res = cup.parse("http://mail.google.com");
+		assert.equal(res.url, "http://mail.google.com/");
+	});
+
+	it('should remove default subdomain "http://www.google.com/aaa"', function () {
+		let res = cup.parse("http://www.google.com/aaa");
+		assert.equal(res.url, "http://www.google.com/aaa");
+	});
+
+	it('should not remove subdomain except default subdomain "http://mail.google.com/aaa"', function () {
+		let res = cup.parse("http://mail.google.com/aaa");
+		assert.equal(res.url, "http://mail.google.com/aaa");
+	});
+
+	it('should remove default subdomain "http://www.google.com/aaa?q=query"', function () {
+		let res = cup.parse("http://www.google.com/aaa?q=query");
+		assert.equal(res.url, "http://www.google.com/aaa?q=query");
+	});
+
+	it('should not remove subdomain except default subdomain "http://mail.google.com/aaa?q=query"', function () {
+		let res = cup.parse("http://mail.google.com/aaa?q=query");
+		assert.equal(res.url, "http://mail.google.com/aaa?q=query");
+	});
+
+	it('should remove default subdomain "http://www.google.com/aaa?q1=query1&q2=query2"', function () {
+		let res = cup.parse("http://www.google.com/aaa?q=query?q1=query1&q2=query2");
+		assert.equal(res.url, "http://www.google.com/aaa?q=query?q1=query1&q2=query2");
+	});
+
+	it('should not remove subdomain except default subdomain "http://mail.google.com/aaa?q=query?q1=query1&q2=query2"', function () {
+		let res = cup.parse("http://mail.google.com/aaa?q=query?q1=query1&q2=query2");
+		assert.equal(res.url, "http://mail.google.com/aaa?q=query?q1=query1&q2=query2");
+	});
+});
+
+describe('parse paths with subdomain "https://www.google.com"', function () {
+	it('should remove default subdomain "https://www.google.com"', function () {
+		let res = cup.parse("https://www.google.com");
+		assert.equal(res.url, "https://www.google.com/");
+	});
+
+	it('should not remove subdomain except default subdomain "https://mail.google.com"', function () {
+		let res = cup.parse("https://mail.google.com");
+		assert.equal(res.url, "https://mail.google.com/");
+	});
+
+	it('should remove default subdomain "https://www.google.com/aaa"', function () {
+		let res = cup.parse("https://www.google.com/aaa");
+		assert.equal(res.url, "https://www.google.com/aaa");
+	});
+
+	it('should not remove subdomain except default subdomain "https://mail.google.com/aaa"', function () {
+		let res = cup.parse("https://mail.google.com/aaa");
+		assert.equal(res.url, "https://mail.google.com/aaa");
+	});
+
+	it('should remove default subdomain "https://www.google.com/aaa?q=query"', function () {
+		let res = cup.parse("https://www.google.com/aaa?q=query");
+		assert.equal(res.url, "https://www.google.com/aaa?q=query");
+	});
+
+	it('should not remove subdomain except default subdomain "https://mail.google.com/aaa?q=query"', function () {
+		let res = cup.parse("https://mail.google.com/aaa?q=query");
+		assert.equal(res.url, "https://mail.google.com/aaa?q=query");
+	});
+
+	it('should remove default subdomain "https://www.google.com/aaa?q1=query1&q2=query2"', function () {
+		let res = cup.parse("https://www.google.com/aaa?q=query?q1=query1&q2=query2");
+		assert.equal(res.url, "https://www.google.com/aaa?q=query?q1=query1&q2=query2");
+	});
+
+	it('should not remove subdomain except default subdomain "https://mail.google.com/aaa?q=query?q1=query1&q2=query2"', function () {
+		let res = cup.parse("https://mail.google.com/aaa?q=query?q1=query1&q2=query2");
+		assert.equal(res.url, "https://mail.google.com/aaa?q=query?q1=query1&q2=query2");
+	});
+});
+
+describe('parse paths with invalid protocol "ftp://www.google.com"', function () {
+
+	it('should be null "ftp://www.google.com"', function () {
+		let res = cup.parse("ftp://www.google.com");
+		assert.equal(res, null);
+	});
+
+});
+
+describe('parse paths with invalid protocol "htp://www.google.com"', function () {
+
+	it('should be null "htp://www.google.com"', function () {
+		let res = cup.parse("htp://www.google.com");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://mail.google.com"', function () {
+		let res = cup.parse("htp://mail.google.com");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://www.google.com/aaa"', function () {
+		let res = cup.parse("htp://www.google.com/aaa");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://mail.google.com/aaa"', function () {
+		let res = cup.parse("htp://mail.google.com/aaa");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://www.google.com/aaa?q=query"', function () {
+		let res = cup.parse("htp://www.google.com/aaa?q=query");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://mail.google.com/aaa?q=query"', function () {
+		let res = cup.parse("htp://mail.google.com/aaa?q=query");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://www.google.com/aaa?q1=query1&q2=query2"', function () {
+		let res = cup.parse("htp://www.google.com/aaa?q=query?q1=query1&q2=query2");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://mail.google.com/aaa?q=query?q1=query1&q2=query2"', function () {
+		let res = cup.parse("htp://mail.google.com/aaa?q=query?q1=query1&q2=query2");
+		assert.equal(res, null);
+	});
+});
+
+describe('parse paths with subdomain "http://www.google.com" also have base url', function () {
+	it('should remove default subdomain "http://www.google.com"', function () {
+		let res = cup.parse("http://www.google.com", "http://www.facebook.com");
+		assert.equal(res.url, "http://www.google.com/");
+	});
+
+	it('should not remove subdomain except default subdomain "http://mail.google.com"', function () {
+		let res = cup.parse("http://mail.google.com", "http://www.facebook.com");
+		assert.equal(res.url, "http://mail.google.com/");
+	});
+
+	it('should remove default subdomain "http://www.google.com/aaa"', function () {
+		let res = cup.parse("http://www.google.com/aaa", "http://www.facebook.com");
+		assert.equal(res.url, "http://www.google.com/aaa");
+	});
+
+	it('should not remove subdomain except default subdomain "http://mail.google.com/aaa"', function () {
+		let res = cup.parse("http://mail.google.com/aaa", "http://www.facebook.com");
+		assert.equal(res.url, "http://mail.google.com/aaa");
+	});
+
+	it('should remove default subdomain "http://www.google.com/aaa?q=query"', function () {
+		let res = cup.parse("http://www.google.com/aaa?q=query", "http://www.facebook.com");
+		assert.equal(res.url, "http://www.google.com/aaa?q=query");
+	});
+
+	it('should not remove subdomain except default subdomain "http://mail.google.com/aaa?q=query"', function () {
+		let res = cup.parse("http://mail.google.com/aaa?q=query", "http://www.facebook.com");
+		assert.equal(res.url, "http://mail.google.com/aaa?q=query");
+	});
+
+	it('should remove default subdomain "http://www.google.com/aaa?q1=query1&q2=query2"', function () {
+		let res = cup.parse("http://www.google.com/aaa?q=query?q1=query1&q2=query2", "http://www.facebook.com");
+		assert.equal(res.url, "http://www.google.com/aaa?q=query?q1=query1&q2=query2");
+	});
+
+	it('should not remove subdomain except default subdomain "http://mail.google.com/aaa?q=query?q1=query1&q2=query2"', function () {
+		let res = cup.parse("http://mail.google.com/aaa?q=query?q1=query1&q2=query2", "http://www.facebook.com");
+		assert.equal(res.url, "http://mail.google.com/aaa?q=query?q1=query1&q2=query2");
+	});
+});
+
+describe('parse paths with subdomain "https://www.google.com" also have base url', function () {
+	it('should remove default subdomain "https://www.google.com"', function () {
+		let res = cup.parse("https://www.google.com", "http://www.facebook.com");
+		assert.equal(res.url, "https://www.google.com/");
+	});
+
+	it('should not remove subdomain except default subdomain "https://mail.google.com"', function () {
+		let res = cup.parse("https://mail.google.com", "http://www.facebook.com");
+		assert.equal(res.url, "https://mail.google.com/");
+	});
+
+	it('should remove default subdomain "https://www.google.com/aaa"', function () {
+		let res = cup.parse("https://www.google.com/aaa", "http://www.facebook.com");
+		assert.equal(res.url, "https://www.google.com/aaa");
+	});
+
+	it('should not remove subdomain except default subdomain "https://mail.google.com/aaa"', function () {
+		let res = cup.parse("https://mail.google.com/aaa", "http://www.facebook.com");
+		assert.equal(res.url, "https://mail.google.com/aaa");
+	});
+
+	it('should remove default subdomain "https://www.google.com/aaa?q=query"', function () {
+		let res = cup.parse("https://www.google.com/aaa?q=query", "http://www.facebook.com");
+		assert.equal(res.url, "https://www.google.com/aaa?q=query");
+	});
+
+	it('should not remove subdomain except default subdomain "https://mail.google.com/aaa?q=query"', function () {
+		let res = cup.parse("https://mail.google.com/aaa?q=query", "http://www.facebook.com");
+		assert.equal(res.url, "https://mail.google.com/aaa?q=query");
+	});
+
+	it('should remove default subdomain "https://www.google.com/aaa?q1=query1&q2=query2"', function () {
+		let res = cup.parse("https://www.google.com/aaa?q=query?q1=query1&q2=query2", "http://www.facebook.com");
+		assert.equal(res.url, "https://www.google.com/aaa?q=query?q1=query1&q2=query2");
+	});
+
+	it('should not remove subdomain except default subdomain "https://mail.google.com/aaa?q=query?q1=query1&q2=query2"', function () {
+		let res = cup.parse("https://mail.google.com/aaa?q=query?q1=query1&q2=query2", "http://www.facebook.com");
+		assert.equal(res.url, "https://mail.google.com/aaa?q=query?q1=query1&q2=query2");
+	});
+});
+
+describe('parse paths with invalid protocol "htp://www.google.com" also have base url', function () {
+	it('should be null "htp://www.google.com"', function () {
+		let res = cup.parse("htp://www.google.com", "http://www.facebook.com");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://mail.google.com"', function () {
+		let res = cup.parse("htp://mail.google.com", "http://www.facebook.com");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://www.google.com/aaa"', function () {
+		let res = cup.parse("htp://www.google.com/aaa", "http://www.facebook.com");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://mail.google.com/aaa"', function () {
+		let res = cup.parse("htp://mail.google.com/aaa", "http://www.facebook.com");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://www.google.com/aaa?q=query"', function () {
+		let res = cup.parse("htp://www.google.com/aaa?q=query", "http://www.facebook.com");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://mail.google.com/aaa?q=query"', function () {
+		let res = cup.parse("htp://mail.google.com/aaa?q=query", "http://www.facebook.com");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://www.google.com/aaa?q1=query1&q2=query2"', function () {
+		let res = cup.parse("htp://www.google.com/aaa?q=query?q1=query1&q2=query2", "http://www.facebook.com");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://mail.google.com/aaa?q=query?q1=query1&q2=query2"', function () {
+		let res = cup.parse("htp://mail.google.com/aaa?q=query?q1=query1&q2=query2", "http://www.facebook.com");
+		assert.equal(res, null);
+	});
+});
+
+describe('parse paths with subdomain "http://www.google.com" also have invalid base url', function () {
+
+
+	it('should fail for invalid chars "http://www.google.com"', function () {
+		let res = cup.parse("http://www.google.com", "#öööö");
+		assert.equal(res, null);
+	});
+
+	it('should fail for invalid chars "http://mail.google.com"', function () {
+		let res = cup.parse("http: //mail.google.com", "#abcd");
+		assert.equal(res, null);
+	});
+
+	it('should remove default subdomain "http://www.google.com"', function () {
+		let res = cup.parse("http://www.google.com", "#abcd");
+		assert.equal(res.url, "http://www.google.com/");
+	});
+
+	it('should not remove subdomain except default subdomain "http://mail.google.com"', function () {
+		let res = cup.parse("http://mail.google.com", "#abcd");
+		assert.equal(res.url, "http://mail.google.com/");
+	});
+
+	it('should remove default subdomain "http://www.google.com/aaa"', function () {
+		let res = cup.parse("http://www.google.com/aaa", "#abcd");
+		assert.equal(res.url, "http://www.google.com/aaa");
+	});
+
+	it('should not remove subdomain except default subdomain "http://mail.google.com/aaa"', function () {
+		let res = cup.parse("http://mail.google.com/aaa", "#abcd");
+		assert.equal(res.url, "http://mail.google.com/aaa");
+	});
+
+	it('should remove default subdomain "http://www.google.com/aaa?q=query"', function () {
+		let res = cup.parse("http://www.google.com/aaa?q=query", "#abcd");
+		assert.equal(res.url, "http://www.google.com/aaa?q=query");
+	});
+
+	it('should not remove subdomain except default subdomain "http://mail.google.com/aaa?q=query"', function () {
+		let res = cup.parse("http://mail.google.com/aaa?q=query", "#abcd");
+		assert.equal(res.url, "http://mail.google.com/aaa?q=query");
+	});
+
+	it('should remove default subdomain "http://www.google.com/aaa?q1=query1&q2=query2"', function () {
+		let res = cup.parse("http://www.google.com/aaa?q=query?q1=query1&q2=query2", "#abcd");
+		assert.equal(res.url, "http://www.google.com/aaa?q=query?q1=query1&q2=query2");
+	});
+
+	it('should not remove subdomain except default subdomain "http://mail.google.com/aaa?q=query?q1=query1&q2=query2"', function () {
+		let res = cup.parse("http://mail.google.com/aaa?q=query?q1=query1&q2=query2", "#abcd");
+		assert.equal(res.url, "http://mail.google.com/aaa?q=query?q1=query1&q2=query2");
+	});
+});
+
+
+describe('parse paths with subdomain "https://www.google.com" also have invalid base url', function () {
+	it('should remove default subdomain "https://www.google.com"', function () {
+		let res = cup.parse("https://www.google.com", "#abcd");
+		assert.equal(res.url, "https://www.google.com/");
+	});
+
+	it('should not remove subdomain except default subdomain "https://mail.google.com"', function () {
+		let res = cup.parse("https://mail.google.com", "#abcd");
+		assert.equal(res.url, "https://mail.google.com/");
+	});
+
+	it('should remove default subdomain "https://www.google.com/aaa"', function () {
+		let res = cup.parse("https://www.google.com/aaa", "#abcd");
+		assert.equal(res.url, "https://www.google.com/aaa");
+	});
+
+	it('should not remove subdomain except default subdomain "https://mail.google.com/aaa"', function () {
+		let res = cup.parse("https://mail.google.com/aaa", "#abcd");
+		assert.equal(res.url, "https://mail.google.com/aaa");
+	});
+
+	it('should remove default subdomain "https://www.google.com/aaa?q=query"', function () {
+		let res = cup.parse("https://www.google.com/aaa?q=query", "#abcd");
+		assert.equal(res.url, "https://www.google.com/aaa?q=query");
+	});
+
+	it('should not remove subdomain except default subdomain "https://mail.google.com/aaa?q=query"', function () {
+		let res = cup.parse("https://mail.google.com/aaa?q=query", "#abcd");
+		assert.equal(res.url, "https://mail.google.com/aaa?q=query");
+	});
+
+	it('should remove default subdomain "https://www.google.com/aaa?q1=query1&q2=query2"', function () {
+		let res = cup.parse("https://www.google.com/aaa?q=query?q1=query1&q2=query2", "#abcd");
+		assert.equal(res.url, "https://www.google.com/aaa?q=query?q1=query1&q2=query2");
+	});
+
+	it('should not remove subdomain except default subdomain "https://mail.google.com/aaa?q=query?q1=query1&q2=query2"', function () {
+		let res = cup.parse("https://mail.google.com/aaa?q=query?q1=query1&q2=query2", "#abcd");
+		assert.equal(res.url, "https://mail.google.com/aaa?q=query?q1=query1&q2=query2");
+	});
+});
+
+
+describe('parse paths with invalid protocol "htp://www.google.com" also have invalid base url', function () {
+	it('should be null "htp://www.google.com"', function () {
+		let res = cup.parse("htp://www.google.com", "#abcd");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://mail.google.com"', function () {
+		let res = cup.parse("htp://mail.google.com", "#abcd");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://www.google.com/aaa"', function () {
+		let res = cup.parse("htp://www.google.com/aaa", "#abcd");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://mail.google.com/aaa"', function () {
+		let res = cup.parse("htp://mail.google.com/aaa", "#abcd");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://www.google.com/aaa?q=query"', function () {
+		let res = cup.parse("htp://www.google.com/aaa?q=query", "#abcd");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://mail.google.com/aaa?q=query"', function () {
+		let res = cup.parse("htp://mail.google.com/aaa?q=query", "#abcd");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://www.google.com/aaa?q1=query1&q2=query2"', function () {
+		let res = cup.parse("htp://www.google.com/aaa?q=query?q1=query1&q2=query2", "#abcd");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://mail.google.com/aaa?q=query?q1=query1&q2=query2"', function () {
+		let res = cup.parse("htp://mail.google.com/aaa?q=query?q1=query1&q2=query2", "#abcd");
+		assert.equal(res, null);
+	});
+});
+
+
+describe('parse paths with subdomain "http://www.google.com" also have invalid base url', function () {
+	it('should remove default subdomain "http://www.google.com"', function () {
+		let res = cup.parse("http://www.google.com", "");
+		assert.equal(res.url, "http://www.google.com/");
+	});
+
+	it('should not remove subdomain except default subdomain "http://mail.google.com"', function () {
+		let res = cup.parse("http://mail.google.com", "");
+		assert.equal(res.url, "http://mail.google.com/");
+	});
+
+	it('should remove default subdomain "http://www.google.com/aaa"', function () {
+		let res = cup.parse("http://www.google.com/aaa", "");
+		assert.equal(res.url, "http://www.google.com/aaa");
+	});
+
+	it('should not remove subdomain except default subdomain "http://mail.google.com/aaa"', function () {
+		let res = cup.parse("http://mail.google.com/aaa", "");
+		assert.equal(res.url, "http://mail.google.com/aaa");
+	});
+
+	it('should remove default subdomain "http://www.google.com/aaa?q=query"', function () {
+		let res = cup.parse("http://www.google.com/aaa?q=query", "");
+		assert.equal(res.url, "http://www.google.com/aaa?q=query");
+	});
+
+	it('should not remove subdomain except default subdomain "http://mail.google.com/aaa?q=query"', function () {
+		let res = cup.parse("http://mail.google.com/aaa?q=query", "");
+		assert.equal(res.url, "http://mail.google.com/aaa?q=query");
+	});
+
+	it('should remove default subdomain "http://www.google.com/aaa?q1=query1&q2=query2"', function () {
+		let res = cup.parse("http://www.google.com/aaa?q=query?q1=query1&q2=query2", "");
+		assert.equal(res.url, "http://www.google.com/aaa?q=query?q1=query1&q2=query2");
+	});
+
+	it('should not remove subdomain except default subdomain "http://mail.google.com/aaa?q=query?q1=query1&q2=query2"', function () {
+		let res = cup.parse("http://mail.google.com/aaa?q=query?q1=query1&q2=query2", "");
+		assert.equal(res.url, "http://mail.google.com/aaa?q=query?q1=query1&q2=query2");
+	});
+});
+
+
+describe('parse paths with subdomain "https://www.google.com" also have invalid base url', function () {
+	it('should remove default subdomain "https://www.google.com"', function () {
+		let res = cup.parse("https://www.google.com", "");
+		assert.equal(res.url, "https://www.google.com/");
+	});
+
+	it('should not remove subdomain except default subdomain "https://mail.google.com"', function () {
+		let res = cup.parse("https://mail.google.com", "");
+		assert.equal(res.url, "https://mail.google.com/");
+	});
+
+	it('should remove default subdomain "https://www.google.com/aaa"', function () {
+		let res = cup.parse("https://www.google.com/aaa", "");
+		assert.equal(res.url, "https://www.google.com/aaa");
+	});
+
+	it('should not remove subdomain except default subdomain "https://mail.google.com/aaa"', function () {
+		let res = cup.parse("https://mail.google.com/aaa", "");
+		assert.equal(res.url, "https://mail.google.com/aaa");
+	});
+
+	it('should remove default subdomain "https://www.google.com/aaa?q=query"', function () {
+		let res = cup.parse("https://www.google.com/aaa?q=query", "");
+		assert.equal(res.url, "https://www.google.com/aaa?q=query");
+	});
+
+	it('should not remove subdomain except default subdomain "https://mail.google.com/aaa?q=query"', function () {
+		let res = cup.parse("https://mail.google.com/aaa?q=query", "");
+		assert.equal(res.url, "https://mail.google.com/aaa?q=query");
+	});
+
+	it('should remove default subdomain "https://www.google.com/aaa?q1=query1&q2=query2"', function () {
+		let res = cup.parse("https://www.google.com/aaa?q=query?q1=query1&q2=query2", "");
+		assert.equal(res.url, "https://www.google.com/aaa?q=query?q1=query1&q2=query2");
+	});
+
+	it('should not remove subdomain except default subdomain "https://mail.google.com/aaa?q=query?q1=query1&q2=query2"', function () {
+		let res = cup.parse("https://mail.google.com/aaa?q=query?q1=query1&q2=query2", "");
+		assert.equal(res.url, "https://mail.google.com/aaa?q=query?q1=query1&q2=query2");
+	});
+});
+
+
+describe('parse paths with invalid protocol "htp://www.google.com" also have invalid base url', function () {
+	it('should be null "htp://www.google.com"', function () {
+		let res = cup.parse("htp://www.google.com", "");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://mail.google.com"', function () {
+		let res = cup.parse("htp://mail.google.com", "");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://www.google.com/aaa"', function () {
+		let res = cup.parse("htp://www.google.com/aaa", "");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://mail.google.com/aaa"', function () {
+		let res = cup.parse("htp://mail.google.com/aaa", "");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://www.google.com/aaa?q=query"', function () {
+		let res = cup.parse("htp://www.google.com/aaa?q=query", "");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://mail.google.com/aaa?q=query"', function () {
+		let res = cup.parse("htp://mail.google.com/aaa?q=query", "");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://www.google.com/aaa?q1=query1&q2=query2"', function () {
+		let res = cup.parse("htp://www.google.com/aaa?q=query?q1=query1&q2=query2", "");
+		assert.equal(res, null);
+	});
+
+	it('should be null "htp://mail.google.com/aaa?q=query?q1=query1&q2=query2"', function () {
+		let res = cup.parse("htp://mail.google.com/aaa?q=query?q1=query1&q2=query2", "");
+		assert.equal(res, null);
+	});
+});
+
+
+describe('parse paths with subdomain "www.google.com" also have base url', function () {
+	it('should remove default subdomain "www.google.com"', function () {
+		let res = cup.parse("www.google.com", "http://www.facebook.com");
+		assert.equal(res.url, "http://www.facebook.com/www.google.com");
+	});
+
+	it('should not remove subdomain except default subdomain "mail.google.com"', function () {
+		let res = cup.parse("mail.google.com", "http://www.facebook.com");
+		assert.equal(res.url, "http://www.facebook.com/mail.google.com");
+	});
+
+	it('should remove default subdomain "www.google.com/aaa"', function () {
+		let res = cup.parse("www.google.com/aaa", "http://www.facebook.com");
+		assert.equal(res.url, "http://www.facebook.com/www.google.com/aaa");
+	});
+
+	it('should not remove subdomain except default subdomain "mail.google.com/aaa"', function () {
+		let res = cup.parse("mail.google.com/aaa", "http://www.facebook.com");
+		assert.equal(res.url, "http://www.facebook.com/mail.google.com/aaa");
+	});
+
+	it('should remove default subdomain "www.google.com/aaa?q=query"', function () {
+		let res = cup.parse("www.google.com/aaa?q=query", "http://www.facebook.com");
+		assert.equal(res.url, "http://www.facebook.com/www.google.com/aaa?q=query");
+	});
+
+	it('should not remove subdomain except default subdomain "mail.google.com/aaa?q=query"', function () {
+		let res = cup.parse("mail.google.com/aaa?q=query", "http://www.facebook.com");
+		assert.equal(res.url, "http://www.facebook.com/mail.google.com/aaa?q=query");
+	});
+
+	it('should remove default subdomain "www.google.com/aaa?q1=query1&q2=query2"', function () {
+		let res = cup.parse("www.google.com/aaa?q=query?q1=query1&q2=query2", "http://www.facebook.com");
+		assert.equal(res.url, "http://www.facebook.com/www.google.com/aaa?q=query?q1=query1&q2=query2");
+	});
+
+	it('should not remove subdomain except default subdomain "mail.google.com/aaa?q=query?q1=query1&q2=query2"', function () {
+		let res = cup.parse("mail.google.com/aaa?q=query?q1=query1&q2=query2", "http://www.facebook.com");
+		assert.equal(res.url, "http://www.facebook.com/mail.google.com/aaa?q=query?q1=query1&q2=query2");
+	});
+});
+
+describe('parse as null unknown protocols', function () {
+	it('should null for ftp', function () {
+		let res = cup.parse("ftp://www.stackoverflow.com/questions.exe");
+		assert.equal(res, null);
+	});
+
+	it('should http for non-protocol urls', function () {
+		let res = cup.parse("www.stackoverflow.com/questions.exe");
+		assert.equal(res.url, "http://www.stackoverflow.com/questions.exe");
+	});
+
+	it('should http for short urls', function () {
+		let res = cup.parse("//www.stackoverflow.com/questions.exe");
+		assert.equal(res.url, "http://www.stackoverflow.com/questions.exe");
+	});
+});
+
+
+describe('parse ralative url with base path', function () {
+	it('should parse paths like "/ddd" with baseurl', function () {
+		let res = cup.parse("/ddd", "//www.stackoverflow.com/aaa/bbb/ccc");
+		//http://www.stackoverflow.com/ddd check parse-test-html-01.html
+		assert.equal(res.url, "http://www.stackoverflow.com/ddd");
+	});
+
+	it('should parse paths like "ddd" with baseurl', function () {
+		let res = cup.parse("ddd", "//www.stackoverflow.com/aaa/bbb/ccc");
+		//http://www.stackoverflow.com/aaa/bbb/ddd check parse-test-html-01.html
+		assert.equal(res.url, "http://www.stackoverflow.com/aaa/bbb/ddd");
+	});
+
+
+	it('should parse paths like "./ddd" with baseurl', function () {
+		let res = cup.parse("./ddd", "//www.stackoverflow.com/aaa/bbb/ccc");
+		//http://www.stackoverflow.com/aaa/bbb/ddd check parse-test-html-01.html
+		assert.equal(res.url, "http://www.stackoverflow.com/aaa/bbb/ddd");
+	});
+
+
+	it('should parse paths like "../ddd" with baseurl', function () {
+		let res = cup.parse("../ddd", "//www.stackoverflow.com/aaa/bbb/ccc");
+		//http://www.stackoverflow.com/aaa/ddd check parse-test-html-01.html
+		assert.equal(res.url, "http://www.stackoverflow.com/aaa/ddd");
+	});
+
+
+	it('should parse paths like "/ddd" with baseurl end with "/"', function () {
+		let res = cup.parse("/ddd", "http://www.stackoverflow.com/aaa/bbb/ccc/");
+		//http://www.stackoverflow.com/ddd check parse-test-html-02.html
+		assert.equal(res.url, "http://www.stackoverflow.com/ddd");
+	});
+
+	it('should parse paths like "ddd" with baseurl end with "/"', function () {
+		let res = cup.parse("ddd", "http://www.stackoverflow.com/aaa/bbb/ccc/");
+		//http://www.stackoverflow.com/aaa/bbb/ccc/ddd check parse-test-html-02.html
+		assert.equal(res.url, "http://www.stackoverflow.com/aaa/bbb/ccc/ddd");
+	});
+
+
+	it('should parse paths like "./ddd" with baseurl end with "/"', function () {
+		let res = cup.parse("./ddd", "http://www.stackoverflow.com/aaa/bbb/ccc/");
+		//http://www.stackoverflow.com/aaa/bbb/ccc/ddd check parse-test-html-02.html
+		assert.equal(res.url, "http://www.stackoverflow.com/aaa/bbb/ccc/ddd");
+	});
+
+
+	it('should parse paths like "../ddd" with baseurl end with "/"', function () {
+		let res = cup.parse("../ddd", "http://www.stackoverflow.com/aaa/bbb/ccc/");
+		//http://www.stackoverflow.com/aaa/bbb/ddd check parse-test-html-02.html
+		assert.equal(res.url, "http://www.stackoverflow.com/aaa/bbb/ddd");
+	});
+
+});
+
+---
+// test/02_extract-test-html-01.html
+
+<html>
+    <body>
+        <a href="/ddd">test-link-1</a><br />
+        <a href="ddd">test-link-2</a><br />
+        <a href="./ddd">test-link-3</a><br />
+        <a href="../ddd">test-link-3</a><br />
+        <a href="http://www.stackoverflow.com/internal-1">test-link-4</a><br />
+        <a href="http://www.stackoverflow.com/internal-2">test-link-5</a><br />
+        <a href="http://www.stackoverflow.com/internal-2">test-link-6</a><br />
+        <a href="http://faq.stackoverflow.com/subdomain-1">test-link-7</a><br />
+        <a href="http://faq.stackoverflow.com/subdomain-2">test-link-8</a><br />
+        <a href="http://faq.stackoverflow.com/subdomain-2">test-link-9</a><br />
+        <a href="http://www.google.com/external-1">test-link-10</a><br />
+        <a href="http://www.google.com/external-2">test-link-11</a><br />
+        <a href="http://www.google.com/external-2">test-link-12</a><br />
+    </body>
+</html>
+---
+// test/02_extract-test.js
+
+const assert = require('assert');
+const fs = require('fs');
+const path = require('path');
+const cup = require("../");
+
+describe('extract url as internal, subdomain, external', function() {
+    it('should extract urls at extract-test-html-01.html file', function() {
+        let htmlPath = path.resolve(__dirname,'02_extract-test-html-01.html');
+        let htmlString = fs.readFileSync(htmlPath,'utf-8');
+        let result = cup.extract(htmlString,"http://www.stackoverflow.com/aaa/bbb/ccc");
+        assert.equal(result.length,9);
+    });
+});
+
+---
+// test/03_getlevel-test.js
+
+const assert = require('assert');
+const cup = require("../");
+
+describe('gettype url as samelevel, sublevel, uplevel', function() {
+    it('should gettype sublevel urls', function() {
+        let res = cup.gettype("//sub.domain.com/aaa/bbb/","//sub.domain.com/aaa/bbb/ccc");
+        assert.equal(res,"uplevel");
+    });
+
+    it('should gettype uplevel urls', function() {
+        let res = cup.gettype("//sub.domain.com/aaa/bbb/ccc/ddd","//sub.domain.com/aaa/bbb/ccc");
+        assert.equal(res,"sublevel");
+    });
+
+    it('should gettype samelevel urls', function() {
+        let res = cup.gettype("//sub.domain.com/aaa/bbb/eee","//sub.domain.com/aaa/bbb/ccc");
+        assert.equal(res,"samelevel");;
+    });
+
+    it('should handle invalid urls', function() {
+        let res = cup.gettype("//sub.domain.com/aaa/bbb/eee","//sub.anotherdomain.com/aaa/bbb/ccc");
+        assert.equal(res,"external");
+    });
+});
+
+
+describe('gettype url without protocol as samelevel, sublevel, uplevel', function() {
+    it('should gettype sublevel urls', function() {
+        let res = cup.gettype("sub.domain.com/aaa/bbb/","sub.domain.com/aaa/bbb/ccc");
+        assert.equal(res,"uplevel");
+    });
+
+    it('should gettype uplevel urls', function() {
+        let res = cup.gettype("sub.domain.com/aaa/bbb/ccc/ddd","sub.domain.com/aaa/bbb/ccc");
+        assert.equal(res,"sublevel");
+    });
+
+    it('should gettype samelevel urls', function() {
+        let res = cup.gettype("sub.domain.com/aaa/bbb/eee","sub.domain.com/aaa/bbb/ccc");
+        assert.equal(res,"samelevel");;
+    });
+
+    it('should handle invalid urls', function() {
+        let res = cup.gettype("sub.domain.com/aaa/bbb/eee","sub.anotherdomain.com/aaa/bbb/ccc");
+        assert.equal(res,"external");
+    });
+});
+
+---
+// test/04_querycount-test.js
+
+const assert = require('assert');
+const cup = require("../");
+
+describe('querycount url', function() {
+    it('should calculate urls query-0', function() {
+        let res = cup.parse("sub.domain.com/aaa/bbb");
+        assert.equal(res.querycount,0);
+    });
+
+    it('should calculate urls query-1', function() {
+        let res = cup.parse("sub.domain.com/aaa/bbb?q1=data1");
+        assert.equal(res.querycount,1);
+    });
+
+    it('should calculate urls query-2', function() {
+        let res = cup.parse("sub.domain.com/aaa/bbb?q1=data1&q2=data2");
+        assert.equal(res.querycount,2);
+    });
+
+    it('should calculate urls query-3', function() {
+        let res = cup.parse("sub.domain.com/aaa/bbb?q1=data1&q2=data2&q3=data3");
+        assert.equal(res.querycount,3);
+    });
+
+    it('should calculate urls query-4', function() {
+        let res = cup.parse("sub.domain.com/aaa/bbb?q1=data1&q2=data2&q3=data3&q4=data4");
+        assert.equal(res.querycount,4);
+    });
+});
+
+---
+// test/05_crawler-test.js
+
+const assert = require('assert');
+const cup = require("../");
+var CrawlerRequest = require('crawler-request');
+const fs = require('fs');
+const path = require('path');
+
+describe('05 static html', function() {
+
+    it('should pass 05 static html', function() {
+        let htmlPath = path.resolve(__dirname,'05_tubitak.html');
+        let htmlString = fs.readFileSync(htmlPath,'utf-8');
+        let result = cup.extract(htmlString,"http://journals.tubitak.gov.tr/");
+        //todo ///
+        let suplevelArr = result.filter((el, index, arr) => el.type == "sublevel");
+        let uplevelArr = result.filter((el, index, arr) => el.type == "uplevel");
+        let samelevelArr = result.filter((el, index, arr) => el.type == "samelevel");
+        let internalArr = result.filter((el, index, arr) => el.type == "internal");
+        let subdomainArr = result.filter((el, index, arr) => el.type == "subdomain");
+        let updomainArr = result.filter((el, index, arr) => el.type == "updomain");
+        let externalArr = result.filter((el, index, arr) => el.type == "external");
+        assert.equal(result.length,34);
+        assert.equal(suplevelArr.length+uplevelArr.length+samelevelArr.length+internalArr.length+subdomainArr.length+updomainArr.length+externalArr.length,34);
+        assert.equal(suplevelArr.length,12);
+        assert.equal(uplevelArr.length,0);
+        assert.equal(samelevelArr.length,1);
+        assert.equal(internalArr.length,13);
+        assert.equal(subdomainArr.length,2);
+        assert.equal(updomainArr.length,1);
+        assert.equal(externalArr.length,5);
+    });
+});
+
+---
+// test/05_tubitak.html
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        
+        
+            
+        
+    
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Scientific Journals Published by TUBITAK" name="description">
+    <meta content="Scientific Journals, Peer Review, full text articles" name="keywords">
+    <title>
+        Academic Journals
+    </title>
+    
+
+
+    <link href="styles/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="styles/journals.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container" id="pagebody" style="padding: 0px;">
+        <div>            
+            <a  href="/index.htm">
+                <img src="././images/web-ing.jpg" style="width: 100%; height: 40%;" />
+            </a>
+            <a href="http://sub01.google.com">sub01</a>
+            <a href="http://sub02.google.com">sub02</a>   
+            <a href="http://sub03.google.com">sub03</a>   
+            <a href="http://sub04.google.com">sub04</a>   
+            <a href="http://sub05.google.com">sub05</a>          
+        </div>
+        <nav role="navigation" class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-collapse collapse" id="navbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href=/index.htm>Academic Journals</a></li>
+                        <li><a href="http://online.journals.tubitak.gov.tr/manuscriptSearch.htm" target="_blank">Find Manuscript</a></li>
+              
+                        <li class="dropdown">
+                            <a aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">Copyright Release Form<span class="caret"></span></a>
+                            <ul role="menu" class="dropdown-menu">
+
+                                <li><a href="http://journals.tubitak.gov.tr/genel/telifhakki.pdf" target="_blank">Copyright Release Form(Turkey)</a></li>
+                                <li><a href="http://journals.tubitak.gov.tr/genel/copyright.pdf" target="_blank"> Copyright Release Form(Other Countries)</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="http://online.journals.tubitak.gov.tr" target="_blank">Manuscript Submission and Evaluation System <span class="glyphicon glyphicon-pencil"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        
+    <div class="container">
+        <div class="well well-lg">
+            <p>T&Uuml;BİTAK publishes 12 peer-reviewed scientific journals indexed by various international abstracts. Follow the links below to obtain information about how to submit a manuscript and to access the full-text articles of the current and previous issues.</p>
+
+<p><em><span style="color:#0000FF"><strong>Starting in 2016, our journals will be published electronically only.</strong></span></em></p>
+
+        </div>
+
+        <div class="col-md-6">
+            <div class="list-group">
+                
+                    
+                        <a class="list-group-item" href="agriculture/index.htm" onmouseover="showJournal('b1');" onmouseout="showAllJournals('b1');">Agriculture &amp; Forestry</a> 
+                    
+                    
+                    
+                    
+                    
+                    
+                     
+                                   
+                      
+                    
+                    
+                    
+
+                
+                    
+                    
+                        <a class="list-group-item" href="biology/index.htm" onmouseover="showJournal('b2');" onmouseout="showAllJournals('b2');">Biology</a>     
+                    
+                    
+                    
+                    
+                    
+                     
+                                   
+                      
+                    
+                    
+                    
+
+                
+                    
+                    
+                    
+                        <a class="list-group-item" href="botany/index.htm" onmouseover="showJournal('b3');" onmouseout="showAllJournals('b3');">Botany</a>    
+                    
+                    
+                    
+                    
+                     
+                                   
+                      
+                    
+                    
+                    
+
+                
+                    
+                    
+                    
+                    
+                        <a class="list-group-item" href="chem/index.htm" onmouseover="showJournal('b4');" onmouseout="showAllJournals('b4');">Chemistry</a>  
+                    
+                    
+                    
+                     
+                                   
+                      
+                    
+                    
+                    
+
+                
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        <a class="list-group-item" href="earth/index.htm" onmouseover="showJournal('b7');" onmouseout="showAllJournals('b7');">Earth Sciences</a>   
+                     
+                                   
+                      
+                    
+                    
+                    
+
+                
+                    
+                    
+                    
+                    
+                    
+                        <a class="list-group-item" href="elektrik/index.htm" onmouseover="showJournal('b5');" onmouseout="showAllJournals('b5');">Electrical Engineering &amp; Computer Sciences</a>     
+                    
+                    
+                     
+                                   
+                      
+                    
+                    
+                    
+
+                
+                    
+                    
+                    
+                    
+                    
+                    
+                        <a class="list-group-item" href="engineering/index.htm" onmouseover="showJournal('b6');" onmouseout="showAllJournals('b6');">Engineering &amp; Environmental Sciences</a>  
+                    
+                     
+                                   
+                      
+                    
+                    
+                    
+
+                
+                    
+                    
+                    
+                    
+                    
+                    
+                     
+                    
+                        <a class="list-group-item" href="math/index.htm" onmouseover="showJournal('b8');" onmouseout="showAllJournals('b8');" >Mathematics</a>   
+                                   
+                      
+                    
+                    
+                    
+
+                
+                    
+                    
+                    
+                    
+                    
+                    
+                     
+                                   
+                    
+                        <a class="list-group-item" href="medical/index.htm" onmouseover="showJournal('b9');" onmouseout="showAllJournals('b9');">Medical Sciences</a>
+                      
+                    
+                    
+                    
+
+                
+                    
+                    
+                    
+                    
+                    
+                    
+                     
+                                   
+                      
+                    
+                        <a class="list-group-item" href="physics/index.htm" onmouseover="showJournal('b10');" onmouseout="showAllJournals('b10');">Physics</a>    
+                    
+                    
+                    
+
+                
+                    
+                    
+                    
+                    
+                    
+                    
+                     
+                                   
+                      
+                    
+                    
+                        <a class="list-group-item" href="veterinary/index.htm" onmouseover="showJournal('b11');" onmouseout="showAllJournals('b11');">Veterinary &amp; Animal Sciences</a>     
+                    
+                    
+
+                
+                    
+                    
+                    
+                    
+                    
+                    
+                     
+                                   
+                      
+                    
+                    
+                    
+                        <a class="list-group-item"  href="zoology/index.htm" onmouseover="showJournal('b12');" onmouseout="showAllJournals('b12');">Zoology</a>     
+                    
+
+                 
+            </div> 
+        </div>
+
+        <div class="col-md-6">
+
+            <div align="center" id="b1" style="display: none;" name="b1">
+                <a href="agriculture/index.htm"><img width="360px" height="510px" src="agriculture/coverimage.htm?imageName=tar-b.jpg"></a>
+            </div>
+
+            <div align="center" id="b2" style="display: none;" name="b2">
+                <a href="biology/index.htm"><img width="360px" height="510px" src="biology/coverimage.htm?imageName=biy-b.jpg"></a>
+            </div>
+
+            <div align="center" id="b3" style="display: none;" name="b3">
+                <a href="botany/index.htm"><img width="360px" height="510px" src="botany/coverimage.htm?imageName=bot-b.jpg"></a>
+            </div>
+
+            <div align="center" id="b4" style="display: none;" name="b4">
+                <a href="chem/index.htm"> <img width="360px" height="510px" src="chem/coverimage.htm?imageName=kim-b.jpg"></a>
+            </div>
+
+            <div align="center" id="b5" style="display: none;" name="b5">
+                <a href="elektrik/index.htm"><img width="360px" height="510px" src="elektrik/coverimage.htm?imageName=elk-b.jpg"></a>
+            </div>
+
+            <div align="center" id="b6" style="display: none;" name="b6">
+                <a href="engineering/index.htm"><img width="360px" height="510px" src="engineering/coverimage.htm?imageName=muh-b.jpg"></a>
+            </div>
+
+            <div align="center" id="b7" style="display: none;" name="b7">
+                <a href="earth/index.htm"><img width="360px" height="510px" src="earth/coverimage.htm?imageName=yer-b.jpg"></a>
+            </div>
+
+            <div align="center" id="b8" style="display: none;" name="b8">
+                <a href="math/index.htm"><img width="360px" height="510px" src="math/coverimage.htm?imageName=mat-b.jpg"></a>
+            </div>
+
+            <div align="center" id="b9" style="display: none;" name="b9">
+                <a href="medical/index.htm"><img width="360px" height="510px" src="medical/coverimage.htm?imageName=sag-b.jpg"></a>
+            </div>
+
+            <div align="center" id="b10" style="display: none;" name="b10">
+                <a href="physics/index.htm"><img width="360px" height="510px" src="physics/coverimage.htm?imageName=fiz-b.jpg"></a>
+            </div>
+
+            <div align="center" id="b11" style="display: none;" name="b11">
+                <a href="veterinary/index.htm"><img width="360px" height="510px" src="veterinary/coverimage.htm?imageName=vet-b.jpg"></a>
+            </div>
+
+            <div align="center" id="b12" style="display: none;" name="b12">
+                <a href="zoology/index.htm"><img width="360px" height="510px" src="zoology/coverimage.htm?imageName=zoo-b.jpg"></a>
+            </div>
+
+            <div align="center" style="display: block;" id="d1" name="d1">
+                <a href="agriculture/index.htm"><img width="120px" height="170px" src="agriculture/coverimage.htm?imageName=tar.jpg"></a>
+                <a href="biology/index.htm"><img width="120px" height="170px" src="biology/coverimage.htm?imageName=biy.jpg"> </a>
+                <a href="botany/index.htm"><img width="120px" height="170px" src="botany/coverimage.htm?imageName=bot.jpg"></a>
+                <a href="chem/index.htm"><img width="120px" height="170px" src="chem/coverimage.htm?imageName=kim.jpg"> </a>
+                <a href="earth/index.htm"><img width="120px" height="170px"  src="earth/coverimage.htm?imageName=yer.jpg"></a>
+                <a href="elektrik/index.htm"><img width="120px" height="170px" src="elektrik/coverimage.htm?imageName=elk.jpg"></a>
+                <a href="engineering/index.htm"><img width="120px" height="170px"  src="engineering/coverimage.htm?imageName=muh.jpg"></a>
+                <a href="math/index.htm"><img width="120px" height="170px" src="math/coverimage.htm?imageName=mat.jpg"></a>
+                <a href="medical/index.htm"><img width="120px" height="170px" src="medical/coverimage.htm?imageName=sag.jpg"></a>
+                <a href="physics/index.htm"><img width="120px" height="170px"  src="physics/coverimage.htm?imageName=fiz.jpg"></a>
+                <a href="veterinary/index.htm"><img width="120px" height="170px"  src="veterinary/coverimage.htm?imageName=vet.jpg"></a>
+                <a href="zoology/index.htm"><img width="120px" height="170px"  src="zoology/coverimage.htm?imageName=zoo.jpg"></a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="container">
+        <legend class="legend">
+            Announcements
+        </legend>
+
+        
+            
+                
+                
+                    <div class="rowhilite">
+                        <span class="label label-primary" style="float: right">20 December 2017</span>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <p><a href="http://journals.tubitak.gov.tr/chem/lastIssue.htm">Volume 41 issue 6&nbsp;of the Turkish Journal of Chemistry has been published.</a></p>
+
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="rowhilite">
+                        <span class="label label-primary" style="float: right">20 December 2017</span>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <p><a href="http://journals.tubitak.gov.tr/veterinary/lastIssue.htm">Volume 41 issue 6&nbsp;of the Turkish Journal of Veterinary and Animal Sciences has been published.</a></p>
+
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="rowhilite">
+                        <span class="label label-primary" style="float: right">19 December 2017</span>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <p><a href="http://journals.tubitak.gov.tr/medical/lastIssue.htm">Volume 47 issue 6&nbsp;of the Turkish Journal of Medical Sciences has been published.</a></p>
+
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="rowhilite">
+                        <span class="label label-primary" style="float: right">18 December 2017</span>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <p><a href="http://journals.tubitak.gov.tr/physics/lastIssue.htm">Volume 41 issue 6&nbsp;of the Turkish Journal of Physics has been published.</a></p>
+
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="rowhilite">
+                        <span class="label label-primary" style="float: right">18 December 2017</span>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <p><a href="http://journals.tubitak.gov.tr/biology/lastIssue.htm">Volume 41 issue 6&nbsp;of the Turkish Journal of Biology has been published.</a></p>
+
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="rowhilite">
+                        <span class="label label-primary" style="float: right">18 December 2017</span>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <p><a href="http://journals.tubitak.gov.tr/agriculture/lastIssue.htm">Volume 41 issue 6&nbsp;of the Turkish Journal of Agriculture &amp; Forestry has been published.</a></p>
+
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="rowhilite">
+                        <span class="label label-primary" style="float: right">04 December 2017</span>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <p><a href="http://journals.tubitak.gov.tr/elektrik/lastIssue.htm">Volume 25 issue 6 of the Turkish Journal of Electrical Engineering &amp; Computer Sciences has been published.</a></p>
+
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="rowhilite">
+                        <span class="label label-primary" style="float: right">27 November 2017</span>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <p><a href="http://journals.tubitak.gov.tr/math/lastIssue.htm">Volume 41 issue 6 of the Turkish Journal of Mathematics has been published.</a></p>
+
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="rowhilite">
+                        <span class="label label-primary" style="float: right">24 November 2017</span>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <p><a href="http://journals.tubitak.gov.tr/earth/lastIssue.htm">Volume 26 issue 6 of the Turkish Journal of Earth Sciences has been published.</a></p>
+
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="rowhilite">
+                        <span class="label label-primary" style="float: right">23 November 2017</span>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <p><a href="http://journals.tubitak.gov.tr/botany/lastIssue.htm">Volume 41 issue 6 of the Turkish Journal of Botany has been published.</a></p>
+
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="rowhilite">
+                        <span class="label label-primary" style="float: right">22 November 2017</span>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <p><a href="http://journals.tubitak.gov.tr/zoology/lastIssue.htm">Volume 41 issue 6 of the Turkish Journal of Zoology has been published.</a></p>
+
+                            </div>
+                        </div>
+                    </div>
+                  
+            
+            
+        
+    </div>
+
+    <script type="text/javascript">
+
+                            function showJournal(ID) {
+
+                                document.getElementById('d1').style.display = 'none';
+                                document.getElementById(ID).style.display = 'block';
+
+                            }
+                            function showAllJournals(ID) {
+
+                                document.getElementById(ID).style.display = 'none';
+                                document.getElementById('d1').style.display = 'block';
+
+                            }
+    </script>
+
+
+
+
+        <footer class="footer">
+            <nav role="navigation" class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-collapse collapse" id="navbar">
+                        <ul class="nav navbar-nav">
+                            <li><a href="http://www.tubitak.gov.tr" target="_blank">TÜBİTAK</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#" data-toggle="modal" data-target="#basicModal" target="_blank">Contact</a>
+
+                                <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title" id="myModalLabel"> Contact</h4>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <p>
+                                                    TÜBİTAK - Akademik Dergiler Müdürlüğü
+                                                    <br/>
+                                                    Akay Caddesi No:6, Bakanlıklar
+                                                    <br/>
+                                                    06420 Ankara - TURKEY
+                                                </p>
+
+                                            </div>
+                                            <div class="modal-footer">
+
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                                            </div> 
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            
+        </footer>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="././styles/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+
+---
+// test/06_type-test.html
+
+<html>
+<head>
+    <base href="http://question.stackoverflow.com/aaa/bbb" target="_blank">
+</head>
+<body>
+    <a href="http://best.question.stackoverflow.com">subdomain</a><br />
+    <a href="http://faq.stackoverflow.com">subdomain</a><br />
+    <a href="http://stackoverflow.com">updomain</a><br />
+    <a href="http://www.google.com">external</a><br />
+    <a href="http://www.facebook.com">external</a><br />
+    <a href="http://question.stackoverflow.com/aaa/bbb/ccc">sublevel</a><br />
+    <a href="http://question.stackoverflow.com/aaa/bbb/zzz">sublevel</a><br />
+    <a href="http://question.stackoverflow.com/aaa/">uplevel</a><br />
+    <a href="http://question.stackoverflow.com/aaa/ddd">samelevel</a><br />
+    <a href="http://question.stackoverflow.com/aaa/eee">samelevel</a><br />
+    <a href="http://question.stackoverflow.com/aaa/ddd/eee">internal</a><br />
+    <a href="http://question.stackoverflow.com/zzz">internal</a><br />
+</body>
+</html>
+---
+// test/06_type-test.js
+
+const assert = require('assert');
+const cup = require("../");
+const fs = require('fs');
+const path = require('path');
+
+describe('06 static html type test', function() {
+
+    it('should pass 06 static html type test', function() {
+        let htmlPath = path.resolve(__dirname,'06_type-test.html');
+        let htmlString = fs.readFileSync(htmlPath,'utf-8');
+        let result = cup.extract(htmlString);
+
+        let suplevelArr = result.filter((el, index, arr) => el.type == "sublevel");
+        let uplevelArr = result.filter((el, index, arr) => el.type == "uplevel");
+        let samelevelArr = result.filter((el, index, arr) => el.type == "samelevel");
+        let internalArr = result.filter((el, index, arr) => el.type == "internal");
+        let subdomainArr = result.filter((el, index, arr) => el.type == "subdomain");
+        let updomainArr = result.filter((el, index, arr) => el.type == "updomain");
+        let externalArr = result.filter((el, index, arr) => el.type == "external");
+        assert.equal(result.length,12);
+        assert.equal(suplevelArr.length+uplevelArr.length+samelevelArr.length+internalArr.length+subdomainArr.length+updomainArr.length+externalArr.length,12);
+        assert.equal(suplevelArr.length,2);
+        assert.equal(uplevelArr.length,1);
+        assert.equal(samelevelArr.length,2);
+        assert.equal(internalArr.length,2);
+        assert.equal(subdomainArr.length,1);
+        assert.equal(updomainArr.length,2);
+        assert.equal(externalArr.length,2);
+    });
+});
+
+---
+// test/07_readme-parse-test.js
+
+const assert = require('assert');
+const cup = require("../");
+
+describe('07 readme parse test', function() {
+
+    it('should pass 07 readme parse test 01', function() {
+        let result = cup.parse("http://question.stackoverflow.com/aaa/bbb/ddd?q1=query1&q2=query2");
+        assert.equal(result.baseurl,null);
+        assert.equal(result.domain,"stackoverflow.com");
+        assert.equal(result.host,"question.stackoverflow.com");
+        assert.equal(result.path,"/aaa/bbb/ddd");
+        assert.equal(result.protocol,"http:");
+        assert.equal(result.querycount,2);
+        assert.equal(result.search,"?q1=query1&q2=query2");
+        assert.equal(result.subdomain,"question");
+        assert.equal(result.url,"http://question.stackoverflow.com/aaa/bbb/ddd?q1=query1&q2=query2");
+    });
+
+    it('should pass 07 readme parse test 02', function() {
+        let result = cup.parse("http://www.question.stackoverflow.com/aaa/bbb/ddd?q1=query1&q2=query2");
+        assert.equal(result.baseurl,null);
+        assert.equal(result.domain,"stackoverflow.com");
+        assert.equal(result.host,"www.question.stackoverflow.com");
+        assert.equal(result.path,"/aaa/bbb/ddd");
+        assert.equal(result.protocol,"http:");
+        assert.equal(result.querycount,2);
+        assert.equal(result.search,"?q1=query1&q2=query2");
+        assert.equal(result.subdomain,"www.question");
+        assert.equal(result.url,"http://www.question.stackoverflow.com/aaa/bbb/ddd?q1=query1&q2=query2");
+    });
+
+    it('should pass 07 readme parse test 03', function() {
+        let result = cup.parse("http://www.question.stackoverflow.com/aaa/bbb/ddd?q1=query1&q2=query2/");
+        assert.equal(result.baseurl,null);
+        assert.equal(result.domain,"stackoverflow.com");
+        assert.equal(result.host,"www.question.stackoverflow.com");
+        assert.equal(result.path,"/aaa/bbb/ddd");
+        assert.equal(result.protocol,"http:");
+        assert.equal(result.querycount,2);
+        assert.equal(result.search,"?q1=query1&q2=query2/");
+        assert.equal(result.subdomain,"www.question");
+        assert.equal(result.url,"http://www.question.stackoverflow.com/aaa/bbb/ddd?q1=query1&q2=query2/");
+    });
+
+    it('should pass 07 readme parse test 04', function() {
+        let result = cup.parse("https://www.question.stackoverflow.com/aaa/bbb/ddd?q1=query1&q2=query2/");
+        assert.equal(result.baseurl,null);
+        assert.equal(result.domain,"stackoverflow.com");
+        assert.equal(result.host,"www.question.stackoverflow.com");
+        assert.equal(result.path,"/aaa/bbb/ddd");
+        assert.equal(result.protocol,"https:");
+        assert.equal(result.querycount,2);
+        assert.equal(result.search,"?q1=query1&q2=query2/");
+        assert.equal(result.subdomain,"www.question");
+        assert.equal(result.url,"https://www.question.stackoverflow.com/aaa/bbb/ddd?q1=query1&q2=query2/");
+    });
+});
+
+
+describe('07 readme parse with baseURL test', function() {
+    
+        it('should pass 07 readme parse with baseURL test 01', function() {
+            let result = cup.parse("../ddd?q1=query1&q2=query2","http://question.stackoverflow.com/aaa/bbb/ccc/");
+            assert.equal(result.baseurl,"http://question.stackoverflow.com/aaa/bbb/ccc/");
+            assert.equal(result.domain,"stackoverflow.com");
+            assert.equal(result.host,"question.stackoverflow.com");
+            assert.equal(result.path,"/aaa/bbb/ddd");
+            assert.equal(result.protocol,"http:");
+            assert.equal(result.querycount,2);
+            assert.equal(result.search,"?q1=query1&q2=query2");
+            assert.equal(result.subdomain,"question");
+            assert.equal(result.url,"http://question.stackoverflow.com/aaa/bbb/ddd?q1=query1&q2=query2");
+        });
+
+        it('should pass 07 readme parse with baseURL test 01', function() {
+            let result = cup.parse("../ddd?q1=query1&q2=query2","http://www.question.stackoverflow.com/aaa/bbb/ccc/");
+            assert.equal(result.baseurl,"http://www.question.stackoverflow.com/aaa/bbb/ccc/");
+            assert.equal(result.domain,"stackoverflow.com");
+            assert.equal(result.host,"www.question.stackoverflow.com");
+            assert.equal(result.path,"/aaa/bbb/ddd");
+            assert.equal(result.protocol,"http:");
+            assert.equal(result.querycount,2);
+            assert.equal(result.search,"?q1=query1&q2=query2");
+            assert.equal(result.subdomain,"www.question");
+            assert.equal(result.url,"http://www.question.stackoverflow.com/aaa/bbb/ddd?q1=query1&q2=query2");
+        });
+
+        it('should pass 07 readme parse with baseURL test 01', function() {
+            let result = cup.parse("../ddd?q1=query1&q2=query2","http://www.stackoverflow.com/aaa/bbb/ccc/");
+            assert.equal(result.baseurl,"http://www.stackoverflow.com/aaa/bbb/ccc/");
+            assert.equal(result.domain,"stackoverflow.com");
+            assert.equal(result.host,"www.stackoverflow.com");
+            assert.equal(result.path,"/aaa/bbb/ddd");
+            assert.equal(result.protocol,"http:");
+            assert.equal(result.querycount,2);
+            assert.equal(result.search,"?q1=query1&q2=query2");
+            assert.equal(result.subdomain,"www");
+            assert.equal(result.url,"http://www.stackoverflow.com/aaa/bbb/ddd?q1=query1&q2=query2");
+        });
+
+        it('should pass 07 readme parse with baseURL test 01', function() {
+            let result = cup.parse("../ddd?q1=query1&q2=query2","http://www.stackoverflow.com/aaa/bbb/ccc");
+            assert.equal(result.baseurl,"http://www.stackoverflow.com/aaa/bbb/ccc");
+            assert.equal(result.domain,"stackoverflow.com");
+            assert.equal(result.host,"www.stackoverflow.com");
+            assert.equal(result.path,"/aaa/ddd");
+            assert.equal(result.protocol,"http:");
+            assert.equal(result.querycount,2);
+            assert.equal(result.search,"?q1=query1&q2=query2");
+            assert.equal(result.subdomain,"www");
+            assert.equal(result.url,"http://www.stackoverflow.com/aaa/ddd?q1=query1&q2=query2");
+        });
+    
+    });
+---
+// test/08_crawler-test.js
+
+const assert = require('assert');
+const cup = require("../");
+const cr = require("crawler-request");
+
+
+describe('crawler test 01', function () {
+	this.timeout(10000);
+	let url = 'https://github.com/Microsoft';
+	it(`should pass for ${url}`, function () {
+
+		let res = cup.parse("#start-of-content", url);
+		assert.equal(res.url, "https://github.com/Microsoft");
+
+	});
+
+});
+
+describe('crawler test 02', function () {
+	this.timeout(10000);
+	let url = 'http://journals.tubitak.gov.tr';
+	it(`should pass for ${url}`, function () {
+		return cr(url).then(function (result) {
+			let urls = cup.extract(result.html, url);
+			assert.notEqual(urls.length, 0);
+		});
+	});
+
+});
+
+
+describe('crawler test 03', function () {
+	this.timeout(10000);
+	let url = 'http://journals.tubitak.gov.tr/';
+	it(`should pass for ${url}`, function () {
+		return cr(url).then(function (result) {
+			let urls = cup.extract(result.html, url);
+			assert.notEqual(urls.length, 0);
+		});
+	});
+});
+
+
+describe('crawler test 04', function () {
+	this.timeout(10000);
+	let url = 'https://github.com/Microsoft';
+	it(`should pass for ${url}`, function () {
+		return cr(url).then(function (result) {
+			let urls = cup.extract(result.html, url);
+			assert.notEqual(urls.length, 0);
+		});
+	});
+});
+
+
+describe('crawler test 05', function () {
+	this.timeout(10000);
+	let url = 'https://github.com/Microsoft/';
+	it(`should pass for ${url}`, function () {
+		return cr(url).then(function (result) {
+			let urls = cup.extract(result.html, url);
+			assert.notEqual(urls.length, 0);
+		});
+	});
+});
+
+
+describe('crawler test 06', function () {
+	this.timeout(10000);
+	let url = 'https://www.npmjs.com/package/electron-window-manager';
+	it(`should pass for ${url}`, function () {
+		return cr(url).then(function (result) {
+			debugger;
+			let urls = cup.extract(result.html, url);
+			assert.notEqual(urls.length, 0);
+		});
+	});
+});
+
+
+describe('crawler test 06', function () {
+	this.timeout(10000);
+	let url = 'https://www.npmjs.com/package/electron-window-manager';
+	it(`should pass for ${url}`, function () {
+		return cr(url).then(function (result) {
+			debugger;
+			let urls = cup.extract(result.html, url);
+			assert.notEqual(urls.length, 0);
+		});
+	});
+});
+
+
+The test runner configuration (package.json):
+{
+  "name": "crawler-url-parser",
+  "version": "2.0.5",
+  "description": "An `URL` parser for crawling purpose.",
+  "main": "crawler-url-parser.js",
+  "keywords": [
+    "crawler-url-parser",
+    "url-parser",
+    "extract-url",
+    "url-parse",
+    "is-parent-url",
+    "is-child-url",
+    "url",
+    "parser",
+    "parse",
+    "crawler",
+    "extract",
+    "extractor",
+    "absolute",
+    "relative",
+    "child",
+    "parent",
+    "normalize",
+    "normalization",
+    "uri",
+    "href",
+    "trim",
+    "crawling",
+    "subdomain",
+    "external",
+    "internal",
+    "parse-url",
+    "urlparser",
+    "fast-url-parser"
+  ],
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "psl": "^1.1.20",
+    "url": "^0.11.0"
+  },
+  "devDependencies": {
+    "mocha": "^4.0.1",
+    "path": "^0.12.7",
+    "crawler-request": "^1.1.3"
+  },
+  "scripts": {
+    "start": "node crawler-url-parser.js",
+    "test": "mocha --recursive"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/autokent/crawler-url-parser/issues",
+    "email": "mehmet.kozan@live.com"
+  },
+  "homepage": "https://gitlab.com/autokent/crawler-url-parser",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/autokent/crawler-url-parser.git"
+  },
+  "author": "Mehmet Kozan <mehmet.kozan@live.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=6.8.1"
+  }
+}
+
+ALLOWED LIBRARIES
+You may use:
+    1. Any built-in Node.js modules (e.g., fs, path, crypto, etc.).
+    2. The following external libraries are explicitly permitted:
+    - psl
+    - cheerio
+You may not use any other third-party libraries.

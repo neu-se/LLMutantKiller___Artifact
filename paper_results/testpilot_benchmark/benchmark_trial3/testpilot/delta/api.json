@@ -1,0 +1,398 @@
+[
+  {
+    "accessPath": "quill-delta",
+    "descriptor": {
+      "type": "function",
+      "signature": "(ops)",
+      "implementation": "class Delta {\n    constructor(ops) {\n        // Assume we are given a well formed ops\n        if (Array.isArray(ops)) {\n            this.ops = ops;\n        }\n        else if (ops != null && Array.isArray(ops.ops)) {\n            this.ops = ops.ops;\n        }\n        else {\n            this.ops = [];\n        }\n    }\n    static registerEmbed(embedType, handler) {\n        this.handlers[embedType] = handler;\n    }\n    static unregisterEmbed(embedType) {\n        delete this.handlers[embedType];\n    }\n    static getHandler(embedType) {\n        const handler = this.handlers[embedType];\n        if (!handler) {\n            throw new Error(`no handlers for embed type \"${embedType}\"`);\n        }\n        return handler;\n    }\n    insert(arg, attributes) {\n        const newOp = {};\n        if (typeof arg === 'string' && arg.length === 0) {\n            return this;\n        }\n        newOp.insert = arg;\n        if (attributes != null &&\n            typeof attributes === 'object' &&\n            Object.keys(attributes).length > 0) {\n            newOp.attributes = attributes;\n        }\n        return this.push(newOp);\n    }\n    delete(length) {\n        if (length <= 0) {\n            return this;\n        }\n        return this.push({ delete: length });\n    }\n    retain(length, attributes) {\n        if (typeof length === 'number' && length <= 0) {\n            return this;\n        }\n        const newOp = { retain: length };\n        if (attributes != null &&\n            typeof attributes === 'object' &&\n            Object.keys(attributes).length > 0) {\n            newOp.attributes = attributes;\n        }\n        return this.push(newOp);\n    }\n    push(newOp) {\n        let index = this.ops.length;\n        let lastOp = this.ops[index - 1];\n        newOp = cloneDeep(newOp);\n        if (typeof lastOp === 'object') {\n            if (typeof newOp.delete === 'number' &&\n                typeof lastOp.delete === 'number') {\n                this.ops[index - 1] = { delete: lastOp.delete + newOp.delete };\n                return this;\n            }\n            // Since it does not matter if we insert before or after deleting at the same index,\n            // always prefer to insert first\n            if (typeof lastOp.delete === 'number' && newOp.insert != null) {\n                index -= 1;\n                lastOp = this.ops[index - 1];\n                if (typeof lastOp !== 'object') {\n                    this.ops.unshift(newOp);\n                    return this;\n                }\n            }\n            if (isEqual(newOp.attributes, lastOp.attributes)) {\n                if (typeof newOp.insert === 'string' &&\n                    typeof lastOp.insert === 'string') {\n                    this.ops[index - 1] = { insert: lastOp.insert + newOp.insert };\n                    if (typeof newOp.attributes === 'object') {\n                        this.ops[index - 1].attributes = newOp.attributes;\n                    }\n                    return this;\n                }\n                else if (typeof newOp.retain === 'number' &&\n                    typeof lastOp.retain === 'number') {\n                    this.ops[index - 1] = { retain: lastOp.retain + newOp.retain };\n                    if (typeof newOp.attributes === 'object') {\n                        this.ops[index - 1].attributes = newOp.attributes;\n                    }\n                    return this;\n                }\n            }\n        }\n        if (index === this.ops.length) {\n            this.ops.push(newOp);\n        }\n        else {\n            this.ops.splice(index, 0, newOp);\n        }\n        return this;\n    }\n    chop() {\n        const lastOp = this.ops[this.ops.length - 1];\n        if (lastOp && typeof lastOp.retain === 'number' && !lastOp.attributes) {\n            this.ops.pop();\n        }\n        return this;\n    }\n    filter(predicate) {\n        return this.ops.filter(predicate);\n    }\n    forEach(predicate) {\n        this.ops.forEach(predicate);\n    }\n    map(predicate) {\n        return this.ops.map(predicate);\n    }\n    partition(predicate) {\n        const passed = [];\n        const failed = [];\n        this.forEach((op) => {\n            const target = predicate(op) ? passed : failed;\n            target.push(op);\n        });\n        return [passed, failed];\n    }\n    reduce(predicate, initialValue) {\n        return this.ops.reduce(predicate, initialValue);\n    }\n    changeLength() {\n        return this.reduce((length, elem) => {\n            if (elem.insert) {\n                return length + Op_1.default.length(elem);\n            }\n            else if (elem.delete) {\n                return length - elem.delete;\n            }\n            return length;\n        }, 0);\n    }\n    length() {\n        return this.reduce((length, elem) => {\n            return length + Op_1.default.length(elem);\n        }, 0);\n    }\n    slice(start = 0, end = Infinity) {\n        const ops = [];\n        const iter = new OpIterator_1.default(this.ops);\n        let index = 0;\n        while (index < end && iter.hasNext()) {\n            let nextOp;\n            if (index < start) {\n                nextOp = iter.next(start - index);\n            }\n            else {\n                nextOp = iter.next(end - index);\n                ops.push(nextOp);\n            }\n            index += Op_1.default.length(nextOp);\n        }\n        return new Delta(ops);\n    }\n    compose(other) {\n        const thisIter = new OpIterator_1.default(this.ops);\n        const otherIter = new OpIterator_1.default(other.ops);\n        const ops = [];\n        const firstOther = otherIter.peek();\n        if (firstOther != null &&\n            typeof firstOther.retain === 'number' &&\n            firstOther.attributes == null) {\n            let firstLeft = firstOther.retain;\n            while (thisIter.peekType() === 'insert' &&\n                thisIter.peekLength() <= firstLeft) {\n                firstLeft -= thisIter.peekLength();\n                ops.push(thisIter.next());\n            }\n            if (firstOther.retain - firstLeft > 0) {\n                otherIter.next(firstOther.retain - firstLeft);\n            }\n        }\n        const delta = new Delta(ops);\n        while (thisIter.hasNext() || otherIter.hasNext()) {\n            if (otherIter.peekType() === 'insert') {\n                delta.push(otherIter.next());\n            }\n            else if (thisIter.peekType() === 'delete') {\n                delta.push(thisIter.next());\n            }\n            else {\n                const length = Math.min(thisIter.peekLength(), otherIter.peekLength());\n                const thisOp = thisIter.next(length);\n                const otherOp = otherIter.next(length);\n                if (otherOp.retain) {\n                    const newOp = {};\n                    if (typeof thisOp.retain === 'number') {\n                        newOp.retain =\n                            typeof otherOp.retain === 'number' ? length : otherOp.retain;\n                    }\n                    else {\n                        if (typeof otherOp.retain === 'number') {\n                            if (thisOp.retain == null) {\n                                newOp.insert = thisOp.insert;\n                            }\n                            else {\n                                newOp.retain = thisOp.retain;\n                            }\n                        }\n                        else {\n                            const action = thisOp.retain == null ? 'insert' : 'retain';\n                            const [embedType, thisData, otherData] = getEmbedTypeAndData(thisOp[action], otherOp.retain);\n                            const handler = Delta.getHandler(embedType);\n                            newOp[action] = {\n                                [embedType]: handler.compose(thisData, otherData, action === 'retain'),\n                            };\n                        }\n                    }\n                    // Preserve null when composing with a retain, otherwise remove it for inserts\n                    const attributes = AttributeMap_1.default.compose(thisOp.attributes, otherOp.attributes, typeof thisOp.retain === 'number');\n                    if (attributes) {\n                        newOp.attributes = attributes;\n                    }\n                    delta.push(newOp);\n                    // Optimization if rest of other is just retain\n                    if (!otherIter.hasNext() &&\n                        isEqual(delta.ops[delta.ops.length - 1], newOp)) {\n                        const rest = new Delta(thisIter.rest());\n                        return delta.concat(rest).chop();\n                    }\n                    // Other op should be delete, we could be an insert or retain\n                    // Insert + delete cancels out\n                }\n                else if (typeof otherOp.delete === 'number' &&\n                    (typeof thisOp.retain === 'number' ||\n                        (typeof thisOp.retain === 'object' && thisOp.retain !== null))) {\n                    delta.push(otherOp);\n                }\n            }\n        }\n        return delta.chop();\n    }\n    concat(other) {\n        const delta = new Delta(this.ops.slice());\n        if (other.ops.length > 0) {\n            delta.push(other.ops[0]);\n            delta.ops = delta.ops.concat(other.ops.slice(1));\n        }\n        return delta;\n    }\n    diff(other, cursor) {\n        if (this.ops === other.ops) {\n            return new Delta();\n        }\n        const strings = [this, other].map((delta) => {\n            return delta\n                .map((op) => {\n                if (op.insert != null) {\n                    return typeof op.insert === 'string' ? op.insert : NULL_CHARACTER;\n                }\n                const prep = delta === other ? 'on' : 'with';\n                throw new Error('diff() called ' + prep + ' non-document');\n            })\n                .join('');\n        });\n        const retDelta = new Delta();\n        const diffResult = diff(strings[0], strings[1], cursor);\n        const thisIter = new OpIterator_1.default(this.ops);\n        const otherIter = new OpIterator_1.default(other.ops);\n        diffResult.forEach((component) => {\n            let length = component[1].length;\n            while (length > 0) {\n                let opLength = 0;\n                switch (component[0]) {\n                    case diff.INSERT:\n                        opLength = Math.min(otherIter.peekLength(), length);\n                        retDelta.push(otherIter.next(opLength));\n                        break;\n                    case diff.DELETE:\n                        opLength = Math.min(length, thisIter.peekLength());\n                        thisIter.next(opLength);\n                        retDelta.delete(opLength);\n                        break;\n                    case diff.EQUAL:\n                        opLength = Math.min(thisIter.peekLength(), otherIter.peekLength(), length);\n                        const thisOp = thisIter.next(opLength);\n                        const otherOp = otherIter.next(opLength);\n                        if (isEqual(thisOp.insert, otherOp.insert)) {\n                            retDelta.retain(opLength, AttributeMap_1.default.diff(thisOp.attributes, otherOp.attributes));\n                        }\n                        else {\n                            retDelta.push(otherOp).delete(opLength);\n                        }\n                        break;\n                }\n                length -= opLength;\n            }\n        });\n        return retDelta.chop();\n    }\n    eachLine(predicate, newline = '\\n') {\n        const iter = new OpIterator_1.default(this.ops);\n        let line = new Delta();\n        let i = 0;\n        while (iter.hasNext()) {\n            if (iter.peekType() !== 'insert') {\n                return;\n            }\n            const thisOp = iter.peek();\n            const start = Op_1.default.length(thisOp) - iter.peekLength();\n            const index = typeof thisOp.insert === 'string'\n                ? thisOp.insert.indexOf(newline, start) - start\n                : -1;\n            if (index < 0) {\n                line.push(iter.next());\n            }\n            else if (index > 0) {\n                line.push(iter.next(index));\n            }\n            else {\n                if (predicate(line, iter.next(1).attributes || {}, i) === false) {\n                    return;\n                }\n                i += 1;\n                line = new Delta();\n            }\n        }\n        if (line.length() > 0) {\n            predicate(line, {}, i);\n        }\n    }\n    invert(base) {\n        const inverted = new Delta();\n        this.reduce((baseIndex, op) => {\n            if (op.insert) {\n                inverted.delete(Op_1.default.length(op));\n            }\n            else if (typeof op.retain === 'number' && op.attributes == null) {\n                inverted.retain(op.retain);\n                return baseIndex + op.retain;\n            }\n            else if (op.delete || typeof op.retain === 'number') {\n                const length = (op.delete || op.retain);\n                const slice = base.slice(baseIndex, baseIndex + length);\n                slice.forEach((baseOp) => {\n                    if (op.delete) {\n                        inverted.push(baseOp);\n                    }\n                    else if (op.retain && op.attributes) {\n                        inverted.retain(Op_1.default.length(baseOp), AttributeMap_1.default.invert(op.attributes, baseOp.attributes));\n                    }\n                });\n                return baseIndex + length;\n            }\n            else if (typeof op.retain === 'object' && op.retain !== null) {\n                const slice = base.slice(baseIndex, baseIndex + 1);\n                const baseOp = new OpIterator_1.default(slice.ops).next();\n                const [embedType, opData, baseOpData] = getEmbedTypeAndData(op.retain, baseOp.insert);\n                const handler = Delta.getHandler(embedType);\n                inverted.retain({ [embedType]: handler.invert(opData, baseOpData) }, AttributeMap_1.default.invert(op.attributes, baseOp.attributes));\n                return baseIndex + 1;\n            }\n            return baseIndex;\n        }, 0);\n        return inverted.chop();\n    }\n    transform(arg, priority = false) {\n        priority = !!priority;\n        if (typeof arg === 'number') {\n            return this.transformPosition(arg, priority);\n        }\n        const other = arg;\n        const thisIter = new OpIterator_1.default(this.ops);\n        const otherIter = new OpIterator_1.default(other.ops);\n        const delta = new Delta();\n        while (thisIter.hasNext() || otherIter.hasNext()) {\n            if (thisIter.peekType() === 'insert' &&\n                (priority || otherIter.peekType() !== 'insert')) {\n                delta.retain(Op_1.default.length(thisIter.next()));\n            }\n            else if (otherIter.peekType() === 'insert') {\n                delta.push(otherIter.next());\n            }\n            else {\n                const length = Math.min(thisIter.peekLength(), otherIter.peekLength());\n                const thisOp = thisIter.next(length);\n                const otherOp = otherIter.next(length);\n                if (thisOp.delete) {\n                    // Our delete either makes their delete redundant or removes their retain\n                    continue;\n                }\n                else if (otherOp.delete) {\n                    delta.push(otherOp);\n                }\n                else {\n                    const thisData = thisOp.retain;\n                    const otherData = otherOp.retain;\n                    let transformedData = typeof otherData === 'object' && otherData !== null\n                        ? otherData\n                        : length;\n                    if (typeof thisData === 'object' &&\n                        thisData !== null &&\n                        typeof otherData === 'object' &&\n                        otherData !== null) {\n                        const embedType = Object.keys(thisData)[0];\n                        if (embedType === Object.keys(otherData)[0]) {\n                            const handler = Delta.getHandler(embedType);\n                            if (handler) {\n                                transformedData = {\n                                    [embedType]: handler.transform(thisData[embedType], otherData[embedType], priority),\n                                };\n                            }\n                        }\n                    }\n                    // We retain either their retain or insert\n                    delta.retain(transformedData, AttributeMap_1.default.transform(thisOp.attributes, otherOp.attributes, priority));\n                }\n            }\n        }\n        return delta.chop();\n    }\n    transformPosition(index, priority = false) {\n        priority = !!priority;\n        const thisIter = new OpIterator_1.default(this.ops);\n        let offset = 0;\n        while (thisIter.hasNext() && offset <= index) {\n            const length = thisIter.peekLength();\n            const nextType = thisIter.peekType();\n            thisIter.next();\n            if (nextType === 'delete') {\n                index -= Math.min(length, index - offset);\n                continue;\n            }\n            else if (nextType === 'insert' && (offset < index || !priority)) {\n                index += length;\n            }\n            offset += length;\n        }\n        return index;\n    }\n}",
+      "isAsync": false,
+      "isConstructor": true
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.Op.length",
+    "descriptor": {
+      "type": "function",
+      "signature": "(op)",
+      "implementation": "function length(op) {\n        if (typeof op.delete === 'number') {\n            return op.delete;\n        }\n        else if (typeof op.retain === 'number') {\n            return op.retain;\n        }\n        else if (typeof op.retain === 'object' && op.retain !== null) {\n            return 1;\n        }\n        else {\n            return typeof op.insert === 'string' ? op.insert.length : 1;\n        }\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.OpIterator",
+    "descriptor": {
+      "type": "function",
+      "signature": "(ops)",
+      "implementation": "class Iterator {\n    constructor(ops) {\n        this.ops = ops;\n        this.index = 0;\n        this.offset = 0;\n    }\n    hasNext() {\n        return this.peekLength() < Infinity;\n    }\n    next(length) {\n        if (!length) {\n            length = Infinity;\n        }\n        const nextOp = this.ops[this.index];\n        if (nextOp) {\n            const offset = this.offset;\n            const opLength = Op_1.default.length(nextOp);\n            if (length >= opLength - offset) {\n                length = opLength - offset;\n                this.index += 1;\n                this.offset = 0;\n            }\n            else {\n                this.offset += length;\n            }\n            if (typeof nextOp.delete === 'number') {\n                return { delete: length };\n            }\n            else {\n                const retOp = {};\n                if (nextOp.attributes) {\n                    retOp.attributes = nextOp.attributes;\n                }\n                if (typeof nextOp.retain === 'number') {\n                    retOp.retain = length;\n                }\n                else if (typeof nextOp.retain === 'object' &&\n                    nextOp.retain !== null) {\n                    // offset should === 0, length should === 1\n                    retOp.retain = nextOp.retain;\n                }\n                else if (typeof nextOp.insert === 'string') {\n                    retOp.insert = nextOp.insert.substr(offset, length);\n                }\n                else {\n                    // offset should === 0, length should === 1\n                    retOp.insert = nextOp.insert;\n                }\n                return retOp;\n            }\n        }\n        else {\n            return { retain: Infinity };\n        }\n    }\n    peek() {\n        return this.ops[this.index];\n    }\n    peekLength() {\n        if (this.ops[this.index]) {\n            // Should never return 0 if our index is being managed correctly\n            return Op_1.default.length(this.ops[this.index]) - this.offset;\n        }\n        else {\n            return Infinity;\n        }\n    }\n    peekType() {\n        const op = this.ops[this.index];\n        if (op) {\n            if (typeof op.delete === 'number') {\n                return 'delete';\n            }\n            else if (typeof op.retain === 'number' ||\n                (typeof op.retain === 'object' && op.retain !== null)) {\n                return 'retain';\n            }\n            else {\n                return 'insert';\n            }\n        }\n        return 'retain';\n    }\n    rest() {\n        if (!this.hasNext()) {\n            return [];\n        }\n        else if (this.offset === 0) {\n            return this.ops.slice(this.index);\n        }\n        else {\n            const offset = this.offset;\n            const index = this.index;\n            const next = this.next();\n            const rest = this.ops.slice(this.index);\n            this.offset = offset;\n            this.index = index;\n            return [next].concat(rest);\n        }\n    }\n}",
+      "isAsync": false,
+      "isConstructor": true
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.OpIterator.prototype.hasNext",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "hasNext() {\n        return this.peekLength() < Infinity;\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.OpIterator.prototype.next",
+    "descriptor": {
+      "type": "function",
+      "signature": "(length)",
+      "implementation": "next(length) {\n        if (!length) {\n            length = Infinity;\n        }\n        const nextOp = this.ops[this.index];\n        if (nextOp) {\n            const offset = this.offset;\n            const opLength = Op_1.default.length(nextOp);\n            if (length >= opLength - offset) {\n                length = opLength - offset;\n                this.index += 1;\n                this.offset = 0;\n            }\n            else {\n                this.offset += length;\n            }\n            if (typeof nextOp.delete === 'number') {\n                return { delete: length };\n            }\n            else {\n                const retOp = {};\n                if (nextOp.attributes) {\n                    retOp.attributes = nextOp.attributes;\n                }\n                if (typeof nextOp.retain === 'number') {\n                    retOp.retain = length;\n                }\n                else if (typeof nextOp.retain === 'object' &&\n                    nextOp.retain !== null) {\n                    // offset should === 0, length should === 1\n                    retOp.retain = nextOp.retain;\n                }\n                else if (typeof nextOp.insert === 'string') {\n                    retOp.insert = nextOp.insert.substr(offset, length);\n                }\n                else {\n                    // offset should === 0, length should === 1\n                    retOp.insert = nextOp.insert;\n                }\n                return retOp;\n            }\n        }\n        else {\n            return { retain: Infinity };\n        }\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.OpIterator.prototype.peek",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "peek() {\n        return this.ops[this.index];\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.OpIterator.prototype.peekLength",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "peekLength() {\n        if (this.ops[this.index]) {\n            // Should never return 0 if our index is being managed correctly\n            return Op_1.default.length(this.ops[this.index]) - this.offset;\n        }\n        else {\n            return Infinity;\n        }\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.OpIterator.prototype.peekType",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "peekType() {\n        const op = this.ops[this.index];\n        if (op) {\n            if (typeof op.delete === 'number') {\n                return 'delete';\n            }\n            else if (typeof op.retain === 'number' ||\n                (typeof op.retain === 'object' && op.retain !== null)) {\n                return 'retain';\n            }\n            else {\n                return 'insert';\n            }\n        }\n        return 'retain';\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.OpIterator.prototype.rest",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "rest() {\n        if (!this.hasNext()) {\n            return [];\n        }\n        else if (this.offset === 0) {\n            return this.ops.slice(this.index);\n        }\n        else {\n            const offset = this.offset;\n            const index = this.index;\n            const next = this.next();\n            const rest = this.ops.slice(this.index);\n            this.offset = offset;\n            this.index = index;\n            return [next].concat(rest);\n        }\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.AttributeMap.compose",
+    "descriptor": {
+      "type": "function",
+      "signature": "(a = {}, b = {}, keepNull = false)",
+      "implementation": "function compose(a = {}, b = {}, keepNull = false) {\n        if (typeof a !== 'object') {\n            a = {};\n        }\n        if (typeof b !== 'object') {\n            b = {};\n        }\n        let attributes = cloneDeep(b);\n        if (!keepNull) {\n            attributes = Object.keys(attributes).reduce((copy, key) => {\n                if (attributes[key] != null) {\n                    copy[key] = attributes[key];\n                }\n                return copy;\n            }, {});\n        }\n        for (const key in a) {\n            if (a[key] !== undefined && b[key] === undefined) {\n                attributes[key] = a[key];\n            }\n        }\n        return Object.keys(attributes).length > 0 ? attributes : undefined;\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.AttributeMap.diff",
+    "descriptor": {
+      "type": "function",
+      "signature": "(a = {}, b = {})",
+      "implementation": "function diff(a = {}, b = {}) {\n        if (typeof a !== 'object') {\n            a = {};\n        }\n        if (typeof b !== 'object') {\n            b = {};\n        }\n        const attributes = Object.keys(a)\n            .concat(Object.keys(b))\n            .reduce((attrs, key) => {\n            if (!isEqual(a[key], b[key])) {\n                attrs[key] = b[key] === undefined ? null : b[key];\n            }\n            return attrs;\n        }, {});\n        return Object.keys(attributes).length > 0 ? attributes : undefined;\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.AttributeMap.invert",
+    "descriptor": {
+      "type": "function",
+      "signature": "(attr = {}, base = {})",
+      "implementation": "function invert(attr = {}, base = {}) {\n        attr = attr || {};\n        const baseInverted = Object.keys(base).reduce((memo, key) => {\n            if (base[key] !== attr[key] && attr[key] !== undefined) {\n                memo[key] = base[key];\n            }\n            return memo;\n        }, {});\n        return Object.keys(attr).reduce((memo, key) => {\n            if (attr[key] !== base[key] && base[key] === undefined) {\n                memo[key] = null;\n            }\n            return memo;\n        }, baseInverted);\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.AttributeMap.transform",
+    "descriptor": {
+      "type": "function",
+      "signature": "(a, b, priority = false)",
+      "implementation": "function transform(a, b, priority = false) {\n        if (typeof a !== 'object') {\n            return b;\n        }\n        if (typeof b !== 'object') {\n            return undefined;\n        }\n        if (!priority) {\n            return b; // b simply overwrites us without priority\n        }\n        const attributes = Object.keys(b).reduce((attrs, key) => {\n            if (a[key] === undefined) {\n                attrs[key] = b[key]; // null is a valid value\n            }\n            return attrs;\n        }, {});\n        return Object.keys(attributes).length > 0 ? attributes : undefined;\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.prototype.insert",
+    "descriptor": {
+      "type": "function",
+      "signature": "(arg, attributes)",
+      "implementation": "insert(arg, attributes) {\n        const newOp = {};\n        if (typeof arg === 'string' && arg.length === 0) {\n            return this;\n        }\n        newOp.insert = arg;\n        if (attributes != null &&\n            typeof attributes === 'object' &&\n            Object.keys(attributes).length > 0) {\n            newOp.attributes = attributes;\n        }\n        return this.push(newOp);\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.prototype.delete",
+    "descriptor": {
+      "type": "function",
+      "signature": "(length)",
+      "implementation": "delete(length) {\n        if (length <= 0) {\n            return this;\n        }\n        return this.push({ delete: length });\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.prototype.retain",
+    "descriptor": {
+      "type": "function",
+      "signature": "(length, attributes)",
+      "implementation": "retain(length, attributes) {\n        if (typeof length === 'number' && length <= 0) {\n            return this;\n        }\n        const newOp = { retain: length };\n        if (attributes != null &&\n            typeof attributes === 'object' &&\n            Object.keys(attributes).length > 0) {\n            newOp.attributes = attributes;\n        }\n        return this.push(newOp);\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.prototype.push",
+    "descriptor": {
+      "type": "function",
+      "signature": "(newOp)",
+      "implementation": "push(newOp) {\n        let index = this.ops.length;\n        let lastOp = this.ops[index - 1];\n        newOp = cloneDeep(newOp);\n        if (typeof lastOp === 'object') {\n            if (typeof newOp.delete === 'number' &&\n                typeof lastOp.delete === 'number') {\n                this.ops[index - 1] = { delete: lastOp.delete + newOp.delete };\n                return this;\n            }\n            // Since it does not matter if we insert before or after deleting at the same index,\n            // always prefer to insert first\n            if (typeof lastOp.delete === 'number' && newOp.insert != null) {\n                index -= 1;\n                lastOp = this.ops[index - 1];\n                if (typeof lastOp !== 'object') {\n                    this.ops.unshift(newOp);\n                    return this;\n                }\n            }\n            if (isEqual(newOp.attributes, lastOp.attributes)) {\n                if (typeof newOp.insert === 'string' &&\n                    typeof lastOp.insert === 'string') {\n                    this.ops[index - 1] = { insert: lastOp.insert + newOp.insert };\n                    if (typeof newOp.attributes === 'object') {\n                        this.ops[index - 1].attributes = newOp.attributes;\n                    }\n                    return this;\n                }\n                else if (typeof newOp.retain === 'number' &&\n                    typeof lastOp.retain === 'number') {\n                    this.ops[index - 1] = { retain: lastOp.retain + newOp.retain };\n                    if (typeof newOp.attributes === 'object') {\n                        this.ops[index - 1].attributes = newOp.attributes;\n                    }\n                    return this;\n                }\n            }\n        }\n        if (index === this.ops.length) {\n            this.ops.push(newOp);\n        }\n        else {\n            this.ops.splice(index, 0, newOp);\n        }\n        return this;\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.prototype.chop",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "chop() {\n        const lastOp = this.ops[this.ops.length - 1];\n        if (lastOp && typeof lastOp.retain === 'number' && !lastOp.attributes) {\n            this.ops.pop();\n        }\n        return this;\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.prototype.filter",
+    "descriptor": {
+      "type": "function",
+      "signature": "(predicate)",
+      "implementation": "filter(predicate) {\n        return this.ops.filter(predicate);\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.prototype.forEach",
+    "descriptor": {
+      "type": "function",
+      "signature": "(predicate)",
+      "implementation": "forEach(predicate) {\n        this.ops.forEach(predicate);\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.prototype.map",
+    "descriptor": {
+      "type": "function",
+      "signature": "(predicate)",
+      "implementation": "map(predicate) {\n        return this.ops.map(predicate);\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.prototype.partition",
+    "descriptor": {
+      "type": "function",
+      "signature": "(predicate)",
+      "implementation": "partition(predicate) {\n        const passed = [];\n        const failed = [];\n        this.forEach((op) => {\n            const target = predicate(op) ? passed : failed;\n            target.push(op);\n        });\n        return [passed, failed];\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.prototype.reduce",
+    "descriptor": {
+      "type": "function",
+      "signature": "(predicate, initialValue)",
+      "implementation": "reduce(predicate, initialValue) {\n        return this.ops.reduce(predicate, initialValue);\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.prototype.changeLength",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "changeLength() {\n        return this.reduce((length, elem) => {\n            if (elem.insert) {\n                return length + Op_1.default.length(elem);\n            }\n            else if (elem.delete) {\n                return length - elem.delete;\n            }\n            return length;\n        }, 0);\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.prototype.length",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "length() {\n        return this.reduce((length, elem) => {\n            return length + Op_1.default.length(elem);\n        }, 0);\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.prototype.slice",
+    "descriptor": {
+      "type": "function",
+      "signature": "(start = 0, end = Infinity)",
+      "implementation": "slice(start = 0, end = Infinity) {\n        const ops = [];\n        const iter = new OpIterator_1.default(this.ops);\n        let index = 0;\n        while (index < end && iter.hasNext()) {\n            let nextOp;\n            if (index < start) {\n                nextOp = iter.next(start - index);\n            }\n            else {\n                nextOp = iter.next(end - index);\n                ops.push(nextOp);\n            }\n            index += Op_1.default.length(nextOp);\n        }\n        return new Delta(ops);\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.prototype.compose",
+    "descriptor": {
+      "type": "function",
+      "signature": "(other)",
+      "implementation": "compose(other) {\n        const thisIter = new OpIterator_1.default(this.ops);\n        const otherIter = new OpIterator_1.default(other.ops);\n        const ops = [];\n        const firstOther = otherIter.peek();\n        if (firstOther != null &&\n            typeof firstOther.retain === 'number' &&\n            firstOther.attributes == null) {\n            let firstLeft = firstOther.retain;\n            while (thisIter.peekType() === 'insert' &&\n                thisIter.peekLength() <= firstLeft) {\n                firstLeft -= thisIter.peekLength();\n                ops.push(thisIter.next());\n            }\n            if (firstOther.retain - firstLeft > 0) {\n                otherIter.next(firstOther.retain - firstLeft);\n            }\n        }\n        const delta = new Delta(ops);\n        while (thisIter.hasNext() || otherIter.hasNext()) {\n            if (otherIter.peekType() === 'insert') {\n                delta.push(otherIter.next());\n            }\n            else if (thisIter.peekType() === 'delete') {\n                delta.push(thisIter.next());\n            }\n            else {\n                const length = Math.min(thisIter.peekLength(), otherIter.peekLength());\n                const thisOp = thisIter.next(length);\n                const otherOp = otherIter.next(length);\n                if (otherOp.retain) {\n                    const newOp = {};\n                    if (typeof thisOp.retain === 'number') {\n                        newOp.retain =\n                            typeof otherOp.retain === 'number' ? length : otherOp.retain;\n                    }\n                    else {\n                        if (typeof otherOp.retain === 'number') {\n                            if (thisOp.retain == null) {\n                                newOp.insert = thisOp.insert;\n                            }\n                            else {\n                                newOp.retain = thisOp.retain;\n                            }\n                        }\n                        else {\n                            const action = thisOp.retain == null ? 'insert' : 'retain';\n                            const [embedType, thisData, otherData] = getEmbedTypeAndData(thisOp[action], otherOp.retain);\n                            const handler = Delta.getHandler(embedType);\n                            newOp[action] = {\n                                [embedType]: handler.compose(thisData, otherData, action === 'retain'),\n                            };\n                        }\n                    }\n                    // Preserve null when composing with a retain, otherwise remove it for inserts\n                    const attributes = AttributeMap_1.default.compose(thisOp.attributes, otherOp.attributes, typeof thisOp.retain === 'number');\n                    if (attributes) {\n                        newOp.attributes = attributes;\n                    }\n                    delta.push(newOp);\n                    // Optimization if rest of other is just retain\n                    if (!otherIter.hasNext() &&\n                        isEqual(delta.ops[delta.ops.length - 1], newOp)) {\n                        const rest = new Delta(thisIter.rest());\n                        return delta.concat(rest).chop();\n                    }\n                    // Other op should be delete, we could be an insert or retain\n                    // Insert + delete cancels out\n                }\n                else if (typeof otherOp.delete === 'number' &&\n                    (typeof thisOp.retain === 'number' ||\n                        (typeof thisOp.retain === 'object' && thisOp.retain !== null))) {\n                    delta.push(otherOp);\n                }\n            }\n        }\n        return delta.chop();\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.prototype.concat",
+    "descriptor": {
+      "type": "function",
+      "signature": "(other)",
+      "implementation": "concat(other) {\n        const delta = new Delta(this.ops.slice());\n        if (other.ops.length > 0) {\n            delta.push(other.ops[0]);\n            delta.ops = delta.ops.concat(other.ops.slice(1));\n        }\n        return delta;\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.prototype.diff",
+    "descriptor": {
+      "type": "function",
+      "signature": "(other, cursor)",
+      "implementation": "diff(other, cursor) {\n        if (this.ops === other.ops) {\n            return new Delta();\n        }\n        const strings = [this, other].map((delta) => {\n            return delta\n                .map((op) => {\n                if (op.insert != null) {\n                    return typeof op.insert === 'string' ? op.insert : NULL_CHARACTER;\n                }\n                const prep = delta === other ? 'on' : 'with';\n                throw new Error('diff() called ' + prep + ' non-document');\n            })\n                .join('');\n        });\n        const retDelta = new Delta();\n        const diffResult = diff(strings[0], strings[1], cursor);\n        const thisIter = new OpIterator_1.default(this.ops);\n        const otherIter = new OpIterator_1.default(other.ops);\n        diffResult.forEach((component) => {\n            let length = component[1].length;\n            while (length > 0) {\n                let opLength = 0;\n                switch (component[0]) {\n                    case diff.INSERT:\n                        opLength = Math.min(otherIter.peekLength(), length);\n                        retDelta.push(otherIter.next(opLength));\n                        break;\n                    case diff.DELETE:\n                        opLength = Math.min(length, thisIter.peekLength());\n                        thisIter.next(opLength);\n                        retDelta.delete(opLength);\n                        break;\n                    case diff.EQUAL:\n                        opLength = Math.min(thisIter.peekLength(), otherIter.peekLength(), length);\n                        const thisOp = thisIter.next(opLength);\n                        const otherOp = otherIter.next(opLength);\n                        if (isEqual(thisOp.insert, otherOp.insert)) {\n                            retDelta.retain(opLength, AttributeMap_1.default.diff(thisOp.attributes, otherOp.attributes));\n                        }\n                        else {\n                            retDelta.push(otherOp).delete(opLength);\n                        }\n                        break;\n                }\n                length -= opLength;\n            }\n        });\n        return retDelta.chop();\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.prototype.eachLine",
+    "descriptor": {
+      "type": "function",
+      "signature": "(predicate, newline = '\\n')",
+      "implementation": "eachLine(predicate, newline = '\\n') {\n        const iter = new OpIterator_1.default(this.ops);\n        let line = new Delta();\n        let i = 0;\n        while (iter.hasNext()) {\n            if (iter.peekType() !== 'insert') {\n                return;\n            }\n            const thisOp = iter.peek();\n            const start = Op_1.default.length(thisOp) - iter.peekLength();\n            const index = typeof thisOp.insert === 'string'\n                ? thisOp.insert.indexOf(newline, start) - start\n                : -1;\n            if (index < 0) {\n                line.push(iter.next());\n            }\n            else if (index > 0) {\n                line.push(iter.next(index));\n            }\n            else {\n                if (predicate(line, iter.next(1).attributes || {}, i) === false) {\n                    return;\n                }\n                i += 1;\n                line = new Delta();\n            }\n        }\n        if (line.length() > 0) {\n            predicate(line, {}, i);\n        }\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.prototype.invert",
+    "descriptor": {
+      "type": "function",
+      "signature": "(base)",
+      "implementation": "invert(base) {\n        const inverted = new Delta();\n        this.reduce((baseIndex, op) => {\n            if (op.insert) {\n                inverted.delete(Op_1.default.length(op));\n            }\n            else if (typeof op.retain === 'number' && op.attributes == null) {\n                inverted.retain(op.retain);\n                return baseIndex + op.retain;\n            }\n            else if (op.delete || typeof op.retain === 'number') {\n                const length = (op.delete || op.retain);\n                const slice = base.slice(baseIndex, baseIndex + length);\n                slice.forEach((baseOp) => {\n                    if (op.delete) {\n                        inverted.push(baseOp);\n                    }\n                    else if (op.retain && op.attributes) {\n                        inverted.retain(Op_1.default.length(baseOp), AttributeMap_1.default.invert(op.attributes, baseOp.attributes));\n                    }\n                });\n                return baseIndex + length;\n            }\n            else if (typeof op.retain === 'object' && op.retain !== null) {\n                const slice = base.slice(baseIndex, baseIndex + 1);\n                const baseOp = new OpIterator_1.default(slice.ops).next();\n                const [embedType, opData, baseOpData] = getEmbedTypeAndData(op.retain, baseOp.insert);\n                const handler = Delta.getHandler(embedType);\n                inverted.retain({ [embedType]: handler.invert(opData, baseOpData) }, AttributeMap_1.default.invert(op.attributes, baseOp.attributes));\n                return baseIndex + 1;\n            }\n            return baseIndex;\n        }, 0);\n        return inverted.chop();\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.prototype.transform",
+    "descriptor": {
+      "type": "function",
+      "signature": "(arg, priority = false)",
+      "implementation": "transform(arg, priority = false) {\n        priority = !!priority;\n        if (typeof arg === 'number') {\n            return this.transformPosition(arg, priority);\n        }\n        const other = arg;\n        const thisIter = new OpIterator_1.default(this.ops);\n        const otherIter = new OpIterator_1.default(other.ops);\n        const delta = new Delta();\n        while (thisIter.hasNext() || otherIter.hasNext()) {\n            if (thisIter.peekType() === 'insert' &&\n                (priority || otherIter.peekType() !== 'insert')) {\n                delta.retain(Op_1.default.length(thisIter.next()));\n            }\n            else if (otherIter.peekType() === 'insert') {\n                delta.push(otherIter.next());\n            }\n            else {\n                const length = Math.min(thisIter.peekLength(), otherIter.peekLength());\n                const thisOp = thisIter.next(length);\n                const otherOp = otherIter.next(length);\n                if (thisOp.delete) {\n                    // Our delete either makes their delete redundant or removes their retain\n                    continue;\n                }\n                else if (otherOp.delete) {\n                    delta.push(otherOp);\n                }\n                else {\n                    const thisData = thisOp.retain;\n                    const otherData = otherOp.retain;\n                    let transformedData = typeof otherData === 'object' && otherData !== null\n                        ? otherData\n                        : length;\n                    if (typeof thisData === 'object' &&\n                        thisData !== null &&\n                        typeof otherData === 'object' &&\n                        otherData !== null) {\n                        const embedType = Object.keys(thisData)[0];\n                        if (embedType === Object.keys(otherData)[0]) {\n                            const handler = Delta.getHandler(embedType);\n                            if (handler) {\n                                transformedData = {\n                                    [embedType]: handler.transform(thisData[embedType], otherData[embedType], priority),\n                                };\n                            }\n                        }\n                    }\n                    // We retain either their retain or insert\n                    delta.retain(transformedData, AttributeMap_1.default.transform(thisOp.attributes, otherOp.attributes, priority));\n                }\n            }\n        }\n        return delta.chop();\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.prototype.transformPosition",
+    "descriptor": {
+      "type": "function",
+      "signature": "(index, priority = false)",
+      "implementation": "transformPosition(index, priority = false) {\n        priority = !!priority;\n        const thisIter = new OpIterator_1.default(this.ops);\n        let offset = 0;\n        while (thisIter.hasNext() && offset <= index) {\n            const length = thisIter.peekLength();\n            const nextType = thisIter.peekType();\n            thisIter.next();\n            if (nextType === 'delete') {\n                index -= Math.min(length, index - offset);\n                continue;\n            }\n            else if (nextType === 'insert' && (offset < index || !priority)) {\n                index += length;\n            }\n            offset += length;\n        }\n        return index;\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.registerEmbed",
+    "descriptor": {
+      "type": "function",
+      "signature": "(embedType, handler)",
+      "implementation": "registerEmbed(embedType, handler) {\n        this.handlers[embedType] = handler;\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.unregisterEmbed",
+    "descriptor": {
+      "type": "function",
+      "signature": "(embedType)",
+      "implementation": "unregisterEmbed(embedType) {\n        delete this.handlers[embedType];\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  },
+  {
+    "accessPath": "quill-delta.getHandler",
+    "descriptor": {
+      "type": "function",
+      "signature": "(embedType)",
+      "implementation": "getHandler(embedType) {\n        const handler = this.handlers[embedType];\n        if (!handler) {\n            throw new Error(`no handlers for embed type \"${embedType}\"`);\n        }\n        return handler;\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "quill-delta"
+  }
+]

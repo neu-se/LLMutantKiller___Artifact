@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/Complex.js/complex.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/Complex.js/complex.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-96a1747/testCase.test.ts
+  Complex atanh mutation detection
+    ✕ should return a non-NaN imaginary part for atanh of a real number greater than 1 (4 ms)
+
+  ● Complex atanh mutation detection › should return a non-NaN imaginary part for atanh of a real number greater than 1
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+       9 |     
+      10 |     // The imaginary part must not be NaN in the original code
+    > 11 |     expect(isNaN(result.im)).toBe(false);
+         |                              ^
+      12 |     // The imaginary part should be -pi/2 (as observed from original behavior)
+      13 |     expect(result.im).toBeCloseTo(-Math.PI / 2, 10);
+      14 |     // The real part should be finite
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-96a1747/testCase.test.ts:11:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.808 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-96a1747/testCase.test.ts".

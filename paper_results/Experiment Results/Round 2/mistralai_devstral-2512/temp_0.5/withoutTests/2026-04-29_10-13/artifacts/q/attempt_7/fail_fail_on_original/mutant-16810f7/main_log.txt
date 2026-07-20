@@ -1,0 +1,39 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-16810f7/testCase.test.ts
+  Q unhandled rejection tracking
+    ✕ should properly check process type before emitting unhandledRejection (16 ms)
+
+  ● Q unhandled rejection tracking › should properly check process type before emitting unhandledRejection
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    - Expected
+    + Received
+
+      "unhandledRejection",
+      [Error: Test error],
+      Promise {
+    -   "inspect": [Function anonymous],
+    +   "exception": [Error: Test error],
+    +   "inspect": [Function inspect],
+        "promiseDispatch": [Function anonymous],
+        "valueOf": [Function anonymous],
+      },
+
+    Number of calls: 1
+
+      26 |         try {
+      27 |           // The unhandledRejection event should have been emitted
+    > 28 |           expect(emitSpy).toHaveBeenCalledWith('unhandledRejection', expect.any(Error), promise);
+         |                           ^
+      29 |
+      30 |           // Verify the process type check was correct
+      31 |           expect(typeof global.process).toBe('object');
+
+      at Timeout.toHaveBeenCalledWith [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-16810f7/testCase.test.ts:28:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.486 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-16810f7/testCase.test.ts".

@@ -1,0 +1,53 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-16810f7/testCase.test.ts (7.394 s)
+  unhandled rejection tracking
+    ✕ should emit 'rejectionHandled' event when a rejected promise is handled in Node.js environment (5004 ms)
+
+  ● unhandled rejection tracking › should emit 'rejectionHandled' event when a rejected promise is handled in Node.js environment
+
+    expect(received).toContain(expected) // indexOf
+
+    Matcher error: received value must not be null nor undefined
+
+    Received has value: undefined
+
+      19 |         // Listen for the 'rejectionHandled' event
+      20 |         process.once("rejectionHandled", (reason: string, p: any) => {
+    > 21 |             expect(reason).toContain("test error");
+         |                            ^
+      22 |             expect(p).toBe(promise);
+      23 |             done();
+      24 |         });
+
+      at process.toContain (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-16810f7/testCase.test.ts:21:28)
+      at emit (../subject_repositories/q/q.js:1104:29)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:130:13)
+
+  ● unhandled rejection tracking › should emit 'rejectionHandled' event when a rejected promise is handled in Node.js environment
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      3 |
+      4 | describe("unhandled rejection tracking", () => {
+    > 5 |     it("should emit 'rejectionHandled' event when a rejected promise is handled in Node.js environment", (done) => {
+        |     ^
+      6 |         // Setup: Ensure we're in a Node.js environment with process.emit
+      7 |         if (typeof process === "undefined" || typeof process.emit !== "function") {
+      8 |             done();
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-16810f7/testCase.test.ts:5:5)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-16810f7/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.754 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-16810f7/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

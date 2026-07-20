@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-d8c98c9/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-d8c98c9/testCase.test.ts[0m:[93m32[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '{ task: any; domain: { enter: jest.Mock<any, any, any>; exit: jest.Mock<any, any, any>; active: boolean; }; next: null; }' is not assignable to type 'null'.
+
+[7m32[0m             tail.next = { task: task, domain: mockDomain, next: null };
+[7m  [0m [91m            ~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-d8c98c9/testCase.test.ts
+  domain exit behavior
+    ✕ should exit domain after task execution in Node environment (2 ms)
+
+  ● domain exit behavior › should exit domain after task execution in Node environment
+
+    TypeError: Cannot read properties of undefined (reading 'nextTick')
+
+      25 |
+      26 |         // Mock isNodeJS to true
+    > 27 |         const nextTick = (Q as any).nextTick;
+         |                                     ^
+      28 |         (Q as any).nextTick = function(task: any) {
+      29 |             // Simulate the behavior where domain should be exited
+      30 |             const head = { task: void 0, next: null };
+
+      at Object.nextTick (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-d8c98c9/testCase.test.ts:27:37)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.131 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-d8c98c9/testCase.test.ts".

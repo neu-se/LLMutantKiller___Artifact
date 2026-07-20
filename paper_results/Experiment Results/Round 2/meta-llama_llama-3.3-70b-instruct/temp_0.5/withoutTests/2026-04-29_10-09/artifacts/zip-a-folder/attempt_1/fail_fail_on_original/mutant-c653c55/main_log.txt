@@ -1,0 +1,41 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-c653c55/testCase.test.ts[0m:[93m1[0m:[93m28[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import { ZipAFolder } from '../../../../../../../../../../../subject_repositories/zip-a-folder/lib/ZipAFolder.ts';
+[7m [0m [91m                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-c653c55/testCase.test.ts[0m:[93m3[0m:[93m1[0m - [91merror[0m[90m TS6133: [0m'path' is declared but its value is never read.
+
+[7m3[0m import * as path from 'path';
+[7m [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-c653c55/testCase.test.ts[0m:[93m4[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"rimraf"' has no exported member 'rm'.
+
+[7m4[0m import { rm } from 'rimraf';
+[7m [0m [91m         ~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-c653c55/testCase.test.ts[0m:[93m5[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"jest-extended"' has no exported member 'expect'.
+
+[7m5[0m import { expect } from 'jest-extended';
+[7m [0m [91m         ~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-c653c55/testCase.test.ts
+  ZipAFolder
+    ✕ should create a zip file with store compression when no compression level is specified (4 ms)
+
+  ● ZipAFolder › should create a zip file with store compression when no compression level is specified
+
+    Permission error: ENOENT: no such file or directory, access './test-data'
+
+      124 |                 await fs.promises.access(targetBasePath, fs.constants.R_OK | fs.constants.W_OK); //eslint-disable-line no-bitwise
+      125 |             } catch (e: any) {
+    > 126 |                 throw new Error(`Permission error: ${e.message}`);
+          |                       ^
+      127 |             }
+      128 |             output = fs.createWriteStream(targetFilePath);
+      129 |         } else if (zipAFolderOptions && zipAFolderOptions.customWriteStream) {
+
+      at Function.compress (../subject_repositories/zip-a-folder/lib/ZipAFolder.ts:126:23)
+      at Function.zip (../subject_repositories/zip-a-folder/lib/ZipAFolder.ts:85:13)
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-c653c55/testCase.test.ts:11:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.486 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-c653c55/testCase.test.ts".

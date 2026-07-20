@@ -1,0 +1,52 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-697096c/testCase.test.ts
+  database empty line handling
+    ✕ should detect and handle empty lines in database file (10 ms)
+
+  ● database empty line handling › should detect and handle empty lines in database file
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      39 |       try {
+      40 |         expect(errorReceived).toBe(true);
+    > 41 |         expect(loadReceived).toBe(false);
+         |                              ^
+      42 |         done();
+      43 |       } catch (error) {
+      44 |         done(error);
+
+      at Dirty.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-697096c/testCase.test.ts:41:30)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:154:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.124 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-697096c/testCase.test.ts".
+node:internal/process/promises:391
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+JestAssertionError: expect(received).toBe(expected) // Object.is equality
+
+Expected: false
+Received: true
+    at Timeout.toBe [as _onTimeout] (/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-697096c/testCase.test.ts:52:30)
+    at listOnTimeout (node:internal/timers:581:17)
+    at processTimers (node:internal/timers:519:7) {
+  matcherResult: {
+    actual: true,
+    expected: false,
+    message: 'expect(received).toBe(expected) // Object.is equality\n' +
+      '\n' +
+      'Expected: false\n' +
+      'Received: true',
+    name: 'toBe',
+    pass: false
+  }
+}
+
+Node.js v20.19.4

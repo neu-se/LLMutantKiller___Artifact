@@ -1,0 +1,24 @@
+let assert = require('assert');
+let quill_delta = require('quill-delta');
+
+describe('test quill_delta', function() {
+    it('test quill-delta.prototype.forEach with single operation', function(done) {
+        // Create a delta with single operation
+        let delta = new quill_delta([{ insert: 'Test' }]);
+        
+        let capturedOp = null;
+        let capturedIndex = null;
+        
+        // Test that forEach calls predicate once
+        delta.forEach(function(op, index) {
+            capturedOp = op;
+            capturedIndex = index;
+        });
+        
+        // Verify operation and index are correct
+        assert.deepEqual(capturedOp, { insert: 'Test' });
+        assert.equal(capturedIndex, 0);
+        
+        done();
+    });
+});

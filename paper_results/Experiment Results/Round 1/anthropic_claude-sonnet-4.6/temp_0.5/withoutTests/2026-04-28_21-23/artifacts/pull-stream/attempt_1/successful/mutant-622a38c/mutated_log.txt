@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/pull-stream/sinks/reduce.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/pull-stream/sinks/reduce.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-622a38c/testCase.test.ts
+  reduce with no initial accumulator on empty stream
+    ✕ should call callback with null error when stream ends normally with no data (3 ms)
+
+  ● reduce with no initial accumulator on empty stream › should call callback with null error when stream ends normally with no data
+
+    expect(received).toBeNull()
+
+    Received: true
+
+      16 |       // In original code: end === true, so cb(null) is called -> err should be null
+      17 |       // In mutated code: false ? null : end -> cb(true) is called -> err should be true
+    > 18 |       expect(err).toBeNull();
+         |                   ^
+      19 |       done();
+      20 |     });
+      21 |
+
+      at toBeNull (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-622a38c/testCase.test.ts:18:19)
+      at cb (../subject_repositories/pull-stream/sinks/reduce.js:16:27)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-622a38c/testCase.test.ts:7:7)
+      at source (../subject_repositories/pull-stream/sinks/reduce.js:14:7)
+      at Object.sink (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-622a38c/testCase.test.ts:22:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.655 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-622a38c/testCase.test.ts".

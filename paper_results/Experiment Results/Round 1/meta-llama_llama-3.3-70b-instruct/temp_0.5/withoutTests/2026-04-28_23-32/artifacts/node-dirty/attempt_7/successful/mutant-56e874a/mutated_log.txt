@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-56e874a/testCase.test.ts
+  Dirty
+    ✕ should return immediately when _waitForDrain is true and queue is empty (106 ms)
+
+  ● Dirty › should return immediately when _waitForDrain is true and queue is empty
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 28
+
+      18 |     await new Promise(resolve => setTimeout(resolve, 100));
+      19 |     const stats = await fs.promises.stat(filePath);
+    > 20 |     expect(stats.size).toBe(0);
+         |                        ^
+      21 |     fs.unlinkSync(filePath);
+      22 |     fs.rmdirSync(tempDir);
+      23 |   });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-56e874a/testCase.test.ts:20:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.422 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-56e874a/testCase.test.ts".

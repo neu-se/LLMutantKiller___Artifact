@@ -1,0 +1,35 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-f4e8972/testCase.test.ts
+  extract function with string input
+    ✕ should handle string input correctly (10 ms)
+
+  ● extract function with string input › should handle string input correctly
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 7
+    + Received  + 1
+
+    - Array [
+    -   Object {
+    -     "text": "Test",
+    -     "type": "samelevel",
+    -     "url": "http://example.com/",
+    -   },
+    - ]
+    + Array []
+
+      5 |         const htmlString = "<html><body><a href='http://example.com'>Test</a></body></html>";
+      6 |         const result = extract(htmlString, "http://example.com");
+    > 7 |         expect(result).toEqual([{ url: "http://example.com/", text: "Test", type: "samelevel" }]);
+        |                        ^
+      8 |     });
+      9 | });
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-f4e8972/testCase.test.ts:7:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.061 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-f4e8972/testCase.test.ts".

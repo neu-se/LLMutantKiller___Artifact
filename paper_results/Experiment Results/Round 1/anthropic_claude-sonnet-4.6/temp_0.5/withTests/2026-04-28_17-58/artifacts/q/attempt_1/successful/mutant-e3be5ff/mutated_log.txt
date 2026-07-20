@@ -1,0 +1,32 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-e3be5ff/testCase.test.ts
+  resetUnhandledRejections
+    ✕ should restart tracking after stopUnhandledRejectionTracking has been called (14 ms)
+
+  ● resetUnhandledRejections › should restart tracking after stopUnhandledRejectionTracking has been called
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 3
+    + Received  + 1
+
+    - Array [
+    -   "(no stack) test reason after reset",
+    - ]
+    + Array []
+
+      17 |     // so the mutated `if (trackUnhandledRejections)` block does NOT run)
+      18 |     const reasons = Q.getUnhandledReasons();
+    > 19 |     expect(reasons).toEqual(["(no stack) test reason after reset"]);
+         |                     ^
+      20 |
+      21 |     // Cleanup
+      22 |     Q.resetUnhandledRejections();
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-e3be5ff/testCase.test.ts:19:21)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.153 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-e3be5ff/testCase.test.ts".

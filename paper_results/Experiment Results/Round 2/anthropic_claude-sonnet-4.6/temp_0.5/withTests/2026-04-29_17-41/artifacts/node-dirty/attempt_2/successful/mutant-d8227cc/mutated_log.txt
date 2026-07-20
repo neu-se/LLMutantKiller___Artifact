@@ -1,0 +1,29 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-d8227cc/testCase.test.ts
+  dirty file loading
+    ✕ should emit "Could not load corrupted row" error (not end-of-db error) when chunk lastIndexOf newline is 1 (18 ms)
+
+  ● dirty file loading › should emit "Could not load corrupted row" error (not end-of-db error) when chunk lastIndexOf newline is 1
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /Could not load corrupted row/
+    Received string:  "Corrupted row at the end of the db: }
+    "
+
+      33 |       try {
+      34 |         expect(errors.length).toBe(1);
+    > 35 |         expect(errors[0]).toMatch(/Could not load corrupted row/);
+         |                           ^
+      36 |         done();
+      37 |       } catch (e) {
+      38 |         done(e);
+
+      at Dirty.toMatch (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-d8227cc/testCase.test.ts:35:27)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:155:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.565 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-d8227cc/testCase.test.ts".

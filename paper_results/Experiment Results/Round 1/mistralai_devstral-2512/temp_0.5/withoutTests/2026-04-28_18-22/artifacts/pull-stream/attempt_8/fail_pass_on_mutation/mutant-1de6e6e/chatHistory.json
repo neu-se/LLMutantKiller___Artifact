@@ -1,0 +1,70 @@
+[
+  {
+    "role": "system",
+    "content": "You are a test generation tool that produces unit tests designed to kill mutants by exposing observable behavioral differences between the original and mutated versions of a program.\n\nThe generated tests must have the following characteristics:\n\n- Tests are deterministic (no randomness, timing dependencies, or reliance on the system clock)\n- Tests appear natural and idiomatic, as written by an experienced human developer\n- Tests use the Jest testing framework\n- Tests are written in TypeScript\n- When importing modules from the project, use relative paths only, e.g.:\n  import { Something } from \"../../../../../../../../../../../subject_repositories/pull-stream/sinks/reduce.js\"\n- Tests assert only on externally observable behavior, not implementation details\n\nThe generated tests must NOT:\n\n- Inspect or analyze source code to detect whether a mutation is present\n- Use absolute file paths\n- Use any external libraries except Jest, the standard language/runtime, and those explicitly mentioned in the prompt\n- The use of mocks and spies is permitted, but should be used only as a last resort when direct observation of behavior is not possible.\n\nFINAL OUTPUT REQUIREMENT\n\n- Return one Jest test file with exactly one describe and exactly one test/it. Avoid adding extra suites/cases\n- The response must consist of only a single fenced code block:\n```typescript\n// <Jest test file containing exactly one test case>\n```\n\nDo not include any text, explanations, or comments outside the code block.\n\n "
+  },
+  {
+    "role": "user",
+    "content": "Your task is to write a Jest test case that exposes a specific mutation in a JavaScript/TypeScript project.\n\nMUTATION DETAILS\nThe mutation affects the following file:\nsinks/reduce.js\nHere is the full content of that file (shown with a <PLACEHOLDER> marker):\n'use strict'\n\nvar drain = require('./drain')\n\nmodule.exports = function reduce (reducer, acc, cb ) {\n  if(!cb) cb = acc, acc = null\n  var sink = drain(function (data) {\n    acc = reducer(acc, data)\n  }, function (err) {\n    cb(err, acc)\n  })\n     if (false)\n\n    return function (source) {\n      source(null, function (end, data) {\n        <PLACEHOLDER>\n        if(end) return cb(end === true ? null : end)\n        acc = data; sink(source)\n      })\n    }\n  else\n    return sink\n}\n\nIn the original code, <PLACEHOLDER> has the value:\n\n-           if(end) return cb(end === true ? null : end)\nIn the mutated code, <PLACEHOLDER> has the value:\n\n+           if(false) return cb(end === true ? null : end)\n\n\nYOUR TASK\nWrite one Jest test file that:\n    1. Passes when run against the original code.\n    2. Fails when run against the mutated code.\n    3. Tests the behavior of the mutated file in a way that reliably detects the mutation.\nThe test will be saved at the following path, relative to this test-generation project’s root:\nllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-1de6e6e/testCase.test.ts\n\nALLOWED LIBRARIES\nYou may use:\n    1. Any built-in Node.js modules (e.g., fs, path, crypto, etc.).\n    \nYou may not use any other third-party libraries.\n\n\n"
+  },
+  {
+    "role": "assistant",
+    "content": "```typescript\nimport { reduce } from \"../../../../../../../../../../../subject_repositories/pull-stream/sinks/reduce.js\";\n\ndescribe('reduce sink', () => {\n  it('should call callback with accumulated value when source ends', (done) => {\n    const reducer = (acc: number | null, data: number) => (acc || 0) + data;\n    const source = (abort: any, cb: (end: boolean | Error, data?: number) => void) => {\n      cb(false, 1);\n      cb(false, 2);\n      cb(false, 3);\n      cb(true); // End the stream\n    };\n\n    reduce(reducer, 0, (err: Error | null, result: number | null) => {\n      expect(err).toBeNull();\n      expect(result).toBe(6); // 1 + 2 + 3\n      done();\n    })(source);\n  });\n});\n```"
+  },
+  {
+    "role": "user",
+    "content": "This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)\n \nThis test case fails on the original code with the following log:\nts-jest[ts-compiler] (WARN) \u001b[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-1de6e6e/testCase.test.ts\u001b[0m:\u001b[93m1\u001b[0m:\u001b[93m10\u001b[0m - \u001b[91merror\u001b[0m\u001b[90m TS2305: \u001b[0mModule '\"../../../../../../../../../../../subject_repositories/pull-stream/sinks/reduce.js\"' has no exported member 'reduce'.\n\n\u001b[7m1\u001b[0m import { reduce } from \"../../../../../../../../../../../subject_repositories/pull-stream/sinks/reduce.js\";\n\u001b[7m \u001b[0m \u001b[91m         ~~~~~~\u001b[0m\n[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`\nFAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-1de6e6e/testCase.test.ts\n  reduce sink\n    ✕ should call callback with accumulated value when source ends (1 ms)\n\n  ● reduce sink › should call callback with accumulated value when source ends\n\n    TypeError: (0 , reduce_js_1.reduce) is not a function\n\n      11 |     };\n      12 |\n    > 13 |     reduce(reducer, 0, (err: Error | null, result: number | null) => {\n         |           ^\n      14 |       expect(err).toBeNull();\n      15 |       expect(result).toBe(6); // 1 + 2 + 3\n      16 |       done();\n\n      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-1de6e6e/testCase.test.ts:13:11)\n\nTest Suites: 1 failed, 1 total\nTests:       1 failed, 1 total\nSnapshots:   0 total\nTime:        3.212 s\nRan all test suites within paths \"/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-1de6e6e/testCase.test.ts\".\n\n---\nPlease try again and give me a new test case."
+  },
+  {
+    "role": "assistant",
+    "content": "```typescript\nconst reduce = require(\"../../../../../../../../../../../subject_repositories/pull-stream/sinks/reduce.js\");\n\ndescribe('reduce sink', () => {\n  it('should call callback with accumulated value when source ends', (done) => {\n    const reducer = (acc: number | null, data: number) => (acc || 0) + data;\n    const source = (abort: any, cb: (end: boolean | Error, data?: number) => void) => {\n      cb(false, 1);\n      cb(false, 2);\n      cb(false, 3);\n      cb(true); // End the stream\n    };\n\n    reduce(reducer, 0, (err: Error | null, result: number | null) => {\n      expect(err).toBeNull();\n      expect(result).toBe(6); // 1 + 2 + 3\n      done();\n    })(source);\n  });\n});\n```"
+  },
+  {
+    "role": "user",
+    "content": "This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)\n \nWhile the test case passes on the original code, it also passes on the mutated code.\n\n\nPlease try again and give me a new test case."
+  },
+  {
+    "role": "assistant",
+    "content": "```typescript\nconst reduce = require(\"../../../../../../../../../../../subject_repositories/pull-stream/sinks/reduce.js\");\n\ndescribe('reduce sink', () => {\n  it('should handle empty stream correctly', (done) => {\n    const reducer = (acc: number | null, data: number) => (acc || 0) + data;\n    const source = (abort: any, cb: (end: boolean | Error, data?: number) => void) => {\n      cb(true); // End the stream immediately without any data\n    };\n\n    reduce(reducer, 0, (err: Error | null, result: number | null) => {\n      expect(err).toBeNull();\n      expect(result).toBe(0); // Initial value since no data was processed\n      done();\n    })(source);\n  });\n});\n```"
+  },
+  {
+    "role": "user",
+    "content": "This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)\n \nWhile the test case passes on the original code, it also passes on the mutated code.\n\n\nPlease try again and give me a new test case."
+  },
+  {
+    "role": "assistant",
+    "content": "```typescript\nconst reduce = require(\"../../../../../../../../../../../subject_repositories/pull-stream/sinks/reduce.js\");\n\ndescribe('reduce sink', () => {\n  it('should call callback with error when source ends with error', (done) => {\n    const reducer = (acc: number | null, data: number) => (acc || 0) + data;\n    const error = new Error('Test error');\n    const source = (abort: any, cb: (end: boolean | Error, data?: number) => void) => {\n      cb(error); // End with error\n    };\n\n    reduce(reducer, 0, (err: Error | null, result: number | null) => {\n      expect(err).toBe(error);\n      expect(result).toBe(0); // Should still return initial value\n      done();\n    })(source);\n  });\n});\n```"
+  },
+  {
+    "role": "user",
+    "content": "This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)\n \nWhile the test case passes on the original code, it also passes on the mutated code.\n\n\nPlease try again and give me a new test case."
+  },
+  {
+    "role": "assistant",
+    "content": "```typescript\nconst reduce = require(\"../../../../../../../../../../../subject_repositories/pull-stream/sinks/reduce.js\");\n\ndescribe('reduce sink', () => {\n  it('should process data and end stream correctly', (done) => {\n    const reducer = (acc: number | null, data: number) => (acc || 0) + data;\n    let callCount = 0;\n    const source = (abort: any, cb: (end: boolean | Error, data?: number) => void) => {\n      if (callCount === 0) {\n        cb(false, 1);\n      } else if (callCount === 1) {\n        cb(false, 2);\n      } else if (callCount === 2) {\n        cb(true); // End the stream\n      }\n      callCount++;\n    };\n\n    reduce(reducer, 0, (err: Error | null, result: number | null) => {\n      expect(err).toBeNull();\n      expect(result).toBe(3); // 1 + 2\n      done();\n    })(source);\n  });\n});\n```"
+  },
+  {
+    "role": "user",
+    "content": "This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)\n \nWhile the test case passes on the original code, it also passes on the mutated code.\n\n\nPlease try again and give me a new test case."
+  },
+  {
+    "role": "assistant",
+    "content": "```typescript\nconst reduce = require(\"../../../../../../../../../../../subject_repositories/pull-stream/sinks/reduce.js\");\n\ndescribe('reduce sink', () => {\n  it('should handle stream end with true value correctly', (done) => {\n    const reducer = (acc: number | null, data: number) => (acc || 0) + data;\n    const source = (abort: any, cb: (end: boolean | Error, data?: number) => void) => {\n      cb(false, 5);\n      cb(true); // End with true\n    };\n\n    reduce(reducer, 0, (err: Error | null, result: number | null) => {\n      expect(err).toBeNull();\n      expect(result).toBe(5);\n      done();\n    })(source);\n  });\n});\n```"
+  },
+  {
+    "role": "user",
+    "content": "This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)\n \nWhile the test case passes on the original code, it also passes on the mutated code.\n\n\nPlease try again and give me a new test case."
+  },
+  {
+    "role": "assistant",
+    "content": "```typescript\nconst reduce = require(\"../../../../../../../../../../../subject_repositories/pull-stream/sinks/reduce.js\");\n\ndescribe('reduce sink', () => {\n  it('should process multiple data chunks before ending', (done) => {\n    const reducer = (acc: number | null, data: number) => (acc || 0) + data;\n    let calls = 0;\n    const source = (abort: any, cb: (end: boolean | Error, data?: number) => void) => {\n      if (calls === 0) cb(false, 10);\n      else if (calls === 1) cb(false, 20);\n      else if (calls === 2) cb(false, 30);\n      else if (calls === 3) cb(true); // End stream\n      calls++;\n    };\n\n    reduce(reducer, 0, (err: Error | null, result: number | null) => {\n      expect(err).toBeNull();\n      expect(result).toBe(60); // 10 + 20 + 30\n      done();\n    })(source);\n  });\n});\n```"
+  },
+  {
+    "role": "user",
+    "content": "This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)\n \nWhile the test case passes on the original code, it also passes on the mutated code.\n\n\nPlease try again and give me a new test case."
+  },
+  {
+    "role": "assistant",
+    "content": "```typescript\nconst reduce = require(\"../../../../../../../../../../../subject_repositories/pull-stream/sinks/reduce.js\");\n\ndescribe('reduce sink', () => {\n  it('should handle stream end with non-true value', (done) => {\n    const reducer = (acc: number | null, data: number) => (acc || 0) + data;\n    const source = (abort: any, cb: (end: boolean | Error, data?: number) => void) => {\n      cb(false, 42);\n      cb('error'); // End with error string\n    };\n\n    reduce(reducer, 0, (err: Error | null, result: number | null) => {\n      expect(err).toBe('error');\n      expect(result).toBe(42);\n      done();\n    })(source);\n  });\n});\n```"
+  }
+]

@@ -1,0 +1,80 @@
+Your task is to write a Jest test case that exposes a specific mutation in a JavaScript/TypeScript project.
+
+MUTATION DETAILS
+The mutation affects the following file:
+pull.js
+Here is the full content of that file (shown with a <PLACEHOLDER> marker):
+'use strict'
+
+module.exports = function pull (a) {
+  var length = arguments.length
+  if (typeof a === 'function' && a.length === 1) {
+    var args = new Array(length)
+    for(var i = 0; i < length; i++)
+      args[i] = arguments[i]
+    return function (read) {
+      if (args == null) {
+        throw new TypeError("partial sink should only be called once!")
+      }
+
+      // Grab the reference after the check, because it's always an array now
+      // (engines like that kind of consistency).
+      var ref = args
+      args = null
+
+      // Prioritize common case of small number of pulls.
+      switch (length) {
+      case 1: return pull(read, ref[0])
+      case 2: return pull(read, ref[0], ref[1])
+      case 3: return pull(read, ref[0], ref[1], ref[2])
+      case 4: return pull(read, ref[0], ref[1], ref[2], ref[3])
+      default:
+        ref.unshift(read)
+        return pull.apply(null, ref)
+      }
+    }
+  }
+
+  var read = a
+
+  if (read && typeof read.source === 'function') {
+    read = read.source
+  }
+
+  for (var i = 1; i < length; i++) {
+    var s = arguments[i]
+    if (typeof s === 'function') {
+      read = s(read)
+       <PLACEHOLDER>
+
+      s.sink(read)
+      read = s.source
+    }
+  }
+
+  return read
+}
+
+In the original code, <PLACEHOLDER> has the value:
+
+-       } else if (s && typeof s === 'object') {
+In the mutated code, <PLACEHOLDER> has the value:
+
++       } else if (false) {
+
+
+YOUR TASK
+Write one Jest test file that:
+    1. Passes when run against the original code.
+    2. Fails when run against the mutated code.
+    3. Tests the behavior of the mutated file in a way that reliably detects the mutation.
+The test will be saved at the following path, relative to this test-generation project’s root:
+llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-81370fe/testCase.test.ts
+
+ALLOWED LIBRARIES
+You may use:
+    1. Any built-in Node.js modules (e.g., fs, path, crypto, etc.).
+    
+You may not use any other third-party libraries.
+
+

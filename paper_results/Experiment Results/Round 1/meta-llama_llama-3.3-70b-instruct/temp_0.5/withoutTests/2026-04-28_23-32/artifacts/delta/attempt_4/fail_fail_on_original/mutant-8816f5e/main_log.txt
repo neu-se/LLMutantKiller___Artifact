@@ -1,0 +1,30 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-8816f5e/testCase.test.ts[0m:[93m8[0m:[93m19[0m - [91merror[0m[90m TS2345: [0mArgument of type 'null' is not assignable to parameter of type 'number | Record<string, unknown>'.
+
+[7m8[0m     delta2.retain(null, {});
+[7m [0m [91m                  ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-8816f5e/testCase.test.ts
+  Delta
+    ✕ should transform correctly when thisData is an object and otherData is null (5 ms)
+
+  ● Delta › should transform correctly when thisData is an object and otherData is null
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: {"embed": "data1"}
+    Received: undefined
+
+       9 |     const result = delta1.transform(delta2);
+      10 |     expect(result.ops.length).toBe(1);
+    > 11 |     expect(result.ops[0].retain).toEqual({ embed: 'data1' });
+         |                                  ^
+      12 |   });
+      13 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-8816f5e/testCase.test.ts:11:34)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.628 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-8816f5e/testCase.test.ts".

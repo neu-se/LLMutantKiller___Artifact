@@ -1,0 +1,45 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9c883ef/testCase.test.ts[0m:[93m13[0m:[93m40[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 3, '(object: typeof globalThis, method: "Object" | "Function" | "String" | "Boolean" | "Number" | "Date" | "RegExp" | "Error" | "EvalError" | "RangeError" | "ReferenceError" | "SyntaxError" | ... 673 more ... | "exports"): SpyInstance<...>', gave the following error.
+    Argument of type '"console"' is not assignable to parameter of type '"Object" | "Function" | "String" | "Boolean" | "Number" | "Date" | "RegExp" | "Error" | "EvalError" | "RangeError" | "ReferenceError" | "SyntaxError" | "TypeError" | "URIError" | ... 671 more ... | "exports"'.
+  Overload 2 of 3, '(object: typeof globalThis, method: "eval" | "parseInt" | "parseFloat" | "isNaN" | "isFinite" | "decodeURI" | "decodeURIComponent" | "encodeURI" | "encodeURIComponent" | "escape" | ... 79 more ... | "clearImmediate"): SpyInstance<...>', gave the following error.
+    Argument of type '"console"' is not assignable to parameter of type '"eval" | "parseInt" | "parseFloat" | "isNaN" | "isFinite" | "decodeURI" | "decodeURIComponent" | "encodeURI" | "encodeURIComponent" | "escape" | "unescape" | "Symbol" | "Object" | ... 76 more ... | "clearImmediate"'.
+
+[7m13[0m     const testSpy = jest.spyOn(global, 'console');
+[7m  [0m [91m                                       ~~~~~~~~~[0m
+
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9c883ef/testCase.test.ts[0m:[93m15[0m:[93m20[0m - [91merror[0m[90m TS2339: [0mProperty 'log' does not exist on type 'SpyInstance<void, [Console], any> | SpyInstance<Console, [], any>'.
+  Property 'log' does not exist on type 'SpyInstance<void, [Console], any>'.
+
+[7m15[0m     expect(testSpy.log).not.toHaveBeenCalled();
+[7m  [0m [91m                   ~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9c883ef/testCase.test.ts
+  find function
+    ✕ should swap test and callback when no callback is provided (3 ms)
+
+  ● find function › should swap test and callback when no callback is provided
+
+    Cannot spy on the `console` property because it is not a function; object given instead.
+
+      11 |     expect(callbackFunction).toHaveBeenCalledTimes(0);
+      12 |     find(testFunction, null);
+    > 13 |     const testSpy = jest.spyOn(global, 'console');
+         |                          ^
+      14 |     find(testFunction, null);
+      15 |     expect(testSpy.log).not.toHaveBeenCalled();
+      16 |   });
+
+      at ModuleMocker.spyOn (node_modules/jest-mock/build/index.js:739:15)
+      at Object.spyOn (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9c883ef/testCase.test.ts:13:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.288 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9c883ef/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

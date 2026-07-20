@@ -1,0 +1,11 @@
+import * as q from "../../../../../../../../../../../subject_repositories/q/q";
+
+describe('Q', () => {
+    it('should track unhandled rejections', () => {
+        const promise = q.reject('Test rejection');
+        expect(q.getUnhandledReasons().length).toBe(1);
+        q.stopUnhandledRejectionTracking();
+        const anotherPromise = q.reject('Another test rejection');
+        expect(q.getUnhandledReasons().length).toBe(1);
+    });
+});

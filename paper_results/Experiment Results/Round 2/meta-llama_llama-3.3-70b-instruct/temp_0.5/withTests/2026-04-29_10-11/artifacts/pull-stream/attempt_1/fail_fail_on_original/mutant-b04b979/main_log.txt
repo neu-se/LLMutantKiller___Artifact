@@ -1,0 +1,37 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-b04b979/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/throughs/async-map.js"' has no exported member 'asyncMap'.
+
+[7m1[0m import { asyncMap } from '../../../../../../../../../../../subject_repositories/pull-stream/throughs/async-map.js';
+[7m [0m [91m         ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-b04b979/testCase.test.ts[0m:[93m7[0m:[93m9[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 1.
+
+[7m7[0m         cb(new Error('Test error'));
+[7m [0m [91m        ~~[0m
+
+  [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-b04b979/testCase.test.ts[0m:[93m5[0m:[93m56[0m
+    [7m5[0m     const source = asyncMap((data: any, cb: (err: any, data: any) => void) => {
+    [7m [0m [96m                                                       ~~~~~~~~~[0m
+    An argument for 'data' was not provided.
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/pull-stream/throughs/async-map.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/pull-stream/throughs/async-map.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-b04b979/testCase.test.ts
+  asyncMap
+    ✕ should pass error when map function throws an error (1 ms)
+
+  ● asyncMap › should pass error when map function throws an error
+
+    TypeError: (0 , async_map_js_1.asyncMap) is not a function
+
+      3 | describe('asyncMap', () => {
+      4 |   it('should pass error when map function throws an error', (done) => {
+    > 5 |     const source = asyncMap((data: any, cb: (err: any, data: any) => void) => {
+        |                            ^
+      6 |       if (data === 1) {
+      7 |         cb(new Error('Test error'));
+      8 |       } else {
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-b04b979/testCase.test.ts:5:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.315 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-b04b979/testCase.test.ts".

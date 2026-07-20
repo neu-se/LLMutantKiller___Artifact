@@ -1,0 +1,35 @@
+{
+  "file": "q.js",
+  "startLine": 1844,
+  "startColumn": 44,
+  "endLine": 1851,
+  "endColumn": 14,
+  "originalCode": "\n-       var timeoutId = setTimeout(function () {\n-           if (!error || \"string\" === typeof error) {\n-               error = new Error(error || \"Timed out after \" + ms + \" ms\");\n-               error.code = \"ETIMEDOUT\";\n-           }\n-           deferred.reject(error);\n-       }, ms);",
+  "replacement": "\n+       var timeoutId = setTimeout(function () {}, ms);\n",
+  "removedLines": [
+    "       var timeoutId = setTimeout(function () {",
+    "           if (!error || \"string\" === typeof error) {",
+    "               error = new Error(error || \"Timed out after \" + ms + \" ms\");",
+    "               error.code = \"ETIMEDOUT\";",
+    "           }",
+    "           deferred.reject(error);",
+    "       }, ms);"
+  ],
+  "addedLines": [
+    "       var timeoutId = setTimeout(function () {}, ms);",
+    ""
+  ],
+  "lineSummary": [
+    "-       var timeoutId = setTimeout(function () {",
+    "-           if (!error || \"string\" === typeof error) {",
+    "-               error = new Error(error || \"Timed out after \" + ms + \" ms\");",
+    "-               error.code = \"ETIMEDOUT\";",
+    "-           }",
+    "-           deferred.reject(error);",
+    "-       }, ms);",
+    "+       var timeoutId = setTimeout(function () {}, ms);",
+    ""
+  ],
+  "mutatorName": "BlockStatement",
+  "strykerMutationId": "977"
+}

@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_1/pending_category/mutant-60444cc/testCase.test.ts
+  stripBom
+    ✕ should throw an error when called with a plain string (not a Buffer), because the mutated code calls toString() on a string (5 ms)
+
+  ● stripBom › should throw an error when called with a plain string (not a Buffer), because the mutated code calls toString() on a string
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "original-replaced"
+    Received: "mutated"
+
+      78 |     //           'mutated'.replace(/^\uFEFF/, '') -> 'mutated'
+      79 |     
+    > 80 |     expect(result).toBe('original-replaced');
+         |                    ^
+      81 |   });
+      82 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_1/pending_category/mutant-60444cc/testCase.test.ts:80:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.397 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_1/pending_category/mutant-60444cc/testCase.test.ts".

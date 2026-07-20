@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-4bfabdc/testCase.test.ts
+  filterStackString
+    ✕ should filter Q internal frames from long stack traces (4 ms)
+
+  ● filterStackString › should filter Q internal frames from long stack traces
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 2
+
+      46 |       // Original: Q internal frames are filtered, so no q.js "at" lines should appear
+      47 |       // Mutation: Q internal frames pass through, so q.js "at" lines will appear
+    > 48 |       expect(qInternalLines.length).toBe(0);
+         |                                     ^
+      49 |     } finally {
+      50 |       Q.longStackSupport = false;
+      51 |     }
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-4bfabdc/testCase.test.ts:48:37)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.515 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-4bfabdc/testCase.test.ts".

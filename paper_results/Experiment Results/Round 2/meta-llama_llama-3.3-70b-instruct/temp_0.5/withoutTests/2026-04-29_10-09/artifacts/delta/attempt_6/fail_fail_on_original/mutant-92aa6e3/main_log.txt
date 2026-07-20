@@ -1,0 +1,44 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-92aa6e3/testCase.test.ts[0m:[93m12[0m:[93m19[0m - [91merror[0m[90m TS6133: [0m'b' is declared but its value is never read.
+
+[7m12[0m       invert: (a, b) => a,
+[7m  [0m [91m                  ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-92aa6e3/testCase.test.ts[0m:[93m13[0m:[93m19[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m13[0m       transform: (a, b, priority) => b,
+[7m  [0m [91m                  ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-92aa6e3/testCase.test.ts[0m:[93m13[0m:[93m25[0m - [91merror[0m[90m TS6133: [0m'priority' is declared but its value is never read.
+
+[7m13[0m       transform: (a, b, priority) => b,
+[7m  [0m [91m                        ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-92aa6e3/testCase.test.ts
+  Delta
+    ✕ should correctly compose embeds when the action is "retain" (7 ms)
+
+  ● Delta › should correctly compose embeds when the action is "retain"
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+    -   "image": "image2",
+    +   "image": "image1",
+      }
+
+      18 |     delta2.retain({ image: 'image2' });
+      19 |     const composedDelta = delta1.compose(delta2);
+    > 20 |     expect(composedDelta.ops[0].retain).toEqual({ image: 'image2' });
+         |                                         ^
+      21 |     expect(composedDelta.ops.length).toBe(1);
+      22 |   });
+      23 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-92aa6e3/testCase.test.ts:20:41)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.173 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-92aa6e3/testCase.test.ts".

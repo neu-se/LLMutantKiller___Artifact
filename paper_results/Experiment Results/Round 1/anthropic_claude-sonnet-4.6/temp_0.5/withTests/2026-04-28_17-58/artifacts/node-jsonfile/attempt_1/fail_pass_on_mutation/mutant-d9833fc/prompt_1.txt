@@ -1,0 +1,978 @@
+Your task is to write a Jest test case that exposes a specific mutation in a JavaScript/TypeScript project.
+
+MUTATION DETAILS
+The mutation affects the following file:
+index.js
+Here is the full content of that file (shown with a <PLACEHOLDER> marker):
+let _fs
+try {
+  _fs = require('graceful-fs')
+<PLACEHOLDER>
+const universalify = require('universalify')
+const { stringify, stripBom } = require('./utils')
+
+async function _readFile (file, options = {}) {
+  if (typeof options === 'string') {
+    options = { encoding: options }
+  }
+
+  const fs = options.fs || _fs
+
+  const shouldThrow = 'throws' in options ? options.throws : true
+
+  let data = await universalify.fromCallback(fs.readFile)(file, options)
+
+  data = stripBom(data)
+
+  let obj
+  try {
+    obj = JSON.parse(data, options ? options.reviver : null)
+  } catch (err) {
+    if (shouldThrow) {
+      err.message = `${file}: ${err.message}`
+      throw err
+    } else {
+      return null
+    }
+  }
+
+  return obj
+}
+
+const readFile = universalify.fromPromise(_readFile)
+
+function readFileSync (file, options = {}) {
+  if (typeof options === 'string') {
+    options = { encoding: options }
+  }
+
+  const fs = options.fs || _fs
+
+  const shouldThrow = 'throws' in options ? options.throws : true
+
+  try {
+    let content = fs.readFileSync(file, options)
+    content = stripBom(content)
+    return JSON.parse(content, options.reviver)
+  } catch (err) {
+    if (shouldThrow) {
+      err.message = `${file}: ${err.message}`
+      throw err
+    } else {
+      return null
+    }
+  }
+}
+
+async function _writeFile (file, obj, options = {}) {
+  const fs = options.fs || _fs
+
+  const str = stringify(obj, options)
+
+  await universalify.fromCallback(fs.writeFile)(file, str, options)
+}
+
+const writeFile = universalify.fromPromise(_writeFile)
+
+function writeFileSync (file, obj, options = {}) {
+  const fs = options.fs || _fs
+
+  const str = stringify(obj, options)
+  // not sure if fs.writeFileSync returns anything, but just in case
+  return fs.writeFileSync(file, str, options)
+}
+
+const jsonfile = {
+  readFile,
+  readFileSync,
+  writeFile,
+  writeFileSync
+}
+
+module.exports = jsonfile
+
+In the original code, <PLACEHOLDER> has the value:
+
+-   } catch (_) {
+-     _fs = require('fs')
+-   }
+In the mutated code, <PLACEHOLDER> has the value:
+
++   } catch (_) {}
+
+
+YOUR TASK
+Write one Jest test file that:
+    1. Passes when run against the original code.
+    2. Fails when run against the mutated code.
+    3. Tests the behavior of the mutated file in a way that reliably detects the mutation.
+The test will be saved at the following path, relative to this test-generation project’s root:
+llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_1/pending_category/mutant-d9833fc/testCase.test.ts
+
+RESOURCES AVAILABLE
+Existing test cases you may use for style or structure inspiration, focusing on how they reflect the project’s expected behavior and typical inputs:
+// test/read-file-sync.test.js
+
+const assert = require('assert')
+const fs = require('fs')
+const os = require('os')
+const path = require('path')
+const rimraf = require('rimraf')
+const jf = require('../')
+
+/* global describe it beforeEach afterEach */
+
+describe('+ readFileSync()', () => {
+  let TEST_DIR
+
+  beforeEach((done) => {
+    TEST_DIR = path.join(os.tmpdir(), 'jsonfile-tests-readfile-sync')
+    rimraf.sync(TEST_DIR)
+    fs.mkdir(TEST_DIR, done)
+  })
+
+  afterEach((done) => {
+    rimraf.sync(TEST_DIR)
+    done()
+  })
+
+  it('should read and parse JSON', () => {
+    const file = path.join(TEST_DIR, 'somefile3.json')
+    const obj = { name: 'JP' }
+    fs.writeFileSync(file, JSON.stringify(obj))
+
+    try {
+      const obj2 = jf.readFileSync(file)
+      assert.strictEqual(obj2.name, obj.name)
+    } catch (err) {
+      assert(err)
+    }
+  })
+
+  describe('> when invalid JSON', () => {
+    it('should include the filename in the error', () => {
+      const fn = 'somefile.json'
+      const file = path.join(TEST_DIR, fn)
+      fs.writeFileSync(file, '{')
+
+      assert.throws(() => {
+        jf.readFileSync(file)
+      }, (err) => {
+        assert(err instanceof Error)
+        assert(err.message.match(fn))
+        return true
+      })
+    })
+  })
+
+  describe('> when invalid JSON and throws set to false', () => {
+    it('should return null', () => {
+      const file = path.join(TEST_DIR, 'somefile4-invalid.json')
+      const data = '{not valid JSON'
+      fs.writeFileSync(file, data)
+
+      assert.throws(() => {
+        jf.readFileSync(file)
+      })
+
+      const obj = jf.readFileSync(file, { throws: false })
+      assert.strictEqual(obj, null)
+    })
+  })
+
+  describe('> when invalid JSON and throws set to true', () => {
+    it('should throw an exception', () => {
+      const file = path.join(TEST_DIR, 'somefile4-invalid.json')
+      const data = '{not valid JSON'
+      fs.writeFileSync(file, data)
+
+      assert.throws(() => {
+        jf.readFileSync(file, { throws: true })
+      })
+    })
+  })
+
+  describe('> when json file is missing and throws set to false', () => {
+    it('should return null', () => {
+      const file = path.join(TEST_DIR, 'somefile4-invalid.json')
+
+      const obj = jf.readFileSync(file, { throws: false })
+      assert.strictEqual(obj, null)
+    })
+  })
+
+  describe('> when json file is missing and throws set to true', () => {
+    it('should throw an exception', () => {
+      const file = path.join(TEST_DIR, 'somefile4-invalid.json')
+
+      assert.throws(() => {
+        jf.readFileSync(file, { throws: true })
+      })
+    })
+  })
+
+  describe('> when JSON reviver is set', () => {
+    it('should transform the JSON', () => {
+      const file = path.join(TEST_DIR, 'somefile.json')
+      const sillyReviver = function (k, v) {
+        if (typeof v !== 'string') return v
+        if (v.indexOf('date:') < 0) return v
+        return new Date(v.split('date:')[1])
+      }
+
+      const obj = {
+        name: 'jp',
+        day: 'date:2015-06-19T11:41:26.815Z'
+      }
+
+      fs.writeFileSync(file, JSON.stringify(obj))
+      const data = jf.readFileSync(file, { reviver: sillyReviver })
+      assert.strictEqual(data.name, 'jp')
+      assert(data.day instanceof Date)
+      assert.strictEqual(data.day.toISOString(), '2015-06-19T11:41:26.815Z')
+    })
+  })
+
+  describe('> when passing encoding string as option', () => {
+    it('should not throw an error', () => {
+      const file = path.join(TEST_DIR, 'somefile.json')
+
+      const obj = {
+        name: 'jp'
+      }
+      fs.writeFileSync(file, JSON.stringify(obj))
+
+      let data
+      try {
+        data = jf.readFileSync(file, 'utf8')
+      } catch (err) {
+        assert.ifError(err)
+      }
+      assert.strictEqual(data.name, 'jp')
+    })
+  })
+
+  describe('> w/ BOM', () => {
+    it('should properly parse', () => {
+      const file = path.join(TEST_DIR, 'file-bom.json')
+      const obj = { name: 'JP' }
+      fs.writeFileSync(file, `\uFEFF${JSON.stringify(obj)}`)
+      const data = jf.readFileSync(file)
+      assert.deepStrictEqual(obj, data)
+    })
+  })
+})
+
+---
+// test/read-file.test.js
+
+const assert = require('assert')
+const fs = require('fs')
+const os = require('os')
+const path = require('path')
+const rimraf = require('rimraf')
+const jf = require('../')
+
+/* global describe it beforeEach afterEach */
+
+describe('+ readFile()', () => {
+  let TEST_DIR
+
+  beforeEach((done) => {
+    TEST_DIR = path.join(os.tmpdir(), 'jsonfile-tests-readfile')
+    rimraf.sync(TEST_DIR)
+    fs.mkdir(TEST_DIR, done)
+  })
+
+  afterEach((done) => {
+    rimraf.sync(TEST_DIR)
+    done()
+  })
+
+  it('should read and parse JSON', (done) => {
+    const file = path.join(TEST_DIR, 'somefile.json')
+    const obj = { name: 'JP' }
+    fs.writeFileSync(file, JSON.stringify(obj))
+
+    jf.readFile(file, (err, obj2) => {
+      assert.ifError(err)
+      assert.strictEqual(obj2.name, obj.name)
+      done()
+    })
+  })
+
+  it('should resolve a promise with parsed JSON', (done) => {
+    const file = path.join(TEST_DIR, 'somefile.json')
+    const obj = { name: 'JP' }
+    fs.writeFileSync(file, JSON.stringify(obj))
+
+    jf.readFile(file)
+      .then((data) => {
+        assert.strictEqual(data.name, obj.name)
+        done()
+      })
+      .catch(err => {
+        assert.ifError(err)
+        done()
+      })
+  })
+
+  describe('> when invalid JSON', () => {
+    let fn, file
+
+    beforeEach((done) => {
+      fn = 'somefile.json'
+      file = path.join(TEST_DIR, fn)
+      fs.writeFileSync(file, '{')
+      done()
+    })
+
+    it('should include the filename in the error', (done) => {
+      jf.readFile(file, (err, obj2) => {
+        assert(err instanceof Error)
+        assert(err.message.match(fn))
+        done()
+      })
+    })
+
+    it('should reject the promise with filename in error', (done) => {
+      jf.readFile(file)
+        .catch(err => {
+          assert(err instanceof Error)
+          assert(err.message.match(fn))
+          done()
+        })
+    })
+  })
+
+  describe('> when invalid JSON and throws set to false', () => {
+    let fn, file
+
+    beforeEach((done) => {
+      fn = 'somefile4-invalid.json'
+      file = path.join(TEST_DIR, fn)
+      const data = '{not valid JSON'
+      fs.writeFileSync(file, data)
+      done()
+    })
+
+    it('should return null and no error', (done) => {
+      let bothDone = false
+
+      jf.readFile(file, (err, obj2) => {
+        assert(err instanceof Error)
+        assert(err.message.match(fn))
+        if (bothDone) {
+          done()
+        }
+        bothDone = true
+      })
+
+      jf.readFile(file, { throws: false }, (err, obj2) => {
+        assert.ifError(err)
+        assert.strictEqual(obj2, null)
+        if (bothDone) {
+          done()
+        }
+        bothDone = true
+      })
+    })
+
+    it('should resolve the promise with null as data', (done) => {
+      jf.readFile(file, { throws: false })
+        .then(data => {
+          assert.strictEqual(data, null)
+          done()
+        })
+        .catch(err => {
+          assert.ifError(err)
+          done()
+        })
+    })
+  })
+
+  describe('> when invalid JSON and throws set to true', () => {
+    let fn, file
+
+    beforeEach((done) => {
+      fn = 'somefile4-invalid.json'
+      file = path.join(TEST_DIR, fn)
+      const data = '{not valid JSON'
+      fs.writeFileSync(file, data)
+      done()
+    })
+
+    it('should return an error', (done) => {
+      let bothDone = false
+      jf.readFile(file, (err, obj2) => {
+        assert(err instanceof Error)
+        assert(err.message.match(fn))
+        if (bothDone) {
+          done()
+        }
+        bothDone = true
+      })
+
+      jf.readFile(file, { throws: true }, (err, obj2) => {
+        assert(err instanceof Error)
+        assert(err.message.match(fn))
+        if (bothDone) {
+          done()
+        }
+        bothDone = true
+      })
+    })
+
+    it('should reject the promise', (done) => {
+      jf.readFile(file, { throws: true })
+        .catch(err => {
+          assert(err instanceof Error)
+          assert(err.message.match(fn))
+          done()
+        })
+    })
+  })
+
+  describe('> when JSON reviver is set', () => {
+    let file, sillyReviver
+
+    beforeEach((done) => {
+      file = path.join(TEST_DIR, 'somefile.json')
+      sillyReviver = function (k, v) {
+        if (typeof v !== 'string') return v
+        if (v.indexOf('date:') < 0) return v
+        return new Date(v.split('date:')[1])
+      }
+
+      const obj = { name: 'jp', day: 'date:2015-06-19T11:41:26.815Z' }
+
+      fs.writeFileSync(file, JSON.stringify(obj))
+      done()
+    })
+
+    it('should transform the JSON', (done) => {
+      jf.readFile(file, { reviver: sillyReviver }, (err, data) => {
+        assert.ifError(err)
+        assert.strictEqual(data.name, 'jp')
+        assert(data.day instanceof Date)
+        assert.strictEqual(data.day.toISOString(), '2015-06-19T11:41:26.815Z')
+        done()
+      })
+    })
+
+    it('should resolve the promise with transformed JSON', (done) => {
+      jf.readFile(file, { reviver: sillyReviver })
+        .then(data => {
+          assert.strictEqual(data.name, 'jp')
+          assert(data.day instanceof Date)
+          assert.strictEqual(data.day.toISOString(), '2015-06-19T11:41:26.815Z')
+          done()
+        }).catch(err => {
+          assert.ifError(err)
+          done()
+        })
+    })
+  })
+
+  describe('> when passing encoding string as option', () => {
+    let file, obj
+
+    beforeEach((done) => {
+      file = path.join(TEST_DIR, 'somefile.json')
+
+      obj = {
+        name: 'jp'
+      }
+      fs.writeFileSync(file, JSON.stringify(obj))
+      done()
+    })
+
+    it('should not throw an error', (done) => {
+      jf.readFile(file, 'utf8', (err) => {
+        assert.ifError(err)
+        assert.strictEqual(obj.name, 'jp')
+        done()
+      })
+    })
+
+    it('should resolve the promise', (done) => {
+      jf.readFile(file, 'utf8')
+        .then(data => {
+          assert.strictEqual(data.name, obj.name)
+          done()
+        })
+        .catch(err => {
+          assert.ifError(err)
+          done()
+        })
+    })
+  })
+
+  describe('> w/ BOM', () => {
+    let file, obj
+
+    beforeEach((done) => {
+      file = path.join(TEST_DIR, 'file-bom.json')
+      obj = { name: 'JP' }
+      fs.writeFileSync(file, `\uFEFF${JSON.stringify(obj)}`)
+      done()
+    })
+
+    it('should properly parse', (done) => {
+      jf.readFile(file, (err, data) => {
+        assert.ifError(err)
+        assert.deepStrictEqual(obj, data)
+        done()
+      })
+    })
+
+    it('should resolve the promise with parsed JSON', (done) => {
+      jf.readFile(file)
+        .then(data => {
+          assert.deepStrictEqual(data, obj)
+          done()
+        })
+        .catch(err => {
+          assert.ifError(err)
+          done()
+        })
+    })
+  })
+})
+
+---
+// test/write-file-sync.test.js
+
+const assert = require('assert')
+const fs = require('fs')
+const os = require('os')
+const path = require('path')
+const rimraf = require('rimraf')
+const jf = require('../')
+
+/* global describe it beforeEach afterEach */
+
+describe('+ writeFileSync()', () => {
+  let TEST_DIR
+
+  beforeEach((done) => {
+    TEST_DIR = path.join(os.tmpdir(), 'jsonfile-tests-writefile-sync')
+    rimraf.sync(TEST_DIR)
+    fs.mkdir(TEST_DIR, done)
+  })
+
+  afterEach((done) => {
+    rimraf.sync(TEST_DIR)
+    done()
+  })
+
+  it('should serialize the JSON and write it to file', () => {
+    const file = path.join(TEST_DIR, 'somefile4.json')
+    const obj = { name: 'JP' }
+
+    jf.writeFileSync(file, obj)
+
+    const data = fs.readFileSync(file, 'utf8')
+    const obj2 = JSON.parse(data)
+    assert.strictEqual(obj2.name, obj.name)
+    assert.strictEqual(data[data.length - 1], '\n')
+    assert.strictEqual(data, '{"name":"JP"}\n')
+  })
+
+  describe('> when JSON replacer is set', () => {
+    it('should replace JSON', () => {
+      const file = path.join(TEST_DIR, 'somefile.json')
+      const sillyReplacer = function (k, v) {
+        if (!(v instanceof RegExp)) return v
+        return `regex:${v.toString()}`
+      }
+
+      const obj = {
+        name: 'jp',
+        reg: /hello/g
+      }
+
+      jf.writeFileSync(file, obj, { replacer: sillyReplacer })
+      const data = JSON.parse(fs.readFileSync(file))
+      assert.strictEqual(data.name, 'jp')
+      assert.strictEqual(typeof data.reg, 'string')
+      assert.strictEqual(data.reg, 'regex:/hello/g')
+    })
+  })
+
+  describe('> when spaces passed as an option', () => {
+    it('should write file with spaces', () => {
+      const file = path.join(TEST_DIR, 'somefile.json')
+      const obj = { name: 'JP' }
+      jf.writeFileSync(file, obj, { spaces: 8 })
+      const data = fs.readFileSync(file, 'utf8')
+      assert.strictEqual(data, `${JSON.stringify(obj, null, 8)}\n`)
+    })
+
+    it('should use EOL override', () => {
+      const file = path.join(TEST_DIR, 'somefile.json')
+      const obj = { name: 'JP' }
+      jf.writeFileSync(file, obj, { spaces: 2, EOL: '***' })
+      const data = fs.readFileSync(file, 'utf8')
+      assert.strictEqual(data, '{***  "name": "JP"***}***')
+    })
+  })
+
+  describe('> when passing encoding string as options', () => {
+    it('should not error', () => {
+      const file = path.join(TEST_DIR, 'somefile6.json')
+      const obj = { name: 'jp' }
+      jf.writeFileSync(file, obj, 'utf8')
+      const data = fs.readFileSync(file, 'utf8')
+      assert.strictEqual(data, `${JSON.stringify(obj)}\n`)
+    })
+  })
+  describe('> when EOF option is set to a falsey value', () => {
+    beforeEach((done) => {
+      TEST_DIR = path.join(os.tmpdir(), 'jsonfile-tests-writefile-sync')
+      rimraf.sync(TEST_DIR)
+      fs.mkdir(TEST_DIR, done)
+    })
+
+    afterEach((done) => {
+      rimraf.sync(TEST_DIR)
+      done()
+    })
+
+    it('should not have a the EOL symbol at the end of file', (done) => {
+      const file = path.join(TEST_DIR, 'somefile2.json')
+      const obj = { name: 'jp' }
+      jf.writeFileSync(file, obj, { finalEOL: false })
+      const rawData = fs.readFileSync(file, 'utf8')
+      const data = JSON.parse(rawData)
+      assert.strictEqual(rawData[rawData.length - 1], '}')
+      assert.strictEqual(data.name, obj.name)
+      done()
+    })
+
+    it('should have a the EOL symbol at the end of file when finalEOL is a truth value in options', (done) => {
+      const file = path.join(TEST_DIR, 'somefile2.json')
+      const obj = { name: 'jp' }
+      jf.writeFileSync(file, obj, { finalEOL: true })
+      const rawData = fs.readFileSync(file, 'utf8')
+      const data = JSON.parse(rawData)
+      assert.strictEqual(rawData[rawData.length - 1], '\n')
+      assert.strictEqual(data.name, obj.name)
+      done()
+    })
+  })
+})
+
+---
+// test/write-file.test.js
+
+const assert = require('assert')
+const fs = require('fs')
+const os = require('os')
+const path = require('path')
+const rimraf = require('rimraf')
+const jf = require('../')
+
+/* global describe it beforeEach afterEach */
+
+describe('+ writeFile()', () => {
+  let TEST_DIR
+
+  beforeEach((done) => {
+    TEST_DIR = path.join(os.tmpdir(), 'jsonfile-tests-writefile')
+    rimraf.sync(TEST_DIR)
+    fs.mkdir(TEST_DIR, done)
+  })
+
+  afterEach((done) => {
+    rimraf.sync(TEST_DIR)
+    done()
+  })
+
+  it('should serialize and write JSON', (done) => {
+    const file = path.join(TEST_DIR, 'somefile2.json')
+    const obj = { name: 'JP' }
+
+    jf.writeFile(file, obj, (err) => {
+      assert.ifError(err)
+      fs.readFile(file, 'utf8', (err, data) => {
+        assert.ifError(err)
+        const obj2 = JSON.parse(data)
+        assert.strictEqual(obj2.name, obj.name)
+
+        // verify EOL
+        assert.strictEqual(data[data.length - 1], '\n')
+        done()
+      })
+    })
+  })
+
+  it('should write JSON, resolve promise', (done) => {
+    const file = path.join(TEST_DIR, 'somefile2.json')
+    const obj = { name: 'JP' }
+
+    jf.writeFile(file, obj)
+      .then(res => {
+        fs.readFile(file, 'utf8', (err, data) => {
+          assert.ifError(err)
+          const obj2 = JSON.parse(data)
+          assert.strictEqual(obj2.name, obj.name)
+
+          // verify EOL
+          assert.strictEqual(data[data.length - 1], '\n')
+          done()
+        })
+      })
+      .catch(err => {
+        assert.ifError(err)
+        done()
+      })
+  })
+
+  describe('> when JSON replacer is set', () => {
+    let file, sillyReplacer, obj
+
+    beforeEach((done) => {
+      file = path.join(TEST_DIR, 'somefile.json')
+      sillyReplacer = function (k, v) {
+        if (!(v instanceof RegExp)) return v
+        return `regex:${v.toString()}`
+      }
+
+      obj = {
+        name: 'jp',
+        reg: /hello/g
+      }
+
+      done()
+    })
+
+    it('should replace JSON', (done) => {
+      jf.writeFile(file, obj, { replacer: sillyReplacer }, (err) => {
+        assert.ifError(err)
+
+        const data = JSON.parse(fs.readFileSync(file))
+        assert.strictEqual(data.name, 'jp')
+        assert.strictEqual(typeof data.reg, 'string')
+        assert.strictEqual(data.reg, 'regex:/hello/g')
+        done()
+      })
+    })
+
+    it('should replace JSON, resolve promise', (done) => {
+      jf.writeFile(file, obj, { replacer: sillyReplacer })
+        .then(res => {
+          const data = JSON.parse(fs.readFileSync(file))
+          assert.strictEqual(data.name, 'jp')
+          assert.strictEqual(typeof data.reg, 'string')
+          assert.strictEqual(data.reg, 'regex:/hello/g')
+          done()
+        })
+        .catch(err => {
+          assert.ifError(err)
+          done()
+        })
+    })
+  })
+
+  describe('> when spaces passed as an option', () => {
+    let file, obj
+    beforeEach((done) => {
+      file = path.join(TEST_DIR, 'somefile.json')
+      obj = { name: 'jp' }
+      done()
+    })
+
+    it('should write file with spaces', (done) => {
+      jf.writeFile(file, obj, { spaces: 8 }, (err) => {
+        assert.ifError(err)
+        const data = fs.readFileSync(file, 'utf8')
+        assert.strictEqual(data, `${JSON.stringify(obj, null, 8)}\n`)
+        done()
+      })
+    })
+
+    it('should write file with spaces, resolve the promise', (done) => {
+      jf.writeFile(file, obj, { spaces: 8 })
+        .then(res => {
+          const data = fs.readFileSync(file, 'utf8')
+          assert.strictEqual(data, `${JSON.stringify(obj, null, 8)}\n`)
+          done()
+        })
+        .catch(err => {
+          assert.ifError(err)
+          done()
+        })
+    })
+  })
+
+  describe('> when spaces, EOL are passed as options', () => {
+    let file, obj
+    beforeEach((done) => {
+      file = path.join(TEST_DIR, 'somefile.json')
+      obj = { name: 'jp' }
+      done()
+    })
+
+    it('should use EOL override', (done) => {
+      jf.writeFile(file, obj, { spaces: 2, EOL: '***' }, (err) => {
+        assert.ifError(err)
+        const data = fs.readFileSync(file, 'utf8')
+        assert.strictEqual(data, '{***  "name": "jp"***}***')
+        done()
+      })
+    })
+
+    it('should use EOL override, resolve the promise', (done) => {
+      jf.writeFile(file, obj, { spaces: 2, EOL: '***' })
+        .then(res => {
+          const data = fs.readFileSync(file, 'utf8')
+          assert.strictEqual(data, '{***  "name": "jp"***}***')
+          done()
+        })
+        .catch(err => {
+          assert.ifError(err)
+          done()
+        })
+    })
+  })
+  describe('> when passing encoding string as options', () => {
+    let file, obj
+    beforeEach((done) => {
+      file = path.join(TEST_DIR, 'somefile.json')
+      obj = { name: 'jp' }
+      done()
+    })
+
+    it('should not error', (done) => {
+      jf.writeFile(file, obj, 'utf8', (err) => {
+        assert.ifError(err)
+        const data = fs.readFileSync(file, 'utf8')
+        assert.strictEqual(data, `${JSON.stringify(obj)}\n`)
+        done()
+      })
+    })
+
+    it('should not error, resolve the promise', (done) => {
+      jf.writeFile(file, obj, 'utf8')
+        .then(res => {
+          const data = fs.readFileSync(file, 'utf8')
+          assert.strictEqual(data, `${JSON.stringify(obj)}\n`)
+          done()
+        })
+        .catch(err => {
+          assert.ifError(err)
+          done()
+        })
+    })
+  })
+
+  describe('> when EOF option is set to a falsey value', () => {
+    beforeEach((done) => {
+      TEST_DIR = path.join(os.tmpdir(), 'jsonfile-tests-writefile')
+      rimraf.sync(TEST_DIR)
+      fs.mkdir(TEST_DIR, done)
+    })
+
+    afterEach((done) => {
+      rimraf.sync(TEST_DIR)
+      done()
+    })
+
+    it('should not have a the EOL symbol at the end of file', (done) => {
+      const file = path.join(TEST_DIR, 'somefile2.json')
+      const obj = { name: 'jp' }
+      jf.writeFile(file, obj, { finalEOL: false }, (err) => {
+        assert.ifError(err)
+        fs.readFile(file, 'utf8', (_, rawData) => {
+          const data = JSON.parse(rawData)
+          assert.strictEqual(rawData[rawData.length - 1], '}')
+          assert.strictEqual(data.name, obj.name)
+          done()
+        })
+      })
+    })
+
+    it('should have a the EOL symbol at the end of file when finalEOL is a truth value in options', (done) => {
+      const file = path.join(TEST_DIR, 'somefile2.json')
+      const obj = { name: 'jp' }
+      jf.writeFile(file, obj, { finalEOL: true }, (err) => {
+        assert.ifError(err)
+        fs.readFile(file, 'utf8', (_, rawData) => {
+          const data = JSON.parse(rawData)
+          assert.strictEqual(rawData[rawData.length - 1], '\n')
+          assert.strictEqual(data.name, obj.name)
+          done()
+        })
+      })
+    })
+  })
+
+  // Prevent https://github.com/jprichardson/node-jsonfile/issues/81 from happening
+  describe("> when callback isn't passed & can't serialize", () => {
+    it('should not write an empty file, should reject the promise', function (done) {
+      this.slow(1100)
+      const file = path.join(TEST_DIR, 'somefile.json')
+      const obj1 = { name: 'JP' }
+      const obj2 = { person: obj1 }
+      obj1.circular = obj2
+
+      jf.writeFile(file, obj1)
+        .catch(err => {
+          assert(err)
+          assert(!fs.existsSync(file))
+          done()
+        })
+    })
+  })
+
+The test runner configuration (package.json):
+{
+  "name": "jsonfile",
+  "version": "6.1.0",
+  "description": "Easily read/write JSON files.",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jprichardson/node-jsonfile.git"
+  },
+  "keywords": [
+    "read",
+    "write",
+    "file",
+    "json",
+    "fs",
+    "fs-extra"
+  ],
+  "author": "JP Richardson <jprichardson@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "universalify": "^2.0.0"
+  },
+  "optionalDependencies": {
+    "graceful-fs": "^4.1.6"
+  },
+  "devDependencies": {
+    "mocha": "^8.2.0",
+    "rimraf": "^2.4.0",
+    "standard": "^16.0.1"
+  },
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "utils.js"
+  ],
+  "scripts": {
+    "lint": "standard",
+    "test": "npm run lint && npm run unit",
+    "unit": "mocha"
+  }
+}
+
+ALLOWED LIBRARIES
+You may use:
+    1. Any built-in Node.js modules (e.g., fs, path, crypto, etc.).
+    2. The following external libraries are explicitly permitted:
+    - rimraf 
+    - graceful-fs 
+    - universalify
+You may not use any other third-party libraries.

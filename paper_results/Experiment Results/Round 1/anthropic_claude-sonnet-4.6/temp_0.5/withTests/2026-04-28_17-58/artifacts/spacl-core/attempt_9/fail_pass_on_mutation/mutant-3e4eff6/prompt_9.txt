@@ -1,0 +1,32 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_8/pending_category/mutant-3e4eff6/testCase.test.ts
+  Matcher
+    ✕ /** regex source should differ from //* pattern - must include root alternative (4 ms)
+
+  ● Matcher › /** regex source should differ from //* pattern - must include root alternative
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "^\\/$|^(?:\\/[^/]+)*$"
+    Received: "^\\/$|^(?:\\/[^/]+)+$"
+
+      10 |     // The key observable difference: original regex source starts with ^\/$|^
+      11 |     // while mutated starts with ^ followed directly by the pattern
+    > 12 |     expect(m1.source).toBe('^\\/\\$|^(?:\\/[^/]+)*$'.replace('\\$', '$'))
+         |                       ^
+      13 |   })
+      14 | })
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_8/pending_category/mutant-3e4eff6/testCase.test.ts:12:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.163 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_8/pending_category/mutant-3e4eff6/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,31 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-b04b979/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/throughs/async-map.js"' has no exported member 'asyncMap'.
+
+[7m1[0m import { asyncMap } from '../../../../../../../../../../../subject_repositories/pull-stream/throughs/async-map.js';
+[7m [0m [91m         ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-b04b979/testCase.test.ts[0m:[93m2[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/sources/values.js"' has no exported member 'values'.
+
+[7m2[0m import { values } from '../../../../../../../../../../../subject_repositories/pull-stream/sources/values.js';
+[7m [0m [91m         ~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-b04b979/testCase.test.ts
+  asyncMap
+    ✕ should pass through values when map function returns them (1 ms)
+
+  ● asyncMap › should pass through values when map function returns them
+
+    TypeError: (0 , values_js_1.values) is not a function
+
+      4 | describe('asyncMap', () => {
+      5 |   it('should pass through values when map function returns them', (done) => {
+    > 6 |     const read = asyncMap((data: any, cb: any) => cb(null, data), values([1, 2, 3]));
+        |                                                                         ^
+      7 |     let count = 0;
+      8 |     read(null, (end: any, data: any) => {
+      9 |       if (end) {
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-b04b979/testCase.test.ts:6:73)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.223 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-b04b979/testCase.test.ts".

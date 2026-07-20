@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-0ca70b3/testCase.test.ts
+  Q stack trace filtering
+    ✕ should correctly filter stack traces by removing internal frames (3 ms)
+
+  ● Q stack trace filtering › should correctly filter stack traces by removing internal frames
+
+    TypeError: Q.filterStackString is not a function
+
+      21 |       expect(error.stack).toContain("testCase.test.ts");
+      22 |       // The stack should not contain Q internal frames when filtered
+    > 23 |       const filteredStack = Q.filterStackString(error.stack);
+         |                               ^
+      24 |       expect(filteredStack).not.toContain("q.js");
+      25 |     });
+      26 |   });
+
+      at filterStackString (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-0ca70b3/testCase.test.ts:23:31)
+      From previous event:
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-0ca70b3/testCase.test.ts:17:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.373 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-0ca70b3/testCase.test.ts".

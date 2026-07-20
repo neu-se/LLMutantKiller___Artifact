@@ -1,0 +1,55 @@
+import { Dirty } from "../../../../../../../../../../../subject_repositories/node-dirty/lib/dirty/dirty.js";
+import * as fs from "fs";
+import * as path from "path";
+
+describe("drain event emission test", () => {
+  const testFile = path.join(__dirname, "test-drain.dirty");
+
+  beforeEach(() => {
+    try {
+      fs.unlinkSync(testFile);
+    } catch (err) {
+      // Ignore if file doesn't exist
+    }
+  });
+
+  afterEach(() => {
+    try {
+      fs.unlinkSync(testFile);
+    } catch (err) {
+      // Ignore if file doesn't exist
+    }
+  });
+
+  it("should emit drain event only when queue is empty and no writes are in flight", (done) => {
+    const db = new Dirty(testFile);
+    let drainCount = 0;
+
+    db.on("load", () => {
+      // Perform a single write
+      db.set("key1", "value1");
+
+      // Track drain events
+      db.on("drain", () => {
+        drainCount++;
+
+        // In original code, drain should only be emitted once
+        // In mutated code, it will emit multiple times because of the "if (true)" condition
+        if (drainCount > 1) {
+          done(new Error(`drain event emitted ${drainCount} times`));
+          return;
+        }
+
+        // Verify the write completed
+        setImmediate(() => {
+          expect(drainCount).toBe(1);
+          const content = fs.readFileSync(testFile, "utf-8");
+          const lines = content.trim().split("\n");
+          expect(lines.length).toBe(1);
+          expect(lines[0]).toContain('"key":"key1"');
+          done();
+        });
+      });
+    });
+  });
+});

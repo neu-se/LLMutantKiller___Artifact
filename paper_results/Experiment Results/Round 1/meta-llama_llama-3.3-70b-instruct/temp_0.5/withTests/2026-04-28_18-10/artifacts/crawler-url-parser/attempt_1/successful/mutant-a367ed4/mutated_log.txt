@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/subject_repositories/crawler-url-parser/crawler-url-parser.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/subject_repositories/crawler-url-parser/crawler-url-parser.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-a367ed4/split_pass_only.test.ts
+  extract function
+    ✕ should not extract urls with undefined or empty href (6 ms)
+    ○ skipped should extract urls correctly
+    ○ skipped should not extract urls with length less than 3
+    ○ skipped should not extract urls with javascript or mailto protocol
+
+  ● extract function › should not extract urls with undefined or empty href
+
+    TypeError: Cannot read properties of undefined (reading 'length')
+
+       95 | 		let text = $(this).text().trim();
+       96 | 		//href = href.replace(/;.*$/g,"");
+    >  97 |    		if (typeof href == "undefined" && href.length < 3 || /^(javascript|mailto:|ftp:)/ig.test(href)) return;
+          |    		                                       ^
+       98 |
+       99 |
+      100 | 		let currentUrl = parse(href, baseUrlStr);
+
+      at Element.length (../subject_repositories/crawler-url-parser/crawler-url-parser.js:97:45)
+      at LoadedCheerio.each (../subject_repositories/crawler-url-parser/node_modules/cheerio/src/api/traversing.ts:648:24)
+      at each (../subject_repositories/crawler-url-parser/crawler-url-parser.js:93:9)
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-a367ed4/split_pass_only.test.ts:16:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 3 skipped, 4 total
+Snapshots:   0 total
+Time:        1.986 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-a367ed4/split_pass_only.test.ts".

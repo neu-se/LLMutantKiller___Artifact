@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/node-dirty/lib/dirty/dirty.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/node-dirty/lib/dirty/dirty.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-3fc0f55/testCase.test.ts (16.095 s)
+  Dirty write stream drain handling
+    ✕ should call all set callbacks even when write stream backpressure occurs (15008 ms)
+
+  ● Dirty write stream drain handling › should call all set callbacks even when write stream backpressure occurs
+
+    Test timed out - callbacks were never fired, likely because _waitForDrain was never reset after write stream drain
+
+      13 |     const timeout = setTimeout(() => {
+      14 |       try { fs.rmSync(tmpDir, { recursive: true, force: true }); } catch (_) {}
+    > 15 |       done(new Error('Test timed out - callbacks were never fired, likely because _waitForDrain was never reset after write stream drain'));
+         |            ^
+      16 |     }, 15000);
+      17 |
+      18 |     db.on('load', () => {
+
+      at Timeout._onTimeout (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-3fc0f55/testCase.test.ts:15:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        16.23 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-3fc0f55/testCase.test.ts".

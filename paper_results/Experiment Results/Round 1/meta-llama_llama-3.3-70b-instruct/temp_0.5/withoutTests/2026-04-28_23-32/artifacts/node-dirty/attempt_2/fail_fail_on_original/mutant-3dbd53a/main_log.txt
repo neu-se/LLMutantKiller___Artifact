@@ -1,0 +1,47 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-3dbd53a/testCase.test.ts[0m:[93m4[0m:[93m20[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m4[0m import rimraf from 'rimraf';
+[7m [0m [91m                   ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-3dbd53a/testCase.test.ts (6.055 s)
+  Dirty
+    ✕ should write data to file with correct encoding (5003 ms)
+
+  ● Dirty › should write data to file with correct encoding
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 26
+    Received: 28
+
+      19 |             expect(data).toBe('{"key":"key","val":"value"}\n');
+      20 |             const stats = fs.statSync(dbPath);
+    > 21 |             expect(stats.size).toBe(26); // size of '{"key":"key","val":"value"}\n'
+         |                                ^
+      22 |             rimraf.sync(tmpDir);
+      23 |             done();
+      24 |           }
+
+      at toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-3dbd53a/testCase.test.ts:21:32)
+
+  ● Dirty › should write data to file with correct encoding
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       5 |
+       6 | describe('Dirty', () => {
+    >  7 |   it('should write data to file with correct encoding', (done) => {
+         |   ^
+       8 |     const tmpDir = 'tmp-test-dir';
+       9 |     const dbPath = path.join(tmpDir, 'test.db');
+      10 |     fs.mkdirSync(tmpDir);
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-3dbd53a/testCase.test.ts:7:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-3dbd53a/testCase.test.ts:6:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.203 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-3dbd53a/testCase.test.ts".

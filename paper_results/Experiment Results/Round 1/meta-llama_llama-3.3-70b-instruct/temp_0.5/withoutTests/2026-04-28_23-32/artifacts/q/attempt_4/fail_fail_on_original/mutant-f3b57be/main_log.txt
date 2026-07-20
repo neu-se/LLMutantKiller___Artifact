@@ -1,0 +1,53 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-f3b57be/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-f3b57be/testCase.test.ts[0m:[93m12[0m:[93m15[0m - [91merror[0m[90m TS7034: [0mVariable 'array' implicitly has type 'any[]' in some locations where its type cannot be determined.
+
+[7m12[0m         const array = [];
+[7m  [0m [91m              ~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-f3b57be/testCase.test.ts[0m:[93m13[0m:[93m26[0m - [91merror[0m[90m TS7005: [0mVariable 'array' implicitly has an 'any[]' type.
+
+[7m13[0m         const promises = array.map(Q);
+[7m  [0m [91m                         ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-f3b57be/testCase.test.ts
+  Q
+    ✕ should handle array reduce correctly (1 ms)
+    ✕ should throw an error when reduce is called with no initial value on an empty array
+
+  ● Q › should handle array reduce correctly
+
+    TypeError: undefined is not a function
+        at Array.map (<anonymous>)
+
+      4 |     it('should handle array reduce correctly', async () => {
+      5 |         const array = [1, 2, 3, 4, 5];
+    > 6 |         const promises = array.map(Q);
+        |                                ^
+      7 |         const result = await Q.all(promises);
+      8 |         expect(result).toEqual([1, 2, 3, 4, 5]);
+      9 |     });
+
+      at Object.map (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-f3b57be/testCase.test.ts:6:32)
+
+  ● Q › should throw an error when reduce is called with no initial value on an empty array
+
+    TypeError: undefined is not a function
+        at Array.map (<anonymous>)
+
+      11 |     it('should throw an error when reduce is called with no initial value on an empty array', async () => {
+      12 |         const array = [];
+    > 13 |         const promises = array.map(Q);
+         |                                ^
+      14 |         const result = await Q.all(promises);
+      15 |         expect(result).toEqual([]);
+      16 |     });
+
+      at Object.map (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-f3b57be/testCase.test.ts:13:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        2.146 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-f3b57be/testCase.test.ts".

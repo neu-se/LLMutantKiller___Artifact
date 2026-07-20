@@ -1,0 +1,38 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-d5b8874/testCase.test.ts
+  compose()
+    ✕ should correctly compose a Delta with a retain and an insert when the retain has an object value (4 ms)
+
+  ● compose() › should correctly compose a Delta with a retain and an insert when the retain has an object value
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 5
+
+      Array [
+        Object {
+          "insert": "test",
+        },
+    +   Object {
+    +     "retain": Object {
+    +       "embed": 1,
+    +     },
+    +   },
+      ]
+
+       6 |     const delta2 = new Delta().insert('test');
+       7 |     const composedDelta = delta1.compose(delta2);
+    >  8 |     expect(composedDelta.ops).toEqual([
+         |                               ^
+       9 |       { insert: 'test' },
+      10 |     ]);
+      11 |
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-d5b8874/testCase.test.ts:8:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.495 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-d5b8874/testCase.test.ts".

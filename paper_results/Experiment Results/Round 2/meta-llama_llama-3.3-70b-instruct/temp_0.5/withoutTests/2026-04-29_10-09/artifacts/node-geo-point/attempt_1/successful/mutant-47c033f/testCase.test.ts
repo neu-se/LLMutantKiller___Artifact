@@ -1,0 +1,11 @@
+import { GeoPoint } from "../../../../../../../../../../../subject_repositories/node-geo-point/src/geo-point";
+
+describe('GeoPoint', () => {
+  it('should calculate distance between two points', () => {
+    const point1 = new GeoPoint(52.5200, 13.4050);
+    const point2 = new GeoPoint(48.8566, 2.3522);
+    const distance = point1.calculateDistance(point2);
+    expect(typeof distance).toBe('number');
+    expect(distance).toBeGreaterThan(0);
+  });
+});

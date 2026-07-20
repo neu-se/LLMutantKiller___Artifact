@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-0af9d8e/testCase.test.ts (5.841 s)
+  Dirty drain event
+    ✕ should emit drain after set completes without a file path (in-memory) (5002 ms)
+
+  ● Dirty drain event › should emit drain after set completes without a file path (in-memory)
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      18 |       db.set('key1', 'value1', () => {
+      19 |         // After callback, drain should have been emitted
+    > 20 |         expect(drainCount).toBeGreaterThan(0);
+         |                            ^
+      21 |         done();
+      22 |       });
+      23 |     });
+
+      at toBeGreaterThan (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-0af9d8e/testCase.test.ts:20:28)
+      at Immediate.cb (../subject_repositories/node-dirty/lib/dirty/dirty.js:39:36)
+
+  ● Dirty drain event › should emit drain after set completes without a file path (in-memory)
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       5 |
+       6 | describe('Dirty drain event', () => {
+    >  7 |   it('should emit drain after set completes without a file path (in-memory)', (done) => {
+         |   ^
+       8 |     // Without a path, drain is emitted via setImmediate in set()
+       9 |     // This tests the basic drain contract
+      10 |     const db = new (Dirty as any)();
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-0af9d8e/testCase.test.ts:7:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-0af9d8e/testCase.test.ts:6:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        5.954 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-0af9d8e/testCase.test.ts".

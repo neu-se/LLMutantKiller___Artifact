@@ -1,0 +1,47 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-2d2076b/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-2d2076b/testCase.test.ts[0m:[93m17[0m:[93m14[0m - [91merror[0m[90m TS7006: [0mParameter 'error' implicitly has an 'any' type.
+
+[7m17[0m             (error) => {
+[7m  [0m [91m             ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-2d2076b/testCase.test.ts
+  Q.delay
+    ✕ should delay fulfillment when timeout is provided (1 ms)
+    ✕ should reject when timeout is not provided
+
+  ● Q.delay › should delay fulfillment when timeout is provided
+
+    TypeError: Cannot read properties of undefined (reading 'delay')
+
+      4 |     it("should delay fulfillment when timeout is provided", () => {
+      5 |         var startTime = new Date().getTime();
+    > 6 |         return Q.delay(50).then(() => {
+        |                  ^
+      7 |             var endTime = new Date().getTime();
+      8 |             expect(endTime - startTime).toBeGreaterThan(40);
+      9 |         });
+
+      at Object.delay (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-2d2076b/testCase.test.ts:6:18)
+
+  ● Q.delay › should reject when timeout is not provided
+
+    TypeError: Cannot read properties of undefined (reading 'delay')
+
+      11 |
+      12 |     it("should reject when timeout is not provided", () => {
+    > 13 |         return Q.delay().then(
+         |                  ^
+      14 |             () => {
+      15 |                 expect(true).toBe(false);
+      16 |             },
+
+      at Object.delay (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-2d2076b/testCase.test.ts:13:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.245 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-2d2076b/testCase.test.ts".

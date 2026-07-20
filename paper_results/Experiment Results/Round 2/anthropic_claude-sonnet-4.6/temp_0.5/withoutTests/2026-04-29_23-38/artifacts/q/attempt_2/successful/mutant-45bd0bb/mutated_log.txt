@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-45bd0bb/testCase.test.ts
+  Q object_create fallback behavior
+    ✕ should use fallback implementation when Object.create is not available at module load time (24 ms)
+
+  ● Q object_create fallback behavior › should use fallback implementation when Object.create is not available at module load time
+
+    TypeError: object_create is not a function
+
+      557 |     var messages = [], progressListeners = [], resolvedPromise;
+      558 |
+    > 559 |     var deferred = object_create(defer.prototype);
+          |                    ^
+      560 |     var promise = object_create(Promise.prototype);
+      561 |
+      562 |     promise.promiseDispatch = function (resolve, op, operands) {
+
+      at Function.object_create [as defer] (../subject_repositories/q/q.js:559:20)
+      at Object.defer (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-45bd0bb/testCase.test.ts:21:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.091 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-45bd0bb/testCase.test.ts".

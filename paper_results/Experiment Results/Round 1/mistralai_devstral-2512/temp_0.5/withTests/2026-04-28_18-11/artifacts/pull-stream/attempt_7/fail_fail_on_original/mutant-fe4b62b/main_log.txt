@@ -1,0 +1,24 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-fe4b62b/testCase.test.ts
+  drain abort behavior
+    ✕ should handle abort with function as first argument correctly (3 ms)
+
+  ● drain abort behavior › should handle abort with function as first argument correctly
+
+    TypeError: read is not a function
+
+      26 |
+      27 |     const read = pull(source, sink);
+    > 28 |     read(null, function (end: any, data: any) {
+         |     ^
+      29 |       (sink as any).abort(function (err: any) {
+      30 |         if (err === true) {
+      31 |           if (abortCalled && abortValue === true) {
+
+      at Object.read (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-fe4b62b/testCase.test.ts:28:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        4.293 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-fe4b62b/testCase.test.ts".

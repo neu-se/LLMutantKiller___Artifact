@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-0f64dd3/testCase.test.ts
+  Q
+    ✕ detects captureLine mutation via stack trace filtering (205 ms)
+
+  ● Q › detects captureLine mutation via stack trace filtering
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      36 |     // Original: filtered → 0 q.js frames
+      37 |     // Mutated:  not filtered → at least 1 q.js frame (the defer() call)
+    > 38 |     expect(qLibraryFrames.length).toBe(0);
+         |                                   ^
+      39 |     
+      40 |     Q.longStackSupport = false;
+      41 |   });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-0f64dd3/testCase.test.ts:38:35)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.367 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-0f64dd3/testCase.test.ts".

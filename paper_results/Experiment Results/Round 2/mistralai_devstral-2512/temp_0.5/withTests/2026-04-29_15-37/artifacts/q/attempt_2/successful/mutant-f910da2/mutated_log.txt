@@ -1,0 +1,53 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-f910da2/testCase.test.ts[0m:[93m16[0m:[93m34[0m - [91merror[0m[90m TS7006: [0mParameter 'result' implicitly has an 'any' type.
+
+[7m16[0m     return testGenerator().then((result) => {
+[7m  [0m [91m                                 ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/q/q.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/q/q.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+
+<--- Last few GCs --->
+
+[92401:0x148008000]   114678 ms: Scavenge 3690.7 (4126.8) -> 3683.2 (4126.8) MB, 536.50 / 0.00 ms  (average mu = 0.196, current mu = 0.184) allocation failure; 
+[92401:0x148008000]   114835 ms: Scavenge 3695.4 (4126.8) -> 3687.8 (4126.8) MB, 152.83 / 0.00 ms  (average mu = 0.196, current mu = 0.184) allocation failure; 
+[92401:0x148008000]   114881 ms: Scavenge 3699.6 (4126.8) -> 3692.0 (4130.3) MB, 39.25 / 0.00 ms  (average mu = 0.196, current mu = 0.184) allocation failure; 
+
+
+<--- JS stacktrace --->
+
+FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
+----- Native stack trace -----
+
+ 1: 0x100d0d5b8 node::OOMErrorHandler(char const*, v8::OOMDetails const&) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 2: 0x100ecb968 v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, v8::OOMDetails const&) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 3: 0x1010d97bc v8::internal::Heap::GarbageCollectionReasonToString(v8::internal::GarbageCollectionReason) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 4: 0x1010dd2b8 v8::internal::Heap::CollectGarbageShared(v8::internal::LocalHeap*, v8::internal::GarbageCollectionReason) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 5: 0x1010da134 v8::internal::Heap::PerformGarbageCollection(v8::internal::GarbageCollector, v8::internal::GarbageCollectionReason, char const*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 6: 0x1010d7cb0 v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 7: 0x1010cdfc0 v8::internal::HeapAllocator::AllocateRawWithLightRetrySlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 8: 0x1010ce818 v8::internal::HeapAllocator::AllocateRawWithRetryOrFailSlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 9: 0x1010b2cf8 v8::internal::Factory::NewFillerObject(int, v8::internal::AllocationAlignment, v8::internal::AllocationType, v8::internal::AllocationOrigin) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+10: 0x1014bfe30 v8::internal::Runtime_AllocateInYoungGeneration(int, unsigned long*, v8::internal::Isolate*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+11: 0x101854c44 Builtins_CEntry_Return1_ArgvOnStack_NoBuiltinExit [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+12: 0x1065f56c0 
+13: 0x106c7351c 
+14: 0x10637797c 
+15: 0x1017cc3e4 Builtins_InterpreterEntryTrampoline [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+16: 0x1017ca50c Builtins_JSEntryTrampoline [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+17: 0x1017ca1f4 Builtins_JSEntry [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+18: 0x101044274 v8::internal::(anonymous namespace)::Invoke(v8::internal::Isolate*, v8::internal::(anonymous namespace)::InvokeParams const&) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+19: 0x101043b08 v8::internal::Execution::Call(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Object>, int, v8::internal::Handle<v8::internal::Object>*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+20: 0x100ee7998 v8::Function::Call(v8::Local<v8::Context>, v8::Local<v8::Value>, int, v8::Local<v8::Value>*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+21: 0x100c24d5c node::InternalCallbackScope::Close() [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+22: 0x100c24fb4 node::InternalMakeCallback(node::Environment*, v8::Local<v8::Object>, v8::Local<v8::Object>, v8::Local<v8::Function>, int, v8::Local<v8::Value>*, node::async_context) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+23: 0x100c3930c node::AsyncWrap::MakeCallback(v8::Local<v8::Function>, int, v8::Local<v8::Value>*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+24: 0x100d12fc4 node::fs::FSReqCallback::Resolve(v8::Local<v8::Value>) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+25: 0x100d138a4 node::fs::AfterStat(uv_fs_s*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+26: 0x100d0644c node::MakeLibuvRequestCallback<uv_fs_s, void (*)(uv_fs_s*)>::Wrapper(uv_fs_s*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+27: 0x1017a5500 uv__work_done [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+28: 0x1017a8f28 uv__async_io [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+29: 0x1017bbbd0 uv__io_poll [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+30: 0x1017a9490 uv_run [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+31: 0x100c257e8 node::SpinEventLoopInternal(node::Environment*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+32: 0x100d51eec node::NodeMainInstance::Run() [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+33: 0x100ccfcfc node::Start(int, char**) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+34: 0x18cd9ab98 start [/usr/lib/dyld]

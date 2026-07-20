@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-35b6ae5/testCase.test.ts
+  prop with regexp key
+    ✕ should return the matched string (v[0]), not the match array, when regex matches (3 ms)
+
+  ● prop with regexp key › should return the matched string (v[0]), not the match array, when regex matches
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "hello"
+    Received: ["hello"]
+
+       7 |     // Original: returns v && v[0] => "hello" (a string)
+       8 |     // Mutated: returns v || v[0] => the match array object (not a string)
+    >  9 |     expect(result).toBe("hello");
+         |                    ^
+      10 |     expect(typeof result).toBe("string");
+      11 |   });
+      12 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-35b6ae5/testCase.test.ts:9:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.88 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-35b6ae5/testCase.test.ts".

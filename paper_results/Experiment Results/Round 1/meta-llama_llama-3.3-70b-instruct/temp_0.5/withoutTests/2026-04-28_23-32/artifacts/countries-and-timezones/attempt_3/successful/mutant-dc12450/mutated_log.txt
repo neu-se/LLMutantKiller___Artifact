@@ -1,0 +1,38 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/countries-and-timezones/attempt_3/pending_category/mutant-dc12450/testCase.test.ts
+  buildCountry function
+    ✕ should reuse the timezonesMap when called multiple times with the same data (4 ms)
+
+  ● buildCountry function › should reuse the timezonesMap when called multiple times with the same data
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    @@ -2,7 +2,9 @@
+        "allTimezones": Array [
+          "1",
+        ],
+        "id": "1",
+        "name": "Country1",
+    -   "timezones": Array [],
+    +   "timezones": Array [
+    +     "1",
+    +   ],
+      }
+
+      11 |     const modifiedData = { ...data, timezones: { "1": { c: ["1"], a: "", r: "new" } } };
+      12 |     const result2 = buildCountry(modifiedData, id);
+    > 13 |     expect(result1).toEqual(result2);
+         |                     ^
+      14 |   });
+      15 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/countries-and-timezones/attempt_3/pending_category/mutant-dc12450/testCase.test.ts:13:21)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.374 s, estimated 2 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/countries-and-timezones/attempt_3/pending_category/mutant-dc12450/testCase.test.ts".

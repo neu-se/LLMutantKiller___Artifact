@@ -1,0 +1,11 @@
+import { image } from '../..';
+import * as fs from 'fs';
+import * as path from 'path';
+
+describe('image downloader', () => {
+  it('should resolve relative destination path', async () => {
+    const dest = './tmp';
+    await image({ url: 'http://someurl.com/image.jpg', dest });
+    expect(() => fs.accessSync(path.resolve(__dirname, dest))).not.toThrow();
+  });
+});

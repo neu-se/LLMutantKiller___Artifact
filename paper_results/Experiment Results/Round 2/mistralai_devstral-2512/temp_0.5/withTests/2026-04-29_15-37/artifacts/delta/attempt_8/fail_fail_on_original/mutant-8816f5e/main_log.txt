@@ -1,0 +1,47 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-8816f5e/testCase.test.ts
+  transform() with embeds
+    ✕ transforms embed retain with embed retain when thisData is object and otherData is object with different embed types (5 ms)
+
+  ● transform() with embeds › transforms embed retain with embed retain when thisData is object and otherData is object with different embed types
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 9
+    + Received  + 0
+
+    @@ -1,18 +1,9 @@
+      Delta {
+        "ops": Array [
+          Object {
+            "retain": Object {
+    -         "delta": Array [
+    -           Object {
+    -             "insert": "a",
+    -           },
+    -         ],
+    -       },
+    -     },
+    -     Object {
+    -       "retain": Object {
+              "other": Array [
+                Object {
+                  "insert": "b",
+                },
+              ],
+
+      20 |     const expected = new Delta().retain({ delta: [{ insert: 'a' }] }).retain({ other: [{ insert: 'b' }] });
+      21 |     const result = a.transform(b, true);
+    > 22 |     expect(result).toEqual(expected);
+         |                    ^
+      23 |
+      24 |     Delta.unregisterEmbed('delta');
+      25 |     Delta.unregisterEmbed('other');
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-8816f5e/testCase.test.ts:22:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.455 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-8816f5e/testCase.test.ts".

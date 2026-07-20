@@ -1,0 +1,35 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-76329a3/testCase.test.ts[0m:[93m11[0m:[93m18[0m - [91merror[0m[90m TS7006: [0mParameter 'value' implicitly has an 'any' type.
+
+[7m11[0m     result.then((value) => {
+[7m  [0m [91m                 ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-76329a3/testCase.test.ts
+  Q.fbind
+    ✕ should bind a function to a promise (3 ms)
+
+  ● Q.fbind › should bind a function to a promise
+
+    Cannot find module './q.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-76329a3/testCase.test.ts'
+
+      1 | describe('Q.fbind', () => {
+      2 |   it('should bind a function to a promise', () => {
+    > 3 |     const Q = require('./q.js');
+        |               ^
+      4 |     const promise = Q.resolve('test');
+      5 |     const boundFunction = Q.fbind(promise, function(this: any, arg1: string, arg2: string) {
+      6 |       return arg1 + arg2;
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-76329a3/testCase.test.ts:3:15)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.318 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-76329a3/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,30 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-844505d/testCase.test.ts
+  Promise.prototype.done domain support
+    ✕ should bind onUnhandledError to the active domain, causing domain to catch the rejection (207 ms)
+
+  ● Promise.prototype.done domain support › should bind onUnhandledError to the active domain, causing domain to catch the rejection
+
+    Expected domain to catch the error, but it did not - domain binding is broken
+
+      31 |       (Q as any).onerror = originalOnerror;
+      32 |       if (!caughtByDomain) {
+    > 33 |         done(new Error("Expected domain to catch the error, but it did not - domain binding is broken"));
+         |              ^
+      34 |       }
+      35 |     }, 200);
+      36 |   });
+
+      at Timeout._onTimeout (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-844505d/testCase.test.ts:33:14)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.872 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-844505d/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

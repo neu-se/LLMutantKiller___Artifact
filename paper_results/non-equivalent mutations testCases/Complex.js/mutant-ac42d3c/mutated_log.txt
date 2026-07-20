@@ -1,0 +1,26 @@
+FAIL Complex.js/mutant-ac42d3c/testCase.test.js
+  Complex atan signed-zero behavior
+    ✕ returns +0 real part, not -0, for atan(-0 - i) (67 ms)
+
+  ● Complex atan signed-zero behavior › returns +0 real part, not -0, for atan(-0 - i)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      12 |     const z = new Complex(-0, -1).atan();
+      13 |
+    > 14 |     expect(Object.is(z.re, -0)).toBe(false);
+         |                                 ^
+      15 |     expect(z.im).toBe(-Infinity);
+      16 |   });
+      17 | });
+
+      at Object.toBe (Complex.js/mutant-ac42d3c/testCase.test.js:14:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.413 s
+Ran all test suites matching /Complex.js\/mutant-ac42d3c\/testCase.test.js/i.

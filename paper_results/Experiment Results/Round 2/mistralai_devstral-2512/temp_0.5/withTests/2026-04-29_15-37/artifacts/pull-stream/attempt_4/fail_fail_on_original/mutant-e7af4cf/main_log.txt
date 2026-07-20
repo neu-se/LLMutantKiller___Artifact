@@ -1,0 +1,60 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-e7af4cf/testCase.test.ts[0m:[93m11[0m:[93m12[0m - [91merror[0m[90m TS2339: [0mProperty 'values' does not exist on type '{ (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { ...; }; }; }; }; }; }; }'.
+
+[7m11[0m       pull.values(input),
+[7m  [0m [91m           ~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-e7af4cf/testCase.test.ts[0m:[93m16[0m:[93m12[0m - [91merror[0m[90m TS2339: [0mProperty 'drain' does not exist on type '{ (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { ...; }; }; }; }; }; }; }'.
+
+[7m16[0m       pull.drain(
+[7m  [0m [91m           ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/pull-stream/index.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/pull-stream/index.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/pull-stream/throughs/index.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/pull-stream/throughs/index.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/pull-stream/throughs/filter-not.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/pull-stream/throughs/filter-not.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/pull-stream/throughs/unique.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/pull-stream/throughs/unique.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/pull-stream/throughs/non-unique.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/pull-stream/throughs/non-unique.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-e7af4cf/testCase.test.ts
+  filter sync behavior
+    ✕ should correctly handle synchronous filtering with immediate callback (5 ms)
+
+  ● filter sync behavior › should correctly handle synchronous filtering with immediate callback
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Array [
+        "test-1",
+    -   "drain-2",
+        "test-2",
+    -   "drain-4",
+    +   "drain-2",
+        "test-3",
+        "test-4",
+    +   "drain-4",
+        "test-5",
+      ]
+
+      23 |             return;
+      24 |           }
+    > 25 |           expect(callOrder).toEqual([
+         |                             ^
+      26 |             'test-1', 'drain-2',
+      27 |             'test-2', 'drain-4',
+      28 |             'test-3', 'test-4', 'test-5'
+
+      at toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-e7af4cf/testCase.test.ts:25:29)
+      at done (../subject_repositories/pull-stream/sinks/drain.js:26:24)
+      at cb (../subject_repositories/pull-stream/throughs/filter.js:17:11)
+      at cb (../subject_repositories/pull-stream/sources/values.js:19:7)
+      at read (../subject_repositories/pull-stream/throughs/filter.js:14:9)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:45:8)
+      at s (../subject_repositories/pull-stream/pull.js:41:14)
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-e7af4cf/testCase.test.ts:10:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.778 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-e7af4cf/testCase.test.ts".

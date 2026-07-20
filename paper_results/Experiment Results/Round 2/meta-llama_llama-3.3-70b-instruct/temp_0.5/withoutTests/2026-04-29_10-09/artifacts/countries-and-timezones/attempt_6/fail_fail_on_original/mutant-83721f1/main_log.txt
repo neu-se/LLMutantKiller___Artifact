@@ -1,0 +1,25 @@
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/countries-and-timezones/attempt_6/pending_category/mutant-83721f1/testCase.test.ts
+  Testing getAllTimezones function
+    ✕ should not memoize all timezones when calling getAllTimezones (5 ms)
+
+  ● Testing getAllTimezones function › should not memoize all timezones when calling getAllTimezones
+
+    expect(received).not.toHaveLength(expected)
+
+    Expected length: not 351
+    Received array:      ["America/New_York", "Africa/Abidjan", "Africa/Algiers", "Africa/Bissau", "Africa/Cairo", "Africa/Casablanca", "Africa/Ceuta", "Africa/El_Aaiun", "Africa/Johannesburg", "Africa/Juba", …]
+
+       8 |     const allTimezones = getAllTimezones();
+       9 |     const timezoneAfterGetAll = getTimezone('America/New_York');
+    > 10 |     expect(Object.keys(allTimezones)).not.toHaveLength(Object.keys(getAllTimezones()).length);
+         |                                           ^
+      11 |   });
+      12 | });
+
+      at Object.toHaveLength (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/countries-and-timezones/attempt_6/pending_category/mutant-83721f1/testCase.test.ts:10:43)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.192 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/countries-and-timezones/attempt_6/pending_category/mutant-83721f1/testCase.test.ts".

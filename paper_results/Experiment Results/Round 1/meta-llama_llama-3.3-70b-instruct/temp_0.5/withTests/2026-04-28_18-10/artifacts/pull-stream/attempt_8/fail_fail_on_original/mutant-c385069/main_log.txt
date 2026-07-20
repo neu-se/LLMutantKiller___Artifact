@@ -1,0 +1,76 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-c385069/testCase.test.ts[0m:[93m6[0m:[93m12[0m - [91merror[0m[90m TS2339: [0mProperty 'values' does not exist on type '{ (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { ...; }; }; }; }; }; }; }'.
+
+[7m6[0m       pull.values([1, 2, 3]),
+[7m [0m [91m           ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-c385069/testCase.test.ts[0m:[93m7[0m:[93m12[0m - [91merror[0m[90m TS2339: [0mProperty 'asyncMap' does not exist on type '{ (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { ...; }; }; }; }; }; }; }'.
+
+[7m7[0m       pull.asyncMap((data: any, cb: (err: any, data: any) => void) => {
+[7m [0m [91m           ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-c385069/testCase.test.ts[0m:[93m14[0m:[93m12[0m - [91merror[0m[90m TS2339: [0mProperty 'take' does not exist on type '{ (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { ...; }; }; }; }; }; }; }'.
+
+[7m14[0m       pull.take(1),
+[7m  [0m [91m           ~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-c385069/testCase.test.ts[0m:[93m15[0m:[93m12[0m - [91merror[0m[90m TS2339: [0mProperty 'collect' does not exist on type '{ (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { ...; }; }; }; }; }; }; }'.
+
+[7m15[0m       pull.collect((err: any, data: any) => {
+[7m  [0m [91m           ~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-c385069/testCase.test.ts[0m:[93m20[0m:[93m16[0m - [91merror[0m[90m TS2339: [0mProperty 'collect' does not exist on type '{ (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { ...; }; }; }; }; }; }; }'.
+
+[7m20[0m           pull.collect((err: any, data: any) => {
+[7m  [0m [91m               ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/subject_repositories/pull-stream/index.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/subject_repositories/pull-stream/index.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/subject_repositories/pull-stream/throughs/index.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/subject_repositories/pull-stream/throughs/index.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-c385069/testCase.test.ts
+  asyncMap
+    ✕ should handle abort correctly (16 ms)
+
+  ● asyncMap › should handle abort correctly
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 5
+    + Received  + 1
+
+    - Array [
+    -   1,
+    -   2,
+    -   3,
+    - ]
+    + Array []
+
+      22 |               done(err);
+      23 |             } else {
+    > 24 |               expect(data).toEqual([1, 2, 3]);
+         |                            ^
+      25 |               expect(called).toBe(true);
+      26 |               done();
+      27 |             }
+
+      at toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-c385069/testCase.test.ts:24:28)
+      at cb (../subject_repositories/pull-stream/sinks/reduce.js:10:5)
+      at done (../subject_repositories/pull-stream/sinks/drain.js:26:24)
+      at cb (../subject_repositories/pull-stream/throughs/async-map.js:12:26)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:45:8)
+      at s (../subject_repositories/pull-stream/pull.js:41:14)
+      at llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-c385069/testCase.test.ts:18:13
+      at cb (../subject_repositories/pull-stream/sinks/reduce.js:10:5)
+      at done (../subject_repositories/pull-stream/sinks/drain.js:26:24)
+      at cb (../subject_repositories/pull-stream/throughs/take.js:19:23)
+      at cb (../subject_repositories/pull-stream/throughs/async-map.js:18:11)
+      at cb (../subject_repositories/pull-stream/util/abort-cb.js:2:3)
+      at abortCb (../subject_repositories/pull-stream/sources/values.js:17:14)
+      at read (../subject_repositories/pull-stream/throughs/async-map.js:15:19)
+      at read (../subject_repositories/pull-stream/throughs/take.js:18:7)
+      at terminate (../subject_repositories/pull-stream/throughs/take.js:24:32)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:45:8)
+      at s (../subject_repositories/pull-stream/pull.js:41:14)
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-c385069/testCase.test.ts:12:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        4.214 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-c385069/testCase.test.ts".

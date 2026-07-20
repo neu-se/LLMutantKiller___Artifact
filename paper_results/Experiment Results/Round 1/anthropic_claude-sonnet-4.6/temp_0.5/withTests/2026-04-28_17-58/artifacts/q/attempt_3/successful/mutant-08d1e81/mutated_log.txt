@@ -1,0 +1,51 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-08d1e81/testCase.test.ts[0m:[93m15[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'Process' is not assignable to type 'boolean'.
+
+[7m15[0m       return originalEmit.call(process, event, ...args);
+[7m  [0m [91m      ~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-08d1e81/testCase.test.ts[0m:[93m15[0m:[93m48[0m - [91merror[0m[90m TS2556: [0mA spread argument must either have a tuple type or be passed to a rest parameter.
+
+[7m15[0m       return originalEmit.call(process, event, ...args);
+[7m  [0m [91m                                               ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-08d1e81/testCase.test.ts (6.382 s)
+  trackRejection
+    ✕ does not call process.emit when process.emit is not a function (5002 ms)
+
+  ● trackRejection › does not call process.emit when process.emit is not a function
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      30 |       // Original: condition checked at rejection time, was false -> runAfter not scheduled -> emitCallCount = 0
+      31 |       // Mutated: always true -> runAfter scheduled -> emit called with spy -> emitCallCount = 1
+    > 32 |       expect(emitCallCount).toBe(0);
+         |                             ^
+      33 |       done();
+      34 |     }, 300);
+      35 |   });
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-08d1e81/testCase.test.ts:32:29)
+
+  ● trackRejection › does not call process.emit when process.emit is not a function
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("trackRejection", () => {
+    > 4 |   it("does not call process.emit when process.emit is not a function", (done) => {
+        |   ^
+      5 |     Q.resetUnhandledRejections();
+      6 |
+      7 |     const originalEmit = process.emit;
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-08d1e81/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-08d1e81/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.549 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-08d1e81/testCase.test.ts".

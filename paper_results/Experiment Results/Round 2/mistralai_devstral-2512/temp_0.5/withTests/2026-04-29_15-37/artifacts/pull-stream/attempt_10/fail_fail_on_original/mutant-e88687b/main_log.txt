@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-e88687b/testCase.test.ts (6.736 s)
+  drain abort with function as error
+    ✕ should treat function as callback when passed to abort (5001 ms)
+
+  ● drain abort with function as error › should treat function as callback when passed to abort
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      27 |     // Verify the function was treated as callback (original behavior)
+      28 |     setTimeout(() => {
+    > 29 |       expect(callbackInvoked).toBe(true);
+         |                               ^
+      30 |       done();
+      31 |     }, 50);
+      32 |   });
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-e88687b/testCase.test.ts:29:31)
+
+  ● drain abort with function as error › should treat function as callback when passed to abort
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("drain abort with function as error", () => {
+    > 4 |   it("should treat function as callback when passed to abort", (done) => {
+        |   ^
+      5 |     let callbackInvoked = false;
+      6 |     let errorCallbackInvoked = false;
+      7 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-e88687b/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-e88687b/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.958 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-e88687b/testCase.test.ts".

@@ -1,0 +1,40 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-416df1a/testCase.test.ts (6.536 s)
+  error emission on write failure
+    ✕ should emit error when write fails and no callbacks are registered (5003 ms)
+
+  ● error emission on write failure › should emit error when write fails and no callbacks are registered
+
+    TypeError: done.fail is not a function
+
+      58 |       // Fail test if error is not emitted within timeout
+      59 |       setTimeout(() => {
+    > 60 |         done.fail('Error event was not emitted');
+         |              ^
+      61 |       }, 2000);
+      62 |     });
+      63 |   });
+
+      at Timeout.fail [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-416df1a/testCase.test.ts:60:14)
+
+  ● error emission on write failure › should emit error when write fails and no callbacks are registered
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      27 |   });
+      28 |
+    > 29 |   it('should emit error when write fails and no callbacks are registered', (done) => {
+         |   ^
+      30 |     // Create a valid file first
+      31 |     fs.writeFileSync(testFile, '');
+      32 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-416df1a/testCase.test.ts:29:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-416df1a/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.755 s, estimated 7 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-416df1a/testCase.test.ts".

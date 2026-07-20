@@ -1,0 +1,11 @@
+const fs = require('fs');
+const code = fs.readFileSync('./complex.js', 'utf8');
+const Complex = eval(`(${code})`);
+describe('Complex', () => {
+  it('should handle addition with infinite values correctly', () => {
+    const c1 = new Complex(1, 0);
+    const c2 = new Complex(Infinity, 0);
+    const result = c1.add(c2);
+    expect(result.toString()).toBe('Infinity');
+  });
+});

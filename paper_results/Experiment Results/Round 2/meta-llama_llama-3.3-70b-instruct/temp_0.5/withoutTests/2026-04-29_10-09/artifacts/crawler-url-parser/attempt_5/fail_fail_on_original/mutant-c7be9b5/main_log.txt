@@ -1,0 +1,29 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_5/pending_category/mutant-c7be9b5/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2616: [0m'console' can only be imported by using 'import console = require("console")' or a default import.
+
+[7m1[0m import { console } from 'console';
+[7m [0m [91m         ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_5/pending_category/mutant-c7be9b5/testCase.test.ts
+  crawler-url-parser
+    ✕ should log a message to the console when called (1 ms)
+
+  ● crawler-url-parser › should log a message to the console when called
+
+    Cannot use spyOn on a primitive value; undefined given
+
+      4 | describe('crawler-url-parser', () => {
+      5 |   it('should log a message to the console when called', () => {
+    > 6 |     const logSpy = jest.spyOn(console, 'log');
+        |                         ^
+      7 |     require('../../../../../../../../../subject_repositories/crawler-url-parser/crawler-url-parser.js');
+      8 |     expect(logSpy).toHaveBeenCalledTimes(1);
+      9 |     expect(logSpy).toHaveBeenCalledWith('for testing purpose');
+
+      at ModuleMocker.spyOn (node_modules/jest-mock/build/index.js:719:13)
+      at Object.spyOn (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_5/pending_category/mutant-c7be9b5/testCase.test.ts:6:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.262 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_5/pending_category/mutant-c7be9b5/testCase.test.ts".

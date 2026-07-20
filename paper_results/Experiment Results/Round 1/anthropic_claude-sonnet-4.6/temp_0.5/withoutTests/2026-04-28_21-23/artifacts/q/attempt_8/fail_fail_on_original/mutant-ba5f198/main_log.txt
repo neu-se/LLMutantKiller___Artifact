@@ -1,0 +1,45 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-ba5f198/testCase.test.ts (6.456 s)
+  Q tick mechanism uses setImmediate
+    ✕ a setImmediate scheduled before Q.nextTick should run before Q task when Q uses setImmediate (5002 ms)
+
+  ● Q tick mechanism uses setImmediate › a setImmediate scheduled before Q.nextTick should run before Q task when Q uses setImmediate
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "setImmediate"
+    Received: "Q"
+
+      16 |       // With setImmediate: setImmediate was first, so order is ["setImmediate", "Q"]
+      17 |       // With process.nextTick: Q runs before setImmediate, so order is ["Q", ...]
+    > 18 |       expect(order[0]).toBe("setImmediate");
+         |                        ^
+      19 |       done();
+      20 |     });
+      21 |   });
+
+      at toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-ba5f198/testCase.test.ts:18:24)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+  ● Q tick mechanism uses setImmediate › a setImmediate scheduled before Q.nextTick should run before Q task when Q uses setImmediate
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("Q tick mechanism uses setImmediate", () => {
+    > 4 |   it("a setImmediate scheduled before Q.nextTick should run before Q task when Q uses setImmediate", (done) => {
+        |   ^
+      5 |     const order: string[] = [];
+      6 |
+      7 |     // Schedule setImmediate FIRST
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-ba5f198/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-ba5f198/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.71 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-ba5f198/testCase.test.ts".

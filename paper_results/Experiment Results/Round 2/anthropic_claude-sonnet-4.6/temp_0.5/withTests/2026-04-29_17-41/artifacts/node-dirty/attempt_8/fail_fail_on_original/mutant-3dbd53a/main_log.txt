@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_8/pending_category/mutant-3dbd53a/testCase.test.ts
+  dirty write stream encoding option
+    ✕ should create write stream with utf-8 encoding option (2 ms)
+
+  ● dirty write stream encoding option › should create write stream with utf-8 encoding option
+
+    TypeError: Cannot redefine property: createWriteStream
+        at Function.defineProperty (<anonymous>)
+
+      13 |     let capturedEncoding: string | undefined;
+      14 |
+    > 15 |     const spy = jest.spyOn(fs, 'createWriteStream').mockImplementation((...args: any[]) => {
+         |                      ^
+      16 |       const options = args[1];
+      17 |       if (options && 'encoding' in options) {
+      18 |         capturedEncoding = options.encoding;
+
+      at ModuleMocker.spyOn (node_modules/jest-mock/build/index.js:776:16)
+      at Object.spyOn (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_8/pending_category/mutant-3dbd53a/testCase.test.ts:15:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.553 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_8/pending_category/mutant-3dbd53a/testCase.test.ts".

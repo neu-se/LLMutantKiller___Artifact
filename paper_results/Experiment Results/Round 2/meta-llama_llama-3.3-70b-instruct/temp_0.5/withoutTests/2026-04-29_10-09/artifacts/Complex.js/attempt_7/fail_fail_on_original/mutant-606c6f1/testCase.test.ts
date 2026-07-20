@@ -1,0 +1,10 @@
+import { Complex } from "./complex.js";
+
+describe('Complex', () => {
+  it('should return correct result when adding an infinite complex number to a finite complex number', () => {
+    const c1 = new Complex(1, 1);
+    const c2 = new Complex(Infinity, Infinity);
+    const result = c1.add(c2);
+    expect(result.toString()).not.toBe('1 1');
+  });
+});

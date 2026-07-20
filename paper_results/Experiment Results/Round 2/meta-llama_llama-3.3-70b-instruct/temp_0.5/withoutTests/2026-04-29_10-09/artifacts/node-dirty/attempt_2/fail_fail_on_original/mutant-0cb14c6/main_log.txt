@@ -1,0 +1,51 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-0cb14c6/testCase.test.ts[0m:[93m4[0m:[93m20[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m4[0m import rimraf from 'rimraf';
+[7m [0m [91m                   ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-0cb14c6/testCase.test.ts[0m:[93m12[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '() => void' is not assignable to type '<K extends keyof WriteStreamEvents>(event: K, listener: WriteStreamEvents[K]) => WriteStream'.
+  Type 'void' is not assignable to type 'WriteStream'.
+
+[7m12[0m       on: () => {},
+[7m  [0m [91m      ~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-0cb14c6/testCase.test.ts[0m:[93m15[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '() => void' is not assignable to type '{ (chunk: any, callback?: ((error: Error | null | undefined) => void) | undefined): boolean; (chunk: any, encoding: BufferEncoding, callback?: ((error: Error | null | undefined) => void) | undefined): boolean; }'.
+  Type 'void' is not assignable to type 'boolean'.
+
+[7m15[0m       write: () => {},
+[7m  [0m [91m      ~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-0cb14c6/testCase.test.ts[0m:[93m16[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '() => void' is not assignable to type '(error?: Error | undefined) => WriteStream'.
+  Type 'void' is not assignable to type 'WriteStream'.
+
+[7m16[0m       destroy: () => {}
+[7m  [0m [91m      ~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-0cb14c6/testCase.test.ts[0m:[93m19[0m:[93m7[0m - [91merror[0m[90m TS18047: [0m'dirty._writeStream' is possibly 'null'.
+
+[7m19[0m       dirty._writeStream.on('drain', () => {
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-0cb14c6/testCase.test.ts[0m:[93m26[0m:[93m7[0m - [91merror[0m[90m TS18047: [0m'dirty._writeStream' is possibly 'null'.
+
+[7m26[0m       dirty._writeStream.emit('drain');
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-0cb14c6/testCase.test.ts
+  Dirty
+    ✕ should throw an error when _inFlightWrites is negative (2 ms)
+
+  ● Dirty › should throw an error when _inFlightWrites is negative
+
+    TypeError: dirty._writeStream.emit is not a function
+
+      24 |         }
+      25 |       });
+    > 26 |       dirty._writeStream.emit('drain');
+         |                          ^
+      27 |     };
+      28 |     dirty._flush();
+      29 |   });
+
+      at Dirty.emit [as _flush] (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-0cb14c6/testCase.test.ts:26:26)
+      at Object._flush (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-0cb14c6/testCase.test.ts:28:11)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.316 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-0cb14c6/testCase.test.ts".

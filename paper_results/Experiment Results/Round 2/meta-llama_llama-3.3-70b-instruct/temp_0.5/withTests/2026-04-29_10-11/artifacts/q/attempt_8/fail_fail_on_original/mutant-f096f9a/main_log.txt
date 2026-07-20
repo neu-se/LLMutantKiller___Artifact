@@ -1,0 +1,58 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-f096f9a/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-f096f9a/testCase.test.ts
+  Q.any
+    ✕ should fulfill with the first resolved promise (1 ms)
+    ✕ should reject with an error if all promises are rejected
+    ✕ should fulfill with the first resolved promise when one of the promises is not a promise
+
+  ● Q.any › should fulfill with the first resolved promise
+
+    TypeError: Cannot read properties of undefined (reading 'defer')
+
+      3 | describe("Q.any", () => {
+      4 |     it("should fulfill with the first resolved promise", () => {
+    > 5 |         const deferred1 = Q.defer();
+        |                             ^
+      6 |         const deferred2 = Q.defer();
+      7 |
+      8 |         const promise = Q.any([deferred1.promise, deferred2.promise]);
+
+      at Object.defer (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-f096f9a/testCase.test.ts:5:29)
+
+  ● Q.any › should reject with an error if all promises are rejected
+
+    TypeError: Cannot read properties of undefined (reading 'defer')
+
+      21 |
+      22 |     it("should reject with an error if all promises are rejected", () => {
+    > 23 |         const deferred1 = Q.defer();
+         |                             ^
+      24 |         const deferred2 = Q.defer();
+      25 |
+      26 |         const promise = Q.any([deferred1.promise, deferred2.promise]);
+
+      at Object.defer (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-f096f9a/testCase.test.ts:23:29)
+
+  ● Q.any › should fulfill with the first resolved promise when one of the promises is not a promise
+
+    TypeError: Cannot read properties of undefined (reading 'defer')
+
+      41 |
+      42 |     it("should fulfill with the first resolved promise when one of the promises is not a promise", () => {
+    > 43 |         const deferred1 = Q.defer();
+         |                             ^
+      44 |
+      45 |         const promise = Q.any([deferred1.promise, "Not a promise"]);
+      46 |
+
+      at Object.defer (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-f096f9a/testCase.test.ts:43:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        3.163 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-f096f9a/testCase.test.ts".

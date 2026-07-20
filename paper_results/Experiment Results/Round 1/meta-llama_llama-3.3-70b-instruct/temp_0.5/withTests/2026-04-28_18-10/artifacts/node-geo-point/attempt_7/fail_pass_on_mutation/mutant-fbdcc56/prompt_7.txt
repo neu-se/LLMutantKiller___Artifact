@@ -1,0 +1,54 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_6/pending_category/mutant-fbdcc56/testCase.test.ts[0m:[93m9[0m:[93m54[0m - [91merror[0m[90m TS2339: [0mProperty 'radians' does not exist on type 'Math'.
+
+[7m9[0m     const expectedLatitude = Math.asin(Math.sin(Math.radians(0)) * Math.cos(Math.radians(distance / 6371e3)) + Math.cos(Math.radians(0)) * Math.sin(Math.radians(distance / 6371e3)) * Math.cos(Math.radians(bearing)));
+[7m [0m [91m                                                     ~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_6/pending_category/mutant-fbdcc56/testCase.test.ts[0m:[93m9[0m:[93m82[0m - [91merror[0m[90m TS2339: [0mProperty 'radians' does not exist on type 'Math'.
+
+[7m9[0m     const expectedLatitude = Math.asin(Math.sin(Math.radians(0)) * Math.cos(Math.radians(distance / 6371e3)) + Math.cos(Math.radians(0)) * Math.sin(Math.radians(distance / 6371e3)) * Math.cos(Math.radians(bearing)));
+[7m [0m [91m                                                                                 ~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_6/pending_category/mutant-fbdcc56/testCase.test.ts[0m:[93m9[0m:[93m126[0m - [91merror[0m[90m TS2339: [0mProperty 'radians' does not exist on type 'Math'.
+
+[7m9[0m     const expectedLatitude = Math.asin(Math.sin(Math.radians(0)) * Math.cos(Math.radians(distance / 6371e3)) + Math.cos(Math.radians(0)) * Math.sin(Math.radians(distance / 6371e3)) * Math.cos(Math.radians(bearing)));
+[7m [0m [91m                                                                                                                             ~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_6/pending_category/mutant-fbdcc56/testCase.test.ts[0m:[93m9[0m:[93m154[0m - [91merror[0m[90m TS2339: [0mProperty 'radians' does not exist on type 'Math'.
+
+[7m9[0m     const expectedLatitude = Math.asin(Math.sin(Math.radians(0)) * Math.cos(Math.radians(distance / 6371e3)) + Math.cos(Math.radians(0)) * Math.sin(Math.radians(distance / 6371e3)) * Math.cos(Math.radians(bearing)));
+[7m [0m [91m                                                                                                                                                         ~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_6/pending_category/mutant-fbdcc56/testCase.test.ts[0m:[93m9[0m:[93m198[0m - [91merror[0m[90m TS2339: [0mProperty 'radians' does not exist on type 'Math'.
+
+[7m9[0m     const expectedLatitude = Math.asin(Math.sin(Math.radians(0)) * Math.cos(Math.radians(distance / 6371e3)) + Math.cos(Math.radians(0)) * Math.sin(Math.radians(distance / 6371e3)) * Math.cos(Math.radians(bearing)));
+[7m [0m [91m                                                                                                                                                                                                     ~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_6/pending_category/mutant-fbdcc56/testCase.test.ts[0m:[93m10[0m:[93m51[0m - [91merror[0m[90m TS2339: [0mProperty 'degrees' does not exist on type 'Math'.
+
+[7m10[0m     expect(destination.latitude).toBeCloseTo(Math.degrees(expectedLatitude), 6);
+[7m  [0m [91m                                                  ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_6/pending_category/mutant-fbdcc56/testCase.test.ts
+  GeoPoint
+    ✕ should calculate destination correctly (1 ms)
+
+  ● GeoPoint › should calculate destination correctly
+
+    TypeError: Math.radians is not a function
+
+       7 |     const bearing = 45;
+       8 |     const destination = GeoPoint.calculateDestination({ latitude: 0, longitude: 0 }, distance, bearing);
+    >  9 |     const expectedLatitude = Math.asin(Math.sin(Math.radians(0)) * Math.cos(Math.radians(distance / 6371e3)) + Math.cos(Math.radians(0)) * Math.sin(Math.radians(distance / 6371e3)) * Math.cos(Math.radians(bearing)));
+         |                                                      ^
+      10 |     expect(destination.latitude).toBeCloseTo(Math.degrees(expectedLatitude), 6);
+      11 |   });
+      12 | });
+
+      at Object.radians (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_6/pending_category/mutant-fbdcc56/testCase.test.ts:9:54)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.689 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_6/pending_category/mutant-fbdcc56/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

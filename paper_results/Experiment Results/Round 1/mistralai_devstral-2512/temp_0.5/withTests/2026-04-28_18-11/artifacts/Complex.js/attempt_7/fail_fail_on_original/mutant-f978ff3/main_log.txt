@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-f978ff3/testCase.test.ts
+  Complex.csch() method mutation test
+    ✕ should detect the division vs multiplication mutation in csch calculation (3 ms)
+
+  ● Complex.csch() method mutation test › should detect the division vs multiplication mutation in csch calculation
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 1.0782296946540224
+    Received: 1.4122530713564214
+
+    Expected precision:    5
+    Expected difference: < 0.000005
+    Received difference:   0.334023376702399
+
+      29 |     // The original magnitude should be much smaller than the mutated magnitude
+      30 |     // because we're dividing by d (|d| > 1) vs multiplying by d
+    > 31 |     expect(actual_magnitude).toBeCloseTo(original_magnitude, 5);
+         |                              ^
+      32 |
+      33 |     // The mutated version would have a much larger magnitude
+      34 |     // This difference is what we're testing for
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-f978ff3/testCase.test.ts:31:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.782 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-f978ff3/testCase.test.ts".

@@ -1,0 +1,32 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-681d07e/testCase.test.ts
+  pull partial sink
+    ✕ should throw TypeError with specific message when partial sink is called more than once (15 ms)
+
+  ● pull partial sink › should throw TypeError with specific message when partial sink is called more than once
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "partial sink should only be called once!"
+    Received message:   "Cannot read properties of null (reading '0')"
+
+          20 |       // Prioritize common case of small number of pulls.
+          21 |       switch (length) {
+        > 22 |       case 1: return pull(read, ref[0])
+             |                                    ^
+          23 |       case 2: return pull(read, ref[0], ref[1])
+          24 |       case 3: return pull(read, ref[0], ref[1], ref[2])
+          25 |       case 4: return pull(read, ref[0], ref[1], ref[2], ref[3])
+
+      at read (../subject_repositories/pull-stream/pull.js:22:36)
+      at partialSink (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-681d07e/testCase.test.ts:18:7)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-681d07e/testCase.test.ts:19:8)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-681d07e/testCase.test.ts:19:8)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.242 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-681d07e/testCase.test.ts".

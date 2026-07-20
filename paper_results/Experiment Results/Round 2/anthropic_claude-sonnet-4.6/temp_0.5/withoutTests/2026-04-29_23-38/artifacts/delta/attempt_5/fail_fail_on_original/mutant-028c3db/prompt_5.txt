@@ -1,0 +1,39 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-028c3db/testCase.test.ts
+  Delta.compose
+    ✕ should correctly compose when optimization early-return path includes remaining ops (5 ms)
+
+  ● Delta.compose › should correctly compose when optimization early-return path includes remaining ops
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        Object {
+    -     "insert": "Hello",
+    +     "insert": "Hello World",
+        },
+      ]
+
+      68 |     // No - in compose, if other doesn't have ops for remaining chars of this,
+      69 |     // those chars are dropped (other implicitly deletes them)
+    > 70 |     expect(result.ops).toEqual([{ insert: "Hello" }]);
+         |                        ^
+      71 |   });
+      72 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-028c3db/testCase.test.ts:70:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.782 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-028c3db/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

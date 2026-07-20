@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+(node:77320) [DEP0170] DeprecationWarning: The URL http://:example.com/path is invalid. Future versions of Node.js will throw an error.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-c6fa344/testCase.test.ts
+  parse function with protocol-less URL mutation test
+    ✕ should correctly handle protocol-less URLs starting with colon (4 ms)
+
+  ● parse function with protocol-less URL mutation test › should correctly handle protocol-less URLs starting with colon
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "http://:example.com/path"
+    Received: "http:///:example.com/path"
+
+      5 |     const result = parse(":example.com/path");
+      6 |     expect(result).not.toBeNull();
+    > 7 |     expect(result?.url).toBe("http://:example.com/path");
+        |                         ^
+      8 |   });
+      9 | });
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-c6fa344/testCase.test.ts:7:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.264 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-c6fa344/testCase.test.ts".

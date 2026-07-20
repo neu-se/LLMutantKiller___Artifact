@@ -1,0 +1,34 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-a367ed4/testCase.test.ts
+  extract function
+    ✕ should handle href with length less than 3 correctly (14 ms)
+
+  ● extract function › should handle href with length less than 3 correctly
+
+    expect(received).toHaveLength(expected)
+
+    Expected length: 1
+    Received length: 0
+    Received array:  []
+
+       6 |     const baseUrl = 'http://www.stackoverflow.com/aaa/bbb/ccc';
+       7 |     const result = extract(html, baseUrl);
+    >  8 |     expect(result).toHaveLength(1);
+         |                    ^
+       9 |     expect(result[0].url).toBe('http://www.stackoverflow.com/aaa/bbb/ab');
+      10 |   });
+      11 | });
+
+      at Object.toHaveLength (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-a367ed4/testCase.test.ts:8:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.216 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-a367ed4/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

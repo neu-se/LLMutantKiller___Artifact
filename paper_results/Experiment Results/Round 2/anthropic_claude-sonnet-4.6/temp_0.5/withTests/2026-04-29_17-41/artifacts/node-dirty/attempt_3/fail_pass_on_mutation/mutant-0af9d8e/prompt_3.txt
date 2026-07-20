@@ -1,0 +1,34 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-0af9d8e/testCase.test.ts[0m:[93m4[0m:[93m28[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m4[0m import { rimrafSync } from 'rimraf';
+[7m [0m [91m                           ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-0af9d8e/testCase.test.ts
+  drain event after write stream backpressure
+    ✕ should emit drain event when write stream drains with empty queue and no in-flight writes (85 ms)
+
+  ● drain event after write stream backpressure › should emit drain event when write stream drains with empty queue and no in-flight writes
+
+    TypeError: (0 , rimraf_1.rimrafSync) is not a function
+
+      38 |       });
+      39 |     } finally {
+    > 40 |       rimrafSync(tmpDir);
+         |                 ^
+      41 |     }
+      42 |   });
+      43 | });
+
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-0af9d8e/testCase.test.ts:40:17)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.752 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-0af9d8e/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

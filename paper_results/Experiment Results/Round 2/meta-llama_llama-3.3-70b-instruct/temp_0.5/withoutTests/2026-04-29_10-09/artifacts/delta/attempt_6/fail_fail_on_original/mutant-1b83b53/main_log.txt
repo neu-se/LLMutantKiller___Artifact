@@ -1,0 +1,37 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-1b83b53/testCase.test.ts[0m:[93m11[0m:[93m35[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 2, '(o: {}): string[]', gave the following error.
+    Argument of type 'number | Record<string, unknown> | undefined' is not assignable to parameter of type '{}'.
+      Type 'undefined' is not assignable to type '{}'.
+  Overload 2 of 2, '(o: object): string[]', gave the following error.
+    Argument of type 'number | Record<string, unknown> | undefined' is not assignable to parameter of type 'object'.
+      Type 'undefined' is not assignable to type 'object'.
+
+[7m11[0m     const embedType = Object.keys(composed.ops[0].retain)[0];
+[7m  [0m [91m                                  ~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-1b83b53/testCase.test.ts
+  Delta
+    ✕ should correctly compose two deltas with embeds (4 ms)
+
+  ● Delta › should correctly compose two deltas with embeds
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 2
+
+       8 |     delta2.insert({ image: 'image2' });
+       9 |     const composed = delta1.compose(delta2);
+    > 10 |     expect(composed.ops.length).toBe(1);
+         |                                 ^
+      11 |     const embedType = Object.keys(composed.ops[0].retain)[0];
+      12 |     expect(embedType).toBe('image');
+      13 |   });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-1b83b53/testCase.test.ts:10:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.475 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-1b83b53/testCase.test.ts".

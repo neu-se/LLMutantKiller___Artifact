@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_2/pending_category/mutant-d9f9fcf/testCase.test.ts[0m:[93m14[0m:[93m90[0m - [91merror[0m[90m TS2339: [0mProperty 'COMPRESSION_LEVEL' does not exist on type 'typeof ZipAFolder'.
+
+[7m14[0m     await ZipAFolder.zip(path.join(testDir, src), zipFilePath, { compression: ZipAFolder.COMPRESSION_LEVEL.uncompressed });
+[7m  [0m [91m                                                                                         ~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_2/pending_category/mutant-d9f9fcf/testCase.test.ts
+  ZipAFolder
+    ✕ should create an uncompressed zip archive when compression level is set to uncompressed (2 ms)
+
+  ● ZipAFolder › should create an uncompressed zip archive when compression level is set to uncompressed
+
+    TypeError: Cannot read properties of undefined (reading 'uncompressed')
+
+      12 |     await fs.promises.mkdir(path.join(testDir, src), { recursive: true });
+      13 |     await fs.promises.writeFile(path.join(testDir, src, 'file.txt'), 'Hello World!');
+    > 14 |     await ZipAFolder.zip(path.join(testDir, src), zipFilePath, { compression: ZipAFolder.COMPRESSION_LEVEL.uncompressed });
+         |                                                                                                            ^
+      15 |     const stats = await fs.promises.stat(zipFilePath);
+      16 |     expect(stats.size).toBeGreaterThan(0);
+      17 |     await rimraf.sync(testDir);
+
+      at Object.uncompressed (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_2/pending_category/mutant-d9f9fcf/testCase.test.ts:14:108)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.432 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_2/pending_category/mutant-d9f9fcf/testCase.test.ts".

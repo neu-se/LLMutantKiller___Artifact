@@ -1,0 +1,60 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/node-dirty/lib/dirty/dirty.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/node-dirty/lib/dirty/dirty.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-1c771fa/testCase.test.ts (6.487 s)
+  Dirty
+    ✕ should emit an error when loading corrupted row (5002 ms)
+
+  ● Dirty › should emit an error when loading corrupted row
+
+    TypeError: Cannot read properties of undefined (reading 'val')
+
+      138 |
+      139 |
+    > 140 |             if (row.val === undefined) {
+          |                     ^
+      141 |               this._data.delete(row.key);
+      142 |             } else {
+      143 |               this._data.set(row.key, row.val);
+
+      at val (../subject_repositories/node-dirty/lib/dirty/dirty.js:140:21)
+          at Array.forEach (<anonymous>)
+      at ReadStream.forEach (../subject_repositories/node-dirty/lib/dirty/dirty.js:125:15)
+
+  ● Dirty › should emit an error when loading corrupted row
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 2
+    Received: 1
+
+      24 |     setTimeout(() => {
+      25 |       if (!loaded) {
+    > 26 |         expect(1).toBe(2); // If we reach this point, it means the 'load' event was not emitted
+         |                   ^
+      27 |         done();
+      28 |       }
+      29 |     }, 1000);
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-1c771fa/testCase.test.ts:26:19)
+
+  ● Dirty › should emit an error when loading corrupted row
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      3 |
+      4 | describe('Dirty', () => {
+    > 5 |   it('should emit an error when loading corrupted row', (done) => {
+        |   ^
+      6 |     const dbPath = 'test.db';
+      7 |     const dirty = new Dirty(dbPath);
+      8 |
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-1c771fa/testCase.test.ts:5:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-1c771fa/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.675 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-1c771fa/testCase.test.ts".

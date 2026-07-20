@@ -1,0 +1,27 @@
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_10/pending_category/mutant-cf7ede4/testCase.test.ts
+  Zip-A-Folder Test
+    ✕ should use the default compression level when no compression level is provided (2 ms)
+
+  ● Zip-A-Folder Test › should use the default compression level when no compression level is provided
+
+    expect(received).resolves.not.toThrow()
+
+    Received promise rejected instead of resolved
+    Rejected to value: [Error: Source and target folder must be different.]
+
+       6 |
+       7 |     it('should use the default compression level when no compression level is provided', async () => {
+    >  8 |         await expect(zip(path.resolve(__dirname, './'), testZIP)).resolves.not.toThrow();
+         |               ^
+       9 |         await expect(zip(path.resolve(__dirname, './'), testZIP, { compression: undefined })).rejects.toThrow();
+      10 |     });
+      11 | });
+
+      at expect (node_modules/expect/build/index.js:113:15)
+      at Object.expect (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_10/pending_category/mutant-cf7ede4/testCase.test.ts:8:15)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.385 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_10/pending_category/mutant-cf7ede4/testCase.test.ts".

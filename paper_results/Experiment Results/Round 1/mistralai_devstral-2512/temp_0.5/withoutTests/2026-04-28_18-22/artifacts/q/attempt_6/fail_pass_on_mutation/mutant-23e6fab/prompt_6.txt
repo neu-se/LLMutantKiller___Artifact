@@ -1,0 +1,40 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-23e6fab/testCase.test.ts
+  Q library stack trace filtering
+    ✕ should correctly filter internal stack frames from Firefox-style traces (3 ms)
+
+  ● Q library stack trace filtering › should correctly filter internal stack frames from Firefox-style traces
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      28 |           // but would remain in mutated code
+      29 |           const hasInternalFrame = filteredStack?.includes("q.js:100:10");
+    > 30 |           expect(hasInternalFrame).toBe(false);
+         |                                    ^
+      31 |         }
+      32 |       );
+      33 |   });
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-23e6fab/testCase.test.ts:30:36)
+      at rejected (../subject_repositories/q/q.js:864:24)
+      at _rejected (../subject_repositories/q/q.js:890:30)
+      at Promise.rejected (../subject_repositories/q/q.js:1142:31)
+      at Promise.apply [as promiseDispatch] (../subject_repositories/q/q.js:808:41)
+      at promiseDispatch (../subject_repositories/q/q.js:877:14)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.183 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-23e6fab/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

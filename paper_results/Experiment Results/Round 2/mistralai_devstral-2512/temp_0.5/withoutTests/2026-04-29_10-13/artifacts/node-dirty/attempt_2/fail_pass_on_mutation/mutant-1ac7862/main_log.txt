@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-1ac7862/testCase.test.ts[0m:[93m4[0m:[93m20[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m4[0m import rimraf from 'rimraf';
+[7m [0m [91m                   ~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-1ac7862/testCase.test.ts[0m:[93m23[0m:[93m27[0m - [91merror[0m[90m TS18047: [0m'db._writeStream' is possibly 'null'.
+
+[7m23[0m     const originalWrite = db._writeStream.write.bind(db._writeStream);
+[7m  [0m [91m                          ~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-1ac7862/testCase.test.ts[0m:[93m24[0m:[93m5[0m - [91merror[0m[90m TS18047: [0m'db._writeStream' is possibly 'null'.
+
+[7m24[0m     db._writeStream.write = function(data, cb) {
+[7m  [0m [91m    ~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-1ac7862/testCase.test.ts[0m:[93m26[0m:[93m34[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 2, '(chunk: any, callback?: ((error: Error | null | undefined) => void) | undefined): boolean', gave the following error.
+    Argument of type 'BufferEncoding | ((error: Error | null | undefined) => void) | undefined' is not assignable to parameter of type '((error: Error | null | undefined) => void) | undefined'.
+      Type 'string' is not assignable to type '(error: Error | null | undefined) => void'.
+  Overload 2 of 2, '(chunk: any, encoding: BufferEncoding, callback?: ((error: Error | null | undefined) => void) | undefined): boolean', gave the following error.
+    Argument of type 'BufferEncoding | ((error: Error | null | undefined) => void) | undefined' is not assignable to parameter of type 'BufferEncoding'.
+      Type 'undefined' is not assignable to type 'BufferEncoding'.
+
+[7m26[0m       return originalWrite(data, cb);
+[7m  [0m [91m                                 ~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+PASS llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-1ac7862/testCase.test.ts
+  Dirty database flush behavior
+    ✓ should process all queued writes in a single flush cycle (55 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        1.677 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-1ac7862/testCase.test.ts".

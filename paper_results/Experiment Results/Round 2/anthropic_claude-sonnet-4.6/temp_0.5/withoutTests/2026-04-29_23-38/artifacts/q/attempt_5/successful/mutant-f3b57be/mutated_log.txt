@@ -1,0 +1,25 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-f3b57be/testCase.test.ts
+  array_reduce fallback
+    ✕ uses first element as basis when called without initial value (9 ms)
+
+  ● array_reduce fallback › uses first element as basis when called without initial value
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 6
+    Received: NaN
+
+      27 |     // Now call array_reduce without initial value
+      28 |     const result = arrayReduce([1, 2, 3], (acc: number, val: number) => acc + val);
+    > 29 |     expect(result).toBe(6); // 1+2+3 with original, but 0+1+2+3=NaN or different with mutation
+         |                    ^
+      30 |   });
+      31 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-f3b57be/testCase.test.ts:29:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.168 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-f3b57be/testCase.test.ts".

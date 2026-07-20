@@ -1,0 +1,41 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-f0c6ae2/testCase.test.ts[0m:[93m1[0m:[93m26[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import { GeoPoint } from "../../../../../../../../../../../subject_repositories/node-geo-point/src/geo-point.ts";
+[7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-f0c6ae2/testCase.test.ts[0m:[93m11[0m:[93m28[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ type: string; coordinates: number[]; }' is not assignable to parameter of type 'Point'.
+  Types of property 'type' are incompatible.
+    Type 'string' is not assignable to type '"Point"'.
+
+[7m11[0m       GeoPoint.fromGeoJSON(invalidGeoJSON);
+[7m  [0m [91m                           ~~~~~~~~~~~~~~[0m
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-f0c6ae2/testCase.test.ts
+  GeoPoint.fromGeoJSON
+    ✕ should throw a TypeError with a specific message when the type is not Point (16 ms)
+
+  ● GeoPoint.fromGeoJSON › should throw a TypeError with a specific message when the type is not Point
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "The value of type should be 'Point'"
+    Received message:   ""
+
+          67 |
+          68 |     if (point.type !== 'Point') {
+        > 69 |          throw new TypeError("");
+             |                ^
+          70 |
+          71 |     }
+          72 |
+
+      at Function.fromGeoJSON (../subject_repositories/node-geo-point/src/geo-point.ts:69:16)
+      at fromGeoJSON (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-f0c6ae2/testCase.test.ts:11:16)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-f0c6ae2/testCase.test.ts:12:8)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-f0c6ae2/testCase.test.ts:12:8)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.762 s, estimated 1 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-f0c6ae2/testCase.test.ts".

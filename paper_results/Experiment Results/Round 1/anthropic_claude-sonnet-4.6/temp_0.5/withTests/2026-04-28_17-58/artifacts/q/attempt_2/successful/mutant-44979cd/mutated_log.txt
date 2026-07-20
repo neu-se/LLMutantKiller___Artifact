@@ -1,0 +1,26 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-44979cd/testCase.test.ts
+  Q module CommonJS condition check
+    ✕ should throw or use fallback when exports is not an object but module is an object (9 ms)
+
+  ● Q module CommonJS condition check › should throw or use fallback when exports is not an object but module is an object
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      33 |     // Original: should throw because no valid environment is detected
+      34 |     // Mutant: should NOT throw because it takes the CommonJS branch
+    > 35 |     expect(threw).toBe(true);
+         |                   ^
+      36 |     expect(errorMessage).toContain("not anticipated");
+      37 |   });
+      38 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-44979cd/testCase.test.ts:35:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.251 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-44979cd/testCase.test.ts".

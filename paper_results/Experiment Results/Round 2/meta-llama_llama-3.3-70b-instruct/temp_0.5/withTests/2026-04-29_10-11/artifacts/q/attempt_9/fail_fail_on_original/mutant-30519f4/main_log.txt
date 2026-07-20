@@ -1,0 +1,73 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-30519f4/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-30519f4/testCase.test.ts
+  Q.all
+    ✕ should reject when any promise is rejected (7 ms)
+    ✕ should fulfill when all promises are fulfilled
+    ✕ should fulfill with an empty array when given an empty array (2 ms)
+    ✕ should reject when a promise is pending and not fulfilled
+
+  ● Q.all › should reject when any promise is rejected
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      3 | describe("Q.all", () => {
+      4 |     it("should reject when any promise is rejected", () => {
+    > 5 |         const promise1 = Q(1);
+        |                           ^
+      6 |         const promise2 = Q.reject("Error");
+      7 |         const promise3 = Q(3);
+      8 |
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-30519f4/testCase.test.ts:5:27)
+
+  ● Q.all › should fulfill when all promises are fulfilled
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      15 |
+      16 |     it("should fulfill when all promises are fulfilled", () => {
+    > 17 |         const promise1 = Q(1);
+         |                           ^
+      18 |         const promise2 = Q(2);
+      19 |         const promise3 = Q(3);
+      20 |
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-30519f4/testCase.test.ts:17:27)
+
+  ● Q.all › should fulfill with an empty array when given an empty array
+
+    TypeError: Cannot read properties of undefined (reading 'all')
+
+      25 |
+      26 |     it("should fulfill with an empty array when given an empty array", () => {
+    > 27 |         return Q.all([]).then((values: any[]) => {
+         |                  ^
+      28 |             expect(values).toEqual([]);
+      29 |         });
+      30 |     });
+
+      at Object.all (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-30519f4/testCase.test.ts:27:18)
+
+  ● Q.all › should reject when a promise is pending and not fulfilled
+
+    TypeError: Cannot read properties of undefined (reading 'defer')
+
+      31 |
+      32 |     it("should reject when a promise is pending and not fulfilled", () => {
+    > 33 |         const promise1 = Q.defer().promise;
+         |                            ^
+      34 |         const promise2 = Q(2);
+      35 |         const promise3 = Q(3);
+      36 |
+
+      at Object.defer (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-30519f4/testCase.test.ts:33:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       4 failed, 4 total
+Snapshots:   0 total
+Time:        2.909 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-30519f4/testCase.test.ts".

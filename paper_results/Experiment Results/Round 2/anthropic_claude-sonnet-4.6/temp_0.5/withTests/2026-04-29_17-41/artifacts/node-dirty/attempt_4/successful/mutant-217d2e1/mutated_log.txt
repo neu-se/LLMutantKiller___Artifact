@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-217d2e1/testCase.test.ts (6.166 s)
+  dirty return value from corrupted row handler
+    ✕ should return empty string from corrupted row forEach callback (5002 ms)
+
+  ● dirty return value from corrupted row handler › should return empty string from corrupted row forEach callback
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: ""
+    Received array: ["Stryker was here!"]
+
+      28 |       
+      29 |       // The corrupted row callback should return '' not "Stryker was here!"
+    > 30 |       expect(returnValues).toContain('');
+         |                            ^
+      31 |       expect(returnValues).not.toContain('Stryker was here!');
+      32 |       done();
+      33 |     });
+
+      at Dirty.toContain (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-217d2e1/testCase.test.ts:30:28)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:155:16)
+
+  ● dirty return value from corrupted row handler › should return empty string from corrupted row forEach callback
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      3 |
+      4 | describe('dirty return value from corrupted row handler', () => {
+    > 5 |   it('should return empty string from corrupted row forEach callback', (done) => {
+        |   ^
+      6 |     const returnValues: any[] = [];
+      7 |     const originalForEach = Array.prototype.forEach;
+      8 |     
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-217d2e1/testCase.test.ts:5:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-217d2e1/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.332 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-217d2e1/testCase.test.ts".

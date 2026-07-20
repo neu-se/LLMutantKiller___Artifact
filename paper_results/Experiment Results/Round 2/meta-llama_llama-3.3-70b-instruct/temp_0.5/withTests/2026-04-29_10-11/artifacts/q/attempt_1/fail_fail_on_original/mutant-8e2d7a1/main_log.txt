@@ -1,0 +1,74 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-8e2d7a1/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-8e2d7a1/testCase.test.ts[0m:[93m7[0m:[93m30[0m - [91merror[0m[90m TS7006: [0mParameter 'result' implicitly has an 'any' type.
+
+[7m7[0m         return promise.then((result) => {
+[7m [0m [91m                             ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-8e2d7a1/testCase.test.ts[0m:[93m9[0m:[93m27[0m - [91merror[0m[90m TS2339: [0mProperty 'test' does not exist on type '{}'.
+
+[7m9[0m             expect(object.test).toBe("value");
+[7m [0m [91m                          ~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-8e2d7a1/testCase.test.ts[0m:[93m17[0m:[93m13[0m - [91merror[0m[90m TS7006: [0mParameter 'error' implicitly has an 'any' type.
+
+[7m17[0m         }, (error) => {
+[7m  [0m [91m            ~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-8e2d7a1/testCase.test.ts[0m:[93m27[0m:[93m13[0m - [91merror[0m[90m TS7006: [0mParameter 'error' implicitly has an 'any' type.
+
+[7m27[0m         }, (error) => {
+[7m  [0m [91m            ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-8e2d7a1/testCase.test.ts
+  Promise set method
+    ✕ should set a property on an object and return a promise for undefined (2 ms)
+    ✕ should reject if the object is not an object (1 ms)
+    ✕ should reject if the key is not a string or symbol (1 ms)
+
+  ● Promise set method › should set a property on an object and return a promise for undefined
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      4 |     it("should set a property on an object and return a promise for undefined", () => {
+      5 |         const object = {};
+    > 6 |         const promise = Q(object).set("test", "value");
+        |                          ^
+      7 |         return promise.then((result) => {
+      8 |             expect(result).toBeUndefined();
+      9 |             expect(object.test).toBe("value");
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-8e2d7a1/testCase.test.ts:6:26)
+
+  ● Promise set method › should reject if the object is not an object
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      12 |
+      13 |     it("should reject if the object is not an object", () => {
+    > 14 |         const promise = Q("not an object").set("test", "value");
+         |                          ^
+      15 |         return promise.then(() => {
+      16 |             expect(true).toBe(false);
+      17 |         }, (error) => {
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-8e2d7a1/testCase.test.ts:14:26)
+
+  ● Promise set method › should reject if the key is not a string or symbol
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      22 |     it("should reject if the key is not a string or symbol", () => {
+      23 |         const object = {};
+    > 24 |         const promise = Q(object).set(123, "value");
+         |                          ^
+      25 |         return promise.then(() => {
+      26 |             expect(true).toBe(false);
+      27 |         }, (error) => {
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-8e2d7a1/testCase.test.ts:24:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        3.367 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-8e2d7a1/testCase.test.ts".

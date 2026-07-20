@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/pull-stream/index.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/pull-stream/index.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-81370fe/testCase.test.ts
+  pull with duplex stream object that transforms data
+    ✕ duplex object should transform values in pipeline (4 ms)
+
+  ● pull with duplex stream object that transforms data › duplex object should transform values in pipeline
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Array [
+    +   1,
+        2,
+    -   4,
+    -   6,
+    +   3,
+      ]
+
+      24 |       pull.collect(function(err: any, ary: number[]) {
+      25 |         expect(err).toBeFalsy()
+    > 26 |         expect(ary).toEqual([2, 4, 6])
+         |                     ^
+      27 |         done()
+      28 |       })
+      29 |     )
+
+      at toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-81370fe/testCase.test.ts:26:21)
+      at cb (../subject_repositories/pull-stream/sinks/reduce.js:10:5)
+      at done (../subject_repositories/pull-stream/sinks/drain.js:26:24)
+      at cb (../subject_repositories/pull-stream/sources/values.js:19:7)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:45:8)
+      at s (../subject_repositories/pull-stream/pull.js:41:14)
+      at Object.pull (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-81370fe/testCase.test.ts:21:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.462 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-81370fe/testCase.test.ts".

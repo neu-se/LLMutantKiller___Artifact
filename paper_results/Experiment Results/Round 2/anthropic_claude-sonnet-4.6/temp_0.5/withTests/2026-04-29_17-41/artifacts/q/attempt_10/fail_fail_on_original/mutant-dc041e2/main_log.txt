@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-dc041e2/testCase.test.ts
+  Q ses branch
+    ✕ should correctly handle ses.ok() check in window context (3 ms)
+
+  ● Q ses branch › should correctly handle ses.ok() check in window context
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      75 |     // Inside window block: ses.ok() returns false -> !false = true -> set window.Q
+      76 |     // Mutated: ses.ok() returns false -> false -> skip -> throw error or not set window.Q
+    > 77 |     expect(target.window.Q).toBeDefined();
+         |                             ^
+      78 |     expect(typeof target.window.Q).toBe("function");
+      79 |   });
+      80 | });
+
+      at Object.toBeDefined (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-dc041e2/testCase.test.ts:77:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.266 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-dc041e2/testCase.test.ts".

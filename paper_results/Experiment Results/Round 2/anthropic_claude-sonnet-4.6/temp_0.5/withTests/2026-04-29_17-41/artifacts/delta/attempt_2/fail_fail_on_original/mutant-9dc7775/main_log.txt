@@ -1,0 +1,40 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-9dc7775/testCase.test.ts
+  transform()
+    ✕ does not throw when thisData is null and otherData is an embed object (5 ms)
+
+  ● transform() › does not throw when thisData is null and otherData is an embed object
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 3
+
+    @@ -1,8 +1,11 @@
+      Delta {
+        "ops": Array [
+          Object {
+    +       "retain": 1,
+    +     },
+    +     Object {
+            "retain": Object {
+              "delta": Array [
+                Object {
+                  "insert": "b",
+                },
+
+      18 |       // Mutant: true replaces null check, enters embed handler, Object.keys(null) throws TypeError
+      19 |       const expected = new Delta().retain({ delta: [{ insert: 'b' }] });
+    > 20 |       expect(a.transform(b, true)).toEqual(expected);
+         |                                    ^
+      21 |     } finally {
+      22 |       Delta.unregisterEmbed('delta');
+      23 |     }
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-9dc7775/testCase.test.ts:20:36)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.654 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-9dc7775/testCase.test.ts".

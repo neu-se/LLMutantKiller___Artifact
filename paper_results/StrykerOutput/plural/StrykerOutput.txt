@@ -1,0 +1,238 @@
+node v20.19.4
+npm 11.5.1
+$ ./node_modules/.bin/stryker run stryker.batch.config.json
+
+Generated stryker.batch.config.json:
+{
+  "reporters": [
+    "clear-text",
+    "progress",
+    "html",
+    "json"
+  ],
+  "coverageAnalysis": "off",
+  "concurrency": 1,
+  "timeoutMS": 30000,
+  "mutate": [
+    "index.js"
+  ]
+}
+
+[32m12:34:43 (8000) INFO ProjectReader[39m Found 1 of 10 file(s) to be mutated.
+[32m12:34:43 (8000) INFO Instrumenter[39m Instrumented 1 source file(s) with 180 mutant(s)
+[32m12:34:43 (8000) INFO ConcurrencyTokenProvider[39m Creating 1 test runner process(es).
+[32m12:34:43 (8000) INFO BroadcastReporter[39m Detected that current console does not support the "progress" reporter, downgrading to "progress-append-only" reporter
+[32m12:34:43 (8000) INFO DryRunExecutor[39m Starting initial test run (command test runner with "off" coverage analysis). This may take a while.
+[32m12:34:44 (8000) INFO DryRunExecutor[39m Initial test run succeeded. Ran 1 tests in 0 seconds (net 361 ms, overhead 0 ms).
+Mutation testing 15% (elapsed: <1m, remaining: <1m) 27/180 tested (4 survived, 0 timed out)
+Mutation testing 30% (elapsed: <1m, remaining: <1m) 55/180 tested (14 survived, 0 timed out)
+Mutation testing 46% (elapsed: <1m, remaining: <1m) 83/180 tested (19 survived, 0 timed out)
+Mutation testing 61% (elapsed: <1m, remaining: <1m) 110/180 tested (19 survived, 0 timed out)
+Mutation testing 76% (elapsed: <1m, remaining: <1m) 138/180 tested (27 survived, 0 timed out)
+Mutation testing 92% (elapsed: ~1m, remaining: <1m) 166/180 tested (31 survived, 0 timed out)
+
+All tests
+  ✓ All tests (killed 143)
+
+[Survived] ArrayDeclaration
+index.js:3:13
+-   var rules = []
++   var rules = ["Stryker was here"]
+
+[Survived] Regex
+index.js:16:9
+-   addRule(/[^aeiou]y$|quy$/i, function(w) { return w.substr(0, w.length - 1) + 'ies' })
++   addRule(/[^aeiou]y|quy$/i, function(w) { return w.substr(0, w.length - 1) + 'ies' })
+
+[Survived] Regex
+index.js:16:9
+-   addRule(/[^aeiou]y$|quy$/i, function(w) { return w.substr(0, w.length - 1) + 'ies' })
++   addRule(/[^aeiou]y$|quy/i, function(w) { return w.substr(0, w.length - 1) + 'ies' })
+
+[Survived] Regex
+index.js:19:9
+-   addRule(/x$|ch$|s$/i, function(w) { return w + 'es' })
++   addRule(/x|ch$|s$/i, function(w) { return w + 'es' })
+
+[Survived] Regex
+index.js:27:9
+-   addRule(/[aeiouy]o$/i, function(w) { return w + 's' });
++   addRule(/[aeiouy]o/i, function(w) { return w + 's' });
+
+[Survived] Regex
+index.js:27:9
+-   addRule(/[aeiouy]o$/i, function(w) { return w + 's' });
++   addRule(/[^aeiouy]o$/i, function(w) { return w + 's' });
+
+[Survived] ConditionalExpression
+index.js:33:7
+-     if (w === 'dwarf' || w === 'roof') {
++     if (false) {
+
+[Survived] LogicalOperator
+index.js:33:7
+-     if (w === 'dwarf' || w === 'roof') {
++     if (w === 'dwarf' && w === 'roof') {
+
+[Survived] ConditionalExpression
+index.js:33:7
+-     if (w === 'dwarf' || w === 'roof') {
++     if (false || w === 'roof') {
+
+[Survived] StringLiteral
+index.js:33:13
+-     if (w === 'dwarf' || w === 'roof') {
++     if (w === "" || w === 'roof') {
+
+[Survived] ConditionalExpression
+index.js:33:24
+-     if (w === 'dwarf' || w === 'roof') {
++     if (w === 'dwarf' || false) {
+
+[Survived] StringLiteral
+index.js:33:30
+-     if (w === 'dwarf' || w === 'roof') {
++     if (w === 'dwarf' || w === "") {
+
+[Survived] BlockStatement
+index.js:33:38
+-     if (w === 'dwarf' || w === 'roof') {
+-       return w + 's'
+-     }
++     if (w === 'dwarf' || w === 'roof') {}
+
+[Survived] StringLiteral
+index.js:34:16
+-       return w + 's'
++       return w + ""
+
+[Survived] StringLiteral
+index.js:40:9
+-   addRule('bacterium', 'bacteria')
++   addRule("", 'bacteria')
+
+[Survived] StringLiteral
+index.js:40:22
+-   addRule('bacterium', 'bacteria')
++   addRule('bacterium', "")
+
+[Survived] StringLiteral
+index.js:42:9
+-   addRule('cello', 'cellos')
++   addRule("", 'cellos')
+
+[Survived] StringLiteral
+index.js:42:18
+-   addRule('cello', 'cellos')
++   addRule('cello', "")
+
+[Survived] Regex
+index.js:49:9
+-   addRule(/^(?:wo)?man$/i, function(w) { return w.replace(/a/, 'e') })
++   addRule(/^(?:wo)?man/i, function(w) { return w.replace(/a/, 'e') })
+
+[Survived] StringLiteral
+index.js:60:45
+-     'alm', 'fece', 'bowel', 'sud', 'entrail', 'electronic', 'outskirt', 'odd', 'tropic',
++     'alm', 'fece', 'bowel', 'sud', 'entrail', "", 'outskirt', 'odd', 'tropic',
+
+[Survived] StringLiteral
+index.js:60:78
+-     'alm', 'fece', 'bowel', 'sud', 'entrail', 'electronic', 'outskirt', 'odd', 'tropic',
++     'alm', 'fece', 'bowel', 'sud', 'entrail', 'electronic', 'outskirt', 'odd', "",
+
+[Survived] StringLiteral
+index.js:61:36
+-     'riche', 'surrounding', 'thank', 'heroic', 'remain', 'amend'
++     'riche', 'surrounding', 'thank', "", 'remain', 'amend'
+
+[Survived] Regex
+index.js:67:9
+-   addRule(/ics$/i, function(w) { return w })
++   addRule(/ics/i, function(w) { return w })
+
+[Survived] ConditionalExpression
+index.js:76:7
+-     if (num !== 1 || num === undefined) {
++     if (true) {
+
+[Survived] LogicalOperator
+index.js:76:7
+-     if (num !== 1 || num === undefined) {
++     if (num !== 1 && num === undefined) {
+
+[Survived] ConditionalExpression
+index.js:76:7
+-     if (num !== 1 || num === undefined) {
++     if (false || num === undefined) {
+
+[Survived] EqualityOperator
+index.js:76:7
+-     if (num !== 1 || num === undefined) {
++     if (num === 1 || num === undefined) {
+
+[Survived] ConditionalExpression
+index.js:76:20
+-     if (num !== 1 || num === undefined) {
++     if (num !== 1 || false) {
+
+[Survived] EqualityOperator
+index.js:76:20
+-     if (num !== 1 || num === undefined) {
++     if (num !== 1 || num !== undefined) {
+
+[Survived] ConditionalExpression
+index.js:81:16
+-           return type(rule[1]) === 'Function' ? rule[1](word, rule[0]) : rule[1]
++           return true ? rule[1](word, rule[0]) : rule[1]
+
+[Survived] ConditionalExpression
+index.js:83:11
+-         if (type(rule[0]) === 'String' && rule[0] === word) {
++         if (true && rule[0] === word) {
+
+[Survived] ConditionalExpression
+index.js:84:16
+-           return type(rule[1]) === 'Function' ? rule[1](word) : rule[1]
++           return false ? rule[1](word) : rule[1]
+
+[Survived] StringLiteral
+index.js:84:34
+-           return type(rule[1]) === 'Function' ? rule[1](word) : rule[1]
++           return type(rule[1]) === "" ? rule[1](word) : rule[1]
+
+[Survived] ConditionalExpression
+index.js:103:7
+-     if (String.prototype.plural === undefined) {
++     if (true) {
+
+[Survived] BlockStatement
+index.js:104:45
+-       String.prototype.plural = function(num) {
+-         return plural(this, num)
+-       }
++       String.prototype.plural = function(num) {}
+
+[Survived] BlockStatement
+index.js:108:8
+-     else {
+-       throw new Error('Unable to add plural function to String object')
+-     }
++     else {}
+
+[Survived] StringLiteral
+index.js:109:21
+-       throw new Error('Unable to add plural function to String object')
++       throw new Error("")
+
+Ran 1.00 tests per mutant on average.
+----------|------------------|----------|-----------|------------|----------|----------|
+          | % Mutation score |          |           |            |          |          |
+File      |  total | covered | # killed | # timeout | # survived | # no cov | # errors |
+----------|--------|---------|----------|-----------|------------|----------|----------|
+All files |  79.44 |   79.44 |      143 |         0 |         37 |        0 |        0 |
+ index.js |  79.44 |   79.44 |      143 |         0 |         37 |        0 |        0 |
+----------|--------|---------|----------|-----------|------------|----------|----------|
+[32m12:35:49 (8000) INFO HtmlReporter[39m Your report can be found at: file:///Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/plural/reports/mutation/mutation.html
+[32m12:35:49 (8000) INFO JsonReporter[39m Your report can be found at: file:///Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/plural/reports/mutation/mutation.json
+[32m12:35:49 (8000) INFO MutationTestExecutor[39m Done in 1 minute and 5 seconds.

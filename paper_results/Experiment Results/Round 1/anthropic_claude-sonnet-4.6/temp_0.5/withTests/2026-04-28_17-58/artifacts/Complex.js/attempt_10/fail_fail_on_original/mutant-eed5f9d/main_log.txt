@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-eed5f9d/testCase.test.ts
+  Complex acsch
+    ✕ detects mutation in acsch fallback by using inputs where a*a + b*b underflows (3 ms)
+
+  ● Complex acsch › detects mutation in acsch fallback by using inputs where a*a + b*b underflows
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      19 |     // Mutant produces non-NaN (from 0+Infinity*i path)  
+      20 |     expect(isNaN(fromInfinity.re)).toBe(true);
+    > 21 |     expect(isNaN(fromZero.re)).toBe(false);
+         |                                ^
+      22 |     expect(isNaN(result.re)).toBe(true);
+      23 |   });
+      24 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-eed5f9d/testCase.test.ts:21:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.744 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-eed5f9d/testCase.test.ts".

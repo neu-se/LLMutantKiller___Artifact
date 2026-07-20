@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-82dff14/testCase.test.ts[0m:[93m6[0m:[93m35[0m - [91merror[0m[90m TS2345: [0mArgument of type '""' is not assignable to parameter of type '"1" | "1.0" | "1.1" | undefined'.
+
+[7m6[0m     expect(() => new Matcher('/', '')).toThrowError();
+[7m [0m [91m                                  ~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-82dff14/testCase.test.ts
+  Matcher class
+    ✕ should not throw an error when version is not provided in original code but throw an error in mutated code (2 ms)
+
+  ● Matcher class › should not throw an error when version is not provided in original code but throw an error in mutated code
+
+    expect(received).toThrowError()
+
+    Received function did not throw
+
+      4 |   it('should not throw an error when version is not provided in original code but throw an error in mutated code', () => {
+      5 |     expect(() => new Matcher('/', '1.1')).not.toThrowError();
+    > 6 |     expect(() => new Matcher('/', '')).toThrowError();
+        |                                        ^
+      7 |   });
+      8 | });
+
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-82dff14/testCase.test.ts:6:40)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.512 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-82dff14/testCase.test.ts".

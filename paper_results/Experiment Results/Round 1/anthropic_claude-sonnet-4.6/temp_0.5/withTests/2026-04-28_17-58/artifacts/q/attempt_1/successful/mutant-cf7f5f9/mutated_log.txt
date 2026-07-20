@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-cf7f5f9/testCase.test.ts[0m:[93m16[0m:[93m9[0m - [91merror[0m[90m TS2339: [0mProperty 'onerror' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'.
+
+[7m16[0m       Q.onerror = function (error: unknown) {
+[7m  [0m [91m        ~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-cf7f5f9/testCase.test.ts[0m:[93m25[0m:[93m11[0m - [91merror[0m[90m TS2339: [0mProperty 'onerror' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'.
+
+[7m25[0m         Q.onerror = null;
+[7m  [0m [91m          ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-cf7f5f9/testCase.test.ts
+  progress listener error handling
+    ✕ should call Q.onerror with the error thrown by a progress listener (103 ms)
+
+  ● progress listener error handling › should call Q.onerror with the error thrown by a progress listener
+
+    Q.onerror was not called
+
+      25 |         Q.onerror = null;
+      26 |         if (!onerrorCalled) {
+    > 27 |           reject(new Error("Q.onerror was not called"));
+         |                  ^
+      28 |         } else if (receivedError !== theError) {
+      29 |           reject(new Error("Q.onerror was called with wrong error: " + receivedError));
+      30 |         } else {
+
+      at Timeout._onTimeout (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-cf7f5f9/testCase.test.ts:27:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.491 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-cf7f5f9/testCase.test.ts".

@@ -1,0 +1,56 @@
+import { image } from "../../../../../../../../../../../subject_repositories/image-downloader/index.js";
+import { join } from 'path';
+import { mkdirSync, existsSync, rmSync } from 'fs';
+
+describe('image downloader', () => {
+  it('should resolve relative destination path to absolute path', async () => {
+    const dest = 'test-image.jpg';
+    const url = 'https://example.com/image.jpg';
+
+    // Create a directory to test relative path resolution
+    const testDir = 'test-dir';
+    try {
+      mkdirSync(testDir);
+    } catch (error) {
+      // If the directory already exists, continue with the test
+      if (error.code !== 'EEXIST') {
+        throw error;
+      }
+    }
+
+    // Call the image function with a relative destination path
+    const promise = image({ url, dest: join(testDir, dest) });
+    await expect(promise).rejects.toThrowError('Request Failed.');
+
+    // Check if the file exists at the expected absolute path
+    const absolutePath = join(process.cwd(), testDir, dest);
+    expect(existsSync(absolutePath)).toBe(false); // The file should not exist
+
+    // Call the image function with the same relative destination path
+    const promise2 = image({ url, dest: join(testDir, dest) });
+    await expect(promise2).rejects.toThrowError('Request Failed.');
+
+    // Check if the file exists at the expected absolute path
+    expect(existsSync(absolutePath)).toBe(false); // The file should not exist
+
+    // Clean up the test directory
+    try {
+      rmSync(testDir, { recursive: true });
+    } catch (error) {
+      // Ignore the error
+    }
+
+    // Call the image function with an absolute destination path
+    const absoluteDest = join(process.cwd(), 'test-dir', dest);
+    try {
+      mkdirSync('test-dir');
+    } catch (error) {
+      // If the directory already exists, continue with the test
+      if (error.code !== 'EEXIST') {
+        throw error;
+      }
+    }
+    const promise3 = image({ url, dest: absoluteDest });
+    await expect(promise3).rejects.toThrowError('Request Failed.');
+  });
+});

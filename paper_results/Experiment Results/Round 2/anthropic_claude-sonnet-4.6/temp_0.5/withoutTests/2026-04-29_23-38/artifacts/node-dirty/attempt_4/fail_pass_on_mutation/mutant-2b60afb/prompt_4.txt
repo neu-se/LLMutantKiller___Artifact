@@ -1,0 +1,30 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-2b60afb/testCase.test.ts (6.221 s)
+  Dirty drain event mutation detection
+    ✕ should emit drain when write stream drains with empty queue after backpressure (5016 ms)
+
+  ● Dirty drain event mutation detection › should emit drain when write stream drains with empty queue after backpressure
+
+    drain event was never emitted
+
+      32 |       const timeout = setTimeout(() => {
+      33 |         try { fs.unlinkSync(dbPath); } catch (e) { /* ignore */ }
+    > 34 |         done(new Error('drain event was never emitted'));
+         |              ^
+      35 |       }, 5000);
+      36 |
+      37 |       db.once('drain', () => {
+
+      at Timeout._onTimeout (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-2b60afb/testCase.test.ts:34:14)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.393 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-2b60afb/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

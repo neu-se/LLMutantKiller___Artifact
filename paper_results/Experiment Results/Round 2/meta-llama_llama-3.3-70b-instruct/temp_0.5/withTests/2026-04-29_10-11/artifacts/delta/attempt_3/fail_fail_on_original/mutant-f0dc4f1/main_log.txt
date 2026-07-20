@@ -1,0 +1,30 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-f0dc4f1/testCase.test.ts[0m:[93m1[0m:[93m24[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import OpIterator from '../../../../../../../../../../../subject_repositories/delta/src/OpIterator.ts';
+[7m [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-f0dc4f1/testCase.test.ts
+  OpIterator
+    ✕ peekType() should return "retain" when op.retain is a number and "insert" when op.retain is an object (4 ms)
+
+  ● OpIterator › peekType() should return "retain" when op.retain is a number and "insert" when op.retain is an object
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "insert"
+    Received: "retain"
+
+       7 |     expect(iterator.peekType()).toBe('retain');
+       8 |     iterator.next();
+    >  9 |     expect(iterator.peekType()).toBe('insert'); // This should fail in the mutated code
+         |                                 ^
+      10 |   });
+      11 | });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-f0dc4f1/testCase.test.ts:9:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.283 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-f0dc4f1/testCase.test.ts".

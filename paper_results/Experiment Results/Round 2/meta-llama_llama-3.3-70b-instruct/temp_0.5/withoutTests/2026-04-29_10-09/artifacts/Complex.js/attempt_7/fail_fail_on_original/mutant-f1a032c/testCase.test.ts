@@ -1,0 +1,9 @@
+import { Complex } from "./complex";
+
+describe('Complex', () => {
+  it('should floor the imaginary part correctly', () => {
+    const complex = new Complex(3.14159, 2.71828);
+    const floored = complex.floor(2);
+    expect(floored.im).toBeCloseTo(Math.floor(2.71828 * 100) / 100, 2);
+  });
+});

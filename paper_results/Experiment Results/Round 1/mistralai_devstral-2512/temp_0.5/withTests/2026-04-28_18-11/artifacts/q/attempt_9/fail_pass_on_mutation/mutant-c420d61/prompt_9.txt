@@ -1,0 +1,34 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-c420d61/testCase.test.ts[0m:[93m15[0m:[93m29[0m - [91merror[0m[90m TS2339: [0mProperty '_filterStackString' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'.
+
+[7m15[0m     const filteredStack = Q._filterStackString(testError.stack);
+[7m  [0m [91m                            ~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-c420d61/testCase.test.ts
+  Stack trace filtering
+    ✕ should correctly identify Node.js stack frames (1 ms)
+
+  ● Stack trace filtering › should correctly identify Node.js stack frames
+
+    TypeError: q_js_1.default._filterStackString is not a function
+
+      13 |
+      14 |     // Use Q's internal stack filtering
+    > 15 |     const filteredStack = Q._filterStackString(testError.stack);
+         |                             ^
+      16 |
+      17 |     // In the original code, Node.js frames should be filtered out
+      18 |     // In the mutated code, the function always returns false, so filtering won't work
+
+      at Object._filterStackString (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-c420d61/testCase.test.ts:15:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.546 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-c420d61/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

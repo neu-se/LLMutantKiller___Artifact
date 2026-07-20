@@ -1,0 +1,10 @@
+import { pull } from './pull.js';
+
+describe('pull function', () => {
+  it('should handle object as a sink', () => {
+    const read = () => ({ end: true });
+    const sink = { sink: (s) => { s({ end: true }) }, source: () => {} };
+    const result = pull(read, sink);
+    expect(result).not.toBeNull();
+  });
+});

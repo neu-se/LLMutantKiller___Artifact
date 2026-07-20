@@ -1,0 +1,39 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_6/pending_category/mutant-215ac94/testCase.test.ts
+  transform()
+    ✕ does not apply embed transform when thisData is numeric (6 ms)
+
+  ● transform() › does not apply embed transform when thisData is numeric
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 5
+
+      Delta {
+        "ops": Array [
+          Object {
+    -       "retain": Object {},
+    +       "retain": Object {
+    +         "undefined": Object {
+    +           "result": "mock",
+    +         },
+    +       },
+          },
+        ],
+      }
+
+      21 |     // Mutated: enter block → Object.keys(1) = [] → undefined === undefined → handler called
+      22 |     //          → transformedData = { undefined: { result: 'mock' } } → different result
+    > 23 |     expect(result).toEqual(new Delta([{ retain: {} as Record<string, unknown> }]));
+         |                    ^
+      24 |   });
+      25 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_6/pending_category/mutant-215ac94/testCase.test.ts:23:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.312 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_6/pending_category/mutant-215ac94/testCase.test.ts".

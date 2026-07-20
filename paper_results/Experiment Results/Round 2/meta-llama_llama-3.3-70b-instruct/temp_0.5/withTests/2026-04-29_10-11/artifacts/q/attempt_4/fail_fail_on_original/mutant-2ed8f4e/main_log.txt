@@ -1,0 +1,39 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-2ed8f4e/testCase.test.ts
+  Q function
+    ✕ should create a promise that resolves with the given value (2 ms)
+    ✕ should create a promise that rejects with the given reason (1 ms)
+
+  ● Q function › should create a promise that resolves with the given value
+
+    ReferenceError: Q is not defined
+
+      1 | describe("Q function", () => {
+      2 |     it("should create a promise that resolves with the given value", () => {
+    > 3 |         const promise = Q(10);
+        |                         ^
+      4 |         expect(promise.isFulfilled()).toBe(true);
+      5 |     });
+      6 |
+
+      at Object.Q (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-2ed8f4e/testCase.test.ts:3:25)
+
+  ● Q function › should create a promise that rejects with the given reason
+
+    ReferenceError: Q is not defined
+
+       6 |
+       7 |     it("should create a promise that rejects with the given reason", () => {
+    >  8 |         const promise = Q.reject("error");
+         |                         ^
+       9 |         expect(promise.isRejected()).toBe(true);
+      10 |     });
+      11 | });
+
+      at Object.Q (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-2ed8f4e/testCase.test.ts:8:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        3.144 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-2ed8f4e/testCase.test.ts".

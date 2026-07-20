@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-f7d6ed4/testCase.test.ts[0m:[93m11[0m:[93m53[0m - [91merror[0m[90m TS7006: [0mParameter 'fn' implicitly has an 'any' type.
+
+[7m11[0m         (process as any).domain = { bind: function (fn) { return fn; } };
+[7m  [0m [91m                                                    ~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-f7d6ed4/testCase.test.ts
+  Q.done
+    ✕ should rethrow an error in the next turn if the callback throws when process.domain is truthy (1 ms)
+
+  ● Q.done › should rethrow an error in the next turn if the callback throws when process.domain is truthy
+
+    TypeError: Cannot set property domain of [object process] which has only a getter
+
+       9 |         // Simulate process.domain being truthy
+      10 |         var originalDomain = (process as any).domain;
+    > 11 |         (process as any).domain = { bind: function (fn) { return fn; } };
+         |                                ^
+      12 |
+      13 |         promise.done(function () {
+      14 |             throw error;
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-f7d6ed4/testCase.test.ts:11:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.779 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-f7d6ed4/testCase.test.ts".

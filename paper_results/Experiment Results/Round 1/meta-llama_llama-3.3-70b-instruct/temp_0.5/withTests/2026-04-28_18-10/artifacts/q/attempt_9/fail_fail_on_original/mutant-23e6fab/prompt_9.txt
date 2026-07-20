@@ -1,0 +1,42 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-23e6fab/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-23e6fab/testCase.test.ts[0m:[93m7[0m:[93m28[0m - [91merror[0m[90m TS7006: [0mParameter 'resolve' implicitly has an 'any' type.
+
+[7m7[0m         const promise = Q((resolve, reject) => {
+[7m [0m [91m                           ~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-23e6fab/testCase.test.ts[0m:[93m7[0m:[93m37[0m - [91merror[0m[90m TS7006: [0mParameter 'reject' implicitly has an 'any' type.
+
+[7m7[0m         const promise = Q((resolve, reject) => {
+[7m [0m [91m                                    ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-23e6fab/testCase.test.ts
+  q
+    ✕ should correctly handle error stack traces from Firefox (33 ms)
+
+  ● q › should correctly handle error stack traces from Firefox
+
+    TypeError: (0 , q_1.Q) is not a function
+
+       5 |         const error = new Error('Test error');
+       6 |         error.stack = 'Error: Test error\n    at http://example.com:123:45';
+    >  7 |         const promise = Q((resolve, reject) => {
+         |                          ^
+       8 |             reject(error);
+       9 |         });
+      10 |         expect(promise.isRejected()).toBe(true);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-23e6fab/testCase.test.ts:7:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.347 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-23e6fab/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

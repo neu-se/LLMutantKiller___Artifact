@@ -1,0 +1,44 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_9/pending_category/mutant-f681451/testCase.test.ts
+  transform()
+    ✕ insert priority with delete interaction (6 ms)
+
+  ● transform() › insert priority with delete interaction
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 3
+    + Received  + 0
+
+    @@ -4,10 +4,7 @@
+            "retain": 1,
+          },
+          Object {
+            "insert": "B",
+          },
+    -     Object {
+    -       "delete": 1,
+    -     },
+        ],
+      }
+
+       6 |     const b = new Delta().insert('B').delete(1);
+       7 |     const expected = new Delta().retain(1).insert('B').delete(1);
+    >  8 |     expect(a.transform(b, true)).toEqual(expected);
+         |                                  ^
+       9 |   });
+      10 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_9/pending_category/mutant-f681451/testCase.test.ts:8:34)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.056 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_9/pending_category/mutant-f681451/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

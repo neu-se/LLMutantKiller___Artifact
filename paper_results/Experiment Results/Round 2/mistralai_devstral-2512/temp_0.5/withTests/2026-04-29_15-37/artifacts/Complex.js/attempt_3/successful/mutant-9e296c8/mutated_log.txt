@@ -1,0 +1,30 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-9e296c8/testCase.test.ts
+  Complex.csch
+    ✕ should correctly compute the hyperbolic cosecant for a complex number with real part 0.5 (2 ms)
+
+  ● Complex.csch › should correctly compute the hyperbolic cosecant for a complex number with real part 0.5
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.912074264038811
+    Received: 0.034168061865611464
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   0.8779062021731995
+
+       7 |     const expectedRe = -2 * Math.sinh(0.5) * Math.cos(0.5) / (Math.cos(1) - Math.cosh(1));
+       8 |     const expectedIm = 2 * Math.cosh(0.5) * Math.sin(0.5) / (Math.cos(1) - Math.cosh(1));
+    >  9 |     expect(result.re).toBeCloseTo(expectedRe, 10);
+         |                       ^
+      10 |     expect(result.im).toBeCloseTo(expectedIm, 10);
+      11 |   });
+      12 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-9e296c8/testCase.test.ts:9:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.008 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-9e296c8/testCase.test.ts".

@@ -1,0 +1,12 @@
+import Delta from '../../../../../../../../../../../subject_repositories/delta/src/Delta';
+
+describe('Delta', () => {
+  it('compose should handle firstOther.retain correctly', () => {
+    const delta1 = new Delta();
+    delta1.retain(1);
+    const delta2 = new Delta();
+    delta2.retain(0);
+    const composedDelta = delta1.compose(delta2);
+    expect(composedDelta.ops).not.toHaveLength(0);
+  });
+});

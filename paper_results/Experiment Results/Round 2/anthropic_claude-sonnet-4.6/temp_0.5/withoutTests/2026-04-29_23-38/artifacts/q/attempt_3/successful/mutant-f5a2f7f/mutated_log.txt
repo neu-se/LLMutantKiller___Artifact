@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-f5a2f7f/testCase.test.ts
+  Q captureLine
+    ✕ should handle missing stacks gracefully (11 ms)
+
+  ● Q captureLine › should handle missing stacks gracefully
+
+    TypeError: Cannot read properties of undefined (reading 'split')
+
+      465 |         throw new Error();
+      466 |     } catch (e) {
+    > 467 |         var lines = e.stack.split("\n");
+          |                             ^
+      468 |         var firstLine = lines[0].indexOf("@") > 0 ? lines[1] : lines[2];
+      469 |         var fileNameAndLineNumber = getFileNameAndLineNumber(firstLine);
+      470 |         if (!fileNameAndLineNumber) {
+
+      at split (../subject_repositories/q/q.js:467:29)
+      at captureLine (../subject_repositories/q/q.js:91:21)
+      at definition (../subject_repositories/q/q.js:43:26)
+      at Object.<anonymous> (../subject_repositories/q/q.js:79:2)
+      at Object.require (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-f5a2f7f/testCase.test.ts:22:17)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.36 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-f5a2f7f/testCase.test.ts".

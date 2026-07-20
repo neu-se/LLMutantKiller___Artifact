@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-bc35331/testCase.test.ts
+  Q promise resolution in Node.js environment
+    ✕ should correctly identify Node.js environment and resolve promises using process.nextTick (2 ms)
+
+  ● Q promise resolution in Node.js environment › should correctly identify Node.js environment and resolve promises using process.nextTick
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      32 |       // In original code: isNodeJS=true, so process.nextTick is used -> nextTickCallCount > 0
+      33 |       // In mutated code: isNodeJS=false, so setImmediate is used -> nextTickCallCount === 0
+    > 34 |       expect(nextTickCallCount).toBeGreaterThan(0);
+         |                                 ^
+      35 |     } finally {
+      36 |       process.nextTick = originalNextTick;
+      37 |     }
+
+      at Object.toBeGreaterThan (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-bc35331/testCase.test.ts:34:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.544 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-bc35331/testCase.test.ts".

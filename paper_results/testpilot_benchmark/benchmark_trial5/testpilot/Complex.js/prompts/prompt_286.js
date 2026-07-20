@@ -1,0 +1,32 @@
+The test:
+```
+let mocha = require('mocha');
+let assert = require('assert');
+let complex_js = require('complex.js');
+
+describe('test complex_js', function() {
+    it('test complex.js.ZERO.valueOf returns correct primitive value', function(done) {
+        // Test that ZERO.valueOf() returns the expected primitive representation
+        let result = complex_js.ZERO.valueOf();
+        
+        // valueOf() should return a string representation of the complex number
+        assert.strictEqual(typeof result, 'string');
+        assert.strictEqual(result, '0');
+        
+        done();
+    });
+
+    })
+``` 
+failed with the following error message:
+```
+Expected values to be strictly equal:
++ actual - expected
+
++ 'number'
+- 'string'  
+```
+
+Your task is to modify the above code to fix the test. 
+
+Provide your answer as a fenced code block.

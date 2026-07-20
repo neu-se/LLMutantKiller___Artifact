@@ -1,0 +1,36 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-468c1de/testCase.test.ts[0m:[93m13[0m:[93m14[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 0.
+
+[7m13[0m       return Q().then(() => createPromiseChain(depth - 1, error));
+[7m  [0m [91m             ~[0m
+
+  [96m../subject_repositories/q/q.js[0m:[93m497[0m:[93m12[0m
+    [7m497[0m function Q(value) {
+    [7m   [0m [96m           ~~~~~[0m
+    An argument for 'value' was not provided.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-468c1de/testCase.test.ts
+  long stack traces mutation test
+    ✕ should correctly filter stack traces based on minimum stack counter (4 ms)
+
+  ● long stack traces mutation test › should correctly filter stack traces based on minimum stack counter
+
+    expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 15
+    Received:    29
+
+      28 |       // to be included than necessary, making the stack trace longer
+      29 |       // The original code should filter out some frames, resulting in fewer lines
+    > 30 |       expect(stackLines.length).toBeLessThanOrEqual(15);
+         |                                 ^
+      31 |
+      32 |       // Also verify the error message is preserved
+      33 |       expect(stack).toContain("Test error");
+
+      at Object.toBeLessThanOrEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-468c1de/testCase.test.ts:30:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.749 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-468c1de/testCase.test.ts".

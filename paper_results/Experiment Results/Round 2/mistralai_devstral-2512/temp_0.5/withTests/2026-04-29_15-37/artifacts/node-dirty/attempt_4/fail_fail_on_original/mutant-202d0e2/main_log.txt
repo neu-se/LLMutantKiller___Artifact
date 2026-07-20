@@ -1,0 +1,34 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-202d0e2/testCase.test.ts[0m:[93m5[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m5[0m import * as rimraf from "rimraf";
+[7m [0m [91m                        ~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-202d0e2/testCase.test.ts[0m:[93m9[0m:[93m11[0m - [91merror[0m[90m TS2749: [0m'Dirty' refers to a value, but is being used as a type here. Did you mean 'typeof Dirty'?
+
+[7m9[0m   let db: Dirty;
+[7m [0m [91m          ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-202d0e2/testCase.test.ts (6.643 s)
+  drain event emission after write stream drains
+    ✕ should emit drain event when write stream drains and queue is empty (5003 ms)
+
+  ● drain event emission after write stream drains › should emit drain event when write stream drains and queue is empty
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      17 |   });
+      18 |
+    > 19 |   it("should emit drain event when write stream drains and queue is empty", (done) => {
+         |   ^
+      20 |     db = new Dirty(testFile);
+      21 |     db.on("load", () => {
+      22 |       // Fill the write buffer to trigger drain
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-202d0e2/testCase.test.ts:19:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-202d0e2/testCase.test.ts:7:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.845 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-202d0e2/testCase.test.ts".

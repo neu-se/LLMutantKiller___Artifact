@@ -1,0 +1,35 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-847146f/testCase.test.ts[0m:[93m9[0m:[93m19[0m - [91merror[0m[90m TS7052: [0mElement implicitly has an 'any' type because type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...' has no index signature. Did you mean to call 'Q.get'?
+
+[7m9[0m     expect(typeof Q["catch"]).toBe("function");
+[7m [0m [91m                  ~~~~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-847146f/testCase.test.ts[0m:[93m11[0m:[93m26[0m - [91merror[0m[90m TS7052: [0mElement implicitly has an 'any' type because type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...' has no index signature. Did you mean to call 'Q.get'?
+
+[7m11[0m     const result = await Q["catch"](Q.reject(error), function(reason: Error) {
+[7m  [0m [91m                         ~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-847146f/testCase.test.ts
+  Q['catch'] static method
+    ✕ should exist as a function on the Q object and handle rejections (3 ms)
+
+  ● Q['catch'] static method › should exist as a function on the Q object and handle rejections
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "function"
+    Received: "undefined"
+
+       7 |     // In original code, Q["catch"] is defined
+       8 |     // In mutated code, Q[""] is defined instead, so Q["catch"] is undefined
+    >  9 |     expect(typeof Q["catch"]).toBe("function");
+         |                               ^
+      10 |     
+      11 |     const result = await Q["catch"](Q.reject(error), function(reason: Error) {
+      12 |       return "caught: " + reason.message;
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-847146f/testCase.test.ts:9:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.526 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-847146f/testCase.test.ts".

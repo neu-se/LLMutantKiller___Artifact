@@ -1,0 +1,29 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-258e6eb/testCase.test.ts
+  Complex atanh
+    ✕ should return correct imaginary part for atanh when real part > 1 and imaginary part is 0 (4 ms)
+
+  ● Complex atanh › should return correct imaginary part for atanh when real part > 1 and imaginary part is 0
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.5535743588970452
+    Received: -0.5535743588970452
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   1.1071487177940904
+
+      21 |     // In the original code, noIM is false (b !== 0), so x['im'] is NOT negated
+      22 |     // In the mutated code, if (true) always negates x['im'], so the imaginary part would be wrong
+    > 23 |     expect(result.im).toBeCloseTo(expectedIm, 10);
+         |                       ^
+      24 |   });
+      25 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-258e6eb/testCase.test.ts:23:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.136 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-258e6eb/testCase.test.ts".

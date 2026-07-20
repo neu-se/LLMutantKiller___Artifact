@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-d8c98c9/testCase.test.ts
+  domain exit after task execution
+    ✕ domain.exit() restores process.domain for subsequent non-domain tasks in the same flush (55 ms)
+
+  ● domain exit after task execution › domain.exit() restores process.domain for subsequent non-domain tasks in the same flush
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: null
+    Received: {"_events": {"error": [Function anonymous], "newListener": [Function updateExceptionCapture], "removeListener": [Function updateExceptionCapture]}, "_eventsCount": 3, "_maxListeners": undefined, "members": [], Symbol(shapeMode): false, Symbol(kCapture): false, Symbol(kWeak): {}}
+
+      29 |         // With original: domain.exit() called after task1, process.domain restored to initialDomain
+      30 |         // With mutation: domain.exit() NOT called, process.domain stays as d
+    > 31 |         expect(domainDuringTask2).toBe(initialDomain);
+         |                                   ^
+      32 |         done();
+      33 |       } catch (e) {
+      34 |         done(e);
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-d8c98c9/testCase.test.ts:31:35)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.728 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-d8c98c9/testCase.test.ts".

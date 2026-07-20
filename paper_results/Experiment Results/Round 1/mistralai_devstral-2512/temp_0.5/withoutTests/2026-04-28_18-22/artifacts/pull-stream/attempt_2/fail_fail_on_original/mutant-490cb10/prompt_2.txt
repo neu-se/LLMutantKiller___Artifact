@@ -1,0 +1,45 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-490cb10/testCase.test.ts[0m:[93m5[0m:[93m21[0m - [91merror[0m[90m TS7006: [0mParameter 'abort' implicitly has an 'any' type.
+
+[7m5[0m     const source = (abort, cb) => {
+[7m [0m [91m                    ~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-490cb10/testCase.test.ts[0m:[93m5[0m:[93m28[0m - [91merror[0m[90m TS7006: [0mParameter 'cb' implicitly has an 'any' type.
+
+[7m5[0m     const source = (abort, cb) => {
+[7m [0m [91m                           ~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-490cb10/testCase.test.ts[0m:[93m17[0m:[93m14[0m - [91merror[0m[90m TS18046: [0m'err' is of type 'unknown'.
+
+[7m17[0m       expect(err.message).toBe('stream error');
+[7m  [0m [91m             ~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-490cb10/testCase.test.ts
+  drain sink
+    ✕ should throw an error when no done callback is supplied and stream ends with error (4 ms)
+
+  ● drain sink › should throw an error when no done callback is supplied and stream ends with error
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "stream error"
+    Received: "read is not a function"
+
+      15 |     } catch (err) {
+      16 |       expect(err).toBeInstanceOf(Error);
+    > 17 |       expect(err.message).toBe('stream error');
+         |                           ^
+      18 |       done();
+      19 |     }
+      20 |   });
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-490cb10/testCase.test.ts:17:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.586 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-490cb10/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,10 @@
+import { extract } from '../../../../../../../../../../../subject_repositories/crawler-url-parser/crawler-url-parser.js';
+
+describe('extract function', () => {
+  it('should extract links correctly', () => {
+    const data = '<a href="javascript:void(0)">Link 1</a><a href="https://www.example.com">Link 2</a>';
+    const sourceUrl = 'https://www.example.com';
+    const result = extract(data, sourceUrl);
+    expect(result).toHaveLength(1);
+  });
+});

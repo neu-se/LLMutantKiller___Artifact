@@ -1,0 +1,79 @@
+[
+  {
+    "accessPath": "countries-and-timezones.getCountry",
+    "descriptor": {
+      "type": "function",
+      "signature": "(id)",
+      "implementation": "function getCountry(id) {\n    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};\n    if (!countries[id]) memoizeCountry(buildCountry(data, id));\n    return deliverCountry(countries[id], options);\n  }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "countries-and-timezones"
+  },
+  {
+    "accessPath": "countries-and-timezones.getTimezone",
+    "descriptor": {
+      "type": "function",
+      "signature": "(name)",
+      "implementation": "function getTimezone(name) {\n    if (!timezones[name]) memoizeTimezone(buildTimezone(data, name));\n    return timezones[name] ? _objectSpread2({}, timezones[name]) : null;\n  }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "countries-and-timezones"
+  },
+  {
+    "accessPath": "countries-and-timezones.getAllCountries",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function getAllCountries() {\n    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};\n    return Object.keys(data.countries).reduce(function (prev, id) {\n      return Object.assign(prev, _defineProperty({}, id, getCountry(id, options)));\n    }, {});\n  }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "countries-and-timezones"
+  },
+  {
+    "accessPath": "countries-and-timezones.getAllTimezones",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function getAllTimezones() {\n    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};\n    if (totalTimezones !== memoizedTimezones) Object.keys(data.timezones).forEach(getTimezone);\n    return deliverTimezones(timezones, options);\n  }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "countries-and-timezones"
+  },
+  {
+    "accessPath": "countries-and-timezones.getTimezonesForCountry",
+    "descriptor": {
+      "type": "function",
+      "signature": "(countryId)",
+      "implementation": "function getTimezonesForCountry(countryId) {\n    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};\n    var country = getCountry(countryId, options);\n    if (!country) return null;\n    var values = country.timezones || [];\n    return values.map(getTimezone);\n  }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "countries-and-timezones"
+  },
+  {
+    "accessPath": "countries-and-timezones.getCountriesForTimezone",
+    "descriptor": {
+      "type": "function",
+      "signature": "(tzName)",
+      "implementation": "function getCountriesForTimezone(tzName) {\n    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};\n    var timezone = getTimezone(tzName) || {};\n    var values = timezone.countries || [];\n    return values.map(function (c) {\n      return getCountry(c, options);\n    });\n  }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "countries-and-timezones"
+  },
+  {
+    "accessPath": "countries-and-timezones.getCountryForTimezone",
+    "descriptor": {
+      "type": "function",
+      "signature": "(tzName)",
+      "implementation": "function getCountryForTimezone(tzName) {\n    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};\n\n    var _getCountriesForTimez = getCountriesForTimezone(tzName, options),\n        _getCountriesForTimez2 = _slicedToArray(_getCountriesForTimez, 1),\n        main = _getCountriesForTimez2[0];\n\n    return main || null;\n  }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "countries-and-timezones"
+  }
+]

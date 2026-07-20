@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-697096c/testCase.test.ts (6.117 s)
+  empty line handling in database file
+    ✕ should emit the error event (not a blank event) when a database file contains an empty line (5002 ms)
+
+  ● empty line handling in database file › should emit the error event (not a blank event) when a database file contains an empty line
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Empty lines"
+    Received string:    "Could not load corrupted row: "
+
+      32 |       // Mutated code emits '' event (falls through to JSON.parse which fails)
+      33 |       expect(errorMessages.length).toBeGreaterThan(0);
+    > 34 |       expect(errorMessages[0].message).toContain('Empty lines');
+         |                                        ^
+      35 |       done();
+      36 |     });
+      37 |   });
+
+      at Dirty.toContain (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-697096c/testCase.test.ts:34:40)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:155:16)
+
+  ● empty line handling in database file › should emit the error event (not a blank event) when a database file contains an empty line
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 |
+      5 | describe('empty line handling in database file', () => {
+    > 6 |   it('should emit the error event (not a blank event) when a database file contains an empty line', (done) => {
+        |   ^
+      7 |     const Dirty = require('../../../../../../../../../../../subject_repositories/node-dirty/lib/dirty/dirty.js');
+      8 |
+      9 |     const tmpDir = os.tmpdir();
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-697096c/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-697096c/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.271 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-697096c/testCase.test.ts".

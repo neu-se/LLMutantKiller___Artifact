@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-jsonfile/attempt_5/pending_category/mutant-ff1d529/testCase.test.ts
+  readFileSync with string encoding option
+    ✕ should apply hex encoding when hex string is passed as options, resulting in unparseable content (2 ms)
+
+  ● readFileSync with string encoding option › should apply hex encoding when hex string is passed as options, resulting in unparseable content
+
+    expect(received).toThrow()
+
+    Received function did not throw
+
+      15 |       //           JSON.parse("7b2261223a317d") throws SyntaxError
+      16 |       // Mutated:  options = {}, readFileSync returns Buffer, JSON.parse(Buffer) succeeds
+    > 17 |       expect(() => jsonfile.readFileSync(tmpFile, 'hex')).toThrow()
+         |                                                           ^
+      18 |     } finally {
+      19 |       try { fs.unlinkSync(tmpFile) } catch {}
+      20 |       try { fs.rmdirSync(tmpDir) } catch {}
+
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-jsonfile/attempt_5/pending_category/mutant-ff1d529/testCase.test.ts:17:59)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.944 s, estimated 1 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-jsonfile/attempt_5/pending_category/mutant-ff1d529/testCase.test.ts".

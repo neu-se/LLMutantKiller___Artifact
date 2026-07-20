@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-b36f405/testCase.test.ts
+  Query parameter removal mutation test
+    ✕ should remove utm parameters with underscores but not utm parameters with other special characters (5 ms)
+
+  ● Query parameter removal mutation test › should remove utm parameters with underscores but not utm parameters with other special characters
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "http://example.com/path?other=value"
+    Received: "http://example.com/path?utm_source=test&other=value"
+
+       5 |     const urlWithUnderscore = "http://example.com/path?utm_source=test&other=value";
+       6 |     const result1 = parse(urlWithUnderscore);
+    >  7 |     expect(result1?.url).toBe("http://example.com/path?other=value");
+         |                          ^
+       8 |
+       9 |     const urlWithSpecialChar = "http://example.com/path?utm_source=test&utm_medium=email&ref=test";
+      10 |     const result2 = parse(urlWithSpecialChar);
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-b36f405/testCase.test.ts:7:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.636 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-b36f405/testCase.test.ts".

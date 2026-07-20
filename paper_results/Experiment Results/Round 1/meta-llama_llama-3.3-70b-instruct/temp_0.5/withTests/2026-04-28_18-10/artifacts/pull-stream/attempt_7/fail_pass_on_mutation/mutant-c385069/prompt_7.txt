@@ -1,0 +1,44 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-c385069/testCase.test.ts[0m:[93m5[0m:[93m25[0m - [91merror[0m[90m TS2339: [0mProperty 'values' does not exist on type '{ (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { ...; }; }; }; }; }; }; }'.
+
+[7m5[0m     const source = pull.values([1, 2, 3]);
+[7m [0m [91m                        ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-c385069/testCase.test.ts[0m:[93m7[0m:[93m12[0m - [91merror[0m[90m TS2339: [0mProperty 'asyncMap' does not exist on type '{ (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { ...; }; }; }; }; }; }; }'.
+
+[7m7[0m       pull.asyncMap((data: any, cb: (err: any, data: any) => void) => {
+[7m [0m [91m           ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-c385069/testCase.test.ts[0m:[93m10[0m:[93m12[0m - [91merror[0m[90m TS2339: [0mProperty 'collect' does not exist on type '{ (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { ...; }; }; }; }; }; }; }'.
+
+[7m10[0m       pull.collect((err: any, data: any) => {
+[7m  [0m [91m           ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/subject_repositories/pull-stream/index.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/subject_repositories/pull-stream/index.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/subject_repositories/pull-stream/throughs/index.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/subject_repositories/pull-stream/throughs/index.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-c385069/testCase.test.ts
+  asyncMap
+    ✕ should handle abort correctly (2 ms)
+
+  ● asyncMap › should handle abort correctly
+
+    TypeError: result is not a function
+
+      18 |     );
+      19 |     const result = mapped(source);
+    > 20 |     result(true, (err: any) => {
+         |     ^
+      21 |       if (err) {
+      22 |         done(err);
+      23 |       } else {
+
+      at Object.result (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-c385069/testCase.test.ts:20:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        4.038 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-c385069/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

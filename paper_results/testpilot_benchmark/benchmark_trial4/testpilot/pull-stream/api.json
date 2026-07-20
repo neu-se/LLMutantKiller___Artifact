@@ -1,0 +1,266 @@
+[
+  {
+    "accessPath": "pull-stream",
+    "descriptor": {
+      "type": "function",
+      "signature": "(a)",
+      "implementation": "function pull (a) {\n  var length = arguments.length\n  if (typeof a === 'function' && a.length === 1) {\n    var args = new Array(length)\n    for(var i = 0; i < length; i++)\n      args[i] = arguments[i]\n    return function (read) {\n      if (args == null) {\n        throw new TypeError(\"partial sink should only be called once!\")\n      }\n\n      // Grab the reference after the check, because it's always an array now\n      // (engines like that kind of consistency).\n      var ref = args\n      args = null\n\n      // Prioritize common case of small number of pulls.\n      switch (length) {\n      case 1: return pull(read, ref[0])\n      case 2: return pull(read, ref[0], ref[1])\n      case 3: return pull(read, ref[0], ref[1], ref[2])\n      case 4: return pull(read, ref[0], ref[1], ref[2], ref[3])\n      default:\n        ref.unshift(read)\n        return pull.apply(null, ref)\n      }\n    }\n  }\n\n  var read = a\n\n  if (read && typeof read.source === 'function') {\n    read = read.source\n  }\n\n  for (var i = 1; i < length; i++) {\n    var s = arguments[i]\n    if (typeof s === 'function') {\n      read = s(read)\n    } else if (s && typeof s === 'object') {\n      s.sink(read)\n      read = s.source\n    }\n  }\n\n  return read\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "pull-stream"
+  },
+  {
+    "accessPath": "pull-stream.keys",
+    "descriptor": {
+      "type": "function",
+      "signature": "(object)",
+      "implementation": "function (object) {\n  return values(Object.keys(object))\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "pull-stream"
+  },
+  {
+    "accessPath": "pull-stream.once",
+    "descriptor": {
+      "type": "function",
+      "signature": "(value, onAbort)",
+      "implementation": "function once (value, onAbort) {\n  return function (abort, cb) {\n    if(abort)\n      return abortCb(cb, abort, onAbort)\n    if(value != null) {\n      var _value = value; value = null\n      cb(null, _value)\n    } else\n      cb(true)\n  }\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "pull-stream"
+  },
+  {
+    "accessPath": "pull-stream.values",
+    "descriptor": {
+      "type": "function",
+      "signature": "(array, onAbort)",
+      "implementation": "function values (array, onAbort) {\n  if(!array)\n    return function (abort, cb) {\n      if(abort) return abortCb(cb, abort, onAbort)\n      return cb(true)\n    }\n  if(!Array.isArray(array))\n    array = Object.keys(array).map(function (k) {\n      return array[k]\n    })\n  var i = 0\n  return function (abort, cb) {\n    if(abort)\n      return abortCb(cb, abort, onAbort)\n    if(i >= array.length)\n      cb(true)\n    else\n      cb(null, array[i++])\n  }\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "pull-stream"
+  },
+  {
+    "accessPath": "pull-stream.count",
+    "descriptor": {
+      "type": "function",
+      "signature": "(max)",
+      "implementation": "function count (max) {\n  var i = 0; max = max || Infinity\n  return function (end, cb) {\n    if(end) return cb && cb(end)\n    if(i > max)\n      return cb(true)\n    cb(null, i++)\n  }\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "pull-stream"
+  },
+  {
+    "accessPath": "pull-stream.infinite",
+    "descriptor": {
+      "type": "function",
+      "signature": "(generate)",
+      "implementation": "function infinite (generate) {\n  generate = generate || Math.random\n  return function (end, cb) {\n    if(end) return cb && cb(end)\n    return cb(null, generate())\n  }\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "pull-stream"
+  },
+  {
+    "accessPath": "pull-stream.empty",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function empty () {\n  return function (abort, cb) {\n    cb(true)\n  }\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "pull-stream"
+  },
+  {
+    "accessPath": "pull-stream.error",
+    "descriptor": {
+      "type": "function",
+      "signature": "(err)",
+      "implementation": "function error (err) {\n  return function (abort, cb) {\n    cb(err)\n  }\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "pull-stream"
+  },
+  {
+    "accessPath": "pull-stream.map",
+    "descriptor": {
+      "type": "function",
+      "signature": "(mapper)",
+      "implementation": "function map (mapper) {\n  if(!mapper) return id\n  mapper = prop(mapper)\n  return function (read) {\n    return function (abort, cb) {\n      read(abort, function (end, data) {\n        try {\n        data = !end ? mapper(data) : null\n        } catch (err) {\n          return read(err, function () {\n            return cb(err)\n          })\n        }\n        cb(end, data)\n      })\n    }\n  }\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "pull-stream"
+  },
+  {
+    "accessPath": "pull-stream.asyncMap",
+    "descriptor": {
+      "type": "function",
+      "signature": "(map)",
+      "implementation": "function asyncMap (map) {\n  if(!map) return id\n  map = prop(map)\n  var busy = false, abortCb, aborted\n  return function (read) {\n    return function next (abort, cb) {\n      if(aborted) return cb(aborted)\n      if(abort) {\n        aborted = abort\n        if(!busy) read(abort, function (err) {\n          //incase the source has already ended normally,\n          //we should pass our own error.\n          cb(abort)\n        })\n        else read(abort, function (err) {\n          //if we are still busy, wait for the mapper to complete.\n          if(busy) abortCb = cb\n          else cb(abort)\n        })\n      }\n      else\n        read(null, function (end, data) {\n          if(end) cb(end)\n          else if(aborted) cb(aborted)\n          else {\n            busy = true\n            map(data, function (err, data) {\n              busy = false\n              if(aborted) {\n                cb(aborted)\n                abortCb && abortCb(aborted)\n              }\n              else if(err) next (err, cb)\n              else cb(null, data)\n            })\n          }\n        })\n    }\n  }\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "pull-stream"
+  },
+  {
+    "accessPath": "pull-stream.filter",
+    "descriptor": {
+      "type": "function",
+      "signature": "(test)",
+      "implementation": "function filter (test) {\n  //regexp\n  test = tester(test)\n  return function (read) {\n    return function next (end, cb) {\n      var sync, loop = true\n      while(loop) {\n        loop = false\n        sync = true\n        read(end, function (end, data) {\n          if(!end && !test(data))\n            return sync ? loop = true : next(end, cb)\n          cb(end, data)\n        })\n        sync = false\n      }\n    }\n  }\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "pull-stream"
+  },
+  {
+    "accessPath": "pull-stream.filterNot",
+    "descriptor": {
+      "type": "function",
+      "signature": "(test)",
+      "implementation": "function filterNot (test) {\n  test = tester(test)\n  return filter(function (data) { return !test(data) })\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "pull-stream"
+  },
+  {
+    "accessPath": "pull-stream.through",
+    "descriptor": {
+      "type": "function",
+      "signature": "(op, onEnd)",
+      "implementation": "function through (op, onEnd) {\n  var a = false\n\n  function once (abort) {\n    if(a || !onEnd) return\n    a = true\n    onEnd(abort === true ? null : abort)\n  }\n\n  return function (read) {\n    return function (end, cb) {\n      if(end) once(end)\n      return read(end, function (end, data) {\n        if(!end) op && op(data)\n        else once(end)\n        cb(end, data)\n      })\n    }\n  }\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "pull-stream"
+  },
+  {
+    "accessPath": "pull-stream.take",
+    "descriptor": {
+      "type": "function",
+      "signature": "(test, opts)",
+      "implementation": "function take (test, opts) {\n  opts = opts || {}\n  var last = opts.last || false // whether the first item for which !test(item) should still pass\n  var ended = false\n  if('number' === typeof test) {\n    last = true\n    var n = test; test = function () {\n      return --n\n    }\n  }\n\n  return function (read) {\n\n    function terminate (cb) {\n      read(true, function (err) {\n        last = false; cb(err || true)\n      })\n    }\n\n    return function (end, cb) {\n      if(ended && !end) last ? terminate(cb) : cb(ended)\n      else if(ended = end) read(ended, cb)\n      else\n        read(null, function (end, data) {\n          if(ended = ended || end) {\n            //last ? terminate(cb) :\n            cb(ended)\n          }\n          else if(!test(data)) {\n            ended = true\n            last ? cb(null, data) : terminate(cb)\n          }\n          else\n            cb(null, data)\n        })\n    }\n  }\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "pull-stream"
+  },
+  {
+    "accessPath": "pull-stream.unique",
+    "descriptor": {
+      "type": "function",
+      "signature": "(field, invert)",
+      "implementation": "function unique (field, invert) {\n  field = prop(field) || id\n  var seen = {}\n  return filter(function (data) {\n    var key = field(data)\n    if(seen[key]) return !!invert //false, by default\n    else seen[key] = true\n    return !invert //true by default\n  })\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "pull-stream"
+  },
+  {
+    "accessPath": "pull-stream.nonUnique",
+    "descriptor": {
+      "type": "function",
+      "signature": "(field)",
+      "implementation": "function nonUnique (field) {\n  return unique(field, true)\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "pull-stream"
+  },
+  {
+    "accessPath": "pull-stream.flatten",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function flatten () {\n  return function (read) {\n    var _read\n    return function (abort, cb) {\n      if (abort) { //abort the current stream, and then stream of streams.\n        _read ? _read(abort, function(err) {\n          read(err || abort, cb)\n        }) : read(abort, cb)\n      }\n      else if(_read) nextChunk()\n      else nextStream()\n\n      function nextChunk () {\n        _read(null, function (err, data) {\n          if (err) {\n            if (err === true) nextStream()\n            else read(true, function(abortErr) {\n              // TODO: what do we do with the abortErr?\n              cb(err)\n            })\n          }\n          else cb(null, data)\n        })\n      }\n      function nextStream () {\n        _read = null\n        read(null, function (end, stream) {\n          if(end)\n            return cb(end)\n          if(stream && 'object' === typeof stream)\n            stream = values(stream)\n          else if ('function' !== typeof stream)\n            stream = once(stream)\n          _read = stream\n          nextChunk()\n        })\n      }\n    }\n  }\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "pull-stream"
+  },
+  {
+    "accessPath": "pull-stream.drain",
+    "descriptor": {
+      "type": "function",
+      "signature": "(op, done)",
+      "implementation": "function drain (op, done) {\n  var read, abort\n\n  // Declared here so that it captures the drain's stack trace\n  var doneLackingErr\n  if (!done) {\n    doneLackingErr = new Error('no done callback supplied')\n  }\n\n  function sink (_read) {\n    read = _read\n    if(abort) return sink.abort()\n    //this function is much simpler to write if you\n    //just use recursion, but by using a while loop\n    //we do not blow the stack if the stream happens to be sync.\n    ;(function next() {\n        var loop = true, cbed = false\n        while(loop) {\n          cbed = false\n          read(null, function (end, data) {\n            cbed = true\n            if(end = end || abort) {\n              loop = false\n              if(done) done(end === true ? null : end)\n              else if(end && end !== true) {\n                console.warn(doneLackingErr)\n                throw end\n              }\n            }\n            else if(op && false === op(data) || abort) {\n              loop = false\n              read(abort || true, done || function () {})\n            }\n            else if(!loop){\n              next()\n            }\n          })\n          if(!cbed) {\n            loop = false\n            return\n          }\n        }\n      })()\n  }\n\n  sink.abort = function (err, cb) {\n    if('function' == typeof err)\n      cb = err, err = true\n    abort = err || true\n    if(read) return read(abort, cb || function () {})\n  }\n\n  return sink\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "pull-stream"
+  },
+  {
+    "accessPath": "pull-stream.onEnd",
+    "descriptor": {
+      "type": "function",
+      "signature": "(done)",
+      "implementation": "function onEnd (done) {\n  return drain(null, done)\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "pull-stream"
+  },
+  {
+    "accessPath": "pull-stream.log",
+    "descriptor": {
+      "type": "function",
+      "signature": "(done)",
+      "implementation": "function log (done) {\n  return drain(function (data) {\n    console.log(data)\n  }, done)\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "pull-stream"
+  },
+  {
+    "accessPath": "pull-stream.find",
+    "descriptor": {
+      "type": "function",
+      "signature": "(test, cb)",
+      "implementation": "function find (test, cb) {\n  var ended = false\n  if(!cb)\n    cb = test, test = id\n  else\n    test = prop(test) || id\n\n  return drain(function (data) {\n    if(test(data)) {\n      ended = true\n      cb(null, data)\n    return false\n    }\n  }, function (err) {\n    if(ended) return //already called back\n    cb(err === true ? null : err, null)\n  })\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "pull-stream"
+  },
+  {
+    "accessPath": "pull-stream.reduce",
+    "descriptor": {
+      "type": "function",
+      "signature": "(reducer, acc, cb )",
+      "implementation": "function reduce (reducer, acc, cb ) {\n  if(!cb) cb = acc, acc = null\n  var sink = drain(function (data) {\n    acc = reducer(acc, data)\n  }, function (err) {\n    cb(err, acc)\n  })\n  if (arguments.length === 2)\n    return function (source) {\n      source(null, function (end, data) {\n        //if ended immediately, and no initial...\n        if(end) return cb(end === true ? null : end)\n        acc = data; sink(source)\n      })\n    }\n  else\n    return sink\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "pull-stream"
+  },
+  {
+    "accessPath": "pull-stream.collect",
+    "descriptor": {
+      "type": "function",
+      "signature": "(cb)",
+      "implementation": "function collect (cb) {\n  return reduce(function (arr, item) {\n    arr.push(item)\n    return arr\n  }, [], cb)\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "pull-stream"
+  },
+  {
+    "accessPath": "pull-stream.concat",
+    "descriptor": {
+      "type": "function",
+      "signature": "(cb)",
+      "implementation": "function concat (cb) {\n  return reduce(function (a, b) {\n    return a + b\n  }, '', cb)\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "pull-stream"
+  }
+]

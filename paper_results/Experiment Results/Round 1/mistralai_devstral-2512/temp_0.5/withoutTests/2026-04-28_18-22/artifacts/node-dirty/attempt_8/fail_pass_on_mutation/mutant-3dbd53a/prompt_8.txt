@@ -1,0 +1,30 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-3dbd53a/testCase.test.ts
+  Dirty database encoding
+    ✕ should fail when encoding is not UTF-8 (110 ms)
+
+  ● Dirty database encoding › should fail when encoding is not UTF-8
+
+    File was not encoded as UTF-8 - ASCII decoding succeeded
+
+      54 |               const asciiDecoded = rawData.toString('ascii');
+      55 |               // If we get here, the encoding was not UTF-8 (mutated case)
+    > 56 |               done(new Error('File was not encoded as UTF-8 - ASCII decoding succeeded'));
+         |                    ^
+      57 |             } catch (e) {
+      58 |               // Expected behavior - ASCII decoding should fail with non-ASCII characters
+      59 |               db.close();
+
+      at Timeout._onTimeout (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-3dbd53a/testCase.test.ts:56:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.184 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-3dbd53a/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

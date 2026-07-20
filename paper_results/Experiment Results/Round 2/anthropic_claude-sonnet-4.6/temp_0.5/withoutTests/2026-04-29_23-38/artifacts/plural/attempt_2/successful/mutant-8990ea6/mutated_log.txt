@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/plural/attempt_2/pending_category/mutant-8990ea6/testCase.test.ts
+  plural
+    ✕ should only apply quy rule to words ending with quy, not words containing quy mid-word (9 ms)
+
+  ● plural › should only apply quy rule to words ending with quy, not words containing quy mid-word
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "quyers"
+    Received: "quyeies"
+
+      18 |     // Mutated: quy matches -> "quyer".substr(0,4) + "ies" = "quyeies"  
+      19 |     const result = plural('quyer');
+    > 20 |     expect(result).toBe('quyers');
+         |                    ^
+      21 |   });
+      22 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/plural/attempt_2/pending_category/mutant-8990ea6/testCase.test.ts:20:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.064 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/plural/attempt_2/pending_category/mutant-8990ea6/testCase.test.ts".

@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-466311d/testCase.test.ts
+  logHypot overflow behavior via log()
+    ✕ should correctly compute log of a complex number with very large real part and small imaginary part (2 ms)
+
+  ● logHypot overflow behavior via log() › should correctly compute log of a complex number with very large real part and small imaginary part
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 460.51701859880916
+    Received: Infinity
+
+    Expected precision:    5
+    Expected difference: < 0.000005
+    Received difference:   Infinity
+
+       9 |     // log(1e200 + i) ≈ log(1e200) + i*atan2(1, 1e200) ≈ 200*ln(10) + i*~0
+      10 |     const expectedRe = Math.log(1e200); // approximately 460.517...
+    > 11 |     expect(result.re).toBeCloseTo(expectedRe, 5);
+         |                       ^
+      12 |     expect(isFinite(result.re)).toBe(true);
+      13 |   });
+      14 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-466311d/testCase.test.ts:11:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.578 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-466311d/testCase.test.ts".

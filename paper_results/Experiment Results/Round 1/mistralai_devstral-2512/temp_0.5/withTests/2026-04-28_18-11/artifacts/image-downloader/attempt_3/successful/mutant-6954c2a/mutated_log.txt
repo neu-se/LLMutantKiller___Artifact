@@ -1,0 +1,47 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_3/pending_category/mutant-6954c2a/testCase.test.ts[0m:[93m2[0m:[93m22[0m - [91merror[0m[90m TS2307: [0mCannot find module 'follow-redirects' or its corresponding type declarations.
+
+[7m2[0m import { http } from 'follow-redirects';
+[7m [0m [91m                     ~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_3/pending_category/mutant-6954c2a/testCase.test.ts (6.045 s)
+  request error message format
+    ✕ should include "Request Failed" prefix in error message for non-200 responses (5001 ms)
+
+  ● request error message format › should include "Request Failed" prefix in error message for non-200 responses
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /^Request Failed/
+    Received string:  "Status Code: 404"
+
+      25 |       .then(() => done(new Error('Should have rejected')))
+      26 |       .catch((err: Error) => {
+    > 27 |         expect(err.message).toMatch(/^Request Failed/);
+         |                             ^
+      28 |         (http as any) = originalHttp;
+      29 |         done();
+      30 |       });
+
+      at toMatch (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_3/pending_category/mutant-6954c2a/testCase.test.ts:27:29)
+
+  ● request error message format › should include "Request Failed" prefix in error message for non-200 responses
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      3 |
+      4 | describe('request error message format', () => {
+    > 5 |   it('should include "Request Failed" prefix in error message for non-200 responses', (done) => {
+        |   ^
+      6 |     const mockRequest = {
+      7 |       get: (url: string, options: any, callback: Function) => {
+      8 |         const mockResponse = {
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_3/pending_category/mutant-6954c2a/testCase.test.ts:5:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_3/pending_category/mutant-6954c2a/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.201 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_3/pending_category/mutant-6954c2a/testCase.test.ts".

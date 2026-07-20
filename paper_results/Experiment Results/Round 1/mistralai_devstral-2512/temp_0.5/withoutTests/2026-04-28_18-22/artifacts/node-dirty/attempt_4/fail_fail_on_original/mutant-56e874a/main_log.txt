@@ -1,0 +1,63 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-56e874a/testCase.test.ts[0m:[93m23[0m:[93m29[0m - [91merror[0m[90m TS18047: [0m'dirty._writeStream' is possibly 'null'.
+
+[7m23[0m       const originalWrite = dirty._writeStream.write;
+[7m  [0m [91m                            ~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-56e874a/testCase.test.ts[0m:[93m24[0m:[93m7[0m - [91merror[0m[90m TS18047: [0m'dirty._writeStream' is possibly 'null'.
+
+[7m24[0m       dirty._writeStream.write = function(...args) {
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-56e874a/testCase.test.ts[0m:[93m26[0m:[93m42[0m - [91merror[0m[90m TS2345: [0mArgument of type '[any, BufferEncoding | ((error: Error | null | undefined) => void) | undefined, unknown?]' is not assignable to parameter of type '[chunk: any, encoding: BufferEncoding, callback?: ((error: Error | null | undefined) => void) | undefined]'.
+  Type at position 1 in source is not compatible with type at position 1 in target.
+    Type 'BufferEncoding | ((error: Error | null | undefined) => void) | undefined' is not assignable to type 'BufferEncoding'.
+      Type 'undefined' is not assignable to type 'BufferEncoding'.
+
+[7m26[0m         return originalWrite.apply(this, args);
+[7m  [0m [91m                                         ~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-56e874a/testCase.test.ts[0m:[93m34[0m:[93m9[0m - [91merror[0m[90m TS18047: [0m'dirty._writeStream' is possibly 'null'.
+
+[7m34[0m         dirty._writeStream.write = originalWrite;
+[7m  [0m [91m        ~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-56e874a/testCase.test.ts (6.193 s)
+  Dirty database flush behavior
+    ✕ should flush pending writes when queue has items and waitForDrain is false (5001 ms)
+
+  ● Dirty database flush behavior › should flush pending writes when queue has items and waitForDrain is false
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 2
+    Received: 0
+
+      16 |
+      17 |       // Verify queue has items
+    > 18 |       expect(dirty._queue.size).toBe(2);
+         |                                 ^
+      19 |       expect(dirty._waitForDrain).toBe(false);
+      20 |
+      21 |       // Track writes
+
+      at Dirty.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-56e874a/testCase.test.ts:18:33)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:114:18)
+
+  ● Dirty database flush behavior › should flush pending writes when queue has items and waitForDrain is false
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       5 |
+       6 | describe('Dirty database flush behavior', () => {
+    >  7 |   it('should flush pending writes when queue has items and waitForDrain is false', (done) => {
+         |   ^
+       8 |     const testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'dirty-test-'));
+       9 |     const dbPath = path.join(testDir, 'test.db');
+      10 |     const dirty = new Dirty(dbPath);
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-56e874a/testCase.test.ts:7:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-56e874a/testCase.test.ts:6:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.356 s, estimated 7 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-56e874a/testCase.test.ts".

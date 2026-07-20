@@ -1,0 +1,52 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-31db0eb/testCase.test.ts[0m:[93m20[0m:[93m5[0m - [91merror[0m[90m TS2741: [0mProperty '__promisify__' is missing in type 'Mock<{ unref: () => void; }, [fn: Function], any>' but required in type 'typeof setImmediate'.
+
+[7m20[0m     global.setImmediate = jest.fn((fn: Function) => {
+[7m  [0m [91m    ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/node/timers.d.ts[0m:[93m180[0m:[93m22[0m
+    [7m180[0m             export { __promisify__ };
+    [7m   [0m [96m                     ~~~~~~~~~~~~~[0m
+    '__promisify__' is declared here.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-31db0eb/testCase.test.ts
+  Q library setImmediate window binding behavior
+    ✕ should use window.setImmediate when window is available (3 ms)
+
+  ● Q library setImmediate window binding behavior › should use window.setImmediate when window is available
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      46 |     Q1.resolve("test").then(() => {
+      47 |       // In original code, when window is defined, window.setImmediate should be used
+    > 48 |       expect(windowSetImmediateUsed).toBe(true);
+         |                                      ^
+      49 |       expect(mockWindow.setImmediate).toHaveBeenCalled();
+      50 |
+      51 |       // Restore environment
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-31db0eb/testCase.test.ts:48:38)
+      at fulfilled (../subject_repositories/q/q.js:854:54)
+      at _fulfilled (../subject_repositories/q/q.js:883:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:816:13)
+      at promiseDispatch (../subject_repositories/q/q.js:877:14)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.424 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-31db0eb/testCase.test.ts".
+node:internal/process/promises:391
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+Error: Test timed out
+    at Timeout._onTimeout (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-31db0eb/testCase.test.ts:68:12)
+    at listOnTimeout (node:internal/timers:581:17)
+    at processTimers (node:internal/timers:519:7)
+
+Node.js v20.19.4

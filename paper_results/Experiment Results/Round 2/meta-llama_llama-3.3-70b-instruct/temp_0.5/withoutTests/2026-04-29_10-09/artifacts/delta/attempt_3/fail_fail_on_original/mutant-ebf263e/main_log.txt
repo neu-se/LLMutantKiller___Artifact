@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-ebf263e/testCase.test.ts
+  Delta
+    ✕ should correctly compose deltas when the first operation is a retain (8 ms)
+
+  ● Delta › should correctly compose deltas when the first operation is a retain
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 5
+    + Received  + 1
+
+    - Array [
+    -   Object {
+    -     "retain": 8,
+    -   },
+    - ]
+    + Array []
+
+       8 |     delta2.retain(3);
+       9 |     const composedDelta = delta1.compose(delta2);
+    > 10 |     expect(composedDelta.ops).toEqual([{ retain: 8 }]);
+         |                               ^
+      11 |   });
+      12 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-ebf263e/testCase.test.ts:10:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-ebf263e/testCase.test.ts".

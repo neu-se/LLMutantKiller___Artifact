@@ -1,0 +1,34 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-980c0a3/testCase.test.ts[0m:[93m6[0m:[93m25[0m - [91merror[0m[90m TS2339: [0mProperty 'values' does not exist on type '{ (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { (a: any, ...args: any[]): any; pull: { ...; }; }; }; }; }; }; }'.
+
+[7m6[0m     const source = pull.values([1, 2, 3, null, 4, 5, 6]);
+[7m [0m [91m                        ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-980c0a3/testCase.test.ts
+  pull-stream drain
+    ✕ should handle end correctly (1 ms)
+
+  ● pull-stream drain › should handle end correctly
+
+    Test error
+
+       8 |       (data: any) => {
+       9 |         if (data === null) {
+    > 10 |           throw new Error('Test error');
+         |                 ^
+      11 |         }
+      12 |       },
+      13 |       (err: any) => {
+
+      at llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-980c0a3/testCase.test.ts:10:17
+      at op (../subject_repositories/pull-stream/sinks/drain.js:32:37)
+      at cb (../subject_repositories/pull-stream/sources/values.js:21:7)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:45:8)
+      at s (../subject_repositories/pull-stream/pull.js:41:14)
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-980c0a3/testCase.test.ts:22:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.854 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-980c0a3/testCase.test.ts".

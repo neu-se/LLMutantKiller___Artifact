@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_6/pending_category/mutant-8ee46b3/testCase.test.ts
+  transform()
+    ✕ correctly handles retain operations where otherData retain value is null-like (5 ms)
+
+  ● transform() › correctly handles retain operations where otherData retain value is null-like
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        Object {
+    -     "retain": 1,
+    +     "insert": undefined,
+        },
+      ]
+
+      12 |     // Original: transformedData = length = 1, so retain(1) -> { retain: 1 }
+      13 |     // Mutated:  transformedData = null, so retain(null) -> different behavior
+    > 14 |     expect(result.ops).toEqual([{ retain: 1 }]);
+         |                        ^
+      15 |   });
+      16 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_6/pending_category/mutant-8ee46b3/testCase.test.ts:14:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.988 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_6/pending_category/mutant-8ee46b3/testCase.test.ts".

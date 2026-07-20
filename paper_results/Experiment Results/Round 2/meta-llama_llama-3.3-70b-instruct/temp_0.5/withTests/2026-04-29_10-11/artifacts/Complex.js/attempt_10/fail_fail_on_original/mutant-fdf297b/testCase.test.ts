@@ -1,0 +1,12 @@
+import { Complex } from '../complex';
+
+describe('Complex', () => {
+  it('should correctly handle subtraction of an infinite complex number from another infinite complex number', () => {
+    const c1 = new Complex(Infinity, Infinity);
+    const c2 = new Complex(Infinity, Infinity);
+    expect(c1.sub(c2).isNaN()).toBe(true);
+    const c3 = new Complex(1, 2);
+    expect(c1.sub(c3).isInfinite()).toBe(true);
+    expect(c2.sub(c1).isInfinite()).toBe(true); 
+  });
+});

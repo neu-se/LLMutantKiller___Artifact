@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/plural/attempt_10/pending_category/mutant-dbdbe6c/testCase.test.ts
+  String prototype monkey patching
+    ✕ should throw when attempting to re-patch String.prototype.plural (8 ms)
+
+  ● String prototype monkey patching › should throw when attempting to re-patch String.prototype.plural
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "function"
+    Received: "undefined"
+
+       8 |     // Verify the monkey patch was applied
+       9 |     const testString = 'test' as any;
+    > 10 |     expect(typeof testString.plural).toBe('function');
+         |                                      ^
+      11 |
+      12 |     // Clear the module cache to force re-evaluation
+      13 |     delete require.cache[require.resolve("../../../../../../../../../../../subject_repositories/plural/index.js")];
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/plural/attempt_10/pending_category/mutant-dbdbe6c/testCase.test.ts:10:38)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.043 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/plural/attempt_10/pending_category/mutant-dbdbe6c/testCase.test.ts".

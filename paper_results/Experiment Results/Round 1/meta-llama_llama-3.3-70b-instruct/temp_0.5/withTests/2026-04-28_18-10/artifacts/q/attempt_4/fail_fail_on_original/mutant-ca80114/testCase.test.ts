@@ -1,0 +1,17 @@
+import * as q from "../../../../../../../../../../../subject_repositories/q/q.js";
+
+describe('Q', () => {
+    it('should handle exceptions in Node.js', () => {
+        const deferred = q.defer();
+        const promise = deferred.promise;
+        const error = new Error('Test error');
+        q.nextTick(function () {
+            throw error;
+        });
+        promise.catch((e: any) => {
+            expect(e).toBe(error);
+        });
+        // Add a done call to ensure the test finishes
+        return promise;
+    });
+});

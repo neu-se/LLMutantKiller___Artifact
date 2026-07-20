@@ -1,0 +1,73 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-809937b/testCase.test.ts[0m:[93m15[0m:[93m13[0m - [91merror[0m[90m TS7034: [0mVariable 'emitError' implicitly has type 'any' in some locations where its type cannot be determined.
+
+[7m15[0m         let emitError = null;
+[7m  [0m [91m            ~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-809937b/testCase.test.ts[0m:[93m32[0m:[93m20[0m - [91merror[0m[90m TS7005: [0mVariable 'emitError' implicitly has an 'any' type.
+
+[7m32[0m             expect(emitError).toBeNull();
+[7m  [0m [91m                   ~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-809937b/testCase.test.ts (7.248 s)
+  unhandled rejection tracking
+    ✕ should not attempt to emit when process.emit is not a function (5003 ms)
+
+  ● unhandled rejection tracking › should not attempt to emit when process.emit is not a function
+
+    emit was called
+
+      16 |         const mockProcess = global.process as any;
+      17 |         mockProcess.emit = function() {
+    > 18 |             emitError = new Error("emit was called");
+         |                         ^
+      19 |             throw emitError;
+      20 |         };
+      21 |
+
+      at Object.mockProcess.emit (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-809937b/testCase.test.ts:18:25)
+      at emit (../subject_repositories/q/q.js:1079:25)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:130:13)
+
+  ● unhandled rejection tracking › should not attempt to emit when process.emit is not a function
+
+    expect(received).toBeNull()
+
+    Received: [Error: emit was called]
+
+      30 |             // In original code: emit should NOT be called (typeof check fails)
+      31 |             // In mutated code: emit will be called (condition is always true) and throw error
+    > 32 |             expect(emitError).toBeNull();
+         |                               ^
+      33 |             done();
+      34 |         }, 50);
+      35 |     });
+
+      at Timeout.toBeNull [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-809937b/testCase.test.ts:32:31)
+
+  ● unhandled rejection tracking › should not attempt to emit when process.emit is not a function
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("unhandled rejection tracking", () => {
+    > 4 |     it("should not attempt to emit when process.emit is not a function", (done) => {
+        |     ^
+      5 |         // Store original process
+      6 |         const originalProcess = global.process;
+      7 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-809937b/testCase.test.ts:4:5)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-809937b/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.413 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-809937b/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,54 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-b5ea154/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/throughs/map.js"' has no exported member 'map'.
+
+[7m1[0m import { map } from "../../../../../../../../../../../subject_repositories/pull-stream/throughs/map.js";
+[7m [0m [91m         ~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-b5ea154/testCase.test.ts[0m:[93m6[0m:[93m5[0m - [91merror[0m[90m TS2349: [0mThis expression is not callable.
+  Type 'typeof export=' has no call signatures.
+
+[7m6[0m     pull(
+[7m [0m [91m    ~~~~[0m
+
+  [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-b5ea154/testCase.test.ts[0m:[93m2[0m:[93m1[0m
+    [7m2[0m import * as pull from "../../../../../../../../../../../subject_repositories/pull-stream/pull.js";
+    [7m [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    Type originates at this import. A namespace-style import cannot be called or constructed, and will cause a failure at runtime. Consider using a default import or import require here instead.
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-b5ea154/testCase.test.ts[0m:[93m7[0m:[93m12[0m - [91merror[0m[90m TS2339: [0mProperty 'values' does not exist on type 'typeof export='.
+
+[7m7[0m       pull.values([1, 2, 3]),
+[7m [0m [91m           ~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-b5ea154/testCase.test.ts[0m:[93m9[0m:[93m12[0m - [91merror[0m[90m TS2339: [0mProperty 'collect' does not exist on type 'typeof export='.
+
+[7m9[0m       pull.collect((err, result) => {
+[7m [0m [91m           ~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-b5ea154/testCase.test.ts[0m:[93m9[0m:[93m21[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m9[0m       pull.collect((err, result) => {
+[7m [0m [91m                    ~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-b5ea154/testCase.test.ts[0m:[93m9[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'result' implicitly has an 'any' type.
+
+[7m9[0m       pull.collect((err, result) => {
+[7m [0m [91m                         ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-b5ea154/testCase.test.ts
+  map with null mapper
+    ✕ should use identity function when mapper is null (1 ms)
+
+  ● map with null mapper › should use identity function when mapper is null
+
+    TypeError: pull.values is not a function
+
+       5 |   it('should use identity function when mapper is null', (done) => {
+       6 |     pull(
+    >  7 |       pull.values([1, 2, 3]),
+         |            ^
+       8 |       map(null),
+       9 |       pull.collect((err, result) => {
+      10 |         expect(err).toBeNull();
+
+      at Object.values (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-b5ea154/testCase.test.ts:7:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.087 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-b5ea154/testCase.test.ts".

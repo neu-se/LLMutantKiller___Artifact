@@ -1,0 +1,37 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-8ee46b3/testCase.test.ts
+  Delta
+    ✕ should detect mutation in transform function (6 ms)
+
+  ● Delta › should detect mutation in transform function
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 3
+
+      Delta {
+        "ops": Array [
+          Object {
+    +       "attributes": Object {
+    +         "bold": true,
+    +       },
+            "retain": 1,
+          },
+        ],
+      }
+
+       6 |     const b = new Delta().retain(1, { bold: true });
+       7 |     const expected = new Delta().retain(1);
+    >  8 |     expect(a.transform(b)).toEqual(expected);
+         |                            ^
+       9 |   });
+      10 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-8ee46b3/testCase.test.ts:8:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.571 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-8ee46b3/testCase.test.ts".

@@ -1,0 +1,29 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_6/pending_category/mutant-b17ee46/testCase.test.ts
+  Matcher.for
+    ✕ should default to version 1.1 as shown by the compiled function source containing the string 1.1 (3 ms)
+
+  ● Matcher.for › should default to version 1.1 as shown by the compiled function source containing the string 1.1
+
+    expect(received).not.toMatch(expected)
+
+    Expected pattern: not /version\s*=\s*["']["']/
+    Received string:      "for(spec, version = \"\") {
+        return new Matcher(spec, version);
+      }"
+
+       8 |     // In the mutated code, default is '' - compiled JS will have = "" or = ''
+       9 |     // Check that the default is NOT an empty string
+    > 10 |     expect(src).not.toMatch(/version\s*=\s*["']["']/)
+         |                     ^
+      11 |     // And that it contains 1.1
+      12 |     expect(src).toMatch(/1\.1/)
+      13 |   })
+
+      at Object.toMatch (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_6/pending_category/mutant-b17ee46/testCase.test.ts:10:21)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        4.459 s, estimated 5 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_6/pending_category/mutant-b17ee46/testCase.test.ts".

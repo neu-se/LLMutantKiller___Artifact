@@ -1,0 +1,49 @@
+{
+  "file": "q.js",
+  "startLine": 823,
+  "startColumn": 18,
+  "endLine": 837,
+  "endColumn": 8,
+  "originalCode": "\n-       if (inspect) {\n-           var inspected = inspect();\n-           if (inspected.state === \"rejected\") {\n-               promise.exception = inspected.reason;\n-           }\n-           promise.valueOf = function () {\n-               var inspected = inspect();\n-               if (inspected.state === \"pending\" ||\n-                   inspected.state === \"rejected\") {\n-                   return promise;\n-               }\n-               return inspected.value;\n-           };\n-       }",
+  "replacement": "\n+       if (inspect) {}\n",
+  "removedLines": [
+    "       if (inspect) {",
+    "           var inspected = inspect();",
+    "           if (inspected.state === \"rejected\") {",
+    "               promise.exception = inspected.reason;",
+    "           }",
+    "           promise.valueOf = function () {",
+    "               var inspected = inspect();",
+    "               if (inspected.state === \"pending\" ||",
+    "                   inspected.state === \"rejected\") {",
+    "                   return promise;",
+    "               }",
+    "               return inspected.value;",
+    "           };",
+    "       }"
+  ],
+  "addedLines": [
+    "       if (inspect) {}",
+    ""
+  ],
+  "lineSummary": [
+    "-       if (inspect) {",
+    "-           var inspected = inspect();",
+    "-           if (inspected.state === \"rejected\") {",
+    "-               promise.exception = inspected.reason;",
+    "-           }",
+    "-           promise.valueOf = function () {",
+    "-               var inspected = inspect();",
+    "-               if (inspected.state === \"pending\" ||",
+    "-                   inspected.state === \"rejected\") {",
+    "-                   return promise;",
+    "-               }",
+    "-               return inspected.value;",
+    "-           };",
+    "-       }",
+    "+       if (inspect) {}",
+    ""
+  ],
+  "mutatorName": "BlockStatement",
+  "strykerMutationId": "530"
+}

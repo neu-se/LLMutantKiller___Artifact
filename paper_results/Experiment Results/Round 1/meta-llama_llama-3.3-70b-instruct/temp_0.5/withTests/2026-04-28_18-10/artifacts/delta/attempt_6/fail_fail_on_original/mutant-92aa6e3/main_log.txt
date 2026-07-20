@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_6/pending_category/mutant-92aa6e3/testCase.test.ts
+  Delta
+    ✕ compose with embed handler and action check (3 ms)
+
+  ● Delta › compose with embed handler and action check
+
+    cannot retain a string
+
+      19 | ): [string, unknown, unknown] => {
+      20 |   if (typeof a !== 'object' || a === null) {
+    > 21 |     throw new Error(`cannot retain a ${typeof a}`);
+         |           ^
+      22 |   }
+      23 |   if (typeof b !== 'object' || b === null) {
+      24 |     throw new Error(`cannot retain a ${typeof b}`);
+
+      at getEmbedTypeAndData (../subject_repositories/delta/src/Delta.ts:21:11)
+      at Delta.getEmbedTypeAndData [as compose] (../subject_repositories/delta/src/Delta.ts:282:56)
+      at Object.compose (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_6/pending_category/mutant-92aa6e3/testCase.test.ts:15:14)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.871 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_6/pending_category/mutant-92aa6e3/testCase.test.ts".

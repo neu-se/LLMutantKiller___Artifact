@@ -1,0 +1,37 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-58fa663/testCase.test.ts[0m:[93m29[0m:[93m16[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 1.
+
+[7m29[0m       return Q.delay(10).then(() => {
+[7m  [0m [91m               ~~~~~[0m
+
+  [96m../subject_repositories/q/q.js[0m:[93m1872[0m:[93m29[0m
+    [7m1872[0m Q.delay = function (object, timeout) {
+    [7m    [0m [96m                            ~~~~~~~[0m
+    An argument for 'timeout' was not provided.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-58fa663/testCase.test.ts
+  unhandled rejection tracking mutation test
+    ✕ should correctly handle process object with non-function emit (1 ms)
+
+  ● unhandled rejection tracking mutation test › should correctly handle process object with non-function emit
+
+    TypeError: process.nextTick is not a function
+
+      195 |
+      196 |         requestTick = function () {
+    > 197 |             process.nextTick(flush);
+          |                     ^
+      198 |         };
+      199 |
+      200 |     } else if (typeof setImmediate === "function") {
+
+      at nextTick (../subject_repositories/q/q.js:197:21)
+      at Function.requestTick [as nextTick] (../subject_repositories/q/q.js:180:13)
+      at Promise.nextTick [as then] (../subject_repositories/q/q.js:876:7)
+      at Promise.then [as catch] (../subject_repositories/q/q.js:1739:17)
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-58fa663/testCase.test.ts:26:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.916 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-58fa663/testCase.test.ts".

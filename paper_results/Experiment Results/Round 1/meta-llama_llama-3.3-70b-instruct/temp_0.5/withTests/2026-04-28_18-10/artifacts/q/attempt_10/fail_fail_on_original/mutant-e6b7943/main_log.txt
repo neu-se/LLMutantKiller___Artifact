@@ -1,0 +1,39 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-e6b7943/testCase.test.ts[0m:[93m4[0m:[93m33[0m - [91merror[0m[90m TS7006: [0mParameter 'exception' implicitly has an 'any' type.
+
+[7m4[0m       isStopIteration: function(exception) {
+[7m [0m [91m                                ~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-e6b7943/testCase.test.ts[0m:[93m7[0m:[93m30[0m - [91merror[0m[90m TS7006: [0mParameter 'value' implicitly has an 'any' type.
+
+[7m7[0m       QReturnValue: function(value) {
+[7m [0m [91m                             ~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-e6b7943/testCase.test.ts[0m:[93m8[0m:[93m14[0m - [91merror[0m[90m TS2339: [0mProperty 'value' does not exist on type '{ isStopIteration: (exception: any) => boolean; QReturnValue: (value: any) => void; }'.
+
+[7m8[0m         this.value = value;
+[7m [0m [91m             ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-e6b7943/testCase.test.ts
+  Q
+    ✕ should handle StopIteration exception correctly (3 ms)
+
+  ● Q › should handle StopIteration exception correctly
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      11 |
+      12 |     expect(Q.isStopIteration({})).toBe(false);
+    > 13 |     expect(Q.isStopIteration(new Error("StopIteration"))).toBe(true);
+         |                                                           ^
+      14 |     expect(Q.isStopIteration({ name: "StopIteration" })).toBe(false);
+      15 |   });
+      16 | });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-e6b7943/testCase.test.ts:13:59)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.604 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-e6b7943/testCase.test.ts".

@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-9c79a13/testCase.test.ts
+  Complex
+    ✕ should correctly calculate the complex sech for the original code and fail for the mutated code (3 ms)
+
+  ● Complex › should correctly calculate the complex sech for the original code and fail for the mutated code
+
+    Cannot find module '../complex.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-9c79a13/testCase.test.ts'
+
+      1 | describe('Complex', () => {
+      2 |   it('should correctly calculate the complex sech for the original code and fail for the mutated code', () => {
+    > 3 |     const Complex = require('../complex.js').Complex;
+        |                     ^
+      4 |     const complex = new Complex(1, 1);
+      5 |     const result = complex.sech();
+      6 |     const expectedRe = 2 * Math.cosh(1) * Math.cos(1) / (Math.cos(2 * 1) + Math.cosh(2 * 1));
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-9c79a13/testCase.test.ts:3:21)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.677 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-9c79a13/testCase.test.ts".

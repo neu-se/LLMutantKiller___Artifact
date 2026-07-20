@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-9a4c4f0/testCase.test.ts
+  Complex cosm1 function
+    ✕ should correctly compute cos(x) - 1 for x = 0.00001 (2 ms)
+
+  ● Complex cosm1 function › should correctly compute cos(x) - 1 for x = 0.00001
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.000010000000000166668
+    Received: 0.000010000050000166668
+
+    Expected precision:    14
+    Expected difference: < 5e-15
+    Received difference:   5.0000000000109636e-11
+
+      10 |     const expectedCosm1 = -x*x/2 + x*x*x*x/24 - x*x*x*x*x*x/720 + x*x*x*x*x*x*x*x/40320 - x*x*x*x*x*x*x*x*x*x/3628800;
+      11 |     const expectedRe = Math.expm1(x) * Math.cos(0) + expectedCosm1;
+    > 12 |     expect(result.re).toBeCloseTo(expectedRe, 14);
+         |                       ^
+      13 |     expect(result.im).toBeCloseTo(0, 14);
+      14 |   });
+      15 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-9a4c4f0/testCase.test.ts:12:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.316 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-9a4c4f0/testCase.test.ts".

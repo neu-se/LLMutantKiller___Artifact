@@ -1,0 +1,41 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-5095899/testCase.test.ts
+  Q initialization in self-only environment
+    ✕ should initialize Q when only self is available (not window) (29 ms)
+
+  ● Q initialization in self-only environment › should initialize Q when only self is available (not window)
+
+    Hooks cannot be defined inside tests. Hook of type "afterAll" is nested within "should initialize Q when only self is available (not window)".
+
+       6 |
+       7 |         // Clean up
+    >  8 |         afterAll(() => {
+         |         ^
+       9 |             global.window = originalWindow;
+      10 |             global.self = originalSelf;
+      11 |         });
+
+      at eventHandler (node_modules/jest-circus/build/eventHandler.js:97:11)
+      at Object.afterAll (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-5095899/testCase.test.ts:8:9)
+
+  ● Q initialization in self-only environment › should initialize Q when only self is available (not window)
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      22 |
+      23 |         // Verify Q was initialized (this will fail in mutated version)
+    > 24 |         expect((global as any).Q).toBeDefined();
+         |                                   ^
+      25 |         expect(typeof (global as any).Q).toBe("function");
+      26 |
+      27 |         // Test basic functionality
+
+      at Object.toBeDefined (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-5095899/testCase.test.ts:24:35)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.415 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-5095899/testCase.test.ts".

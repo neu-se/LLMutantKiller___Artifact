@@ -1,0 +1,37 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-b980226/testCase.test.ts[0m:[93m11[0m:[93m24[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 2, '(o: {}): string[]', gave the following error.
+    Argument of type 'AttributeMap | undefined' is not assignable to parameter of type '{}'.
+      Type 'undefined' is not assignable to type '{}'.
+  Overload 2 of 2, '(o: object): string[]', gave the following error.
+    Argument of type 'AttributeMap | undefined' is not assignable to parameter of type 'object'.
+      Type 'undefined' is not assignable to type 'object'.
+
+[7m11[0m     expect(Object.keys(result).length).toBe(1);
+[7m  [0m [91m                       ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-b980226/testCase.test.ts
+  AttributeMap
+    ✕ should return the correct result when transforming attributes with priority (4 ms)
+
+  ● AttributeMap › should return the correct result when transforming attributes with priority
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "object"
+    Received: "undefined"
+
+       8 |     const result = AttributeMap.transform(a, b, priority);
+       9 |     expect(result).not.toBeNull();
+    > 10 |     expect(typeof result).toBe('object');
+         |                           ^
+      11 |     expect(Object.keys(result).length).toBe(1);
+      12 |   });
+      13 | });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-b980226/testCase.test.ts:10:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.931 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-b980226/testCase.test.ts".

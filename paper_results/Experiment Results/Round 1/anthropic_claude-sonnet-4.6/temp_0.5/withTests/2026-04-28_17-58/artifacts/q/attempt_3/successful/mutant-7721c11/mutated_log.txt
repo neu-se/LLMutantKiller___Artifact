@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-7721c11/testCase.test.ts
+  array_indexOf fallback
+    ✕ should find elements when native indexOf is unavailable, enabling rejection untracking (148 ms)
+
+  ● array_indexOf fallback › should find elements when native indexOf is unavailable, enabling rejection untracking
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      30 |         // With original code: array_indexOf finds the promise, splices it out -> length 0
+      31 |         // With mutated code: array_indexOf always returns -1, never splices -> length 1
+    > 32 |         expect(Q.getUnhandledReasons().length).toBe(0);
+         |                                                ^
+      33 |         done();
+      34 |       } catch(e) {
+      35 |         done(e);
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-7721c11/testCase.test.ts:32:48)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.496 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-7721c11/testCase.test.ts".

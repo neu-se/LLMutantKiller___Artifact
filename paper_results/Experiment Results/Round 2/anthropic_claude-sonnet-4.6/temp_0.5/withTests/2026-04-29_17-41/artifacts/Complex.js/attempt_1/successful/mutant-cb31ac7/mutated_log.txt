@@ -1,0 +1,29 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-cb31ac7/testCase.test.ts
+  cosm1 via expm1
+    ✕ should compute expm1 correctly for small imaginary values, detecting the cosm1 sign mutation (2 ms)
+
+  ● cosm1 via expm1 › should compute expm1 correctly for small imaginary values, detecting the cosm1 sign mutation
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: -0.0049958347219742905
+    Received: -0.004995831944196457
+
+    Expected precision:    10
+    Expected difference: < 5e-11
+    Received difference:   2.7777778332724323e-9
+
+       9 |     const expected = Math.cos(x) - 1;
+      10 |     // The mutation changes -1/720 to +1/720 in the Taylor series, causing a wrong result
+    > 11 |     expect(result.re).toBeCloseTo(expected, 10);
+         |                       ^
+      12 |   });
+      13 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-cb31ac7/testCase.test.ts:11:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-cb31ac7/testCase.test.ts".

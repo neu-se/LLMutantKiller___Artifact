@@ -1,0 +1,36 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-56cf9b4/testCase.test.ts
+  invert()
+    ✕ retain without attributes should not produce retain ops in the forEach loop (5 ms)
+
+  ● invert() › retain without attributes should not produce retain ops in the forEach loop
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 5
+    + Received  + 1
+
+      Delta {
+    -   "ops": Array [
+    -     Object {
+    -       "retain": 2,
+    -     },
+    -   ],
+    +   "ops": Array [],
+      }
+
+      19 |     // Simple retain with no attributes: should just be retain(2) in inverted
+      20 |     const expected = new Delta().retain(2);
+    > 21 |     expect(inverted).toEqual(expected);
+         |                      ^
+      22 |     expect(base.compose(delta).compose(inverted)).toEqual(base);
+      23 |   });
+      24 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-56cf9b4/testCase.test.ts:21:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.668 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-56cf9b4/testCase.test.ts".

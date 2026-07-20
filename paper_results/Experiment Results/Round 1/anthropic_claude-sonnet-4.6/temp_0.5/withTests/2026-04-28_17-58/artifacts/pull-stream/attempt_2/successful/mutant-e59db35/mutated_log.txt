@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/pull-stream/throughs/flatten.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/pull-stream/throughs/flatten.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-e59db35/testCase.test.ts (6.62 s)
+  flatten abort with active inner stream
+    ✕ should propagate abort to outer stream when inner stream cleanly acknowledges abort (5002 ms)
+
+  ● flatten abort with active inner stream › should propagate abort to outer stream when inner stream cleanly acknowledges abort
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: [Error: intentional abort]
+    Received: undefined
+
+      45 |         // Give a tick for any async propagation
+      46 |         setImmediate(() => {
+    > 47 |           expect(outerAbortReceived).toBe(abortSignal);
+         |                                      ^
+      48 |           done();
+      49 |         });
+      50 |       });
+
+      at Immediate.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-e59db35/testCase.test.ts:47:38)
+
+  ● flatten abort with active inner stream › should propagate abort to outer stream when inner stream cleanly acknowledges abort
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe('flatten abort with active inner stream', () => {
+    > 4 |   it('should propagate abort to outer stream when inner stream cleanly acknowledges abort', (done) => {
+        |   ^
+      5 |     let outerAbortReceived: any = undefined;
+      6 |
+      7 |     // Inner stream: always has data, cleanly acks abort with null error
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-e59db35/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-e59db35/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.789 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-e59db35/testCase.test.ts".

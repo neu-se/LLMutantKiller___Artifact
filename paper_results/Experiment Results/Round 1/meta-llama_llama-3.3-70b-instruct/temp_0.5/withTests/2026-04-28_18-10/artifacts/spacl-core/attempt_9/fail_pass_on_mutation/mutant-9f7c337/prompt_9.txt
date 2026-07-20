@@ -1,0 +1,32 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_8/pending_category/mutant-9f7c337/testCase.test.ts
+  Matcher
+    ✕ accepts valid paths (1 ms)
+
+  ● Matcher › accepts valid paths
+
+    Path contains invalid characters
+
+      11 |   constructor (spec: string, version: '1' | '1.0' | '1.1' = '1.1') {
+      12 |     if (spec.match(/^[a-zA-Z0-9_/:~.$+*-]*$/) === null) {
+    > 13 |       throw new Error('Path contains invalid characters')
+         |             ^
+      14 |     }
+      15 |     if (spec.match(/^\//) === null) {
+      16 |       throw new Error('Path must begin with a slash')
+
+      at new Matcher (../subject_repositories/spacl-core/src/matcher.ts:13:13)
+      at Function.for (../subject_repositories/spacl-core/src/matcher.ts:49:12)
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_8/pending_category/mutant-9f7c337/testCase.test.ts:7:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.226 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_8/pending_category/mutant-9f7c337/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

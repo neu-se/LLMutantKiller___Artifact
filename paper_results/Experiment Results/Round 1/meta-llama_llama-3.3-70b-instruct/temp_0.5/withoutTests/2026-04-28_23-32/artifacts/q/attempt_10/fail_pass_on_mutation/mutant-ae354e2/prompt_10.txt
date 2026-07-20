@@ -1,0 +1,50 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+  console.warn
+    oldFunction is deprecated, use newFunction instead.
+
+       6 |         const deprecate = (callback: Function, name: string, alternative: string) => {
+       7 |             return function () {
+    >  8 |                 console.warn(`${name} is deprecated, use ${alternative} instead.`);
+         |                         ^
+       9 |                 return callback.apply(callback, arguments);
+      10 |             };
+      11 |         };
+
+      at console.<anonymous> (node_modules/jest-mock/build/index.js:794:25)
+      at warn (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_9/pending_category/mutant-ae354e2/testCase.test.ts:8:25)
+      at Object.deprecatedFunction (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_9/pending_category/mutant-ae354e2/testCase.test.ts:13:9)
+
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_9/pending_category/mutant-ae354e2/testCase.test.ts
+  Q
+    ✕ should correctly deprecate a function (14 ms)
+
+  ● Q › should correctly deprecate a function
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "oldFunctionnewFunction"
+    Received string:    "function () {
+            console.warn(`${name}${alternative}`);
+            return callback.apply(callback, arguments);
+          }"
+
+      26 |         expect(consoleWarnSpy).not.toHaveBeenCalledWith('oldFunction is deprecated, use newFunction instead.');
+      27 |         expect(mutatedDeprecate.toString()).not.toContain('is deprecated, use');
+    > 28 |         expect(mutatedDeprecate.toString()).toContain('oldFunctionnewFunction');
+         |                                             ^
+      29 |     });
+      30 | });
+
+      at Object.toContain (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_9/pending_category/mutant-ae354e2/testCase.test.ts:28:45)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.749 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_9/pending_category/mutant-ae354e2/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

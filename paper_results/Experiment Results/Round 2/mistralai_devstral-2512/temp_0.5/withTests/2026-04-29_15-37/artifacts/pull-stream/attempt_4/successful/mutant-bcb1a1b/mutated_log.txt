@@ -1,0 +1,35 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/pull-stream/sinks/reduce.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/pull-stream/sinks/reduce.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-bcb1a1b/testCase.test.ts
+  reduce with two arguments
+    ✕ should use the first value as the initial accumulator when no initial value is provided (3 ms)
+
+  ● reduce with two arguments › should use the first value as the initial accumulator when no initial value is provided
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 24
+    Received: 0
+
+       9 |       reduce((acc: number, val: number) => acc * val, (err: any, result: number) => {
+      10 |         expect(err).toBeNull();
+    > 11 |         expect(result).toBe(24); // 2 * 3 * 4
+         |                        ^
+      12 |         done();
+      13 |       })
+      14 |     );
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-bcb1a1b/testCase.test.ts:11:24)
+      at cb (../subject_repositories/pull-stream/sinks/reduce.js:10:5)
+      at done (../subject_repositories/pull-stream/sinks/drain.js:26:24)
+      at cb (../subject_repositories/pull-stream/sources/values.js:19:7)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:45:8)
+      at s (../subject_repositories/pull-stream/pull.js:41:14)
+      at Object.pull (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-bcb1a1b/testCase.test.ts:7:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.338 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-bcb1a1b/testCase.test.ts".

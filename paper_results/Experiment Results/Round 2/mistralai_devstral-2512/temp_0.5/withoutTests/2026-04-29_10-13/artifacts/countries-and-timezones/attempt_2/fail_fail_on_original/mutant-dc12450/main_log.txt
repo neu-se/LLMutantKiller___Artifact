@@ -1,0 +1,39 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/countries-and-timezones/attempt_2/pending_category/mutant-dc12450/testCase.test.ts
+  buildCountry timezones map caching
+    ✕ should maintain timezone map state between calls when data is unchanged (4 ms)
+
+  ● buildCountry timezones map caching › should maintain timezone map state between calls when data is unchanged
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 3
+    + Received  + 1
+
+    @@ -2,9 +2,7 @@
+        "allTimezones": Array [
+          "tz1",
+        ],
+        "id": "US",
+        "name": "United States",
+    -   "timezones": Array [
+    -     "tz1",
+    -   ],
+    +   "timezones": Array [],
+      }
+
+      26 |     // In the mutated code, the map is rebuilt on every call
+      27 |     // This test verifies the caching behavior by checking consistency
+    > 28 |     expect(firstResult).toEqual({
+         |                         ^
+      29 |       id: "US",
+      30 |       name: "United States",
+      31 |       timezones: ["tz1"],
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/countries-and-timezones/attempt_2/pending_category/mutant-dc12450/testCase.test.ts:28:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.147 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/countries-and-timezones/attempt_2/pending_category/mutant-dc12450/testCase.test.ts".

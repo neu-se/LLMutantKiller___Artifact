@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/Complex.js/complex.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/Complex.js/complex.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-8bba53b/testCase.test.ts
+  cosm1 polynomial correctness via expm1
+    ✕ should compute expm1 with correct cosm1 Taylor series (sign of 1/3628800 term) (2 ms)
+
+  ● cosm1 polynomial correctness via expm1 › should compute expm1 with correct cosm1 Taylor series (sign of 1/3628800 term)
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: -0.2928932188134524
+    Received: -0.29289316959071343
+
+    Expected precision:    10
+    Expected difference: < 5e-11
+    Received difference:   4.922273899587992e-8
+
+      17 |     // For b = pi/4: error ≈ 2 * (pi/4)^6 / 3628800 ≈ 6.5e-8
+      18 |     // Use tolerance smaller than mutation error but larger than floating point noise
+    > 19 |     expect(result.re).toBeCloseTo(expectedRe, 10);
+         |                       ^
+      20 |     expect(result.im).toBeCloseTo(expectedIm, 15);
+      21 |   });
+      22 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-8bba53b/testCase.test.ts:19:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.793 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-8bba53b/testCase.test.ts".

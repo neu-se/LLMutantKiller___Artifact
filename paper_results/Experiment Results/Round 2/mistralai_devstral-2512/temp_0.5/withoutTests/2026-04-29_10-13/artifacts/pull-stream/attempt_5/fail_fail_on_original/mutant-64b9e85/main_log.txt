@@ -1,0 +1,34 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-64b9e85/testCase.test.ts
+  find sink
+    ✕ should call callback with true when stream ends without match (3 ms)
+
+  ● find sink › should call callback with true when stream ends without match
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: null
+
+       6 |     const testFn = (data: any) => data === 'target';
+       7 |     const callback = (err: any, result: any) => {
+    >  8 |       expect(err).toBe(true);
+         |                   ^
+       9 |       expect(result).toBeNull();
+      10 |       done();
+      11 |     };
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-64b9e85/testCase.test.ts:8:19)
+      at cb (../subject_repositories/pull-stream/sinks/find.js:22:5)
+      at done (../subject_repositories/pull-stream/sinks/drain.js:26:24)
+      at cb (../subject_repositories/pull-stream/sources/values.js:19:7)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:45:8)
+      at s (../subject_repositories/pull-stream/pull.js:41:14)
+      at Object.pull (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-64b9e85/testCase.test.ts:15:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.361 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-64b9e85/testCase.test.ts".

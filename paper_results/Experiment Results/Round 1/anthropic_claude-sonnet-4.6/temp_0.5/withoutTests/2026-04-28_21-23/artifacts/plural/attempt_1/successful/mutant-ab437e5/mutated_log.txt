@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/plural/attempt_1/pending_category/mutant-ab437e5/testCase.test.ts
+  plural
+    ✕ should not apply consonant+y rule to words where consonant+y appears in the middle but word does not end in consonant+y (4 ms)
+
+  ● plural › should not apply consonant+y rule to words where consonant+y appears in the middle but word does not end in consonant+y
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "byways"
+    Received: "bywaies"
+
+       6 |     // Original regex /[^aeiou]y$/ only matches at end, so "byway" → "byways"
+       7 |     // Mutated regex /[^aeiou]y/ matches anywhere, so "byway" would incorrectly → "bywaies"
+    >  8 |     expect(plural('byway')).toBe('byways')
+         |                             ^
+       9 |   })
+      10 | })
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/plural/attempt_1/pending_category/mutant-ab437e5/testCase.test.ts:8:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.27 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/plural/attempt_1/pending_category/mutant-ab437e5/testCase.test.ts".

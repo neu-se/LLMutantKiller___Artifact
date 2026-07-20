@@ -1,0 +1,42 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-64b9e85/testCase.test.ts[0m:[93m6[0m:[93m5[0m - [91merror[0m[90m TS2349: [0mThis expression is not callable.
+  Type 'typeof export=' has no call signatures.
+
+[7m6[0m     pull(
+[7m [0m [91m    ~~~~[0m
+
+  [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-64b9e85/testCase.test.ts[0m:[93m1[0m:[93m1[0m
+    [7m1[0m import * as pull from '../../../../../../../../../../../subject_repositories/pull-stream';
+    [7m [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    Type originates at this import. A namespace-style import cannot be called or constructed, and will cause a failure at runtime. Consider using a default import or import require here instead.
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-64b9e85/testCase.test.ts[0m:[93m7[0m:[93m12[0m - [91merror[0m[90m TS2339: [0mProperty 'values' does not exist on type 'typeof export='.
+
+[7m7[0m       pull.values([1, 2, 3]),
+[7m [0m [91m           ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-64b9e85/testCase.test.ts[0m:[93m8[0m:[93m12[0m - [91merror[0m[90m TS2339: [0mProperty 'find' does not exist on type 'typeof export='.
+
+[7m8[0m       pull.find((d: any) => d === 2, (err: any, data: any) => {
+[7m [0m [91m           ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-64b9e85/testCase.test.ts
+  find function
+    ✕ should call the callback with the correct error when the stream ends with an error (1 ms)
+
+  ● find function › should call the callback with the correct error when the stream ends with an error
+
+    TypeError: pull is not a function
+
+      4 |   it('should call the callback with the correct error when the stream ends with an error', () => {
+      5 |     const err = new Error('test error');
+    > 6 |     pull(
+        |     ^
+      7 |       pull.values([1, 2, 3]),
+      8 |       pull.find((d: any) => d === 2, (err: any, data: any) => {
+      9 |         if (err) throw err;
+
+      at Object.pull (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-64b9e85/testCase.test.ts:6:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.175 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-64b9e85/testCase.test.ts".

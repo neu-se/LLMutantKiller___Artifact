@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-16810f7/testCase.test.ts (11.094 s)
+  untrackRejection
+    ✕ emits rejectionHandled on process when a reported unhandled rejection is later handled (10002 ms)
+
+  ● untrackRejection › emits rejectionHandled on process when a reported unhandled rejection is later handled
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 1
+    Received:    0
+
+      23 |       setTimeout(() => {
+      24 |         process.removeListener("rejectionHandled", rejectionHandledListener);
+    > 25 |         expect(rejectionHandledEvents.length).toBeGreaterThanOrEqual(1);
+         |                                               ^
+      26 |         done();
+      27 |       }, 200);
+      28 |     }, 200);
+
+      at Timeout.toBeGreaterThanOrEqual [as _onTimeout] (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-16810f7/testCase.test.ts:25:47)
+
+  ● untrackRejection › emits rejectionHandled on process when a reported unhandled rejection is later handled
+
+    thrown: "Exceeded timeout of 10000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("untrackRejection", () => {
+    > 4 |   it("emits rejectionHandled on process when a reported unhandled rejection is later handled", (done) => {
+        |   ^
+      5 |     Q.resetUnhandledRejections();
+      6 |
+      7 |     const rejectedPromise = Q.reject(new Error("test unhandled rejection"));
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-16810f7/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-16810f7/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        11.224 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-16810f7/testCase.test.ts".

@@ -1,0 +1,82 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-68199b3/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-68199b3/testCase.test.ts[0m:[93m5[0m:[93m30[0m - [91merror[0m[90m TS7006: [0mParameter 'a' implicitly has an 'any' type.
+
+[7m5[0m         var func = function (a, b, c) {
+[7m [0m [91m                             ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-68199b3/testCase.test.ts[0m:[93m5[0m:[93m33[0m - [91merror[0m[90m TS7006: [0mParameter 'b' implicitly has an 'any' type.
+
+[7m5[0m         var func = function (a, b, c) {
+[7m [0m [91m                                ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-68199b3/testCase.test.ts[0m:[93m5[0m:[93m36[0m - [91merror[0m[90m TS7006: [0mParameter 'c' implicitly has an 'any' type.
+
+[7m5[0m         var func = function (a, b, c) {
+[7m [0m [91m                                   ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-68199b3/testCase.test.ts[0m:[93m8[0m:[93m54[0m - [91merror[0m[90m TS7006: [0mParameter 'result' implicitly has an 'any' type.
+
+[7m8[0m         return Q.fcall(func, 1, 2, 3).then(function (result) {
+[7m [0m [91m                                                     ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-68199b3/testCase.test.ts[0m:[93m17[0m:[93m45[0m - [91merror[0m[90m TS7006: [0mParameter 'result' implicitly has an 'any' type.
+
+[7m17[0m         return Q.fcall(func).then(function (result) {
+[7m  [0m [91m                                            ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-68199b3/testCase.test.ts[0m:[93m28[0m:[93m22[0m - [91merror[0m[90m TS7006: [0mParameter 'error' implicitly has an 'any' type.
+
+[7m28[0m         }, function (error) {
+[7m  [0m [91m                     ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-68199b3/testCase.test.ts
+  Q.fcall
+    ✕ should call a function with the correct arguments (8 ms)
+    ✕ should call a function with an empty argument list
+    ✕ should reject if the function throws an error
+
+  ● Q.fcall › should call a function with the correct arguments
+
+    TypeError: Cannot read properties of undefined (reading 'fcall')
+
+       6 |             return a + b + c;
+       7 |         };
+    >  8 |         return Q.fcall(func, 1, 2, 3).then(function (result) {
+         |                  ^
+       9 |             expect(result).toBe(6);
+      10 |         });
+      11 |     });
+
+      at Object.fcall (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-68199b3/testCase.test.ts:8:18)
+
+  ● Q.fcall › should call a function with an empty argument list
+
+    TypeError: Cannot read properties of undefined (reading 'fcall')
+
+      15 |             return 42;
+      16 |         };
+    > 17 |         return Q.fcall(func).then(function (result) {
+         |                  ^
+      18 |             expect(result).toBe(42);
+      19 |         });
+      20 |     });
+
+      at Object.fcall (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-68199b3/testCase.test.ts:17:18)
+
+  ● Q.fcall › should reject if the function throws an error
+
+    TypeError: Cannot read properties of undefined (reading 'fcall')
+
+      24 |             throw new Error('Test error');
+      25 |         };
+    > 26 |         return Q.fcall(func).then(function () {
+         |                  ^
+      27 |             expect(true).toBe(false);
+      28 |         }, function (error) {
+      29 |             expect(error.message).toBe('Test error');
+
+      at Object.fcall (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-68199b3/testCase.test.ts:26:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        3.598 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-68199b3/testCase.test.ts".

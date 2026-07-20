@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-0af9d8e/testCase.test.ts
+  drain event emission in write stream
+    ✕ should emit drain when write stream is ready and queue is empty (9 ms)
+
+  ● drain event emission in write stream › should emit drain when write stream is ready and queue is empty
+
+    Drain emitted while writes still in flight
+
+      44 |         // In mutated code, it would fire while writes are still in flight
+      45 |         if (writesCompleted < totalWrites) {
+    > 46 |           done(new Error('Drain emitted while writes still in flight'));
+         |                ^
+      47 |           return;
+      48 |         }
+      49 |
+
+      at Dirty.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-0af9d8e/testCase.test.ts:46:16)
+      at emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:190:70)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.541 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-0af9d8e/testCase.test.ts".

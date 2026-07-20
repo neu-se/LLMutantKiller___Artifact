@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-a97afda/testCase.test.ts
+  Complex atan
+    ✕ should return finite result for atan(0 + 2i) not the b===1 special case (2 ms)
+
+  ● Complex atan › should return finite result for atan(0 + 2i) not the b===1 special case
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0
+    Received: 1.5707963267948966
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   1.5707963267948966
+
+       7 |     const result = new Complex(0, 2).atan();
+       8 |     expect(result.isFinite()).toBe(true);
+    >  9 |     expect(result.re).toBeCloseTo(0, 10);
+         |                       ^
+      10 |     // atan(2i) = i * atanh(2) = i * (ln(3)/2) ≈ 0.5493i... wait
+      11 |     // atan(bi) = i/2 * log((i+bi)/(i-bi)) = i/2 * log((1+b)/(1-b))
+      12 |     // for b=2: i/2 * log(-3) which involves complex log
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-a97afda/testCase.test.ts:9:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.332 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-a97afda/testCase.test.ts".

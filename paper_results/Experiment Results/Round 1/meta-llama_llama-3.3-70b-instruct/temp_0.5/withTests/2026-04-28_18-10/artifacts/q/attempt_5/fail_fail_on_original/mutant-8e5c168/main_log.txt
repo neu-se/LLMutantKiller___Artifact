@@ -1,0 +1,44 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-8e5c168/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-8e5c168/testCase.test.ts[0m:[93m5[0m:[93m33[0m - [91merror[0m[90m TS7006: [0mParameter 'resolve' implicitly has an 'any' type.
+
+[7m5[0m         var resolver = function(resolve, reject) {
+[7m [0m [91m                                ~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-8e5c168/testCase.test.ts[0m:[93m5[0m:[93m42[0m - [91merror[0m[90m TS7006: [0mParameter 'reject' implicitly has an 'any' type.
+
+[7m5[0m         var resolver = function(resolve, reject) {
+[7m [0m [91m                                         ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-8e5c168/testCase.test.ts[0m:[93m8[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'resolve' implicitly has an 'any' type.
+
+[7m8[0m         var promise = Q((resolve, reject) => {
+[7m [0m [91m                         ~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-8e5c168/testCase.test.ts[0m:[93m8[0m:[93m35[0m - [91merror[0m[90m TS7006: [0mParameter 'reject' implicitly has an 'any' type.
+
+[7m8[0m         var promise = Q((resolve, reject) => {
+[7m [0m [91m                                  ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-8e5c168/testCase.test.ts
+  promise function
+    ✕ should return a promise when given a resolver function
+
+  ● promise function › should return a promise when given a resolver function
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+       6 |             resolve('resolved');
+       7 |         };
+    >  8 |         var promise = Q((resolve, reject) => {
+         |                        ^
+       9 |             resolve('resolved');
+      10 |         });
+      11 |         expect(promise.then).toBeInstanceOf(Function);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-8e5c168/testCase.test.ts:8:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.316 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-8e5c168/testCase.test.ts".

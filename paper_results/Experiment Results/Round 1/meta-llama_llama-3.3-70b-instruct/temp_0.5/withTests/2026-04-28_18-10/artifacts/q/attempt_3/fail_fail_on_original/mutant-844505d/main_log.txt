@@ -1,0 +1,39 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-844505d/testCase.test.ts[0m:[93m8[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'onerror' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'.
+
+[7m8[0m         const originalOnerror = Q.onerror;
+[7m [0m [91m                                  ~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-844505d/testCase.test.ts[0m:[93m9[0m:[93m11[0m - [91merror[0m[90m TS2339: [0mProperty 'onerror' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'.
+
+[7m9[0m         Q.onerror = onUnhandledError;
+[7m [0m [91m          ~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-844505d/testCase.test.ts[0m:[93m13[0m:[93m11[0m - [91merror[0m[90m TS2339: [0mProperty 'onerror' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'.
+
+[7m13[0m         Q.onerror = originalOnerror;
+[7m  [0m [91m          ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-844505d/testCase.test.ts
+  Q
+    ✕ should handle domain binding correctly (4 ms)
+
+  ● Q › should handle domain binding correctly
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 1
+    Received number of calls: 0
+
+       9 |         Q.onerror = onUnhandledError;
+      10 |         promise.done();
+    > 11 |         expect(onUnhandledError).toHaveBeenCalledTimes(1);
+         |                                  ^
+      12 |         expect(onUnhandledError).toHaveBeenCalledWith(error);
+      13 |         Q.onerror = originalOnerror;
+      14 |     });
+
+      at Object.toHaveBeenCalledTimes (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-844505d/testCase.test.ts:11:34)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.422 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-844505d/testCase.test.ts".

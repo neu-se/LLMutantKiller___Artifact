@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts
+  Q browser global path
+    ✕ should load when only window is defined (not self) (29 ms)
+
+  ● Q browser global path › should load when only window is defined (not self)
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      20 |       
+      21 |       // Q should be defined on window (original uses ||, so window-only works)
+    > 22 |       expect((global as any).window.Q).toBeDefined();
+         |                                        ^
+      23 |     } finally {
+      24 |       (global as any).window = originalWindow;
+      25 |       (global as any).self = originalSelf;
+
+      at Object.toBeDefined (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts:22:40)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.584 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts".

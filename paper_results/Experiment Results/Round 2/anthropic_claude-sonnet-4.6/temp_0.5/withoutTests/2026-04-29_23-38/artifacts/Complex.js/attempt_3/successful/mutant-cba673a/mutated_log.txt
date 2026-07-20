@@ -1,0 +1,30 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-cba673a/testCase.test.ts
+  Complex cosh fallback
+    ✕ should compute tanh correctly using cosh fallback when Math.cosh is unavailable (9 ms)
+
+  ● Complex cosh fallback › should compute tanh correctly using cosh fallback when Math.cosh is unavailable
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.9640275800758169
+    Received: NaN
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   NaN
+
+      16 |     Math.cosh = originalCosh;
+      17 |
+    > 18 |     expect(result.re).toBeCloseTo(Math.tanh(2), 10);
+         |                       ^
+      19 |     expect(result.im).toBeCloseTo(0, 10);
+      20 |   });
+      21 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-cba673a/testCase.test.ts:18:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.103 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-cba673a/testCase.test.ts".

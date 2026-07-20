@@ -1,0 +1,30 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-5a40200/testCase.test.ts
+  cosh fallback behavior
+    ✕ should compute cosh correctly for values >= 1e-9 using the fallback (7 ms)
+
+  ● cosh fallback behavior › should compute cosh correctly for values >= 1e-9 using the fallback
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 3.7621956910836314
+    Received: -1
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   4.762195691083631
+
+      20 |     const result = z.cos();
+      21 |
+    > 22 |     expect(result.re).toBeCloseTo(Math.cosh(2), 10);
+         |                       ^
+      23 |     expect(result.im).toBeCloseTo(0, 10);
+      24 |   });
+      25 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-5a40200/testCase.test.ts:22:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.537 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-5a40200/testCase.test.ts".

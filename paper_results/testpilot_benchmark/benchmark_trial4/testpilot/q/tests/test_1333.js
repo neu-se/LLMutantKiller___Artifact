@@ -1,0 +1,18 @@
+let mocha = require('mocha');
+let assert = require('assert');
+let q = require('q');
+
+describe('test q', function() {
+    it('test q.thenResolve with rejected promise', function(done) {
+        let rejectedPromise = q.reject(new Error('original error'));
+        let newValue = 'replacement value';
+        
+        q.thenResolve(rejectedPromise, newValue)
+            .then(function(result) {
+                assert.strictEqual(result, newValue);
+                done();
+            })
+            .catch(done);
+    });
+
+    })

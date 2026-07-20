@@ -1,0 +1,72 @@
+import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+
+describe('Q', () => {
+    it('should export Q when used as a module in a CommonJS and NodeJS environment', () => {
+        // Save the original exports and module variables
+        const originalExports = global.exports;
+        const originalModule = global.module;
+
+        // Set the exports and module variables to the mock values
+        global.exports = {};
+        global.module = {};
+
+        // Call the Q function with the definition function
+        const q = (function (definition) {
+            // This file will function properly as a <script> tag, or a module
+            // using CommonJS and NodeJS or RequireJS module formats.  In
+            // Common/Node/RequireJS, the module exports the Q API and when
+            // executed as a simple <script>, it creates a Q global instead.
+
+            // Montage Require
+            if (typeof bootstrap === "function") {
+                bootstrap("promise", definition);
+
+            // CommonJS
+            } else if (typeof exports === "object" && typeof module === "object") {
+                module.exports = definition();
+
+            // RequireJS
+            } else if (typeof define === "function" && define.amd) {
+                define(definition);
+
+            // SES (Secure EcmaScript)
+            } else if (typeof ses !== "undefined") {
+                if (!ses.ok()) {
+                    return;
+                } else {
+                    ses.makeQ = definition;
+                }
+
+            // <script>
+            } else if (typeof window !== "undefined" || typeof self !== "undefined") {
+                // Prefer window over self for add-on scripts. Use self for
+                // non-windowed contexts.
+                var global = typeof window !== "undefined" ? window : self;
+
+                // Get the `window` object, save the previous Q global
+                // and initialize Q as a global.
+                var previousQ = global.Q;
+                global.Q = definition();
+
+                // Add a noConflict function so Q can be removed from the
+                // global namespace.
+                global.Q.noConflict = function () {
+                    global.Q = previousQ;
+                    return this;
+                };
+
+            } else {
+                throw new Error("This environment was not anticipated by Q. Please file a bug.");
+            }
+        })(function () {
+            return "Q";
+        });
+
+        // Check if the Q function is exported when used as a module
+        expect(global.module.exports).toBe("Q");
+
+        // Restore the original exports and module variables
+        global.exports = originalExports;
+        global.module = originalModule;
+    });
+});

@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-16810f7/testCase.test.ts
+  untrackRejection process.emit behavior
+    ✕ should emit rejectionHandled event when a rejected promise is handled after being reported as unhandled (3 ms)
+
+  ● untrackRejection process.emit behavior › should emit rejectionHandled event when a rejected promise is handled after being reported as unhandled
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      46 |       // In the original code, rejectionHandled should be emitted
+      47 |       // In the mutated code, it won't be emitted because typeof process === "" is false
+    > 48 |       expect(rejectionHandledEvents.length).toBeGreaterThan(0);
+         |                                             ^
+      49 |     } finally {
+      50 |       process.removeListener("rejectionHandled", handler);
+      51 |       process.removeListener("unhandledRejection", unhandledHandler);
+
+      at Object.toBeGreaterThan (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-16810f7/testCase.test.ts:48:45)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.123 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-16810f7/testCase.test.ts".

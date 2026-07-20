@@ -1,0 +1,32 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-919acb6/testCase.test.ts
+  drain sink
+    ✕ should handle non-true end values correctly (4 ms)
+
+  ● drain sink › should handle non-true end values correctly
+
+    expect(received).toBeNull()
+
+    Received: "custom-end"
+
+      28 |       // In original code: end should be null (since testValue !== true)
+      29 |       // In mutated code: end would be testValue (since testValue !== false)
+    > 30 |       expect(receivedEnd).toBeNull();
+         |                           ^
+      31 |       expect(receivedData).toEqual(['data1']);
+      32 |       done();
+      33 |     };
+
+      at toBeNull (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-919acb6/testCase.test.ts:30:27)
+      at done (../subject_repositories/pull-stream/sinks/drain.js:26:24)
+      at cb (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-919acb6/testCase.test.ts:18:7)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:45:8)
+      at s (../subject_repositories/pull-stream/pull.js:41:14)
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-919acb6/testCase.test.ts:35:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.782 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-919acb6/testCase.test.ts".

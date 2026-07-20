@@ -1,0 +1,35 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-d65a538/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-d65a538/testCase.test.ts
+  Q
+    ✕ should throw an error when fileNameAndLineNumber is falsy (12 ms)
+
+  ● Q › should throw an error when fileNameAndLineNumber is falsy
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "This environment was not anticipated by Q. Please file a bug."
+    Received message:   "global.captureLine is not a function"
+
+          10 |         expect(() => {
+          11 |             // Call the captureLine function to test the behavior
+        > 12 |             (global as any).captureLine();
+             |                             ^
+          13 |         }).toThrowError("This environment was not anticipated by Q. Please file a bug.");
+          14 |
+          15 |         // Restore the original getFileNameAndLineNumber function
+
+      at captureLine (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-d65a538/testCase.test.ts:12:29)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-d65a538/testCase.test.ts:13:12)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-d65a538/testCase.test.ts:13:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.582 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-d65a538/testCase.test.ts".

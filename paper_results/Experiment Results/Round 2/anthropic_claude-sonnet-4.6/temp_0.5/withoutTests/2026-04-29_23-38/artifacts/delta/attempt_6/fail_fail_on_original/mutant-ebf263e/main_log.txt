@@ -1,0 +1,41 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-ebf263e/testCase.test.ts
+  Delta compose optimization
+    ✕ handles case where this inserts partially fill others leading retain (10 ms)
+
+  ● Delta compose optimization › handles case where this inserts partially fill others leading retain
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 7
+
+      Delta {
+        "ops": Array [
+          Object {
+    -       "insert": "AZ",
+    +       "insert": "A",
+    +     },
+    +     Object {
+    +       "retain": 1,
+    +     },
+    +     Object {
+    +       "insert": "Z",
+          },
+        ],
+      }
+
+      11 |     const result = a.compose(b);
+      12 |     // "A" is kept, then "Z" is inserted
+    > 13 |     expect(result).toEqual(new Delta().insert("AZ"));
+         |                    ^
+      14 |   });
+      15 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-ebf263e/testCase.test.ts:13:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.733 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-ebf263e/testCase.test.ts".

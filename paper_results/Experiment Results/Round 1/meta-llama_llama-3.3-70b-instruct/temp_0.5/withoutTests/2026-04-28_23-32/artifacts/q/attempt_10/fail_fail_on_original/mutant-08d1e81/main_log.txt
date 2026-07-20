@@ -1,0 +1,50 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-08d1e81/testCase.test.ts[0m:[93m7[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '(event: string, reason: any, promise: any) => true | undefined' is not assignable to type '{ (event: "beforeExit", code: number): boolean; (event: "disconnect"): boolean; (event: "exit", code: number): boolean; (event: "rejectionHandled", promise: Promise<unknown>): boolean; (event: "uncaughtException", error: Error): boolean; (event: "uncaughtExceptionMonitor", error: Error): boolean; (event: "unhandledR...'.
+  Target signature provides too few arguments. Expected 3 or more, but got 2.
+
+[7m7[0m     process.emit = (event: string, reason: any, promise: any) => {
+[7m [0m [91m    ~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-08d1e81/testCase.test.ts (6.647 s)
+  Q
+    ✕ should track unhandled rejections when process.emit is defined (5003 ms)
+
+  ● Q › should track unhandled rejections when process.emit is defined
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 1
+    Received number of calls: 0
+
+      12 |     Q.reject("test");
+      13 |     Q.nextTick.runAfter(() => {
+    > 14 |       expect(spy).toHaveBeenCalledTimes(1);
+         |                   ^
+      15 |       process.emit = originalProcessEmit;
+      16 |       done();
+      17 |     });
+
+      at toHaveBeenCalledTimes (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-08d1e81/testCase.test.ts:14:19)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:130:13)
+
+  ● Q › should track unhandled rejections when process.emit is defined
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("Q", () => {
+    > 4 |   it("should track unhandled rejections when process.emit is defined", (done) => {
+        |   ^
+      5 |     const originalProcessEmit = process.emit;
+      6 |     const spy = jest.spyOn(process, 'emit');
+      7 |     process.emit = (event: string, reason: any, promise: any) => {
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-08d1e81/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-08d1e81/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.828 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-08d1e81/testCase.test.ts".

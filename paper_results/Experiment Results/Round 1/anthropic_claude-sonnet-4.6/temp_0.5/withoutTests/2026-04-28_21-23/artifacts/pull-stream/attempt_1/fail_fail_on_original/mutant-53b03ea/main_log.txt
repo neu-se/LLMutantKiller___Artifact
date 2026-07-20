@@ -1,0 +1,29 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-53b03ea/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/util/tester.js"' has no exported member 'tester'.
+
+[7m1[0m import { tester } from "../../../../../../../../../../../subject_repositories/pull-stream/util/tester.js"
+[7m [0m [91m         ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/pull-stream/util/tester.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/pull-stream/util/tester.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-53b03ea/testCase.test.ts
+  tester with regexp-like object
+    ✕ should use test.test method when given an object with a test function (like a RegExp) (1 ms)
+
+  ● tester with regexp-like object › should use test.test method when given an object with a test function (like a RegExp)
+
+    TypeError: (0 , tester_js_1.tester) is not a function
+
+      4 |   it("should use test.test method when given an object with a test function (like a RegExp)", () => {
+      5 |     const regexp = /hello/;
+    > 6 |     const testerFn = tester(regexp);
+        |                            ^
+      7 |     
+      8 |     // With original code: 'object' === typeof regexp && 'function' === typeof regexp.test
+      9 |     // is true, so testerFn = function(data) { return regexp.test(data) }
+
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-53b03ea/testCase.test.ts:6:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.437 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-53b03ea/testCase.test.ts".

@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-9e28478/testCase.test.ts[0m:[93m34[0m:[93m25[0m - [91merror[0m[90m TS2339: [0mProperty 'values' does not exist on type '(a: any, ...args: any[]) => any'.
+
+[7m34[0m     const source = pull.values([5])
+[7m  [0m [91m                        ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-9e28478/testCase.test.ts
+  pull partial application with exactly 2 through-streams
+    ✕ should correctly compose 2 through-streams when using partial application (1 ms)
+
+  ● pull partial application with exactly 2 through-streams › should correctly compose 2 through-streams when using partial application
+
+    TypeError: pull_js_1.default.values is not a function
+
+      32 |
+      33 |     // Build source using pull.values
+    > 34 |     const source = pull.values([5])
+         |                         ^
+      35 |
+      36 |     // Apply source to pipeline - on original this returns pull(read, ref[0], ref[1])
+      37 |     // On mutant, case 2 falls through to case 3: pull(read, ref[0], ref[1], undefined)
+
+      at Object.values (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-9e28478/testCase.test.ts:34:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.699 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-9e28478/testCase.test.ts".

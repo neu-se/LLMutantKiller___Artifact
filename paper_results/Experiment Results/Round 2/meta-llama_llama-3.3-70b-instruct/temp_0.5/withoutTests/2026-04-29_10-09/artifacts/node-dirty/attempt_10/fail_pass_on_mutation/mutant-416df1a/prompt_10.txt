@@ -1,0 +1,34 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-416df1a/testCase.test.ts[0m:[93m23[0m:[93m5[0m - [91merror[0m[90m TS18047: [0m'dirty._writeStream' is possibly 'null'.
+
+[7m23[0m     dirty._writeStream.emit('error', new Error('Test error'));
+[7m  [0m [91m    ~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-416df1a/testCase.test.ts
+  Dirty
+    ✕ should behave correctly when setting a value with a callback and an error occurs (6 ms)
+
+  ● Dirty › should behave correctly when setting a value with a callback and an error occurs
+
+    Unhandled error. (Error: Test error
+
+      21 |     });
+      22 |     // Introduce an error
+    > 23 |     dirty._writeStream.emit('error', new Error('Test error'));
+         |                                      ^
+      24 |   });
+      25 | });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-416df1a/testCase.test.ts:23:38)
+      at Object.emit (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-416df1a/testCase.test.ts:23:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.356 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-416df1a/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

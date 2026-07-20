@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-4e7c0cc/testCase.test.ts
+  pull
+    ✕ partial sink with 4 through functions called with a length-1 read function should return a readable, not another partial sink (2 ms)
+
+  ● pull › partial sink with 4 through functions called with a length-1 read function should return a readable, not another partial sink
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 2
+    Received: 1
+
+      30 |     // In mutated: result is another partial sink (length === 1) because source.length===1
+      31 |     expect(typeof result).toBe('function')
+    > 32 |     expect((result as Function).length).toBe(2)
+         |                                         ^
+      33 |     done()
+      34 |   })
+      35 | })
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-4e7c0cc/testCase.test.ts:32:41)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.333 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-4e7c0cc/testCase.test.ts".

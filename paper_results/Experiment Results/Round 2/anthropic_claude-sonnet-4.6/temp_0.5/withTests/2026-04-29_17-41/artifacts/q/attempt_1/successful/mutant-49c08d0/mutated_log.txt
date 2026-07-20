@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-49c08d0/testCase.test.ts
+  Promise constructor inspect parameter
+    ✕ should use the provided inspect function when inspect is given, not override it with the default (3 ms)
+
+  ● Promise constructor inspect parameter › should use the provided inspect function when inspect is given, not override it with the default
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "fulfilled"
+    Received: "unknown"
+
+      13 |     // Mutated code: inspect is provided (not void 0), so condition is true and
+      14 |     //               inspect gets replaced with default -> state: "unknown"
+    > 15 |     expect(inspected.state).toBe("fulfilled");
+         |                             ^
+      16 |     expect(inspected.value).toBe(42);
+      17 |   });
+      18 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-49c08d0/testCase.test.ts:15:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.602 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-49c08d0/testCase.test.ts".

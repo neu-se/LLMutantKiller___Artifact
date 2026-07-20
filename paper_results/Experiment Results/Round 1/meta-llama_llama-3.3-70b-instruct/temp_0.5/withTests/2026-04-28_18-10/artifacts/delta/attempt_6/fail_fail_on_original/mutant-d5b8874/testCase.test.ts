@@ -1,0 +1,19 @@
+import Delta from '../../../../../../../../../../../subject_repositories/delta/src/Delta';
+
+describe('compose()', () => {
+  it('should correctly compose a Delta with a retain and a retain when the retain has an object value', () => {
+    const delta1 = new Delta().retain({ embed: 1 });
+    const delta2 = new Delta().retain({ embed: 1 });
+    const composedDelta = delta1.compose(delta2);
+    expect(composedDelta.ops).toEqual([
+      { retain: { embed: 1 } },
+    ]);
+
+    const delta3 = new Delta().retain({ embed: 1 }, { italic: true });
+    const delta4 = new Delta().retain({ embed: 1 }, { bold: true });
+    const composedDelta2 = delta3.compose(delta4);
+    expect(composedDelta2.ops).toEqual([
+      { retain: { embed: 1 }, attributes: { italic: true, bold: true } },
+    ]);
+  });
+});

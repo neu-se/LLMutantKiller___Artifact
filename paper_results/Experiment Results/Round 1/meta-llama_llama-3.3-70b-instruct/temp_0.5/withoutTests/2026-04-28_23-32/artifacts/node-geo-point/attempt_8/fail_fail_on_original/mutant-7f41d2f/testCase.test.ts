@@ -1,0 +1,13 @@
+import { GeoPoint } from "../../../../../../../../../../../subject_repositories/node-geo-point/src/geo-point";
+
+describe('GeoPoint', () => {
+  it('should calculate destination correctly', () => {
+    const coordinate = { latitude: 0, longitude: 0 };
+    const distance = 10000; // 10 km
+    const bearing = 90; // east
+
+    const destination = GeoPoint.calculateDestination(coordinate, distance, bearing);
+    expect(destination.longitude).toBeCloseTo(0.0898, 4);
+    expect(destination.latitude).toBeCloseTo(0, 4);
+  });
+});

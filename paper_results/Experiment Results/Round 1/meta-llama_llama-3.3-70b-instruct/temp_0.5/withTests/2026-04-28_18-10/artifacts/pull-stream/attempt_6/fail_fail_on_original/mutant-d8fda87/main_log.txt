@@ -1,0 +1,41 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-d8fda87/testCase.test.ts
+  once
+    ✕ should call cb with value when value is not null and abort is false (3 ms)
+    ✕ should call onAbort when value is not null and abort is true (1 ms)
+
+  ● once › should call cb with value when value is not null and abort is false
+
+    Cannot find module '../../../../../../../../../subject_repositories/pull-stream/sources/once.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-d8fda87/testCase.test.ts'
+
+      4 |     const onAbort = jest.fn();
+      5 |     const cb = jest.fn();
+    > 6 |     const onceFn = require('../../../../../../../../../subject_repositories/pull-stream/sources/once.js');
+        |                    ^
+      7 |     onceFn(value, onAbort)(false, cb);
+      8 |     expect(cb).toHaveBeenCalledTimes(1);
+      9 |     expect(cb).toHaveBeenCalledWith(null, value);
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-d8fda87/testCase.test.ts:6:20)
+
+  ● once › should call onAbort when value is not null and abort is true
+
+    Cannot find module '../../../../../../../../../subject_repositories/pull-stream/sources/once.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-d8fda87/testCase.test.ts'
+
+      15 |     const onAbort = jest.fn();
+      16 |     const cb = jest.fn();
+    > 17 |     const onceFn = require('../../../../../../../../../subject_repositories/pull-stream/sources/once.js');
+         |                    ^
+      18 |     onceFn(value, onAbort)(true, cb);
+      19 |     expect(onAbort).toHaveBeenCalledTimes(0);
+      20 |     expect(cb).toHaveBeenCalledTimes(1);
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-d8fda87/testCase.test.ts:17:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        3.607 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-d8fda87/testCase.test.ts".

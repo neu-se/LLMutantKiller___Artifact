@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-fed85b5/testCase.test.ts (5.874 s)
+  Dirty forEach break behavior
+    ✕ should stop iteration when callback returns false, not when it returns true (5004 ms)
+
+  ● Dirty forEach break behavior › should stop iteration when callback returns false, not when it returns true
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 3
+
+      20 |       // In original code: iteration breaks on false, so only 1 key visited
+      21 |       // In mutated code: false doesn't break (only true does), so all 3 keys visited
+    > 22 |       expect(visited.length).toBe(1);
+         |                              ^
+      23 |       done();
+      24 |     });
+      25 |   });
+
+      at Dirty.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-fed85b5/testCase.test.ts:22:30)
+      at emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:102:14)
+
+  ● Dirty forEach break behavior › should stop iteration when callback returns false, not when it returns true
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("Dirty forEach break behavior", () => {
+    > 4 |   it("should stop iteration when callback returns false, not when it returns true", (done) => {
+        |   ^
+      5 |     const db = new Dirty(null);
+      6 |
+      7 |     db.on("load", () => {
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-fed85b5/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-fed85b5/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        5.994 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-fed85b5/testCase.test.ts".

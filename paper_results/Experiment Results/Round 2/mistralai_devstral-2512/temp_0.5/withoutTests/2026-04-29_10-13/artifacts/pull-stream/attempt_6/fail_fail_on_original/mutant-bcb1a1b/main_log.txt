@@ -1,0 +1,30 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-bcb1a1b/testCase.test.ts
+  reduce sink
+    ✕ should handle empty stream differently when called with two vs three arguments (2 ms)
+
+  ● reduce sink › should handle empty stream differently when called with two vs three arguments
+
+    expect(received).toBeNull()
+
+    Received: undefined
+
+      11 |     reduce(reducer, (err: any, result: number) => {
+      12 |       expect(err).toBeNull();
+    > 13 |       expect(result).toBeNull(); // Should be null for empty stream with no initial value
+         |                      ^
+      14 |       done();
+      15 |     })(source);
+      16 |   });
+
+      at toBeNull (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-bcb1a1b/testCase.test.ts:13:22)
+      at cb (../subject_repositories/pull-stream/sinks/reduce.js:16:24)
+      at cb (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-bcb1a1b/testCase.test.ts:7:7)
+      at source (../subject_repositories/pull-stream/sinks/reduce.js:14:7)
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-bcb1a1b/testCase.test.ts:15:7)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.823 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-bcb1a1b/testCase.test.ts".

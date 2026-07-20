@@ -1,0 +1,42 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-dc041e2/testCase.test.ts[0m:[93m5[0m:[93m38[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m5[0m         var originalSes = globalThis.ses;
+[7m [0m [91m                                     ~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-dc041e2/testCase.test.ts[0m:[93m6[0m:[93m20[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m6[0m         globalThis.ses = { ok: function() { return false; } };
+[7m [0m [91m                   ~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-dc041e2/testCase.test.ts[0m:[93m10[0m:[93m27[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m10[0m         expect(globalThis.Q).toBeDefined();
+[7m  [0m [91m                          ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-dc041e2/testCase.test.ts[0m:[93m12[0m:[93m20[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m12[0m         globalThis.ses = originalSes;
+[7m  [0m [91m                   ~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-dc041e2/testCase.test.ts
+  Q function
+    ✕ should create a global Q object when ses is not ok (2 ms)
+
+  ● Q function › should create a global Q object when ses is not ok
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+       8 |         var q = Q;
+       9 |
+    > 10 |         expect(globalThis.Q).toBeDefined();
+         |                              ^
+      11 |
+      12 |         globalThis.ses = originalSes;
+      13 |     });
+
+      at Object.toBeDefined (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-dc041e2/testCase.test.ts:10:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.02 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-dc041e2/testCase.test.ts".

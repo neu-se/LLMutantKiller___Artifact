@@ -1,0 +1,42 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-79747e0/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/sinks/drain.js"' has no exported member 'drain'.
+
+[7m1[0m import { drain } from "../../../../../../../../../../../subject_repositories/pull-stream/sinks/drain.js";
+[7m [0m [91m         ~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-79747e0/testCase.test.ts[0m:[93m11[0m:[93m25[0m - [91merror[0m[90m TS2339: [0mProperty 'values' does not exist on type 'typeof export='.
+
+[7m11[0m     const source = pull.values([1, 2, 3]);
+[7m  [0m [91m                        ~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-79747e0/testCase.test.ts[0m:[93m14[0m:[93m5[0m - [91merror[0m[90m TS2349: [0mThis expression is not callable.
+  Type 'typeof export=' has no call signatures.
+
+[7m14[0m     pull(source, sink);
+[7m  [0m [91m    ~~~~[0m
+
+  [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-79747e0/testCase.test.ts[0m:[93m2[0m:[93m1[0m
+    [7m2[0m import * as pull from "../../../../../../../../../../../subject_repositories/pull-stream/pull.js";
+    [7m [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    Type originates at this import. A namespace-style import cannot be called or constructed, and will cause a failure at runtime. Consider using a default import or import require here instead.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-79747e0/testCase.test.ts
+  drain with done callback
+    ✕ should call done callback when stream ends without done (1 ms)
+
+  ● drain with done callback › should call done callback when stream ends without done
+
+    TypeError: pull.values is not a function
+
+       9 |     };
+      10 |
+    > 11 |     const source = pull.values([1, 2, 3]);
+         |                         ^
+      12 |     const sink = drain(null, mockDone);
+      13 |
+      14 |     pull(source, sink);
+
+      at Object.values (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-79747e0/testCase.test.ts:11:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.083 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-79747e0/testCase.test.ts".

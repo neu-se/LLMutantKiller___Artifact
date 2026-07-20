@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-5bfe435/testCase.test.ts (6.341 s)
+  Node.js environment detection
+    ✕ should correctly identify Node.js environment and use process.nextTick (5004 ms)
+
+  ● Node.js environment detection › should correctly identify Node.js environment and use process.nextTick
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 2
+    Received: 1
+
+      25 |             // With the mutation, Q.nextTick would use a different mechanism
+      26 |             // and might execute in a different order or timing
+    > 27 |             expect(results.length).toBe(2);
+         |                                    ^
+      28 |
+      29 |             // Both should have executed by now in original code
+      30 |             // The mutation would likely cause different behavior
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-5bfe435/testCase.test.ts:27:36)
+
+  ● Node.js environment detection › should correctly identify Node.js environment and use process.nextTick
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      3 |
+      4 | describe("Node.js environment detection", () => {
+    > 5 |     it("should correctly identify Node.js environment and use process.nextTick", (done) => {
+        |     ^
+      6 |         // This test verifies that Q correctly identifies a Node.js environment
+      7 |         // The mutation changes the Node.js detection condition from checking process.nextTick
+      8 |         // to always false, which would prevent Node.js optimizations
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-5bfe435/testCase.test.ts:5:5)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-5bfe435/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.497 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-5bfe435/testCase.test.ts".

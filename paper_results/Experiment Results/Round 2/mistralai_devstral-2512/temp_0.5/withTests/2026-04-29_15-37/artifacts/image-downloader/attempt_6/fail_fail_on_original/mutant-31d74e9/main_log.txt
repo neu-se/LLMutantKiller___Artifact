@@ -1,0 +1,27 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_6/pending_category/mutant-31d74e9/testCase.test.ts[0m:[93m4[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/image-downloader/lib/request.js"' has no exported member 'request'.
+
+[7m4[0m import { request } from '../../../../../../../../../../../subject_repositories/image-downloader/lib/request.js';
+[7m [0m [91m         ~~~~~~~[0m
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_6/pending_category/mutant-31d74e9/testCase.test.ts
+  request error handling
+    ✕ should handle stream errors correctly (1 ms)
+
+  ● request error handling › should handle stream errors correctly
+
+    TypeError: (0 , request_js_1.request) is not a function
+
+      53 |     jest.mock('../../../../../../../../../../../subject_repositories/image-downloader/lib/request.js', () => mockRequest);
+      54 |
+    > 55 |     await expect(request({ url: mockUrl, dest })).rejects.toThrow('Pipe error');
+         |                         ^
+      56 |
+      57 |     // Clean up
+      58 |     if (fs.existsSync(dest)) {
+
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_6/pending_category/mutant-31d74e9/testCase.test.ts:55:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.032 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_6/pending_category/mutant-31d74e9/testCase.test.ts".

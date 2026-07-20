@@ -1,0 +1,56 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+
+<--- Last few GCs --->
+
+[61138:0x150008000]    72172 ms: Mark-Compact (reduce) 4083.9 (4143.4) -> 4083.4 (4143.9) MB, 5860.38 / 0.00 ms  (+ 1547.1 ms in 173 steps since start of marking, biggest step 79.2 ms, walltime since start of marking 9627 ms) (average mu = 0.439, current [61138:0x150008000]    79977 ms: Mark-Compact (reduce) 4084.5 (4143.9) -> 4083.7 (4144.4) MB, 7804.04 / 0.00 ms  (average mu = 0.246, current mu = 0.000) allocation failure; scavenge might not succeed
+
+
+<--- JS stacktrace --->
+
+FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory
+----- Native stack trace -----
+
+ 1: 0x104add5b8 node::OOMErrorHandler(char const*, v8::OOMDetails const&) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 2: 0x104c9b968 v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, v8::OOMDetails const&) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 3: 0x104ea97bc v8::internal::Heap::GarbageCollectionReasonToString(v8::internal::GarbageCollectionReason) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 4: 0x104ea8124 v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 5: 0x104e9dfc0 v8::internal::HeapAllocator::AllocateRawWithLightRetrySlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 6: 0x104e9e818 v8::internal::HeapAllocator::AllocateRawWithRetryOrFailSlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 7: 0x104e82cf8 v8::internal::Factory::NewFillerObject(int, v8::internal::AllocationAlignment, v8::internal::AllocationType, v8::internal::AllocationOrigin) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 8: 0x10528fe30 v8::internal::Runtime_AllocateInYoungGeneration(int, unsigned long*, v8::internal::Isolate*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 9: 0x105624c44 Builtins_CEntry_Return1_ArgvOnStack_NoBuiltinExit [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+10: 0x1056b3010 Builtins_NewStrictArgumentsElements [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+11: 0x10a77575c 
+12: 0x10a7738ec 
+13: 0x10a773554 
+14: 0x10559c3e4 Builtins_InterpreterEntryTrampoline [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+15: 0x10559c3e4 Builtins_InterpreterEntryTrampoline [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+16: 0x10559c3e4 Builtins_InterpreterEntryTrampoline [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+17: 0x10567f524 Builtins_PromiseConstructor [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+18: 0x1055998fc Builtins_JSBuiltinsConstructStub [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+19: 0x1056d85cc Builtins_ConstructHandler [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+20: 0x10559c3e4 Builtins_InterpreterEntryTrampoline [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+21: 0x10559c3e4 Builtins_InterpreterEntryTrampoline [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+22: 0x1055d3210 Builtins_AsyncFunctionAwaitResolveClosure [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+23: 0x105680fb8 Builtins_PromiseFulfillReactionJob [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+24: 0x1055c2b94 Builtins_RunMicrotasks [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+25: 0x10559a3f4 Builtins_JSRunMicrotasksEntry [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+26: 0x104e1422c v8::internal::(anonymous namespace)::Invoke(v8::internal::Isolate*, v8::internal::(anonymous namespace)::InvokeParams const&) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+27: 0x104e14b58 v8::internal::(anonymous namespace)::InvokeWithTryCatch(v8::internal::Isolate*, v8::internal::(anonymous namespace)::InvokeParams const&) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+28: 0x104e14d44 v8::internal::Execution::TryRunMicrotasks(v8::internal::Isolate*, v8::internal::MicrotaskQueue*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+29: 0x104e3fa34 v8::internal::MicrotaskQueue::RunMicrotasks(v8::internal::Isolate*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+30: 0x104e401c0 v8::internal::MicrotaskQueue::PerformCheckpoint(v8::Isolate*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+31: 0x1049f4c84 node::InternalCallbackScope::Close() [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+32: 0x1049f4fb4 node::InternalMakeCallback(node::Environment*, v8::Local<v8::Object>, v8::Local<v8::Object>, v8::Local<v8::Function>, int, v8::Local<v8::Value>*, node::async_context) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+33: 0x104a0930c node::AsyncWrap::MakeCallback(v8::Local<v8::Function>, int, v8::Local<v8::Value>*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+34: 0x104ae2fc4 node::fs::FSReqCallback::Resolve(v8::Local<v8::Value>) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+35: 0x104ae38a4 node::fs::AfterStat(uv_fs_s*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+36: 0x104ad644c node::MakeLibuvRequestCallback<uv_fs_s, void (*)(uv_fs_s*)>::Wrapper(uv_fs_s*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+37: 0x105575500 uv__work_done [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+38: 0x105578f28 uv__async_io [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+39: 0x10558bbd0 uv__io_poll [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+40: 0x105579490 uv_run [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+41: 0x1049f57e8 node::SpinEventLoopInternal(node::Environment*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+42: 0x104b21eec node::NodeMainInstance::Run() [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+43: 0x104a9fcfc node::Start(int, char**) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+44: 0x18cd9ab98 start [/usr/lib/dyld]

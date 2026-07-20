@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-dc041e2/testCase.test.ts
+  Q SES support
+    ✕ should throw an error when ses is defined and ses.ok returns false in the mutated code (1 ms)
+
+  ● Q SES support › should throw an error when ses is defined and ses.ok returns false in the mutated code
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "This environment was not anticipated by Q. Please file a bug."
+
+    Received function did not throw
+
+      31 |                 // Q implementation
+      32 |             });
+    > 33 |         }).toThrowError("This environment was not anticipated by Q. Please file a bug.");
+         |            ^
+      34 |
+      35 |         // Cleanup
+      36 |         (globalThis as any).ses = originalSES;
+
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-dc041e2/testCase.test.ts:33:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.803 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-dc041e2/testCase.test.ts".

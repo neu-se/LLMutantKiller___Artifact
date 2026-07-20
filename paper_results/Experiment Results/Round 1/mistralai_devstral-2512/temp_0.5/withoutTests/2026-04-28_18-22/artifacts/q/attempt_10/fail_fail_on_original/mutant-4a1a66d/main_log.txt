@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-4a1a66d/testCase.test.ts
+  Q.async generator with StopIteration mutation detection
+    ✕ should expose the mutation by testing generator behavior with StopIteration (4 ms)
+
+  ● Q.async generator with StopIteration mutation detection › should expose the mutation by testing generator behavior with StopIteration
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "test"
+    Received: "unreachable"
+
+      16 |     generator().then((result: string) => {
+      17 |       // In original code, this should be reached
+    > 18 |       expect(result).toBe("test");
+         |                      ^
+      19 |       done();
+      20 |     }).catch((error: Error) => {
+      21 |       // In mutated code, this might be reached instead
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-4a1a66d/testCase.test.ts:18:22)
+      at fulfilled (../subject_repositories/q/q.js:854:54)
+      at _fulfilled (../subject_repositories/q/q.js:883:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:816:13)
+      at apply (../subject_repositories/q/q.js:570:49)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.131 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-4a1a66d/testCase.test.ts".

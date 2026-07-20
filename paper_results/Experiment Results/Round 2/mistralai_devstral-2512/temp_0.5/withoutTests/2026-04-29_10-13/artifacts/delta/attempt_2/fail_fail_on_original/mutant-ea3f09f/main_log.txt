@@ -1,0 +1,47 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-ea3f09f/testCase.test.ts[0m:[93m1[0m:[93m19[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import Delta from "../../../../../../../../../../../subject_repositories/delta/src/Delta.ts";
+[7m [0m [91m                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-ea3f09f/testCase.test.ts[0m:[93m8[0m:[93m29[0m - [91merror[0m[90m TS2698: [0mSpread types may only be created from object types.
+
+[7m8[0m       compose: (a, b) => ({ ...a, ...b }),
+[7m [0m [91m                            ~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-ea3f09f/testCase.test.ts[0m:[93m8[0m:[93m35[0m - [91merror[0m[90m TS2698: [0mSpread types may only be created from object types.
+
+[7m8[0m       compose: (a, b) => ({ ...a, ...b }),
+[7m [0m [91m                                  ~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-ea3f09f/testCase.test.ts[0m:[93m9[0m:[93m16[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m9[0m       invert: (a, b) => b,
+[7m [0m [91m               ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-ea3f09f/testCase.test.ts[0m:[93m23[0m:[93m27[0m - [91merror[0m[90m TS2339: [0mProperty 'toHaveProperty' does not exist on type 'Matchers<Op>'.
+
+[7m23[0m     expect(result.ops[0]).toHaveProperty('retain');
+[7m  [0m [91m                          ~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-ea3f09f/testCase.test.ts
+  Delta transform with embeds
+    ✕ should handle non-object retain data correctly when transforming (5 ms)
+
+  ● Delta transform with embeds › should handle non-object retain data correctly when transforming
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "number"
+    Received: "object"
+
+      22 |     expect(result.ops.length).toBe(1);
+      23 |     expect(result.ops[0]).toHaveProperty('retain');
+    > 24 |     expect(typeof result.ops[0].retain).toBe('number');
+         |                                         ^
+      25 |     expect(result.ops[0].retain).toBe(5);
+      26 |
+      27 |     // Clean up
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-ea3f09f/testCase.test.ts:24:41)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.876 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-ea3f09f/testCase.test.ts".

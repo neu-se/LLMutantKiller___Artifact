@@ -1,0 +1,141 @@
+Your task is to write a Jest test case that exposes a specific mutation in a JavaScript/TypeScript project.
+
+MUTATION DETAILS
+The mutation affects the following file:
+src/OpIterator.ts
+Here is the full content of that file (shown with a <PLACEHOLDER> marker):
+import Op from './Op';
+
+export default class Iterator {
+  ops: Op[];
+  index: number;
+  offset: number;
+
+  constructor(ops: Op[]) {
+    this.ops = ops;
+    this.index = 0;
+    this.offset = 0;
+  }
+
+  hasNext(): boolean {
+    return this.peekLength() < Infinity;
+  }
+
+  next(length?: number): Op {
+    if (!length) {
+      length = Infinity;
+    }
+    const nextOp = this.ops[this.index];
+    if (nextOp) {
+      const offset = this.offset;
+      const opLength = Op.length(nextOp);
+      if (length >= opLength - offset) {
+        length = opLength - offset;
+        this.index += 1;
+        this.offset = 0;
+      } else {
+        this.offset += length;
+      }
+      if (typeof nextOp.delete === 'number') {
+        return { delete: length };
+      } else {
+        const retOp: Op = {};
+        if (nextOp.attributes) {
+          retOp.attributes = nextOp.attributes;
+        }
+        if (typeof nextOp.retain === 'number') {
+          retOp.retain = length;
+        } else if (
+          typeof nextOp.retain === 'object' &&
+          nextOp.retain !== null
+        ) {
+          // offset should === 0, length should === 1
+          retOp.retain = nextOp.retain;
+        } else if (typeof nextOp.insert === 'string') {
+          retOp.insert = nextOp.insert.substr(offset, length);
+        } else {
+          // offset should === 0, length should === 1
+          retOp.insert = nextOp.insert;
+        }
+        return retOp;
+      }
+    } else {
+      return { retain: Infinity };
+    }
+  }
+
+  peek(): Op {
+    return this.ops[this.index];
+  }
+
+  peekLength(): number {
+    if (this.ops[this.index]) {
+      // Should never return 0 if our index is being managed correctly
+      return Op.length(this.ops[this.index]) - this.offset;
+    } else {
+      return Infinity;
+    }
+  }
+
+  peekType(): string {
+    const op = this.ops[this.index];
+    if (op) {
+      if (typeof op.delete === 'number') {
+        return 'delete';
+      } else if (
+        typeof op.retain === 'number' ||
+        (typeof op.retain === 'object' && op.retain !== null)
+      ) {
+        return 'retain';
+      } else {
+        return 'insert';
+      }
+    }
+    return 'retain';
+  }
+
+  rest(): Op[] {
+       if (false) {
+
+      <PLACEHOLDER>
+    } else if (this.offset === 0) {
+      return this.ops.slice(this.index);
+    } else {
+      const offset = this.offset;
+      const index = this.index;
+      const next = this.next();
+      const rest = this.ops.slice(this.index);
+      this.offset = offset;
+      this.index = index;
+      return [next].concat(rest);
+    }
+  }
+}
+
+In the original code, <PLACEHOLDER> has the value:
+
+-       } else if (this.offset === 0) {
+In the mutated code, <PLACEHOLDER> has the value:
+
++       } else if (false) {
+
+
+
+YOUR TASK
+Write one Jest test file that:
+    1. Passes when run against the original code.
+    2. Fails when run against the mutated code.
+    3. Tests the behavior of the mutated file in a way that reliably detects the mutation.
+The test will be saved at the following path, relative to this test-generation project’s root:
+llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-c2b4160/testCase.test.ts
+
+ALLOWED LIBRARIES
+You may use:
+    1. Any built-in Node.js modules (e.g., fs, path, crypto, etc.).
+    2. The following external libraries are explicitly permitted:
+    - lodash.clonedeep
+    - lodash.isequal
+    - fast-diff
+You may not use any other third-party libraries.
+
+

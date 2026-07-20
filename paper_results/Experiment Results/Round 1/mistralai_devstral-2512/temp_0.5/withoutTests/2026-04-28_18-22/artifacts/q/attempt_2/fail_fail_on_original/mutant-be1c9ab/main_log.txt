@@ -1,0 +1,41 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-be1c9ab/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-be1c9ab/testCase.test.ts[0m:[93m12[0m:[93m7[0m - [91merror[0m[90m TS2683: [0m'this' implicitly has type 'any' because it does not have a type annotation.
+
+[7m12[0m       this.value = value;
+[7m  [0m [91m      ~~~~[0m
+
+  [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-be1c9ab/testCase.test.ts[0m:[93m11[0m:[93m26[0m
+    [7m11[0m     const QReturnValue = function(value: any) {
+    [7m  [0m [96m                         ~~~~~~~~[0m
+    An outer value of 'this' is shadowed by this container.
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-be1c9ab/testCase.test.ts[0m:[93m14[0m:[93m26[0m - [91merror[0m[90m TS7009: [0m'new' expression, whose target lacks a construct signature, implicitly has an 'any' type.
+
+[7m14[0m     const qReturnValue = new QReturnValue("test");
+[7m  [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-be1c9ab/testCase.test.ts
+  Q library mutation test
+    ✕ should correctly identify StopIteration exceptions (1 ms)
+
+  ● Q library mutation test › should correctly identify StopIteration exceptions
+
+    TypeError: Cannot read properties of undefined (reading 'isStopIteration')
+
+      17 |     // This should work in the original code but fail in the mutated version
+      18 |     // when the exception is only a StopIteration (not also a QReturnValue)
+    > 19 |     expect(Q.isStopIteration(stopIteration)).toBe(true);
+         |              ^
+      20 |
+      21 |     // Test that isStopIteration returns true for QReturnValue
+      22 |     // This should work in both original and mutated code
+
+      at Object.isStopIteration (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-be1c9ab/testCase.test.ts:19:14)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.507 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-be1c9ab/testCase.test.ts".

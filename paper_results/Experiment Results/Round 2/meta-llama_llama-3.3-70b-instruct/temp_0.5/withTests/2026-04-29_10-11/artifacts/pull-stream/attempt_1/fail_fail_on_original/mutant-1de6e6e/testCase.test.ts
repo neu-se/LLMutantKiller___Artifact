@@ -1,0 +1,21 @@
+import { reduce } from '../../../../../../../../subject_repositories/pull-stream/sinks/reduce.js';
+
+describe('reduce', () => {
+  it('should call callback with accumulated value when stream ends', () => {
+    const acc = 0;
+    const reducer = (a: number, b: number) => a + b;
+    const cb = jest.fn();
+    const source = (end: any, cb: any) => {
+      if (end) return cb(end);
+      cb(null, 1);
+      cb(null, 2);
+      cb(true);
+    };
+
+    const sink = reduce(reducer, acc, cb);
+    sink(source);
+
+    expect(cb).toHaveBeenCalledTimes(1);
+    expect(cb).toHaveBeenCalledWith(null, 3);
+  });
+});

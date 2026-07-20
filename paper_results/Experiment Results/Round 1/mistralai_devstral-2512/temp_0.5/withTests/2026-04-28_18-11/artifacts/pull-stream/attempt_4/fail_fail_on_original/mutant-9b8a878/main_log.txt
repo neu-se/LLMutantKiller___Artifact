@@ -1,0 +1,38 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-9b8a878/testCase.test.ts[0m:[93m47[0m:[93m38[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 1.
+
+[7m47[0m           if (abort !== true) return cb(abort);
+[7m  [0m [91m                                     ~~[0m
+
+  [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-9b8a878/testCase.test.ts[0m:[93m43[0m:[93m37[0m
+    [7m43[0m     const collect = (cb: (err: any, result: any[]) => void) => {
+    [7m  [0m [96m                                    ~~~~~~~~~~~~~[0m
+    An argument for 'result' was not provided.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-9b8a878/testCase.test.ts
+  pull function with partial application
+    ✕ should correctly handle partial application with multiple arguments (1 ms)
+
+  ● pull function with partial application › should correctly handle partial application with multiple arguments
+
+    TypeError: cb is not a function
+
+      32 |           if (taken >= count) return cb(true);
+      33 |           read(abort, (end: any, data: any) => {
+    > 34 |             if (end) return cb(end);
+         |                             ^
+      35 |             taken++;
+      36 |             cb(null, data);
+      37 |           });
+
+      at cb (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-9b8a878/testCase.test.ts:34:29)
+      at cb (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-9b8a878/testCase.test.ts:21:27)
+      at cb (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-9b8a878/testCase.test.ts:7:25)
+      at read (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-9b8a878/testCase.test.ts:20:9)
+      at read (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-9b8a878/testCase.test.ts:33:11)
+      at Object.partialPull (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-9b8a878/testCase.test.ts:58:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.395 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-9b8a878/testCase.test.ts".

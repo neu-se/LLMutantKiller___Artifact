@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-d8fda87/testCase.test.ts
+  once source with abort
+    ✕ should call cb with abort error when aborted, not with the value (2 ms)
+
+  ● once source with abort › should call cb with abort error when aborted, not with the value
+
+    expect(received).toBeTruthy()
+
+    Received: null
+
+      20 |     expect(cbResults.length).toBe(1);
+      21 |     // Original: cb is called with err=true (abort signal), not with the value
+    > 22 |     expect(cbResults[0].err).toBeTruthy();
+         |                              ^
+      23 |     // The value should NOT be 'hello' - it should be aborted
+      24 |     expect(cbResults[0].val).not.toBe('hello');
+      25 |   });
+
+      at Object.toBeTruthy (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-d8fda87/testCase.test.ts:22:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.313 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-d8fda87/testCase.test.ts".

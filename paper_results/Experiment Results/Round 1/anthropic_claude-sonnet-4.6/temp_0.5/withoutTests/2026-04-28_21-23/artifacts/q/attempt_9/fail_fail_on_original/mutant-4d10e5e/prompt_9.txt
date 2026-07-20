@@ -1,0 +1,35 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-4d10e5e/testCase.test.ts
+  hasStacks initialization
+    ✕ fresh module load with no Error.stack should have hasStacks=false (1 ms)
+
+  ● hasStacks initialization › fresh module load with no Error.stack should have hasStacks=false
+
+    TypeError: Cannot assign to read only property 'prototype' of function 'class extends OrigError {
+          constructor(msg) {
+            super(msg);
+            delete this.stack;
+          }
+        }'
+
+      15 |       }
+      16 |     };
+    > 17 |     (global as any).Error.prototype = OrigError.prototype;
+         |                                    ^
+      18 |     
+      19 |     let QFresh: any;
+      20 |     try {
+
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-4d10e5e/testCase.test.ts:17:36)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.305 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-4d10e5e/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

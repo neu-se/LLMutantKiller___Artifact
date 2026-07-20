@@ -1,0 +1,42 @@
+import request from '../../../../../../../../../../../subject_repositories/image-downloader/lib/request';
+
+describe('request function', () => {
+  it('should handle errors correctly when writing to a file', async () => {
+    const url = 'http://example.com';
+    const dest = 'test.txt';
+
+    // Test the request function
+    await expect(request({ url, dest })).resolves;
+
+    // Now test the mutated code
+    // The mutated code will throw an error because it's trying to listen for an empty string event
+    const originalRequest = request;
+    jest.resetModules();
+    jest.mock('../../../../../../../../../subject_repositories/image-downloader/lib/request', () => ({
+      __esModule: true,
+      default: ({ url: string, dest: string, ...options: any }) => new Promise((resolve: (value: any) => void, reject: (reason: any) => void) => {
+        const http = require('http');
+        const req = http.get(url, (res: any) => {
+          if (res.statusCode !== 200) {
+            res.resume();
+            reject(new Error('Request Failed.\n' +
+                             `Status Code: ${res.statusCode}`));
+            return;
+          }
+
+          const writeStream = require('fs').createWriteStream(dest);
+          res.pipe(writeStream)
+            .on("", reject)
+            .once('close', () => resolve({ filename: dest }));
+        });
+        req.on('timeout', () => reject(new Error('Timeout')));
+        req.on('error', reject);
+      }),
+    }));
+
+    const mutatedRequest = require('../../../../../../../../../subject_repositories/image-downloader/lib/request').default;
+
+    // Test the request function with the mutated code
+    await expect(mutatedRequest({ url, dest })).rejects.toThrowError();
+  });
+});

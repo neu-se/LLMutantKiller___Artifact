@@ -1,0 +1,29 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-0af9d8e/testCase.test.ts[0m:[93m4[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m4[0m import * as rimraf from 'rimraf';
+[7m [0m [91m                        ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-0af9d8e/testCase.test.ts
+  drain event emission condition
+    ✕ should emit drain when inFlightWrites reaches zero (11 ms)
+
+  ● drain event emission condition › should emit drain when inFlightWrites reaches zero
+
+    Drain emitted before all write callbacks completed
+
+      42 |           done(new Error('Drain emitted multiple times while writes were still in flight'));
+      43 |         } else if (writeCallbacksCompleted < 3) {
+    > 44 |           done(new Error('Drain emitted before all write callbacks completed'));
+         |                ^
+      45 |         } else {
+      46 |           // Verify all writes were actually completed
+      47 |           setImmediate(() => {
+
+      at Dirty.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-0af9d8e/testCase.test.ts:44:16)
+      at Object.emit [as callback] (../subject_repositories/node-dirty/lib/dirty/dirty.js:190:70)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.633 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-0af9d8e/testCase.test.ts".

@@ -1,0 +1,37 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_2/pending_category/mutant-6954c2a/testCase.test.ts
+  request module error handling
+    ✕ should reject with a properly formatted error message for non-200 status codes (4 ms)
+
+  ● request module error handling › should reject with a properly formatted error message for non-200 status codes
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Request Failed."
+    Received string:    "Nock: No match for request {
+      \"method\": \"GET\",
+      \"url\": \"http://example.com/image.jpg\",
+      \"headers\": {}
+    }"
+
+      16 |     } catch (error: any) {
+      17 |       expect(error).toBeInstanceOf(Error);
+    > 18 |       expect(error.message).toContain("Request Failed.");
+         |                             ^
+      19 |       expect(error.message).toContain("Status Code: 404");
+      20 |     } finally {
+      21 |       if (fs.existsSync(testDest)) {
+
+      at Object.toContain (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_2/pending_category/mutant-6954c2a/testCase.test.ts:18:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.162 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_2/pending_category/mutant-6954c2a/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,1431 @@
+Your task is to write a Jest test case that exposes a specific mutation in a JavaScript/TypeScript project.
+
+MUTATION DETAILS
+The mutation affects the following file:
+src/rule.ts
+Here is the full content of that file (shown with a <PLACEHOLDER> marker):
+import { Matcher } from './matcher'
+import { Queryable, QueryContext } from './queryable'
+
+/** Access-control rule for a single path. */
+export class Rule implements Queryable {
+  /** Pattern for determining which paths are governed by this rule. */
+  readonly regex: Matcher
+  /** Set of verbs governed by this rule; allowed verbs
+    * are marked as `true`, denied verbs as `false`. */
+  readonly verbs: { [index: string]: boolean } = {}
+
+  /** @param spec Path specification or pre-compiled matcher for
+    *             determining which paths this rule will apply to. */
+  constructor (spec: string | Matcher) {
+    this.regex = spec instanceof Matcher
+      ? spec
+      : new Matcher(spec)
+  }
+
+  /** Mark one or more verbs as allowed.
+    * @note Deny overrides allow within SPACL policies;
+    *       this method will have no effect on verbs
+    *       previously marked as denied. */
+  allow (...verbs: string[]): Rule {
+    for (const verb of verbs) {
+      if (!(verb in this.verbs)) {
+        this.verbs[verb] = true
+      }
+    }
+    return this
+  }
+
+  /** Mark one or more verbs as denied. */
+  deny (...verbs: string[]): Rule {
+    for (const verb of verbs) {
+      this.verbs[verb] = false
+    }
+    return this
+  }
+
+  /** Check whether an action is allowed on a path.
+    * @param path Path to be acted on.
+    * @param verb Action to be performed.
+    * @param ctx Query context for resolving context-dependent paths.
+    * @returns Returns `true` if the action is explicitly allowed,
+    *          `false` if the action is explicitly denied, or
+    *          `null` if the combination of path and action
+    *          is not governed by this rule. */
+  query (path: string, verb: string, ctx?: QueryContext): boolean | null {
+    if (this.matches(path, ctx) && verb in this.verbs) {
+      return this.verbs[verb]
+    }
+    return null
+  }
+
+  /** Check whether a path is governed by this rule.
+    * @param path Path to be checked.
+    * @param ctx Query context for resolving context-dependent paths. */
+  matches (path: string, ctx?: QueryContext): boolean {
+    const match = path.match(this.regex)
+    if (match === null) {
+      return false
+    }
+    const count = this.regex.props.length
+    if (count > 0) {
+      if (ctx === undefined) {
+        return false
+      }
+      for (let index = 0; index < count; index++) {
+        const prop = ctx[this.regex.props[index]]
+        <PLACEHOLDER>
+          return false
+        }
+      }
+    }
+    return true
+  }
+
+  /** Create clone of a rule.
+    * @param spec Replacement path specification for the new rule. */
+  clone (spec: string | Matcher = this.regex): Rule {
+    const rule = new Rule(spec)
+    for (const verb in this.verbs) {
+      rule.verbs[verb] = this.verbs[verb]
+    }
+    return rule
+  }
+
+  /** Static constructor function; returns a new Rule.
+    * @param spec Path specification or pre-compiled matcher for
+    *             determining which paths this rule will apply to. */
+  static for (spec: string | Matcher): Rule {
+    return new Rule(spec)
+  }
+}
+
+In the original code, <PLACEHOLDER> has the value:
+
+-           if (prop === undefined || match[index + 1] !== prop) {
+In the mutated code, <PLACEHOLDER> has the value:
+
++           if (false || match[index + 1] !== prop) {
+
+
+
+YOUR TASK
+Write one Jest test file that:
+    1. Passes when run against the original code.
+    2. Fails when run against the mutated code.
+    3. Tests the behavior of the mutated file in a way that reliably detects the mutation.
+The test will be saved at the following path, relative to this test-generation project’s root:
+llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_1/pending_category/mutant-599afee/testCase.test.ts
+
+RESOURCES AVAILABLE
+Existing test cases you may use for style or structure inspiration, focusing on how they reflect the project’s expected behavior and typical inputs:
+// test/timing/test.ts
+
+/* eslint-disable no-multi-spaces */
+
+import { hrtime } from 'process'
+import { inspect } from 'util'
+import { Matcher } from '../../src'
+import { randomBytes } from 'crypto'
+import { describe, jest, it } from '@jest/globals'
+
+const goal = parseFloat(process.env.TIMING_GOAL ?? '1.0')
+console.log(`timing goal is ${goal}`)
+
+const specs = [
+  '/',
+  '/+',
+  '/+/+',
+  '/*',
+  '/*/*',
+  '/++',
+  '/**',
+  '/foo',
+  '/foo/+',
+  '/foo/+/+',
+  '/foo/*',
+  '/foo/*/*',
+  '/foo/++',
+  '/foo/**',
+  '/+/bar',
+  '/+/+/bar',
+  '/*/bar',
+  '/*/*/bar',
+  '/++/bar',
+  '/**/bar',
+  '/foo/bar',
+  '/foo/+/bar',
+  '/foo/+/+/bar',
+  '/foo/+/bar/+',
+  '/foo/+/bar/*',
+  '/foo/*/bar',
+  '/foo/*/*/bar',
+  '/foo/*/bar/+',
+  '/foo/*/bar/*',
+  '/foo/++/bar',
+  '/foo/++/bar/+',
+  '/foo/++/bar/*',
+  '/foo/**/bar',
+  '/foo/**/bar/+',
+  '/foo/**/bar/*',
+  '/:foo',
+  '/:foo/bar',
+  '/:foo/:bar',
+  '/:foo/+/:bar',
+  '/:foo/*/:bar',
+  '/:foo/++/:bar',
+  '/:foo/**/:bar'
+]
+
+const tests: Array<[string, (n: number) => string]> = [
+  ['random bytes (plain)',                    (n: number) => randomBytes(n * 500).toString()],
+  ['random bytes (leading slash)',            (n: number) => '/' + randomBytes(n * 500).toString()],
+  ['random bytes (leading + trailing slash)', (n: number) => '/' + randomBytes(n * 500).toString() + '/'],
+  ['random chars (plain)',                    (n: number) => randomBytes(n * 250).toString('hex')],
+  ['random chars (leading slash)',            (n: number) => '/' + randomBytes(n * 250).toString('hex')],
+  ['random chars (leading + trailing slash)', (n: number) => '/' + randomBytes(n * 250).toString('hex') + '/'],
+  ['100 foos (valid)',                        (n: number) => '/foo'.repeat(n * 100)],
+  ['100 foos (trailing slash)',               (n: number) => '/foo'.repeat(n * 100) + '/'],
+  ['100 foobars (valid)',                     (n: number) => '/foo/bar'.repeat(n * 100)],
+  ['100 foobars (trailing slash)',            (n: number) => '/foo/bar'.repeat(n * 100) + '/'],
+  ['100 foobars + boo (valid)',               (n: number) => '/foo/bar'.repeat(n * 100) + '/boo'],
+  ['100 foobars + boo (trailing slash)',      (n: number) => '/foo/bar'.repeat(n * 100) + '/boo/'],
+  ['one big segment (valid)',                 (n: number) => '/' + 'a'.repeat(n * 500)],
+  ['one big segment (trailing slash)',        (n: number) => '/' + 'a'.repeat(n * 500) + '/'],
+  ['a few big segments (valid)',              (n: number) => ('/' + 'a'.repeat(500)).repeat(n)],
+  ['a few big segments (trailing slash)',     (n: number) => ('/' + 'a'.repeat(500)).repeat(n) + '/'],
+  ['many small segments (valid)',             (n: number) => ('/' + 'a'.repeat(10)).repeat(50 * n)],
+  ['many small segments (trailing slash)',    (n: number) => ('/' + 'a'.repeat(10)).repeat(50 * n) + '/']
+]
+
+jest.setTimeout(10000)
+
+describe('compiled regex for', () => {
+  for (const spec of specs) {
+    describe('path spec "' + spec + '"', () => {
+      for (const test of tests) {
+        it('is not vulnerable to ' + test[0], () => {
+          runTest(Matcher.for(spec), test[1])
+        })
+      }
+    })
+  }
+})
+
+/** Time the execution of a matcher against a set of similar
+  * but increasingly complex test inputs, checking that the
+  * jump in execution time between each step is linear(ish)
+  * or better. */
+function runTest (matcher: Matcher, fn: (n: number) => string): void {
+  const scores: Array<{
+    n: number
+    t: number
+    m?: number
+  }> = [{
+    n: 1,
+    t: runTestLoop(matcher, fn(1))
+  }]
+  for (let n = 2, s = 0; n < 16; n *= 2, s++) {
+    const t = runTestLoop(matcher, fn(n))
+    scores.push({
+      n,
+      t,
+      m: t / (scores[s].t * 2)
+    })
+  }
+  if (scores.filter((score) => score.m !== undefined && score.m > goal).length > 2) {
+    throw new Error('non-linear increase in execution time: ' + inspect(scores))
+  }
+}
+
+/** Time the execution of a matcher against a test input.
+  * @returns Average execution time in nanoseconds. */
+function runTestLoop (matcher: Matcher, path: string): number {
+  const maxTime = BigInt(500000000)
+  const maxIter = 20000
+  const perStep = 1000
+  const before = hrtime.bigint()
+  for (let i = 0, k = 0; i < maxIter; i += k, k = 0) {
+    for (; k < perStep; k++) {
+      path.match(matcher)
+    }
+    /* Short-circuit if the test is taking too long. */
+    const curTime = hrtime.bigint() - before
+    if (curTime > maxTime) {
+      return Number(curTime) / (i + k)
+    }
+  }
+  return Number(hrtime.bigint() - before) / maxIter
+}
+
+---
+// test/matcher.ts
+
+/* eslint-disable no-multi-spaces */
+
+import { Matcher } from '../src'
+import { describe, it } from '@jest/globals'
+import { deepStrictEqual, strictEqual } from 'assert'
+
+describe('matcher', () => {
+  itAccepts('valid paths',
+    '/',
+    '/+',
+    '/+/+',
+    '/+/*',
+    '/+/foo',
+    '/*',
+    '/*/+',
+    '/*/*',
+    '/*/foo',
+    '/foo',
+    '/foo/+',
+    '/foo/*',
+    '/foo/bar',
+    '/foo/+/+',
+    '/foo/+/*',
+    '/foo/+/bar',
+    '/foo/+/bar/+',
+    '/foo/+/bar/*',
+    '/foo/*/+',
+    '/foo/*/*',
+    '/foo/*/bar',
+    '/foo/*/bar/+',
+    '/foo/*/bar/*',
+    '/abcdefghijklmnopqrstuvwxyz',
+    '/ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+    '/0123456789',
+    '/_~.$-',
+    '/:foo',
+    '/:foo/:bar',
+    '/:foo/:foo',
+    '/++',
+    '/++/foo',
+    '/**',
+    '/**/foo',
+    '/foo/++',
+    '/foo/++/bar',
+    '/foo/**',
+    '/foo/**/bar')
+  itRejects('empty paths', '1.1',
+    '')
+  itRejects('paths without leading slashes', '1.1',
+    '+',
+    '+/foo',
+    '*',
+    '*/foo',
+    'foo',
+    'foo/+',
+    'foo/*',
+    'foo/bar')
+  itRejects('paths with trailing slashes', '1.1',
+    '/+/',
+    '/+/foo/',
+    '/*/',
+    '/*/foo/',
+    '/foo/',
+    '/foo/+/',
+    '/foo/*/',
+    '/foo/bar/')
+  itRejects('paths with empty segments', '1.1',
+    '//',
+    '//+',
+    '//*',
+    '//foo',
+    '/+//',
+    '/*//',
+    '/foo//',
+    '/foo//+',
+    '/foo//*',
+    '/foo//bar')
+  itRejects('paths with invalid characters', '1.1',
+    '/ ',
+    '/!',
+    '/@',
+    '/#',
+    '/%',
+    '/^',
+    '/&',
+    '/(',
+    '/)',
+    '/=',
+    '/{',
+    '/}',
+    '/[',
+    '/]',
+    '/<',
+    '/>',
+    '/|',
+    '/?',
+    '/,',
+    '/;',
+    '/`',
+    '/"',
+    '/\'',
+    '/\\',
+    '/\n',
+    '/\r',
+    '/\t',
+    '/\0')
+  itRejects('paths with malformed wildcards', '1.1',
+    '/+*',
+    '/*+',
+    '/+**',
+    '/*++',
+    '/+++',
+    '/***',
+    '/foo+',
+    '/foo*',
+    '/+foo',
+    '/*foo',
+    '/foo++',
+    '/foo**',
+    '/++foo',
+    '/**foo')
+  itRejects('paths with malformed captures', '1.1',
+    '/:',
+    '/::',
+    '/:foo:',
+    '/:foo+',
+    '/:foo*',
+    '/foo:')
+  itCompiles('literal path segments',
+    ['/',          /^\/$/],
+    ['/foo',       /^\/foo$/],
+    ['/foo/bar',   /^\/foo\/bar$/],
+    ['/.foo',      /^\/\.foo$/],
+    ['/.foo/bar$', /^\/\.foo\/bar\$$/])
+  itCompiles('match-one wildcard segments',
+    ['/+',         /^\/[^/]+$/],
+    ['/+/foo',     /^\/[^/]+\/foo$/],
+    ['/foo/+',     /^\/foo\/[^/]+$/],
+    ['/foo/+/bar', /^\/foo\/[^/]+\/bar$/])
+  itCompiles('match-many wildcard segments',
+    ['/*',         /^(?:\/[^/]+)+$/],
+    ['/*/foo',     /^(?:\/[^/]+)+\/foo$/],
+    ['/foo/*',     /^\/foo(?:\/[^/]+)+$/],
+    ['/foo/*/bar', /^\/foo(?:\/[^/]+)+\/bar$/])
+  itCompiles('match-one-or-none wildcard segments',
+    ['/++',         /^\/$|^\/[^/]+$/],
+    ['/++/foo',     /^(?:\/[^/]+)?\/foo$/],
+    ['/foo/++',     /^\/foo(?:\/[^/]+)?$/],
+    ['/foo/++/bar', /^\/foo(?:\/[^/]+)?\/bar$/])
+  itCompiles('match-many-or-none wildcard segments',
+    ['/**',         /^\/$|^(?:\/[^/]+)+$/],
+    ['/**/foo',     /^(?:\/[^/]+)*\/foo$/],
+    ['/foo/**',     /^\/foo(?:\/[^/]+)*$/],
+    ['/foo/**/bar', /^\/foo(?:\/[^/]+)*\/bar$/])
+  itCompiles('combinations of wildcard segments',
+    ['/+',       /^\/[^/]+$/],
+    ['/+/*',     /^(?:\/[^/]+){2,}$/],
+    ['/+/*/*',   /^(?:\/[^/]+){3,}$/],
+    ['/+/+',     /^(?:\/[^/]+){2}$/],
+    ['/+/+/+',   /^(?:\/[^/]+){3}$/],
+    ['/+/+/*',   /^(?:\/[^/]+){3,}$/],
+    ['/+/+/*/*', /^(?:\/[^/]+){4,}$/],
+    ['/+/foo/+', /^\/[^/]+\/foo\/[^/]+$/],
+    ['/+/foo/*', /^\/[^/]+\/foo(?:\/[^/]+)+$/],
+    ['/*',       /^(?:\/[^/]+)+$/],
+    ['/*/+',     /^(?:\/[^/]+){2,}$/],
+    ['/*/+/+',   /^(?:\/[^/]+){3,}$/],
+    ['/*/*',     /^(?:\/[^/]+){2,}$/],
+    ['/*/*/*',   /^(?:\/[^/]+){3,}$/],
+    ['/*/foo/+', /^(?:\/[^/]+)+\/foo\/[^/]+$/],
+    ['/*/foo/*', /^(?:\/[^/]+)+\/foo(?:\/[^/]+)+$/],
+    ['/++',      /^\/$|^\/[^/]+$/],
+    ['/++/+',    /^(?:\/[^/]+){1,2}$/],
+    ['/++/+/+',  /^(?:\/[^/]+){2,3}$/],
+    ['/++/*',    /^(?:\/[^/]+)+$/],
+    ['/**',      /^\/$|^(?:\/[^/]+)+$/],
+    ['/**/+',    /^(?:\/[^/]+)+$/],
+    ['/**/+/+',  /^(?:\/[^/]+){2,}$/],
+    ['/**/*',    /^(?:\/[^/]+)+$/])
+  itCompiles('capture segments',
+    ['/:foo',          /^\/([^/]+)$/,                             'foo'],
+    ['/:foo/:bar',     /^\/([^/]+)\/([^/]+)$/,                    'foo', 'bar'],
+    ['/:foo/:foo',     /^\/([^/]+)\/([^/]+)$/,                    'foo', 'foo'],
+    ['/+/:foo/*/:bar', /^\/[^/]+\/([^/]+)(?:\/[^/]+)+\/([^/]+)$/, 'foo', 'bar']
+  )
+  itMatches('literal path segments', {
+    spec: '/foo',
+    paths: [
+      [false, ''],
+      [false, '/'],
+      [false, '/fo'],
+      [true,  '/foo'],
+      [false, '/food'],
+      [false, '/foo/bar'],
+      [false, 'foo']
+    ]
+  }, {
+    spec: '/foo/bar',
+    paths: [
+      [false, ''],
+      [false, '/'],
+      [false, '/foo'],
+      [false, '/foo/ba'],
+      [true,  '/foo/bar'],
+      [false, '/foo/bard'],
+      [false, 'foo'],
+      [false, 'foo/bar']
+    ]
+  }, {
+    spec: '/.foo',
+    paths: [
+      [false, '/foo'],
+      [true,  '/.foo'],
+      [false, '/Afoo']
+    ]
+  }, {
+    spec: '/foo$',
+    paths: [
+      [false, '/foo'],
+      [true,  '/foo$'],
+      [false, '/fooA']
+    ]
+  })
+  itMatches('match-one wildcard segments', {
+    spec: '/+',
+    paths: [
+      [false, ''],
+      [false, '/'],
+      [true,  '/foo'],
+      [false, '/foo/bar']
+    ]
+  }, {
+    spec: '/+/+',
+    paths: [
+      [false, '/foo'],
+      [true,  '/foo/bar'],
+      [false, '/foo/bar/boo']
+    ]
+  }, {
+    spec: '/foo/+',
+    paths: [
+      [false, '/foo'],
+      [true,  '/foo/bar'],
+      [false, '/foo/bar/boo'],
+      [false, '/bar/foo']
+    ]
+  }, {
+    spec: '/+/bar',
+    paths: [
+      [false, '/foo'],
+      [true,  '/foo/bar'],
+      [false, '/foo/bar/boo'],
+      [false, '/bar/foo']
+    ]
+  }, {
+    spec: '/foo/+/boo',
+    paths: [
+      [false, '/foo'],
+      [false, '/foo/bar'],
+      [false, '/foo/boo'],
+      [true,  '/foo/bar/boo'],
+      [false, '/foo/boo/bar'],
+      [false, '/bar/foo/boo']
+    ]
+  }, {
+    spec: '/+/bar/+',
+    paths: [
+      [false, '/foo'],
+      [false, '/foo/bar'],
+      [true,  '/foo/bar/boo'],
+      [false, '/foo/boo/bar']
+    ]
+  })
+  itMatches('match-many wildcard segments', {
+    spec: '/*',
+    paths: [
+      [false, ''],
+      [false, '/'],
+      [true,  '/foo'],
+      [true,  '/foo/bar'],
+      [true,  '/foo/bar/boo']
+    ]
+  }, {
+    spec: '/*/*',
+    paths: [
+      [false, '/foo'],
+      [true,  '/foo/bar'],
+      [true,  '/foo/bar/boo']
+    ]
+  }, {
+    spec: '/foo/*',
+    paths: [
+      [false, '/foo'],
+      [true,  '/foo/bar'],
+      [true,  '/foo/bar/boo'],
+      [false, '/bar/foo']
+    ]
+  }, {
+    spec: '/*/bar',
+    paths: [
+      [false, '/foo'],
+      [true,  '/foo/bar'],
+      [false, '/foo/bar/boo'],
+      [true,  '/foo/boo/bar'],
+      [false, '/bar/foo']
+    ]
+  }, {
+    spec: '/foo/*/boo',
+    paths: [
+      [false, '/foo'],
+      [false, '/foo/bar'],
+      [false, '/foo/boo'],
+      [true,  '/foo/bar/boo'],
+      [true,  '/foo/bar/baz/boo'],
+      [false, '/foo/boo/bar'],
+      [false, '/bar/foo/boo']
+    ]
+  }, {
+    spec: '/*/bar/*',
+    paths: [
+      [false, '/foo'],
+      [false, '/foo/bar'],
+      [true,  '/foo/bar/boo'],
+      [true,  '/foo/bar/boo/baz'],
+      [true,  '/foo/baz/bar/boo']
+    ]
+  })
+  itMatches('match-one-or-none wildcard segments', {
+    spec: '/++',
+    paths: [
+      [false, ''],
+      [true,  '/'],
+      [false, '//'],
+      [true,  '/foo'],
+      [false, '/foo/'],
+      [false, '/foo/bar']
+    ]
+  }, {
+    spec: '/++/++',
+    paths: [
+      [false, ''],
+      [true,  '/'],
+      [false, '//'],
+      [false, '//foo'],
+      [true,  '/foo'],
+      [false, '/foo/'],
+      [false, '/foo//'],
+      [true,  '/foo/bar'],
+      [false, '/foo/bar/'],
+      [false, '/foo/bar/boo']
+    ]
+  }, {
+    spec: '/foo/++',
+    paths: [
+      [false, '/'],
+      [true,  '/foo'],
+      [false, '/foo/'],
+      [true,  '/foo/bar'],
+      [false, '/foo/bar/boo'],
+      [false, '/bar'],
+      [false, '/bar/foo']
+    ]
+  }, {
+    spec: '/++/bar',
+    paths: [
+      [false, '/'],
+      [false, '/foo'],
+      [true,  '/bar'],
+      [true,  '/foo/bar'],
+      [false, '/foo/bar/boo'],
+      [false, '/bar/foo']
+    ]
+  }, {
+    spec: '/foo/++/boo',
+    paths: [
+      [false, '/foo'],
+      [false, '/foo/bar'],
+      [true,  '/foo/boo'],
+      [true,  '/foo/bar/boo'],
+      [false, '/foo/boo/bar'],
+      [false, '/bar/foo/boo']
+    ]
+  }, {
+    spec: '/++/bar/++',
+    paths: [
+      [false, '/foo'],
+      [true,  '/bar'],
+      [true,  '/foo/bar'],
+      [true,  '/bar/boo'],
+      [true,  '/foo/bar/boo'],
+      [false, '/foo/boo/bar'],
+      [false, '/bar/foo/boo']
+    ]
+  })
+  itMatches('match-many-or-none wildcard segments', {
+    spec: '/**',
+    paths: [
+      [false, ''],
+      [true,  '/'],
+      [false, '//'],
+      [true,  '/foo'],
+      [false, '/foo/'],
+      [true,  '/foo/bar']
+    ]
+  }, {
+    spec: '/**/**',
+    paths: [
+      [false, ''],
+      [true,  '/'],
+      [false, '//'],
+      [false, '//foo'],
+      [true,  '/foo'],
+      [false, '/foo/'],
+      [false, '/foo//'],
+      [true,  '/foo/bar'],
+      [false, '/foo/bar/'],
+      [true,  '/foo/bar/boo']
+    ]
+  }, {
+    spec: '/foo/**',
+    paths: [
+      [false, '/'],
+      [true,  '/foo'],
+      [false, '/foo/'],
+      [true,  '/foo/bar'],
+      [true,  '/foo/bar/boo'],
+      [false, '/bar'],
+      [false, '/bar/foo']
+    ]
+  }, {
+    spec: '/**/boo',
+    paths: [
+      [false, '/'],
+      [false, '/foo'],
+      [true,  '/boo'],
+      [true,  '/foo/boo'],
+      [true,  '/foo/bar/boo'],
+      [false, '/boo/foo']
+    ]
+  }, {
+    spec: '/foo/**/baz',
+    paths: [
+      [false, '/foo'],
+      [false, '/foo/bar'],
+      [true,  '/foo/baz'],
+      [true,  '/foo/bar/baz'],
+      [true,  '/foo/bar/boo/baz'],
+      [false, '/foo/baz/bar'],
+      [false, '/bar/foo/baz']
+    ]
+  }, {
+    spec: '/**/bar/**',
+    paths: [
+      [false, '/foo'],
+      [true,  '/bar'],
+      [true,  '/foo/bar'],
+      [false, '/foo/boo'],
+      [true,  '/bar/boo'],
+      [true,  '/foo/bar/boo'],
+      [true,  '/foo/bar/boo/baz'],
+      [true,  '/foo/boo/bar'],
+      [true,  '/bar/boo/baz']
+    ]
+  })
+  itMatches('combinations of wildcard segments', {
+    spec: '/+/*',
+    paths: [
+      [false, '/'],
+      [false, '/foo'],
+      [true,  '/foo/bar'],
+      [true,  '/foo/bar/boo'],
+      [true,  '/foo/bar/boo/baz']
+    ]
+  }, {
+    spec: '/+/+/*',
+    paths: [
+      [false, '/'],
+      [false, '/foo'],
+      [false, '/foo/bar'],
+      [true,  '/foo/bar/boo'],
+      [true,  '/foo/bar/boo/baz']
+    ]
+  }, {
+    spec: '/+/+/+',
+    paths: [
+      [false, '/'],
+      [false, '/foo'],
+      [false, '/foo/bar'],
+      [true,  '/foo/bar/boo'],
+      [false,  '/foo/bar/boo/baz']
+    ]
+  }, {
+    spec: '/*/+',
+    paths: [
+      [false, '/'],
+      [false, '/foo'],
+      [true,  '/foo/bar'],
+      [true,  '/foo/bar/boo'],
+      [true,  '/foo/bar/boo/baz']
+    ]
+  }, {
+    spec: '/*/*/+',
+    paths: [
+      [false, '/'],
+      [false, '/foo'],
+      [false, '/foo/bar'],
+      [true,  '/foo/bar/boo'],
+      [true,  '/foo/bar/boo/baz']
+    ]
+  }, {
+    spec: '/*/*/*',
+    paths: [
+      [false, '/'],
+      [false, '/foo'],
+      [false, '/foo/bar'],
+      [true,  '/foo/bar/boo'],
+      [true,  '/foo/bar/boo/baz']
+    ]
+  }, {
+    spec: '/++/+',
+    paths: [
+      [false, '/'],
+      [true,  '/foo'],
+      [true,  '/foo/bar'],
+      [false, '/foo/bar/boo'],
+      [false, '/foo/bar/boo/baz']
+    ]
+  }, {
+    spec: '/++/*',
+    paths: [
+      [false, '/'],
+      [true,  '/foo'],
+      [true,  '/foo/bar'],
+      [true,  '/foo/bar/boo'],
+      [true,  '/foo/bar/boo/baz']
+    ]
+  }, {
+    spec: '/**/+',
+    paths: [
+      [false, '/'],
+      [true,  '/foo'],
+      [true,  '/foo/bar'],
+      [true,  '/foo/bar/boo'],
+      [true,  '/foo/bar/boo/baz']
+    ]
+  }, {
+    spec: '/**/*',
+    paths: [
+      [false, '/'],
+      [true,  '/foo'],
+      [true,  '/foo/bar'],
+      [true,  '/foo/bar/boo'],
+      [true,  '/foo/bar/boo/baz']
+    ]
+  }, {
+    spec: '/**/++',
+    paths: [
+      [true, '/'],
+      [true, '/foo'],
+      [true, '/foo/bar'],
+      [true, '/foo/bar/boo'],
+      [true, '/foo/bar/boo/baz']
+    ]
+  })
+  itMatches('capture segments', {
+    spec: '/:a',
+    paths: [
+      [false, '/'],
+      [true,  '/foo', 'foo'],
+      [false, '/foo/bar']
+    ]
+  }, {
+    spec: '/:a/:b',
+    paths: [
+      [false, '/'],
+      [false, '/foo'],
+      [true,  '/foo/bar', 'foo', 'bar'],
+      [false, '/foo/bar/boo']
+    ]
+  }, {
+    spec: '/+/:a/*/:b',
+    paths: [
+      [false, '/foo'],
+      [false, '/foo/bar'],
+      [false, '/foo/bar/boo'],
+      [true,  '/foo/bar/boo/baz', 'bar', 'baz'],
+      [true,  '/foo/bar/boo/baz/wut', 'bar', 'wut']
+    ]
+  })
+  describe('when using version 1', () => {
+    itRejects('specs with match-one-or-none wildcards', '1',
+      '/++',
+      '/foo/++',
+      '/++/bar')
+    itRejects('specs with match-many-or-none wildcards', '1.0',
+      '/**',
+      '/foo/**',
+      '/**/bar')
+  })
+})
+
+function itAccepts (desc: string, ...specs: string[]): void {
+  it('accepts ' + desc, () => {
+    specs.forEach((spec) => {
+      try {
+        Matcher.for(spec)
+      } catch (err: any) {
+        /* eslint-disable-next-line @typescript-eslint/restrict-template-expressions */
+        throw new Error(`expected path spec '${spec}' to be accepted: ${err.message}`)
+      }
+    })
+  })
+}
+
+function itRejects (desc: string, version: '1' | '1.0' | '1.1', ...specs: string[]): void {
+  it('rejects ' + desc, () => {
+    specs.forEach((spec) => {
+      if (!itThrows(() => Matcher.for(spec, version))) {
+        throw Error(`expected path spec '${spec}' to be rejected`)
+      }
+    })
+  })
+}
+
+function itCompiles (desc: string, ...tests: Array<[
+  spec: string,
+  expected: RegExp,
+  ...props: string[]
+]>): void {
+  it('compiles ' + desc + ' correctly', () => {
+    tests.forEach((test) => {
+      const [spec, expected, ...props] = test
+      const regex = Matcher.for(spec)
+      strictEqual(regex.source, expected.source,
+        `path spec '${spec}' did not compile to expected pattern`)
+      deepStrictEqual(regex.props, props,
+        `path spec '${spec}' did not compile to expected capture set`)
+    })
+  })
+}
+
+function itMatches (desc: string, ...tests: Array<{
+  spec: string
+  paths: Array<[
+    expected: boolean,
+    value: string,
+    ...props: string[]
+  ]>
+}>): void {
+  it('matches ' + desc + ' correctly', () => {
+    for (const test of tests) {
+      const regex = Matcher.for(test.spec)
+      for (const path of test.paths) {
+        const [expected, value, ...props] = path
+        const match = value.match(regex)
+        strictEqual((match !== null), expected,
+          `expected path spec '${test.spec}' to${expected ? '' : ' not'} match '${value}'`)
+        if (match !== null) {
+          deepStrictEqual(match.slice(1), props,
+            `path spec '${test.spec}' did not capture expected values`)
+        }
+      }
+    }
+  })
+}
+
+function itThrows (fn: () => void): boolean {
+  try {
+    fn()
+  } catch {
+    return true
+  }
+  return false
+}
+
+---
+// test/policy.ts
+
+/* eslint-disable no-multi-spaces */
+
+import { strictEqual } from 'assert'
+import { describe, it } from '@jest/globals'
+import { Policy, QueryContext, Rule } from '../src'
+
+describe('policy', () => {
+  it('matches paths correctly', () => {
+    runTests({
+      policy: Policy.for('static'),
+      tests: [
+        ['/',         false],
+        ['/nah',      false],
+        ['/yeah/nah', false]
+      ]
+    })
+    runTests({
+      policy: Policy.for('dynamic',
+        Rule.for('/yeah'),
+        Rule.for('/nah/+')),
+      tests: [
+        ['/yeah',     true],
+        ['/yeah/nah', false],
+        ['/nah',      false],
+        ['/nah/yeah', true]
+      ]
+    })
+  })
+  it('matches context-dependent paths correctly', () => {
+    runTests({
+      policy: Policy.for('without context',
+        Rule.for('/:maybe')),
+      tests: [
+        ['/',     false],
+        ['/nah',  false]
+      ]
+    })
+    runTests({
+      policy: Policy.for('with context',
+        Rule.for('/:maybe'),
+        Rule.for('/nah/:maybe')),
+      ctx: {
+        maybe: 'yeah'
+      },
+      tests: [
+        ['/nah',      false],
+        ['/yeah',     true],
+        ['/yeah/nah', false],
+        ['/nah/yeah', true]
+      ]
+    })
+  })
+  it('answers queries correctly', () => {
+    runTests({
+      policy: Policy.for('test',
+        Rule.for('/foo').allow('foo'),
+        Rule.for('/bar').allow('bar'),
+        Rule.for('/*').deny('boo')),
+      tests: [
+        ['/',    false, 'foo', null],
+        ['/',    false, 'bar', null],
+        ['/',    false, 'boo', null],
+        ['/',    false, 'baz', null],
+        ['/foo', true,  'foo', true],
+        ['/foo', true,  'bar', null],
+        ['/foo', true,  'boo', false],
+        ['/foo', true,  'baz', null],
+        ['/bar', true,  'foo', null],
+        ['/bar', true,  'bar', true],
+        ['/bar', true,  'boo', false],
+        ['/bar', true,  'baz', null]
+      ]
+    })
+  })
+  it('answers context-dependent queries correctly', () => {
+    runTests({
+      policy: Policy.for('test',
+        Rule.for('/:foo').allow('foo'),
+        Rule.for('/:bar').allow('bar'),
+        Rule.for('/:boo').deny('boo')),
+      ctx: {
+        foo: 'foo',
+        bar: 'bar'
+      },
+      tests: [
+        ['/foo', true,  'foo', true],
+        ['/foo', true,  'bar', null],
+        ['/foo', true,  'boo', null],
+        ['/foo', true,  'baz', null],
+        ['/bar', true,  'foo', null],
+        ['/bar', true,  'bar', true],
+        ['/bar', true,  'boo', null],
+        ['/bar', true,  'baz', null]
+      ]
+    })
+  })
+  it('prioritises deny over allow', () => {
+    runTests({
+      policy: Policy.for('deny first',
+        Rule.for('/*').deny('foo'),
+        Rule.for('/foo').allow('foo')),
+      tests: [
+        ['/foo', true, 'foo', false],
+        ['/bar', true, 'foo', false]
+      ]
+    })
+    runTests({
+      policy: Policy.for('allow first',
+        Rule.for('/foo').allow('foo'),
+        Rule.for('/*').deny('foo')),
+      tests: [
+        ['/foo', true, 'foo', false],
+        ['/bar', true, 'foo', false]
+      ]
+    })
+  })
+  it('clones itself correctly', () => {
+    const rule = Rule.for('/test').allow('foo', 'bar')
+    const original = Policy.for('original', rule)
+    const shallow = original.clone('shallow', false)
+    const deep = original.clone('deep', true)
+    original.push(Rule.for('/test').allow('baz'))
+    rule.deny(
+      'foo',
+      'bar',
+      'boo')
+    runTests({
+      policy: original.clone(),
+      tests: [
+        ['/test', true,  'foo', false],
+        ['/test', true,  'bar', false],
+        ['/test', true,  'boo', false],
+        ['/test', true,  'baz', true]
+      ]
+    })
+    runTests({
+      policy: shallow,
+      tests: [
+        ['/test', true,  'foo', false],
+        ['/test', true,  'bar', false],
+        ['/test', true,  'boo', false],
+        ['/test', true,  'baz', null]
+      ]
+    })
+    runTests({
+      policy: deep,
+      tests: [
+        ['/test', true,  'foo', true],
+        ['/test', true,  'bar', true],
+        ['/test', true,  'boo', null],
+        ['/test', true,  'baz', null]
+      ]
+    })
+  })
+})
+
+function runTests (opts: {
+  policy: Policy
+  ctx?: QueryContext
+  tests: Array<[
+    string,
+    boolean,
+    string?,
+    (boolean | null)?
+  ]>
+}): void {
+  for (const test of opts.tests) {
+    strictEqual(opts.policy.matches(test[0], opts.ctx), test[1],
+      `unexpected result from matches('${test[0]}') for policy '${opts.policy.name}'`)
+    if (test.length === 4 && typeof test[2] === 'string') {
+      strictEqual(opts.policy.query(test[0], test[2], opts.ctx), test[3],
+        `unexpected result from query('${test[0]}', '${test[2]}') for policy '${opts.policy.name}'`)
+    }
+  }
+}
+
+---
+// test/policymap.ts
+
+/* eslint-disable no-multi-spaces */
+
+import { strictEqual } from 'assert'
+import { describe, it } from '@jest/globals'
+import { Policy, PolicyMap, Rule } from '../src'
+
+describe('policymap', () => {
+  it('matches queries correctly', () => {
+    const ctx = { maybe: 'yeah' }
+    const map = PolicyMap.for(
+      Policy.for('static',
+        Rule.for('/yeah'),
+        Rule.for('/nah/yeah')),
+      Policy.for('dynamic',
+        Rule.for('/yeah'),
+        Rule.for('/nah/+'))).push(
+      Policy.for('context',
+        Rule.for('/:maybe'),
+        Rule.for('/nah/:maybe')))
+    const tests: Array<[string, string, boolean]> = [
+      ['static', '/',          false],
+      ['static', '/nah',       false],
+      ['static', '/nah/yeah',  true],
+      ['static', '/yeah',      true],
+      ['static', '/yeah/nah',  false],
+      ['dynamic', '/',         false],
+      ['dynamic', '/nah',      false],
+      ['dynamic', '/nah/yeah', true],
+      ['dynamic', '/yeah',     true],
+      ['dynamic', '/yeah/nah', false],
+      ['context', '/',         false],
+      ['context', '/nah',      false],
+      ['context', '/nah/yeah', true],
+      ['context', '/yeah',     true],
+      ['context', '/yeah/nah', false],
+      ['unknown', '/',         false],
+      ['unknown', '/nah',      false],
+      ['unknown', '/nah/yeah', false],
+      ['unknown', '/yeah',     false],
+      ['unknown', '/yeah/nah', false]
+    ]
+    for (const test of tests) {
+      strictEqual(map.matches(test[0], test[1], ctx), test[2],
+        `unexpected result from matches('${test[0]}', '${test[1]}')`)
+    }
+  })
+  it('answers queries correctly', () => {
+    const ctx = { maybe: 'yeah' }
+    const map = PolicyMap.for(
+      Policy.for('static',
+        Rule.for('/nah').deny('get'),
+        Rule.for('/yeah').allow('get'),
+        Rule.for('/nah/yeah').allow('get')),
+      Policy.for('dynamic',
+        Rule.for('/nah').deny('get'),
+        Rule.for('/yeah').allow('get'),
+        Rule.for('/nah/+').allow('get'))).push(
+      Policy.for('context',
+        Rule.for('/nah').deny('get'),
+        Rule.for('/:maybe').allow('get'),
+        Rule.for('/nah/:maybe').allow('get')))
+    const tests: Array<[string, string, string, boolean | null]> = [
+      ['static', '/',          'get', null],
+      ['static', '/nah',       'get', false],
+      ['static', '/nah/yeah',  'get', true],
+      ['static', '/yeah',      'get', true],
+      ['static', '/yeah/nah',  'get', null],
+      ['dynamic', '/',         'get', null],
+      ['dynamic', '/nah',      'get', false],
+      ['dynamic', '/nah/yeah', 'get', true],
+      ['dynamic', '/yeah',     'get', true],
+      ['dynamic', '/yeah/nah', 'get', null],
+      ['context', '/',         'get', null],
+      ['context', '/nah',      'get', false],
+      ['context', '/nah/yeah', 'get', true],
+      ['context', '/yeah',     'get', true],
+      ['context', '/yeah/nah', 'get', null],
+      ['unknown', '/',         'get', null],
+      ['unknown', '/nah',      'get', null],
+      ['unknown', '/nah/yeah', 'get', null],
+      ['unknown', '/yeah',     'get', null],
+      ['unknown', '/yeah/nah', 'get', null]
+    ]
+    for (const test of tests) {
+      strictEqual(map.query(test[0], test[1], test[2], ctx), test[3],
+        `unexpected result from query('${test[0]}', '${test[1]}', '${test[2]}')`)
+    }
+  })
+})
+
+---
+// test/rule.ts
+
+/* eslint-disable no-multi-spaces */
+
+import { strictEqual } from 'assert'
+import { describe, it } from '@jest/globals'
+import { QueryContext, Rule } from '../src'
+
+describe('rule', () => {
+  it('matches paths correctly', () => {
+    runTests({
+      rule: Rule.for('/yeah'),
+      tests: [
+        ['/',     false],
+        ['/nah',  false],
+        ['/yeah', true]
+      ]
+    })
+    runTests({
+      rule: Rule.for('/+'),
+      tests: [
+        ['/',         false],
+        ['/yeah',     true],
+        ['/yeah/nah', false]
+      ]
+    })
+    runTests({
+      rule: Rule.for('/*/*'),
+      tests: [
+        ['/',         false],
+        ['/nah',      false],
+        ['/nah/yeah', true]
+      ]
+    })
+  })
+  it('matches context-dependent paths correctly', () => {
+    runTests({
+      rule: Rule.for('/:maybe'),
+      tests: [
+        ['/',     false],
+        ['/nah',  false]
+      ]
+    })
+    runTests({
+      rule: Rule.for('/:maybe'),
+      ctx: {
+        maybe: 'yeah'
+      },
+      tests: [
+        ['/',     false],
+        ['/nah',  false],
+        ['/yeah', true]
+      ]
+    })
+  })
+  it('answers queries correctly', () => {
+    runTests({
+      rule: Rule
+        .for('/test')
+        .deny('foo')
+        .allow('bar'),
+      tests: [
+        ['/',     false, 'foo', null],
+        ['/',     false, 'bar', null],
+        ['/',     false, 'boo', null],
+        ['/test', true,  'foo', false],
+        ['/test', true,  'bar', true],
+        ['/test', true,  'boo', null]
+      ]
+    })
+  })
+  it('answers context-dependent queries correctly', () => {
+    runTests({
+      rule: Rule
+        .for('/:maybe')
+        .deny('foo')
+        .allow('bar'),
+      tests: [
+        ['/nah', false, 'foo', null],
+        ['/nah', false, 'bar', null],
+        ['/nah', false, 'boo', null]
+      ]
+    })
+    runTests({
+      rule: Rule
+        .for('/:maybe')
+        .deny('foo')
+        .allow('bar'),
+      ctx: {
+        maybe: 'yeah'
+      },
+      tests: [
+        ['/nah',  false, 'foo', null],
+        ['/nah',  false, 'bar', null],
+        ['/nah',  false, 'boo', null],
+        ['/yeah', true,  'foo', false],
+        ['/yeah', true,  'bar', true],
+        ['/yeah', true,  'boo', null]
+      ]
+    })
+  })
+  it('prioritises deny over allow', () => {
+    strictEqual(
+      Rule
+        .for('/test')
+        .deny('foo')
+        .allow('foo')
+        .query('/test', 'foo'),
+      false)
+    strictEqual(
+      Rule
+        .for('/test')
+        .allow('foo')
+        .deny('foo')
+        .query('/test', 'foo'),
+      false)
+  })
+  it('clones itself correctly', () => {
+    runTests({
+      rule: Rule
+        .for('/nah')
+        .deny('foo')
+        .allow('bar')
+        .clone('/yeah'),
+      tests: [
+        ['/',     false, 'foo', null],
+        ['/',     false, 'bar', null],
+        ['/',     false, 'boo', null],
+        ['/nah',  false, 'foo', null],
+        ['/nah',  false, 'bar', null],
+        ['/nah',  false, 'boo', null],
+        ['/yeah', true,  'foo', false],
+        ['/yeah', true,  'bar', true],
+        ['/yeah', true,  'boo', null]
+      ]
+    })
+  })
+})
+
+function runTests (opts: {
+  rule: Rule
+  ctx?: QueryContext
+  tests: Array<[
+    string,
+    boolean,
+    string?,
+    (boolean | null)?
+  ]>
+}): void {
+  for (const test of opts.tests) {
+    strictEqual(opts.rule.matches(test[0], opts.ctx), test[1],
+      `unexpected result from matches('${test[0]}') for rule '${opts.rule.regex.spec}'`)
+    if (test.length === 4 && typeof test[2] === 'string') {
+      strictEqual(opts.rule.query(test[0], test[2], opts.ctx), test[3],
+        `unexpected result from query('${test[0]}', '${test[2]}') for rule '${opts.rule.regex.spec}'`)
+    }
+  }
+}
+
+---
+The test runner configuration (package.json):
+{
+  "name": "@spacl/core",
+  "version": "1.2.1",
+  "description": "Simple path-based access control.",
+  "keywords": [
+    "acl",
+    "access",
+    "control",
+    "path",
+    "policy",
+    "spacl"
+  ],
+  "license": "ISC",
+  "author": {
+    "name": "AdrianT",
+    "email": "cptpackrat@dfghj.net"
+  },
+  "homepage": "https://gitlab.com/cptpackrat/spacl-core",
+  "bugs": {
+    "url": "https://gitlab.com/cptpackrat/spacl-core/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/cptpackrat/spacl-core.git"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "lint": "ts-standard",
+    "test": "jest test/*.ts",
+    "test-coverage": "jest test/*.ts --coverage",
+    "test-timing": "jest test/timing/*.ts",
+    "prepack": "tsc -p tsconfig.build.json",
+    "typedoc": "typedoc src/*.ts"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.4.0",
+    "@types/node": "^17.0.8",
+    "jest": "^27.4.7",
+    "standard-version": "^9.3.2",
+    "ts-jest": "^27.1.2",
+    "ts-node": "^10.4.0",
+    "ts-standard": "^11.0.0",
+    "typedoc": "^0.22.10",
+    "typedoc-plugin-extras": "^2.2.3",
+    "typedoc-plugin-merge-modules": "^3.1.0",
+    "typescript": "^4.5.4"
+  }
+}
+
+ALLOWED LIBRARIES
+You may use:
+    1. Any built-in Node.js modules (e.g., fs, path, crypto, etc.).
+    2. The following external libraries are explicitly permitted:
+    - @jest/globals
+You may not use any other third-party libraries.

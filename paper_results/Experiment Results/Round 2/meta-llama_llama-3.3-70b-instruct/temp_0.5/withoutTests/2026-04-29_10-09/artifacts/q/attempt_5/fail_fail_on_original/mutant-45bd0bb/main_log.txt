@@ -1,0 +1,37 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-45bd0bb/testCase.test.ts[0m:[93m7[0m:[93m16[0m - [91merror[0m[90m TS7009: [0m'new' expression, whose target lacks a construct signature, implicitly has an 'any' type.
+
+[7m7[0m         return new Type();
+[7m [0m [91m               ~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-45bd0bb/testCase.test.ts[0m:[93m9[0m:[93m24[0m - [91merror[0m[90m TS7006: [0mParameter 'prototype' implicitly has an 'any' type.
+
+[7m9[0m       return function (prototype) {
+[7m [0m [91m                       ~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-45bd0bb/testCase.test.ts[0m:[93m20[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType 'null' is not assignable to type '{ (o: object | null): any; (o: object | null, properties: PropertyDescriptorMap & ThisType<any>): any; }'.
+
+[7m20[0m     Object.create = null;
+[7m  [0m [91m    ~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-45bd0bb/testCase.test.ts
+  Q
+    ✕ should create an object with the given prototype using Object.create if it exists (2 ms)
+
+  ● Q › should create an object with the given prototype using Object.create if it exists
+
+    expect(received).toThrowError()
+
+    Received function did not throw
+
+      19 |     expect(Object.getPrototypeOf(obj)).toBe(prototype);
+      20 |     Object.create = null;
+    > 21 |     expect(() => Q(prototype)).toThrowError();
+         |                                ^
+      22 |   });
+      23 | });
+
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-45bd0bb/testCase.test.ts:21:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.485 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-45bd0bb/testCase.test.ts".

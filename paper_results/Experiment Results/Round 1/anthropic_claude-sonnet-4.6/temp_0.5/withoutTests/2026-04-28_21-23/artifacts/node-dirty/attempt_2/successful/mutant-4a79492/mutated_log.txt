@@ -1,0 +1,24 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-4a79492/testCase.test.ts (10.904 s)
+  Dirty drain behavior
+    ✕ should invoke all write callbacks even when backpressure occurs during flush (10010 ms)
+
+  ● Dirty drain behavior › should invoke all write callbacks even when backpressure occurs during flush
+
+    Only 1/200 callbacks were called - remaining items were not flushed after drain
+
+      22 |       const timeout = setTimeout(() => {
+      23 |         cleanup();
+    > 24 |         done(new Error(`Only ${completedCallbacks}/${totalWrites} callbacks were called - remaining items were not flushed after drain`));
+         |              ^
+      25 |       }, 10000);
+      26 |
+      27 |       const cleanup = () => {
+
+      at Timeout.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-4a79492/testCase.test.ts:24:14)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        11.02 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-4a79492/testCase.test.ts".

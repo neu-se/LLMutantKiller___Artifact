@@ -1,0 +1,31 @@
+describe("Q library global export", () => {
+  it("should export Q to window when window is defined", () => {
+    // Save original window and self
+    const originalWindow = global.window;
+    const originalSelf = global.self;
+
+    // Create a mock window object with minimal browser-like properties
+    const mockWindow = {
+      addEventListener: () => {},
+      document: {
+        createElement: () => ({})
+      }
+    };
+
+    // Set up browser-like environment
+    global.window = mockWindow as any;
+    global.self = undefined as any;
+
+    // Clear module cache and load Q
+    delete require.cache[require.resolve("../../../../../../../../../../../subject_repositories/q/q.js")];
+    require("../../../../../../../../../../../subject_repositories/q/q.js");
+
+    // Verify Q was exported to window
+    expect('Q' in mockWindow).toBe(true);
+    expect(typeof (mockWindow as any).Q).toBe('function');
+
+    // Clean up
+    global.window = originalWindow;
+    global.self = originalSelf;
+  });
+});

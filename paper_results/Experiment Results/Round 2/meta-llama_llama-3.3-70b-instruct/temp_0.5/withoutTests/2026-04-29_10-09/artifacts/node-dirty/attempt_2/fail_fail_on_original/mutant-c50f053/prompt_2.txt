@@ -1,0 +1,58 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-c50f053/testCase.test.ts[0m:[93m3[0m:[93m20[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m3[0m import rimraf from 'rimraf';
+[7m [0m [91m                   ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-c50f053/testCase.test.ts[0m:[93m14[0m:[93m7[0m - [91merror[0m[90m TS18047: [0m'db._writeStream' is possibly 'null'.
+
+[7m14[0m       db._writeStream.emit('error', new Error('Write error'));
+[7m  [0m [91m      ~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-c50f053/testCase.test.ts (7.266 s)
+  Dirty
+    ✕ should emit error when write fails (5003 ms)
+
+  ● Dirty › should emit error when write fails
+
+    Unhandled error. (Error: Write error
+
+      12 |     db.set('key', 'value', () => {
+      13 |       // Simulate a write error
+    > 14 |       db._writeStream.emit('error', new Error('Write error'));
+         |                                     ^
+      15 |     });
+      16 |   });
+      17 |
+
+      at llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-c50f053/testCase.test.ts:14:37
+      at cb (../subject_repositories/node-dirty/lib/dirty/dirty.js:191:31)
+      at FSReqCallback.wrapper [as oncomplete] (node:fs:825:5))
+      at emit (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-c50f053/testCase.test.ts:14:23)
+      at cb (../subject_repositories/node-dirty/lib/dirty/dirty.js:191:31)
+
+  ● Dirty › should emit error when write fails
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 |
+      5 | describe('Dirty', () => {
+    > 6 |   it('should emit error when write fails', (done) => {
+        |   ^
+      7 |     const db = new Dirty('test.db');
+      8 |     db.on('error', (err) => {
+      9 |       expect(err).toBeInstanceOf(Error);
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-c50f053/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-c50f053/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.787 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-c50f053/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

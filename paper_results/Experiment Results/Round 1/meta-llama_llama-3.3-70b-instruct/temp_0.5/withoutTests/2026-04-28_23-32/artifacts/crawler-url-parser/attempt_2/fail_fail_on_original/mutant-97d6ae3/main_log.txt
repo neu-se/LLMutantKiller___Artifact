@@ -1,0 +1,56 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-97d6ae3/testCase.test.ts[0m:[93m1[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '../crawler-url-parser.js' or its corresponding type declarations.
+
+[7m1[0m import { extract } from "../crawler-url-parser.js";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-97d6ae3/testCase.test.ts[0m:[93m2[0m:[93m21[0m - [91merror[0m[90m TS2307: [0mCannot find module 'cheerio' or its corresponding type declarations.
+
+[7m2[0m import cheerio from 'cheerio';
+[7m [0m [91m                    ~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-97d6ae3/testCase.test.ts[0m:[93m13[0m:[93m27[0m - [91merror[0m[90m TS18047: [0m'currentUrl' is possibly 'null'.
+
+[7m13[0m         if (currentUrl || currentUrl.url) {
+[7m  [0m [91m                          ~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-97d6ae3/testCase.test.ts[0m:[93m15[0m:[93m32[0m - [91merror[0m[90m TS18047: [0m'currentUrl' is possibly 'null'.
+
+[7m15[0m                 if (urlMap.has(currentUrl.url)) {
+[7m  [0m [91m                               ~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-97d6ae3/testCase.test.ts[0m:[93m16[0m:[93m45[0m - [91merror[0m[90m TS18047: [0m'currentUrl' is possibly 'null'.
+
+[7m16[0m                     let tmpUrl = urlMap.get(currentUrl.url);
+[7m  [0m [91m                                            ~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-97d6ae3/testCase.test.ts[0m:[93m21[0m:[93m21[0m - [91merror[0m[90m TS18047: [0m'currentUrl' is possibly 'null'.
+
+[7m21[0m                     currentUrl.text = 'Example';
+[7m  [0m [91m                    ~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-97d6ae3/testCase.test.ts[0m:[93m22[0m:[93m21[0m - [91merror[0m[90m TS18047: [0m'currentUrl' is possibly 'null'.
+
+[7m22[0m                     currentUrl.baseurl = baseUrlStr;
+[7m  [0m [91m                    ~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-97d6ae3/testCase.test.ts[0m:[93m23[0m:[93m32[0m - [91merror[0m[90m TS18047: [0m'currentUrl' is possibly 'null'.
+
+[7m23[0m                     urlMap.set(currentUrl.url, currentUrl);
+[7m  [0m [91m                               ~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-97d6ae3/testCase.test.ts
+  crawler-url-parser
+    ✕ should handle null currentUrl correctly (1 ms)
+
+  ● crawler-url-parser › should handle null currentUrl correctly
+
+    TypeError: Cannot read properties of undefined (reading 'load')
+
+       6 |         const data = '<a href="https://www.example.com">Example</a>';
+       7 |         const sourceUrl = 'https://www.example.com';
+    >  8 |         const $ = cheerio.load(data);
+         |                           ^
+       9 |         const href = $('a').attr('href');
+      10 |         const currentUrl = null;
+      11 |         const baseUrlStr = sourceUrl;
+
+      at Object.load (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-97d6ae3/testCase.test.ts:8:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.69 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-97d6ae3/testCase.test.ts".

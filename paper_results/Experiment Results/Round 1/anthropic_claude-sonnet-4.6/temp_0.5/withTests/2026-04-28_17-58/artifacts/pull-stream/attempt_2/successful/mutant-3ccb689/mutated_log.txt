@@ -1,0 +1,42 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/pull-stream/throughs/async-map.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/pull-stream/throughs/async-map.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-3ccb689/testCase.test.ts
+  asyncMap - aborted flag check at start of next()
+    ✕ should immediately call back with abort error on reads after stream has been aborted and was not busy (3 ms)
+
+  ● asyncMap - aborted flag check at start of next() › should immediately call back with abort error on reads after stream has been aborted and was not busy
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 2
+    Received: 3
+
+      39 |           // In original: source not called again (aborted guard fires first)
+      40 |           // In mutated: source gets called again
+    > 41 |           expect(sourceCallCount).toBe(countAfterAbort)
+         |                                   ^
+      42 |           done()
+      43 |         })
+      44 |       })
+
+      at toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-3ccb689/testCase.test.ts:41:35)
+      at cb (../subject_repositories/pull-stream/throughs/async-map.js:30:28)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-3ccb689/testCase.test.ts:14:9)
+      at read (../subject_repositories/pull-stream/throughs/async-map.js:28:9)
+      at read (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-3ccb689/testCase.test.ts:37:9)
+      at cb (../subject_repositories/pull-stream/throughs/async-map.js:19:11)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-3ccb689/testCase.test.ts:12:9)
+      at read (../subject_repositories/pull-stream/throughs/async-map.js:16:19)
+      at read (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-3ccb689/testCase.test.ts:30:7)
+      at cb (../subject_repositories/pull-stream/throughs/async-map.js:40:20)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-3ccb689/testCase.test.ts:19:7)
+      at map (../subject_repositories/pull-stream/throughs/async-map.js:33:13)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-3ccb689/testCase.test.ts:14:9)
+      at read (../subject_repositories/pull-stream/throughs/async-map.js:28:9)
+      at Object.read (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-3ccb689/testCase.test.ts:23:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.49 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-3ccb689/testCase.test.ts".

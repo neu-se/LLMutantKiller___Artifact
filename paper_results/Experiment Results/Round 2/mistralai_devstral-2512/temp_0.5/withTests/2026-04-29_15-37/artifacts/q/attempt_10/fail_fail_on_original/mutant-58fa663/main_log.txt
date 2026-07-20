@@ -1,0 +1,39 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-58fa663/testCase.test.ts[0m:[93m17[0m:[93m87[0m - [91merror[0m[90m TS2339: [0mProperty 'emit' does not exist on type 'object | { emit: () => void; }'.
+  Property 'emit' does not exist on type 'object'.
+
+[7m17[0m       const originalResult = typeof processValue === "object" && typeof processValue?.emit === "function";
+[7m  [0m [91m                                                                                      ~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-58fa663/testCase.test.ts[0m:[93m21[0m:[93m86[0m - [91merror[0m[90m TS2339: [0mProperty 'emit' does not exist on type 'boolean | {}'.
+  Property 'emit' does not exist on type 'false'.
+
+[7m21[0m       const mutatedResult = typeof processValue === "object" || typeof processValue?.emit === "function";
+[7m  [0m [91m                                                                                     ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-58fa663/testCase.test.ts
+  process object detection in untrackRejection
+    ✕ should correctly evaluate the process condition logic (3 ms)
+
+  ● process object detection in untrackRejection › should correctly evaluate the process condition logic
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      20 |       // Test mutated condition (OR)
+      21 |       const mutatedResult = typeof processValue === "object" || typeof processValue?.emit === "function";
+    > 22 |       expect(mutatedResult).toBe(expectedMutated);
+         |                             ^
+      23 |
+      24 |       // The key difference we're testing
+      25 |       if (expectedOriginal !== expectedMutated) {
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-58fa663/testCase.test.ts:22:29)
+          at Array.forEach (<anonymous>)
+      at Object.forEach (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-58fa663/testCase.test.ts:15:15)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.386 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-58fa663/testCase.test.ts".

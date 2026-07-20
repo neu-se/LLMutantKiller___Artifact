@@ -1,0 +1,52 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-184069a/testCase.test.ts
+  dirty non-ENOENT error handling
+    ✕ should emit error event (not load) when read stream fails with non-ENOENT error (17 ms)
+
+  ● dirty non-ENOENT error handling › should emit error event (not load) when read stream fails with non-ENOENT error
+
+    Unhandled error. (Error: Is a directory
+
+      56 |     // Emit a non-ENOENT error from the fake read stream on next tick
+      57 |     process.nextTick(() => {
+    > 58 |       const streamErr: any = new Error('Is a directory');
+         |                              ^
+      59 |       streamErr.code = 'EISDIR';
+      60 |       fakeReadStream.emit('error', streamErr);
+      61 |     });
+
+      at llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-184069a/testCase.test.ts:58:30
+      at processTicksAndRejections (node:internal/process/task_queues:77:11) {
+        code: 'EISDIR'
+      })
+      at emit (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-184069a/testCase.test.ts:60:22)
+
+  ● dirty non-ENOENT error handling › should emit error event (not load) when read stream fails with non-ENOENT error
+
+    load event must not fire for non-ENOENT errors
+
+      62 |
+      63 |     db.on('load', () => {
+    > 64 |       finish(new Error('load event must not fire for non-ENOENT errors'));
+         |              ^
+      65 |     });
+      66 |
+      67 |     db.on('error', () => {
+
+      at Dirty.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-184069a/testCase.test.ts:64:14)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:114:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.473 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-184069a/testCase.test.ts".
+Jest did not exit one second after the test run has completed.
+
+'This usually means that there are asynchronous operations that weren't stopped in your tests. Consider running Jest with `--detectOpenHandles` to troubleshoot this issue.
+
+---
+Please try again and give me a new test case.

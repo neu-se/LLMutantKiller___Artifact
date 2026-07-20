@@ -1,0 +1,30 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-597b033/testCase.test.ts[0m:[93m1[0m:[93m1[0m - [91merror[0m[90m TS6133: [0m'Delta' is declared but its value is never read.
+
+[7m1[0m import Delta from "../../../../../../../../../../../subject_repositories/delta/src/Delta";
+[7m [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-597b033/testCase.test.ts
+  Delta module export behavior
+    ✕ should only set module.exports in CommonJS environment (12 ms)
+
+  ● Delta module export behavior › should only set module.exports in CommonJS environment
+
+    expect(received).toBeUndefined()
+
+    Received: [Function Delta]
+
+      18 |       // In the original code, module.exports should not be set when module is undefined
+      19 |       // In the mutated code, module.exports will be set even when module is undefined
+    > 20 |       expect(freshModule).toBeUndefined();
+         |                           ^
+      21 |     } finally {
+      22 |       // Restore original module
+      23 |       global.module = originalModule;
+
+      at Object.toBeUndefined (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-597b033/testCase.test.ts:20:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.554 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-597b033/testCase.test.ts".

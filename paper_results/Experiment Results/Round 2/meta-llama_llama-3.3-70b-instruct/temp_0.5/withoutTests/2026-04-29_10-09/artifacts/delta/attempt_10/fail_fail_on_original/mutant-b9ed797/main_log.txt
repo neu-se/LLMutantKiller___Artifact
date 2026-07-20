@@ -1,0 +1,36 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_10/pending_category/mutant-b9ed797/testCase.test.ts[0m:[93m9[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '() => void' is not assignable to type '(...items: Op[]) => number'.
+  Type 'void' is not assignable to type 'number'.
+
+[7m9[0m     delta.ops.push = function() {
+[7m [0m [91m    ~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_10/pending_category/mutant-b9ed797/testCase.test.ts[0m:[93m11[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type 'IArguments' is not assignable to parameter of type 'Op[]'.
+  Type 'IArguments' is missing the following properties from type 'Op[]': pop, push, concat, join, and 27 more.
+
+[7m11[0m       originalPush.apply(delta.ops, arguments);
+[7m  [0m [91m                                    ~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_10/pending_category/mutant-b9ed797/testCase.test.ts
+  Delta
+    ✕ should correctly handle the push operation when index equals ops length (4 ms)
+
+  ● Delta › should correctly handle the push operation when index equals ops length
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      12 |     };
+      13 |     delta.push({ insert: ' World' });
+    > 14 |     expect(called).toBe(true);
+         |                    ^
+      15 |   });
+      16 | });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_10/pending_category/mutant-b9ed797/testCase.test.ts:14:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.095 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_10/pending_category/mutant-b9ed797/testCase.test.ts".

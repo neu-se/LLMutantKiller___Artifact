@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-c6fa344/testCase.test.ts
+  parse function with relative URLs
+    ✕ should correctly handle relative URLs starting with a single slash when no base URL is provided (3 ms)
+
+  ● parse function with relative URLs › should correctly handle relative URLs starting with a single slash when no base URL is provided
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "http:///path/to/resource"
+    Received: "/path/to/resource"
+
+       5 |     const result = parse("/path/to/resource", undefined);
+       6 |     expect(result).not.toBeNull();
+    >  7 |     expect(result?.url).toBe("http:///path/to/resource");
+         |                         ^
+       8 |     expect(result?.protocol).toBe("http:");
+       9 |     expect(result?.host).toBe("");
+      10 |     expect(result?.path).toBe("/path/to/resource");
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-c6fa344/testCase.test.ts:7:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.679 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-c6fa344/testCase.test.ts".

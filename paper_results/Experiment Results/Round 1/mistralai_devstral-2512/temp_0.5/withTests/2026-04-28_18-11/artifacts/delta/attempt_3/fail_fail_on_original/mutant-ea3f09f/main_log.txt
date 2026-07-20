@@ -1,0 +1,45 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-ea3f09f/testCase.test.ts[0m:[93m14[0m:[93m16[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m14[0m       invert: (a, b) => b,
+[7m  [0m [91m               ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-ea3f09f/testCase.test.ts
+  transform() with embeds
+    ✕ should transform embed retain with number retain correctly (8 ms)
+
+  ● transform() with embeds › should transform embed retain with number retain correctly
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 10
+    + Received  +  1
+
+      Delta {
+    -   "ops": Array [
+    -     Object {
+    -       "retain": 1,
+    -     },
+    -     Object {
+    -       "retain": Object {
+    -         "test": "a",
+    -       },
+    -     },
+    -   ],
+    +   "ops": Array [],
+      }
+
+      20 |
+      21 |     const result = a.transform(b, true);
+    > 22 |     expect(result).toEqual(expected);
+         |                    ^
+      23 |
+      24 |     Delta.unregisterEmbed('test');
+      25 |   });
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-ea3f09f/testCase.test.ts:22:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.584 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-ea3f09f/testCase.test.ts".

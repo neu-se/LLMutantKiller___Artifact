@@ -1,0 +1,13 @@
+import { GeoPoint } from "../../../../../../../../../../../subject_repositories/node-geo-point/src/geo-point";
+
+describe('GeoPoint constructor validation', () => {
+  it('should throw RangeError for longitude values outside -180 to 180 range', () => {
+    expect(() => {
+      new GeoPoint(0, 181);
+    }).toThrow(RangeError);
+
+    expect(() => {
+      new GeoPoint(0, -181);
+    }).toThrow(RangeError);
+  });
+});

@@ -1,0 +1,12 @@
+import { extract } from './crawler-url-parser';
+
+describe('extract function test', () => {
+  it('should pass when href is undefined', () => {
+    const htmlString = '<a>Example</a>';
+    const baseUrl = 'https://www.example.com';
+    const $ = require('cheerio').load(htmlString);
+    const href = $('a').attr('href');
+    const result = extract(htmlString, baseUrl);
+    expect(result.length).toBe(0);
+  });
+});

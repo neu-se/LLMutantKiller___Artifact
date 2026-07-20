@@ -1,0 +1,67 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-dc041e2/testCase.test.ts
+  Q SES support
+    ✕ should return Q when ses is not defined (2 ms)
+    ✕ should return ses.makeQ when ses is defined and ses.ok returns true (1 ms)
+    ✕ should return Q when ses is defined and ses.ok returns false
+
+  ● Q SES support › should return Q when ses is not defined
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      32 |
+      33 |         // Assert
+    > 34 |         expect(result).toBeDefined();
+         |                        ^
+      35 |
+      36 |         // Cleanup
+      37 |         (globalThis as any).ses = originalSES;
+
+      at Object.toBeDefined (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-dc041e2/testCase.test.ts:34:24)
+
+  ● Q SES support › should return ses.makeQ when ses is defined and ses.ok returns true
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 1
+    Received number of calls: 0
+
+      70 |
+      71 |         // Assert
+    > 72 |         expect((globalThis as any).ses.makeQ).toHaveBeenCalledTimes(1);
+         |                                               ^
+      73 |
+      74 |         // Cleanup
+      75 |         (globalThis as any).ses = originalSES;
+
+      at Object.toHaveBeenCalledTimes (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-dc041e2/testCase.test.ts:72:47)
+
+  ● Q SES support › should return Q when ses is defined and ses.ok returns false
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      108 |
+      109 |         // Assert
+    > 110 |         expect(result).toBeDefined();
+          |                        ^
+      111 |
+      112 |         // Cleanup
+      113 |         (globalThis as any).ses = originalSES;
+
+      at Object.toBeDefined (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-dc041e2/testCase.test.ts:110:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        1.827 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-dc041e2/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

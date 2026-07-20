@@ -1,0 +1,11 @@
+import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+
+describe('Q', () => {
+  it('should correctly handle deprecation warnings', () => {
+    const consoleWarnSpy = jest.spyOn(console, 'warn');
+    const deprecatedFunction = Q.deprecate(() => {}, 'testFunction', 'alternativeFunction');
+    deprecatedFunction();
+    expect(consoleWarnSpy).toHaveBeenCalledTimes(1);
+    expect(consoleWarnSpy).toHaveBeenCalledWith('testFunction is deprecated, use alternativeFunction instead.', new Error("").stack);
+  });
+});

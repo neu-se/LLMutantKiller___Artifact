@@ -1,0 +1,45 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-31db0eb/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-31db0eb/testCase.test.ts[0m:[93m11[0m:[93m5[0m - [91merror[0m[90m TS2741: [0mProperty '__promisify__' is missing in type 'Mock<{ unref: () => void; }, [fn: Function], any>' but required in type 'typeof setImmediate'.
+
+[7m11[0m     global.setImmediate = jest.fn((fn: Function) => {
+[7m  [0m [91m    ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/node/timers.d.ts[0m:[93m180[0m:[93m22[0m
+    [7m180[0m             export { __promisify__ };
+    [7m   [0m [96m                     ~~~~~~~~~~~~~[0m
+    '__promisify__' is declared here.
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-31db0eb/testCase.test.ts[0m:[93m20[0m:[93m11[0m - [91merror[0m[90m TS2774: [0mThis condition will always return true since this function is always defined. Did you mean to call it instead?
+
+[7m20[0m       if (global.setImmediate && !usedSetImmediate) {
+[7m  [0m [91m          ~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-31db0eb/testCase.test.ts[0m:[93m37[0m:[93m15[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m37[0m     }).catch((err) => {
+[7m  [0m [91m              ~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-31db0eb/testCase.test.ts
+  Q library setImmediate detection
+    ✕ should correctly detect setImmediate availability in non-browser environments (1 ms)
+
+  ● Q library setImmediate detection › should correctly detect setImmediate availability in non-browser environments
+
+    TypeError: Cannot read properties of undefined (reading 'nextTick')
+
+      16 |     // Track which mechanism was used
+      17 |     let usedSetImmediate = false;
+    > 18 |     const originalNextTick = Q.nextTick;
+         |                                ^
+      19 |     Q.nextTick = function(task: Function) {
+      20 |       if (global.setImmediate && !usedSetImmediate) {
+      21 |         usedSetImmediate = true;
+
+      at Object.nextTick (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-31db0eb/testCase.test.ts:18:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.332 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-31db0eb/testCase.test.ts".

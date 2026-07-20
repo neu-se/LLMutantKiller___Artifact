@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-eed5f9d/testCase.test.ts
+  Complex acsch with subnormal inputs
+    ✕ computes acsch correctly when d underflows to zero but a is nonzero (3 ms)
+
+  ● Complex acsch with subnormal inputs › computes acsch correctly when d underflows to zero but a is nonzero
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: Infinity
+    Received: NaN
+
+      11 |     // Original: (a !== 0) ? a/0 : 0 => Infinity (since a != 0)
+      12 |     // Mutated: (false) ? a/0 : 0 => 0
+    > 13 |     expect(result.re).toBe(Infinity);
+         |                       ^
+      14 |   });
+      15 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-eed5f9d/testCase.test.ts:13:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.325 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-eed5f9d/testCase.test.ts".

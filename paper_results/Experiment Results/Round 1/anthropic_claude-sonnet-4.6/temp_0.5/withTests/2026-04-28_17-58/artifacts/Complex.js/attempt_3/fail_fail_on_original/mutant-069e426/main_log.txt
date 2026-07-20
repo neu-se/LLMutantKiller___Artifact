@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-069e426/testCase.test.ts
+  Complex asec
+    ✕ should handle very small real inputs where a*a underflows to zero (2 ms)
+
+  ● Complex asec › should handle very small real inputs where a*a underflows to zero
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: Infinity
+    Received: NaN
+
+      10 |     // Original produces Complex(0, Infinity) via Complex(Infinity, 0).acos()
+      11 |     // Mutated produces Complex(PI/2, 0) via Complex(0, 0).acos()
+    > 12 |     expect(result.im).toBe(Infinity);
+         |                       ^
+      13 |   });
+      14 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-069e426/testCase.test.ts:12:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.123 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-069e426/testCase.test.ts".

@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-c8b2cff/testCase.test.ts
+  drain
+    ✕ should call read with the correct abort value when op returns false and abort is called with false (1 ms)
+
+  ● drain › should call read with the correct abort value when op returns false and abort is called with false
+
+    Expected abort to be false
+
+       5 |     const readSpy = jest.fn((abort, cb) => {
+       6 |       if (abort !== false) {
+    >  7 |         throw new Error('Expected abort to be false');
+         |               ^
+       8 |       }
+       9 |       cb(null, 'data');
+      10 |     });
+
+      at llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-c8b2cff/testCase.test.ts:7:15
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:45:8)
+      at Object.sink (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-c8b2cff/testCase.test.ts:14:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.991 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-c8b2cff/testCase.test.ts".

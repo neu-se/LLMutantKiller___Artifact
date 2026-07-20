@@ -1,0 +1,29 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/subject_repositories/q/q.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/subject_repositories/q/q.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-390f195/testCase.test.ts
+  Q long stack traces
+    ✕ should properly configure __minimumStackCounter__ as configurable (4 ms)
+
+  ● Q long stack traces › should properly configure __minimumStackCounter__ as configurable
+
+    expect(received).toBe(expected) // Object.is equality
+    Expected: true
+    Received: false
+
+      25 |         const descriptor = Object.getOwnPropertyDescriptor(err, "__minimumStackCounter__");
+      26 |         expect(descriptor).toBeDefined();
+    > 27 |         expect(descriptor?.configurable).toBe(true);
+         |                                          ^
+      28 |
+      29 |         // Verify we can delete the property (which should work if configurable is true)
+      30 |         delete err.__minimumStackCounter__;
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-390f195/testCase.test.ts:27:42)
+      From previous event:
+      at Object.then (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-390f195/testCase.test.ts:16:21)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.402 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-390f195/testCase.test.ts".

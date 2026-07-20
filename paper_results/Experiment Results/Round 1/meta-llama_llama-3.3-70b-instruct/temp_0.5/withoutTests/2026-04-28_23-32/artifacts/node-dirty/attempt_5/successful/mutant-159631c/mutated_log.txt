@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/subject_repositories/node-dirty/lib/dirty/dirty.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/subject_repositories/node-dirty/lib/dirty/dirty.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-159631c/testCase.test.ts (6.291 s)
+  Dirty
+    ✕ emits read_close event when read stream is closed (5004 ms)
+
+  ● Dirty › emits read_close event when read stream is closed
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      13 |     dirty.close();
+      14 |     setTimeout(() => {
+    > 15 |       expect(readCloseEmitted).toBe(true);
+         |                                ^
+      16 |       try {
+      17 |         unlinkSync(`${tempDir}/test.db`);
+      18 |       } catch (e) {}
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-159631c/testCase.test.ts:15:32)
+
+  ● Dirty › emits read_close event when read stream is closed
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      3 |
+      4 | describe('Dirty', () => {
+    > 5 |   it('emits read_close event when read stream is closed', (done) => {
+        |   ^
+      6 |     const tempDir = `temp-test-dir-${Date.now()}`;
+      7 |     mkdirSync(tempDir);
+      8 |     const dirty = new Dirty(`${tempDir}/test.db`);
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-159631c/testCase.test.ts:5:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-159631c/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.448 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-159631c/testCase.test.ts".

@@ -1,0 +1,45 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-8e468c1/testCase.test.ts
+  compose() with retain optimization
+    ✕ should handle insert operations correctly when first other op is retain (6 ms)
+
+  ● compose() with retain optimization › should handle insert operations correctly when first other op is retain
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 5
+
+      Delta {
+        "ops": Array [
+          Object {
+    -       "insert": "ABX",
+    +       "insert": "A",
+          },
+          Object {
+            "attributes": Object {
+              "bold": true,
+            },
+    -       "insert": "C",
+    +       "insert": "B",
+    +     },
+    +     Object {
+    +       "insert": "XC",
+          },
+        ],
+      }
+
+       6 |     const b = new Delta().retain(2).insert('X');
+       7 |     const expected = new Delta().insert('ABX').insert('C', { bold: true });
+    >  8 |     expect(a.compose(b)).toEqual(expected);
+         |                          ^
+       9 |   });
+      10 | });
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-8e468c1/testCase.test.ts:8:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.579 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-8e468c1/testCase.test.ts".

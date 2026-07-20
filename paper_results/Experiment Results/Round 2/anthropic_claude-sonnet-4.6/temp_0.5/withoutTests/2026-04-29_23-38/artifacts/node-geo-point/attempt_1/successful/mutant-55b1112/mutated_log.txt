@@ -1,0 +1,35 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-55b1112/testCase.test.ts[0m:[93m1[0m:[93m26[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import { GeoPoint } from "../../../../../../../../../../../subject_repositories/node-geo-point/src/geo-point.ts";
+[7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-55b1112/testCase.test.ts
+  GeoPoint.calculateDestination
+    ✕ should calculate the correct destination point when traveling north from a known location (2 ms)
+
+  ● GeoPoint.calculateDestination › should calculate the correct destination point when traveling north from a known location
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 57.6
+    Received: 65.59693269042127
+
+    Expected precision:    0
+    Expected difference: < 0.5
+    Received difference:   7.996932690421268
+
+      26 |
+      27 |     // The latitude should be approximately 57.6° N for bearing=45° from London, 1000km
+    > 28 |     expect(destination45.latitude).toBeCloseTo(57.6, 0);
+         |                                    ^
+      29 |     expect(destination45.latitude).toBeGreaterThan(51.5); // should be north of London
+      30 |     expect(destination45.latitude).toBeLessThan(70); // but not too far north
+      31 |   });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-55b1112/testCase.test.ts:28:36)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.993 s, estimated 1 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-55b1112/testCase.test.ts".

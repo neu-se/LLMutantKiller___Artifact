@@ -1,0 +1,49 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-6008da4/testCase.test.ts
+  Q nextTick isNodeJS initial value
+    ✕ wraps task errors asynchronously in non-Node environment allowing subsequent tasks to run (132 ms)
+
+  ● Q nextTick isNodeJS initial value › wraps task errors asynchronously in non-Node environment allowing subsequent tasks to run
+
+    intentional error
+
+      29 |         Q2.nextTick(() => { 
+      30 |           events.push('task2');
+    > 31 |           throw new Error("intentional error"); 
+         |                 ^
+      32 |         });
+      33 |         Q2.nextTick(() => { events.push('task3'); });
+      34 |         Q2.nextTick(() => { 
+
+      at llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-6008da4/testCase.test.ts:31:17
+      at task (../subject_repositories/q/q.js:137:13)
+      at Immediate.runSingle (../subject_repositories/q/q.js:125:13)
+
+  ● Q nextTick isNodeJS initial value › wraps task errors asynchronously in non-Node environment allowing subsequent tasks to run
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > -1
+    Received:   -1
+
+      57 |     
+      58 |     expect(task3Idx).toBeGreaterThan(-1); // task3 ran
+    > 59 |     expect(uncaughtIdx).toBeGreaterThan(-1); // uncaught error occurred
+         |                         ^
+      60 |     expect(task3Idx).toBeLessThan(uncaughtIdx); // task3 ran before uncaught error
+      61 |   });
+      62 | });
+
+      at Object.toBeGreaterThan (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-6008da4/testCase.test.ts:59:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.753 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-6008da4/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

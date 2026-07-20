@@ -1,0 +1,39 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-442363b/testCase.test.ts[0m:[93m9[0m:[93m37[0m - [91merror[0m[90m TS2322: [0mType '{ retain: null; }' is not assignable to type 'Op'.
+  Types of property 'retain' are incompatible.
+    Type 'null' is not assignable to type 'number | Record<string, unknown> | undefined'.
+
+[7m9[0m     const iterator2 = new Iterator([op2]);
+[7m [0m [91m                                    ~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-442363b/testCase.test.ts[0m:[93m12[0m:[93m37[0m - [91merror[0m[90m TS2322: [0mType '{ retain: string; }' is not assignable to type 'Op'.
+  Types of property 'retain' are incompatible.
+    Type 'string' is not assignable to type 'number | Record<string, unknown> | undefined'.
+
+[7m12[0m     const iterator3 = new Iterator([op3]);
+[7m  [0m [91m                                    ~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-442363b/testCase.test.ts
+  OpIterator
+    ✕ should correctly handle retain object (3 ms)
+
+  ● OpIterator › should correctly handle retain object
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "retain"
+    Received: "insert"
+
+       8 |     const op2 = { retain: null };
+       9 |     const iterator2 = new Iterator([op2]);
+    > 10 |     expect(iterator2.peekType()).toBe('retain');
+         |                                  ^
+      11 |     const op3 = { retain: 'string' };
+      12 |     const iterator3 = new Iterator([op3]);
+      13 |     expect(iterator3.peekType()).toBe('retain');
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-442363b/testCase.test.ts:10:34)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.332 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-442363b/testCase.test.ts".

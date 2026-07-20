@@ -1,0 +1,30 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-aafc8eb/testCase.test.ts
+  Complex number expm1 function
+    ✕ should correctly compute expm1 for small complex numbers (3 ms)
+
+  ● Complex number expm1 function › should correctly compute expm1 for small complex numbers
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.09964966682940911
+    Received: 0.100052911630745
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   0.00040324480133589746
+
+       7 |     const expectedRe = Math.expm1(0.1) * Math.cos(0.1) + (Math.cos(0.1) - 1);
+       8 |     const expectedIm = Math.exp(0.1) * Math.sin(0.1);
+    >  9 |     expect(result.re).toBeCloseTo(expectedRe, 10);
+         |                       ^
+      10 |     expect(result.im).toBeCloseTo(expectedIm, 10);
+      11 |   });
+      12 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-aafc8eb/testCase.test.ts:9:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.975 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-aafc8eb/testCase.test.ts".

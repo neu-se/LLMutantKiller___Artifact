@@ -1,0 +1,50 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-56536c0/testCase.test.ts (6.52 s)
+  Q
+    ✕ should use MessageChannel for scheduling when setImmediate unavailable (5003 ms)
+
+  ● Q › should use MessageChannel for scheduling when setImmediate unavailable
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      49 |       // Mutated: setTimeout used -> schedulerCalls contains "setTimeout"
+      50 |       expect(mcUsed).toBe(true);
+    > 51 |       expect(schedulerCalls.length).toBe(0);
+         |                                     ^
+      52 |       done();
+      53 |     });
+      54 |   });
+
+      at toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-56536c0/testCase.test.ts:51:37)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+      at Object.flush (../subject_repositories/q/q.js:219:13)
+      at Object.onmessage [as postMessage] (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-56536c0/testCase.test.ts:33:50)
+      at postMessage (../subject_repositories/q/q.js:224:27)
+      at requestPortTick (../subject_repositories/q/q.js:228:13)
+      at Function.requestTick [as nextTick] (../subject_repositories/q/q.js:180:13)
+      at Object.nextTick (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-56536c0/testCase.test.ts:43:7)
+
+  ● Q › should use MessageChannel for scheduling when setImmediate unavailable
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      1 | describe("Q", () => {
+    > 2 |   it("should use MessageChannel for scheduling when setImmediate unavailable", (done) => {
+        |   ^
+      3 |     jest.resetModules();
+      4 |     
+      5 |     const origSetImmediate = (global as any).setImmediate;
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-56536c0/testCase.test.ts:2:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-56536c0/testCase.test.ts:1:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.776 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-56536c0/testCase.test.ts".

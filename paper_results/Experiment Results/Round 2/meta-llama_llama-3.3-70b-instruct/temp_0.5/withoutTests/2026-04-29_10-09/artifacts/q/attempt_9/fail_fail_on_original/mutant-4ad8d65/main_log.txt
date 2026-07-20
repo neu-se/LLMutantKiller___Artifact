@@ -1,0 +1,33 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_9/pending_category/mutant-4ad8d65/testCase.test.ts[0m:[93m17[0m:[93m27[0m - [91merror[0m[90m TS2339: [0mProperty 'mock' does not exist on type '(object: any, op: any, args: any) => any'.
+
+[7m17[0m         expect(Q.dispatch.mock.calls[0][1]).toBe("apply");
+[7m  [0m [91m                          ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_9/pending_category/mutant-4ad8d65/testCase.test.ts
+  Q.fcall
+    ✕ should call dispatch with 'apply' as the method name (3 ms)
+
+  ● Q.fcall › should call dispatch with 'apply' as the method name
+
+    expect(received).toHaveBeenCalledTimes(expected)
+
+    Matcher error: received value must be a mock or spy function
+
+    Received has type:  function
+    Received has value: [Function dispatch]
+
+      14 |         };
+      15 |         Q.fcall(func, "a", "b");
+    > 16 |         expect(Q.dispatch).toHaveBeenCalledTimes(1);
+         |                            ^
+      17 |         expect(Q.dispatch.mock.calls[0][1]).toBe("apply");
+      18 |         Q.fcall = originalFcall;
+      19 |         Q.dispatch = originalDispatch;
+
+      at Object.toHaveBeenCalledTimes (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_9/pending_category/mutant-4ad8d65/testCase.test.ts:16:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.253 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_9/pending_category/mutant-4ad8d65/testCase.test.ts".

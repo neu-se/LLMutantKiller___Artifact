@@ -1,0 +1,36 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-64431e6/testCase.test.ts[0m:[93m8[0m:[93m43[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'AttributeMap'.
+
+[7m8[0m       const result = AttributeMap.diff(a, b);
+[7m [0m [91m                                          ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-64431e6/testCase.test.ts
+  AttributeMap
+    ✕ should correctly handle non-object input in diff function (16 ms)
+
+  ● AttributeMap › should correctly handle non-object input in diff function
+
+    expect(received).not.toThrow()
+
+    Error name:    "Error"
+    Error message: "expect(received).toBeUndefined()·
+    Received: {\"foo\": null}"
+
+           8 |       const result = AttributeMap.diff(a, b);
+           9 |       if (typeof b !== 'object') {
+        > 10 |         expect(result).toBeUndefined();
+             |                        ^
+          11 |       }
+          12 |     }).not.toThrow();
+          13 |   });
+
+      at toBeUndefined (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-64431e6/testCase.test.ts:10:24)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-64431e6/testCase.test.ts:12:12)
+      at Object.toThrow (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-64431e6/testCase.test.ts:12:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.783 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-64431e6/testCase.test.ts".

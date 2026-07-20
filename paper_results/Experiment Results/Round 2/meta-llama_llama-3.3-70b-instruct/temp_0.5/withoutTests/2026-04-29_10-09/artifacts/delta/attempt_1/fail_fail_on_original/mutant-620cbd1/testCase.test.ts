@@ -1,0 +1,11 @@
+import { Delta } from '../../../../../../../../../../../subject_repositories/delta/src/Delta';
+
+describe('Delta', () => {
+  it('should compose correctly when the first operation of the other delta is a retain with a number value', () => {
+    const delta1 = new Delta();
+    const delta2 = new Delta();
+    delta2.retain(5);
+    const composed = delta1.compose(delta2);
+    expect(composed.ops).toEqual([{ retain: 5 }]);
+  });
+});

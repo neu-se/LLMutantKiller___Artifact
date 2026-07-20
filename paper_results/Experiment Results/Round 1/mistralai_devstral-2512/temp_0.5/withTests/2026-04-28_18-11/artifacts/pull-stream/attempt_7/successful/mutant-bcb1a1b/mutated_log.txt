@@ -1,0 +1,34 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-bcb1a1b/testCase.test.ts
+  reduce with two arguments
+    ✕ should handle reduce with exactly two arguments differently than with three (2 ms)
+
+  ● reduce with two arguments › should handle reduce with exactly two arguments differently than with three
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 24
+    Received: 0
+
+      15 |         // In mutated code: will try to use callback as initial value
+      16 |         expect(err).toBeNull();
+    > 17 |         expect(result).toBe(24); // 2*3*4 = 24
+         |                        ^
+      18 |         done();
+      19 |       })
+      20 |     );
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-bcb1a1b/testCase.test.ts:17:24)
+      at cb (../subject_repositories/pull-stream/sinks/reduce.js:10:5)
+      at done (../subject_repositories/pull-stream/sinks/drain.js:26:24)
+      at cb (../subject_repositories/pull-stream/sources/values.js:19:7)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:45:8)
+      at s (../subject_repositories/pull-stream/pull.js:41:14)
+      at Object.pull (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-bcb1a1b/testCase.test.ts:11:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.206 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-bcb1a1b/testCase.test.ts".

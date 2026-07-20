@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-c117ebd/testCase.test.ts
+  Dirty
+    ✕ should correctly read and write data with utf-8 encoding (4 ms)
+
+  ● Dirty › should correctly read and write data with utf-8 encoding
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "{\"key\":\"éàç\"}"
+    Received string:    "{\"key\":\"key\",\"val\":\"éàç\"}
+    "
+
+      29 |
+      30 |     const data = fs.readFileSync(filePath, 'utf8');
+    > 31 |     expect(data).toContain(`{"key":"${nonAsciiString}"}`);
+         |                  ^
+      32 |   });
+      33 | });
+
+      at Object.toContain (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-c117ebd/testCase.test.ts:31:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.997 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-c117ebd/testCase.test.ts".

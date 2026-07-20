@@ -1,0 +1,37 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-3581fbb/testCase.test.ts[0m:[93m9[0m:[93m24[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 0.
+
+[7m9[0m                 return Q().then(function innerFunction() {
+[7m [0m [91m                       ~[0m
+
+  [96m../subject_repositories/q/q.js[0m:[93m498[0m:[93m12[0m
+    [7m498[0m function Q(value) {
+    [7m   [0m [96m           ~~~~~[0m
+    An argument for 'value' was not provided.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-3581fbb/testCase.test.ts
+  filterStackString behavior in long stack traces
+    ✕ should include user function frames in long stack traces, not filter them out (4 ms)
+
+  ● filterStackString behavior in long stack traces › should include user function frames in long stack traces, not filter them out
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "innerFunction"
+    Received string:    ""
+
+      23 |             // In the original code, non-internal and non-node frames are kept
+      24 |             // In the mutated code, only node frames are kept (user frames are filtered out)
+    > 25 |             expect(caughtError.stack).toContain("innerFunction");
+         |                                       ^
+      26 |         } finally {
+      27 |             Q.longStackSupport = false;
+      28 |         }
+
+      at Object.toContain (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-3581fbb/testCase.test.ts:25:39)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.325 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-3581fbb/testCase.test.ts".

@@ -1,0 +1,30 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-12b073a/testCase.test.ts
+  Complex sinh local fallback
+    ✕ detects mutation in sinh fallback by temporarily removing Math.sinh (9 ms)
+
+  ● Complex sinh local fallback › detects mutation in sinh fallback by temporarily removing Math.sinh
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 3.6268604078470186
+    Received: 14.507441631388076
+
+    Expected precision:    5
+    Expected difference: < 0.000005
+    Received difference:   10.880581223541057
+
+      19 |     // Original: sinh(2) = (exp(2) - exp(-2)) * 0.5 ≈ 3.6268
+      20 |     // Mutant:   sinh(2) = (exp(2) - exp(-2)) / 0.5 ≈ 14.507
+    > 21 |     expect(result.re).toBeCloseTo(3.6268604078470186, 5);
+         |                       ^
+      22 |     expect(result.im).toBeCloseTo(0, 10);
+      23 |   });
+      24 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-12b073a/testCase.test.ts:21:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.15 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-12b073a/testCase.test.ts".

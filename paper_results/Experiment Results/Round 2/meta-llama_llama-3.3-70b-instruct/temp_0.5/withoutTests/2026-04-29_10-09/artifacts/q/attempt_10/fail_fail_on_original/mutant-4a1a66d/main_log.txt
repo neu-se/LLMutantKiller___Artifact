@@ -1,0 +1,31 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-4a1a66d/testCase.test.ts[0m:[93m6[0m:[93m25[0m - [91merror[0m[90m TS2339: [0mProperty 'QReturnValue' does not exist on type 'typeof export='.
+
+[7m6[0m             throw new q.QReturnValue("Test success");
+[7m [0m [91m                        ~~~~~~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-4a1a66d/testCase.test.ts
+  q.async
+    ✕ should handle generator with StopIteration (2 ms)
+
+  ● q.async › should handle generator with StopIteration
+
+    TypeError: q.QReturnValue is not a constructor
+
+      4 |     it("should handle generator with StopIteration", async () => {
+      5 |         function* generator() {
+    > 6 |             throw new q.QReturnValue("Test success");
+        |                   ^
+      7 |         }
+      8 |         const asyncFunction = q.async(generator);
+      9 |         const result = await asyncFunction();
+
+      at generator (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-4a1a66d/testCase.test.ts:6:19)
+          at generator.next (<anonymous>)
+      at Function.continuer (../subject_repositories/q/q.js:1298:45)
+      at callback (../subject_repositories/q/q.js:1325:16)
+      at Object.asyncFunction (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-4a1a66d/testCase.test.ts:9:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.501 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-4a1a66d/testCase.test.ts".

@@ -1,0 +1,36 @@
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/pull-stream/index.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/pull-stream/index.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/pull-stream/sinks/index.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/pull-stream/sinks/index.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-da35eb1/testCase.test.ts
+  find error handling
+    ✕ should distinguish between true and other errors when stream ends (2 ms)
+
+  ● find error handling › should distinguish between true and other errors when stream ends
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: [Error: test error]
+    Received: null
+
+      16 |         return data === 'test';
+      17 |       }, function (err: any, result: any) {
+    > 18 |         expect(err).toBe(testError);
+         |                     ^
+      19 |         expect(result).toBeNull();
+      20 |         done();
+      21 |       })
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-da35eb1/testCase.test.ts:18:21)
+      at cb (../subject_repositories/pull-stream/sinks/find.js:22:8)
+      at done (../subject_repositories/pull-stream/sinks/drain.js:26:24)
+      at cb (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-da35eb1/testCase.test.ts:12:11)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:45:8)
+      at s (../subject_repositories/pull-stream/pull.js:41:14)
+      at Object.pull (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-da35eb1/testCase.test.ts:7:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.62 s, estimated 2 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-da35eb1/testCase.test.ts".

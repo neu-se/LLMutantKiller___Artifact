@@ -1,0 +1,37 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_6/pending_category/mutant-0802500/testCase.test.ts
+  compose() with retain optimization
+    ✕ should correctly handle insert type check in retain optimization (5 ms)
+
+  ● compose() with retain optimization › should correctly handle insert type check in retain optimization
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 4
+
+      Delta {
+        "ops": Array [
+          Object {
+    -       "insert": "ABX",
+    +       "insert": "AXB",
+    +     },
+    +     Object {
+    +       "delete": 1,
+          },
+        ],
+      }
+
+       7 |     const result = a.compose(b);
+       8 |     const expected = new Delta().insert('ABX');
+    >  9 |     expect(result).toEqual(expected);
+         |                    ^
+      10 |   });
+      11 | });
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_6/pending_category/mutant-0802500/testCase.test.ts:9:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.429 s, estimated 2 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_6/pending_category/mutant-0802500/testCase.test.ts".

@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_8/pending_category/mutant-cb31ac7/testCase.test.ts
+  Complex
+    ✕ should calculate expm1 correctly for a small complex number (3 ms)
+
+  ● Complex › should calculate expm1 correctly for a small complex number
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.000010000149999666661
+    Received: 0.000009999999999666666
+
+    Expected precision:    10
+    Expected difference: < 5e-11
+    Received difference:   1.499999999952467e-10
+
+       8 |     const result = complex.expm1();
+       9 |     const expected = new Complex(Math.expm1(x) * Math.cos(y) + Math.cos(x) * Math.sin(y) * Math.sinh(y), Math.sin(x) * Math.sinh(y));
+    > 10 |     expect(result.re).toBeCloseTo(expected.re, 10);
+         |                       ^
+      11 |     expect(result.im).toBeCloseTo(expected.im, 10);
+      12 |   });
+      13 | });
+
+      at Object.toBeCloseTo (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_8/pending_category/mutant-cb31ac7/testCase.test.ts:10:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.364 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_8/pending_category/mutant-cb31ac7/testCase.test.ts".

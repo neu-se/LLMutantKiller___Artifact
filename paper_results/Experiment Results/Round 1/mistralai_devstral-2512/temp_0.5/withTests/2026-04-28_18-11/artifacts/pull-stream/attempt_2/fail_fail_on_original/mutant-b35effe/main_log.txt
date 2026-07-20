@@ -1,0 +1,24 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-b35effe/testCase.test.ts
+  find error handling
+    ✕ should pass true error correctly (1 ms)
+
+  ● find error handling › should pass true error correctly
+
+    TypeError: pull.find is not a function
+
+      16 |     pull(
+      17 |       source,
+    > 18 |       pull.find((data: any) => false, (err: any, result: any) => {
+         |            ^
+      19 |         callbackInvoked = true;
+      20 |         // Original: cb(err === true ? null : err, null) -> passes null when err is true
+      21 |         // Mutated: cb(err !== true ? null : err, null) -> passes true when err is true
+
+      at Object.find (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-b35effe/testCase.test.ts:18:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.653 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-b35effe/testCase.test.ts".

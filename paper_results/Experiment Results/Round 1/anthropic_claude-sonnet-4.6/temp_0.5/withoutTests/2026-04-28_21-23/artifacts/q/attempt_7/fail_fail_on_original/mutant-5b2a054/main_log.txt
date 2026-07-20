@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-5b2a054/testCase.test.ts
+  Q nextTick continues after error
+    ✕ executes subsequent tasks after a throwing task via setTimeout flush (5 ms)
+
+  ● Q nextTick continues after error › executes subsequent tasks after a throwing task via setTimeout flush
+
+    task1 throws
+
+      10 |     process.on("uncaughtException", () => {});
+      11 |     
+    > 12 |     Q.nextTick(() => { throw new Error("task1 throws"); });
+         |                              ^
+      13 |     Q.nextTick(() => {
+      14 |       results.push(2);
+      15 |     });
+
+      at llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-5b2a054/testCase.test.ts:12:30
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.266 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-5b2a054/testCase.test.ts".

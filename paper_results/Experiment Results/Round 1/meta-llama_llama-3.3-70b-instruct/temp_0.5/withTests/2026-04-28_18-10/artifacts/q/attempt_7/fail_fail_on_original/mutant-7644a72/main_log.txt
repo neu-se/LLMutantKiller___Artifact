@@ -1,0 +1,43 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-7644a72/testCase.test.ts[0m:[93m3[0m:[93m42[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m3[0m         var originalReturnValue = global.ReturnValue;
+[7m [0m [91m                                         ~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-7644a72/testCase.test.ts[0m:[93m4[0m:[93m23[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m4[0m         delete global.ReturnValue;
+[7m [0m [91m                      ~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-7644a72/testCase.test.ts[0m:[93m7[0m:[93m47[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m7[0m                 var QReturnValue = new global.ReturnValue();
+[7m [0m [91m                                              ~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-7644a72/testCase.test.ts[0m:[93m13[0m:[93m16[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m13[0m         global.ReturnValue = originalReturnValue;
+[7m  [0m [91m               ~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-7644a72/testCase.test.ts
+  QReturnValue
+    ✕ should throw an error when trying to create a new instance if ReturnValue is not defined and the condition is not met (3 ms)
+
+  ● QReturnValue › should throw an error when trying to create a new instance if ReturnValue is not defined and the condition is not met
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       9 |             expect(true).toBe(false);
+      10 |         } catch (e) {
+    > 11 |             expect(e instanceof ReferenceError).toBe(true);
+         |                                                 ^
+      12 |         }
+      13 |         global.ReturnValue = originalReturnValue;
+      14 |     });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-7644a72/testCase.test.ts:11:49)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.597 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-7644a72/testCase.test.ts".

@@ -1,0 +1,33 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f233adb/testCase.test.ts
+  Q module loading and ses branch behavior
+    ✕ should export a working Q function when loaded via CommonJS (4 ms)
+
+  ● Q module loading and ses branch behavior › should export a working Q function when loaded via CommonJS
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      33 |     // Verify Q.all works
+      34 |     const allPromise = Q.all([Q(1), Q(2), Q(3)]);
+    > 35 |     expect(Q.isFulfilled(allPromise)).toBe(true);
+         |                                       ^
+      36 |     expect(allPromise.inspect().value).toEqual([1, 2, 3]);
+      37 |   });
+      38 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f233adb/testCase.test.ts:35:39)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.239 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f233adb/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/subject_repositories/node-dirty/lib/dirty/dirty.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/subject_repositories/node-dirty/lib/dirty/dirty.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-202d0e2/testCase.test.ts
+  Dirty
+    ✕ should flush after write when _inFlightWrites is 0 (41 ms)
+
+  ● Dirty › should flush after write when _inFlightWrites is 0
+
+    expect(received).toBe(expected) // Object.is equality
+
+    - Expected  - 0
+    + Received  + 1
+
+    + {"key":"key","val":"value"}
+      {"key":"key","val":"value"}
+      ↵
+
+      14 |     await new Promise((resolve) => db.on('drain', resolve));
+      15 |     const contents = await asyncReadFile(filePath, 'utf-8');
+    > 16 |     expect(contents).toBe(`{"key":"key","val":"value"}\n`);
+         |                      ^
+      17 |   });
+      18 | });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-202d0e2/testCase.test.ts:16:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        4.375 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-202d0e2/testCase.test.ts".

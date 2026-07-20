@@ -1,0 +1,32 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-39985ea/testCase.test.ts
+  GeoPoint
+    ✕ should throw an error when creating from an object that is not an object (22 ms)
+
+  ● GeoPoint › should throw an error when creating from an object that is not an object
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "Object must have latitude and longitude"
+    Received message:   "GeoPoint: Argument must be an object"
+
+          84 |   static fromObject(object: LatLng): GeoPoint {
+          85 |     if (!isObject(object)) {
+        > 86 |       throw new TypeError('GeoPoint: Argument must be an object');
+             |             ^
+          87 |     }
+          88 |
+          89 |     if (!object.hasOwnProperty('latitude') || !object.hasOwnProperty('longitude')) {
+
+      at Function.fromObject (../subject_repositories/node-geo-point/src/geo-point.ts:86:13)
+      at fromObject (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-39985ea/testCase.test.ts:5:27)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-39985ea/testCase.test.ts:5:45)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-39985ea/testCase.test.ts:5:45)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.734 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-39985ea/testCase.test.ts".

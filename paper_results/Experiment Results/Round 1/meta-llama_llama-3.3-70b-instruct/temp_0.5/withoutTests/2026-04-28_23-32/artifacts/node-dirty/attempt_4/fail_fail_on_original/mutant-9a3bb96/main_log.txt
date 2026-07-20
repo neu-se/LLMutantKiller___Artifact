@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-9a3bb96/testCase.test.ts
+  Dirty
+    ✕ should close the db file streams when close() is called and there are pending writes (106 ms)
+
+  ● Dirty › should close the db file streams when close() is called and there are pending writes
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      12 |     await new Promise(resolve => dirty.once('drain', resolve));
+      13 |     dirty.set('key3', 'value3', () => {
+    > 14 |       expect(true).toBe(false);
+         |                    ^
+      15 |     });
+      16 |     await new Promise(resolve => setTimeout(resolve, 100));
+      17 |   });
+
+      at toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-9a3bb96/testCase.test.ts:14:20)
+      at cb (../subject_repositories/node-dirty/lib/dirty/dirty.js:191:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.174 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-9a3bb96/testCase.test.ts".

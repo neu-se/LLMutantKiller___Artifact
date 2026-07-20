@@ -1,0 +1,29 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_7/pending_category/mutant-04b2f2c/testCase.test.ts
+  Matcher [Symbol.match] trailing slash guard
+    ✕ returns null for a string ending with slash where the underlying regex would match without the guard (4 ms)
+
+  ● Matcher [Symbol.match] trailing slash guard › returns null for a string ending with slash where the underlying regex would match without the guard
+
+    expect(jest.fn()).not.toHaveBeenCalled()
+
+    Expected number of calls: 0
+    Received number of calls: 1
+
+    1: "/foo/"
+
+      152 |     // Original code: guard fires, returns null WITHOUT calling super[Symbol.match]
+      153 |     // Mutated code: guard is empty, falls through to super[Symbol.match]
+    > 154 |     expect(superMatchSpy).not.toHaveBeenCalled()
+          |                               ^
+      155 |     
+      156 |     superMatchSpy.mockRestore()
+      157 |   })
+
+      at Object.toHaveBeenCalled (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_7/pending_category/mutant-04b2f2c/testCase.test.ts:154:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.309 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_7/pending_category/mutant-04b2f2c/testCase.test.ts".

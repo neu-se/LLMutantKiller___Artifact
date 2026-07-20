@@ -1,0 +1,31 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_1/pending_category/mutant-9f7c337/testCase.test.ts[0m:[93m1[0m:[93m25[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import { Matcher } from "../../../../../../../../../../../subject_repositories/spacl-core/src/matcher.ts"
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_1/pending_category/mutant-9f7c337/testCase.test.ts
+  Matcher malformed wildcard detection for version 1.0
+    ✕ should throw an error for path with non-slash character before wildcard in version 1.0 (3 ms)
+
+  ● Matcher malformed wildcard detection for version 1.0 › should throw an error for path with non-slash character before wildcard in version 1.0
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "Path contains malformed wildcards"
+
+    Received function did not throw
+
+      5 |     // In the original code, [^/][*+] matches 'a*' in '/a*', causing an error to be thrown
+      6 |     // In the mutated code, [/][*+] only matches '/*', so '/a*' would NOT match and no error is thrown
+    > 7 |     expect(() => new Matcher('/a*', '1.0')).toThrow('Path contains malformed wildcards')
+        |                                             ^
+      8 |   })
+      9 | })
+
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_1/pending_category/mutant-9f7c337/testCase.test.ts:7:45)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        4.494 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_1/pending_category/mutant-9f7c337/testCase.test.ts".

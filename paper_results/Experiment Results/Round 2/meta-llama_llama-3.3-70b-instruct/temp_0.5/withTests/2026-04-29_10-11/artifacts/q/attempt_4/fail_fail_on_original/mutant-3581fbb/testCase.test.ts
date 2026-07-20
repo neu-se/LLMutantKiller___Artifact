@@ -1,0 +1,13 @@
+import { Q } from "../../../../../../../../subject_repositories/q/q.js";
+
+describe('error stack filtering', () => {
+    it('should filter out internal frames and node frames by default', () => {
+        const error = new Error('Test error');
+        const originalStack = error.stack;
+
+        const filteredStack = Q.filterStackString(originalStack);
+
+        expect(filteredStack).not.toContain('node:');
+        expect(filteredStack).not.toContain('q.js');
+    });
+});

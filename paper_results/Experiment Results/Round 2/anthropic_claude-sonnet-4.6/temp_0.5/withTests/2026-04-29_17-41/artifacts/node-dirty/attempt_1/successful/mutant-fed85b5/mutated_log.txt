@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-fed85b5/testCase.test.ts
+  forEach break behavior
+    ✕ should continue iterating when callback returns false, and break when callback returns true (3 ms)
+
+  ● forEach break behavior › should continue iterating when callback returns false, and break when callback returns true
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 3
+
+      20 |     // Original: breaks after first element, so visited.length === 1
+      21 |     // Mutant: never breaks (false !== true), so visited.length === 3
+    > 22 |     expect(visited.length).toBe(1);
+         |                            ^
+      23 |   });
+      24 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-fed85b5/testCase.test.ts:22:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.262 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-fed85b5/testCase.test.ts".

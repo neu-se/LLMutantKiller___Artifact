@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_7/pending_category/mutant-60444cc/testCase.test.ts
+  stripBom
+    ✕ should handle null input without error (1 ms)
+
+  ● stripBom › should handle null input without error
+
+    TypeError: Cannot read properties of null (reading 'replace')
+
+       9 |   // we do this because JSON.parse would convert it to a utf8 string if encoding wasn't specified
+      10 |   if (Buffer.isBuffer(content)) content = content.toString('utf8')
+    > 11 |   return content.replace(/^\uFEFF/, '')
+         |                  ^
+      12 | }
+      13 |
+      14 | module.exports = { stringify, stripBom }
+
+      at replace (../subject_repositories/node-jsonfile/utils.js:11:18)
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_7/pending_category/mutant-60444cc/testCase.test.ts:5:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.352 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_7/pending_category/mutant-60444cc/testCase.test.ts".

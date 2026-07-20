@@ -1,0 +1,39 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-53b03ea/testCase.test.ts
+  tester function
+    ✕ should return a function that calls test.test when test is an object with a test function (2 ms)
+    ✕ should not return a function that calls test.test when test is not an object with a test function in the mutated code
+
+  ● tester function › should return a function that calls test.test when test is an object with a test function
+
+    TypeError: result is not a function
+
+       5 |     const test = { test: { test: jest.fn() } };
+       6 |     const result = tester(test);
+    >  7 |     result('data');
+         |     ^
+       8 |     expect(test.test.test).toHaveBeenCalledTimes(1);
+       9 |   });
+      10 |
+
+      at Object.result (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-53b03ea/testCase.test.ts:7:5)
+
+  ● tester function › should not return a function that calls test.test when test is not an object with a test function in the mutated code
+
+    TypeError: result is not a function
+
+      12 |     const test = {};
+      13 |     const result = tester(test);
+    > 14 |     result('data');
+         |     ^
+      15 |     expect(result).not.toThrow();
+      16 |   });
+      17 | });
+
+      at Object.result (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-53b03ea/testCase.test.ts:14:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.783 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-53b03ea/testCase.test.ts".

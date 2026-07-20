@@ -1,0 +1,47 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-1a28cfc/testCase.test.ts[0m:[93m8[0m:[93m14[0m - [91merror[0m[90m TS6133: [0m'embedType' is declared but its value is never read.
+
+[7m8[0m       const [embedType, thisData, otherData] = Delta.getEmbedTypeAndData(a, b);
+[7m [0m [91m             ~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-1a28cfc/testCase.test.ts[0m:[93m8[0m:[93m25[0m - [91merror[0m[90m TS6133: [0m'thisData' is declared but its value is never read.
+
+[7m8[0m       const [embedType, thisData, otherData] = Delta.getEmbedTypeAndData(a, b);
+[7m [0m [91m                        ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-1a28cfc/testCase.test.ts[0m:[93m8[0m:[93m35[0m - [91merror[0m[90m TS6133: [0m'otherData' is declared but its value is never read.
+
+[7m8[0m       const [embedType, thisData, otherData] = Delta.getEmbedTypeAndData(a, b);
+[7m [0m [91m                                  ~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-1a28cfc/testCase.test.ts[0m:[93m8[0m:[93m54[0m - [91merror[0m[90m TS2339: [0mProperty 'getEmbedTypeAndData' does not exist on type 'typeof Delta'.
+
+[7m8[0m       const [embedType, thisData, otherData] = Delta.getEmbedTypeAndData(a, b);
+[7m [0m [91m                                                     ~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-1a28cfc/testCase.test.ts
+  Delta
+    ✕ should throw an error when getEmbedTypeAndData is called with invalid b (16 ms)
+
+  ● Delta › should throw an error when getEmbedTypeAndData is called with invalid b
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "cannot retain a object"
+    Received message:   "Delta_1.default.getEmbedTypeAndData is not a function or its return value is not iterable"
+
+           6 |     const b = null;
+           7 |     expect(() => {
+        >  8 |       const [embedType, thisData, otherData] = Delta.getEmbedTypeAndData(a, b);
+             |                                                      ^
+           9 |     }).toThrowError(`cannot retain a ${typeof b}`);
+          10 |   });
+          11 | });
+
+      at getEmbedTypeAndData (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-1a28cfc/testCase.test.ts:8:54)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-1a28cfc/testCase.test.ts:9:8)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-1a28cfc/testCase.test.ts:9:8)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.979 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-1a28cfc/testCase.test.ts".

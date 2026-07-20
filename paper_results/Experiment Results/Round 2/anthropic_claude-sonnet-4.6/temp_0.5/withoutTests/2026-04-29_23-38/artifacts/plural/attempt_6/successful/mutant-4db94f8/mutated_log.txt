@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/plural/attempt_6/pending_category/mutant-4db94f8/testCase.test.ts
+  plural
+    ✕ should not match rule when key is non-String type even if it equals the word (7 ms)
+
+  ● plural › should not match rule when key is non-String type even if it equals the word
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "42s"
+    Received: "forty-twos"
+
+       8 |     // Original: type(42) === 'String' -> false -> no match -> 42 + 's' = '42s'
+       9 |     // Mutated: true && 42 === 42 -> true -> returns 'forty-twos'
+    > 10 |     expect(result).toBe('42s');
+         |                    ^
+      11 |   });
+      12 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/plural/attempt_6/pending_category/mutant-4db94f8/testCase.test.ts:10:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.415 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/plural/attempt_6/pending_category/mutant-4db94f8/testCase.test.ts".

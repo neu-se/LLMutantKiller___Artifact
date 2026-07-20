@@ -1,0 +1,44 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-b193569/testCase.test.ts[0m:[93m4[0m:[93m20[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m4[0m import rimraf from 'rimraf';
+[7m [0m [91m                   ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-b193569/testCase.test.ts
+  Dirty database load behavior
+    ✕ should emit load event with correct data size when database file has trailing content (45 ms)
+
+  ● Dirty database load behavior › should emit load event with correct data size when database file has trailing content
+
+    Expected done to be called once, but it was called multiple times. Reason: [Error: Expected done to be called once, but it was called multiple times.]
+
+      29 |         done();
+      30 |       } catch (error) {
+    > 31 |         done(error);
+         |         ^
+      32 |       }
+      33 |     });
+      34 |
+
+      at Dirty.done (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-b193569/testCase.test.ts:31:9)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:154:16)
+
+  ● Dirty database load behavior › should emit load event with correct data size when database file has trailing content
+
+    Expected done to be called once, but it was called multiple times.
+
+      27 |         expect(size).toBe(1);
+      28 |         expect(dirty.get('testKey')).toBe('testValue');
+    > 29 |         done();
+         |         ^
+      30 |       } catch (error) {
+      31 |         done(error);
+      32 |       }
+
+      at Dirty.done (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-b193569/testCase.test.ts:29:9)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:154:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.146 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-b193569/testCase.test.ts".

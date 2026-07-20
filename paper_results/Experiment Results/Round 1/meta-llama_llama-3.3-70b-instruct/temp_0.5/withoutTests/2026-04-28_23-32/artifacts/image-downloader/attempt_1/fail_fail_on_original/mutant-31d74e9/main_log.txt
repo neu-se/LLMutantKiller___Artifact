@@ -1,0 +1,37 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-31d74e9/testCase.test.ts[0m:[93m6[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/image-downloader/lib/request"' has no exported member 'download'.
+
+[7m6[0m import { download } from '../../../../../../../../../../../subject_repositories/image-downloader/lib/request';
+[7m [0m [91m         ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-31d74e9/testCase.test.ts[0m:[93m16[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'promises' does not exist on type 'Promise<{ default: typeof import("fs"); rename: typeof rename; renameSync(oldPath: PathLike, newPath: PathLike): void; truncate: typeof truncate; truncateSync(path: PathLike, len?: number | undefined): void; ... 95 more ...; constants: typeof constants; }>'.
+
+[7m16[0m     await import('fs').promises.mkdir(tempDir);
+[7m  [0m [91m                       ~~~~~~~~[0m
+
+  [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-31d74e9/testCase.test.ts[0m:[93m16[0m:[93m24[0m
+    [7m16[0m     await import('fs').promises.mkdir(tempDir);
+    [7m  [0m [96m                       ~~~~~~~~[0m
+    Did you forget to use 'await'?
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-31d74e9/testCase.test.ts
+  download function
+    ✕ should reject the promise when an error occurs while writing to the file (2 ms)
+
+  ● download function › should reject the promise when an error occurs while writing to the file
+
+    TypeError: Cannot read properties of undefined (reading 'mkdir')
+
+      14 |     // Create a temporary directory
+      15 |     await rm(tempDir, { recursive: true, force: true });
+    > 16 |     await import('fs').promises.mkdir(tempDir);
+         |                                ^
+      17 |
+      18 |     // Mock the request to return a successful response
+      19 |     const nock = require('nock');
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-31d74e9/testCase.test.ts:16:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.212 s, estimated 2 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-31d74e9/testCase.test.ts".

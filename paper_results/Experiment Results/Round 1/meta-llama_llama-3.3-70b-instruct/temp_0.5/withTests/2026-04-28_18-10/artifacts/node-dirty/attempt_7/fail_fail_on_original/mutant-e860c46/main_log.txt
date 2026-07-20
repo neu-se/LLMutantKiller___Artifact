@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-e860c46/testCase.test.ts
+  dirty db close
+    ✕ should not close when there are pending writes (24 ms)
+
+  ● dirty db close › should not close when there are pending writes
+
+    Closed with pending writes
+
+      13 |       db.close();
+      14 |       db.on('write_close', () => {
+    > 15 |         done(new Error('Closed with pending writes'));
+         |              ^
+      16 |       });
+      17 |       setTimeout(() => {
+      18 |         done();
+
+      at Dirty.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-e860c46/testCase.test.ts:15:14)
+      at WriteStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:177:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.977 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-e860c46/testCase.test.ts".

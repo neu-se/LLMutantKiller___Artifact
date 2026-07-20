@@ -1,0 +1,31 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-c653c55/testCase.test.ts[0m:[93m4[0m:[93m47[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m4[0m import { ZipAFolder, COMPRESSION_LEVEL } from '../../../../../../../../../../../subject_repositories/zip-a-folder/lib/ZipAFolder.ts';
+[7m [0m [91m                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-c653c55/testCase.test.ts
+  ZipAFolder uncompressed zip
+    ✕ should create a zip with stored (uncompressed) entries when compression level is uncompressed (13 ms)
+
+  ● ZipAFolder uncompressed zip › should create a zip with stored (uncompressed) entries when compression level is uncompressed
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 8
+
+      51 |             // Method 0 = STORED (no compression), Method 8 = DEFLATED
+      52 |             // Original code uses store: true, so method should be 0
+    > 53 |             expect(compressionMethod).toBe(0);
+         |                                       ^
+      54 |         } finally {
+      55 |             // Cleanup
+      56 |             fs.rmSync(tmpDir, { recursive: true, force: true });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-c653c55/testCase.test.ts:53:39)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.956 s, estimated 1 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-c653c55/testCase.test.ts".

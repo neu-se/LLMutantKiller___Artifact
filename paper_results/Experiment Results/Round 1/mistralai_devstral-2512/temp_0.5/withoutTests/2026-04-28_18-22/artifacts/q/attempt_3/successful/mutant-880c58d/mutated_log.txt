@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-880c58d/testCase.test.ts
+  Q.debug mode
+    ✕ should not enable long stack traces when Q_DEBUG is not set (4 ms)
+
+  ● Q.debug mode › should not enable long stack traces when Q_DEBUG is not set
+
+    expect(received).not.toContain(expected) // indexOf
+    Expected substring: not "From previous event:"
+    Received string:        "Error: Test error
+
+      11 |       const promise = Q.resolve(42)
+      12 |         .then(() => {
+    > 13 |           throw new Error("Test error");
+         |                 ^
+      14 |         })
+      15 |         .catch((e: Error) => {
+      16 |           // Check that the stack trace doesn't contain the long stack marker
+
+      at llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-880c58d/testCase.test.ts:13:17
+      From previous event:
+      at Object.then (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-880c58d/testCase.test.ts:12:10)
+      at toContain (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-880c58d/testCase.test.ts:17:31)
+      From previous event:
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-880c58d/testCase.test.ts:15:15)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.411 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-880c58d/testCase.test.ts".

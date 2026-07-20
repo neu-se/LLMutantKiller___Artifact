@@ -1,0 +1,26 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-55b3a3e/testCase.test.ts
+  Complex acsc method
+    ✕ should return a finite result for a non-zero real input like acsc(2) (2 ms)
+
+  ● Complex acsc method › should return a finite result for a non-zero real input like acsc(2)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      23 |     // acsc(i) = -i * log(i/i + sqrt(1 - 1/i^2)) = -i * log(1 + sqrt(1+1)) = -i * log(1 + sqrt(2))
+      24 |     // The imaginary part should NOT be Infinity
+    > 25 |     expect(isFinite(result.im)).toBe(true);
+         |                                 ^
+      26 |     expect(result.im).not.toBe(Infinity);
+      27 |   });
+      28 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-55b3a3e/testCase.test.ts:25:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.059 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-55b3a3e/testCase.test.ts".

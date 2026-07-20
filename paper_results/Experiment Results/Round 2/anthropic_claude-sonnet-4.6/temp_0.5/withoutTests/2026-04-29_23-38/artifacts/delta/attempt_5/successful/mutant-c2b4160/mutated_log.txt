@@ -1,0 +1,33 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-c2b4160/testCase.test.ts[0m:[93m1[0m:[93m22[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import Iterator from "../../../../../../../../../../../subject_repositories/delta/src/OpIterator.ts";
+[7m [0m [91m                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-c2b4160/testCase.test.ts
+  Iterator.rest()
+    ✕ returns same object references as original ops when offset is 0 (2 ms)
+
+  ● Iterator.rest() › returns same object references as original ops when offset is 0
+
+    expect(received).toBe(expected) // Object.is equality
+
+    If it should pass with deep equality, replace "toBe" with "toStrictEqual"
+
+    Expected: {"insert": "hello"}
+    Received: serializes to the same string
+
+      12 |     // Original: ops.slice(0) returns array with same object references
+      13 |     // Mutated: next() creates new objects, so references differ
+    > 14 |     expect(result[0]).toBe(op1);
+         |                       ^
+      15 |     expect(result[1]).toBe(op2);
+      16 |   });
+      17 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-c2b4160/testCase.test.ts:14:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.083 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-c2b4160/testCase.test.ts".

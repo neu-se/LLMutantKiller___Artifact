@@ -1,0 +1,27 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-4b16ea7/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-4b16ea7/testCase.test.ts
+  q.js
+    ✕ should test the behavior of the mutated file (1 ms)
+
+  ● q.js › should test the behavior of the mutated file
+
+    TypeError: Cannot read properties of undefined (reading 'defer')
+
+       5 |         // The mutation is in the nextTick function, which uses setImmediate in modern browsers.
+       6 |         // We can test this by checking if the nextTick function behaves as expected.
+    >  7 |         const promise = Q.defer().promise;
+         |                           ^
+       8 |         let resolved = false;
+       9 |         promise.then(() => {
+      10 |             resolved = true;
+
+      at Object.defer (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-4b16ea7/testCase.test.ts:7:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.208 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-4b16ea7/testCase.test.ts".

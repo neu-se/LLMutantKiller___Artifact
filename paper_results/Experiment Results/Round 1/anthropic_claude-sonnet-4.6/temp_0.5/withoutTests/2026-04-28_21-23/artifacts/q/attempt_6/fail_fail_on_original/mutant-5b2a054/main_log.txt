@@ -1,0 +1,40 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-5b2a054/testCase.test.ts
+  Q runSingle browser path error rethrowing
+    ✕ should throw error from setTimeout callback in browser error path (239 ms)
+
+  ● Q runSingle browser path error rethrowing › should throw error from setTimeout callback in browser error path
+
+    test
+
+      26 |     // BUT: we can check if any scheduled setTimeout callbacks throw
+      27 |     
+    > 28 |     const testError = new Error("test");
+         |                       ^
+      29 |     
+      30 |     await new Promise<void>((resolve) => {
+      31 |       process.once("uncaughtException", () => {});
+
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-5b2a054/testCase.test.ts:28:23)
+
+  ● Q runSingle browser path error rethrowing › should throw error from setTimeout callback in browser error path
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      44 |     // In original: thrownErrors contains testError (from setTimeout(flush,0) re-running)
+      45 |     // In mutated: same behavior since else branch is dead
+    > 46 |     expect(thrownErrors.length).toBeGreaterThan(0);
+         |                                 ^
+      47 |   });
+      48 | });
+
+      at Object.toBeGreaterThan (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-5b2a054/testCase.test.ts:46:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.071 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-5b2a054/testCase.test.ts".

@@ -1,0 +1,33 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-2a53823/testCase.test.ts[0m:[93m5[0m:[93m29[0m - [91merror[0m[90m TS6133: [0m'tar' is declared but its value is never read.
+
+[7m5[0m import { COMPRESSION_LEVEL, tar, ZipAFolder as zipafolder } from '../../../../../../../../../../../subject_repositories/zip-a-folder/lib/ZipAFolder';
+[7m [0m [91m                            ~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-2a53823/testCase.test.ts[0m:[93m8[0m:[93m11[0m - [91merror[0m[90m TS6133: [0m'testTAR' is declared but its value is never read.
+
+[7m8[0m     const testTAR = path.resolve(__dirname, 'test.tgz');
+[7m [0m [91m          ~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-2a53823/testCase.test.ts
+  Zip-A-Folder Test
+    ✕ TGZ test folder with compression level set to uncompressed should create a tar file (1 ms)
+
+  ● Zip-A-Folder Test › TGZ test folder with compression level set to uncompressed should create a tar file
+
+    Source and target folder must be different.
+
+      116 |
+      117 |             if (targetBasePath === src) {
+    > 118 |                 throw new Error('Source and target folder must be different.');
+          |                       ^
+      119 |             }
+      120 |             try {
+      121 |                 if (!isGlob(src)) {
+
+      at Function.compress (../subject_repositories/zip-a-folder/lib/ZipAFolder.ts:118:23)
+      at Function.compress [as tar] (../subject_repositories/zip-a-folder/lib/ZipAFolder.ts:41:30)
+      at Object.tar (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-2a53823/testCase.test.ts:17:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.418 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-2a53823/testCase.test.ts".

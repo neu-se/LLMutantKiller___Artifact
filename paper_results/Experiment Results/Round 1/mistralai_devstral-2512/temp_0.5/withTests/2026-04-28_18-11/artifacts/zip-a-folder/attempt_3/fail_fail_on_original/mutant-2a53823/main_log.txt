@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-2a53823/testCase.test.ts
+  Tar with uncompressed compression level
+    ✕ should create an uncompressed tar file when compression level is set to uncompressed (2 ms)
+
+  ● Tar with uncompressed compression level › should create an uncompressed tar file when compression level is set to uncompressed
+
+    Permission error: ENOENT: no such file or directory, access '/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/subject_repositories/zip-a-folder/test/data'
+
+      124 |                 await fs.promises.access(targetBasePath, fs.constants.R_OK | fs.constants.W_OK); //eslint-disable-line no-bitwise
+      125 |             } catch (e: any) {
+    > 126 |                 throw new Error(`Permission error: ${e.message}`);
+          |                       ^
+      127 |             }
+      128 |             output = fs.createWriteStream(targetFilePath);
+      129 |         } else if (zipAFolderOptions && zipAFolderOptions.customWriteStream) {
+
+      at Function.compress (../subject_repositories/zip-a-folder/lib/ZipAFolder.ts:126:23)
+      at tar (../subject_repositories/zip-a-folder/lib/ZipAFolder.ts:41:13)
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-2a53823/testCase.test.ts:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.299 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-2a53823/testCase.test.ts".

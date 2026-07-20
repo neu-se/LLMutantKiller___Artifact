@@ -1,0 +1,33 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-8b8202a/testCase.test.ts
+  Dirty drain event
+    ✕ should only emit drain after all in-flight writes complete when write stream backpressure is relieved (109 ms)
+
+  ● Dirty drain event › should only emit drain after all in-flight writes complete when write stream backpressure is relieved
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      34 |                 // In original: drain only fires after all in-flight writes complete
+      35 |                 // In mutated: drain may fire before all callbacks, setting this flag
+    > 36 |                 expect(drainFiredBeforeAllCallbacks).toBe(false);
+         |                                                      ^
+      37 |                 db.close();
+      38 |                 db.on('write_close', () => {
+      39 |                   try { fs.rmSync(tmpDir, { recursive: true }); } catch (_) {}
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-8b8202a/testCase.test.ts:36:54)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.136 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-8b8202a/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

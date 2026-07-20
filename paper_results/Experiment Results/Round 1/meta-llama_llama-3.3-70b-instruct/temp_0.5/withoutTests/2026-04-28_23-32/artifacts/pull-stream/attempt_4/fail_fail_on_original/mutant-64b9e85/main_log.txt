@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-64b9e85/testCase.test.ts[0m:[93m9[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'drain' does not exist on type '(test: any, cb: any) => { (_read: any): any; abort(err: any, cb: any): any; }'.
+
+[7m9[0m     find.drain(err, () => {});
+[7m [0m [91m         ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-64b9e85/testCase.test.ts
+  find function
+    ✕ should handle error correctly (2 ms)
+
+  ● find function › should handle error correctly
+
+    TypeError: find_js_1.default.drain is not a function
+
+       7 |     const err = new Error('Test error');
+       8 |     find(test, cb);
+    >  9 |     find.drain(err, () => {});
+         |          ^
+      10 |     expect(cb).toHaveBeenCalledTimes(1);
+      11 |     expect(cb).toHaveBeenCalledWith(err, null);
+      12 |   });
+
+      at Object.drain (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-64b9e85/testCase.test.ts:9:10)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.985 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-64b9e85/testCase.test.ts".

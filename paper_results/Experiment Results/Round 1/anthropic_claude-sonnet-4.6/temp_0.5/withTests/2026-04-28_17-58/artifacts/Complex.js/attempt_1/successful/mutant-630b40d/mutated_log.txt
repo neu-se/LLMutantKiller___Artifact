@@ -1,0 +1,31 @@
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/Complex.js/complex.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/Complex.js/complex.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-630b40d/testCase.test.ts
+  Complex abs large values
+    ✕ computes abs correctly for large complex numbers triggering the overflow-safe hypot path (2 ms)
+
+  ● Complex abs large values › computes abs correctly for large complex numbers triggering the overflow-safe hypot path
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 5000
+    Received: 3200
+
+    Expected precision:    5
+    Expected difference: < 0.000005
+    Received difference:   1800
+
+       8 |     // Mutated:  return a / Math.sqrt(1 + b*b) => 4000 / 1.25 = 3200
+       9 |     const c = new Complex(3000, 4000);
+    > 10 |     expect(c.abs()).toBeCloseTo(5000, 5);
+         |                     ^
+      11 |   });
+      12 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-630b40d/testCase.test.ts:10:21)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.69 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-630b40d/testCase.test.ts".

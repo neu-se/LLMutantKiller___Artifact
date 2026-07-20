@@ -1,0 +1,50 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-e860c46/testCase.test.ts
+  Dirty close behavior with in-flight writes
+    ✕ should wait for in-flight writes before closing (11 ms)
+
+  ● Dirty close behavior with in-flight writes › should wait for in-flight writes before closing
+
+    Close was called recursively
+
+      24 |         if (closeCallCount > 1) {
+      25 |           // This should not happen in the original code
+    > 26 |           done(new Error('Close was called recursively'));
+         |                ^
+      27 |           return;
+      28 |         }
+      29 |         originalClose();
+
+      at Dirty.dirty.close (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-e860c46/testCase.test.ts:26:16)
+      at Dirty.close (../subject_repositories/node-dirty/lib/dirty/dirty.js:88:37)
+      at emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:190:70)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.613 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-e860c46/testCase.test.ts".
+/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/node_modules/expect/build/index.js:314
+      throw error;
+      ^
+
+JestAssertionError: expect(received).toBe(expected) // Object.is equality
+
+Expected: 1
+Received: 2
+    at Timeout.toBe [as _onTimeout] (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-e860c46/testCase.test.ts:37:32)
+    at listOnTimeout (node:internal/timers:581:17)
+    at processTimers (node:internal/timers:519:7) {
+  matcherResult: {
+    actual: 2,
+    expected: 1,
+    message: 'expect(received).toBe(expected) // Object.is equality\n' +
+      '\n' +
+      'Expected: 1\n' +
+      'Received: 2',
+    name: 'toBe',
+    pass: false
+  }
+}
+
+Node.js v20.19.4

@@ -1,0 +1,76 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-016d39e/testCase.test.ts[0m:[93m6[0m:[93m21[0m - [91merror[0m[90m TS7006: [0mParameter 'abort' implicitly has an 'any' type.
+
+[7m6[0m     const source = (abort, cb) => {
+[7m [0m [91m                    ~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-016d39e/testCase.test.ts[0m:[93m6[0m:[93m28[0m - [91merror[0m[90m TS7006: [0mParameter 'cb' implicitly has an 'any' type.
+
+[7m6[0m     const source = (abort, cb) => {
+[7m [0m [91m                           ~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-016d39e/testCase.test.ts[0m:[93m19[0m:[93m14[0m - [91merror[0m[90m TS18046: [0m'e' is of type 'unknown'.
+
+[7m19[0m       expect(e.message).toBe('no done callback supplied');
+[7m  [0m [91m             ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+  console.warn
+    Error: no done callback supplied
+        at drain (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/subject_repositories/pull-stream/sinks/drain.js:9:22)
+        at Object.<anonymous> (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-016d39e/testCase.test.ts:14:23)
+        at Promise.then.completed (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/node_modules/jest-circus/build/utils.js:290:26)
+        at new Promise (<anonymous>)
+        at callAsyncCircusFn (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/node_modules/jest-circus/build/utils.js:231:10)
+        at _callCircusTest (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/node_modules/jest-circus/build/run.js:316:40)
+        at _runTest (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/node_modules/jest-circus/build/run.js:252:3)
+        at _runTestsForDescribeBlock (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/node_modules/jest-circus/build/run.js:126:9)
+        at _runTestsForDescribeBlock (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/node_modules/jest-circus/build/run.js:121:9)
+        at run (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/node_modules/jest-circus/build/run.js:71:3)
+        at runAndTransformResultsToJestFormat (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+        at jestAdapter (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+        at runTestInternal (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/node_modules/jest-runner/build/runTest.js:367:16)
+        at runTest (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/node_modules/jest-runner/build/runTest.js:444:34)
+
+      26 |               if(done) done(end === true ? null : end)
+      27 |               else if(end && end !== true) {
+    > 28 |                 console.warn(doneLackingErr)
+         |                         ^
+      29 |                 throw end
+      30 |               }
+      31 |             }
+
+      at warn (../subject_repositories/pull-stream/sinks/drain.js:28:25)
+      at cb (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-016d39e/testCase.test.ts:10:9)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:45:8)
+      at Object.sink (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-016d39e/testCase.test.ts:17:7)
+
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-016d39e/testCase.test.ts
+  drain sink error message
+    ✕ should throw an error with a descriptive message when no done callback is provided and an error occurs (19 ms)
+
+  ● drain sink error message › should throw an error with a descriptive message when no done callback is provided and an error occurs
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "no done callback supplied"
+    Received: "test error"
+
+      17 |       sink(source);
+      18 |     } catch (e) {
+    > 19 |       expect(e.message).toBe('no done callback supplied');
+         |                         ^
+      20 |       done();
+      21 |     }
+      22 |   });
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-016d39e/testCase.test.ts:19:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.554 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-016d39e/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

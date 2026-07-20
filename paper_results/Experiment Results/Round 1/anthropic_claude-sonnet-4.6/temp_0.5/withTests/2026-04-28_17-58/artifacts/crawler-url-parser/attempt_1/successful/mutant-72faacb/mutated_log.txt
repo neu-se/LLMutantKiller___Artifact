@@ -1,0 +1,35 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/crawler-url-parser/crawler-url-parser.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/crawler-url-parser/crawler-url-parser.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-72faacb/testCase.test.ts
+  extract with anchor tags missing href attribute
+    ✕ should not throw and should skip anchor tags without href attributes (39 ms)
+
+  ● extract with anchor tags missing href attribute › should not throw and should skip anchor tags without href attributes
+
+    expect(received).not.toThrow()
+
+    Error name:    "TypeError"
+    Error message: "Cannot read properties of undefined (reading 'length')"
+
+           95 | 		let text = $(this).text().trim();
+           96 | 		//href = href.replace(/;.*$/g,"");
+        >  97 |    		if (typeof href == "" || href.length < 3 || /^(javascript|mailto:|ftp:)/ig.test(href)) return;
+              |    		                              ^
+           98 |
+           99 |
+          100 | 		let currentUrl = parse(href, baseUrlStr);
+
+      at Element.length (../subject_repositories/crawler-url-parser/crawler-url-parser.js:97:36)
+      at LoadedCheerio.each (../subject_repositories/crawler-url-parser/node_modules/cheerio/src/api/traversing.ts:648:24)
+      at each (../subject_repositories/crawler-url-parser/crawler-url-parser.js:93:9)
+      at llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-72faacb/testCase.test.ts:11:29
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-72faacb/testCase.test.ts:14:12)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-72faacb/testCase.test.ts:14:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.168 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-72faacb/testCase.test.ts".

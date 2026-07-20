@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/plural/attempt_1/pending_category/mutant-c02c2b2/testCase.test.ts
+  plural with num argument
+    ✕ should return the plural form when num is not 1 (e.g., num = 2) (3 ms)
+
+  ● plural with num argument › should return the plural form when num is not 1 (e.g., num = 2)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "tests"
+    Received: "test"
+
+       6 |     // Original: if (num !== 1 || num === undefined) -> pluralize when num is 2
+       7 |     // Mutant:   if (num === 1 || num === undefined)  -> does NOT pluralize when num is 2
+    >  8 |     expect(plural("test", 2)).toBe("tests");
+         |                               ^
+       9 |   });
+      10 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/plural/attempt_1/pending_category/mutant-c02c2b2/testCase.test.ts:8:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.212 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/plural/attempt_1/pending_category/mutant-c02c2b2/testCase.test.ts".

@@ -1,0 +1,53 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-b49a520/testCase.test.ts[0m:[93m4[0m:[93m20[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m4[0m import rimraf from 'rimraf';
+[7m [0m [91m                   ~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-b49a520/testCase.test.ts[0m:[93m22[0m:[93m50[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m22[0m       db.set('testKey', { value: 'testValue' }, (err) => {
+[7m  [0m [91m                                                 ~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-b49a520/testCase.test.ts[0m:[93m36[0m:[93m9[0m - [91merror[0m[90m TS18047: [0m'db._readStream' is possibly 'null'.
+
+[7m36[0m         db._readStream.emit('data', testChunk);
+[7m  [0m [91m        ~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-b49a520/testCase.test.ts (6.382 s)
+  Dirty database chunk processing
+    ✕ should correctly process chunks without newlines (5004 ms)
+
+  ● Dirty database chunk processing › should correctly process chunks without newlines
+
+    TypeError: Cannot read properties of null (reading 'emit')
+
+      34 |         // Now test reading back a chunk without newline
+      35 |         const testChunk = '{"key":"testKey2","val":{"value":"testValue2"}}';
+    > 36 |         db._readStream.emit('data', testChunk);
+         |                        ^
+      37 |
+      38 |         // The original code should not process this chunk (no newline)
+      39 |         // The mutated code will incorrectly process it (empty string check)
+
+      at emit (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-b49a520/testCase.test.ts:36:24)
+      at cb (../subject_repositories/node-dirty/lib/dirty/dirty.js:191:31)
+
+  ● Dirty database chunk processing › should correctly process chunks without newlines
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      17 |   });
+      18 |
+    > 19 |   it('should correctly process chunks without newlines', (done) => {
+         |   ^
+      20 |     const db = new Dirty(dbPath);
+      21 |     db.on('load', () => {
+      22 |       db.set('testKey', { value: 'testValue' }, (err) => {
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-b49a520/testCase.test.ts:19:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-b49a520/testCase.test.ts:6:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.561 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-b49a520/testCase.test.ts".

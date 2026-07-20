@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-545198e/testCase.test.ts
+  Dirty database loading with partial chunks
+    ✕ should emit error for empty lines when processing chunks without newlines in mutated code (9 ms)
+
+  ● Dirty database loading with partial chunks › should emit error for empty lines when processing chunks without newlines in mutated code
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 2
+    Received: 1
+
+      22 |     db.on('load', (count) => {
+      23 |       try {
+    > 24 |         expect(count).toBe(2);
+         |                       ^
+      25 |         expect(db.get('key1')).toBe('val1');
+      26 |         expect(db.get('key2')).toBe('val2');
+      27 |         expect(errors).toHaveLength(0);
+
+      at Dirty.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-545198e/testCase.test.ts:24:23)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:154:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.088 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-545198e/testCase.test.ts".

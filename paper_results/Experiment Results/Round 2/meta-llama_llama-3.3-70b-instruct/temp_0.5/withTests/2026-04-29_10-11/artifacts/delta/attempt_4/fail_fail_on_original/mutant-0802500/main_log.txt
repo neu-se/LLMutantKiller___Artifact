@@ -1,0 +1,36 @@
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-0802500/testCase.test.ts
+  Delta
+    ✕ compose with retain and insert (6 ms)
+
+  ● Delta › compose with retain and insert
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 3
+    + Received  + 0
+
+      Delta {
+        "ops": Array [
+          Object {
+            "insert": "Hello",
+          },
+    -     Object {
+    -       "retain": 5,
+    -     },
+        ],
+      }
+
+       6 |     const b = new Delta().insert('Hello');
+       7 |     const expected = new Delta().insert('Hello').retain(5);
+    >  8 |     expect(a.compose(b)).toEqual(expected);
+         |                          ^
+       9 |   });
+      10 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-0802500/testCase.test.ts:8:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.553 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-0802500/testCase.test.ts".

@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-2c2416c/testCase.test.ts
+  deprecate function
+    ✕ should log a deprecation warning with the correct message (2 ms)
+
+  ● deprecate function › should log a deprecation warning with the correct message
+
+    Cannot find module '../../../../../q.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-2c2416c/testCase.test.ts'
+
+      1 | describe("deprecate function", () => {
+      2 |     it("should log a deprecation warning with the correct message", () => {
+    > 3 |         const Q = require('../../../../../q.js');
+        |                   ^
+      4 |         const consoleWarnSpy = jest.spyOn(console, "warn");
+      5 |         const deprecatedFunction = Q.deprecate(function() {}, "test", "newTest");
+      6 |         deprecatedFunction();
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-2c2416c/testCase.test.ts:3:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.465 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-2c2416c/testCase.test.ts".

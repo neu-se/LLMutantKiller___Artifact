@@ -1,0 +1,35 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-de5a53e/testCase.test.ts
+  Dirty
+    ✕ should close write stream correctly (9 ms)
+
+  ● Dirty › should close write stream correctly
+
+    Error occurred during test: Corrupted row at the end of the db: test
+
+      38 |
+      39 |     dirty.on('error', (err) => {
+    > 40 |       done(new Error('Error occurred during test: ' + err.message));
+         |            ^
+      41 |     });
+      42 |   }, 10000);
+      43 | });
+
+      at Dirty.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-de5a53e/testCase.test.ts:40:12)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:152:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.269 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-de5a53e/testCase.test.ts".
+node:internal/process/promises:391
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+Error: File is still writable after close
+    at /Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-de5a53e/testCase.test.ts:28:28
+    at /Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/node_modules/graceful-fs/graceful-fs.js:61:14
+    at FSReqCallback.oncomplete (node:fs:188:23)
+
+Node.js v20.19.4

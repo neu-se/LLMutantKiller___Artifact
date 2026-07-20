@@ -1,0 +1,47 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-954a2b1/testCase.test.ts
+  Delta compose
+    ✕ should apply attributes from retain with attributes at start of other when this has short inserts (5 ms)
+
+  ● Delta compose › should apply attributes from retain with attributes at start of other when this has short inserts
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 8
+    + Received  + 2
+
+      Array [
+        Object {
+          "attributes": Object {
+            "bold": true,
+          },
+    -     "insert": "Hi",
+    +     "insert": "Hi Wo",
+        },
+        Object {
+    -     "attributes": Object {
+    -       "bold": true,
+    -     },
+    -     "insert": " Wor",
+    -   },
+    -   Object {
+    -     "insert": "ld",
+    +     "insert": "rld",
+        },
+      ]
+
+      11 |     // Original: bold applied to 'Hi W', rest is ' orld'
+      12 |     // Mutated: 'Hi' pushed raw without bold, then retain partially consumed
+    > 13 |     expect(result.ops).toEqual([
+         |                        ^
+      14 |       { insert: 'Hi', attributes: { bold: true } },
+      15 |       { insert: ' Wor', attributes: { bold: true } },
+      16 |       { insert: 'ld' },
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-954a2b1/testCase.test.ts:13:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.383 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-954a2b1/testCase.test.ts".

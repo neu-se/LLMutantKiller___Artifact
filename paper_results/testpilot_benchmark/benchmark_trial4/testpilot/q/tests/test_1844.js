@@ -1,0 +1,17 @@
+let assert = require('assert');
+let q = require('q');
+
+describe('test q', function() {
+    it('test q.fapply with simple function', function(done) {
+        function add(a, b) {
+            return a + b;
+        }
+        
+        q.fapply(add, [2, 3])
+            .then(function(result) {
+                assert.equal(result, 5);
+                done();
+            })
+            .catch(done);
+    });
+});

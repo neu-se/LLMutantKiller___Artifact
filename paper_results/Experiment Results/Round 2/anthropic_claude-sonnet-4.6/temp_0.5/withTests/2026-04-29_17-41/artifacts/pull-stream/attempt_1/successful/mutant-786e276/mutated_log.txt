@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-786e276/testCase.test.ts
+  pull with duplex stream as first argument
+    ✕ should unwrap source from a duplex object passed as first argument (3 ms)
+
+  ● pull with duplex stream as first argument › should unwrap source from a duplex object passed as first argument
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "function"
+    Received: "object"
+
+      27 |     // In original code: read = duplex.source (a function), so result is a readable function
+      28 |     // In mutated code: read stays as duplex object, so result is the duplex object itself
+    > 29 |     expect(typeof result).toBe("function");
+         |                           ^
+      30 |     expect(result.length).toBe(2);
+      31 |
+      32 |     // Further verify it actually reads values correctly
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-786e276/testCase.test.ts:29:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.566 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-786e276/testCase.test.ts".

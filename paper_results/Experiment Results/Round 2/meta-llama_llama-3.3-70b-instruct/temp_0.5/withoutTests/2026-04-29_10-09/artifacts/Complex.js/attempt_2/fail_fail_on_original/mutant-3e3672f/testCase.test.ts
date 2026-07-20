@@ -1,0 +1,12 @@
+import { Complex } from "../complex.js";
+
+describe('Complex', () => {
+  it('should correctly parse complex numbers with "i" and "I" notation', () => {
+    const c1 = new Complex('3+i');
+    const c2 = new Complex('3+I');
+    expect(c1.re).toBeCloseTo(3, 10);
+    expect(c1.im).toBeCloseTo(1, 10);
+    expect(c2.re).toBeCloseTo(3, 10);
+    expect(c2.im).toBeCloseTo(1, 10);
+  });
+});

@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-47144d2/testCase.test.ts (6.169 s)
+  empty line handling
+    ✕ should emit error when encountering empty lines in database file (5002 ms)
+
+  ● empty line handling › should emit error when encountering empty lines in database file
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      33 |       // Give some time for potential load event
+      34 |       setTimeout(() => {
+    > 35 |         expect(loadEmitted).toBe(false);
+         |                             ^
+      36 |         done();
+      37 |       }, 100);
+      38 |     });
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-47144d2/testCase.test.ts:35:29)
+
+  ● empty line handling › should emit error when encountering empty lines in database file
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      19 |   });
+      20 |
+    > 21 |   it('should emit error when encountering empty lines in database file', (done) => {
+         |   ^
+      22 |     // Create a database file with an empty line
+      23 |     fs.writeFileSync(testFile, '{"key":"test","val":"value"}\n\n{"key":"test2","val":"value2"}\n', 'utf-8');
+      24 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-47144d2/testCase.test.ts:21:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-47144d2/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.325 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-47144d2/testCase.test.ts".

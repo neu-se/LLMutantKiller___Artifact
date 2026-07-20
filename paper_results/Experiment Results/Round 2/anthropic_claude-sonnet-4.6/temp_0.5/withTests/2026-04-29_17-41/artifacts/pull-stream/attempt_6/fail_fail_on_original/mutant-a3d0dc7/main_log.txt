@@ -1,0 +1,32 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-a3d0dc7/testCase.test.ts
+  values source
+    ✕ should call onAbort exactly once when aborted, not on normal reads (3 ms)
+
+  ● values source › should call onAbort exactly once when aborted, not on normal reads
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+      13 |       // Now abort
+      14 |       read(true, (err: any) => {
+    > 15 |         expect(onAbortCallCount).toBe(1);
+         |                                  ^
+      16 |         done();
+      17 |       });
+      18 |     });
+
+      at toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-a3d0dc7/testCase.test.ts:15:34)
+      at cb (../subject_repositories/pull-stream/util/abort-cb.js:2:3)
+      at abortCb (../subject_repositories/pull-stream/sources/values.js:17:14)
+      at read (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-a3d0dc7/testCase.test.ts:14:7)
+      at cb (../subject_repositories/pull-stream/sources/values.js:21:7)
+      at Object.read (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-a3d0dc7/testCase.test.ts:11:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.621 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-a3d0dc7/testCase.test.ts".

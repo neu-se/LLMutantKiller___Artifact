@@ -1,0 +1,25 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-4a5316f/testCase.test.ts
+  Complex acoth
+    ✕ acoth with subnormal b where b*b underflows to 0 calls atanh with negative imaginary part (3 ms)
+
+  ● Complex acoth › acoth with subnormal b where b*b underflows to 0 calls atanh with negative imaginary part
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: -Infinity
+    Received: Infinity
+
+      25 |     // Original code: -b/0 = -(5e-324)/0 = -Infinity
+      26 |     // Mutated code:  +b/0 = +(5e-324)/0 = +Infinity
+    > 27 |     expect(capturedIm).toBe(-Infinity);
+         |                        ^
+      28 |   });
+      29 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-4a5316f/testCase.test.ts:27:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.263 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-4a5316f/testCase.test.ts".

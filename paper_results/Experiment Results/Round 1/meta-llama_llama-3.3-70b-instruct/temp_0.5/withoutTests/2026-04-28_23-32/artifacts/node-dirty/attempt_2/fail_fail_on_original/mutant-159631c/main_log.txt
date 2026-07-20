@@ -1,0 +1,24 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-159631c/testCase.test.ts
+  Dirty
+    ✕ emits read_close event when read stream is closed (1 ms)
+
+  ● Dirty › emits read_close event when read stream is closed
+
+    EEXIST: file already exists, mkdir 'temp-test-dir'
+
+       5 |   it('emits read_close event when read stream is closed', (done) => {
+       6 |     const tempDir = 'temp-test-dir';
+    >  7 |     mkdirSync(tempDir);
+         |              ^
+       8 |     const dirty = new Dirty(`${tempDir}/test.db`);
+       9 |     dirty.on('read_close', () => {
+      10 |       rmdirSync(tempDir);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-159631c/testCase.test.ts:7:14)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.283 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-159631c/testCase.test.ts".

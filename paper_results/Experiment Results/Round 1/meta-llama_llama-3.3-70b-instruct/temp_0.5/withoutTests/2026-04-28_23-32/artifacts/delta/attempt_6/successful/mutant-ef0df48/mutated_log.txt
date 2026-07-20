@@ -1,0 +1,57 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-ef0df48/testCase.test.ts[0m:[93m10[0m:[93m44[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'AttributeMap'.
+
+[7m10[0m     const result = AttributeMap.compose(a, b, keepNull);
+[7m  [0m [91m                                           ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-ef0df48/testCase.test.ts[0m:[93m11[0m:[93m24[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 2, '(o: {}): string[]', gave the following error.
+    Argument of type 'AttributeMap | undefined' is not assignable to parameter of type '{}'.
+      Type 'undefined' is not assignable to type '{}'.
+  Overload 2 of 2, '(o: object): string[]', gave the following error.
+    Argument of type 'AttributeMap | undefined' is not assignable to parameter of type 'object'.
+      Type 'undefined' is not assignable to type 'object'.
+
+[7m11[0m     expect(Object.keys(result)).toEqual(['foo']);
+[7m  [0m [91m                       ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-ef0df48/testCase.test.ts
+  AttributeMap
+    ✕ compose should handle non-object b correctly (7 ms)
+
+  ● AttributeMap › compose should handle non-object b correctly
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  0
+    + Received  + 13
+
+      Array [
+    +   "0",
+    +   "1",
+    +   "2",
+    +   "3",
+    +   "4",
+    +   "5",
+    +   "6",
+    +   "7",
+    +   "8",
+    +   "9",
+    +   "10",
+    +   "11",
+    +   "12",
+        "foo",
+      ]
+
+       9 |     // In the mutated code, if b is not an object, it should still execute the rest of the function.
+      10 |     const result = AttributeMap.compose(a, b, keepNull);
+    > 11 |     expect(Object.keys(result)).toEqual(['foo']);
+         |                                 ^
+      12 |   });
+      13 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-ef0df48/testCase.test.ts:11:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.126 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-ef0df48/testCase.test.ts".

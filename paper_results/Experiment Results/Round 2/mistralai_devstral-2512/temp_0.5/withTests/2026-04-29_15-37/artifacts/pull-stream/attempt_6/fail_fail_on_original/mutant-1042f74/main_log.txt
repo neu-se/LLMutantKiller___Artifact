@@ -1,0 +1,42 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-1042f74/testCase.test.ts
+  drain mutation test
+    ✕ should expose mutation by testing synchronous callback execution order (4 ms)
+
+  ● drain mutation test › should expose mutation by testing synchronous callback execution order
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 0
+
+      Array [
+        "before-cb",
+        "after-cb",
+        "before-cb",
+        "after-cb",
+    -   "before-cb",
+    -   "after-cb",
+      ]
+
+      26 |         // In the original code, the loop should continue properly
+      27 |         // In the mutated code, the behavior changes
+    > 28 |         expect(executionOrder).toEqual([
+         |                                ^
+      29 |           'before-cb', 'after-cb',
+      30 |           'before-cb', 'after-cb',
+      31 |           'before-cb', 'after-cb'
+
+      at toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-1042f74/testCase.test.ts:28:32)
+      at done (../subject_repositories/pull-stream/sinks/drain.js:26:24)
+      at cb (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-1042f74/testCase.test.ts:11:56)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:45:8)
+      at s (../subject_repositories/pull-stream/pull.js:41:14)
+      at Object.pull (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-1042f74/testCase.test.ts:18:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.282 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-1042f74/testCase.test.ts".

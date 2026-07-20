@@ -1,0 +1,35 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-4a79492/testCase.test.ts
+  drain event with queue size check
+    ✕ should not emit drain when queue still has items (11 ms)
+
+  ● drain event with queue size check › should not emit drain when queue still has items
+
+    Drain event fired before all writes completed
+
+      29 |         // In mutated code (if true), it will fire immediately
+      30 |         if (writesCompleted < totalWrites) {
+    > 31 |           done(new Error('Drain event fired before all writes completed'));
+         |                ^
+      32 |           return;
+      33 |         }
+      34 |         if (drainFired) {
+
+      at Dirty.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-4a79492/testCase.test.ts:31:16)
+      at Object.emit [as callback] (../subject_repositories/node-dirty/lib/dirty/dirty.js:190:70)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.332 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-4a79492/testCase.test.ts".
+node:internal/process/promises:391
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+Error: Drain event never fired
+    at Timeout._onTimeout (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-4a79492/testCase.test.ts:48:22)
+    at listOnTimeout (node:internal/timers:581:17)
+    at processTimers (node:internal/timers:519:7)
+
+Node.js v20.19.4

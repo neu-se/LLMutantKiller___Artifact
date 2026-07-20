@@ -1,0 +1,39 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-d9f9f1d/testCase.test.ts[0m:[93m1[0m:[93m26[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import { GeoPoint } from "../../../../../../../../../../../subject_repositories/node-geo-point/src/geo-point.ts";
+[7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-d9f9f1d/testCase.test.ts
+  GeoPoint.fromObject
+    ✕ should throw TypeError when only latitude is missing (has longitude but not latitude) (31 ms)
+
+  ● GeoPoint.fromObject › should throw TypeError when only latitude is missing (has longitude but not latitude)
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: TypeError
+    Received constructor: RangeError
+
+    Received message: "Bad geo point arguments"
+
+          37 |   constructor(latitude: number, longitude: number) {
+          38 |     if (typeof latitude !== 'number' || typeof longitude !== 'number') {
+        > 39 |       throw new RangeError('Bad geo point arguments');
+             |             ^
+          40 |     }
+          41 |
+          42 |     if (latitude < -90 || latitude > 90) {
+
+      at new GeoPoint (../subject_repositories/node-geo-point/src/geo-point.ts:39:13)
+      at Function.fromObject (../subject_repositories/node-geo-point/src/geo-point.ts:94:12)
+      at fromObject (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-d9f9f1d/testCase.test.ts:11:16)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-d9f9f1d/testCase.test.ts:12:8)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-d9f9f1d/testCase.test.ts:12:8)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.236 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-d9f9f1d/testCase.test.ts".

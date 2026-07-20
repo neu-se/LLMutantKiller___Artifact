@@ -1,0 +1,31 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-b527940/testCase.test.ts[0m:[93m11[0m:[93m27[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'Signals'.
+
+[7m11[0m       return originalEmit(event, ...args);
+[7m  [0m [91m                          ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-b527940/testCase.test.ts
+  Q unhandledRejection
+    ✕ emits unhandledRejection for second rejected promise (106 ms)
+
+  ● Q unhandledRejection › emits unhandledRejection for second rejected promise
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 2
+    Received: 1
+
+      22 |     // Original (index !== -1): both p1 (index 0) and p2 (index 1) emit → length 2
+      23 |     // Mutated (index !== 1): p1 (index 0, 0!==1=true) emits, p2 (index 1, 1!==1=false) does NOT → length 1
+    > 24 |     expect(emittedPromises.length).toBe(2);
+         |                                    ^
+      25 |     expect(emittedPromises).toContain(p1);
+      26 |     expect(emittedPromises).toContain(p2);
+      27 |   });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-b527940/testCase.test.ts:24:36)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.451 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-b527940/testCase.test.ts".

@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-1042f74/testCase.test.ts
+  drain sink
+    ✕ handles stream where first read is async and subsequent reads are sync (2 ms)
+
+  ● drain sink › handles stream where first read is async and subsequent reads are sync
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 4
+    Received: 3
+
+      29 |         expect(err).toBeNull();
+      30 |         expect(collected).toEqual([1, 2]);
+    > 31 |         expect(callCount).toBe(4); // 1 async + 2 sync data + 1 end
+         |                           ^
+      32 |         done();
+      33 |       }
+      34 |     );
+
+      at toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-1042f74/testCase.test.ts:31:27)
+      at done (../subject_repositories/pull-stream/sinks/drain.js:26:24)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-1042f74/testCase.test.ts:21:9)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at next (../subject_repositories/pull-stream/sinks/drain.js:37:15)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-1042f74/testCase.test.ts:16:31)
+      at Object.firstCallback (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-1042f74/testCase.test.ts:39:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.549 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-1042f74/testCase.test.ts".

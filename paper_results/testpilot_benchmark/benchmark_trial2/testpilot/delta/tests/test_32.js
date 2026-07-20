@@ -1,0 +1,26 @@
+let mocha = require('mocha');
+let assert = require('assert');
+let Delta = require('quill-delta');
+
+describe('test quill_delta', function() {
+    it('test quill-delta.OpIterator.prototype.peek - basic functionality', function(done) {
+        // Create a delta with some operations
+        let delta = new Delta([
+            { insert: 'Hello' },
+            { insert: ' ', attributes: { bold: true } },
+            { insert: 'World' }
+        ]);
+        
+        let iterator = new Delta.OpIterator(delta.ops);
+        
+        // Peek should return the first operation without advancing
+        let peeked = iterator.peek();
+        assert.deepEqual(peeked, { insert: 'Hello' });
+        
+        // Peek again should return the same operation
+        let peekedAgain = iterator.peek();
+        assert.deepEqual(peekedAgain, { insert: 'Hello' });
+        
+        done();
+    });
+});

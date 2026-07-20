@@ -1,0 +1,55 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-4a79492/testCase.test.ts[0m:[93m4[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m4[0m import * as rimraf from 'rimraf';
+[7m [0m [91m                        ~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-4a79492/testCase.test.ts[0m:[93m8[0m:[93m11[0m - [91merror[0m[90m TS2749: [0m'Dirty' refers to a value, but is being used as a type here. Did you mean 'typeof Dirty'?
+
+[7m8[0m   let db: Dirty;
+[7m [0m [91m          ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-4a79492/testCase.test.ts (6.282 s)
+  drain event emission timing
+    ✕ should emit drain only when queue is empty and no writes are in flight (5002 ms)
+
+  ● drain event emission timing › should emit drain only when queue is empty and no writes are in flight
+
+    TypeError: done.fail is not a function
+
+      26 |         // In mutated code (if true), it will fire immediately
+      27 |         if (!writeCompleted) {
+    > 28 |           done.fail('Drain event fired before writes completed');
+         |                ^
+      29 |           return;
+      30 |         }
+      31 |         drainFired = true;
+
+      at Dirty.fail (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-4a79492/testCase.test.ts:28:16)
+      at Object.emit [as callback] (../subject_repositories/node-dirty/lib/dirty/dirty.js:190:70)
+
+  ● drain event emission timing › should emit drain only when queue is empty and no writes are in flight
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      16 |   });
+      17 |
+    > 18 |   it('should emit drain only when queue is empty and no writes are in flight', (done) => {
+         |   ^
+      19 |     db = new Dirty(testFile);
+      20 |     db.on('load', () => {
+      21 |       let drainFired = false;
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-4a79492/testCase.test.ts:18:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-4a79492/testCase.test.ts:6:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.431 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-4a79492/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

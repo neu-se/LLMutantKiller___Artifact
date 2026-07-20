@@ -1,0 +1,30 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-2b12188/testCase.test.ts
+  Complex acosh mutation test
+    ✕ should correctly handle acosh computation when imaginary part is non-zero (1 ms)
+
+  ● Complex acosh mutation test › should correctly handle acosh computation when imaginary part is non-zero
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 1.0001435424737974
+    Received: 1.2213572639376833
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   0.22121372146388585
+
+       7 |     // The mutation changes res['im'] to res[""] which will cause incorrect behavior
+       8 |     // We verify the imaginary part is correctly computed
+    >  9 |     expect(result.im).toBeCloseTo(1.0001435424737974, 10);
+         |                       ^
+      10 |   });
+      11 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-2b12188/testCase.test.ts:9:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.056 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-2b12188/testCase.test.ts".

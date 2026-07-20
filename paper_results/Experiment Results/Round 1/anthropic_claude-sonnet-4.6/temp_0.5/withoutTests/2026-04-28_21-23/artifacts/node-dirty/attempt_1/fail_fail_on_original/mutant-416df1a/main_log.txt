@@ -1,0 +1,49 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-416df1a/testCase.test.ts[0m:[93m5[0m:[93m24[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m5[0m import { rimraf } from 'rimraf';
+[7m [0m [91m                       ~~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-416df1a/testCase.test.ts[0m:[93m17[0m:[93m7[0m - [91merror[0m[90m TS18047: [0m'db._writeStream' is possibly 'null'.
+
+[7m17[0m       db._writeStream.destroy();
+[7m  [0m [91m      ~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-416df1a/testCase.test.ts (6.722 s)
+  Dirty error emission without callback
+    ✕ should emit error when write fails and no callback is provided (5003 ms)
+
+  ● Dirty error emission without callback › should emit error when write fails and no callback is provided
+
+    TypeError: (0 , rimraf_1.rimraf) is not a function
+
+      24 |           errorEmitted = true;
+      25 |           // Clean up
+    > 26 |           rimraf(tmpDir).then(() => {
+         |                 ^
+      27 |             done();
+      28 |           });
+      29 |         });
+
+      at Dirty.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-416df1a/testCase.test.ts:26:17)
+      at emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:189:46)
+
+  ● Dirty error emission without callback › should emit error when write fails and no callback is provided
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       7 |
+       8 | describe('Dirty error emission without callback', () => {
+    >  9 |   it('should emit error when write fails and no callback is provided', (done) => {
+         |   ^
+      10 |     const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'dirty-test-'));
+      11 |     const dbPath = path.join(tmpDir, 'test.db');
+      12 |     
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-416df1a/testCase.test.ts:9:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-416df1a/testCase.test.ts:8:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.966 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-416df1a/testCase.test.ts".

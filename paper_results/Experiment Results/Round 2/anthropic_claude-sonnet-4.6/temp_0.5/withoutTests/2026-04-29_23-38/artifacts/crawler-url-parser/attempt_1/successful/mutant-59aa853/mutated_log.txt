@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-59aa853/testCase.test.ts
+  extract function - duplicate URL text accumulation
+    ✕ should accumulate text from duplicate URLs when text is different (10 ms)
+
+  ● extract function - duplicate URL text accumulation › should accumulate text from duplicate URLs when text is different
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "First Link Second Link"
+    Received: "First Link"
+
+      20 |     // it appends the new text. So "First Link" + " " + "Second Link" = "First Link Second Link"
+      21 |     // In the mutated code (if false), the text never gets appended, so it stays as "First Link"
+    > 22 |     expect(pageLink!.text).toBe('First Link Second Link');
+         |                            ^
+      23 |   });
+      24 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-59aa853/testCase.test.ts:22:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.726 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-59aa853/testCase.test.ts".

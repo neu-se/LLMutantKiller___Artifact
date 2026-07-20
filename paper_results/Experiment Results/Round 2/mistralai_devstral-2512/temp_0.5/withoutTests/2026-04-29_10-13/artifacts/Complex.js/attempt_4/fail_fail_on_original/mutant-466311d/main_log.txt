@@ -1,0 +1,30 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-466311d/testCase.test.ts
+  Complex.logHypot mutation test
+    ✕ should correctly compute logHypot for large values (2 ms)
+
+  ● Complex.logHypot mutation test › should correctly compute logHypot for large values
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 9.01750913157019
+    Received: 8.324361951010244
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   0.6931471805599454
+
+      20 |     // The original code should use overflow-safe calculation when _a >= 3000
+      21 |     // The mutated code will incorrectly use simple calculation
+    > 22 |     expect(result.re).toBeCloseTo(overflowSafeCalc, 10);
+         |                       ^
+      23 |   });
+      24 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-466311d/testCase.test.ts:22:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.218 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-466311d/testCase.test.ts".

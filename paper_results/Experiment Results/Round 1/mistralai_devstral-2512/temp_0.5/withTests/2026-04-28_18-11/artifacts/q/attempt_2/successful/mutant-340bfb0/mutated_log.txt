@@ -1,0 +1,29 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-340bfb0/testCase.test.ts
+  makeStackTraceLong mutation test
+    ✕ should properly set __minimumStackCounter__ property on error object (4 ms)
+
+  ● makeStackTraceLong mutation test › should properly set __minimumStackCounter__ property on error object
+
+    expect(received).toHaveProperty(path)
+    Expected path: "__minimumStackCounter__"
+    Received path: []
+    Received value: [Error: Test error]
+
+      19 |       await promise2.catch((e: Error) => {
+      20 |         // Check that the error object has the expected property set
+    > 21 |         expect(e).toHaveProperty("__minimumStackCounter__");
+         |                   ^
+      22 |         expect(typeof (e as any).__minimumStackCounter__).toBe("number");
+      23 |         expect((e as any).__minimumStackCounter__).toBeGreaterThan(0);
+      24 |       });
+
+      at toHaveProperty (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-340bfb0/testCase.test.ts:21:19)
+      From previous event:
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-340bfb0/testCase.test.ts:19:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.542 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-340bfb0/testCase.test.ts".

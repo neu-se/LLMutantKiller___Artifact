@@ -1,0 +1,42 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-e59db35/testCase.test.ts
+  flatten abort behavior
+    ✕ should abort stream of streams with truthy error value (2 ms)
+
+  ● flatten abort behavior › should abort stream of streams with truthy error value
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: null
+
+      10 |         // In original: err will be true (truthy)
+      11 |         // In mutated: err will be null (falsy)
+    > 12 |         expect(err).toBe(true);
+         |                     ^
+      13 |         done();
+      14 |       })
+      15 |     );
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-e59db35/testCase.test.ts:12:21)
+      at onAbort (../subject_repositories/pull-stream/util/abort-cb.js:3:14)
+      at abortCb (../subject_repositories/pull-stream/sources/values.js:17:14)
+      at read (../subject_repositories/pull-stream/throughs/flatten.js:13:11)
+      at cb (../subject_repositories/pull-stream/util/abort-cb.js:2:3)
+      at abortCb (../subject_repositories/pull-stream/sources/values.js:17:14)
+      at _read (../subject_repositories/pull-stream/throughs/flatten.js:12:17)
+      at read (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-e59db35/testCase.test.ts:22:7)
+      at cb (../subject_repositories/pull-stream/throughs/flatten.js:28:16)
+      at cb (../subject_repositories/pull-stream/sources/values.js:21:7)
+      at _read (../subject_repositories/pull-stream/throughs/flatten.js:20:9)
+      at nextChunk (../subject_repositories/pull-stream/throughs/flatten.js:41:11)
+      at cb (../subject_repositories/pull-stream/sources/values.js:21:7)
+      at read (../subject_repositories/pull-stream/throughs/flatten.js:33:9)
+      at nextStream (../subject_repositories/pull-stream/throughs/flatten.js:17:12)
+      at Object.read (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-e59db35/testCase.test.ts:17:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.502 s, estimated 7 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-e59db35/testCase.test.ts".

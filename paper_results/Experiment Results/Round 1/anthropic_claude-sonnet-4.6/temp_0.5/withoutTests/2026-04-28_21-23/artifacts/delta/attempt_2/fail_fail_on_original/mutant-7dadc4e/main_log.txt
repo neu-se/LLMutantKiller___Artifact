@@ -1,0 +1,36 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-7dadc4e/testCase.test.ts
+  Delta transform
+    ✕ should correctly transform retain ops producing length-based retain when otherData is a number (6 ms)
+
+  ● Delta transform › should correctly transform retain ops producing length-based retain when otherData is a number
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        Object {
+    -     "retain": 5,
+    +     "retain": 8,
+        },
+        Object {
+          "insert": "X",
+        },
+      ]
+
+      43 |     const b = new Delta().retain(3).insert('X');
+      44 |     const result = a.transform(b, true);
+    > 45 |     expect(result.ops).toEqual([{ retain: 5 }, { insert: 'X' }]);
+         |                        ^
+      46 |   });
+      47 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-7dadc4e/testCase.test.ts:45:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.761 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-7dadc4e/testCase.test.ts".

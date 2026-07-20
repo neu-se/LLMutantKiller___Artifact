@@ -1,0 +1,32 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_9/pending_category/mutant-4380dfa/testCase.test.ts
+  extract
+    ✕ should handle protocol-relative links with no source URL (1 ms)
+
+  ● extract › should handle protocol-relative links with no source URL
+
+    TypeError: Cannot read properties of null (reading 'replace')
+
+      33 | 	if (baseUrlStr && _has_illegal_chars(baseUrlStr)) return null;
+      34 |
+    > 35 | 	currentUrlStr = currentUrlStr.replace(/^\/\//, 'http://');
+         | 	                              ^
+      36 | 	currentUrlStr = currentUrlStr.replace(/#.*$/, '');
+      37 |
+      38 | 	if (baseUrlStr) {
+
+      at replace (../subject_repositories/crawler-url-parser/crawler-url-parser.js:35:32)
+      at parse (../subject_repositories/crawler-url-parser/crawler-url-parser.js:85:16)
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_9/pending_category/mutant-4380dfa/testCase.test.ts:6:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.215 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_9/pending_category/mutant-4380dfa/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

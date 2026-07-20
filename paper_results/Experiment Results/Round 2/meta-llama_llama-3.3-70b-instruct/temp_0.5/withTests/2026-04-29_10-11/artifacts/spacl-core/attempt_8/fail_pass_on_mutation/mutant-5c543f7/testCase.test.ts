@@ -1,0 +1,10 @@
+import { Matcher } from '../../../../../../../../../../../subject_repositories/spacl-core/src/matcher';
+import { describe, it } from '@jest/globals';
+import { strictEqual } from 'assert';
+
+describe('Matcher', () => {
+  it('should reject path spec with invalid capture segments', () => {
+    const spec = '/:';
+    expect(() => Matcher.for(spec)).toThrowError('Path contains malformed captures');
+  });
+});

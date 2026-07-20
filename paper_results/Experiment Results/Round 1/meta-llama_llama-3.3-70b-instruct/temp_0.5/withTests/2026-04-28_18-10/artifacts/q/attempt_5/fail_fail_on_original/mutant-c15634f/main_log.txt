@@ -1,0 +1,39 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-c15634f/testCase.test.ts
+  deprecate function
+    ✕ should call the callback with a deprecation warning when console is defined (2 ms)
+    ✕ should not call console.warn when console is not defined
+
+  ● deprecate function › should call the callback with a deprecation warning when console is defined
+
+    TypeError: deprecate(...) is not a function
+
+      11 |             return callback();
+      12 |         };
+    > 13 |         deprecate(callback, 'test', 'alternative')();
+         |                                                   ^
+      14 |
+      15 |         expect(callback).toHaveBeenCalledTimes(1);
+      16 |         expect(console.warn).toHaveBeenCalledTimes(1);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-c15634f/testCase.test.ts:13:51)
+
+  ● deprecate function › should not call console.warn when console is not defined
+
+    TypeError: deprecate(...) is not a function
+
+      32 |             return callback();
+      33 |         };
+    > 34 |         deprecate(callback, 'test', 'alternative')();
+         |                                                   ^
+      35 |
+      36 |         expect(callback).toHaveBeenCalledTimes(1);
+      37 |
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-c15634f/testCase.test.ts:34:51)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        2.769 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-c15634f/testCase.test.ts".

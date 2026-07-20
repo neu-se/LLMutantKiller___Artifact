@@ -1,0 +1,72 @@
+Your task is to write a Jest test case that exposes a specific mutation in a JavaScript/TypeScript project.
+
+MUTATION DETAILS
+The mutation affects the following file:
+throughs/take.js
+Here is the full content of that file (shown with a <PLACEHOLDER> marker):
+'use strict'
+
+//read a number of items and then stop.
+module.exports = function take (test, opts) {
+  opts = opts || {}
+  var last = opts.last || false // whether the first item for which !test(item) should still pass
+  var ended = false
+  if('number' === typeof test) {
+    last = true
+    var n = test; test = function () {
+      return --n
+    }
+  }
+
+  return function (read) {
+
+    function terminate (cb) {
+      read(true, function (err) {
+           last = false; cb(true)
+
+      })
+    }
+
+    return function (end, cb) {
+      if(ended && !end) last ? terminate(cb) : cb(ended)
+      else if(ended = end) read(ended, cb)
+      else
+        <PLACEHOLDER>
+          }
+          else if(!test(data)) {
+            ended = true
+            last ? cb(null, data) : terminate(cb)
+          }
+          else
+            cb(null, data)
+        })
+    }
+  }
+}
+
+In the original code, <PLACEHOLDER> has the value:
+
+-             if(ended = ended || end) {
+-               //last ? terminate(cb) :
+-               cb(ended)
+-             }
+In the mutated code, <PLACEHOLDER> has the value:
+
++             if(ended = ended || end) {}
+
+
+YOUR TASK
+Write one Jest test file that:
+    1. Passes when run against the original code.
+    2. Fails when run against the mutated code.
+    3. Tests the behavior of the mutated file in a way that reliably detects the mutation.
+The test will be saved at the following path, relative to this test-generation project’s root:
+llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-e7b88d9/testCase.test.ts
+
+ALLOWED LIBRARIES
+You may use:
+    1. Any built-in Node.js modules (e.g., fs, path, crypto, etc.).
+    
+You may not use any other third-party libraries.
+
+

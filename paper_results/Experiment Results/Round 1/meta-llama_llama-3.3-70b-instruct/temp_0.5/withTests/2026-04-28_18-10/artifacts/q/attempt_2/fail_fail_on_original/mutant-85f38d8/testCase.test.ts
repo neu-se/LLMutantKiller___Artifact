@@ -1,0 +1,11 @@
+import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+
+describe("Q.isRejected function", () => {
+    it("should return true for a rejected promise and false for a non-rejected promise", () => {
+        const rejectedPromise = Q.reject(new Error("Test error"));
+        const nonRejectedPromise = Q(10);
+
+        expect(Q.isRejected(rejectedPromise)).toBe(true);
+        expect(Q.isRejected(nonRejectedPromise)).toBe(false);
+    });
+});

@@ -1,0 +1,33 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-2b36f89/testCase.test.ts[0m:[93m5[0m:[93m8[0m - [91merror[0m[90m TS7041: [0mThe containing arrow function captures the global value of 'this'.
+
+[7m5[0m     })(this);
+[7m [0m [91m       ~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-2b36f89/testCase.test.ts[0m:[93m6[0m:[93m25[0m - [91merror[0m[90m TS2351: [0mThis expression is not constructable.
+  Type 'void' has no construct signatures.
+
+[7m6[0m     const complex = new Complex(1, 1);
+[7m [0m [91m                        ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-2b36f89/testCase.test.ts
+  Complex
+    ✕ should calculate csc correctly (1 ms)
+
+  ● Complex › should calculate csc correctly
+
+    TypeError: Complex is not a constructor
+
+      4 |       // implementation of Complex class
+      5 |     })(this);
+    > 6 |     const complex = new Complex(1, 1);
+        |                     ^
+      7 |     const csc = complex.csc();
+      8 |     const expectedRe = Math.sin(1) * Math.cosh(1) / (0.5 * Math.cosh(2 * 1) - 0.5 * Math.cos(2 * 1));
+      9 |     const expectedIm = -Math.cos(1) * Math.sinh(1) / (0.5 * Math.cosh(2 * 1) - 0.5 * Math.cos(2 * 1));
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-2b36f89/testCase.test.ts:6:21)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.582 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-2b36f89/testCase.test.ts".

@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-3fc0f55/testCase.test.ts[0m:[93m6[0m:[93m55[0m - [91merror[0m[90m TS2345: [0mArgument of type '(done: DoneCallback) => Promise<void>' is not assignable to parameter of type 'ProvidesCallback | undefined'.
+  Type '(done: DoneCallback) => Promise<void>' is not assignable to type '(cb: DoneCallback) => void | undefined'.
+    Type 'Promise<void>' is not assignable to type 'void'.
+
+[7m6[0m   it('should emit drain event after write and flush', async function (done) {
+[7m [0m [91m                                                      ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-3fc0f55/testCase.test.ts
+  dirty
+    ✕ should emit drain event after write and flush (13 ms)
+
+  ● dirty › should emit drain event after write and flush
+
+    Test functions cannot both take a 'done' callback and return something. Either use a 'done' callback, or return a promise.
+    Returned value: Promise {}
+
+      4 |
+      5 | describe('dirty', function () {
+    > 6 |   it('should emit drain event after write and flush', async function (done) {
+        |   ^
+      7 |     const file = join(__dirname, 'test.dirty');
+      8 |     const db = new Dirty(file);
+      9 |
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-3fc0f55/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-3fc0f55/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.394 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-3fc0f55/testCase.test.ts".

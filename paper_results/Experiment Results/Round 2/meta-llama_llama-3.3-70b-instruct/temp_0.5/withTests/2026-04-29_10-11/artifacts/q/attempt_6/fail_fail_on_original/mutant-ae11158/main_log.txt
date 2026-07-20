@@ -1,0 +1,40 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-ae11158/testCase.test.ts[0m:[93m7[0m:[93m11[0m - [91merror[0m[90m TS2540: [0mCannot assign to 'nfapply' because it is a read-only property.
+
+[7m7[0m         q.nfapply = function (callback, args) {
+[7m [0m [91m          ~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-ae11158/testCase.test.ts[0m:[93m7[0m:[93m31[0m - [91merror[0m[90m TS7006: [0mParameter 'callback' implicitly has an 'any' type.
+
+[7m7[0m         q.nfapply = function (callback, args) {
+[7m [0m [91m                              ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-ae11158/testCase.test.ts[0m:[93m7[0m:[93m41[0m - [91merror[0m[90m TS7006: [0mParameter 'args' implicitly has an 'any' type.
+
+[7m7[0m         q.nfapply = function (callback, args) {
+[7m [0m [91m                                        ~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-ae11158/testCase.test.ts[0m:[93m13[0m:[93m11[0m - [91merror[0m[90m TS2540: [0mCannot assign to 'nfapply' because it is a read-only property.
+
+[7m13[0m         q.nfapply = originalNfapply;
+[7m  [0m [91m          ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-ae11158/testCase.test.ts
+  Q.nfapply function
+    ✕ should call the provided function with the given arguments when nfapply is implemented (1 ms)
+
+  ● Q.nfapply function › should call the provided function with the given arguments when nfapply is implemented
+
+    TypeError: Cannot set property nfapply of #<Object> which has only a getter
+
+       5 |         const originalNfapply = q.nfapply;
+       6 |         const callback = jest.fn();
+    >  7 |         q.nfapply = function (callback, args) {
+         |                  ^
+       8 |             callback(...args);
+       9 |         };
+      10 |         q.nfapply(callback, [1, 2, 3]);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-ae11158/testCase.test.ts:7:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.663 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-ae11158/testCase.test.ts".

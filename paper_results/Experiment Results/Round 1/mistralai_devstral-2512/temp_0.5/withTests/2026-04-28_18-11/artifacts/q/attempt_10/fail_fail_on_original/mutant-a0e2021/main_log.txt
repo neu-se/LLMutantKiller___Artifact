@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-a0e2021/testCase.test.ts
+  Q long stack support initialization
+    ✕ should correctly handle process.env.Q_DEBUG check (3 ms)
+
+  ● Q long stack support initialization › should correctly handle process.env.Q_DEBUG check
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: "1"
+
+      10 |     process.env.Q_DEBUG = "1";
+      11 |     const condition1 = typeof process === "object" && process && process.env && process.env.Q_DEBUG;
+    > 12 |     expect(condition1).toBe(true);
+         |                        ^
+      13 |
+      14 |     // Test case 2: Edge case where process.env exists but is empty
+      15 |     process.env = {};
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-a0e2021/testCase.test.ts:12:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.765 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-a0e2021/testCase.test.ts".

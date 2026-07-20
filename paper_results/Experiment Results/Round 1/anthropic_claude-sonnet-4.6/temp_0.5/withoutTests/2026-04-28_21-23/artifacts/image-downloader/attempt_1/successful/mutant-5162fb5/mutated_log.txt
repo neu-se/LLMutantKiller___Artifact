@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/image-downloader/index.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/image-downloader/index.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-5162fb5/testCase.test.ts
+  image downloader relative path resolution
+    ✕ should resolve relative dest path to absolute path when dest is relative (50 ms)
+
+  ● image downloader relative path resolution › should resolve relative dest path to absolute path when dest is relative
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      33 |       // In original code, dest is resolved to absolute path
+      34 |       // The result filename should be an absolute path
+    > 35 |       expect(path.isAbsolute(result.filename)).toBe(true);
+         |                                                ^
+      36 |       
+      37 |       // The file should exist at the resolved absolute path
+      38 |       expect(fs.existsSync(result.filename)).toBe(true);
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-5162fb5/testCase.test.ts:35:48)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.918 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-5162fb5/testCase.test.ts".

@@ -1,0 +1,33 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-8ceacd5/testCase.test.ts
+  pull function
+    ✕ should throw an error when more than 4 arguments are passed to the partial sink (3 ms)
+
+  ● pull function › should throw an error when more than 4 arguments are passed to the partial sink
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "partial sink should only be called once!"
+
+    Received function did not throw
+
+      11 |
+      12 |     const partialSink = pull(arg1);
+    > 13 |     expect(() => partialSink(read, arg2, arg3, arg4, arg5)).toThrowError('partial sink should only be called once!');
+         |                                                             ^
+      14 |   });
+      15 | });
+
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-8ceacd5/testCase.test.ts:13:61)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.313 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-8ceacd5/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

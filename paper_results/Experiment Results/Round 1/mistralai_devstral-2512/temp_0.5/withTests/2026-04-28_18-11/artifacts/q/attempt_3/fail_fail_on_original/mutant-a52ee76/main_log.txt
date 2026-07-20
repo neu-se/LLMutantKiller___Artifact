@@ -1,0 +1,38 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-a52ee76/testCase.test.ts[0m:[93m26[0m:[93m15[0m - [91merror[0m[90m TS7006: [0mParameter 'error' implicitly has an 'any' type.
+
+[7m26[0m       .catch((error) => {
+[7m  [0m [91m              ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-a52ee76/testCase.test.ts
+  Q long stack support configuration
+    ✕ should enable long stack support when Q_DEBUG environment variable is set (3 ms)
+
+  ● Q long stack support configuration › should enable long stack support when Q_DEBUG environment variable is set
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      31 |         // In original code with Q_DEBUG=1, long stack support should be enabled
+      32 |         // In mutated code, it won't be enabled even with Q_DEBUG=1
+    > 33 |         expect(hasLongStack).toBe(true);
+         |                              ^
+      34 |
+      35 |         // Clean up
+      36 |         process.env.Q_DEBUG = originalEnv;
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-a52ee76/testCase.test.ts:33:30)
+      at rejected (../subject_repositories/q/q.js:864:24)
+      at _rejected (../subject_repositories/q/q.js:890:30)
+      at Promise.rejected (../subject_repositories/q/q.js:1142:31)
+      at Promise.apply [as promiseDispatch] (../subject_repositories/q/q.js:808:41)
+      at promiseDispatch (../subject_repositories/q/q.js:877:14)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.966 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-a52ee76/testCase.test.ts".

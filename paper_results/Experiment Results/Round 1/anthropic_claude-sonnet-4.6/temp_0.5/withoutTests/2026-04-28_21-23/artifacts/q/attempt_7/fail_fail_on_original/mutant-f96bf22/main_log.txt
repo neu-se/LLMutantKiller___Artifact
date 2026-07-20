@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-f96bf22/testCase.test.ts
+  filterStackString mutation detection
+    ✕ long stack trace line count should differ between filtered and unfiltered (5 ms)
+
+  ● filterStackString mutation detection › long stack trace line count should differ between filtered and unfiltered
+
+    expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 2
+    Received:    15
+
+      51 |     // Original: internal Q frames filtered -> filteredLineCount <= rawLineCount  
+      52 |     // Mutated: all frames kept -> filteredLineCount > rawLineCount (more frames from Q internals)
+    > 53 |     expect(filteredLineCount).toBeLessThanOrEqual(rawLineCount);
+         |                               ^
+      54 |   });
+      55 | });
+
+      at Object.toBeLessThanOrEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-f96bf22/testCase.test.ts:53:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        4.07 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-f96bf22/testCase.test.ts".

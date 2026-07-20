@@ -1,0 +1,35 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-c420d61/testCase.test.ts
+  q
+    ✕ should filter out Node.js stack frames (4 ms)
+
+  ● q › should filter out Node.js stack frames
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "isInternalFrame"
+    Received string:    "Error: Test error
+
+      3 | describe("q", () => {
+      4 |     it("should filter out Node.js stack frames", () => {
+    > 5 |         const error = new Error("Test error");
+        |                       ^
+      6 |
+      7 |         // Simulate a promise chain
+      8 |         const promise = q(10)
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-c420d61/testCase.test.ts:5:23)
+      at toContain (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-c420d61/testCase.test.ts:14:31)
+      at rejected (../subject_repositories/q/q.js:864:24)
+      at _rejected (../subject_repositories/q/q.js:890:30)
+      at Promise.rejected (../subject_repositories/q/q.js:1142:31)
+      at Promise.apply [as promiseDispatch] (../subject_repositories/q/q.js:808:41)
+      at apply (../subject_repositories/q/q.js:570:49)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.877 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-c420d61/testCase.test.ts".

@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-1fb1f37/testCase.test.ts
+  cosh small value branch
+    ✕ should correctly compute tanh for a number with tiny real part using cosh small-value branch (2 ms)
+
+  ● cosh small value branch › should correctly compute tanh for a number with tiny real part using cosh small-value branch
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not 1
+
+      23 |     // Original: im ≈ 1 - 1e-10 = 0.9999999999
+      24 |     // Mutated:  im ≈ 1.0
+    > 25 |     expect(result.im).not.toBe(1);
+         |                           ^
+      26 |     expect(result.im).toBeCloseTo(1 - 1e-10, 11);
+      27 |   });
+      28 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-1fb1f37/testCase.test.ts:25:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.377 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-1fb1f37/testCase.test.ts".

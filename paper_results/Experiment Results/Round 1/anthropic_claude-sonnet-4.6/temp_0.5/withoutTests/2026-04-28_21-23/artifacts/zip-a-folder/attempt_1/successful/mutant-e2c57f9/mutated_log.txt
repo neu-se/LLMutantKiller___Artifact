@@ -1,0 +1,35 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-e2c57f9/testCase.test.ts[0m:[93m4[0m:[93m10[0m - [91merror[0m[90m TS2617: [0m'rimraf' can only be imported by using 'import rimraf = require("rimraf")' or by turning on the 'esModuleInterop' flag and using a default import.
+
+[7m4[0m import { rimraf } from 'rimraf';
+[7m [0m [91m         ~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-e2c57f9/testCase.test.ts[0m:[93m5[0m:[93m47[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m5[0m import { ZipAFolder, COMPRESSION_LEVEL } from '../../../../../../../../../../../subject_repositories/zip-a-folder/lib/ZipAFolder.ts';
+[7m [0m [91m                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-e2c57f9/testCase.test.ts
+  ZipAFolder uncompressed zip store option
+    ✕ should store files without compression (store: true) when using COMPRESSION_LEVEL.uncompressed (12 ms)
+
+  ● ZipAFolder uncompressed zip store option › should store files without compression (store: true) when using COMPRESSION_LEVEL.uncompressed
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 8
+
+      49 |             // With store: true, compression method should be 0 (stored)
+      50 |             // With store: false, compression method would be 8 (deflated)
+    > 51 |             expect(compressionMethod).toBe(0);
+         |                                       ^
+      52 |         } finally {
+      53 |             await rimraf(tmpDir);
+      54 |         }
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-e2c57f9/testCase.test.ts:51:39)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.993 s, estimated 1 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-e2c57f9/testCase.test.ts".

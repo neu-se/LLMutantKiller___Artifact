@@ -1,0 +1,35 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-ae6d9ca/testCase.test.ts[0m:[93m7[0m:[93m38[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'AttributeMap'.
+
+[7m7[0m     const result = AttributeMap.diff(a, b);
+[7m [0m [91m                                     ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-ae6d9ca/testCase.test.ts
+  AttributeMap
+    ✕ diff() should handle non-object input correctly (4 ms)
+
+  ● AttributeMap › diff() should handle non-object input correctly
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 0
+
+      Object {
+        "bold": true,
+    -   "string": null,
+      }
+
+       6 |     const b = { bold: true };
+       7 |     const result = AttributeMap.diff(a, b);
+    >  8 |     expect(result).toEqual({ bold: true, [a]: null });
+         |                    ^
+       9 |   });
+      10 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-ae6d9ca/testCase.test.ts:8:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.644 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-ae6d9ca/testCase.test.ts".

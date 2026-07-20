@@ -1,0 +1,52 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-af25bdc/testCase.test.ts[0m:[93m2[0m:[93m41[0m - [91merror[0m[90m TS2307: [0mCannot find module './crawler-url-parser.js' or its corresponding type declarations.
+
+[7m2[0m import { parse, extract, gettype } from './crawler-url-parser.js';
+[7m [0m [91m                                        ~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+node:internal/modules/cjs/loader:1215
+  throw err;
+  ^
+
+Error: Cannot find module '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/crawler-url-parser.js'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1212:15)
+    at Module._load (node:internal/modules/cjs/loader:1043:27)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v20.19.4
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-af25bdc/testCase.test.ts
+  crawler-url-parser
+    ✕ should not log empty string when run as main module (57 ms)
+
+  ● crawler-url-parser › should not log empty string when run as main module
+
+    Command failed: node ./crawler-url-parser.js
+    node:internal/modules/cjs/loader:1215
+      throw err;
+      ^
+
+    Error: Cannot find module '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/crawler-url-parser.js'
+
+      15 |     // This will trigger the module's main execution block
+      16 |     const modulePath = './crawler-url-parser.js';
+    > 17 |     execSync(`node ${modulePath}`, { encoding: 'utf8' });
+         |             ^
+      18 |
+      19 |     // Restore original console.log
+      20 |     console.log = originalLog;
+
+      at node:internal/main/run_main_module:28:49 {
+        code: 'MODULE_NOT_FOUND',
+        requireStack: []
+      }
+      Node.js v20.19.4
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-af25bdc/testCase.test.ts:17:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.81 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-af25bdc/testCase.test.ts".

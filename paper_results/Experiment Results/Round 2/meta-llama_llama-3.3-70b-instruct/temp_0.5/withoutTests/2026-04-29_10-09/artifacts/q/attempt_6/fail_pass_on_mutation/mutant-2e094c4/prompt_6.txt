@@ -1,0 +1,40 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-2e094c4/testCase.test.ts[0m:[93m12[0m:[93m31[0m - [91merror[0m[90m TS18046: [0m'e' is of type 'unknown'.
+
+[7m12[0m                 hasStacks = !!e.stack;
+[7m  [0m [91m                              ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-2e094c4/testCase.test.ts[0m:[93m16[0m:[93m43[0m - [91merror[0m[90m TS2339: [0mProperty 'getFileNameAndLineNumber' does not exist on type 'typeof export='.
+
+[7m16[0m             var fileNameAndLineNumber = q.getFileNameAndLineNumber(stackLine);
+[7m  [0m [91m                                          ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-2e094c4/testCase.test.ts
+  Q
+    ✕ should correctly identify Node.js frames in stack traces (2 ms)
+
+  ● Q › should correctly identify Node.js frames in stack traces
+
+    TypeError: q.getFileNameAndLineNumber is not a function
+
+      14 |             var qStartingLine = 0;
+      15 |             var qFileName = '';
+    > 16 |             var fileNameAndLineNumber = q.getFileNameAndLineNumber(stackLine);
+         |                                           ^
+      17 |             if (!fileNameAndLineNumber) {
+      18 |                 return false;
+      19 |             }
+
+      at getFileNameAndLineNumber (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-2e094c4/testCase.test.ts:16:43)
+          at Array.some (<anonymous>)
+      at Object.some (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-2e094c4/testCase.test.ts:26:43)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.218 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-2e094c4/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

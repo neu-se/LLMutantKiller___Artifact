@@ -1,0 +1,38 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-b973647/testCase.test.ts[0m:[93m2[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"fs"' has no exported member 'fs'.
+
+[7m2[0m import { fs } from 'fs';
+[7m [0m [91m         ~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-b973647/testCase.test.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2616: [0m'assert' can only be imported by using 'import assert = require("assert")' or a default import.
+
+[7m3[0m import { assert } from 'assert';
+[7m [0m [91m         ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-b973647/testCase.test.ts[0m:[93m14[0m:[93m5[0m - [91merror[0m[90m TS18047: [0m'db._readStream' is possibly 'null'.
+
+[7m14[0m     db._readStream.emit('error', errorEvent);
+[7m  [0m [91m    ~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-b973647/testCase.test.ts
+  Dirty
+    ✕ should emit an error event with a valid error message when the read stream encounters an error (27 ms)
+
+  ● Dirty › should emit an error event with a valid error message when the read stream encounters an error
+
+    Unhandled error. (Error: Test error message
+
+       9 |
+      10 |     // Create a mock error event
+    > 11 |     const errorEvent = new Error(errorMessage);
+         |                        ^
+      12 |
+      13 |     // Mock the read stream to emit an error event
+      14 |     db._readStream.emit('error', errorEvent);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-b973647/testCase.test.ts:11:24)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:118:16)
+      at Object.emit (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-b973647/testCase.test.ts:14:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.954 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-b973647/testCase.test.ts".

@@ -1,0 +1,45 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-4b16ea7/testCase.test.ts (8.971 s)
+  Q setImmediate requestTick
+    ✕ should use setImmediate bound to window when window is defined (5010 ms)
+
+  ● Q setImmediate requestTick › should use setImmediate bound to window when window is defined
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      17 |       // The difference: in original, the bound function IS setImmediate itself
+      18 |       // so `this` when setImmediate is called would be `window`
+    > 19 |       expect(calls.length).toBeGreaterThan(0);
+         |                            ^
+      20 |       done();
+      21 |     });
+      22 |   });
+
+      at toBeGreaterThan (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-4b16ea7/testCase.test.ts:19:28)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+  ● Q setImmediate requestTick › should use setImmediate bound to window when window is defined
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("Q setImmediate requestTick", () => {
+    > 4 |   it("should use setImmediate bound to window when window is defined", (done) => {
+        |   ^
+      5 |     const calls: any[] = [];
+      6 |     const originalSetImmediate = (global as any).setImmediate;
+      7 |     (global as any).setImmediate = function(...args: any[]) {
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-4b16ea7/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-4b16ea7/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        9.324 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-4b16ea7/testCase.test.ts".

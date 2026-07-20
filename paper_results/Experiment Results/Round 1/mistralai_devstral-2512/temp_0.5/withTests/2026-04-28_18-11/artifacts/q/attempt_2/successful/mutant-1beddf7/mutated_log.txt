@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-1beddf7/testCase.test.ts (6.389 s)
+  Q.promise resolver execution
+    ✕ should execute the resolver function with resolve, reject, and notify callbacks (5004 ms)
+
+  ● Q.promise resolver execution › should execute the resolver function with resolve, reject, and notify callbacks
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      18 |     // Give the promise a chance to execute
+      19 |     setTimeout(() => {
+    > 20 |       expect(resolverCalled).toBe(true);
+         |                              ^
+      21 |       expect(resolveCalled).toBe(true);
+      22 |       expect(rejectCalled).toBe(true);
+      23 |       expect(notifyCalled).toBe(true);
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-1beddf7/testCase.test.ts:20:30)
+
+  ● Q.promise resolver execution › should execute the resolver function with resolve, reject, and notify callbacks
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      3 |
+      4 | describe("Q.promise resolver execution", () => {
+    > 5 |   it("should execute the resolver function with resolve, reject, and notify callbacks", (done) => {
+        |   ^
+      6 |     let resolverCalled = false;
+      7 |     let resolveCalled = false;
+      8 |     let rejectCalled = false;
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-1beddf7/testCase.test.ts:5:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-1beddf7/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.565 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-1beddf7/testCase.test.ts".

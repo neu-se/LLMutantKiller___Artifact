@@ -1,0 +1,34 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/countries-and-timezones/attempt_4/pending_category/mutant-dc12450/testCase.test.ts[0m:[93m20[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'tz3' does not exist on type '{ tz1: { c: string[]; }; tz2: { c: string[]; }; }'.
+
+[7m20[0m     mockData.timezones.tz3 = { c: ["US"] };
+[7m  [0m [91m                       ~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/countries-and-timezones/attempt_4/pending_category/mutant-dc12450/testCase.test.ts[0m:[93m27[0m:[93m12[0m - [91merror[0m[90m TS18047: [0m'secondResult' is possibly 'null'.
+
+[7m27[0m     expect(secondResult.timezones).not.toContain("tz3");
+[7m  [0m [91m           ~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/countries-and-timezones/attempt_4/pending_category/mutant-dc12450/testCase.test.ts
+  buildCountry timezone map caching
+    ✕ should cache timezone map between calls with same data (2 ms)
+
+  ● buildCountry timezone map caching › should cache timezone map between calls with same data
+
+    expect(received).not.toContain(expected) // indexOf
+
+    Expected value: not "tz3"
+    Received array:     ["tz1", "tz3"]
+
+      25 |     // In original code: uses cached map, won't see tz3
+      26 |     // In mutated code: rebuilds map, will see tz3
+    > 27 |     expect(secondResult.timezones).not.toContain("tz3");
+         |                                        ^
+      28 |   });
+      29 | });
+
+      at Object.toContain (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/countries-and-timezones/attempt_4/pending_category/mutant-dc12450/testCase.test.ts:27:40)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.163 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/countries-and-timezones/attempt_4/pending_category/mutant-dc12450/testCase.test.ts".

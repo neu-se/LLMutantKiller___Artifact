@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-6cb4a18/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/sources/infinite.js"' has no exported member 'infinite'.
+
+[7m1[0m import { infinite } from "../../../../../../../../../../../subject_repositories/pull-stream/sources/infinite.js";
+[7m [0m [91m         ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-6cb4a18/testCase.test.ts[0m:[93m2[0m:[93m23[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../../../../../../../../subject_repositories/pull-stream/throughs/drain.js' or its corresponding type declarations.
+
+[7m2[0m import { drain } from "../../../../../../../../../../../subject_repositories/pull-stream/throughs/drain.js";
+[7m [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-6cb4a18/testCase.test.ts
+  infinite
+    ✕ should call cb with end when end is true (1 ms)
+
+  ● infinite › should call cb with end when end is true
+
+    TypeError: (0 , infinite_js_1.infinite) is not a function
+
+       5 |   it('should call cb with end when end is true', () => {
+       6 |     const cb = jest.fn();
+    >  7 |     const read = infinite(() => Math.random());
+         |                          ^
+       8 |     read(true, cb);
+       9 |     expect(cb).toHaveBeenCalledTimes(1);
+      10 |     expect(cb).toHaveBeenCalledWith(true, undefined);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-6cb4a18/testCase.test.ts:7:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.488 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-6cb4a18/testCase.test.ts".

@@ -1,0 +1,32 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-7fd38b7/testCase.test.ts
+  Q
+    ✕ should reset unhandled rejections tracking correctly (5 ms)
+
+  ● Q › should reset unhandled rejections tracking correctly
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "(no stack) test",
+    + ]
+
+      10 |         Q.resetUnhandledRejections();
+      11 |         Q.reject("test");
+    > 12 |         expect(Q.getUnhandledReasons()).toEqual([]);
+         |                                         ^
+      13 |         Q.stopUnhandledRejectionTracking();
+      14 |         expect(Q.getUnhandledReasons()).toEqual([]);
+      15 |     });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-7fd38b7/testCase.test.ts:12:41)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.689 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-7fd38b7/testCase.test.ts".

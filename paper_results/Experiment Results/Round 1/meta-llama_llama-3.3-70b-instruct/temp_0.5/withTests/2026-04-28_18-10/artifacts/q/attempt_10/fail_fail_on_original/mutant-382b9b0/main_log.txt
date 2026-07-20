@@ -1,0 +1,43 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-382b9b0/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-382b9b0/testCase.test.ts
+  nodeify function
+    ✕ should return a promise when called with a callback (1 ms)
+    ✕ should throw an error when called without a callback in the mutated code
+
+  ● nodeify function › should return a promise when called with a callback
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      3 | describe("nodeify function", () => {
+      4 |     it("should return a promise when called with a callback", () => {
+    > 5 |         const promise = Q(10);
+        |                          ^
+      6 |         const callback = jest.fn();
+      7 |         const result = promise.nodeify(callback);
+      8 |         expect(result).toBe(promise);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-382b9b0/testCase.test.ts:5:26)
+
+  ● nodeify function › should throw an error when called without a callback in the mutated code
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      10 |
+      11 |     it("should throw an error when called without a callback in the mutated code", () => {
+    > 12 |         const promise = Q(10);
+         |                          ^
+      13 |         expect(() => promise.nodeify()).toThrowError();
+      14 |     });
+      15 | });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-382b9b0/testCase.test.ts:12:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.102 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-382b9b0/testCase.test.ts".

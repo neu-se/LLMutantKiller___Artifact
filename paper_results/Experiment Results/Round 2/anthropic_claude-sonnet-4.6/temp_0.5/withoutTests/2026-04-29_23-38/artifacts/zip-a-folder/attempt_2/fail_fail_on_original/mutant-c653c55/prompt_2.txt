@@ -1,0 +1,37 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-c653c55/testCase.test.ts[0m:[93m4[0m:[93m47[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m4[0m import { ZipAFolder, COMPRESSION_LEVEL } from '../../../../../../../../../../../subject_repositories/zip-a-folder/lib/ZipAFolder.ts';
+[7m [0m [91m                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-c653c55/testCase.test.ts
+  ZipAFolder zip compression options
+    ✕ should create a zip with store (no compression) when using default high compression level (15 ms)
+
+  ● ZipAFolder zip compression options › should create a zip with store (no compression) when using default high compression level
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 8
+
+      44 |         // Original code uses store: true, so compression method should be 0 (stored)
+      45 |         // Mutated code uses {}, so archiver uses deflate (method 8)
+    > 46 |         expect(compressionMethod).toBe(0); // stored = no compression
+         |                                   ^
+      47 |
+      48 |         // Cleanup
+      49 |         fs.rmSync(tmpDir, { recursive: true });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-c653c55/testCase.test.ts:46:35)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.296 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-c653c55/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

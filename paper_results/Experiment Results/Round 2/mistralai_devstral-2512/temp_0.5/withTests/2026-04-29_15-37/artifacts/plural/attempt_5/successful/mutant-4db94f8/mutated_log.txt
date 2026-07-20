@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/plural/attempt_5/pending_category/mutant-4db94f8/testCase.test.ts
+  plural function with string-based rules
+    ✕ should not match string rules when rule[0] is a number (3 ms)
+
+  ● plural function with string-based rules › should not match string rules when rule[0] is a number
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "123s"
+    Received: "numbers"
+
+       6 |     // The mutation changes the type check from 'String' to 'true', which would incorrectly match numeric rules
+       7 |     plural.addRule(123, 'numbers');
+    >  8 |     expect(plural(123)).toBe('123s');
+         |                         ^
+       9 |   });
+      10 | });
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/plural/attempt_5/pending_category/mutant-4db94f8/testCase.test.ts:8:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.413 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/plural/attempt_5/pending_category/mutant-4db94f8/testCase.test.ts".

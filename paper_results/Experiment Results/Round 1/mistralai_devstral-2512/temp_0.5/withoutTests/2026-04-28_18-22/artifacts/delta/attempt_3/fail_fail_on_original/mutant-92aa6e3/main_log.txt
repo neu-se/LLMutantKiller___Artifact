@@ -1,0 +1,35 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-92aa6e3/testCase.test.ts
+  Delta compose with embeds
+    ✕ should correctly compose embeds with insert action (5 ms)
+
+  ● Delta compose with embeds › should correctly compose embeds with insert action
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 2
+
+      Object {
+    +   "test": Object {
+          "a": "value1",
+          "b": "value2",
+          "composed": "without-null",
+    +   },
+      }
+
+      24 |     // The handler will return different objects based on this parameter
+      25 |     const composedOp = result.ops[0];
+    > 26 |     expect(composedOp.insert).toEqual({ composed: 'without-null', a: 'value1', b: 'value2' });
+         |                               ^
+      27 |
+      28 |     // Clean up
+      29 |     Delta.unregisterEmbed('test');
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-92aa6e3/testCase.test.ts:26:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.859 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-92aa6e3/testCase.test.ts".

@@ -1,0 +1,29 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-2c633d0/testCase.test.ts[0m:[93m1[0m:[93m22[0m - [91merror[0m[90m TS6133: [0m'COMPRESSION_LEVEL' is declared but its value is never read.
+
+[7m1[0m import { ZipAFolder, COMPRESSION_LEVEL } from '../../../../../../../../../../../subject_repositories/zip-a-folder/lib/ZipAFolder';
+[7m [0m [91m                     ~~~~~~~~~~~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-2c633d0/testCase.test.ts
+  Zip-A-Folder Test
+    ✕ Should create a tar file with default compression level when no options are provided (6 ms)
+
+  ● Zip-A-Folder Test › Should create a tar file with default compression level when no options are provided
+
+    Permission error: ENOENT: no such file or directory, access '/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-2c633d0/data'
+
+      124 |                 await fs.promises.access(targetBasePath, fs.constants.R_OK | fs.constants.W_OK); //eslint-disable-line no-bitwise
+      125 |             } catch (e: any) {
+    > 126 |                 throw new Error(`Permission error: ${e.message}`);
+          |                       ^
+      127 |             }
+      128 |             output = fs.createWriteStream(targetFilePath);
+      129 |         } else if (zipAFolderOptions && zipAFolderOptions.customWriteStream) {
+
+      at Function.compress (../subject_repositories/zip-a-folder/lib/ZipAFolder.ts:126:23)
+      at Function.tar (../subject_repositories/zip-a-folder/lib/ZipAFolder.ts:43:13)
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-2c633d0/testCase.test.ts:14:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.561 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-2c633d0/testCase.test.ts".

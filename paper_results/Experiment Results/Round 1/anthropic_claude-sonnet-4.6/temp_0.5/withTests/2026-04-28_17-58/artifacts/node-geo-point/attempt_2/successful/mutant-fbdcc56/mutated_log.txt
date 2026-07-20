@@ -1,0 +1,30 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_2/pending_category/mutant-fbdcc56/testCase.test.ts
+  GeoPoint.calculateDestination mutation detection
+    ✕ should calculate the correct destination longitude when starting from a non-equatorial point (2 ms)
+
+  ● GeoPoint.calculateDestination mutation detection › should calculate the correct destination longitude when starting from a non-equatorial point
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 1.435
+    Received: 91.42885726134227
+
+    Expected precision:    1
+    Expected difference: < 0.05
+    Received difference:   89.99385726134227
+
+      17 |     // 100km at lat 51 ≈ 100000 / (111320 * cos(51°)) ≈ 1.435 degrees
+      18 |     expect(destination.latitude).toBeCloseTo(51, 1);
+    > 19 |     expect(destination.longitude).toBeCloseTo(1.435, 1);
+         |                                   ^
+      20 |   });
+      21 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_2/pending_category/mutant-fbdcc56/testCase.test.ts:19:35)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.566 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_2/pending_category/mutant-fbdcc56/testCase.test.ts".

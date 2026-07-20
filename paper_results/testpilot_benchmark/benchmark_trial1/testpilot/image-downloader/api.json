@@ -1,0 +1,13 @@
+[
+  {
+    "accessPath": "image-downloader.image",
+    "descriptor": {
+      "type": "function",
+      "signature": "({ extractFilename = true, ...options } = {})",
+      "implementation": "({ extractFilename = true, ...options } = {}) => {\n  if (!options.url) {\n    return Promise.reject(new Error('The options.url is required'));\n  }\n\n  if (!options.dest) {\n    return Promise.reject(new Error('The options.dest is required'));\n  }\n\n  if (extractFilename) {\n    if (!path.extname(options.dest)) {\n      const url = new URL(options.url);\n      const pathname = url.pathname;\n      const basename = path.basename(pathname);\n      const decodedBasename = decodeURIComponent(basename);\n\n      options.dest = path.join(options.dest, decodedBasename);\n    }\n  }\n\n  if (!path.isAbsolute(options.dest)) {\n    options.dest = path.resolve(__dirname, options.dest);\n  }\n\n  return request(options);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "image-downloader"
+  }
+]

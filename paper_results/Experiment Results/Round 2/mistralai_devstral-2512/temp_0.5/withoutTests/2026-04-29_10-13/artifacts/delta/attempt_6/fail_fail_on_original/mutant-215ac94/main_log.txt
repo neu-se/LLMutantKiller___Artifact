@@ -1,0 +1,66 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-215ac94/testCase.test.ts[0m:[93m7[0m:[93m17[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m7[0m       compose: (a: unknown, b: unknown) => b,
+[7m [0m [91m                ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-215ac94/testCase.test.ts[0m:[93m8[0m:[93m16[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m8[0m       invert: (a: unknown, b: unknown) => b,
+[7m [0m [91m               ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-215ac94/testCase.test.ts[0m:[93m13[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'null' is not assignable to type 'number | Record<string, unknown> | undefined'.
+
+[7m13[0m       { retain: null },  // Null retain
+[7m  [0m [91m        ~~~~~~[0m
+
+  [96m../subject_repositories/delta/src/Op.ts[0m:[93m7[0m:[93m3[0m
+    [7m7[0m   retain?: number | Record<string, unknown>;
+    [7m [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'retain' which is declared here on type 'Op'
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-215ac94/testCase.test.ts[0m:[93m22[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ retain: null; }[]' is not assignable to parameter of type 'Expected<ArrayLike<Op>> | ArrayContaining<Op>'.
+  Type '{ retain: null; }[]' is not assignable to type '{ [x: number]: ExpectedRecursive<Op>; length: ExpectedRecursive<number>; }'.
+    'number' index signatures are incompatible.
+      Type '{ retain: null; }' is not assignable to type 'ExpectedRecursive<Op>'.
+        Type '{ retain: null; }' is not assignable to type '{ insert?: Any | ExpectedRecursive<string | Record<string, unknown> | undefined>; delete?: Any | ExpectedRecursive<number | undefined>; retain?: Any | ExpectedRecursive<number | Record<string, unknown> | undefined>; attributes?: Any | ExpectedRecursive<AttributeMap | undefined>; }'.
+          Types of property 'retain' are incompatible.
+            Type 'null' is not assignable to type 'Any | ExpectedRecursive<number | Record<string, unknown> | undefined>'.
+
+[7m22[0m     expect(result.ops).toEqual(expectedOps);
+[7m  [0m [91m                               ~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-215ac94/testCase.test.ts
+  Delta transform with embeds
+    ✕ should correctly handle transform when thisData is null and otherData is an object (6 ms)
+
+  ● Delta transform with embeds › should correctly handle transform when thisData is null and otherData is an object
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 6
+
+      Array [
+        Object {
+    -     "retain": null,
+    +     "retain": 1,
+    +   },
+    +   Object {
+    +     "retain": Object {
+    +       "test": "value",
+    +     },
+        },
+      ]
+
+      20 |     const result = thisDelta.transform(otherDelta, false);
+      21 |     const expectedOps = [{ retain: null }];
+    > 22 |     expect(result.ops).toEqual(expectedOps);
+         |                        ^
+      23 |
+      24 |     // Clean up
+      25 |     Delta.unregisterEmbed('test');
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-215ac94/testCase.test.ts:22:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.772 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-215ac94/testCase.test.ts".

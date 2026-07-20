@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_9/pending_category/mutant-86cb225/testCase.test.ts
+  Matcher wildcard validation
+    ✕ should reject paths with wildcards at start like "+/" (24 ms)
+
+  ● Matcher wildcard validation › should reject paths with wildcards at start like "+/"
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "Path contains malformed wildcards"
+    Received message:   "Path must begin with a slash"
+
+          14 |     }
+          15 |     if (spec.match(/^\//) === null) {
+        > 16 |       throw new Error('Path must begin with a slash')
+             |             ^
+          17 |     }
+          18 |     if (spec.match(/\/\//) !== null) {
+          19 |       throw new Error('Path contains empty segments')
+
+      at new Matcher (../subject_repositories/spacl-core/src/matcher.ts:16:13)
+      at Function.for (../subject_repositories/spacl-core/src/matcher.ts:49:12)
+      at llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_9/pending_category/mutant-86cb225/testCase.test.ts:7:18
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_9/pending_category/mutant-86cb225/testCase.test.ts:8:8)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_9/pending_category/mutant-86cb225/testCase.test.ts:8:8)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.692 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_9/pending_category/mutant-86cb225/testCase.test.ts".

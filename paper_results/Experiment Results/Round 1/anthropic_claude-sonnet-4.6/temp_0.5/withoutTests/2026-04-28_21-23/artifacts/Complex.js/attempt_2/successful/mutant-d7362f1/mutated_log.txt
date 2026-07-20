@@ -1,0 +1,26 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-d7362f1/testCase.test.ts
+  Complex mul optimized real path
+    ✕ should return positive zero imaginary part when multiplying two real numbers with negative zero real parts (3 ms)
+
+  ● Complex mul optimized real path › should return positive zero imaginary part when multiplying two real numbers with negative zero real parts
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      12 |     // In mutated: im = (-0)*0 + 0*(-0) = -0 (negative zero from general formula)
+      13 |     // Object.is distinguishes +0 from -0
+    > 14 |     expect(Object.is(result['im'], 0)).toBe(true);
+         |                                        ^
+      15 |     expect(Object.is(result['im'], -0)).toBe(false);
+      16 |   });
+      17 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-d7362f1/testCase.test.ts:14:40)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.895 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-d7362f1/testCase.test.ts".

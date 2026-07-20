@@ -1,0 +1,39 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-f5a2f7f/testCase.test.ts[0m:[93m17[0m:[93m31[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 0.
+
+[7m17[0m             const promise = Q.resolve()
+[7m  [0m [91m                              ~~~~~~~[0m
+
+  [96m../subject_repositories/q/q.js[0m:[93m497[0m:[93m12[0m
+    [7m497[0m function Q(value) {
+    [7m   [0m [96m           ~~~~~[0m
+    An argument for 'value' was not provided.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-f5a2f7f/testCase.test.ts
+  long stack traces
+    ✕ should not attempt stack capture when hasStacks is false (3 ms)
+
+  ● long stack traces › should not attempt stack capture when hasStacks is false
+
+    ReferenceError: originalHasStacks is not defined
+
+      36 |             // Restore original values
+      37 |             Q.longStackSupport = originalLongStackSupport;
+    > 38 |             (Q as any).hasStacks = originalHasStacks;
+         |                                    ^
+      39 |         }
+      40 |     });
+      41 | });
+
+      at Object.originalHasStacks (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-f5a2f7f/testCase.test.ts:38:36)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.134 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-f5a2f7f/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

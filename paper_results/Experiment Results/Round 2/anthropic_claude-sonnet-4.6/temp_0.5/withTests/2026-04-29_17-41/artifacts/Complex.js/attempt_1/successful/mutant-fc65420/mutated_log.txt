@@ -1,0 +1,30 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-fc65420/testCase.test.ts
+  Complex acsch
+    ✕ should return the correct value for acsch of a real non-zero number (2 ms)
+
+  ● Complex acsch › should return the correct value for acsch of a real non-zero number
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.8813735870195429
+    Received: Infinity
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   Infinity
+
+      11 |     // Mutated code: (a === 0) ? Math.log(a + sqrt(a*a+1)) : Infinity
+      12 |     // For a=1, b=0: returns Infinity (wrong!)
+    > 13 |     expect(result.re).toBeCloseTo(expected, 10);
+         |                       ^
+      14 |     expect(result.im).toBe(0);
+      15 |     expect(isFinite(result.re)).toBe(true);
+      16 |   });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-fc65420/testCase.test.ts:13:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.354 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-fc65420/testCase.test.ts".

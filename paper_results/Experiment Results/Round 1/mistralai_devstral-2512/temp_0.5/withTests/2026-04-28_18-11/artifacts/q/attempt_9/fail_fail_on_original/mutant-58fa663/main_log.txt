@@ -1,0 +1,52 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-58fa663/testCase.test.ts[0m:[93m47[0m:[93m13[0m - [91merror[0m[90m TS2794: [0mExpected 1 arguments, but got 0. Did you forget to include 'void' in your type argument to 'Promise'?
+
+[7m47[0m             resolve();
+[7m  [0m [91m            ~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.es2015.promise.d.ts[0m:[93m31[0m:[93m34[0m
+    [7m31[0m     new <T>(executor: (resolve: (value: T | PromiseLike<T>) => void, reject: (reason?: any) => void) => void): Promise<T>;
+    [7m  [0m [96m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'value' was not provided.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-58fa663/testCase.test.ts (6.883 s)
+  unhandled rejection tracking mutation test
+    ✕ should correctly handle untracking when process.emit is not a function (5002 ms)
+
+  ● unhandled rejection tracking mutation test › should correctly handle untracking when process.emit is not a function
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+      44 |             // Original code: getUnhandledReasons().length should be 1
+      45 |             // Mutated code: getUnhandledReasons().length should be 0
+    > 46 |             expect(Q.getUnhandledReasons().length).toBe(1);
+         |                                                    ^
+      47 |             resolve();
+      48 |           } catch (error) {
+      49 |             // Restore process before rejecting
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-58fa663/testCase.test.ts:46:52)
+
+  ● unhandled rejection tracking mutation test › should correctly handle untracking when process.emit is not a function
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("unhandled rejection tracking mutation test", () => {
+    > 4 |   it("should correctly handle untracking when process.emit is not a function", () => {
+        |   ^
+      5 |     // Store original process
+      6 |     const originalProcess = global.process;
+      7 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-58fa663/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-58fa663/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.094 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-58fa663/testCase.test.ts".

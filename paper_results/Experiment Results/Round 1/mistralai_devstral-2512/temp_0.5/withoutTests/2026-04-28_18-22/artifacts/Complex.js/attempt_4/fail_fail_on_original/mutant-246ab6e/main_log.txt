@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-246ab6e/testCase.test.ts
+  Complex.js cosh function
+    ✕ should correctly compute cosh for a small value where Taylor approximation is used (2 ms)
+
+  ● Complex.js cosh function › should correctly compute cosh for a small value where Taylor approximation is used
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.9999999999
+    Received: 1
+
+    Expected precision:    10
+    Expected difference: < 5e-11
+    Received difference:   1.000000082740371e-10
+
+       6 |     const result = z.cosh();
+       7 |     const expected = 1 - 1e-10; // Taylor approximation for small x: cosh(x) ≈ 1 + x²/2
+    >  8 |     expect(result.re).toBeCloseTo(expected, 10);
+         |                       ^
+       9 |     expect(Math.abs(result.im)).toBeLessThan(1e-15);
+      10 |   });
+      11 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-246ab6e/testCase.test.ts:8:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.168 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-246ab6e/testCase.test.ts".

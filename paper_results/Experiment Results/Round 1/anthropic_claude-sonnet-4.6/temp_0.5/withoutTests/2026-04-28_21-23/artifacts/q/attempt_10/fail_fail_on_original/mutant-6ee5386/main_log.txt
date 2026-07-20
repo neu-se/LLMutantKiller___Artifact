@@ -1,0 +1,41 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-6ee5386/testCase.test.ts
+  Q threw mutation detection
+    ✕ downstream progress value should not be a promise when handler throws (54 ms)
+
+  ● Q threw mutation detection › downstream progress value should not be a promise when handler throws
+
+    progress error
+
+       5 |     const deferred = Q.defer();
+       6 |     const downstreamProgressValues: unknown[] = [];
+    >  7 |     const progressError = new Error("progress error");
+         |                           ^
+       8 |     let progressErrorCaught = false;
+       9 |
+      10 |     // Catch the re-thrown progress error to prevent test crash
+
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-6ee5386/testCase.test.ts:7:27)
+
+  ● Q threw mutation detection › downstream progress value should not be a promise when handler throws
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      44 |     // Original (threw=true): error re-thrown, progressErrorCaught=true, no downstream progress
+      45 |     // Mutated (threw=false): error swallowed, progressErrorCaught=false, downstream gets promise
+    > 46 |     expect(progressErrorCaught).toBe(true);
+         |                                 ^
+      47 |     expect(downstreamProgressValues).toHaveLength(0);
+      48 |   });
+      49 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-6ee5386/testCase.test.ts:46:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.586 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-6ee5386/testCase.test.ts".

@@ -1,0 +1,24 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_7/pending_category/mutant-7f88a67/testCase.test.ts
+  normalizeHttps option
+    ✕ normalizeHttps should be false in result_normalize_options (1 ms)
+
+  ● normalizeHttps option › normalizeHttps should be false in result_normalize_options
+
+    TypeError: Cannot set property _load of #<Object> which has only a getter
+
+       7 |     let capturedOptions: any = null;
+       8 |
+    >  9 |     (Module as any)._load = function(request: string, ...args: any[]) {
+         |                          ^
+      10 |       const result = originalLoad.apply(this, [request, ...args]);
+      11 |       if (request === 'normalize-url' || (typeof request === 'string' && request.includes('normalize-url'))) {
+      12 |         if (typeof result === 'function') {
+
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_7/pending_category/mutant-7f88a67/testCase.test.ts:9:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.143 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_7/pending_category/mutant-7f88a67/testCase.test.ts".

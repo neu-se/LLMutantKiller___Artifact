@@ -1,0 +1,24 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-0731436/testCase.test.ts
+  Complex asec
+    ✕ asec with tiny imaginary value where d underflows should differ from acos(0) (3 ms)
+
+  ● Complex asec › asec with tiny imaginary value where d underflows should differ from acos(0)
+
+    expect(received).not.toBeCloseTo(expected, precision)
+
+    Expected: not 1.5707963267948966
+
+       8 |     // Mutated: d=0, always 0 => Complex(0, 0).acos() = PI/2
+       9 |     // So in original, result.re should NOT be PI/2
+    > 10 |     expect(result.re).not.toBeCloseTo(Math.PI / 2, 5);
+         |                           ^
+      11 |   });
+      12 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-0731436/testCase.test.ts:10:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.448 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-0731436/testCase.test.ts".

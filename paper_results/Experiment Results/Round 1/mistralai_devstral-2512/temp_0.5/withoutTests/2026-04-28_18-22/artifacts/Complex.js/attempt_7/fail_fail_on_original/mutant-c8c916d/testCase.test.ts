@@ -1,0 +1,12 @@
+// llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-c8c916d/testCase.test.ts
+import { Complex } from "../../../../../../../../../../../subject_repositories/Complex.js/complex.js";
+
+describe("Complex.acsc()", () => {
+  it("should correctly handle the case where a is non-zero and b is zero", () => {
+    const result = new Complex(0.5, 0).acsc();
+    const expectedRe = 1.141006190610053;
+    const expectedIm = 0;
+    expect(result.re).toBeCloseTo(expectedRe, 10);
+    expect(result.im).toBeCloseTo(expectedIm, 10);
+  });
+});

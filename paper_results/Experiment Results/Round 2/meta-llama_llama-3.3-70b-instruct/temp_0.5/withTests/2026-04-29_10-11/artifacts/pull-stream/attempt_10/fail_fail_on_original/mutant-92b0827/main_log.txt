@@ -1,0 +1,33 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-92b0827/testCase.test.ts[0m:[93m7[0m:[93m28[0m - [91merror[0m[90m TS2345: [0mArgument of type 'null' is not assignable to parameter of type 'boolean'.
+
+[7m7[0m         if (end) return cb(end === true ? null : end);
+[7m [0m [91m                           ~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-92b0827/testCase.test.ts[0m:[93m19[0m:[93m5[0m - [91merror[0m[90m TS2349: [0mThis expression is not callable.
+  Type 'void' has no call signatures.
+
+[7m19[0m     read(null, (end: boolean, data: any) => {
+[7m  [0m [91m    ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-92b0827/testCase.test.ts
+  reduce
+    ✕ should handle ended stream with no initial value (1 ms)
+
+  ● reduce › should handle ended stream with no initial value
+
+    TypeError: read is not a function
+
+      17 |     const read = sink(source());
+      18 |
+    > 19 |     read(null, (end: boolean, data: any) => {
+         |     ^
+      20 |       expect(end).toBe(true);
+      21 |       expect(data).toBeUndefined();
+      22 |       expect(cb).toHaveBeenCalledTimes(1);
+
+      at Object.read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-92b0827/testCase.test.ts:19:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.427 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-92b0827/testCase.test.ts".

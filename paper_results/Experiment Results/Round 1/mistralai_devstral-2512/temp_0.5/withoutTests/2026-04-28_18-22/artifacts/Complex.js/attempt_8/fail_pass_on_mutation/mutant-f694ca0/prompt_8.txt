@@ -1,0 +1,36 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-f694ca0/testCase.test.ts
+  Complex.js cosm1 mutation test
+    ✕ should correctly compute expm1 for small complex numbers (3 ms)
+
+  ● Complex.js cosm1 mutation test › should correctly compute expm1 for small complex numbers
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: -0.4899461687672208
+    Received: 0.009999664996666683
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   0.49994583376388746
+
+      12 |     // The mutation will make this term much larger, affecting the result
+      13 |     const expectedReal = Math.expm1(0.01) * Math.cos(0.01) + (Math.pow(0.01, 2) * (Math.pow(0.01, 2) * (Math.pow(0.01, 2) * (Math.pow(0.01, 2) * (Math.pow(0.01, 2) * (Math.pow(0.01, 2) * (Math.pow(0.01, 2) / 20922789888000 - 1 / 87178291200) + 1 / 479001600) - 1 / 3628800) + 1 / 40320) - 1 / 720) + 1 / 24) - 1 / 2);
+    > 14 |     expect(result.re).toBeCloseTo(expectedReal, 10);
+         |                       ^
+      15 |   });
+      16 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-f694ca0/testCase.test.ts:14:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.353 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-f694ca0/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-fda66fb/testCase.test.ts
+  dirty write stream drain handling
+    ✕ should persist all keys to disk before emitting drain even under backpressure (14 ms)
+
+  ● dirty write stream drain handling › should persist all keys to disk before emitting drain even under backpressure
+
+    Expected 300 keys on disk but found 16
+
+      25 |             done();
+      26 |           } else {
+    > 27 |             done(new Error(`Expected ${totalKeys} keys on disk but found ${length}`));
+         |                  ^
+      28 |           }
+      29 |         });
+      30 |         db2.on('error', (err: Error) => {
+
+      at Dirty.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-fda66fb/testCase.test.ts:27:18)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:154:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.873 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-fda66fb/testCase.test.ts".

@@ -1,0 +1,47 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-917bc16/testCase.test.ts[0m:[93m11[0m:[93m28[0m - [91merror[0m[90m TS2552: [0mCannot find name 'OpIterator'. Did you mean 'NodeIterator'?
+
+[7m11[0m       const thisIter = new OpIterator(this.ops);
+[7m  [0m [91m                           ~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.dom.d.ts[0m:[93m21959[0m:[93m13[0m
+    [7m21959[0m declare var NodeIterator: {
+    [7m     [0m [96m            ~~~~~~~~~~~~[0m
+    'NodeIterator' is declared here.
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-917bc16/testCase.test.ts[0m:[93m12[0m:[93m29[0m - [91merror[0m[90m TS2552: [0mCannot find name 'OpIterator'. Did you mean 'NodeIterator'?
+
+[7m12[0m       const otherIter = new OpIterator(other.ops);
+[7m  [0m [91m                            ~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.dom.d.ts[0m:[93m21959[0m:[93m13[0m
+    [7m21959[0m declare var NodeIterator: {
+    [7m     [0m [96m            ~~~~~~~~~~~~[0m
+    'NodeIterator' is declared here.
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-917bc16/testCase.test.ts[0m:[93m56[0m:[93m64[0m - [91merror[0m[90m TS2339: [0mProperty 'getEmbedTypeAndData' does not exist on type 'typeof Delta'.
+
+[7m56[0m                 const [embedType, thisData, otherData] = Delta.getEmbedTypeAndData(
+[7m  [0m [91m                                                               ~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-917bc16/testCase.test.ts
+  compose()
+    ✕ optimization with false condition (2 ms)
+
+  ● compose() › optimization with false condition
+
+    ReferenceError: OpIterator is not defined
+
+       9 |     const originalCompose = Delta.prototype.compose;
+      10 |     Delta.prototype.compose = function(other: Delta): Delta {
+    > 11 |       const thisIter = new OpIterator(this.ops);
+         |                        ^
+      12 |       const otherIter = new OpIterator(other.ops);
+      13 |       const ops = [];
+      14 |       const firstOther = otherIter.peek();
+
+      at Delta_1.default.compose (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-917bc16/testCase.test.ts:11:24)
+      at Object.compose (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-917bc16/testCase.test.ts:100:14)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.404 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-917bc16/testCase.test.ts".

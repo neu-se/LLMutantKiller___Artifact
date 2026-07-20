@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-6cbdd2b/testCase.test.ts
+  Delta compose
+    ✕ should not apply optimization when other starts with an object retain (2 ms)
+
+  ● Delta compose › should not apply optimization when other starts with an object retain
+
+    cannot retain a string
+
+      19 | ): [string, unknown, unknown] => {
+      20 |   if (typeof a !== 'object' || a === null) {
+    > 21 |     throw new Error(`cannot retain a ${typeof a}`);
+         |           ^
+      22 |   }
+      23 |   if (typeof b !== 'object' || b === null) {
+      24 |     throw new Error(`cannot retain a ${typeof b}`);
+
+      at getEmbedTypeAndData (../subject_repositories/delta/src/Delta.ts:21:11)
+      at Delta.getEmbedTypeAndData [as compose] (../subject_repositories/delta/src/Delta.ts:282:56)
+      at Object.compose (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-6cbdd2b/testCase.test.ts:13:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.645 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-6cbdd2b/testCase.test.ts".

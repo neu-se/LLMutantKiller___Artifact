@@ -1,0 +1,29 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-4d22438/testCase.test.ts
+  hypot mutation detection
+    ✕ should compute correct abs for large complex number where real > imaginary (2 ms)
+
+  ● hypot mutation detection › should compute correct abs for large complex number where real > imaginary
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 5000
+    Received: 48000000000.00016
+
+    Expected precision:    3
+    Expected difference: < 0.0005
+    Received difference:   47999995000.00016
+
+       8 |     const c = new Complex(4000, 3000);
+       9 |     const magnitude = c.abs();
+    > 10 |     expect(magnitude).toBeCloseTo(5000, 3);
+         |                       ^
+      11 |   });
+      12 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-4d22438/testCase.test.ts:10:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.125 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-4d22438/testCase.test.ts".

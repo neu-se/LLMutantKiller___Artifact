@@ -1,0 +1,41 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-a0e2021/testCase.test.ts
+  Q function
+    ✕ should set Q.longStackSupport to true when process.env.Q_DEBUG is set and process is an object (6 ms)
+    ✕ should not set Q.longStackSupport to true when process.env.Q_DEBUG is set and process is not an object (1 ms)
+
+  ● Q function › should set Q.longStackSupport to true when process.env.Q_DEBUG is set and process is an object
+
+    Cannot find module '../../../../../../../../../../subject_repositories/q/q' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-a0e2021/testCase.test.ts'
+
+      2 |     it('should set Q.longStackSupport to true when process.env.Q_DEBUG is set and process is an object', () => {
+      3 |         process.env.Q_DEBUG = 'true';
+    > 4 |         const q = require('../../../../../../../../../../subject_repositories/q/q').Q;
+        |                   ^
+      5 |         const originalCode = `
+      6 |             if (typeof process === "object" && process && process.env && process.env.Q_DEBUG) {
+      7 |                 Q.longStackSupport = true;
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-a0e2021/testCase.test.ts:4:19)
+
+  ● Q function › should not set Q.longStackSupport to true when process.env.Q_DEBUG is set and process is not an object
+
+    Cannot find module '../../../../../../../../../../subject_repositories/q/q' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-a0e2021/testCase.test.ts'
+
+      20 |     it('should not set Q.longStackSupport to true when process.env.Q_DEBUG is set and process is not an object', () => {
+      21 |         process.env.Q_DEBUG = 'true';
+    > 22 |         const q = require('../../../../../../../../../../subject_repositories/q/q').Q;
+         |                   ^
+      23 |         const mutatedCode = `
+      24 |             if (true && process.env.Q_DEBUG) {
+      25 |                 Q.longStackSupport = true;
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-a0e2021/testCase.test.ts:22:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.647 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-a0e2021/testCase.test.ts".

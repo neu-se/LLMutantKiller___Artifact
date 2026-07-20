@@ -1,0 +1,34 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-7978ad2/testCase.test.ts
+  AttributeMap.diff() with non-object b argument
+    ✕ should treat a non-object string b as empty object, not iterate over string indices (5 ms)
+
+  ● AttributeMap.diff() with non-object b argument › should treat a non-object string b as empty object, not iterate over string indices
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 4
+
+      Object {
+    -   "bold": null,
+    +   "0": "a",
+    +   "1": "b",
+    +   "2": "c",
+    +   "bold": [Function bold],
+      }
+
+      11 |     // Original: b becomes {}, so result is { bold: null }
+      12 |     // Mutated: b stays "abc", Object.keys("abc") = ["0","1","2"], adds those keys
+    > 13 |     expect(result).toEqual({ bold: null });
+         |                    ^
+      14 |   });
+      15 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-7978ad2/testCase.test.ts:13:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.034 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-7978ad2/testCase.test.ts".

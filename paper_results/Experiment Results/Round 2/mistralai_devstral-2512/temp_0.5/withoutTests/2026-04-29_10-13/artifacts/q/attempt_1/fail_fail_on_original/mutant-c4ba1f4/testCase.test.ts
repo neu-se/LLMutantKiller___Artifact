@@ -1,0 +1,45 @@
+// Test to detect the mutation in the Q library's nextTick implementation
+import { Q } from "./q";
+
+describe("Q.nextTick behavior with setImmediate", () => {
+    it("should use setImmediate when available for scheduling tasks", (done) => {
+        // This test verifies that setImmediate is properly used when available
+        // The mutation removes the setImmediate implementation, which should cause
+        // different timing behavior that we can detect
+
+        // Store original setImmediate if it exists
+        const originalSetImmediate = global.setImmediate;
+        let setImmediateCalled = false;
+
+        // Mock setImmediate to track if it's being used
+        global.setImmediate = function(callback: (...args: any[]) => void, ...args: any[]) {
+            setImmediateCalled = true;
+            // Call the callback in next tick to simulate setImmediate behavior
+            process.nextTick(() => callback(...args));
+        };
+
+        try {
+            // Create a promise that should use setImmediate for scheduling
+            let resolved = false;
+            Q.resolve().then(() => {
+                resolved = true;
+            });
+
+            // Give some time for the promise to resolve
+            setTimeout(() => {
+                // Restore original setImmediate
+                global.setImmediate = originalSetImmediate;
+
+                // In the original code, setImmediate should have been called
+                // In the mutated code, it won't be called
+                expect(setImmediateCalled).toBe(true);
+                expect(resolved).toBe(true);
+                done();
+            }, 50);
+        } catch (error) {
+            // Restore original setImmediate in case of error
+            global.setImmediate = originalSetImmediate;
+            done(error);
+        }
+    });
+});

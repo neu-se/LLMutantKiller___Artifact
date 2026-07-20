@@ -1,0 +1,30 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_7/pending_category/mutant-597b033/testCase.test.ts[0m:[93m1[0m:[93m1[0m - [91merror[0m[90m TS6133: [0m'Delta' is declared but its value is never read.
+
+[7m1[0m import Delta from "../../../../../../../../../../../subject_repositories/delta/src/Delta";
+[7m [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_7/pending_category/mutant-597b033/testCase.test.ts
+  Delta module export condition
+    ✕ should only export when module is an object (12 ms)
+
+  ● Delta module export condition › should only export when module is an object
+
+    expect(received).toBeUndefined()
+
+    Received: [Function Delta]
+
+      21 |       // but fail in mutated version (always exports regardless of module type)
+      22 |       const moduleExports = require("../../../../../../../../../../../subject_repositories/delta/src/Delta");
+    > 23 |       expect(moduleExports).toBeUndefined();
+         |                             ^
+      24 |     } finally {
+      25 |       // Restore original module
+      26 |       global.module = originalModule;
+
+      at Object.toBeUndefined (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_7/pending_category/mutant-597b033/testCase.test.ts:23:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.294 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_7/pending_category/mutant-597b033/testCase.test.ts".

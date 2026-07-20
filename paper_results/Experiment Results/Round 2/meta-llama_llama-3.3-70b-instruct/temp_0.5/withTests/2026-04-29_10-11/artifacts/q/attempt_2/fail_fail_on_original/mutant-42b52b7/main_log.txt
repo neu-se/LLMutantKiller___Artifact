@@ -1,0 +1,47 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-42b52b7/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-42b52b7/testCase.test.ts[0m:[93m6[0m:[93m11[0m - [91merror[0m[90m TS7034: [0mVariable 'unhandledRejections' implicitly has type 'any[]' in some locations where its type cannot be determined.
+
+[7m6[0m     const unhandledRejections = [];
+[7m [0m [91m          ~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-42b52b7/testCase.test.ts[0m:[93m7[0m:[93m11[0m - [91merror[0m[90m TS7034: [0mVariable 'unhandledReasons' implicitly has type 'any[]' in some locations where its type cannot be determined.
+
+[7m7[0m     const unhandledReasons = [];
+[7m [0m [91m          ~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-42b52b7/testCase.test.ts[0m:[93m12[0m:[93m16[0m - [91merror[0m[90m TS7005: [0mVariable 'unhandledRejections' implicitly has an 'any[]' type.
+
+[7m12[0m     const at = unhandledRejections.indexOf(promise);
+[7m  [0m [91m               ~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-42b52b7/testCase.test.ts[0m:[93m14[0m:[93m7[0m - [91merror[0m[90m TS7005: [0mVariable 'unhandledRejections' implicitly has an 'any[]' type.
+
+[7m14[0m       unhandledRejections.splice(at, 1);
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-42b52b7/testCase.test.ts[0m:[93m15[0m:[93m7[0m - [91merror[0m[90m TS7005: [0mVariable 'unhandledReasons' implicitly has an 'any[]' type.
+
+[7m15[0m       unhandledReasons.splice(at, 1);
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-42b52b7/testCase.test.ts
+  q
+    ✕ should test the behavior of the mutated file (1 ms)
+
+  ● q › should test the behavior of the mutated file
+
+    TypeError: Cannot read properties of undefined (reading 'resetUnhandledRejections')
+
+       7 |     const unhandledReasons = [];
+       8 |
+    >  9 |     Q.resetUnhandledRejections();
+         |       ^
+      10 |
+      11 |     const promise = Q.reject(new Error("Test error"));
+      12 |     const at = unhandledRejections.indexOf(promise);
+
+      at Object.resetUnhandledRejections (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-42b52b7/testCase.test.ts:9:7)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.213 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-42b52b7/testCase.test.ts".

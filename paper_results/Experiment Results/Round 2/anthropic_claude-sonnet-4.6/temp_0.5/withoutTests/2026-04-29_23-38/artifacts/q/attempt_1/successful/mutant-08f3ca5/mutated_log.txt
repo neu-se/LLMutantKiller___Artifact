@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-08f3ca5/testCase.test.ts
+  Promise.prototype.then progress propagation
+    ✕ should forward progress values through the chain when progress handler succeeds without throwing (105 ms)
+
+  ● Promise.prototype.then progress propagation › should forward progress values through the chain when progress handler succeeds without throwing
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: 10
+    Received array: []
+
+      23 |         // With original code: progress handler returns 5*2=10, then 10 is forwarded to next progress handler
+      24 |         // With mutated code: since threw=false, the notify is NOT called, so progressValues stays empty
+    > 25 |         expect(progressValues).toContain(10);
+         |                                ^
+      26 |         done();
+      27 |       } catch (e) {
+      28 |         done(e);
+
+      at Timeout.toContain [as _onTimeout] (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-08f3ca5/testCase.test.ts:25:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.433 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-08f3ca5/testCase.test.ts".

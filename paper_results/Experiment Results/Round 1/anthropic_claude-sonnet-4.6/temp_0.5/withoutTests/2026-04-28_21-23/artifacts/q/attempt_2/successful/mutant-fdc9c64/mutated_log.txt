@@ -1,0 +1,33 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-fdc9c64/testCase.test.ts[0m:[93m26[0m:[93m20[0m - [91merror[0m[90m TS2352: [0mConversion of type 'null' to type 'Error' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+
+[7m26[0m     const stack = (capturedError as Error).stack || "";
+[7m  [0m [91m                   ~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-fdc9c64/testCase.test.ts
+  isInternalFrame operator precedence
+    ✕ does not filter frames from external files when long stack support is enabled (17 ms)
+
+  ● isInternalFrame operator precedence › does not filter frames from external files when long stack support is enabled
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "userFunction"
+    Received string:    "Error: user-error
+        at new Promise (<anonymous>)
+    From previous event:
+        at new Promise (<anonymous>)"
+
+      30 |     // Mutated: any frame with lineNumber <= qEndingLine is filtered, which includes
+      31 |     //          "userFunction" since this test file is much shorter than q.js
+    > 32 |     expect(stack).toContain("userFunction");
+         |                   ^
+      33 |   });
+      34 | });
+
+      at Object.toContain (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-fdc9c64/testCase.test.ts:32:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.833 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-fdc9c64/testCase.test.ts".

@@ -1,0 +1,44 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-c903301/testCase.test.ts
+  Q progress error propagation
+    ✕ throws when progress callback throws and Q.onerror is not set (204 ms)
+
+  ● Q progress error propagation › throws when progress callback throws and Q.onerror is not set
+
+    test progress error
+
+      4 |   it("throws when progress callback throws and Q.onerror is not set", (done) => {
+      5 |     const deferred = Q.defer();
+    > 6 |     const testError = new Error("test progress error");
+        |                       ^
+      7 |
+      8 |     delete (Q as any).onerror;
+      9 |
+
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-c903301/testCase.test.ts:6:23)
+
+  ● Q progress error propagation › throws when progress callback throws and Q.onerror is not set
+
+    Expected uncaughtException but none was thrown
+
+      32 |       if (!resolved) {
+      33 |         resolved = true;
+    > 34 |         done(new Error("Expected uncaughtException but none was thrown"));
+         |              ^
+      35 |       }
+      36 |     }, 200);
+      37 |   });
+
+      at Timeout._onTimeout (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-c903301/testCase.test.ts:34:14)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.576 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-c903301/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

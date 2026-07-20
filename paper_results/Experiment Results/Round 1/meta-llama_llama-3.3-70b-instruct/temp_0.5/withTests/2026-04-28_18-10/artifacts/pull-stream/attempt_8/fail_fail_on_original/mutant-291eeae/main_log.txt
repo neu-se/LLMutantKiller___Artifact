@@ -1,0 +1,33 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-291eeae/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/sinks/log"' has no exported member 'log'.
+
+[7m1[0m import { log } from "../../../../../../../../../../../subject_repositories/pull-stream/sinks/log";
+[7m [0m [91m         ~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-291eeae/testCase.test.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2349: [0mThis expression is not callable.
+  Type 'SpyInstance<void, [message?: any, ...optionalParams: any[]], any>' has no call signatures.
+
+[7m7[0m       consoleLogSpy(data);
+[7m [0m [91m      ~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-291eeae/testCase.test.ts
+  log sink
+    ✕ should log data to the console (1 ms)
+
+  ● log sink › should log data to the console
+
+    TypeError: (0 , log_1.log) is not a function
+
+      4 |   it('should log data to the console', () => {
+      5 |     const consoleLogSpy = jest.spyOn(console, 'log');
+    > 6 |     const logFunction = log((data: any) => {
+        |                            ^
+      7 |       consoleLogSpy(data);
+      8 |     });
+      9 |     logFunction(null, 'Hello, World!');
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-291eeae/testCase.test.ts:6:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.6 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-291eeae/testCase.test.ts".

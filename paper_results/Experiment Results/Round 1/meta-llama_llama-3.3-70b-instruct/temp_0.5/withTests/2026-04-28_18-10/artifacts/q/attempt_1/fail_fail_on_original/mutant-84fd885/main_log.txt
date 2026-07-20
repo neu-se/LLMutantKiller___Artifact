@@ -1,0 +1,67 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-84fd885/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-84fd885/testCase.test.ts[0m:[93m6[0m:[93m30[0m - [91merror[0m[90m TS7006: [0mParameter 'a' implicitly has an 'any' type.
+
+[7m6[0m             method: function(a, b, c, callback) {
+[7m [0m [91m                             ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-84fd885/testCase.test.ts[0m:[93m6[0m:[93m33[0m - [91merror[0m[90m TS7006: [0mParameter 'b' implicitly has an 'any' type.
+
+[7m6[0m             method: function(a, b, c, callback) {
+[7m [0m [91m                                ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-84fd885/testCase.test.ts[0m:[93m6[0m:[93m36[0m - [91merror[0m[90m TS7006: [0mParameter 'c' implicitly has an 'any' type.
+
+[7m6[0m             method: function(a, b, c, callback) {
+[7m [0m [91m                                   ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-84fd885/testCase.test.ts[0m:[93m6[0m:[93m39[0m - [91merror[0m[90m TS7006: [0mParameter 'callback' implicitly has an 'any' type.
+
+[7m6[0m             method: function(a, b, c, callback) {
+[7m [0m [91m                                      ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-84fd885/testCase.test.ts[0m:[93m12[0m:[93m28[0m - [91merror[0m[90m TS7006: [0mParameter 'sum' implicitly has an 'any' type.
+
+[7m12[0m             .then(function(sum) {
+[7m  [0m [91m                           ~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-84fd885/testCase.test.ts[0m:[93m23[0m:[93m25[0m - [91merror[0m[90m TS7006: [0mParameter 'error' implicitly has an 'any' type.
+
+[7m23[0m             }, function(error) {
+[7m  [0m [91m                        ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-84fd885/testCase.test.ts
+  Q.nsend
+    ✕ should pass arguments to the post method (1 ms)
+    ✕ should reject with an error if the method does not exist (1 ms)
+
+  ● Q.nsend › should pass arguments to the post method
+
+    TypeError: Cannot read properties of undefined (reading 'nsend')
+
+       9 |         };
+      10 |
+    > 11 |         return Q.nsend(obj, "method", 1, 2, 3)
+         |                  ^
+      12 |             .then(function(sum) {
+      13 |                 expect(sum).toBe(6);
+      14 |             });
+
+      at Object.nsend (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-84fd885/testCase.test.ts:11:18)
+
+  ● Q.nsend › should reject with an error if the method does not exist
+
+    TypeError: Cannot read properties of undefined (reading 'nsend')
+
+      18 |         var obj = {};
+      19 |
+    > 20 |         return Q.nsend(obj, "method", 1, 2, 3)
+         |                  ^
+      21 |             .then(function() {
+      22 |                 expect(true).toBe(false);
+      23 |             }, function(error) {
+
+      at Object.nsend (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-84fd885/testCase.test.ts:20:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.268 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-84fd885/testCase.test.ts".

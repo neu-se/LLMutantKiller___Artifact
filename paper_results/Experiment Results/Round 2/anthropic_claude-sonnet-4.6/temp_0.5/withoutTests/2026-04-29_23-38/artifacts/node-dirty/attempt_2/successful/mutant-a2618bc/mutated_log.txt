@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-a2618bc/testCase.test.ts (11.136 s)
+  Dirty backpressure handling
+    ✕ should break out of flush loop when write stream signals backpressure (10004 ms)
+
+  ● Dirty backpressure handling › should break out of flush loop when write stream signals backpressure
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 2
+    Received:    0
+
+      51 |           // 'beta' and 'gamma' remain in queue → size >= 2
+      52 |           // Mutated: loop continues despite backpressure, all items written → size = 0
+    > 53 |           expect(queueSizeAfterBackpressure).toBeGreaterThanOrEqual(2);
+         |                                              ^
+      54 |
+      55 |           // Cleanup
+      56 |           try {
+
+      at Immediate.toBeGreaterThanOrEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-a2618bc/testCase.test.ts:53:46)
+
+  ● Dirty backpressure handling › should break out of flush loop when write stream signals backpressure
+
+    thrown: "Exceeded timeout of 10000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       5 |
+       6 | describe('Dirty backpressure handling', () => {
+    >  7 |   it('should break out of flush loop when write stream signals backpressure', (done) => {
+         |   ^
+       8 |     const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'dirty-test-'));
+       9 |     const dbPath = path.join(tmpDir, 'test.db');
+      10 |     const db = new Dirty(dbPath);
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-a2618bc/testCase.test.ts:7:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-a2618bc/testCase.test.ts:6:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        11.29 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-a2618bc/testCase.test.ts".

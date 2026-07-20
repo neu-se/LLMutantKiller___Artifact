@@ -1,0 +1,35 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-63e4667/testCase.test.ts
+  Promise.prototype.keys behavior
+    ✕ should dispatch keys operation with empty array argument (4 ms)
+
+  ● Promise.prototype.keys behavior › should dispatch keys operation with empty array argument
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    - Expected
+    + Received
+
+      "keys",
+    - Array []
+    + Array [
+    +   "Stryker was here",
+    + ],
+
+    Number of calls: 1
+
+       7 |     const dispatchSpy = jest.spyOn(promise, 'dispatch');
+       8 |     const keys = await promise.keys();
+    >  9 |     expect(dispatchSpy).toHaveBeenCalledWith("keys", []);
+         |                         ^
+      10 |     expect(keys.sort()).toEqual(["a", "b"]);
+      11 |   });
+      12 | });
+
+      at Object.toHaveBeenCalledWith (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-63e4667/testCase.test.ts:9:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.474 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-63e4667/testCase.test.ts".

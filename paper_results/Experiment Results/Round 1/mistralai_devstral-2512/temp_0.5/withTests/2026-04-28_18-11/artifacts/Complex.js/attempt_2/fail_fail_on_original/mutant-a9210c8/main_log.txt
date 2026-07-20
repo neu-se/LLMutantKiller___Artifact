@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-a9210c8/testCase.test.ts
+  Complex.sech()
+    ✕ should correctly handle the imaginary part in sech calculation (1 ms)
+
+  ● Complex.sech() › should correctly handle the imaginary part in sech calculation
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.6480542736638855
+    Received: 1.8508157176809257
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   1.2027614440170402
+
+       8 |     // For a complex number with real=0 and im=1, sech(0+1i) should be computed correctly
+       9 |     // The mutation changes this['im'] to this[""] which will break the calculation
+    > 10 |     expect(result.re).toBeCloseTo(0.6480542736638855, 10);
+         |                       ^
+      11 |     expect(result.im).toBeCloseTo(0, 10);
+      12 |   });
+      13 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-a9210c8/testCase.test.ts:10:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.085 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-a9210c8/testCase.test.ts".

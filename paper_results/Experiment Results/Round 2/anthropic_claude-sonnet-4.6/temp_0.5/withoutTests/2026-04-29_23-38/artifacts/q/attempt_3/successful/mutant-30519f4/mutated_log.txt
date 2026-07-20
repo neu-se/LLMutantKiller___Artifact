@@ -1,0 +1,30 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-30519f4/testCase.test.ts[0m:[93m13[0m:[93m36[0m - [91merror[0m[90m TS7006: [0mParameter 'value' implicitly has an 'any' type.
+
+[7m13[0m     Q.all([pending]).then(function(value) {
+[7m  [0m [91m                                   ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-30519f4/testCase.test.ts
+  Q.all mutation detection
+    ✕ should not resolve when a pending promise has not yet resolved (55 ms)
+
+  ● Q.all mutation detection › should not resolve when a pending promise has not yet resolved
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      22 |     // With mutated code: pending enters if-branch (state !== "fulfilled" is true for pending),
+      23 |     //   sets promises[0] = undefined, pendingCount stays 0, resolves immediately -> resolved becomes true
+    > 24 |     expect(resolved).toBe(false);
+         |                      ^
+      25 |   });
+      26 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-30519f4/testCase.test.ts:24:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.369 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-30519f4/testCase.test.ts".

@@ -1,0 +1,37 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_8/pending_category/mutant-0802500/testCase.test.ts
+  Delta compose optimization
+    ✕ should optimize when composing insert with retain (5 ms)
+
+  ● Delta compose optimization › should optimize when composing insert with retain
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 4
+    + Received  + 1
+
+      Array [
+        Object {
+    -     "retain": 2,
+    -   },
+    -   Object {
+    -     "insert": "c",
+    +     "insert": "abc",
+        },
+      ]
+
+       8 |     // The original code should optimize this case by consuming the insert
+       9 |     // The mutated code won't recognize the insert type and won't optimize
+    > 10 |     expect(result.ops).toEqual([
+         |                        ^
+      11 |       { retain: 2 },
+      12 |       { insert: "c" }
+      13 |     ]);
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_8/pending_category/mutant-0802500/testCase.test.ts:10:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.604 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_8/pending_category/mutant-0802500/testCase.test.ts".

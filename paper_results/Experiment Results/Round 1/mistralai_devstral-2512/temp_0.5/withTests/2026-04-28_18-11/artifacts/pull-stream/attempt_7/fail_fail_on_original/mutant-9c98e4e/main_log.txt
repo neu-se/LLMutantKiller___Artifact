@@ -1,0 +1,39 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-9c98e4e/testCase.test.ts
+  count source boundary condition
+    ✕ should emit exactly max values when max is 1 (4 ms)
+
+  ● count source boundary condition › should emit exactly max values when max is 1
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 1
+
+      Array [
+        0,
+    +   1,
+      ]
+
+      11 |       collect((err: Error | null, results: number[]) => {
+      12 |         expect(err).toBeNull();
+    > 13 |         expect(results).toEqual([0]);
+         |                         ^
+      14 |         done();
+      15 |       })
+      16 |     );
+
+      at toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-9c98e4e/testCase.test.ts:13:25)
+      at cb (../subject_repositories/pull-stream/sinks/reduce.js:10:5)
+      at done (../subject_repositories/pull-stream/sinks/drain.js:26:24)
+      at cb (../subject_repositories/pull-stream/sources/count.js:8:14)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:45:8)
+      at s (../subject_repositories/pull-stream/pull.js:41:14)
+      at Object.pull (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-9c98e4e/testCase.test.ts:9:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.012 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-9c98e4e/testCase.test.ts".

@@ -1,0 +1,8 @@
+import Complex from "./complex.js";
+
+describe('Complex', () => {
+  it('should have a default export', () => {
+    expect(Complex.default).toBeDefined();
+    expect(Complex.default).toBe(Complex);
+  });
+});

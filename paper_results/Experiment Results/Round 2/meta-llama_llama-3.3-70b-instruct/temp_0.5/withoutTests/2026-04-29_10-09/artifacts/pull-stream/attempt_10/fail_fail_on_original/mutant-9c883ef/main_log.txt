@@ -1,0 +1,29 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-9c883ef/testCase.test.ts
+  find function
+    ✕ should handle the case when no callback is provided (3 ms)
+
+  ● find function › should handle the case when no callback is provided
+
+    expect(received).not.toHaveBeenCalled()
+
+    Matcher error: received value must be a mock or spy function
+
+    Received has type:  function
+    Received has value: [Function testFunction]
+
+       6 |     const callback = jest.fn();
+       7 |     find(testFunction); // original code should not call testFunction as callback
+    >  8 |     expect(testFunction).not.toHaveBeenCalled(); // mutated code should call testFunction as callback
+         |                              ^
+       9 |     find(testFunction, callback);
+      10 |     find(testFunction); // mutated code should call testFunction as callback
+      11 |     expect(callback).toHaveBeenCalledTimes(1); // original code calls callback
+
+      at Object.toHaveBeenCalled (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-9c883ef/testCase.test.ts:8:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.709 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-9c883ef/testCase.test.ts".

@@ -1,0 +1,63 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-53b03ea/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/util/tester"' has no exported member 'tester'.
+
+[7m1[0m import { tester } from '../../../../../../../../../../../subject_repositories/pull-stream/util/tester';
+[7m [0m [91m         ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-53b03ea/testCase.test.ts[0m:[93m2[0m:[93m24[0m - [91merror[0m[90m TS2307: [0mCannot find module '../' or its corresponding type declarations.
+
+[7m2[0m import { values } from '../';
+[7m [0m [91m                       ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/pull-stream/util/tester.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/pull-stream/util/tester.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-53b03ea/testCase.test.ts
+  tester function
+    ✕ should return a function that calls test.test when test is an object with a test function (2 ms)
+    ✕ should return prop(test) when test is not an object with a test function
+    ✕ should return id when prop(test) is falsy
+
+  ● tester function › should return a function that calls test.test when test is an object with a test function
+
+    TypeError: (0 , tester_1.tester) is not a function
+
+       5 |   it('should return a function that calls test.test when test is an object with a test function', () => {
+       6 |     const test = { test: jest.fn() };
+    >  7 |     const result = tester(test);
+         |                          ^
+       8 |     result('data');
+       9 |     expect(test.test).toHaveBeenCalledTimes(1);
+      10 |     expect(test.test).toHaveBeenCalledWith('data');
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-53b03ea/testCase.test.ts:7:26)
+
+  ● tester function › should return prop(test) when test is not an object with a test function
+
+    TypeError: (0 , tester_1.tester) is not a function
+
+      14 |     const test = {};
+      15 |     const prop = jest.fn();
+    > 16 |     const result = tester(test);
+         |                          ^
+      17 |     expect(result).toBe(prop(test));
+      18 |   });
+      19 |
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-53b03ea/testCase.test.ts:16:26)
+
+  ● tester function › should return id when prop(test) is falsy
+
+    TypeError: (0 , tester_1.tester) is not a function
+
+      22 |     const prop = jest.fn().mockReturnValue(false);
+      23 |     const id = jest.fn();
+    > 24 |     const result = tester(test);
+         |                          ^
+      25 |     expect(result).toBe(id);
+      26 |   });
+      27 | });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-53b03ea/testCase.test.ts:24:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        1.796 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-53b03ea/testCase.test.ts".

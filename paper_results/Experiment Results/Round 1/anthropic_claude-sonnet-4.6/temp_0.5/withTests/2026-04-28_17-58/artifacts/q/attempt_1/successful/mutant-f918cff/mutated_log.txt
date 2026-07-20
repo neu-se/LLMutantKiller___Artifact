@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f918cff/testCase.test.ts
+  Promise descriptor exception handling
+    ✕ should reject when a descriptor method throws an exception (2 ms)
+
+  ● Promise descriptor exception handling › should reject when a descriptor method throws an exception
+
+    Expected promise to be rejected, but it was fulfilled with: undefined
+
+      15 |         // In the mutated code, this branch is taken with value = undefined
+      16 |         // This should NOT happen - the promise should be rejected
+    > 17 |         throw new Error("Expected promise to be rejected, but it was fulfilled with: " + value);
+         |               ^
+      18 |       },
+      19 |       function (reason: unknown) {
+      20 |         // In the original code, this branch is taken with the thrown error
+
+      at llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f918cff/testCase.test.ts:17:15
+      at fulfilled (../subject_repositories/q/q.js:853:54)
+      at _fulfilled (../subject_repositories/q/q.js:882:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:815:13)
+      at apply (../subject_repositories/q/q.js:570:49)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.281 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f918cff/testCase.test.ts".

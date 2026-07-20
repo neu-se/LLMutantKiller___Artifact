@@ -1,0 +1,45 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-3c6937d/testCase.test.ts
+  extract function
+    ✕ should extract URLs correctly (12 ms)
+    ✕ should filter out URLs with length less than 3 (2 ms)
+
+  ● extract function › should extract URLs correctly
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "http://example.com"
+    Received: "http://example.com/abc"
+
+       7 |     const result = extract(html, baseUrl);
+       8 |     expect(result.length).toBe(1);
+    >  9 |     expect(result[0].url).toBe('http://example.com');
+         |                           ^
+      10 |   });
+      11 |
+      12 |   it('should filter out URLs with length less than 3', () => {
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-3c6937d/testCase.test.ts:9:27)
+
+  ● extract function › should filter out URLs with length less than 3
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+      14 |     const baseUrl = 'http://example.com';
+      15 |     const result = extract(html, baseUrl);
+    > 16 |     expect(result.length).toBe(1);
+         |                           ^
+      17 |     expect(result[0].url).toBe('http://example.com');
+      18 |   });
+      19 | });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-3c6937d/testCase.test.ts:16:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        2.755 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-3c6937d/testCase.test.ts".

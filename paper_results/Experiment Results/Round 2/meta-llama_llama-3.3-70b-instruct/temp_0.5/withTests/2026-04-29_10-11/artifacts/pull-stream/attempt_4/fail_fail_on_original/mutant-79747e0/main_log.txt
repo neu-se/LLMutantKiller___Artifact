@@ -1,0 +1,51 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-79747e0/testCase.test.ts[0m:[93m6[0m:[93m23[0m - [91merror[0m[90m TS2339: [0mProperty 'drain' does not exist on type 'typeof export='.
+
+[7m6[0m     const sink = pull.drain(() => {}, done);
+[7m [0m [91m                      ~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-79747e0/testCase.test.ts[0m:[93m15[0m:[93m23[0m - [91merror[0m[90m TS2339: [0mProperty 'drain' does not exist on type 'typeof export='.
+
+[7m15[0m     const sink = pull.drain(() => {}, null);
+[7m  [0m [91m                      ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-79747e0/testCase.test.ts
+  drain
+    ✕ should call done callback when end is true and done is provided (2 ms)
+    ✕ should not call done callback when end is true and done is not provided
+
+  ● drain › should call done callback when end is true and done is provided
+
+    TypeError: read is not a function
+
+      20 |         while(loop) {
+      21 |           cbed = false
+    > 22 |           read(null, function (end, data) {
+         |           ^
+      23 |             cbed = true
+      24 |             if(end = end || abort) {
+      25 |               loop = false
+
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:45:8)
+      at Object.sink (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-79747e0/testCase.test.ts:7:5)
+
+  ● drain › should not call done callback when end is true and done is not provided
+
+    TypeError: read is not a function
+
+      20 |         while(loop) {
+      21 |           cbed = false
+    > 22 |           read(null, function (end, data) {
+         |           ^
+      23 |             cbed = true
+      24 |             if(end = end || abort) {
+      25 |               loop = false
+
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:45:8)
+      at Object.sink (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-79747e0/testCase.test.ts:16:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.435 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-79747e0/testCase.test.ts".

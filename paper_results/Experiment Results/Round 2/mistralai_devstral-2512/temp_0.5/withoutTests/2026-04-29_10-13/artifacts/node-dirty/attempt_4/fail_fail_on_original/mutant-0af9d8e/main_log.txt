@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-0af9d8e/testCase.test.ts
+  Dirty database drain event timing
+    ✕ should emit drain only when all writes complete (9 ms)
+
+  ● Dirty database drain event timing › should emit drain only when all writes complete
+
+    First drain emitted before first write completed
+
+      31 |         if (drainCount === 1) {
+      32 |           if (!firstWriteDone) {
+    > 33 |             done(new Error('First drain emitted before first write completed'));
+         |                  ^
+      34 |             return;
+      35 |           }
+      36 |
+
+      at Dirty.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-0af9d8e/testCase.test.ts:33:18)
+      at emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:190:70)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.498 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-0af9d8e/testCase.test.ts".

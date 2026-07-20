@@ -1,0 +1,11 @@
+import { Complex } from './complex.js';
+
+describe('Complex', () => {
+  it('should correctly parse complex numbers', () => {
+    const c = new Complex('1+2i');
+    expect(c.re).toBe(1);
+    expect(c.im).toBe(2);
+    const d = new Complex('1+');
+    expect(() => new Complex('1+')).toThrow();
+  });
+});

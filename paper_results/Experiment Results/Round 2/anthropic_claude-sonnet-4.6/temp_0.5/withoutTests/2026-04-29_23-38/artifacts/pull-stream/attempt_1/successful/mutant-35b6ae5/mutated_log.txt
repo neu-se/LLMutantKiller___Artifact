@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-35b6ae5/testCase.test.ts
+  prop with regexp key
+    ✕ should return null/undefined when regexp does not match, not the match array (1 ms)
+
+  ● prop with regexp key › should return null/undefined when regexp does not match, not the match array
+
+    TypeError: Cannot read properties of null (reading '0')
+
+      4 |     ? function (data) { return data[key] }
+      5 |     : 'object' === typeof key && 'function' === typeof key.exec //regexp
+    > 6 |        ? function (data) { var v = key.exec(data); return v || v[0] }
+        |                                                                 ^
+      7 |
+      8 |     : key
+      9 |   )
+
+      at ../subject_repositories/pull-stream/util/prop.js:6:65
+      at Object.fn (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-35b6ae5/testCase.test.ts:14:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.278 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-35b6ae5/testCase.test.ts".

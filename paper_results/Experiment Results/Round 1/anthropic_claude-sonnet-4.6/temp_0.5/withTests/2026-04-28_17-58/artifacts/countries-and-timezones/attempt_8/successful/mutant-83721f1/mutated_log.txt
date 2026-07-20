@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/countries-and-timezones/attempt_8/pending_category/mutant-83721f1/testCase.test.ts
+  getAllTimezones memoization condition
+    ✕ should skip forEach on second call when totalTimezones equals memoizedTimezones (9 ms)
+
+  ● getAllTimezones memoization condition › should skip forEach on second call when totalTimezones equals memoizedTimezones
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 7
+    Received: 14
+
+      32 |     // Original: totalTimezones(7) !== memoizedTimezones(7) is FALSE -> skip forEach -> buildCount stays 7
+      33 |     // Mutated: if(true) -> forEach -> getTimezone called 7 times -> cache miss (name=undefined) -> buildCount becomes 14
+    > 34 |     expect(mockBuildCount).toBe(7);
+         |                            ^
+      35 |   });
+      36 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/countries-and-timezones/attempt_8/pending_category/mutant-83721f1/testCase.test.ts:34:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.672 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/countries-and-timezones/attempt_8/pending_category/mutant-83721f1/testCase.test.ts".

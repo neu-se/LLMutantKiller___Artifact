@@ -1,0 +1,33 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-e2b44ad/testCase.test.ts[0m:[93m11[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '<T extends Function>(fn: Function) => Function' is not assignable to type '<T extends Function>(callback: T) => T'.
+  Type 'Function' is not assignable to type 'T'.
+    'Function' is assignable to the constraint of type 'T', but 'T' could be instantiated with a different subtype of constraint 'Function'.
+
+[7m11[0m     d.bind = function(fn: Function) {
+[7m  [0m [91m    ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+(node:39178) [DEP0097] DeprecationWarning: Using a domain property in MakeCallback is deprecated. Use the async_context variant of MakeCallback or the AsyncResource class instead. (Triggered by calling processImmediate on process.)
+(Use `node --trace-deprecation ...` to show where the warning was created)
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-e2b44ad/testCase.test.ts
+  Promise.prototype.done domain binding
+    ✕ should call process.domain.bind on the error handler when a domain is active (54 ms)
+
+  ● Promise.prototype.done domain binding › should call process.domain.bind on the error handler when a domain is active
+
+    test
+
+      15 |
+      16 |     d.run(() => {
+    > 17 |       Q.reject(new Error("test")).done();
+         |                ^
+      18 |     });
+      19 |
+      20 |     // Give it a tick to process
+
+      at Domain.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-e2b44ad/testCase.test.ts:17:16)
+      at Object.run (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-e2b44ad/testCase.test.ts:16:7)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.898 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-e2b44ad/testCase.test.ts".

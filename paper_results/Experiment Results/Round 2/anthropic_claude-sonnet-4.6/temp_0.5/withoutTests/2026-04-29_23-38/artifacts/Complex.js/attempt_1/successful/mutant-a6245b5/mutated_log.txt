@@ -1,0 +1,26 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-a6245b5/testCase.test.ts
+  Complex atanh edge case
+    ✕ should compute atanh(1) correctly without NaN in imaginary part (3 ms)
+
+  ● Complex atanh edge case › should compute atanh(1) correctly without NaN in imaginary part
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+       9 |     
+      10 |     // The result should not have NaN in the imaginary part
+    > 11 |     expect(isNaN(result.im)).toBe(false);
+         |                              ^
+      12 |     // The real part should be Infinity (atanh(1) = +Infinity)
+      13 |     expect(isFinite(result.re) || result.re === Infinity || result.re === -Infinity).toBe(true);
+      14 |     expect(isNaN(result.re)).toBe(false);
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-a6245b5/testCase.test.ts:11:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.068 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-a6245b5/testCase.test.ts".

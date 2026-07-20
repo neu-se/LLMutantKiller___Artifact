@@ -1,0 +1,49 @@
+{
+  "file": "q.js",
+  "startLine": 594,
+  "startColumn": 42,
+  "endLine": 608,
+  "endColumn": 8,
+  "originalCode": "\n-       if (Q.longStackSupport && hasStacks) {\n-           try {\n-               throw new Error();\n-           } catch (e) {\n-               // NOTE: don't try to use `Error.captureStackTrace` or transfer the\n-               // accessor around; that causes memory leaks as per GH-111. Just\n-               // reify the stack trace as a string ASAP.\n-               //\n-               // At the same time, cut off the first line; it's always just\n-               // \"[object Promise]\\n\", as per the `toString`.\n-               promise.stack = e.stack.substring(e.stack.indexOf(\"\\n\") + 1);\n-               promise.stackCounter = longStackCounter++;\n-           }\n-       }",
+  "replacement": "\n+       if (Q.longStackSupport && hasStacks) {}\n",
+  "removedLines": [
+    "       if (Q.longStackSupport && hasStacks) {",
+    "           try {",
+    "               throw new Error();",
+    "           } catch (e) {",
+    "               // NOTE: don't try to use `Error.captureStackTrace` or transfer the",
+    "               // accessor around; that causes memory leaks as per GH-111. Just",
+    "               // reify the stack trace as a string ASAP.",
+    "               //",
+    "               // At the same time, cut off the first line; it's always just",
+    "               // \"[object Promise]\\n\", as per the `toString`.",
+    "               promise.stack = e.stack.substring(e.stack.indexOf(\"\\n\") + 1);",
+    "               promise.stackCounter = longStackCounter++;",
+    "           }",
+    "       }"
+  ],
+  "addedLines": [
+    "       if (Q.longStackSupport && hasStacks) {}",
+    ""
+  ],
+  "lineSummary": [
+    "-       if (Q.longStackSupport && hasStacks) {",
+    "-           try {",
+    "-               throw new Error();",
+    "-           } catch (e) {",
+    "-               // NOTE: don't try to use `Error.captureStackTrace` or transfer the",
+    "-               // accessor around; that causes memory leaks as per GH-111. Just",
+    "-               // reify the stack trace as a string ASAP.",
+    "-               //",
+    "-               // At the same time, cut off the first line; it's always just",
+    "-               // \"[object Promise]\\n\", as per the `toString`.",
+    "-               promise.stack = e.stack.substring(e.stack.indexOf(\"\\n\") + 1);",
+    "-               promise.stackCounter = longStackCounter++;",
+    "-           }",
+    "-       }",
+    "+       if (Q.longStackSupport && hasStacks) {}",
+    ""
+  ],
+  "mutatorName": "BlockStatement",
+  "strykerMutationId": "431"
+}

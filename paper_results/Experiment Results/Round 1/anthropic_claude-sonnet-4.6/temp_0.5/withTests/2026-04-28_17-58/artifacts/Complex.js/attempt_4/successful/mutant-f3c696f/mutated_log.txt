@@ -1,0 +1,26 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-f3c696f/testCase.test.ts
+  Complex acot
+    ✕ should pass correct sign to atan in d=0 branch (3 ms)
+
+  ● Complex acot › should pass correct sign to atan in d=0 branch
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: -Infinity
+    Received: Infinity
+
+      16 |       // Original: imaginary passed to atan should be -Infinity (negative)
+      17 |       // Mutated: imaginary passed to atan should be +Infinity (positive)
+    > 18 |       expect(capturedIm).toBe(-Infinity);
+         |                          ^
+      19 |     } finally {
+      20 |       Complex.prototype.atan = originalAtan;
+      21 |     }
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-f3c696f/testCase.test.ts:18:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.137 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-f3c696f/testCase.test.ts".

@@ -1,0 +1,48 @@
+This test suite has a combination of passing and failing test cases.
+I split the test suite into two: 
+(A) failing-on-original (archived) and 
+(B) promoted suite containing only the tests that pass on original.
+The following information is for (B):
+
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code, and fail on the mutated code.)
+
+While the test case passes on the original code, it also passes on the mutated code with the following log:
+
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-dc041e2/split_pass_only.test.ts[0m:[93m6[0m:[93m36[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m6[0m         const originalSes = global.ses;
+[7m [0m [91m                                   ~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-dc041e2/split_pass_only.test.ts[0m:[93m7[0m:[93m16[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m7[0m         global.ses = { ok: () => false };
+[7m [0m [91m               ~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-dc041e2/split_pass_only.test.ts[0m:[93m19[0m:[93m16[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m19[0m         global.ses = originalSes;
+[7m  [0m [91m               ~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-dc041e2/split_pass_only.test.ts[0m:[93m24[0m:[93m36[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m24[0m         const originalSes = global.ses;
+[7m  [0m [91m                                   ~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-dc041e2/split_pass_only.test.ts[0m:[93m25[0m:[93m16[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m25[0m         global.ses = { ok: () => true };
+[7m  [0m [91m               ~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-dc041e2/split_pass_only.test.ts[0m:[93m34[0m:[93m16[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m34[0m         global.ses = originalSes;
+[7m  [0m [91m               ~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+PASS llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-dc041e2/split_pass_only.test.ts
+  Q
+    ✓ should not throw an error when ses is not ok in the original code (1 ms)
+    ○ skipped should throw an error when ses is ok in the mutated code
+
+Test Suites: 1 passed, 1 total
+Tests:       1 skipped, 1 passed, 2 total
+Snapshots:   0 total
+Time:        1.407 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-dc041e2/split_pass_only.test.ts".
+
+
+Please try again and give me a new test case.

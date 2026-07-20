@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-013e573/testCase.test.ts
+  npost with null args
+    ✕ should call npost with no args (null) and not include extra arguments (6 ms)
+
+  ● npost with null args › should call npost with no args (null) and not include extra arguments
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 2
+
+       7 |         // This method expects exactly one argument (the callback)
+       8 |         // If mutant adds "Stryker was here" as an extra arg, arguments.length will be 2
+    >  9 |         expect(arguments.length).toBe(1);
+         |                                  ^
+      10 |         callback(null, 42);
+      11 |       }
+      12 |     };
+
+      at Object.toBe [as method] (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-013e573/testCase.test.ts:9:34)
+      at Promise.apply (../subject_repositories/q/q.js:1181:36)
+      at Promise.apply [as promiseDispatch] (../subject_repositories/q/q.js:808:41)
+      at promiseDispatch (../subject_repositories/q/q.js:1411:14)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.533 s, estimated 4 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-013e573/testCase.test.ts".

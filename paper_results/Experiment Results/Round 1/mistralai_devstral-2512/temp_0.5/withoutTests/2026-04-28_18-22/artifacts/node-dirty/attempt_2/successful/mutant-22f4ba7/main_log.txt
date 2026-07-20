@@ -1,0 +1,27 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-22f4ba7/testCase.test.ts[0m:[93m20[0m:[93m27[0m - [91merror[0m[90m TS18047: [0m'dirty._writeStream' is possibly 'null'.
+
+[7m20[0m       const originalEnd = dirty._writeStream.end.bind(dirty._writeStream);
+[7m  [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-22f4ba7/testCase.test.ts[0m:[93m21[0m:[93m7[0m - [91merror[0m[90m TS18047: [0m'dirty._writeStream' is possibly 'null'.
+
+[7m21[0m       dirty._writeStream.end = function(...args) {
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-22f4ba7/testCase.test.ts[0m:[93m21[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '(args_0: any, args_1: unknown, args_2?: unknown) => WriteStream' is not assignable to type '{ (cb?: (() => void) | undefined): WriteStream; (chunk: any, cb?: (() => void) | undefined): WriteStream; (chunk: any, encoding: BufferEncoding, cb?: (() => void) | undefined): WriteStream; }'.
+  Target signature provides too few arguments. Expected 2 or more, but got 1.
+
+[7m21[0m       dirty._writeStream.end = function(...args) {
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-22f4ba7/testCase.test.ts[0m:[93m23[0m:[93m28[0m - [91merror[0m[90m TS2345: [0mArgument of type 'unknown' is not assignable to parameter of type 'BufferEncoding'.
+
+[7m23[0m         return originalEnd(...args);
+[7m  [0m [91m                           ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+PASS llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-22f4ba7/testCase.test.ts
+  Dirty close behavior with pending writes
+    ✓ should delay close until writes complete (5 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        1.372 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-22f4ba7/testCase.test.ts".

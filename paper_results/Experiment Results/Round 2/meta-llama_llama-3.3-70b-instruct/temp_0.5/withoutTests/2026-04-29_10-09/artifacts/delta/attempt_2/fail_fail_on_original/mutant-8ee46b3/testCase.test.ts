@@ -1,0 +1,10 @@
+import Delta from '../../../../../../../../../../../subject_repositories/delta/src/Delta';
+
+describe('Delta', () => {
+  it('should correctly transform retain data', () => {
+    const delta1 = new Delta().retain({ test: 'data1' });
+    const delta2 = new Delta().retain({ test: 'data2' });
+    const transformedDelta = delta1.transform(delta2);
+    expect(transformedDelta.ops[0].retain).not.toEqual({ test: 'data1' });
+  });
+});

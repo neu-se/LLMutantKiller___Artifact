@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-443975f/testCase.test.ts (6.195 s)
+  Q scheduling
+    ✕ Q uses setImmediate - resolved before next setTimeout but after process.nextTick (5004 ms)
+
+  ● Q scheduling › Q uses setImmediate - resolved before next setTimeout but after process.nextTick
+
+    expect(received).toBeLessThan(expected)
+
+    Expected: < 0
+    Received:   1
+
+      23 |       expect(order).toContain("Q");
+      24 |       expect(order).toContain("nextTick");
+    > 25 |       expect(order.indexOf("nextTick")).toBeLessThan(order.indexOf("Q"));
+         |                                         ^
+      26 |       done();
+      27 |     }, 50);
+      28 |   });
+
+      at Timeout.toBeLessThan [as _onTimeout] (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-443975f/testCase.test.ts:25:41)
+
+  ● Q scheduling › Q uses setImmediate - resolved before next setTimeout but after process.nextTick
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("Q scheduling", () => {
+    > 4 |   it("Q uses setImmediate - resolved before next setTimeout but after process.nextTick", (done) => {
+        |   ^
+      5 |     const order: string[] = [];
+      6 |     
+      7 |     // Create a resolved Q promise
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-443975f/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-443975f/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.362 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-443975f/testCase.test.ts".

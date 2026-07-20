@@ -1,0 +1,29 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-246ab6e/testCase.test.ts
+  cosh fallback mutation detection
+    ✕ uses the correct cosh fallback formula (exp(x) + exp(-x)) * 0.5 not (exp(x) + exp(+x)) * 0.5 (11 ms)
+
+  ● cosh fallback mutation detection › uses the correct cosh fallback formula (exp(x) + exp(-x)) * 0.5 not (exp(x) + exp(+x)) * 0.5
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 3.7621956910836314
+    Received: 7.38905609893065
+
+    Expected precision:    5
+    Expected difference: < 0.000005
+    Received difference:   3.626860407847019
+
+      23 |     // re = cosh(b), should be correct cosh not mutated value
+      24 |     const correctCosh = originalCosh(b);
+    > 25 |     expect(sinResult.re).toBeCloseTo(correctCosh, 5);
+         |                          ^
+      26 |   });
+      27 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-246ab6e/testCase.test.ts:25:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.014 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-246ab6e/testCase.test.ts".

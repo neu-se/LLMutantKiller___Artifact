@@ -1,0 +1,53 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-49b0513/testCase.test.ts[0m:[93m78[0m:[93m20[0m - [91merror[0m[90m TS7053: [0mElement implicitly has an 'any' type because expression of type '""' can't be used to index type 'Complex'.
+  Property '' does not exist on type 'Complex'.
+
+[7m78[0m         var temp = x[""];
+[7m  [0m [91m                   ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-49b0513/testCase.test.ts
+  Complex
+    ✕ should calculate atanh correctly (2 ms)
+    ✕ should throw an error when atanh is called with a complex number and temp is not a number
+
+  ● Complex › should calculate atanh correctly
+
+    expect(received).toBeCloseTo(expected)
+
+    Expected: 0.5493061443340549
+    Received: NaN
+
+    Expected precision:    2
+    Expected difference: < 0.005
+    Received difference:   NaN
+
+      63 |     const c = new Complex(1, 0);
+      64 |     const result = c.atanh();
+    > 65 |     expect(result.re).toBeCloseTo(0.5493061443340549);
+         |                       ^
+      66 |     expect(result.im).toBeCloseTo(0);
+      67 |   });
+      68 |
+
+      at Object.toBeCloseTo (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-49b0513/testCase.test.ts:65:23)
+
+  ● Complex › should throw an error when atanh is called with a complex number and temp is not a number
+
+    expect(received).toThrow()
+
+    Received function did not throw
+
+      84 |       return x;
+      85 |     };
+    > 86 |     expect(() => c.atanh()).toThrow();
+         |                             ^
+      87 |     Complex.prototype.atanh = originalAtanh;
+      88 |   });
+      89 | });
+
+      at Object.toThrow (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-49b0513/testCase.test.ts:86:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        2.164 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-49b0513/testCase.test.ts".

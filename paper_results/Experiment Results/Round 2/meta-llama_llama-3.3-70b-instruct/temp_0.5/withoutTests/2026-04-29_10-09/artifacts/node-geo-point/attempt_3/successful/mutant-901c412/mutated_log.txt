@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-901c412/testCase.test.ts
+  GeoPoint
+    ✕ should not throw an error when latitude is exactly -90 (18 ms)
+
+  ● GeoPoint › should not throw an error when latitude is exactly -90
+
+    expect(received).not.toThrow(expected)
+
+    Expected constructor: not RangeError
+
+    Received message: "bad latitude value"
+
+          42 |        if (latitude <= -90 || latitude > 90) {
+          43 |
+        > 44 |       throw new RangeError('bad latitude value');
+             |             ^
+          45 |     }
+          46 |
+          47 |     if (longitude < -180 || longitude > 180) {
+
+      at new GeoPoint (../subject_repositories/node-geo-point/src/geo-point.ts:44:13)
+      at llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-901c412/testCase.test.ts:5:18
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-901c412/testCase.test.ts:5:44)
+      at Object.toThrow (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-901c412/testCase.test.ts:5:44)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.032 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-901c412/testCase.test.ts".

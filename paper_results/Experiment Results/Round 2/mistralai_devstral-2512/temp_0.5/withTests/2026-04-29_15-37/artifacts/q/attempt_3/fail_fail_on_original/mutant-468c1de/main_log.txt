@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-468c1de/testCase.test.ts
+  long stack traces mutation test
+    ✕ should correctly filter stack traces based on minimum stack counter (9 ms)
+
+  ● long stack traces mutation test › should correctly filter stack traces based on minimum stack counter
+
+    Test error
+
+      11 |     const deferred3 = Q.defer();
+      12 |
+    > 13 |     const error = new Error("Test error");
+         |                   ^
+      14 |
+      15 |     // Build a chain where each promise rejects after the next
+      16 |     deferred1.promise.then(() => deferred2.promise)
+
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-468c1de/testCase.test.ts:13:19)
+      From previous event:
+      at Object.defer (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-468c1de/testCase.test.ts:9:25)
+
+  ● long stack traces mutation test › should correctly filter stack traces based on minimum stack counter
+
+    expect(received).toBeLessThan(expected)
+
+    Expected: < 20
+    Received:   28
+
+      35 |       // while the original version filters some out based on stack counters
+      36 |       // We expect the original to have fewer stack frames than the mutated version
+    > 37 |       expect(stackLines.length).toBeLessThan(20);
+         |                                 ^
+      38 |
+      39 |       // Verify the error message is preserved
+      40 |       expect(stack).toContain("Test error");
+
+      at Object.toBeLessThan (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-468c1de/testCase.test.ts:37:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.331 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-468c1de/testCase.test.ts".

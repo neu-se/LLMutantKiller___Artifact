@@ -1,0 +1,33 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-340bfb0/testCase.test.ts
+  makeStackTraceLong with __minimumStackCounter__
+    ✕ should use __minimumStackCounter__ to limit stack trace concatenation, setting it on the error object (3 ms)
+
+  ● makeStackTraceLong with __minimumStackCounter__ › should use __minimumStackCounter__ to limit stack trace concatenation, setting it on the error object
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "number"
+    Received: "undefined"
+
+      40 |     
+      41 |     // In original code, __minimumStackCounter__ is set on the error
+    > 42 |     expect(typeof capturedError.__minimumStackCounter__).toBe("number");
+         |                                                          ^
+      43 |     
+      44 |     // In mutated code, "" property is set instead
+      45 |     // This assertion passes in original, fails in mutated
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-340bfb0/testCase.test.ts:42:58)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.127 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-340bfb0/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

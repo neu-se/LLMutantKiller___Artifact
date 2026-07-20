@@ -1,0 +1,33 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_7/pending_category/mutant-f4e8972/testCase.test.ts
+  crawler-url-parser
+    ✕ should correctly parse HTML data (11 ms)
+
+  ● crawler-url-parser › should correctly parse HTML data
+
+    expect(received).not.toHaveLength(expected)
+
+    Expected length: not 0
+    Received array:      []
+
+       5 |     const html = '<html><body><a href="https://www.example.com">Example</a></body></html>';
+       6 |     const result = extract(html, 'https://www.example.com');
+    >  7 |     expect(result).not.toHaveLength(0);
+         |                        ^
+       8 |     if (result.length > 0) {
+       9 |       expect(result[0].url).toBe('https://www.example.com');
+      10 |       expect(result[0].text).toBe('Example');
+
+      at Object.toHaveLength (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_7/pending_category/mutant-f4e8972/testCase.test.ts:7:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.513 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_7/pending_category/mutant-f4e8972/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

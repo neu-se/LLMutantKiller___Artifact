@@ -1,0 +1,54 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-1cdbec1/testCase.test.ts[0m:[93m3[0m:[93m37[0m - [91merror[0m[90m TS2448: [0mBlock-scoped variable 'window' used before its declaration.
+
+[7m3[0m         const globalObject = typeof window!== "undefined"? window : global;
+[7m [0m [91m                                    ~~~~~~[0m
+
+  [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-1cdbec1/testCase.test.ts[0m:[93m17[0m:[93m15[0m
+    [7m17[0m         const window = {};
+    [7m  [0m [96m              ~~~~~~[0m
+    'window' is declared here.
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-1cdbec1/testCase.test.ts[0m:[93m3[0m:[93m37[0m - [91merror[0m[90m TS2454: [0mVariable 'window' is used before being assigned.
+
+[7m3[0m         const globalObject = typeof window!== "undefined"? window : global;
+[7m [0m [91m                                    ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-1cdbec1/testCase.test.ts[0m:[93m3[0m:[93m60[0m - [91merror[0m[90m TS2448: [0mBlock-scoped variable 'window' used before its declaration.
+
+[7m3[0m         const globalObject = typeof window!== "undefined"? window : global;
+[7m [0m [91m                                                           ~~~~~~[0m
+
+  [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-1cdbec1/testCase.test.ts[0m:[93m17[0m:[93m15[0m
+    [7m17[0m         const window = {};
+    [7m  [0m [96m              ~~~~~~[0m
+    'window' is declared here.
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-1cdbec1/testCase.test.ts[0m:[93m20[0m:[93m29[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type '{}'.
+
+[7m20[0m         expect(globalObject.Q).toBeDefined();
+[7m  [0m [91m                            ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-1cdbec1/testCase.test.ts[0m:[93m22[0m:[93m29[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type '{}'.
+
+[7m22[0m         expect(globalObject.Q).toBeUndefined();
+[7m  [0m [91m                            ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-1cdbec1/testCase.test.ts
+  Q function behavior
+    ✕ should correctly handle global object creation
+
+  ● Q function behavior › should correctly handle global object creation
+
+    ReferenceError: Cannot access 'window' before initialization
+
+      1 | describe("Q function behavior", () => {
+      2 |     it("should correctly handle global object creation", () => {
+    > 3 |         const globalObject = typeof window!== "undefined"? window : global;
+        |                              ^
+      4 |         const originalCode = `
+      5 |             if (typeof window!== "undefined" || typeof self!== "undefined") {
+      6 |                 var global = typeof window!== "undefined"? window : self;
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-1cdbec1/testCase.test.ts:3:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.437 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-1cdbec1/testCase.test.ts".

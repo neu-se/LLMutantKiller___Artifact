@@ -1,0 +1,23 @@
+{
+  "file": "complex.js",
+  "startLine": 45,
+  "startColumn": 61,
+  "endLine": 46,
+  "endColumn": 74,
+  "originalCode": "\n-       return Math.abs(x) < 1e-9 ? x : (Math.exp(x) - Math.exp(-x)) * 0.5;",
+  "replacement": "\n+       return Math.abs(x) < 1e-9 ? x : (Math.exp(x) - Math.exp(+x)) * 0.5;\n",
+  "removedLines": [
+    "       return Math.abs(x) < 1e-9 ? x : (Math.exp(x) - Math.exp(-x)) * 0.5;"
+  ],
+  "addedLines": [
+    "       return Math.abs(x) < 1e-9 ? x : (Math.exp(x) - Math.exp(+x)) * 0.5;",
+    ""
+  ],
+  "lineSummary": [
+    "-       return Math.abs(x) < 1e-9 ? x : (Math.exp(x) - Math.exp(-x)) * 0.5;",
+    "+       return Math.abs(x) < 1e-9 ? x : (Math.exp(x) - Math.exp(+x)) * 0.5;",
+    ""
+  ],
+  "mutatorName": "UnaryOperator",
+  "strykerMutationId": "23"
+}

@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-c4ba1f4/testCase.test.ts
+  Q uses setImmediate when not in Node.js but setImmediate is available
+    ✕ should flush using setImmediate in non-Node environments (35 ms)
+
+  ● Q uses setImmediate when not in Node.js but setImmediate is available › should flush using setImmediate in non-Node environments
+
+    TypeError: requestTick is not a function
+
+      178 |         if (!flushing) {
+      179 |             flushing = true;
+    > 180 |             requestTick();
+          |             ^
+      181 |         }
+      182 |     };
+      183 |
+
+      at Function.requestTick [as nextTick] (../subject_repositories/q/q.js:180:13)
+      at Promise.nextTick [as then] (../subject_repositories/q/q.js:867:7)
+      at then (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-c4ba1f4/testCase.test.ts:21:13)
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-c4ba1f4/testCase.test.ts:18:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.527 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-c4ba1f4/testCase.test.ts".

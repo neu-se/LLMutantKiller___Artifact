@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-e289236/testCase.test.ts
+  deferred promise valueOf behavior
+    ✕ should have valueOf return the fulfilled value when resolved (3 ms)
+
+  ● deferred promise valueOf behavior › should have valueOf return the fulfilled value when resolved
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "test value"
+    Received: {"inspect": [Function anonymous], "promiseDispatch": [Function anonymous], "valueOf": [Function anonymous]}
+
+      12 |     return promise.then(() => {
+      13 |       const valueOfResult = promise.valueOf();
+    > 14 |       expect(valueOfResult).toBe("test value");
+         |                             ^
+      15 |     });
+      16 |   });
+      17 | });
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-e289236/testCase.test.ts:14:29)
+      at fulfilled (../subject_repositories/q/q.js:855:54)
+      at _fulfilled (../subject_repositories/q/q.js:884:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:817:13)
+      at apply (../subject_repositories/q/q.js:570:49)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.938 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-e289236/testCase.test.ts".

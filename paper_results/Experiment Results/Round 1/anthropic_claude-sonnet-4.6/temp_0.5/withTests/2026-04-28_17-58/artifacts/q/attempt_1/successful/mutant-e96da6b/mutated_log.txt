@@ -1,0 +1,36 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-e96da6b/testCase.test.ts[0m:[93m5[0m:[93m23[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 1.
+
+[7m5[0m     const promise = Q.delay(50);
+[7m [0m [91m                      ~~~~~[0m
+
+  [96m../subject_repositories/q/q.js[0m:[93m1872[0m:[93m32[0m
+    [7m1872[0m    Q.delay = function (object, timeout) {};
+    [7m    [0m [96m                               ~~~~~~~[0m
+    An argument for 'timeout' was not provided.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-e96da6b/testCase.test.ts
+  Q.delay with single argument
+    ✕ should return a fulfilled promise when called with only a timeout argument (single-argument form) (3 ms)
+
+  ● Q.delay with single argument › should return a fulfilled promise when called with only a timeout argument (single-argument form)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      4 |   it("should return a fulfilled promise when called with only a timeout argument (single-argument form)", async () => {
+      5 |     const promise = Q.delay(50);
+    > 6 |     expect(Q.isPromise(promise)).toBe(true);
+        |                                  ^
+      7 |     const result = await promise;
+      8 |     // When called with a single argument, Q.delay should treat it as a timeout
+      9 |     // and resolve with undefined after that time
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-e96da6b/testCase.test.ts:6:34)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.585 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-e96da6b/testCase.test.ts".

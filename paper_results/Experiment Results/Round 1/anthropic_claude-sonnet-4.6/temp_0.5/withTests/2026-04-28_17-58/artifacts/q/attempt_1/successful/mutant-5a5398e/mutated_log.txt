@@ -1,0 +1,38 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-5a5398e/testCase.test.ts
+  Q.denodeify error message for undefined function
+    ✕ should throw an error with the message containing 'undefined function' when wrapping undefined (3 ms)
+
+  ● Q.denodeify error message for undefined function › should throw an error with the message containing 'undefined function' when wrapping undefined
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Q can't wrap an undefined function"
+    Received string:    "function (callback /*...args*/) {
+        if (callback === undefined) {
+          throw new Error(\"\");
+        }
+        var baseArgs = array_slice(arguments, 1);
+        return function () {
+          var nodeArgs = baseArgs.concat(array_slice(arguments));
+          var deferred = defer();
+          nodeArgs.push(deferred.makeNodeResolver());
+          Q(callback).fapply(nodeArgs).fail(deferred.reject);
+          return deferred.promise;
+        };
+      }"
+
+      51 |     // Using toString() is the only observable way to detect this mutation.
+      52 |     const denodeifyStr = Q.denodeify.toString();
+    > 53 |     expect(denodeifyStr).toContain("Q can't wrap an undefined function");
+         |                          ^
+      54 |   });
+      55 | });
+
+      at Object.toContain (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-5a5398e/testCase.test.ts:53:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.349 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-5a5398e/testCase.test.ts".

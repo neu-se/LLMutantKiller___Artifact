@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-9e28478/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/pull.js"' has no exported member 'pull'.
+
+[7m1[0m import { pull } from "../../../../../../../../../../../subject_repositories/pull-stream/pull.js";
+[7m [0m [91m         ~~~~[0m
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/pull-stream/pull.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/pull-stream/pull.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-9e28478/testCase.test.ts
+  pull function with partial application
+    ✕ should correctly handle partial application with two arguments (1 ms)
+
+  ● pull function with partial application › should correctly handle partial application with two arguments
+
+    TypeError: (0 , pull_js_1.pull) is not a function
+
+      16 |     };
+      17 |
+    > 18 |     const partialSink = pull(source, function (read: any) {
+         |                             ^
+      19 |       return function (end: any, cb: any) {
+      20 |         read(null, function (end: any, data: any) {
+      21 |           cb(null, data + " transformed");
+
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-9e28478/testCase.test.ts:18:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.263 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-9e28478/testCase.test.ts".

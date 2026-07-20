@@ -1,0 +1,49 @@
+{
+  "file": "q.js",
+  "startLine": 1307,
+  "startColumn": 20,
+  "endLine": 1321,
+  "endColumn": 16,
+  "originalCode": "\n-               } else {\n-                   // SpiderMonkey Generators\n-                   // FIXME: Remove this case when SM does ES6 generators.\n-                   try {\n-                       result = generator[verb](arg);\n-                   } catch (exception) {\n-                       if (isStopIteration(exception)) {\n-                           return Q(exception.value);\n-                       } else {\n-                           return reject(exception);\n-                       }\n-                   }\n-                   return when(result, callback, errback);\n-               }",
+  "replacement": "\n+               } else {}\n",
+  "removedLines": [
+    "               } else {",
+    "                   // SpiderMonkey Generators",
+    "                   // FIXME: Remove this case when SM does ES6 generators.",
+    "                   try {",
+    "                       result = generator[verb](arg);",
+    "                   } catch (exception) {",
+    "                       if (isStopIteration(exception)) {",
+    "                           return Q(exception.value);",
+    "                       } else {",
+    "                           return reject(exception);",
+    "                       }",
+    "                   }",
+    "                   return when(result, callback, errback);",
+    "               }"
+  ],
+  "addedLines": [
+    "               } else {}",
+    ""
+  ],
+  "lineSummary": [
+    "-               } else {",
+    "-                   // SpiderMonkey Generators",
+    "-                   // FIXME: Remove this case when SM does ES6 generators.",
+    "-                   try {",
+    "-                       result = generator[verb](arg);",
+    "-                   } catch (exception) {",
+    "-                       if (isStopIteration(exception)) {",
+    "-                           return Q(exception.value);",
+    "-                       } else {",
+    "-                           return reject(exception);",
+    "-                       }",
+    "-                   }",
+    "-                   return when(result, callback, errback);",
+    "-               }",
+    "+               } else {}",
+    ""
+  ],
+  "mutatorName": "BlockStatement",
+  "strykerMutationId": "791"
+}

@@ -1,0 +1,49 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-c8926c6/testCase.test.ts[0m:[93m2[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m2[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-c8926c6/testCase.test.ts[0m:[93m27[0m:[93m9[0m - [91merror[0m[90m TS2741: [0mProperty '__promisify__' is missing in type '(callback: Function) => NodeJS.Immediate' but required in type 'typeof setImmediate'.
+
+[7m27[0m         global.setImmediate = (callback: Function) => {
+[7m  [0m [91m        ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/node/timers.d.ts[0m:[93m180[0m:[93m22[0m
+    [7m180[0m             export { __promisify__ };
+    [7m   [0m [96m                     ~~~~~~~~~~~~~[0m
+    '__promisify__' is declared here.
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-c8926c6/testCase.test.ts[0m:[93m29[0m:[93m43[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 2, '(callback: () => void): Immediate', gave the following error.
+    Argument of type 'Function' is not assignable to parameter of type '() => void'.
+      Type 'Function' provides no match for the signature '(): void'.
+  Overload 2 of 2, '(callback: (_: void) => void): Immediate', gave the following error.
+    Argument of type 'Function' is not assignable to parameter of type '(_: void) => void'.
+      Type 'Function' provides no match for the signature '(_: void): void'.
+
+[7m29[0m             return originalSetImmediate?.(callback);
+[7m  [0m [91m                                          ~~~~~~~~[0m
+
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-c8926c6/testCase.test.ts[0m:[93m33[0m:[93m9[0m - [91merror[0m[90m TS2741: [0mProperty '__promisify__' is missing in type '(callback: Function, timeout?: number) => number' but required in type 'typeof setTimeout'.
+
+[7m33[0m         global.setTimeout = (callback: Function, timeout?: number) => {
+[7m  [0m [91m        ~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/node/timers.d.ts[0m:[93m241[0m:[93m22[0m
+    [7m241[0m             export { __promisify__ };
+    [7m   [0m [96m                     ~~~~~~~~~~~~~[0m
+    '__promisify__' is declared here.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-c8926c6/testCase.test.ts
+  Node.js environment detection
+    ✕ should correctly identify non-Node.js environments even with process.nextTick
+
+  ● Node.js environment detection › should correctly identify non-Node.js environments even with process.nextTick
+
+    TypeError: Cannot read properties of undefined (reading 'defer')
+
+      at Object.defer (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-c8926c6/testCase.test.ts:41:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.197 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-c8926c6/testCase.test.ts".

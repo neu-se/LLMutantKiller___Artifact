@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/q/q.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/q/q.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-e0dce9c/testCase.test.ts
+  Promise
+    ✕ should correctly handle the 'valueOf' method for a rejected promise (4 ms)
+
+  ● Promise › should correctly handle the 'valueOf' method for a rejected promise
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: {"exception": "Test rejection reason", "inspect": [Function inspect], "promiseDispatch": [Function anonymous], "valueOf": [Function anonymous]}
+    Received: undefined
+
+       6 |         const inspected = promise.inspect();
+       7 |         if (inspected.state === "rejected") {
+    >  8 |             expect(promise.valueOf()).toBe(promise);
+         |                                       ^
+       9 |         } else {
+      10 |             expect(promise.valueOf()).not.toBe(promise);
+      11 |         }
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-e0dce9c/testCase.test.ts:8:39)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        4.041 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-e0dce9c/testCase.test.ts".

@@ -1,0 +1,38 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_5/pending_category/mutant-d9f9fcf/testCase.test.ts[0m:[93m5[0m:[93m1[0m - [91merror[0m[90m TS6133: [0m'archiver' is declared but its value is never read.
+
+[7m5[0m import * as archiver from 'archiver';
+[7m [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_5/pending_category/mutant-d9f9fcf/testCase.test.ts[0m:[93m30[0m:[93m38[0m - [91merror[0m[90m TS2345: [0mArgument of type 'Buffer' is not assignable to parameter of type 'InputType'.
+  Type 'Buffer' is not assignable to type 'Uint8Array<ArrayBufferLike> | DataView<ArrayBufferLike>'.
+    Type 'Buffer' is not assignable to type 'Uint8Array<ArrayBufferLike>'.
+      The types of 'slice(...).buffer' are incompatible between these types.
+        Type 'ArrayBufferLike' is not assignable to type 'ArrayBuffer'.
+          Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+            Types of property '[Symbol.toStringTag]' are incompatible.
+              Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.
+
+[7m30[0m         const unzip = zlib.unzipSync(zipBuffer);
+[7m  [0m [91m                                     ~~~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_5/pending_category/mutant-d9f9fcf/testCase.test.ts
+  Zip-A-Folder Test
+    ✕ should create an uncompressed zip file when compression is set to uncompressed (13 ms)
+
+  ● Zip-A-Folder Test › should create an uncompressed zip file when compression is set to uncompressed
+
+    incorrect header check
+
+      28 |
+      29 |         const zipBuffer = fs.readFileSync(testUNCOMPRESSEDZIP);
+    > 30 |         const unzip = zlib.unzipSync(zipBuffer);
+         |                            ^
+      31 |         expect(unzip.toString()).toContain('Hello World!');
+      32 |     });
+      33 | });
+
+      at Object.unzipSync (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_5/pending_category/mutant-d9f9fcf/testCase.test.ts:30:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.346 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_5/pending_category/mutant-d9f9fcf/testCase.test.ts".

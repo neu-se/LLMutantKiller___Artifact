@@ -1,0 +1,33 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-56536c0/testCase.test.ts
+  Q uses MessageChannel when available
+    ✕ constructs a MessageChannel instance during initialization when MessageChannel is global (52 ms)
+
+  ● Q uses MessageChannel when available › constructs a MessageChannel instance during initialization when MessageChannel is global
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      18 |     try {
+      19 |       require("../../../../../../../../../../../subject_repositories/q/q.js");
+    > 20 |       expect(constructed).toBe(true);
+         |                           ^
+      21 |     } finally {
+      22 |       delete (global as any).MessageChannel;
+      23 |     }
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-56536c0/testCase.test.ts:20:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.541 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-56536c0/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

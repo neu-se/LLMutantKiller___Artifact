@@ -1,0 +1,25 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-d5fa407/testCase.test.ts
+  Complex acot with subnormal imaginary
+    ✕ acot(0 + MIN_VALUE*i) should differ from acot(0+0i) due to underflow in d (4 ms)
+
+  ● Complex acot with subnormal imaginary › acot(0 + MIN_VALUE*i) should differ from acot(0+0i) due to underflow in d
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      10 |     // new Complex(0, -Infinity).atan() should give re = -pi/4 or similar
+      11 |     // new Complex(0, 0).atan() gives re = 0
+    > 12 |     expect(isFinite(result.re) && result.re !== 0 || !isFinite(result.im)).toBe(true);
+         |                                                                            ^
+      13 |   });
+      14 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-d5fa407/testCase.test.ts:12:76)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.396 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-d5fa407/testCase.test.ts".

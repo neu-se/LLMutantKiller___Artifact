@@ -1,0 +1,35 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_3/pending_category/mutant-599afee/testCase.test.ts
+  rule
+    ✕ does not match when context property is undefined and the regex capture group is also undefined (1 ms)
+
+  ● rule › does not match when context property is undefined and the regex capture group is also undefined
+
+    TypeError: RegExp.prototype.global getter called on non-RegExp object
+        at get global [as global] (<anonymous>)
+        at [Symbol.match] (<anonymous>)
+
+      40 |       return null
+      41 |     }
+    > 42 |     return super[Symbol.match](string)
+         |                               ^
+      43 |   }
+      44 |
+      45 |   /** Static constructor function; returns a new Matcher.
+
+      at Matcher.[Symbol.match] (../subject_repositories/spacl-core/src/matcher.ts:42:31)
+          at String.match (<anonymous>)
+      at Rule.match [as matches] (../subject_repositories/spacl-core/src/rule.ts:60:24)
+      at Object.matches (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_3/pending_category/mutant-599afee/testCase.test.ts:44:17)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.907 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_3/pending_category/mutant-599afee/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

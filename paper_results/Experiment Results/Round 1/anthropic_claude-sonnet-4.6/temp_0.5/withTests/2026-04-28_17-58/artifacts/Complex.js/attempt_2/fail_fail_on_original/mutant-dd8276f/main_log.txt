@@ -1,0 +1,39 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-dd8276f/testCase.test.ts[0m:[93m30[0m:[93m44[0m - [91merror[0m[90m TS2367: [0mThis comparison appears to be unintentional because the types '5e-200' and '0' have no overlap.
+
+[7m30[0m     const originalLikeResult = new Complex(tiny !== 0 ? tiny / 0 : 0, tiny !== 0 ? -tiny / 0 : 0).asin();
+[7m  [0m [91m                                           ~~~~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-dd8276f/testCase.test.ts[0m:[93m30[0m:[93m71[0m - [91merror[0m[90m TS2367: [0mThis comparison appears to be unintentional because the types '5e-200' and '0' have no overlap.
+
+[7m30[0m     const originalLikeResult = new Complex(tiny !== 0 ? tiny / 0 : 0, tiny !== 0 ? -tiny / 0 : 0).asin();
+[7m  [0m [91m                                                                      ~~~~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-dd8276f/testCase.test.ts[0m:[93m31[0m:[93m43[0m - [91merror[0m[90m TS2367: [0mThis comparison appears to be unintentional because the types '5e-200' and '0' have no overlap.
+
+[7m31[0m     const mutatedLikeResult = new Complex(tiny !== 0 ? tiny / 0 : 0, 0).asin();
+[7m  [0m [91m                                          ~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-dd8276f/testCase.test.ts
+  Complex acsc method
+    ✕ should return correct imaginary part when acsc is called with a value where d is non-zero but b is non-zero (3 ms)
+
+  ● Complex acsc method › should return correct imaginary part when acsc is called with a value where d is non-zero but b is non-zero
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      25 |     // In mutated: b === 0 is false (b=tiny), so im part = 0 -> asin gets 0 im
+      26 |     // These should produce different results
+    > 27 |     expect(isFinite(result.re) || !isNaN(result.re)).toBe(true);
+         |                                                      ^
+      28 |     // The key difference: original produces a result with infinite imaginary input to asin
+      29 |     // mutated produces asin(tiny, 0) which is a real number
+      30 |     const originalLikeResult = new Complex(tiny !== 0 ? tiny / 0 : 0, tiny !== 0 ? -tiny / 0 : 0).asin();
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-dd8276f/testCase.test.ts:27:54)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.683 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-dd8276f/testCase.test.ts".

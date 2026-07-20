@@ -1,0 +1,49 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-ccef39b/testCase.test.ts (7.43 s)
+  Dirty close behavior
+    ✕ should close immediately when there are no pending writes but in-flight writes exist (5002 ms)
+
+  ● Dirty close behavior › should close immediately when there are no pending writes but in-flight writes exist
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      42 |           // In mutated code (AND condition), this would wait for drain
+      43 |           // In original code (OR condition), streams should be closing
+    > 44 |           expect(readCloseCalled).toBe(true);
+         |                                   ^
+      45 |           expect(writeCloseCalled).toBe(true);
+      46 |
+      47 |           // Cleanup
+
+      at Immediate.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-ccef39b/testCase.test.ts:44:35)
+
+  ● Dirty close behavior › should close immediately when there are no pending writes but in-flight writes exist
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 |
+      5 | describe('Dirty close behavior', () => {
+    > 6 |   it('should close immediately when there are no pending writes but in-flight writes exist', (done) => {
+        |   ^
+      7 |     const testDir = path.join(__dirname, 'test-dir');
+      8 |     const dbPath = path.join(testDir, 'test.db');
+      9 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-ccef39b/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-ccef39b/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.607 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-ccef39b/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

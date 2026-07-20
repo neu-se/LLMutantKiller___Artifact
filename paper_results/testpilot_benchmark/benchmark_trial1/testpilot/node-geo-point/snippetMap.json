@@ -1,0 +1,96 @@
+[
+  [
+    "GeoPoint",
+    [
+      "const startPoint = new GeoPoint(51.5, -0.15);\nconst endPoint = new GeoPoint(52.5, -1.15);\nconst bearing = startPoint.calculateBearing(endPoint);",
+      "const startPoint = new GeoPoint(51.5, -0.15);\nconst endPoint = startPoint.calculateDestination(1000, 90);",
+      "const startPoint = new GeoPoint(51.5, -0.15);\nconst endPoint = new GeoPoint(52.5, -1.15);\nconst distance = startPoint.calculateDistance(endPoint);\n",
+      "const startPoint = new GeoPoint(51.5, -0.15);\nconst { x, y } = startPoint.toTile(7);",
+      "const point = new GeoPoint(51.5, -0.15);\nconst geoJson = point.toGeoJSON();\n\ngeoJson.should.have.keys(['type', 'coordinates']);\ngeoJson.type.should.equals('Point');\ngeoJson.coordinates.should.deep.equals([-0.15, 51.5]);",
+      "const point = new GeoPoint(51.5, -0.15);\npoint.toPlainObject().should.have.keys(['latitude', 'longitude']);",
+      "const point = new GeoPoint(51.5, -0.15);\npoint.toLatLngArray().should.deep.equals([51.5, -0.15]);",
+      "const point = new GeoPoint(51.5, -0.15);\npoint.toLngLatArray().should.deep.equals([-0.15, 51.5]);",
+      "const point1 = new GeoPoint(51.5, -0.15);\nconst point2 = new GeoPoint(51.6, -0.15);\n\nconst distanceInMeters = GeoPoint.calculateDistance(point1, point2);"
+    ]
+  ],
+  [
+    "calculateDestination",
+    [
+      "const startPoint = new GeoPoint(51.5, -0.15);\nconst endPoint = startPoint.calculateDestination(1000, 90);",
+      "const startPoint = new GeoPoint(51.5, -0.15);\nconst endPoint = startPoint.calculateDestination(1000, 90);"
+    ]
+  ],
+  [
+    "calculateBearing",
+    [
+      "const startPoint = new GeoPoint(51.5, -0.15);\nconst endPoint = new GeoPoint(52.5, -1.15);\nconst bearing = startPoint.calculateBearing(endPoint);",
+      "const startPoint = new GeoPoint(51.5, -0.15);\nconst endPoint = new GeoPoint(52.5, -1.15);\nconst bearing = startPoint.calculateBearing(endPoint);"
+    ]
+  ],
+  [
+    "calculateDistance",
+    [
+      "const startPoint = new GeoPoint(51.5, -0.15);\nconst endPoint = new GeoPoint(52.5, -1.15);\nconst distance = startPoint.calculateDistance(endPoint);\n",
+      "const startPoint = new GeoPoint(51.5, -0.15);\nconst endPoint = new GeoPoint(52.5, -1.15);\nconst distance = startPoint.calculateDistance(endPoint);\n",
+      "const point1 = new GeoPoint(51.5, -0.15);\nconst point2 = new GeoPoint(51.6, -0.15);\n\nconst distanceInMeters = GeoPoint.calculateDistance(point1, point2);",
+      "const point1 = new GeoPoint(51.5, -0.15);\nconst point2 = new GeoPoint(51.6, -0.15);\n\nconst distanceInMeters = GeoPoint.calculateDistance(point1, point2);"
+    ]
+  ],
+  [
+    "toString",
+    []
+  ],
+  [
+    "toGeoJSON",
+    [
+      "const point = new GeoPoint(51.5, -0.15);\nconst geoJson = point.toGeoJSON();\n\ngeoJson.should.have.keys(['type', 'coordinates']);\ngeoJson.type.should.equals('Point');\ngeoJson.coordinates.should.deep.equals([-0.15, 51.5]);"
+    ]
+  ],
+  [
+    "toObject",
+    []
+  ],
+  [
+    "toLatLngArray",
+    [
+      "const point = new GeoPoint(51.5, -0.15);\npoint.toLatLngArray().should.deep.equals([51.5, -0.15]);"
+    ]
+  ],
+  [
+    "toLngLatArray",
+    [
+      "const point = new GeoPoint(51.5, -0.15);\npoint.toLngLatArray().should.deep.equals([-0.15, 51.5]);"
+    ]
+  ],
+  [
+    "toTile",
+    [
+      "const startPoint = new GeoPoint(51.5, -0.15);\nconst { x, y } = startPoint.toTile(7);",
+      "const startPoint = new GeoPoint(51.5, -0.15);\nconst { x, y } = startPoint.toTile(7);"
+    ]
+  ],
+  [
+    "adjustPrecision",
+    []
+  ],
+  [
+    "fromGeoJSON",
+    [
+      "const point = GeoPoint.fromGeoJSON({\n  type: 'Point',\n  coordinates: [-0.15, 51.5]\n});"
+    ]
+  ],
+  [
+    "fromObject",
+    [
+      "const point = GeoPoint.fromObject({\n  latitude: 51.5,\n  longitude: -0.15\n});"
+    ]
+  ],
+  [
+    "fromLatLngArray",
+    []
+  ],
+  [
+    "fromLngLatArray",
+    []
+  ]
+]

@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-4fe37a5/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-4fe37a5/testCase.test.ts[0m:[93m10[0m:[93m8[0m - [91merror[0m[90m TS7006: [0mParameter 'error' implicitly has an 'any' type.
+
+[7m10[0m       (error) => {
+[7m  [0m [91m       ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-4fe37a5/testCase.test.ts
+  Promise fallback behavior
+    ✕ should reject with an error when an unsupported operation is called on a promise (1 ms)
+
+  ● Promise fallback behavior › should reject with an error when an unsupported operation is called on a promise
+
+    TypeError: Cannot read properties of undefined (reading 'makePromise')
+
+      3 | describe("Promise fallback behavior", () => {
+      4 |   it("should reject with an error when an unsupported operation is called on a promise", () => {
+    > 5 |     const promise = Q.makePromise({});
+        |                       ^
+      6 |     return promise.dispatch("unsupportedOperation", []).then(
+      7 |       () => {
+      8 |         throw new Error("Expected promise to be rejected");
+
+      at Object.makePromise (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-4fe37a5/testCase.test.ts:5:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.087 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-4fe37a5/testCase.test.ts".

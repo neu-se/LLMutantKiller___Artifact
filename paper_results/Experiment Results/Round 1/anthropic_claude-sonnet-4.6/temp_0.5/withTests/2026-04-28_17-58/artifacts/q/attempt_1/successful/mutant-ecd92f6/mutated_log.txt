@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-ecd92f6/testCase.test.ts
+  Promise inspect default behavior
+    ✕ should return state 'unknown' when inspect is not provided to makePromise (3 ms)
+
+  ● Promise inspect default behavior › should return state 'unknown' when inspect is not provided to makePromise
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "function"
+    Received: "undefined"
+
+      11 |         // In the original code, inspect defaults to returning {state: "unknown"}
+      12 |         // In the mutated code, inspect is undefined, so calling promise.inspect() throws
+    > 13 |         expect(typeof promise.inspect).toBe("function");
+         |                                        ^
+      14 |         const result = promise.inspect();
+      15 |         expect(result).toEqual({ state: "unknown" });
+      16 |     });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-ecd92f6/testCase.test.ts:13:40)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.432 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-ecd92f6/testCase.test.ts".

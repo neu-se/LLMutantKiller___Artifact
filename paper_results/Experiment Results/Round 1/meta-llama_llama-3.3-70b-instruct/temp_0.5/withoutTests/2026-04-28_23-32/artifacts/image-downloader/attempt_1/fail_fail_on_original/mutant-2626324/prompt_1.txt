@@ -1,0 +1,62 @@
+Your task is to write a Jest test case that exposes a specific mutation in a JavaScript/TypeScript project.
+
+MUTATION DETAILS
+The mutation affects the following file:
+index.js
+Here is the full content of that file (shown with a <PLACEHOLDER> marker):
+const path = require('path');
+const request = require('./lib/request');
+
+module.exports.image = ({ extractFilename = true, ...options } = {}) => {
+  if (!options.url) {
+    return Promise.reject(new Error('The options.url is required'));
+  }
+
+  if (!options.dest) {
+    return Promise.reject(new Error('The options.dest is required'));
+  }
+
+  if (extractFilename) {
+    if (!path.extname(options.dest)) {
+      const url = new URL(options.url);
+      const pathname = url.pathname;
+      const basename = path.basename(pathname);
+      const decodedBasename = decodeURIComponent(basename);
+
+      options.dest = path.join(options.dest, decodedBasename);
+    }
+  }
+
+  <PLACEHOLDER>
+
+  return request(options);
+};
+
+In the original code, <PLACEHOLDER> has the value:
+
+-     if (!path.isAbsolute(options.dest)) {
+-       options.dest = path.resolve(__dirname, options.dest);
+-     }
+In the mutated code, <PLACEHOLDER> has the value:
+
++     if (!path.isAbsolute(options.dest)) {}
+
+
+
+YOUR TASK
+Write one Jest test file that:
+    1. Passes when run against the original code.
+    2. Fails when run against the mutated code.
+    3. Tests the behavior of the mutated file in a way that reliably detects the mutation.
+The test will be saved at the following path, relative to this test-generation project’s root:
+llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-2626324/testCase.test.ts
+
+ALLOWED LIBRARIES
+You may use:
+    1. Any built-in Node.js modules (e.g., fs, path, crypto, etc.).
+    2. The following external libraries are explicitly permitted:
+    - nock
+    - follow-redirects 
+You may not use any other third-party libraries.
+
+

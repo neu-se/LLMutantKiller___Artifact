@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_4/pending_category/mutant-7fe957d/testCase.test.ts
+  GeoPoint.calculateDistance
+    ✕ should return a finite distance (not NaN) for identical high-latitude points where floating point causes r > 1 (11 ms)
+
+  ● GeoPoint.calculateDistance › should return a finite distance (not NaN) for identical high-latitude points where floating point causes r > 1
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      22 |     // On original code: never NaN (clamping prevents it)
+      23 |     // On mutated code: at least one NaN when r > 1
+    > 24 |     expect(foundNaN).toBe(false);
+         |                      ^
+      25 |   });
+      26 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_4/pending_category/mutant-7fe957d/testCase.test.ts:24:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.058 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_4/pending_category/mutant-7fe957d/testCase.test.ts".

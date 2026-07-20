@@ -1,0 +1,31 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_3/pending_category/mutant-6954c2a/testCase.test.ts[0m:[93m15[0m:[93m58[0m - [91merror[0m[90m TS2345: [0mArgument of type '(value: unknown) => void' is not assignable to parameter of type '() => void'.
+  Target signature provides too few arguments. Expected 1 or more, but got 0.
+
+[7m15[0m     await new Promise(resolve => writeStream.on('close', resolve));
+[7m  [0m [91m                                                         ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_3/pending_category/mutant-6954c2a/testCase.test.ts
+  request
+    ✕ should reject with a meaningful error message when the status code is not 200 (120 ms)
+
+  ● request › should reject with a meaningful error message when the status code is not 200
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Request Failed"
+    Received string:    ""
+
+      21 |     await request({ url, dest }).catch(() => {});
+      22 |     console.error = originalConsoleError;
+    > 23 |     expect(errorString).toContain('Request Failed');
+         |                         ^
+      24 |   });
+      25 | });
+
+      at Object.toContain (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_3/pending_category/mutant-6954c2a/testCase.test.ts:23:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.154 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_3/pending_category/mutant-6954c2a/testCase.test.ts".

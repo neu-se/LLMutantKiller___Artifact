@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-8b8202a/testCase.test.ts[0m:[93m31[0m:[93m29[0m - [91merror[0m[90m TS18047: [0m'db._writeStream' is possibly 'null'.
+
+[7m31[0m       const originalWrite = db._writeStream.write;
+[7m  [0m [91m                            ~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-8b8202a/testCase.test.ts[0m:[93m32[0m:[93m7[0m - [91merror[0m[90m TS18047: [0m'db._writeStream' is possibly 'null'.
+
+[7m32[0m       db._writeStream.write = function(data, cb) {
+[7m  [0m [91m      ~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-8b8202a/testCase.test.ts[0m:[93m34[0m:[93m55[0m - [91merror[0m[90m TS2345: [0mArgument of type '(err: any) => void' is not assignable to parameter of type 'BufferEncoding'.
+
+[7m34[0m         const result = originalWrite.call(this, data, (err) => {
+[7m  [0m [91m                                                      ~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-8b8202a/testCase.test.ts[0m:[93m34[0m:[93m56[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m34[0m         const result = originalWrite.call(this, data, (err) => {
+[7m  [0m [91m                                                       ~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-8b8202a/testCase.test.ts[0m:[93m36[0m:[93m19[0m - [91merror[0m[90m TS2349: [0mThis expression is not callable.
+  Not all constituents of type 'BufferEncoding | ((error: Error | null | undefined) => void)' are callable.
+    Type '"ascii"' has no call signatures.
+
+[7m36[0m           if (cb) cb(err);
+[7m  [0m [91m                  ~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+PASS llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-8b8202a/testCase.test.ts
+  Dirty database drain event mutation test
+    ✓ should emit drain only when inFlightWrites <= 0 and not waiting for drain (4 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        1.623 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-8b8202a/testCase.test.ts".

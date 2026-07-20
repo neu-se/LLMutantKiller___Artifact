@@ -1,0 +1,40 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-9937593/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/sinks/drain.js"' has no exported member 'drain'.
+
+[7m1[0m import { drain } from "../../../../../../../../../../../subject_repositories/pull-stream/sinks/drain.js";
+[7m [0m [91m         ~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-9937593/testCase.test.ts[0m:[93m6[0m:[93m15[0m - [91merror[0m[90m TS7006: [0mParameter 'abort' implicitly has an 'any' type.
+
+[7m6[0m       return (abort, cb) => {
+[7m [0m [91m              ~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-9937593/testCase.test.ts[0m:[93m6[0m:[93m22[0m - [91merror[0m[90m TS7006: [0mParameter 'cb' implicitly has an 'any' type.
+
+[7m6[0m       return (abort, cb) => {
+[7m [0m [91m                     ~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-9937593/testCase.test.ts[0m:[93m11[0m:[93m37[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m11[0m     const sink = drain(() => true, (err) => {
+[7m  [0m [91m                                    ~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-9937593/testCase.test.ts
+  drain
+    ✕ should call done with error when end is not true and done is provided (1 ms)
+
+  ● drain › should call done with error when end is not true and done is provided
+
+    TypeError: (0 , drain_js_1.drain) is not a function
+
+       9 |       }
+      10 |     }
+    > 11 |     const sink = drain(() => true, (err) => {
+         |                       ^
+      12 |       if (err) {
+      13 |         done.fail(err);
+      14 |       } else {
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-9937593/testCase.test.ts:11:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.353 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-9937593/testCase.test.ts".

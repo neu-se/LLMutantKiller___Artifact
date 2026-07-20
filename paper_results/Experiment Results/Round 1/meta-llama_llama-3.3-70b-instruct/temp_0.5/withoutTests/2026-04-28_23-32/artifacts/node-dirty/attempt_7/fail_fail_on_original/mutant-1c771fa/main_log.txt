@@ -1,0 +1,37 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+PASS llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-1c771fa/testCase.test.ts
+  Dirty
+    ✓ should emit an error when loading a corrupted row (3 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        1.171 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-1c771fa/testCase.test.ts".
+/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/node_modules/expect/build/index.js:314
+      throw error;
+      ^
+
+JestAssertionError: expect(received).toBe(expected) // Object.is equality
+
+Expected: "Could not load corrupted row: {\"key\":\"test2\",\"val\":null{\"key\":\"test\",\"val\":null}"
+Received: "Corrupted row at the end of the db: {\"key\":\"test2\",\"val\":null,{\"key\":\"test2\",\"val\":null{\"key\":\"test\",\"val\":null}"
+    at Dirty.<anonymous> (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-1c771fa/testCase.test.ts:54:27)
+    at Dirty.emit (node:events:524:28)
+    at ReadStream.<anonymous> (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/subject_repositories/node-dirty/lib/dirty/dirty.js:142:14)
+    at ReadStream.emit (node:events:524:28)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  matcherResult: {
+    actual: 'Corrupted row at the end of the db: {"key":"test2","val":null,{"key":"test2","val":null{"key":"test","val":null}',
+    expected: 'Could not load corrupted row: {"key":"test2","val":null{"key":"test","val":null}',
+    message: 'expect(received).toBe(expected) // Object.is equality\n' +
+      '\n' +
+      'Expected: "Could not load corrupted row: {\\"key\\":\\"test2\\",\\"val\\":null{\\"key\\":\\"test\\",\\"val\\":null}"\n' +
+      'Received: "Corrupted row at the end of the db: {\\"key\\":\\"test2\\",\\"val\\":null,{\\"key\\":\\"test2\\",\\"val\\":null{\\"key\\":\\"test\\",\\"val\\":null}"',
+    name: 'toBe',
+    pass: false
+  }
+}
+
+Node.js v20.19.4

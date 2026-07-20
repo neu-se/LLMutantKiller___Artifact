@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-be693c8/testCase.test.ts (7.168 s)
+  Q.timeout
+    ✕ should reject with a timeout error when the promise takes too long (5002 ms)
+
+  ● Q.timeout › should reject with a timeout error when the promise takes too long
+
+    expect(received).not.toBeNull()
+
+    Received: null
+
+      23 |       setTimeout(() => {
+      24 |         expect(resolved).toBe(false);
+    > 25 |         expect(rejectedError).not.toBeNull();
+         |                                   ^
+      26 |         expect(rejectedError).toBeDefined();
+      27 |         expect(rejectedError.message).toMatch(/time/i);
+      28 |         resolve();
+
+      at Timeout.toBeNull [as _onTimeout] (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-be693c8/testCase.test.ts:25:35)
+
+  ● Q.timeout › should reject with a timeout error when the promise takes too long
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("Q.timeout", () => {
+    > 4 |   it("should reject with a timeout error when the promise takes too long", () => {
+        |   ^
+      5 |     jest.useFakeTimers();
+      6 |
+      7 |     const deferred = Q.defer();
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-be693c8/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-be693c8/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.376 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-be693c8/testCase.test.ts".

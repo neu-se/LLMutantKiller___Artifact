@@ -1,0 +1,76 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-5e4b522/testCase.test.ts[0m:[93m15[0m:[93m18[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type 'typeof globalThis'.
+
+[7m15[0m       if (global.Q) {
+[7m  [0m [91m                 ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-5e4b522/testCase.test.ts[0m:[93m16[0m:[93m23[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type 'typeof globalThis'.
+
+[7m16[0m         delete global.Q;
+[7m  [0m [91m                      ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-5e4b522/testCase.test.ts[0m:[93m21[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{}' is not assignable to type 'Window & typeof globalThis'.
+  Type '{}' is missing the following properties from type 'Window': clientInformation, closed, cookieStore, customElements, and 209 more.
+
+[7m21[0m     global.window = {};
+[7m  [0m [91m    ~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-5e4b522/testCase.test.ts[0m:[93m22[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{}' is not assignable to type 'Window & typeof globalThis'.
+  Type '{}' is missing the following properties from type 'Window': clientInformation, closed, cookieStore, customElements, and 209 more.
+
+[7m22[0m     global.self = {};
+[7m  [0m [91m    ~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-5e4b522/testCase.test.ts[0m:[93m29[0m:[93m26[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type 'typeof globalThis'.
+
+[7m29[0m     expect(typeof global.Q).toBe("function");
+[7m  [0m [91m                         ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-5e4b522/testCase.test.ts[0m:[93m32[0m:[93m29[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type 'typeof globalThis'.
+
+[7m32[0m     const deferred = global.Q.defer();
+[7m  [0m [91m                            ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-5e4b522/testCase.test.ts[0m:[93m37[0m:[93m28[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type 'typeof globalThis'.
+
+[7m37[0m     const promise = global.Q.resolve(42);
+[7m  [0m [91m                           ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-5e4b522/testCase.test.ts[0m:[93m38[0m:[93m25[0m - [91merror[0m[90m TS7006: [0mParameter 'value' implicitly has an 'any' type.
+
+[7m38[0m     return promise.then(value => {
+[7m  [0m [91m                        ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-5e4b522/testCase.test.ts
+  Q library browser environment detection
+    ✕ should correctly detect browser environment when window is defined (7 ms)
+
+  ● Q library browser environment detection › should correctly detect browser environment when window is defined
+
+    Hooks cannot be defined inside tests. Hook of type "afterAll" is nested within "should correctly detect browser environment when window is defined".
+
+       9 |
+      10 |     // Clean up after test
+    > 11 |     afterAll(() => {
+         |     ^
+      12 |       global.window = originalWindow;
+      13 |       global.self = originalSelf;
+      14 |       // Clean up Q global if it was set
+
+      at eventHandler (node_modules/jest-circus/build/eventHandler.js:97:11)
+      at Object.afterAll (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-5e4b522/testCase.test.ts:11:5)
+
+  ● Q library browser environment detection › should correctly detect browser environment when window is defined
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "function"
+    Received: "undefined"
+
+      27 |
+      28 |     // Verify Q was initialized as a global
+    > 29 |     expect(typeof global.Q).toBe("function");
+         |                             ^
+      30 |
+      31 |     // Verify basic Q functionality
+      32 |     const deferred = global.Q.defer();
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-5e4b522/testCase.test.ts:29:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.536 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-5e4b522/testCase.test.ts".

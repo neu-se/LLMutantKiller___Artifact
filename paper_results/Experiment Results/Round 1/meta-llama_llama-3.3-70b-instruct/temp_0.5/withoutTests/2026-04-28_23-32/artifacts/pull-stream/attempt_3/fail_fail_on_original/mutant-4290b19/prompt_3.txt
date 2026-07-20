@@ -1,0 +1,34 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-4290b19/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/pull.js"' has no exported member 'pull'.
+
+[7m1[0m import { pull } from "../../../../../../../../../../../subject_repositories/pull-stream/pull.js";
+[7m [0m [91m         ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-4290b19/testCase.test.ts
+  pull function
+    ✕ should not throw an error when called with a function and one argument (1 ms)
+
+  ● pull function › should not throw an error when called with a function and one argument
+
+    TypeError: (0 , pull_js_1.pull) is not a function
+
+      4 |   it('should not throw an error when called with a function and one argument', () => {
+      5 |     const func = () => {};
+    > 6 |     const result = pull(func, func);
+        |                        ^
+      7 |     expect(result).toBeInstanceOf(Function);
+      8 |   });
+      9 | });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-4290b19/testCase.test.ts:6:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.76 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-4290b19/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

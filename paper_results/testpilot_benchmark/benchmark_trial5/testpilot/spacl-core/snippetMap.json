@@ -1,0 +1,65 @@
+[
+  [
+    "Matcher",
+    []
+  ],
+  [
+    "for",
+    [
+      "import { Rule, Policy } from '@spacl/core'\n\n/* Create a policy describing a standard user who can\n   view other user's profiles, and edit their own. */\nconst user = Policy.for('user',\n  Rule.for('/user/+').allow('get'),\n  Rule.for('/user/:name').allow('put'))\n\n/* Create a derived policy describing an admin user who\n   can also create, edit and delete any user's profile,\n   but for safety reasons, cannot delete themselves. */\nconst admin = user.clone('admin').push(\n  Rule.for('/user/+').allow('put', 'post', 'delete'),\n  Rule.for('/user/:name').deny('delete'))",
+      "import { Rule, Policy } from '@spacl/core'\n\n/* Create a policy describing a standard user who can\n   view other user's profiles, and edit their own. */\nconst user = Policy.for('user',\n  Rule.for('/user/+').allow('get'),\n  Rule.for('/user/:name').allow('put'))\n\n/* Create a derived policy describing an admin user who\n   can also create, edit and delete any user's profile,\n   but for safety reasons, cannot delete themselves. */\nconst admin = user.clone('admin').push(\n  Rule.for('/user/+').allow('put', 'post', 'delete'),\n  Rule.for('/user/:name').deny('delete'))",
+      "import { Rule, Policy } from '@spacl/core'\n\n/* Create a policy describing a standard user who can\n   view other user's profiles, and edit their own. */\nconst user = Policy.for('user',\n  Rule.for('/user/+').allow('get'),\n  Rule.for('/user/:name').allow('put'))\n\n/* Create a derived policy describing an admin user who\n   can also create, edit and delete any user's profile,\n   but for safety reasons, cannot delete themselves. */\nconst admin = user.clone('admin').push(\n  Rule.for('/user/+').allow('put', 'post', 'delete'),\n  Rule.for('/user/:name').deny('delete'))",
+      "import { Rule, Policy } from '@spacl/core'\n\n/* Create a policy describing a standard user who can\n   view other user's profiles, and edit their own. */\nconst user = Policy.for('user',\n  Rule.for('/user/+').allow('get'),\n  Rule.for('/user/:name').allow('put'))\n\n/* Create a derived policy describing an admin user who\n   can also create, edit and delete any user's profile,\n   but for safety reasons, cannot delete themselves. */\nconst admin = user.clone('admin').push(\n  Rule.for('/user/+').allow('put', 'post', 'delete'),\n  Rule.for('/user/:name').deny('delete'))"
+    ]
+  ],
+  [
+    "Rule",
+    []
+  ],
+  [
+    "allow",
+    [
+      "import { Rule, Policy } from '@spacl/core'\n\n/* Create a policy describing a standard user who can\n   view other user's profiles, and edit their own. */\nconst user = Policy.for('user',\n  Rule.for('/user/+').allow('get'),\n  Rule.for('/user/:name').allow('put'))\n\n/* Create a derived policy describing an admin user who\n   can also create, edit and delete any user's profile,\n   but for safety reasons, cannot delete themselves. */\nconst admin = user.clone('admin').push(\n  Rule.for('/user/+').allow('put', 'post', 'delete'),\n  Rule.for('/user/:name').deny('delete'))"
+    ]
+  ],
+  [
+    "deny",
+    [
+      "import { Rule, Policy } from '@spacl/core'\n\n/* Create a policy describing a standard user who can\n   view other user's profiles, and edit their own. */\nconst user = Policy.for('user',\n  Rule.for('/user/+').allow('get'),\n  Rule.for('/user/:name').allow('put'))\n\n/* Create a derived policy describing an admin user who\n   can also create, edit and delete any user's profile,\n   but for safety reasons, cannot delete themselves. */\nconst admin = user.clone('admin').push(\n  Rule.for('/user/+').allow('put', 'post', 'delete'),\n  Rule.for('/user/:name').deny('delete'))"
+    ]
+  ],
+  [
+    "query",
+    [
+      "/* Query context for our hypothetical user, 'foo'. */\nconst ctx = { name: 'foo' }\n\n/* What can 'foo' access if they are granted 'user' rights? */\nuser.query('/user/foo', 'get',    ctx) /* true; explicitly allowed */\nuser.query('/user/foo', 'put',    ctx) /* true; explicitly allowed */\nuser.query('/user/foo', 'delete', ctx) /* null; implicitly denied */\nuser.query('/user/bar', 'get',    ctx) /* true; explicitly allowed */\nuser.query('/user/bar', 'put',    ctx) /* null; implicitly denied */\nuser.query('/user/bar', 'delete', ctx) /* null; implicitly denied */\n\n/* Alternatively, what if 'foo' is granted 'admin' rights? */\nadmin.query('/user/foo', 'get',    ctx) /* true; explicitly allowed */\nadmin.query('/user/foo', 'put',    ctx) /* true; explicitly allowed */\nadmin.query('/user/foo', 'delete', ctx) /* false; explicitly denied */\nadmin.query('/user/bar', 'get',    ctx) /* true; explicitly allowed */\nadmin.query('/user/bar', 'put',    ctx) /* true; explicitly allowed */\nadmin.query('/user/bar', 'delete', ctx) /* true; explicitly allowed */",
+      "/* Query context for our hypothetical user, 'foo'. */\nconst ctx = { name: 'foo' }\n\n/* What can 'foo' access if they are granted 'user' rights? */\nuser.query('/user/foo', 'get',    ctx) /* true; explicitly allowed */\nuser.query('/user/foo', 'put',    ctx) /* true; explicitly allowed */\nuser.query('/user/foo', 'delete', ctx) /* null; implicitly denied */\nuser.query('/user/bar', 'get',    ctx) /* true; explicitly allowed */\nuser.query('/user/bar', 'put',    ctx) /* null; implicitly denied */\nuser.query('/user/bar', 'delete', ctx) /* null; implicitly denied */\n\n/* Alternatively, what if 'foo' is granted 'admin' rights? */\nadmin.query('/user/foo', 'get',    ctx) /* true; explicitly allowed */\nadmin.query('/user/foo', 'put',    ctx) /* true; explicitly allowed */\nadmin.query('/user/foo', 'delete', ctx) /* false; explicitly denied */\nadmin.query('/user/bar', 'get',    ctx) /* true; explicitly allowed */\nadmin.query('/user/bar', 'put',    ctx) /* true; explicitly allowed */\nadmin.query('/user/bar', 'delete', ctx) /* true; explicitly allowed */",
+      "/* Query context for our hypothetical user, 'foo'. */\nconst ctx = { name: 'foo' }\n\n/* What can 'foo' access if they are granted 'user' rights? */\nuser.query('/user/foo', 'get',    ctx) /* true; explicitly allowed */\nuser.query('/user/foo', 'put',    ctx) /* true; explicitly allowed */\nuser.query('/user/foo', 'delete', ctx) /* null; implicitly denied */\nuser.query('/user/bar', 'get',    ctx) /* true; explicitly allowed */\nuser.query('/user/bar', 'put',    ctx) /* null; implicitly denied */\nuser.query('/user/bar', 'delete', ctx) /* null; implicitly denied */\n\n/* Alternatively, what if 'foo' is granted 'admin' rights? */\nadmin.query('/user/foo', 'get',    ctx) /* true; explicitly allowed */\nadmin.query('/user/foo', 'put',    ctx) /* true; explicitly allowed */\nadmin.query('/user/foo', 'delete', ctx) /* false; explicitly denied */\nadmin.query('/user/bar', 'get',    ctx) /* true; explicitly allowed */\nadmin.query('/user/bar', 'put',    ctx) /* true; explicitly allowed */\nadmin.query('/user/bar', 'delete', ctx) /* true; explicitly allowed */"
+    ]
+  ],
+  [
+    "matches",
+    []
+  ],
+  [
+    "clone",
+    [
+      "import { Rule, Policy } from '@spacl/core'\n\n/* Create a policy describing a standard user who can\n   view other user's profiles, and edit their own. */\nconst user = Policy.for('user',\n  Rule.for('/user/+').allow('get'),\n  Rule.for('/user/:name').allow('put'))\n\n/* Create a derived policy describing an admin user who\n   can also create, edit and delete any user's profile,\n   but for safety reasons, cannot delete themselves. */\nconst admin = user.clone('admin').push(\n  Rule.for('/user/+').allow('put', 'post', 'delete'),\n  Rule.for('/user/:name').deny('delete'))",
+      "import { Rule, Policy } from '@spacl/core'\n\n/* Create a policy describing a standard user who can\n   view other user's profiles, and edit their own. */\nconst user = Policy.for('user',\n  Rule.for('/user/+').allow('get'),\n  Rule.for('/user/:name').allow('put'))\n\n/* Create a derived policy describing an admin user who\n   can also create, edit and delete any user's profile,\n   but for safety reasons, cannot delete themselves. */\nconst admin = user.clone('admin').push(\n  Rule.for('/user/+').allow('put', 'post', 'delete'),\n  Rule.for('/user/:name').deny('delete'))"
+    ]
+  ],
+  [
+    "Policy",
+    []
+  ],
+  [
+    "push",
+    [
+      "import { Rule, Policy } from '@spacl/core'\n\n/* Create a policy describing a standard user who can\n   view other user's profiles, and edit their own. */\nconst user = Policy.for('user',\n  Rule.for('/user/+').allow('get'),\n  Rule.for('/user/:name').allow('put'))\n\n/* Create a derived policy describing an admin user who\n   can also create, edit and delete any user's profile,\n   but for safety reasons, cannot delete themselves. */\nconst admin = user.clone('admin').push(\n  Rule.for('/user/+').allow('put', 'post', 'delete'),\n  Rule.for('/user/:name').deny('delete'))",
+      "import { Rule, Policy } from '@spacl/core'\n\n/* Create a policy describing a standard user who can\n   view other user's profiles, and edit their own. */\nconst user = Policy.for('user',\n  Rule.for('/user/+').allow('get'),\n  Rule.for('/user/:name').allow('put'))\n\n/* Create a derived policy describing an admin user who\n   can also create, edit and delete any user's profile,\n   but for safety reasons, cannot delete themselves. */\nconst admin = user.clone('admin').push(\n  Rule.for('/user/+').allow('put', 'post', 'delete'),\n  Rule.for('/user/:name').deny('delete'))"
+    ]
+  ],
+  [
+    "PolicyMap",
+    []
+  ]
+]

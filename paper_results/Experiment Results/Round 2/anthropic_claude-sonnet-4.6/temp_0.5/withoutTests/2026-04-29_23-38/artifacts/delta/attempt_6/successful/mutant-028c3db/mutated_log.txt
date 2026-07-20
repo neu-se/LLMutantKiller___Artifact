@@ -1,0 +1,36 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-028c3db/testCase.test.ts
+  Delta.compose
+    ✕ compose preserves separate insert op boundaries when other starts with a plain retain (5 ms)
+
+  ● Delta.compose › compose preserves separate insert op boundaries when other starts with a plain retain
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 4
+    + Received  + 1
+
+      Array [
+        Object {
+    -     "insert": "A",
+    -   },
+    -   Object {
+    -     "insert": "BC",
+    +     "insert": "ABC",
+        },
+      ]
+
+      16 |     //   main loop processes inserts through delta.push() which merges adjacent inserts
+      17 |     //   result: [{insert:"ABC"}]
+    > 18 |     expect(result.ops).toEqual([{ insert: "A" }, { insert: "BC" }]);
+         |                        ^
+      19 |   });
+      20 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-028c3db/testCase.test.ts:18:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.439 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-028c3db/testCase.test.ts".

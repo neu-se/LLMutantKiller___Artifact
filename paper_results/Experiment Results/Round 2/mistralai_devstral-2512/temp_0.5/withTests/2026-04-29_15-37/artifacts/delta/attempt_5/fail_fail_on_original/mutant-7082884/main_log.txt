@@ -1,0 +1,41 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-7082884/testCase.test.ts
+  diff()
+    ✕ should return the same instance when comparing identical deltas (5 ms)
+
+  ● diff() › should return the same instance when comparing identical deltas
+
+    expect(received).toBe(expected) // Object.is equality
+
+    - Expected  - 11
+    + Received  +  1
+
+      Delta {
+    -   "ops": Array [
+    -     Object {
+    -       "insert": "A",
+    -     },
+    -     Object {
+    -       "attributes": Object {
+    -         "bold": true,
+    -       },
+    -       "insert": "B",
+    -     },
+    -   ],
+    +   "ops": Array [],
+      }
+
+      5 |     const delta = new Delta().insert('A').insert('B', { bold: true });
+      6 |     const result = delta.diff(delta);
+    > 7 |     expect(result).toBe(delta);
+        |                    ^
+      8 |   });
+      9 | });
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-7082884/testCase.test.ts:7:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.539 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-7082884/testCase.test.ts".

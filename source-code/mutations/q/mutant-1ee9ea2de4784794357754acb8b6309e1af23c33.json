@@ -1,0 +1,47 @@
+{
+  "file": "q.js",
+  "startLine": 1295,
+  "startColumn": 55,
+  "endLine": 1308,
+  "endColumn": 23,
+  "originalCode": "\n-               if (typeof StopIteration === \"undefined\") {\n-                   // ES6 Generators\n-                   try {\n-                       result = generator[verb](arg);\n-                   } catch (exception) {\n-                       return reject(exception);\n-                   }\n-                   if (result.done) {\n-                       return Q(result.value);\n-                   } else {\n-                       return when(result.value, callback, errback);\n-                   }\n-               } else {",
+  "replacement": "\n+               if (typeof StopIteration === \"undefined\") {} else {\n",
+  "removedLines": [
+    "               if (typeof StopIteration === \"undefined\") {",
+    "                   // ES6 Generators",
+    "                   try {",
+    "                       result = generator[verb](arg);",
+    "                   } catch (exception) {",
+    "                       return reject(exception);",
+    "                   }",
+    "                   if (result.done) {",
+    "                       return Q(result.value);",
+    "                   } else {",
+    "                       return when(result.value, callback, errback);",
+    "                   }",
+    "               } else {"
+  ],
+  "addedLines": [
+    "               if (typeof StopIteration === \"undefined\") {} else {",
+    ""
+  ],
+  "lineSummary": [
+    "-               if (typeof StopIteration === \"undefined\") {",
+    "-                   // ES6 Generators",
+    "-                   try {",
+    "-                       result = generator[verb](arg);",
+    "-                   } catch (exception) {",
+    "-                       return reject(exception);",
+    "-                   }",
+    "-                   if (result.done) {",
+    "-                       return Q(result.value);",
+    "-                   } else {",
+    "-                       return when(result.value, callback, errback);",
+    "-                   }",
+    "-               } else {",
+    "+               if (typeof StopIteration === \"undefined\") {} else {",
+    ""
+  ],
+  "mutatorName": "BlockStatement",
+  "strykerMutationId": "784"
+}

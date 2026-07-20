@@ -1,0 +1,131 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-22bddba/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-22bddba/testCase.test.ts[0m:[93m27[0m:[93m24[0m - [91merror[0m[90m TS7006: [0mParameter 'resolvedValue' implicitly has an 'any' type.
+
+[7m27[0m         Q(value).then((resolvedValue) => {
+[7m  [0m [91m                       ~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-22bddba/testCase.test.ts[0m:[93m35[0m:[93m31[0m - [91merror[0m[90m TS7006: [0mParameter 'resolvedValue' implicitly has an 'any' type.
+
+[7m35[0m         Q(innerPromise).then((resolvedValue) => {
+[7m  [0m [91m                              ~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-22bddba/testCase.test.ts
+  Q
+    ✕ should be defined (2 ms)
+    ✕ should be a function (1 ms)
+    ✕ should return a promise when called with a value
+    ✕ should return a promise when called with a promise
+    ✕ should resolve to the original value when called with a non-promise value
+    ✕ should resolve to the resolved value of the inner promise when called with a promise
+    ✕ should handle window and self correctly
+
+  ● Q › should be defined
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      3 | describe("Q", () => {
+      4 |     it("should be defined", () => {
+    > 5 |         expect(Q).toBeDefined();
+        |                   ^
+      6 |     });
+      7 |
+      8 |     it("should be a function", () => {
+
+      at Object.toBeDefined (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-22bddba/testCase.test.ts:5:19)
+
+  ● Q › should be a function
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "function"
+    Received: "undefined"
+
+       7 |
+       8 |     it("should be a function", () => {
+    >  9 |         expect(typeof Q).toBe("function");
+         |                          ^
+      10 |     });
+      11 |
+      12 |     it("should return a promise when called with a value", () => {
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-22bddba/testCase.test.ts:9:26)
+
+  ● Q › should return a promise when called with a value
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      11 |
+      12 |     it("should return a promise when called with a value", () => {
+    > 13 |         const promise = Q(42);
+         |                          ^
+      14 |         expect(promise).toBeDefined();
+      15 |         expect(typeof promise.then).toBe("function");
+      16 |     });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-22bddba/testCase.test.ts:13:26)
+
+  ● Q › should return a promise when called with a promise
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      17 |
+      18 |     it("should return a promise when called with a promise", () => {
+    > 19 |         const innerPromise = Q(42);
+         |                               ^
+      20 |         const promise = Q(innerPromise);
+      21 |         expect(promise).toBeDefined();
+      22 |         expect(typeof promise.then).toBe("function");
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-22bddba/testCase.test.ts:19:31)
+
+  ● Q › should resolve to the original value when called with a non-promise value
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      25 |     it("should resolve to the original value when called with a non-promise value", (done) => {
+      26 |         const value = 42;
+    > 27 |         Q(value).then((resolvedValue) => {
+         |          ^
+      28 |             expect(resolvedValue).toBe(value);
+      29 |             done();
+      30 |         });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-22bddba/testCase.test.ts:27:10)
+
+  ● Q › should resolve to the resolved value of the inner promise when called with a promise
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      32 |
+      33 |     it("should resolve to the resolved value of the inner promise when called with a promise", (done) => {
+    > 34 |         const innerPromise = Q(42);
+         |                               ^
+      35 |         Q(innerPromise).then((resolvedValue) => {
+      36 |             expect(resolvedValue).toBe(42);
+      37 |             done();
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-22bddba/testCase.test.ts:34:31)
+
+  ● Q › should handle window and self correctly
+
+    ReferenceError: self is not defined
+
+      40 |
+      41 |     it("should handle window and self correctly", (done) => {
+    > 42 |         const global = typeof window !== "undefined" ? window : self;
+         |                                                                 ^
+      43 |         expect(global).toBeDefined();
+      44 |         done();
+      45 |     });
+
+      at Object.self (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-22bddba/testCase.test.ts:42:65)
+
+Test Suites: 1 failed, 1 total
+Tests:       7 failed, 7 total
+Snapshots:   0 total
+Time:        1.679 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-22bddba/testCase.test.ts".

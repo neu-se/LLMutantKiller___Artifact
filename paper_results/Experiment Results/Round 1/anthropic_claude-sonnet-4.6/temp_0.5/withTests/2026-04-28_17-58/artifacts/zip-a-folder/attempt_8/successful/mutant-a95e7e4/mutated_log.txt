@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_8/pending_category/mutant-a95e7e4/testCase.test.ts
+  ZipAFolder zip with uncompressed level
+    ✕ should invoke archiver with store:true option when COMPRESSION_LEVEL.uncompressed is specified (41 ms)
+
+  ● ZipAFolder zip with uncompressed level › should invoke archiver with store:true option when COMPRESSION_LEVEL.uncompressed is specified
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not 0
+
+      27 |             // Mutated: ZipAFolder passes {zlib: {level: 0}} => archiver.create gets zlib.level=0, no store
+      28 |             // From attempt 5 error: original has zlib.level=1 (archiver default), mutated would have zlib.level=0
+    > 29 |             expect(options.zlib?.level).not.toBe(0);
+         |                                             ^
+      30 |         } finally {
+      31 |             jest.restoreAllMocks();
+      32 |             if (fs.existsSync(outputZip)) fs.unlinkSync(outputZip);
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_8/pending_category/mutant-a95e7e4/testCase.test.ts:29:45)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.85 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_8/pending_category/mutant-a95e7e4/testCase.test.ts".

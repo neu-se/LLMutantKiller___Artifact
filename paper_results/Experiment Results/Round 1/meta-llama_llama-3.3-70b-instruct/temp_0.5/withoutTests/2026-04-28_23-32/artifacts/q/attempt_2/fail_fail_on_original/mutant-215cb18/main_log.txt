@@ -1,0 +1,40 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-215cb18/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-215cb18/testCase.test.ts[0m:[93m8[0m:[93m20[0m - [91merror[0m[90m TS2339: [0mProperty 'test' does not exist on type '{}'.
+
+[7m8[0m         expect(obj.test).toBe('test');
+[7m [0m [91m                   ~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-215cb18/testCase.test.ts[0m:[93m9[0m:[93m20[0m - [91merror[0m[90m TS2339: [0mProperty 'test' does not exist on type '{}'.
+
+[7m9[0m         delete obj.test;
+[7m [0m [91m                   ~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-215cb18/testCase.test.ts[0m:[93m10[0m:[93m20[0m - [91merror[0m[90m TS2339: [0mProperty 'test' does not exist on type '{}'.
+
+[7m10[0m         expect(obj.test).toBeUndefined();
+[7m  [0m [91m                   ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-215cb18/testCase.test.ts
+  Q
+    ✕ should define property correctly (1 ms)
+
+  ● Q › should define property correctly
+
+    TypeError: Cannot read properties of undefined (reading 'object_defineProperty')
+
+       5 |         var obj = {};
+       6 |         var descriptor = { value: 'test', configurable: true };
+    >  7 |         Q.object_defineProperty(obj, 'test', descriptor);
+         |           ^
+       8 |         expect(obj.test).toBe('test');
+       9 |         delete obj.test;
+      10 |         expect(obj.test).toBeUndefined();
+
+      at Object.object_defineProperty (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-215cb18/testCase.test.ts:7:11)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.791 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-215cb18/testCase.test.ts".

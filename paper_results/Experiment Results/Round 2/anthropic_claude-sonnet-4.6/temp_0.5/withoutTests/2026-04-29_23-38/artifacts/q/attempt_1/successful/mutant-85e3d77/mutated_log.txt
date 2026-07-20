@@ -1,0 +1,29 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-85e3d77/testCase.test.ts
+  trackRejection respects trackUnhandledRejections flag
+    ✕ should not track rejections after stopUnhandledRejectionTracking is called (3 ms)
+
+  ● trackRejection respects trackUnhandledRejections flag › should not track rejections after stopUnhandledRejectionTracking is called
+
+    expect(received).toHaveLength(expected)
+
+    Expected length: 0
+    Received length: 1
+    Received array:  ["Error: test rejection after tracking stopped
+
+       8 |     // Create a rejected promise - in original code, trackRejection returns early
+       9 |     // In mutated code, trackRejection continues and adds to unhandledReasons
+    > 10 |     const error = new Error("test rejection after tracking stopped");
+         |                   ^
+      11 |     Q.reject(error);
+      12 |
+      13 |     // In original: getUnhandledReasons returns [] because trackRejection returned early
+
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-85e3d77/testCase.test.ts:10:19)
+      at Object.toHaveLength (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-85e3d77/testCase.test.ts:17:21)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.321 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-85e3d77/testCase.test.ts".

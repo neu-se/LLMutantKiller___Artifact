@@ -1,0 +1,48 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-3dbd53a/testCase.test.ts[0m:[93m16[0m:[93m35[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m16[0m       db.set(testKey, testValue, (err) => {
+[7m  [0m [91m                                  ~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-3dbd53a/testCase.test.ts (6.371 s)
+  Dirty database encoding mutation
+    ✕ should fail when write stream encoding is empty (5003 ms)
+
+  ● Dirty database encoding mutation › should fail when write stream encoding is empty
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "utf-8"
+    Received: undefined
+
+      23 |         // Check the actual encoding used by the write stream
+      24 |         const actualEncoding = writeStream.writableEncoding;
+    > 25 |         expect(actualEncoding).toBe('utf-8');
+         |                                ^
+      26 |
+      27 |         db.close();
+      28 |
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-3dbd53a/testCase.test.ts:25:32)
+      at cb (../subject_repositories/node-dirty/lib/dirty/dirty.js:191:31)
+
+  ● Dirty database encoding mutation › should fail when write stream encoding is empty
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       5 |
+       6 | describe('Dirty database encoding mutation', () => {
+    >  7 |   it('should fail when write stream encoding is empty', (done) => {
+         |   ^
+       8 |     const testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'dirty-test-'));
+       9 |     const dbPath = path.join(testDir, 'test.db');
+      10 |     const db = new Dirty(dbPath);
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-3dbd53a/testCase.test.ts:7:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-3dbd53a/testCase.test.ts:6:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.553 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-3dbd53a/testCase.test.ts".

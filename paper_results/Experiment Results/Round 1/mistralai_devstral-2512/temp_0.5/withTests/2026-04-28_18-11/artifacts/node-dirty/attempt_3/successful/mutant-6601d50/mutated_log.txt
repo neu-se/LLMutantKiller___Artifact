@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-6601d50/testCase.test.ts (6.263 s)
+  close method with pending writes
+    ✕ should properly schedule close on drain event when there are pending writes (5002 ms)
+
+  ● close method with pending writes › should properly schedule close on drain event when there are pending writes
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "drain"
+    Received: ""
+
+      37 |
+      38 |       // Verify once was called with 'drain' event
+    > 39 |       expect(onceCalledWith).toBe('drain');
+         |                              ^
+      40 |
+      41 |       // Clean up and complete test
+      42 |       setImmediate(() => {
+
+      at Dirty.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-6601d50/testCase.test.ts:39:30)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:115:18)
+
+  ● close method with pending writes › should properly schedule close on drain event when there are pending writes
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      19 |   });
+      20 |
+    > 21 |   it('should properly schedule close on drain event when there are pending writes', (done) => {
+         |   ^
+      22 |     db = new Dirty(testFile);
+      23 |     db.on('load', () => {
+      24 |       // Set a value to create pending writes
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-6601d50/testCase.test.ts:21:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-6601d50/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.41 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-6601d50/testCase.test.ts".

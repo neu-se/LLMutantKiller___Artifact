@@ -1,0 +1,44 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-686dca1/testCase.test.ts[0m:[93m6[0m:[93m5[0m - [91merror[0m[90m TS2740: [0mType '{}' is missing the following properties from type 'NodeModule': isPreloading, exports, require, id, and 6 more.
+
+[7m6[0m     globalThis.module = {};
+[7m [0m [91m    ~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-686dca1/testCase.test.ts[0m:[93m9[0m:[93m30[0m - [91merror[0m[90m TS2345: [0mArgument of type 'typeof Delta' is not assignable to parameter of type 'Expected<typeof import("/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/subject_repositories/delta/src/Delta")>'.
+  Type 'typeof Delta' is missing the following properties from type 'Any': jasmineToString, asymmetricMatch
+
+[7m9[0m     expect(DeltaModule).toBe(DeltaModule.default);
+[7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) [96m../subject_repositories/delta/src/Delta.ts[0m:[93m572[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'exports' does not exist on type 'never'.
+
+[7m572[0m   module.exports = Delta;
+[7m   [0m [91m         ~~~~~~~[0m
+[96m../subject_repositories/delta/src/Delta.ts[0m:[93m573[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'exports' does not exist on type 'never'.
+
+[7m573[0m   module.exports.default = Delta;
+[7m   [0m [91m         ~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-686dca1/testCase.test.ts
+  Delta
+    ✕ should export Delta as default and module.exports when module is an object (3 ms)
+
+  ● Delta › should export Delta as default and module.exports when module is an object
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: [Function Delta]
+    Received: {"AttributeMap": {"compose": [Function compose], "diff": [Function diff], "invert": [Function invert], "transform": [Function transform]}, "Op": {"length": [Function length]}, "OpIterator": [Function Iterator], "default": [Function Delta]}
+
+       7 |     expect(typeof DeltaModule.default).toBe('function');
+       8 |     expect(DeltaModule.default.name).toBe('Delta');
+    >  9 |     expect(DeltaModule).toBe(DeltaModule.default);
+         |                         ^
+      10 |     globalThis.module = originalModule;
+      11 |   });
+      12 | });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-686dca1/testCase.test.ts:9:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.433 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-686dca1/testCase.test.ts".

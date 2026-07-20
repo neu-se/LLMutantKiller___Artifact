@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-4575935/testCase.test.ts
+  Q library browser environment detection
+    ✕ should expose Q as a global in browser-like environments (3 ms)
+
+  ● Q library browser environment detection › should expose Q as a global in browser-like environments
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: [Function Q]
+    Received: undefined
+
+      25 |     // The key test: in original code globalQ should equal freshQ
+      26 |     // In mutated code, globalQ will be undefined
+    > 27 |     expect(globalQ).toBe(freshQ);
+         |                     ^
+      28 |
+      29 |     // Clean up
+      30 |     (global as any).window = originalWindow;
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-4575935/testCase.test.ts:27:21)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.563 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-4575935/testCase.test.ts".

@@ -1,0 +1,21 @@
+import { Q } from "../../../q";
+
+describe("Q function", () => {
+    it("should check if hasStacks is set to true after a try-catch block with an error", () => {
+        let hasStacks: boolean;
+        try {
+            throw new Error();
+        } catch (e) {
+            hasStacks = true;
+        }
+        expect(hasStacks).toBe(true);
+        try {
+            try {
+            } catch (e) {
+            }
+        } catch (e) {
+            hasStacks = false;
+        }
+        expect(hasStacks).toBe(false);
+    });
+});

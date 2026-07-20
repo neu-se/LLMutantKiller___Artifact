@@ -1,0 +1,12 @@
+import Q from "../../../../../../../../../../../subject_repositories/q/q.js";
+
+describe("Q.all behavior", () => {
+  it("should resolve all promises and return their values in order", async () => {
+    const result = await Q.all([
+      Q(1),
+      Q(2),
+      Q(3)
+    ]);
+    expect(result).toEqual([1, 2, 3]);
+  });
+});

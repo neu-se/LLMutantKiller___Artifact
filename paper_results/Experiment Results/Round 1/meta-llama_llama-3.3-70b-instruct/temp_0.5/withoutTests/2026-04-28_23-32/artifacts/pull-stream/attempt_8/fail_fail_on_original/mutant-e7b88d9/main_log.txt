@@ -1,0 +1,38 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-e7b88d9/testCase.test.ts[0m:[93m16[0m:[93m19[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m16[0m     result(true, (err, data) => {
+[7m  [0m [91m                  ~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-e7b88d9/testCase.test.ts[0m:[93m16[0m:[93m24[0m - [91merror[0m[90m TS7006: [0mParameter 'data' implicitly has an 'any' type.
+
+[7m16[0m     result(true, (err, data) => {
+[7m  [0m [91m                       ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-e7b88d9/testCase.test.ts
+  take function
+    ✕ should call the callback with the correct value when ended and end are true (4 ms)
+
+  ● take function › should call the callback with the correct value when ended and end are true
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: null
+
+      16 |     result(true, (err, data) => {
+      17 |       callbackCalled = true;
+    > 18 |       expect(err).toBe(true);
+         |                   ^
+      19 |       expect(data).toBeUndefined();
+      20 |       done();
+      21 |     });
+
+      at toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-e7b88d9/testCase.test.ts:18:19)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-e7b88d9/testCase.test.ts:7:9)
+      at read (../subject_repositories/pull-stream/throughs/take.js:25:28)
+      at Object.result (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-e7b88d9/testCase.test.ts:16:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.738 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-e7b88d9/testCase.test.ts".

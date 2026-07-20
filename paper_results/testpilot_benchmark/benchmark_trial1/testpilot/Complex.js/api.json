@@ -1,0 +1,626 @@
+[
+  {
+    "accessPath": "complex.js",
+    "descriptor": {
+      "type": "function",
+      "signature": "(a, b)",
+      "implementation": "function Complex(a, b) {\n\n    if (!(this instanceof Complex)) {\n      return new Complex(a, b);\n    }\n\n    var z = parse(a, b);\n\n    this['re'] = z['re'];\n    this['im'] = z['im'];\n  }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n   * @constructor\n   * @returns {Complex}\n   "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.sign",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      var abs = this['abs']();\n\n      return new Complex(\n        this['re'] / abs,\n        this['im'] / abs);\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculates the sign of a complex number, which is a normalized complex\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.add",
+    "descriptor": {
+      "type": "function",
+      "signature": "(a, b)",
+      "implementation": "function(a, b) {\n\n      var z = new Complex(a, b);\n\n      // Infinity + Infinity = NaN\n      if (this['isInfinite']() && z['isInfinite']()) {\n        return Complex['NAN'];\n      }\n\n      // Infinity + z = Infinity { where z != Infinity }\n      if (this['isInfinite']() || z['isInfinite']()) {\n        return Complex['INFINITY'];\n      }\n\n      return new Complex(\n        this['re'] + z['re'],\n        this['im'] + z['im']);\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Adds two complex numbers\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.sub",
+    "descriptor": {
+      "type": "function",
+      "signature": "(a, b)",
+      "implementation": "function(a, b) {\n\n      var z = new Complex(a, b);\n\n      // Infinity - Infinity = NaN\n      if (this['isInfinite']() && z['isInfinite']()) {\n        return Complex['NAN'];\n      }\n\n      // Infinity - z = Infinity { where z != Infinity }\n      if (this['isInfinite']() || z['isInfinite']()) {\n        return Complex['INFINITY'];\n      }\n\n      return new Complex(\n        this['re'] - z['re'],\n        this['im'] - z['im']);\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Subtracts two complex numbers\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.mul",
+    "descriptor": {
+      "type": "function",
+      "signature": "(a, b)",
+      "implementation": "function(a, b) {\n\n      var z = new Complex(a, b);\n\n      // Infinity * 0 = NaN\n      if ((this['isInfinite']() && z['isZero']()) || (this['isZero']() && z['isInfinite']())) {\n        return Complex['NAN'];\n      }\n\n      // Infinity * z = Infinity { where z != 0 }\n      if (this['isInfinite']() || z['isInfinite']()) {\n        return Complex['INFINITY'];\n      }\n\n      // Short circuit for real values\n      if (z['im'] === 0 && this['im'] === 0) {\n        return new Complex(this['re'] * z['re'], 0);\n      }\n\n      return new Complex(\n        this['re'] * z['re'] - this['im'] * z['im'],\n        this['re'] * z['im'] + this['im'] * z['re']);\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Multiplies two complex numbers\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.div",
+    "descriptor": {
+      "type": "function",
+      "signature": "(a, b)",
+      "implementation": "function(a, b) {\n\n      var z = new Complex(a, b);\n\n      // 0 / 0 = NaN and Infinity / Infinity = NaN\n      if ((this['isZero']() && z['isZero']()) || (this['isInfinite']() && z['isInfinite']())) {\n        return Complex['NAN'];\n      }\n\n      // Infinity / 0 = Infinity\n      if (this['isInfinite']() || z['isZero']()) {\n        return Complex['INFINITY'];\n      }\n\n      // 0 / Infinity = 0\n      if (this['isZero']() || z['isInfinite']()) {\n        return Complex['ZERO'];\n      }\n\n      a = this['re'];\n      b = this['im'];\n\n      var c = z['re'];\n      var d = z['im'];\n      var t, x;\n\n      if (0 === d) {\n        // Divisor is real\n        return new Complex(a / c, b / c);\n      }\n\n      if (Math.abs(c) < Math.abs(d)) {\n\n        x = c / d;\n        t = c * x + d;\n\n        return new Complex(\n          (a * x + b) / t,\n          (b * x - a) / t);\n\n      } else {\n\n        x = d / c;\n        t = d * x + c;\n\n        return new Complex(\n          (a + b * x) / t,\n          (b - a * x) / t);\n      }\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Divides two complex numbers\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.pow",
+    "descriptor": {
+      "type": "function",
+      "signature": "(a, b)",
+      "implementation": "function(a, b) {\n\n      var z = new Complex(a, b);\n\n      a = this['re'];\n      b = this['im'];\n\n      if (z['isZero']()) {\n        return Complex['ONE'];\n      }\n\n      // If the exponent is real\n      if (z['im'] === 0) {\n\n        if (b === 0 && a > 0) {\n\n          return new Complex(Math.pow(a, z['re']), 0);\n\n        } else if (a === 0) { // If base is fully imaginary\n\n          switch ((z['re'] % 4 + 4) % 4) {\n            case 0:\n              return new Complex(Math.pow(b, z['re']), 0);\n            case 1:\n              return new Complex(0, Math.pow(b, z['re']));\n            case 2:\n              return new Complex(-Math.pow(b, z['re']), 0);\n            case 3:\n              return new Complex(0, -Math.pow(b, z['re']));\n          }\n        }\n      }\n\n      /* I couldn't find a good formula, so here is a derivation and optimization\n       *\n       * z_1^z_2 = (a + bi)^(c + di)\n       *         = exp((c + di) * log(a + bi)\n       *         = pow(a^2 + b^2, (c + di) / 2) * exp(i(c + di)atan2(b, a))\n       * =>...\n       * Re = (pow(a^2 + b^2, c / 2) * exp(-d * atan2(b, a))) * cos(d * log(a^2 + b^2) / 2 + c * atan2(b, a))\n       * Im = (pow(a^2 + b^2, c / 2) * exp(-d * atan2(b, a))) * sin(d * log(a^2 + b^2) / 2 + c * atan2(b, a))\n       *\n       * =>...\n       * Re = exp(c * log(sqrt(a^2 + b^2)) - d * atan2(b, a)) * cos(d * log(sqrt(a^2 + b^2)) + c * atan2(b, a))\n       * Im = exp(c * log(sqrt(a^2 + b^2)) - d * atan2(b, a)) * sin(d * log(sqrt(a^2 + b^2)) + c * atan2(b, a))\n       *\n       * =>\n       * Re = exp(c * logsq2 - d * arg(z_1)) * cos(d * logsq2 + c * arg(z_1))\n       * Im = exp(c * logsq2 - d * arg(z_1)) * sin(d * logsq2 + c * arg(z_1))\n       *\n       */\n\n      if (a === 0 && b === 0 && z['re'] > 0 && z['im'] >= 0) {\n        return Complex['ZERO'];\n      }\n\n      var arg = Math.atan2(b, a);\n      var loh = logHypot(a, b);\n\n      a = Math.exp(z['re'] * loh - z['im'] * arg);\n      b = z['im'] * loh + z['re'] * arg;\n      return new Complex(\n        a * Math.cos(b),\n        a * Math.sin(b));\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the power of two complex numbers\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.sqrt",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      var a = this['re'];\n      var b = this['im'];\n      var r = this['abs']();\n\n      var re, im;\n\n      if (a >= 0) {\n\n        if (b === 0) {\n          return new Complex(Math.sqrt(a), 0);\n        }\n\n        re = 0.5 * Math.sqrt(2.0 * (r + a));\n      } else {\n        re = Math.abs(b) / Math.sqrt(2 * (r - a));\n      }\n\n      if (a <= 0) {\n        im = 0.5 * Math.sqrt(2.0 * (r - a));\n      } else {\n        im = Math.abs(b) / Math.sqrt(2 * (r + a));\n      }\n\n      return new Complex(re, b < 0 ? -im : im);\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the complex square root\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.exp",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      var tmp = Math.exp(this['re']);\n\n      if (this['im'] === 0) {\n        //return new Complex(tmp, 0);\n      }\n      return new Complex(\n        tmp * Math.cos(this['im']),\n        tmp * Math.sin(this['im']));\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the complex exponent\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.expm1",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      /**\n       * exp(a + i*b) - 1\n       = exp(a) * (cos(b) + j*sin(b)) - 1\n       = expm1(a)*cos(b) + cosm1(b) + j*exp(a)*sin(b)\n       */\n\n      var a = this['re'];\n      var b = this['im'];\n\n      return new Complex(\n        Math.expm1(a) * Math.cos(b) + cosm1(b),\n        Math.exp(a) * Math.sin(b));\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the complex exponent and subtracts one.\n     *\n     * This may be more accurate than `Complex(x).exp().sub(1)` if\n     * `x` is small.\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.log",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      var a = this['re'];\n      var b = this['im'];\n\n      if (b === 0 && a > 0) {\n        //return new Complex(Math.log(a), 0);\n      }\n\n      return new Complex(\n        logHypot(a, b),\n        Math.atan2(b, a));\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the natural log\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.abs",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      return hypot(this['re'], this['im']);\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the magnitude of the complex number\n     *\n     * @returns {number}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.arg",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      return Math.atan2(this['im'], this['re']);\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the angle of the complex number\n     *\n     * @returns {number}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.sin",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      // sin(z) = ( e^iz - e^-iz ) / 2i \n      //        = sin(a)cosh(b) + i cos(a)sinh(b)\n\n      var a = this['re'];\n      var b = this['im'];\n\n      return new Complex(\n        Math.sin(a) * cosh(b),\n        Math.cos(a) * sinh(b));\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the sine of the complex number\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.cos",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      // cos(z) = ( e^iz + e^-iz ) / 2 \n      //        = cos(a)cosh(b) - i sin(a)sinh(b)\n\n      var a = this['re'];\n      var b = this['im'];\n\n      return new Complex(\n        Math.cos(a) * cosh(b),\n        -Math.sin(a) * sinh(b));\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the cosine\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.tan",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      // tan(z) = sin(z) / cos(z) \n      //        = ( e^iz - e^-iz ) / ( i( e^iz + e^-iz ) )\n      //        = ( e^2iz - 1 ) / i( e^2iz + 1 )\n      //        = ( sin(2a) + i sinh(2b) ) / ( cos(2a) + cosh(2b) )\n\n      var a = 2 * this['re'];\n      var b = 2 * this['im'];\n      var d = Math.cos(a) + cosh(b);\n\n      return new Complex(\n        Math.sin(a) / d,\n        sinh(b) / d);\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the tangent\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.cot",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      // cot(c) = i(e^(ci) + e^(-ci)) / (e^(ci) - e^(-ci))\n\n      var a = 2 * this['re'];\n      var b = 2 * this['im'];\n      var d = Math.cos(a) - cosh(b);\n\n      return new Complex(\n        -Math.sin(a) / d,\n        sinh(b) / d);\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the cotangent\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.sec",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      // sec(c) = 2 / (e^(ci) + e^(-ci))\n\n      var a = this['re'];\n      var b = this['im'];\n      var d = 0.5 * cosh(2 * b) + 0.5 * Math.cos(2 * a);\n\n      return new Complex(\n        Math.cos(a) * cosh(b) / d,\n        Math.sin(a) * sinh(b) / d);\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the secant\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.csc",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      // csc(c) = 2i / (e^(ci) - e^(-ci))\n\n      var a = this['re'];\n      var b = this['im'];\n      var d = 0.5 * cosh(2 * b) - 0.5 * Math.cos(2 * a);\n\n      return new Complex(\n        Math.sin(a) * cosh(b) / d,\n        -Math.cos(a) * sinh(b) / d);\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the cosecans\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.asin",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      // asin(c) = -i * log(ci + sqrt(1 - c^2))\n\n      var a = this['re'];\n      var b = this['im'];\n\n      var t1 = new Complex(\n        b * b - a * a + 1,\n        -2 * a * b)['sqrt']();\n\n      var t2 = new Complex(\n        t1['re'] - b,\n        t1['im'] + a)['log']();\n\n      return new Complex(t2['im'], -t2['re']);\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the complex arcus sinus\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.acos",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      // acos(c) = i * log(c - i * sqrt(1 - c^2))\n\n      var a = this['re'];\n      var b = this['im'];\n\n      var t1 = new Complex(\n        b * b - a * a + 1,\n        -2 * a * b)['sqrt']();\n\n      var t2 = new Complex(\n        t1['re'] - b,\n        t1['im'] + a)['log']();\n\n      return new Complex(Math.PI / 2 - t2['im'], t2['re']);\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the complex arcus cosinus\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.atan",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      // atan(c) = i / 2 log((i + x) / (i - x))\n\n      var a = this['re'];\n      var b = this['im'];\n\n      if (a === 0) {\n\n        if (b === 1) {\n          return new Complex(0, Infinity);\n        }\n\n        if (b === -1) {\n          return new Complex(0, -Infinity);\n        }\n      }\n\n      var d = a * a + (1.0 - b) * (1.0 - b);\n\n      var t1 = new Complex(\n        (1 - b * b - a * a) / d,\n        -2 * a / d).log();\n\n      return new Complex(-0.5 * t1['im'], 0.5 * t1['re']);\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the complex arcus tangent\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.acot",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      // acot(c) = i / 2 log((c - i) / (c + i))\n\n      var a = this['re'];\n      var b = this['im'];\n\n      if (b === 0) {\n        return new Complex(Math.atan2(1, a), 0);\n      }\n\n      var d = a * a + b * b;\n      return (d !== 0)\n        ? new Complex(\n          a / d,\n          -b / d).atan()\n        : new Complex(\n          (a !== 0) ? a / 0 : 0,\n          (b !== 0) ? -b / 0 : 0).atan();\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the complex arcus cotangent\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.asec",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      // asec(c) = -i * log(1 / c + sqrt(1 - i / c^2))\n\n      var a = this['re'];\n      var b = this['im'];\n\n      if (a === 0 && b === 0) {\n        return new Complex(0, Infinity);\n      }\n\n      var d = a * a + b * b;\n      return (d !== 0)\n        ? new Complex(\n          a / d,\n          -b / d).acos()\n        : new Complex(\n          (a !== 0) ? a / 0 : 0,\n          (b !== 0) ? -b / 0 : 0).acos();\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the complex arcus secant\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.acsc",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      // acsc(c) = -i * log(i / c + sqrt(1 - 1 / c^2))\n\n      var a = this['re'];\n      var b = this['im'];\n\n      if (a === 0 && b === 0) {\n        return new Complex(Math.PI / 2, Infinity);\n      }\n\n      var d = a * a + b * b;\n      return (d !== 0)\n        ? new Complex(\n          a / d,\n          -b / d).asin()\n        : new Complex(\n          (a !== 0) ? a / 0 : 0,\n          (b !== 0) ? -b / 0 : 0).asin();\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the complex arcus cosecans\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.sinh",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      // sinh(c) = (e^c - e^-c) / 2\n\n      var a = this['re'];\n      var b = this['im'];\n\n      return new Complex(\n        sinh(a) * Math.cos(b),\n        cosh(a) * Math.sin(b));\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the complex sinh\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.cosh",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      // cosh(c) = (e^c + e^-c) / 2\n\n      var a = this['re'];\n      var b = this['im'];\n\n      return new Complex(\n        cosh(a) * Math.cos(b),\n        sinh(a) * Math.sin(b));\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the complex cosh\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.tanh",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      // tanh(c) = (e^c - e^-c) / (e^c + e^-c)\n\n      var a = 2 * this['re'];\n      var b = 2 * this['im'];\n      var d = cosh(a) + Math.cos(b);\n\n      return new Complex(\n        sinh(a) / d,\n        Math.sin(b) / d);\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the complex tanh\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.coth",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      // coth(c) = (e^c + e^-c) / (e^c - e^-c)\n\n      var a = 2 * this['re'];\n      var b = 2 * this['im'];\n      var d = cosh(a) - Math.cos(b);\n\n      return new Complex(\n        sinh(a) / d,\n        -Math.sin(b) / d);\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the complex coth\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.csch",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      // csch(c) = 2 / (e^c - e^-c)\n\n      var a = this['re'];\n      var b = this['im'];\n      var d = Math.cos(2 * b) - cosh(2 * a);\n\n      return new Complex(\n        -2 * sinh(a) * Math.cos(b) / d,\n        2 * cosh(a) * Math.sin(b) / d);\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the complex coth\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.sech",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      // sech(c) = 2 / (e^c + e^-c)\n\n      var a = this['re'];\n      var b = this['im'];\n      var d = Math.cos(2 * b) + cosh(2 * a);\n\n      return new Complex(\n        2 * cosh(a) * Math.cos(b) / d,\n        -2 * sinh(a) * Math.sin(b) / d);\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the complex sech\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.asinh",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      // asinh(c) = log(c + sqrt(c^2 + 1))\n\n      var tmp = this['im'];\n      this['im'] = -this['re'];\n      this['re'] = tmp;\n      var res = this['asin']();\n\n      this['re'] = -this['im'];\n      this['im'] = tmp;\n      tmp = res['re'];\n\n      res['re'] = -res['im'];\n      res['im'] = tmp;\n      return res;\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the complex asinh\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.acosh",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      // acosh(c) = log(c + sqrt(c^2 - 1))\n\n      var res = this['acos']();\n      if (res['im'] <= 0) {\n        var tmp = res['re'];\n        res['re'] = -res['im'];\n        res['im'] = tmp;\n      } else {\n        var tmp = res['im'];\n        res['im'] = -res['re'];\n        res['re'] = tmp;\n      }\n      return res;\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the complex acosh\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.atanh",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      // atanh(c) = log((1+c) / (1-c)) / 2\n\n      var a = this['re'];\n      var b = this['im'];\n\n      var noIM = a > 1 && b === 0;\n      var oneMinus = 1 - a;\n      var onePlus = 1 + a;\n      var d = oneMinus * oneMinus + b * b;\n\n      var x = (d !== 0)\n        ? new Complex(\n          (onePlus * oneMinus - b * b) / d,\n          (b * oneMinus + onePlus * b) / d)\n        : new Complex(\n          (a !== -1) ? (a / 0) : 0,\n          (b !== 0) ? (b / 0) : 0);\n\n      var temp = x['re'];\n      x['re'] = logHypot(x['re'], x['im']) / 2;\n      x['im'] = Math.atan2(x['im'], temp) / 2;\n      if (noIM) {\n        x['im'] = -x['im'];\n      }\n      return x;\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the complex atanh\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.acoth",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      // acoth(c) = log((c+1) / (c-1)) / 2\n\n      var a = this['re'];\n      var b = this['im'];\n\n      if (a === 0 && b === 0) {\n        return new Complex(0, Math.PI / 2);\n      }\n\n      var d = a * a + b * b;\n      return (d !== 0)\n        ? new Complex(\n          a / d,\n          -b / d).atanh()\n        : new Complex(\n          (a !== 0) ? a / 0 : 0,\n          (b !== 0) ? -b / 0 : 0).atanh();\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the complex acoth\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.acsch",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      // acsch(c) = log((1+sqrt(1+c^2))/c)\n\n      var a = this['re'];\n      var b = this['im'];\n\n      if (b === 0) {\n\n        return new Complex(\n          (a !== 0)\n            ? Math.log(a + Math.sqrt(a * a + 1))\n            : Infinity, 0);\n      }\n\n      var d = a * a + b * b;\n      return (d !== 0)\n        ? new Complex(\n          a / d,\n          -b / d).asinh()\n        : new Complex(\n          (a !== 0) ? a / 0 : 0,\n          (b !== 0) ? -b / 0 : 0).asinh();\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the complex acsch\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.asech",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      // asech(c) = log((1+sqrt(1-c^2))/c)\n\n      var a = this['re'];\n      var b = this['im'];\n\n      if (this['isZero']()) {\n        return Complex['INFINITY'];\n      }\n\n      var d = a * a + b * b;\n      return (d !== 0)\n        ? new Complex(\n          a / d,\n          -b / d).acosh()\n        : new Complex(\n          (a !== 0) ? a / 0 : 0,\n          (b !== 0) ? -b / 0 : 0).acosh();\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the complex asech\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.inverse",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      // 1 / 0 = Infinity and 1 / Infinity = 0\n      if (this['isZero']()) {\n        return Complex['INFINITY'];\n      }\n\n      if (this['isInfinite']()) {\n        return Complex['ZERO'];\n      }\n\n      var a = this['re'];\n      var b = this['im'];\n\n      var d = a * a + b * b;\n\n      return new Complex(a / d, -b / d);\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Calculate the complex inverse 1/z\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.conjugate",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      return new Complex(this['re'], -this['im']);\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Returns the complex conjugate\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.neg",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      return new Complex(-this['re'], -this['im']);\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Gets the negated complex number\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.ceil",
+    "descriptor": {
+      "type": "function",
+      "signature": "(places)",
+      "implementation": "function(places) {\n\n      places = Math.pow(10, places || 0);\n\n      return new Complex(\n        Math.ceil(this['re'] * places) / places,\n        Math.ceil(this['im'] * places) / places);\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Ceils the actual complex number\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.floor",
+    "descriptor": {
+      "type": "function",
+      "signature": "(places)",
+      "implementation": "function(places) {\n\n      places = Math.pow(10, places || 0);\n\n      return new Complex(\n        Math.floor(this['re'] * places) / places,\n        Math.floor(this['im'] * places) / places);\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Floors the actual complex number\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.round",
+    "descriptor": {
+      "type": "function",
+      "signature": "(places)",
+      "implementation": "function(places) {\n\n      places = Math.pow(10, places || 0);\n\n      return new Complex(\n        Math.round(this['re'] * places) / places,\n        Math.round(this['im'] * places) / places);\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Ceils the actual complex number\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.equals",
+    "descriptor": {
+      "type": "function",
+      "signature": "(a, b)",
+      "implementation": "function(a, b) {\n\n      var z = new Complex(a, b);\n\n      return Math.abs(z['re'] - this['re']) <= Complex['EPSILON'] &&\n        Math.abs(z['im'] - this['im']) <= Complex['EPSILON'];\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Compares two complex numbers\n     *\n     * **Note:** new Complex(Infinity).equals(Infinity) === false\n     *\n     * @returns {boolean}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.clone",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      return new Complex(this['re'], this['im']);\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Clones the actual object\n     *\n     * @returns {Complex}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.toString",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      var a = this['re'];\n      var b = this['im'];\n      var ret = \"\";\n\n      if (this['isNaN']()) {\n        return 'NaN';\n      }\n\n      if (this['isInfinite']()) {\n        return 'Infinity';\n      }\n\n      if (Math.abs(a) < Complex['EPSILON']) {\n        a = 0;\n      }\n\n      if (Math.abs(b) < Complex['EPSILON']) {\n        b = 0;\n      }\n\n      // If is real number\n      if (b === 0) {\n        return ret + a;\n      }\n\n      if (a !== 0) {\n        ret += a;\n        ret += \" \";\n        if (b < 0) {\n          b = -b;\n          ret += \"-\";\n        } else {\n          ret += \"+\";\n        }\n        ret += \" \";\n      } else if (b < 0) {\n        b = -b;\n        ret += \"-\";\n      }\n\n      if (1 !== b) { // b is the absolute imaginary part\n        ret += b;\n      }\n      return ret + \"i\";\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Gets a string of the actual complex number\n     *\n     * @returns {string}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.toVector",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      return [this['re'], this['im']];\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Returns the actual number as a vector\n     *\n     * @returns {Array}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.valueOf",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n\n      if (this['im'] === 0) {\n        return this['re'];\n      }\n      return null;\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Returns the actual real value of the current object\n     *\n     * @returns {number|null}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.isNaN",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n      return isNaN(this['re']) || isNaN(this['im']);\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Determines whether a complex number is not on the Riemann sphere.\n     *\n     * @returns {boolean}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.isZero",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n      return this['im'] === 0 && this['re'] === 0;\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Determines whether or not a complex number is at the zero pole of the\n     * Riemann sphere.\n     *\n     * @returns {boolean}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.isFinite",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n      return isFinite(this['re']) && isFinite(this['im']);\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Determines whether a complex number is not at the infinity pole of the\n     * Riemann sphere.\n     *\n     * @returns {boolean}\n     "
+    },
+    "packageName": "complex.js"
+  },
+  {
+    "accessPath": "complex.js.ZERO.isInfinite",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n      return !(this['isNaN']() || this['isFinite']());\n    }",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n     * Determines whether or not a complex number is at the infinity pole of the\n     * Riemann sphere.\n     *\n     * @returns {boolean}\n     "
+    },
+    "packageName": "complex.js"
+  }
+]

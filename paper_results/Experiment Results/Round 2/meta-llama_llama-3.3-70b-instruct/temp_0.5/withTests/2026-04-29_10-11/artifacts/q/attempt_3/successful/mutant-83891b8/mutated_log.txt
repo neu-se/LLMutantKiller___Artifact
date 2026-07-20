@@ -1,0 +1,46 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-83891b8/testCase.test.ts
+  Q.nearer
+    ✕ should return the value of a fulfilled promise (7 ms)
+    ✓ should return the original value if it's not a promise
+    ✕ should return the value of a non-fulfilled promise when the promise is not fulfilled (1 ms)
+
+  ● Q.nearer › should return the value of a fulfilled promise
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 10
+    Received: {"inspect": [Function inspect], "promiseDispatch": [Function anonymous], "valueOf": [Function anonymous]}
+
+       5 |         const promise = q(10);
+       6 |         const result = q.nearer(promise);
+    >  7 |         expect(result).toBe(10);
+         |                        ^
+       8 |     });
+       9 |
+      10 |     it("should return the original value if it's not a promise", () => {
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-83891b8/testCase.test.ts:7:24)
+
+  ● Q.nearer › should return the value of a non-fulfilled promise when the promise is not fulfilled
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: {"exception": 10, "inspect": [Function inspect], "promiseDispatch": [Function anonymous], "valueOf": [Function anonymous]}
+    Received: undefined
+
+      17 |         const promise = q.reject(10);
+      18 |         const result = q.nearer(promise);
+    > 19 |         expect(result).toBe(promise);
+         |                        ^
+      20 |     });
+      21 | });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-83891b8/testCase.test.ts:19:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 1 passed, 3 total
+Snapshots:   0 total
+Time:        3.343 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-83891b8/testCase.test.ts".

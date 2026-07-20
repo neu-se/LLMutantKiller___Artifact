@@ -1,0 +1,33 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-afb4899/testCase.test.ts[0m:[93m18[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string | undefined' is not assignable to type 'string | null'.
+  Type 'undefined' is not assignable to type 'string | null'.
+
+[7m18[0m       stackTrace = error.stack;
+[7m  [0m [91m      ~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-afb4899/testCase.test.ts
+  getFileNameAndLineNumber
+    ✕ should correctly parse stack lines with anonymous functions (15 ms)
+
+  ● getFileNameAndLineNumber › should correctly parse stack lines with anonymous functions
+
+    expect(received).toContain(expected) // indexOf
+    Matcher error: received value must not be null nor undefined
+    Received has value: null
+
+      37 |       // The mutated code would incorrectly match the pattern in the middle of the error message
+      38 |       expect(stackTrace).toBeDefined();
+    > 39 |       expect(stackTrace).toContain("file.js:10:5");
+         |                          ^
+      40 |
+      41 |       // Verify the stack trace is properly formatted
+      42 |       const lines = stackTrace?.split('\n') || [];
+
+      at toContain (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-afb4899/testCase.test.ts:39:26)
+      From previous event:
+      at Object.then (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-afb4899/testCase.test.ts:31:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.006 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-afb4899/testCase.test.ts".

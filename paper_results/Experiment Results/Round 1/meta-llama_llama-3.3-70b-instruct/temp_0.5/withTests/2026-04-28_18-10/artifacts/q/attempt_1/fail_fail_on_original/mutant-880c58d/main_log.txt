@@ -1,0 +1,43 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-880c58d/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-880c58d/testCase.test.ts
+  Q
+    ✕ should pass when Q.longStackSupport is enabled by Q_DEBUG environment variable (1 ms)
+    ✕ should fail when Q.longStackSupport is always enabled
+
+  ● Q › should pass when Q.longStackSupport is enabled by Q_DEBUG environment variable
+
+    TypeError: Cannot read properties of undefined (reading 'longStackSupport')
+
+       8 |
+       9 |         // Act and Assert
+    > 10 |         expect(Q.longStackSupport).toBe(true);
+         |                  ^
+      11 |
+      12 |         // Cleanup
+      13 |         process.env.Q_DEBUG = originalQDebug;
+
+      at Object.longStackSupport (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-880c58d/testCase.test.ts:10:18)
+
+  ● Q › should fail when Q.longStackSupport is always enabled
+
+    TypeError: Cannot read properties of undefined (reading 'longStackSupport')
+
+      16 |     it("should fail when Q.longStackSupport is always enabled", () => {
+      17 |         // Arrange
+    > 18 |         const originalLongStackSupport = Q.longStackSupport;
+         |                                            ^
+      19 |         Q.longStackSupport = true;
+      20 |
+      21 |         // Act and Assert
+
+      at Object.longStackSupport (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-880c58d/testCase.test.ts:18:44)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        2.59 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-880c58d/testCase.test.ts".

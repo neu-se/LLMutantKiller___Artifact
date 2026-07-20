@@ -1,0 +1,32 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-809937b/testCase.test.ts
+  unhandled rejection tracking
+    ✕ should only emit unhandledRejection when process.emit is a function (17 ms)
+
+  ● unhandled rejection tracking › should only emit unhandledRejection when process.emit is a function
+
+    TypeError: process.emit is not a function
+
+      1077 |         Q.nextTick.runAfter(function () {
+      1078 |             if (array_indexOf(unhandledRejections, promise) !== -1) {
+    > 1079 |                 process.emit("unhandledRejection", reason, promise);
+           |                         ^
+      1080 |                 reportedUnhandledRejections.push(promise);
+      1081 |             }
+      1082 |         });
+
+      at emit (../subject_repositories/q/q.js:1079:25)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:130:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.11 s, estimated 4 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-809937b/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

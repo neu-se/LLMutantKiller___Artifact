@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/Complex.js/complex.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/Complex.js/complex.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-a7a4d0d/testCase.test.ts
+  Complex.acosh()
+    ✕ should correctly handle the sign of the imaginary part in acosh result (1 ms)
+
+  ● Complex.acosh() › should correctly handle the sign of the imaginary part in acosh result
+
+    expect(received).toBeCloseTo(expected)
+
+    Expected: 1.3169578969248166
+    Received: -1.3169578969248166
+
+    Expected precision:    2
+    Expected difference: < 0.005
+    Received difference:   2.633915793849633
+
+      10 |     // The mutant will always swap (if true)
+      11 |     // So original returns (re, 0) while mutant returns (0, re)
+    > 12 |     expect(result.re).toBeCloseTo(1.3169578969248166);
+         |                       ^
+      13 |     expect(result.im).toBeCloseTo(0);
+      14 |   });
+      15 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-a7a4d0d/testCase.test.ts:12:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.124 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-a7a4d0d/testCase.test.ts".

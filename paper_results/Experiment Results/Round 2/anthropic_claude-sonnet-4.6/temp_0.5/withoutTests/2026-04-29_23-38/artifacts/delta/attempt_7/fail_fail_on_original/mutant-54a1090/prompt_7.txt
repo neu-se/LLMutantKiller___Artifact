@@ -1,0 +1,47 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-54a1090/testCase.test.ts
+  Delta compose
+    ✕ compose handles insert from this with other having plain retain then insert (7 ms)
+
+  ● Delta compose › compose handles insert from this with other having plain retain then insert
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 4
+    + Received  + 1
+
+    @@ -4,11 +4,8 @@
+            "bold": true,
+          },
+          "insert": "A",
+        },
+        Object {
+    -     "insert": "X",
+    -   },
+    -   Object {
+    -     "insert": "B",
+    +     "insert": "XB",
+        },
+      ]
+
+       7 |     const result = a.compose(b);
+       8 |     // Expected: 'A'(bold) + 'X' + 'B'
+    >  9 |     expect(result.ops).toEqual([
+         |                        ^
+      10 |       { insert: 'A', attributes: { bold: true } },
+      11 |       { insert: 'X' },
+      12 |       { insert: 'B' },
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-54a1090/testCase.test.ts:9:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.745 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-54a1090/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,35 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_8/pending_category/mutant-497dce4/testCase.test.ts
+  crawler-url-parser
+    ✕ should correctly handle multiple links with the same URL and text (10 ms)
+
+  ● crawler-url-parser › should correctly handle multiple links with the same URL and text
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 7
+    + Received  + 1
+
+    - Array [
+    -   Object {
+    -     "text": "Link 1",
+    -     "type": "internal",
+    -     "url": "https://www.example.com",
+    -   },
+    - ]
+    + Array []
+
+       9 |     // If the mutation is present, the above expectation will pass, 
+      10 |     // but the following expectation should fail
+    > 11 |     expect(result).toEqual([{ url: 'https://www.example.com', text: 'Link 1', type: 'internal' }]);
+         |                    ^
+      12 |   });
+      13 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_8/pending_category/mutant-497dce4/testCase.test.ts:11:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.837 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_8/pending_category/mutant-497dce4/testCase.test.ts".

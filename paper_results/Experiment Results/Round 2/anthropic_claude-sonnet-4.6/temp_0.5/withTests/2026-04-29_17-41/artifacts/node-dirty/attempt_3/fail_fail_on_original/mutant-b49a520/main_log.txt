@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-b49a520/testCase.test.ts
+  dirty db chunk without newline behavior
+    ✕ should emit load with 0 records (not error) when a data chunk without newline is received (2 ms)
+
+  ● dirty db chunk without newline behavior › should emit load with 0 records (not error) when a data chunk without newline is received
+
+    TypeError: Cannot redefine property: createReadStream
+        at Function.defineProperty (<anonymous>)
+
+      10 |     fs.writeFileSync(file, '', 'utf-8');
+      11 |
+    > 12 |     const spy = jest.spyOn(fs, 'createReadStream').mockImplementationOnce((filePath: any, opts: any) => {
+         |                      ^
+      13 |       const emitter = new EventEmitter() as any;
+      14 |       emitter.destroy = () => {};
+      15 |       process.nextTick(() => {
+
+      at ModuleMocker.spyOn (node_modules/jest-mock/build/index.js:776:16)
+      at Object.spyOn (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-b49a520/testCase.test.ts:12:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.959 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-b49a520/testCase.test.ts".

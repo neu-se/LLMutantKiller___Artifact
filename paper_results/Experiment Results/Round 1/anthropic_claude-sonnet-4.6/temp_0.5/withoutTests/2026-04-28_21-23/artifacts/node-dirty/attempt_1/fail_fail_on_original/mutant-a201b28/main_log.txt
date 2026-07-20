@@ -1,0 +1,45 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-a201b28/testCase.test.ts[0m:[93m4[0m:[93m24[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m4[0m import { rimraf } from 'rimraf';
+[7m [0m [91m                       ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-a201b28/testCase.test.ts (7.604 s)
+  Dirty corrupted row error handling
+    ✕ should emit error event with message when a corrupted row is encountered during load (5001 ms)
+
+  ● Dirty corrupted row error handling › should emit error event with message when a corrupted row is encountered during load
+
+    TypeError: (0 , rimraf_1.rimraf) is not a function
+
+      30 |       } finally {
+      31 |         db.close();
+    > 32 |         rimraf(tmpDir).then(() => done()).catch(done);
+         |               ^
+      33 |       }
+      34 |     });
+      35 |   });
+
+      at Dirty.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-a201b28/testCase.test.ts:32:15)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:154:16)
+
+  ● Dirty corrupted row error handling › should emit error event with message when a corrupted row is encountered during load
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       6 |
+       7 | describe('Dirty corrupted row error handling', () => {
+    >  8 |   it('should emit error event with message when a corrupted row is encountered during load', (done) => {
+         |   ^
+       9 |     const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'dirty-test-'));
+      10 |     const dbPath = path.join(tmpDir, 'test.db');
+      11 |
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-a201b28/testCase.test.ts:8:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-a201b28/testCase.test.ts:7:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.87 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-a201b28/testCase.test.ts".

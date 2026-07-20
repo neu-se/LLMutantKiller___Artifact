@@ -1,0 +1,53 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-1a28cfc/testCase.test.ts[0m:[93m12[0m:[93m34[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'number | Record<string, unknown>'.
+
+[7m12[0m     const b = new Delta().retain('test');
+[7m  [0m [91m                                 ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-1a28cfc/testCase.test.ts
+  compose function
+    ✕ should pass when composing two embeds in the original code and fail in the mutated code (32 ms)
+    ✕ should fail when composing an embed with a non-object in the original code and pass in the mutated code (1 ms)
+
+  ● compose function › should pass when composing two embeds in the original code and fail in the mutated code
+
+    expect(received).not.toThrowError()
+
+    Error name:    "Error"
+    Error message: "no handlers for embed type \"embed\""
+
+          50 |     const handler = this.handlers[embedType];
+          51 |     if (!handler) {
+        > 52 |       throw new Error(`no handlers for embed type "${embedType}"`);
+             |             ^
+          53 |     }
+          54 |     return handler;
+          55 |   }
+
+      at Function.getHandler (../subject_repositories/delta/src/Delta.ts:52:13)
+      at Delta.getHandler [as compose] (../subject_repositories/delta/src/Delta.ts:286:37)
+      at compose (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-1a28cfc/testCase.test.ts:7:20)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-1a28cfc/testCase.test.ts:7:36)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-1a28cfc/testCase.test.ts:7:36)
+
+  ● compose function › should fail when composing an embed with a non-object in the original code and pass in the mutated code
+
+    expect(received).toThrowError()
+
+    Received function did not throw
+
+      11 |     const a = new Delta().insert({ embed: 'test' });
+      12 |     const b = new Delta().retain('test');
+    > 13 |     expect(() => a.compose(b)).toThrowError();
+         |                                ^
+      14 |   });
+      15 | });
+
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-1a28cfc/testCase.test.ts:13:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        2.34 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-1a28cfc/testCase.test.ts".

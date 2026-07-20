@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-49c08d0/testCase.test.ts
+  Promise inspect function behavior
+    ✕ should correctly inspect a fulfilled promise state (5 ms)
+
+  ● Promise inspect function behavior › should correctly inspect a fulfilled promise state
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "fulfilled"
+    Received: "unknown"
+
+      14 |     // In original code: inspect returns {state: "fulfilled", value: 42}
+      15 |     // In mutated code: inspect returns {state: "unknown"} because the provided inspect was overwritten
+    > 16 |     expect(inspected.state).toBe("fulfilled");
+         |                             ^
+      17 |     expect(inspected.value).toBe(42);
+      18 |   });
+      19 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-49c08d0/testCase.test.ts:16:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        4.049 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-49c08d0/testCase.test.ts".

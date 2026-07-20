@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-e860c46/testCase.test.ts[0m:[93m4[0m:[93m10[0m - [91merror[0m[90m TS2616: [0m'assert' can only be imported by using 'import assert = require("assert")' or a default import.
+
+[7m4[0m import { assert } from 'assert';
+[7m [0m [91m         ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-e860c46/testCase.test.ts
+  Dirty
+    ✕ should close the write stream when there are no in-flight writes (38 ms)
+
+  ● Dirty › should close the write stream when there are no in-flight writes
+
+    TypeError: Cannot read properties of undefined (reading 'strictEqual')
+
+      17 |     await new Promise((resolve) => db.on('write_close', resolve));
+      18 |
+    > 19 |     assert.strictEqual(db._writeStream, null);
+         |            ^
+      20 |     await fsp.unlink(file);
+      21 |   });
+      22 | });
+
+      at Object.strictEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-e860c46/testCase.test.ts:19:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.225 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-e860c46/testCase.test.ts".

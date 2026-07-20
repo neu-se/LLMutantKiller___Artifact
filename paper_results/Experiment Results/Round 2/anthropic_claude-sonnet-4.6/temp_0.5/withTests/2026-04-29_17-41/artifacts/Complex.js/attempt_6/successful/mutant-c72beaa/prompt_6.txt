@@ -1,0 +1,33 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-c72beaa/testCase.test.ts
+  Complex acot
+    ✕ should give finite result for inputs just above underflow threshold and NaN at threshold (3 ms)
+
+  ● Complex acot › should give finite result for inputs just above underflow threshold and NaN at threshold
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       7 |     const justAbove = 1e-162;
+       8 |     const resultAbove = new Complex(justAbove, justAbove).acot();
+    >  9 |     expect(isFinite(resultAbove.re)).toBe(true);
+         |                                      ^
+      10 |     expect(isFinite(resultAbove.im)).toBe(true);
+      11 |
+      12 |     // 1e-163 squared = 1e-326 which underflows to 0
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-c72beaa/testCase.test.ts:9:38)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.325 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-c72beaa/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

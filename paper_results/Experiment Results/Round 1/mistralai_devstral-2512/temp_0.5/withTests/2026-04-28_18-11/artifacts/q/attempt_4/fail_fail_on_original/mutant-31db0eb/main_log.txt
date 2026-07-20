@@ -1,0 +1,62 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-31db0eb/testCase.test.ts[0m:[93m11[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType '{}' is not assignable to type 'Window & typeof globalThis'.
+  Type '{}' is missing the following properties from type 'Window': clientInformation, closed, cookieStore, customElements, and 209 more.
+
+[7m11[0m         global.window = {};
+[7m  [0m [91m        ~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-31db0eb/testCase.test.ts[0m:[93m15[0m:[93m9[0m - [91merror[0m[90m TS2741: [0mProperty '__promisify__' is missing in type '(callback: Function) => Immediate' but required in type 'typeof setImmediate'.
+
+[7m15[0m         global.setImmediate = function(callback: Function) {
+[7m  [0m [91m        ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/node/timers.d.ts[0m:[93m180[0m:[93m22[0m
+    [7m180[0m             export { __promisify__ };
+    [7m   [0m [96m                     ~~~~~~~~~~~~~[0m
+    '__promisify__' is declared here.
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-31db0eb/testCase.test.ts[0m:[93m17[0m:[93m54[0m - [91merror[0m[90m TS2345: [0mArgument of type 'Function' is not assignable to parameter of type '(_: void) => void'.
+  Type 'Function' provides no match for the signature '(_: void): void'.
+
+[7m17[0m             return originalSetImmediate.call(global, callback);
+[7m  [0m [91m                                                     ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-31db0eb/testCase.test.ts (6.084 s)
+  setImmediate detection
+    ✕ should use setImmediate when available in browser environment (5002 ms)
+
+  ● setImmediate detection › should use setImmediate when available in browser environment
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      38 |             // In the mutated code, it will always use the else branch (setTimeout)
+      39 |             // So setImmediateCalled should be true in original, false in mutated
+    > 40 |             expect(setImmediateCalled).toBe(true);
+         |                                        ^
+      41 |             expect(resolved).toBe(true);
+      42 |
+      43 |             // Clean up
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-31db0eb/testCase.test.ts:40:40)
+
+  ● setImmediate detection › should use setImmediate when available in browser environment
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      3 |
+      4 | describe("setImmediate detection", () => {
+    > 5 |     it("should use setImmediate when available in browser environment", (done) => {
+        |     ^
+      6 |         // Save original setImmediate and window
+      7 |         const originalSetImmediate = global.setImmediate;
+      8 |         const originalWindow = global.window;
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-31db0eb/testCase.test.ts:5:5)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-31db0eb/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.207 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-31db0eb/testCase.test.ts".

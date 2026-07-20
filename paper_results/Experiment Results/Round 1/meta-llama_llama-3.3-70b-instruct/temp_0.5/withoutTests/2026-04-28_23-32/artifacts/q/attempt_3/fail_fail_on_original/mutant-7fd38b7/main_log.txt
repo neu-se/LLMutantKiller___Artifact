@@ -1,0 +1,33 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-7fd38b7/testCase.test.ts[0m:[93m11[0m:[93m16[0m - [91merror[0m[90m TS2552: [0mCannot find name 'trackUnhandledRejections'. Did you mean 'onunhandledrejection'?
+
+[7m11[0m         expect(trackUnhandledRejections).toBe(true);
+[7m  [0m [91m               ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.dom.d.ts[0m:[93m39103[0m:[93m13[0m
+    [7m39103[0m declare var onunhandledrejection: ((this: Window, ev: PromiseRejectionEvent) => any) | null;
+    [7m     [0m [96m            ~~~~~~~~~~~~~~~~~~~~[0m
+    'onunhandledrejection' is declared here.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-7fd38b7/testCase.test.ts
+  Q
+    ✕ should reset unhandled rejections tracking correctly (1 ms)
+
+  ● Q › should reset unhandled rejections tracking correctly
+
+    ReferenceError: Q is not defined
+
+      1 | describe('Q', () => {
+      2 |     it('should reset unhandled rejections tracking correctly', () => {
+    > 3 |         const originalQ = Q;
+        |                           ^
+      4 |         Q.stopUnhandledRejectionTracking();
+      5 |         Q.resetUnhandledRejections();
+      6 |         expect(Q.getUnhandledReasons()).toEqual([]);
+
+      at Object.Q (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-7fd38b7/testCase.test.ts:3:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.598 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-7fd38b7/testCase.test.ts".

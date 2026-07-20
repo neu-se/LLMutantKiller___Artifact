@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-e860c46/testCase.test.ts[0m:[93m36[0m:[93m39[0m - [91merror[0m[90m TS2554: [0mExpected 0 arguments, but got 1.
+
+[7m36[0m         for (const cb of writeCbs) cb(null);
+[7m  [0m [91m                                      ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-e860c46/testCase.test.ts
+  Dirty close() with in-flight writes
+    ✕ should properly close after all in-flight writes complete, not before (10 ms)
+
+  ● Dirty close() with in-flight writes › should properly close after all in-flight writes complete, not before
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+      44 |           const fileContent = fs.readFileSync(dbPath, 'utf-8');
+      45 |           const lines = fileContent.trim().split('\n').filter(l => l.length > 0);
+    > 46 |           expect(lines.length).toBe(1);
+         |                                ^
+      47 |           const row = JSON.parse(lines[0]);
+      48 |           expect(row.key).toBe('key1');
+      49 |           expect(row.val).toBe('value1');
+
+      at Dirty.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-e860c46/testCase.test.ts:46:32)
+      at WriteStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:177:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.288 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-e860c46/testCase.test.ts".

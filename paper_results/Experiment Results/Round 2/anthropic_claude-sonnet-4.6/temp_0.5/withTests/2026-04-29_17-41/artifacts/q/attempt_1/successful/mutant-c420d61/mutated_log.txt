@@ -1,0 +1,31 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-c420d61/testCase.test.ts[0m:[93m22[0m:[93m60[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m22[0m       const promise = deferred.promise.then(null, function(err) {
+[7m  [0m [91m                                                           ~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-c420d61/testCase.test.ts
+  isNodeFrame filtering in long stack traces
+    ✕ should filter out node.js internal frames from long stack traces when longStackSupport is enabled (4 ms)
+
+  ● isNodeFrame filtering in long stack traces › should filter out node.js internal frames from long stack traces when longStackSupport is enabled
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      63 |         // Mutated: "(node.js:" lines remain
+      64 |         const hasNodeJsFrame = resolvedStack.includes("(node.js:");
+    > 65 |         expect(hasNodeJsFrame).toBe(false);
+         |                                ^
+      66 |       }
+      67 |     } finally {
+      68 |       Q.longStackSupport = originalLongStackSupport;
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-c420d61/testCase.test.ts:65:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.695 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-c420d61/testCase.test.ts".

@@ -1,0 +1,30 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-a7a4d0d/testCase.test.ts
+  Complex acosh
+    ✕ should compute acosh(2+3i) with correct real and imaginary parts (3 ms)
+
+  ● Complex acosh › should compute acosh(2+3i) with correct real and imaginary parts
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: -1.0001435424737972
+    Received: 1.0001435424737974
+
+    Expected precision:    5
+    Expected difference: < 0.000005
+    Received difference:   2.000287084947595
+
+       7 |     // Mutant: if branch gives re=-res.im (negative), im=res.re (positive)
+       8 |     // So original has negative im, mutant has positive im
+    >  9 |     expect(result.im).toBeCloseTo(-1.0001435424737972, 5);
+         |                       ^
+      10 |   });
+      11 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-a7a4d0d/testCase.test.ts:9:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.604 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-a7a4d0d/testCase.test.ts".

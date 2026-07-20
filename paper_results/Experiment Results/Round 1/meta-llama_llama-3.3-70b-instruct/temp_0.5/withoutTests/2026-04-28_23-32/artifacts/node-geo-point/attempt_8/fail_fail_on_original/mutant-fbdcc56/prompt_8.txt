@@ -1,0 +1,41 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_7/pending_category/mutant-fbdcc56/testCase.test.ts[0m:[93m1[0m:[93m26[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import { GeoPoint } from "../../../../../../../../../../../subject_repositories/node-geo-point/src/geo-point.ts";
+[7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_7/pending_category/mutant-fbdcc56/testCase.test.ts[0m:[93m8[0m:[93m120[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m8[0m     const destination = point.calculateDestination({ latitude: point.latitude, longitude: point.longitude }, distance, bearing);
+[7m [0m [91m                                                                                                                       ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_7/pending_category/mutant-fbdcc56/testCase.test.ts
+  GeoPoint
+    ✕ should calculate destination correctly for a specific case (1 ms)
+
+  ● GeoPoint › should calculate destination correctly for a specific case
+
+    TypeError: rad2deg()::invalid input argument. Must provide either a single numeric value or a numeric array.
+
+      157 |     const λ2 = λ1 + atan2(y, x);
+      158 |
+    > 159 |     const latitude = rad2deg(φ2);
+          |                      ^
+      160 |     const longitude = (rad2deg(λ2) + 540) % 360 - 180; // normalise to −180..+180°
+      161 |
+      162 |     return new GeoPoint(latitude, longitude);
+
+      at rad2deg (../subject_repositories/node-geo-point/node_modules/compute-rad2deg/lib/index.js:44:9)
+      at Function.rad2deg [as calculateDestination] (../subject_repositories/node-geo-point/src/geo-point.ts:159:22)
+      at GeoPoint.calculateDestination (../subject_repositories/node-geo-point/src/geo-point.ts:201:21)
+      at Object.calculateDestination (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_7/pending_category/mutant-fbdcc56/testCase.test.ts:8:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.384 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_7/pending_category/mutant-fbdcc56/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

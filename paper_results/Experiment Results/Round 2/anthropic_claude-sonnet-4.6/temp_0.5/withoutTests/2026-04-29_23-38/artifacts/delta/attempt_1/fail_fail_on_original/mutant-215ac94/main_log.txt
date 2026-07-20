@@ -1,0 +1,67 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-215ac94/testCase.test.ts[0m:[93m2[0m:[93m19[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m2[0m import Delta from "../../../../../../../../../../../subject_repositories/delta/src/Delta.ts";
+[7m [0m [91m                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-215ac94/testCase.test.ts[0m:[93m8[0m:[93m17[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m8[0m       compose: (a: unknown, b: unknown, keepNull: boolean) => b,
+[7m [0m [91m                ~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-215ac94/testCase.test.ts[0m:[93m8[0m:[93m41[0m - [91merror[0m[90m TS6133: [0m'keepNull' is declared but its value is never read.
+
+[7m8[0m       compose: (a: unknown, b: unknown, keepNull: boolean) => b,
+[7m [0m [91m                                        ~~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-215ac94/testCase.test.ts[0m:[93m9[0m:[93m16[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m9[0m       invert: (a: unknown, b: unknown) => b,
+[7m [0m [91m               ~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-215ac94/testCase.test.ts[0m:[93m10[0m:[93m19[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m10[0m       transform: (a: unknown, b: unknown, priority: boolean) => {
+[7m  [0m [91m                  ~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-215ac94/testCase.test.ts[0m:[93m10[0m:[93m31[0m - [91merror[0m[90m TS6133: [0m'b' is declared but its value is never read.
+
+[7m10[0m       transform: (a: unknown, b: unknown, priority: boolean) => {
+[7m  [0m [91m                              ~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-215ac94/testCase.test.ts[0m:[93m10[0m:[93m43[0m - [91merror[0m[90m TS6133: [0m'priority' is declared but its value is never read.
+
+[7m10[0m       transform: (a: unknown, b: unknown, priority: boolean) => {
+[7m  [0m [91m                                          ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-215ac94/testCase.test.ts
+  Delta transform with mixed retain types
+    ✕ should correctly transform when thisOp has number retain and otherOp has object retain (4 ms)
+
+  ● Delta transform with mixed retain types › should correctly transform when thisOp has number retain and otherOp has object retain
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 3
+
+    @@ -1,7 +1,10 @@
+      Array [
+        Object {
+    +     "retain": 1,
+    +   },
+    +   Object {
+          "retain": Object {
+            "image": Object {
+              "src": "url",
+            },
+          },
+
+      89 |       const result = thisDelta.transform(otherDelta, false);
+      90 |       // The result should retain the embed
+    > 91 |       expect(result.ops).toEqual([{ retain: { image: { src: "url" } } }]);
+         |                          ^
+      92 |     } finally {
+      93 |       Delta.unregisterEmbed("image");
+      94 |     }
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-215ac94/testCase.test.ts:91:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.659 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-215ac94/testCase.test.ts".

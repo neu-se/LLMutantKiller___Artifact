@@ -1,0 +1,8 @@
+import { parse } from "../../../../../../../../../../../subject_repositories/crawler-url-parser/crawler-url-parser.js";
+
+describe("parse function with directory index handling", () => {
+  it("should normalize paths ending with default.html to parent directory", () => {
+    const result = parse("http://example.com/path/default.html");
+    expect(result?.path).toBe("/path/");
+  });
+});

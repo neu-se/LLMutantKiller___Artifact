@@ -1,0 +1,44 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-3b6af17/testCase.test.ts[0m:[93m12[0m:[93m34[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'number | Record<string, unknown>'.
+
+[7m12[0m     const a = new Delta().retain("test");
+[7m  [0m [91m                                 ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-3b6af17/testCase.test.ts
+  transform() with embeds
+    ✕ should correctly handle string retain data (7 ms)
+
+  ● transform() with embeds › should correctly handle string retain data
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 3
+
+    @@ -1,8 +1,11 @@
+      Delta {
+        "ops": Array [
+          Object {
+    +       "retain": 1,
+    +     },
+    +     Object {
+            "retain": Object {
+              "delta": Array [
+                Object {
+                  "insert": "b",
+                },
+
+      16 |     const expected = new Delta().retain({ delta: [{ insert: 'b' }] });
+      17 |
+    > 18 |     expect(result).toEqual(expected);
+         |                    ^
+      19 |
+      20 |     Delta.unregisterEmbed('delta');
+      21 |   });
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-3b6af17/testCase.test.ts:18:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.503 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-3b6af17/testCase.test.ts".

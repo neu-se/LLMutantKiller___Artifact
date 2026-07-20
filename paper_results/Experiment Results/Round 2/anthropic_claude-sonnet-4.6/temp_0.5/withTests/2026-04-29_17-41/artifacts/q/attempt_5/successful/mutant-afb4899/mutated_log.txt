@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-afb4899/testCase.test.ts
+  getFileNameAndLineNumber attempt2 regex end anchor
+    ✕ uses $ anchor so lines with trailing content are not matched by attempt2 (12 ms)
+
+  ● getFileNameAndLineNumber attempt2 regex end anchor › uses $ anchor so lines with trailing content are not matched by attempt2
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "q.js"
+    Received string:    "fn@/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-afb4899/testCase.test.ts:33:20 [extra]
+
+      46 |       // Original ($): qFileName=undefined → no Q frame filtering → "q.js" in stack
+      47 |       // Mutant (no $): qFileName=q.js path → Q frames filtered → no "q.js" in stack
+    > 48 |       expect(stack).toContain("q.js");
+         |                     ^
+      49 |     } finally {
+      50 |       (Error as any).prepareStackTrace = originalPrepareStackTrace;
+      51 |     }
+
+      at node:internal/process/task_queues:77:11 [extra]
+      From previous event:
+      at llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-afb4899/testCase.test.ts:30:16 [extra]
+      at llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-afb4899/testCase.test.ts:29:25 [extra]
+      at Object.toContain (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-afb4899/testCase.test.ts:48:21)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.502 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-afb4899/testCase.test.ts".

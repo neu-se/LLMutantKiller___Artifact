@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-4bfabdc/testCase.test.ts
+  Q stack trace filtering
+    ✕ should correctly filter internal frames from stack traces (4 ms)
+
+  ● Q stack trace filtering › should correctly filter internal frames from stack traces
+
+    expect(received).toBe(expected) // Object.is equality
+    Expected: true
+    Received: false
+
+      20 |           // Check that internal Q frames are properly filtered out
+      21 |           // The mutation would cause some internal frames to remain
+    > 22 |           expect(stack.includes("From previous event:")).toBe(true);
+         |                                                          ^
+      23 |           // The original code should filter out internal frames, so we expect
+      24 |           // the stack to not contain certain internal Q implementation details
+      25 |           expect(stack.includes("at filterStackString")).toBe(false);
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-4bfabdc/testCase.test.ts:22:58)
+      From previous event:
+      at Object.then (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-4bfabdc/testCase.test.ts:13:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.394 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-4bfabdc/testCase.test.ts".

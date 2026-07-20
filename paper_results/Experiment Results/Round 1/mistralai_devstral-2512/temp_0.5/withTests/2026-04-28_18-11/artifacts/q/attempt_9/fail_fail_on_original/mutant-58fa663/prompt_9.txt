@@ -1,0 +1,57 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-58fa663/testCase.test.ts[0m:[93m19[0m:[93m9[0m - [91merror[0m[90m TS2551: [0mProperty 'resetUnhandledReasons' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'. Did you mean 'getUnhandledReasons'?
+
+[7m19[0m       Q.resetUnhandledReasons();
+[7m  [0m [91m        ~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96m../subject_repositories/q/q.js[0m:[93m1116[0m:[93m1[0m
+    [7m1116[0m Q.getUnhandledReasons = function () {
+    [7m    [0m [96m~~~~~~~~~~~~~~~~~~~~~[0m
+    'getUnhandledReasons' is declared here.
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-58fa663/testCase.test.ts[0m:[93m30[0m:[93m16[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 1.
+
+[7m30[0m       return Q.delay(10).then(() => {
+[7m  [0m [91m               ~~~~~[0m
+
+  [96m../subject_repositories/q/q.js[0m:[93m1872[0m:[93m29[0m
+    [7m1872[0m Q.delay = function (object, timeout) {
+    [7m    [0m [96m                            ~~~~~~~[0m
+    An argument for 'timeout' was not provided.
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-58fa663/testCase.test.ts[0m:[93m50[0m:[93m9[0m - [91merror[0m[90m TS2551: [0mProperty 'resetUnhandledReasons' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'. Did you mean 'getUnhandledReasons'?
+
+[7m50[0m       Q.resetUnhandledReasons();
+[7m  [0m [91m        ~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96m../subject_repositories/q/q.js[0m:[93m1116[0m:[93m1[0m
+    [7m1116[0m Q.getUnhandledReasons = function () {
+    [7m    [0m [96m~~~~~~~~~~~~~~~~~~~~~[0m
+    'getUnhandledReasons' is declared here.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-58fa663/testCase.test.ts
+  unhandled rejection tracking mutation test
+    ✕ should correctly untrack rejections based on process.emit being a function (1 ms)
+
+  ● unhandled rejection tracking mutation test › should correctly untrack rejections based on process.emit being a function
+
+    TypeError: q_js_1.default.resetUnhandledReasons is not a function
+
+      48 |       // @ts-ignore - Restoring original process
+      49 |       global.process = originalProcess;
+    > 50 |       Q.resetUnhandledReasons();
+         |         ^
+      51 |     }
+      52 |   });
+      53 | });
+
+      at Object.resetUnhandledReasons (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-58fa663/testCase.test.ts:50:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.497 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-58fa663/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

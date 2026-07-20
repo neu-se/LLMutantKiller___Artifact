@@ -1,0 +1,25 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-c8c916d/testCase.test.ts
+  Complex acsc with denormalized input
+    ✕ should return NaN for extremely small non-zero real input (not zero) (3 ms)
+
+  ● Complex acsc with denormalized input › should return NaN for extremely small non-zero real input (not zero)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       7 |     // Original: fallback uses (a !== 0) ? a/0 : 0 = Infinity, asin(Infinity) = NaN
+       8 |     // Mutated: fallback uses (false) ? a/0 : 0 = 0, asin(0) = 0
+    >  9 |     expect(result.isNaN()).toBe(true);
+         |                            ^
+      10 |   });
+      11 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-c8c916d/testCase.test.ts:9:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.99 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-c8c916d/testCase.test.ts".

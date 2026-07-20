@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-f52bdbd/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-f52bdbd/testCase.test.ts
+  unhandled rejection tracking
+    ✕ should track unhandled rejections with stack traces (1 ms)
+
+  ● unhandled rejection tracking › should track unhandled rejections with stack traces
+
+    TypeError: Cannot read properties of undefined (reading 'resetUnhandledRejections')
+
+      4 |   it("should track unhandled rejections with stack traces", () => {
+      5 |     const originalQ = Q;
+    > 6 |     originalQ.resetUnhandledRejections();
+        |               ^
+      7 |     const error = new Error("test error");
+      8 |     error.stack = "Error: test error\n    at testCase.test.ts:5:15";
+      9 |     originalQ.reject(error);
+
+      at Object.resetUnhandledRejections (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-f52bdbd/testCase.test.ts:6:15)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.116 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-f52bdbd/testCase.test.ts".

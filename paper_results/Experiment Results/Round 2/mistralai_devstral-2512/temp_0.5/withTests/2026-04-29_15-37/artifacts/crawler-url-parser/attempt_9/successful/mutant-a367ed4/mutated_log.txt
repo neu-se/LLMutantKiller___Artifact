@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_9/pending_category/mutant-a367ed4/testCase.test.ts
+  extract function with mixed href lengths
+    ✕ should handle both short and long hrefs correctly (9 ms)
+
+  ● extract function with mixed href lengths › should handle both short and long hrefs correctly
+
+    expect(received).toHaveLength(expected)
+
+    Expected length: 2
+    Received length: 3
+    Received array:  [{"text": "two chars", "type": "sublevel", "url": "http://example.com/ab"}, {"text": "three chars", "type": "sublevel", "url": "http://example.com/abc"}, {"text": "four chars", "type": "sublevel", "url": "http://example.com/abcd"}]
+
+      13 |     `;
+      14 |     const result = extract(html, "http://example.com");
+    > 15 |     expect(result).toHaveLength(2);
+         |                    ^
+      16 |     expect(result[0].url).toBe("http://example.com/abc");
+      17 |     expect(result[0].text).toBe("three chars");
+      18 |     expect(result[1].url).toBe("http://example.com/abcd");
+
+      at Object.toHaveLength (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_9/pending_category/mutant-a367ed4/testCase.test.ts:15:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.313 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_9/pending_category/mutant-a367ed4/testCase.test.ts".

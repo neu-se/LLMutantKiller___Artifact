@@ -1,0 +1,29 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-6b0fe75/testCase.test.ts
+  cosh behavior via Complex trigonometric functions
+    ✕ should compute cos(0 + i*1e-10) correctly using native Math.cosh (3 ms)
+
+  ● cosh behavior via Complex trigonometric functions › should compute cos(0 + i*1e-10) correctly using native Math.cosh
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 1
+    Received: 0.9999999999
+
+    Expected precision:    10
+    Expected difference: < 5e-11
+    Received difference:   1.000000082740371e-10
+
+      12 |     const result = c.cos();
+      13 |     // Native Math.cosh(1e-10) should be essentially 1.0
+    > 14 |     expect(result.re).toBeCloseTo(Math.cosh(1e-10), 10);
+         |                       ^
+      15 |   });
+      16 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-6b0fe75/testCase.test.ts:14:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.685 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-6b0fe75/testCase.test.ts".

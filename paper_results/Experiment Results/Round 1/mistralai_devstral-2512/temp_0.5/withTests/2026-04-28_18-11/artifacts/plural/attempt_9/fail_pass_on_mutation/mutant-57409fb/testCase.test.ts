@@ -1,0 +1,9 @@
+import plural from "../../../../../../../../../../../subject_repositories/plural/index.js";
+
+describe('plural function with numeric parameter', () => {
+  it('should return plural form when num is not 1', () => {
+    expect(plural('test', 0)).toBe('tests');
+    expect(plural('test', 2)).toBe('tests');
+    expect(plural('test', null)).toBe('tests');
+  });
+});

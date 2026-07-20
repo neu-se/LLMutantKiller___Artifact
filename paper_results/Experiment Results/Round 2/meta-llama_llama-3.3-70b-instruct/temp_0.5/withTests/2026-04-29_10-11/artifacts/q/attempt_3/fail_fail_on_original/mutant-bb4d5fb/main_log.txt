@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-bb4d5fb/testCase.test.ts[0m:[93m7[0m:[93m33[0m - [91merror[0m[90m TS2339: [0mProperty 'filterStackString' does not exist on type 'typeof export='.
+
+[7m7[0m         const filteredStack = q.filterStackString(stack);
+[7m [0m [91m                                ~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-bb4d5fb/testCase.test.ts
+  q.js
+    ✕ should correctly filter internal frames from stack traces (1 ms)
+
+  ● q.js › should correctly filter internal frames from stack traces
+
+    TypeError: q.filterStackString is not a function
+
+       5 |         const error = new Error();
+       6 |         const stack = error.stack;
+    >  7 |         const filteredStack = q.filterStackString(stack);
+         |                                 ^
+       8 |         expect(filteredStack).not.toContain("q.js");
+       9 |     });
+      10 | });
+
+      at Object.filterStackString (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-bb4d5fb/testCase.test.ts:7:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.333 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-bb4d5fb/testCase.test.ts".

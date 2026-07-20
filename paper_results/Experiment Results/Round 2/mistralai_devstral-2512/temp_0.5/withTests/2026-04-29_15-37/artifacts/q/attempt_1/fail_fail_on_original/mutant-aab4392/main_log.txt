@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-aab4392/testCase.test.ts[0m:[93m2[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m2[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-aab4392/testCase.test.ts[0m:[93m21[0m:[93m8[0m - [91merror[0m[90m TS7006: [0mParameter 'error' implicitly has an 'any' type.
+
+[7m21[0m       (error) => {
+[7m  [0m [91m       ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-aab4392/testCase.test.ts
+  filterStackString mutation test
+    ✕ should not throw an error when processing stack traces (4 ms)
+
+  ● filterStackString mutation test › should not throw an error when processing stack traces
+
+    TypeError: Cannot set properties of undefined (setting 'longStackSupport')
+
+       6 |     // Create a scenario that would trigger the filterStackString function
+       7 |     // by creating a rejected promise with long stack traces enabled
+    >  8 |     Q.longStackSupport = true;
+         |                       ^
+       9 |
+      10 |     // Create a chain of promises that will generate stack traces
+      11 |     const promise = Q.reject(new Error("Test error"));
+
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-aab4392/testCase.test.ts:8:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.875 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-aab4392/testCase.test.ts".

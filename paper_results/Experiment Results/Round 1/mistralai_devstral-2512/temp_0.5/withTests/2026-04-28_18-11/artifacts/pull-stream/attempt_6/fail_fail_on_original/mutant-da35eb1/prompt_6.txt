@@ -1,0 +1,30 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-da35eb1/testCase.test.ts
+  find error handling
+    ✕ should pass error when stream ends with error (1 ms)
+
+  ● find error handling › should pass error when stream ends with error
+
+    TypeError: pull.values is not a function
+
+       5 |   it('should pass error when stream ends with error', (done) => {
+       6 |     const error = new Error('test error');
+    >  7 |     const values = pull.values([1, 2, 3]);
+         |                         ^
+       8 |     const asyncMap = pull.asyncMap(function(data: any, cb: any) {
+       9 |       if (data === 2) {
+      10 |         cb(error);
+
+      at Object.values (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-da35eb1/testCase.test.ts:7:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.366 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-da35eb1/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

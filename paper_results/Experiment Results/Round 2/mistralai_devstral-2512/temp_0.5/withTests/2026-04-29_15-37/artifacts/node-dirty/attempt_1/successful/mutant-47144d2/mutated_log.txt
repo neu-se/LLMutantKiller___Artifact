@@ -1,0 +1,59 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-47144d2/testCase.test.ts[0m:[93m4[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m4[0m import * as rimraf from "rimraf";
+[7m [0m [91m                        ~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-47144d2/testCase.test.ts[0m:[93m8[0m:[93m11[0m - [91merror[0m[90m TS2749: [0m'Dirty' refers to a value, but is being used as a type here. Did you mean 'typeof Dirty'?
+
+[7m8[0m   let db: Dirty;
+[7m [0m [91m          ~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-47144d2/testCase.test.ts[0m:[93m21[0m:[93m21[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m21[0m     db.on("error", (err) => {
+[7m  [0m [91m                    ~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/node-dirty/lib/dirty/dirty.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/node-dirty/lib/dirty/dirty.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-47144d2/testCase.test.ts (6.294 s)
+  Empty line handling in database file
+    ✕ should emit an error when encountering an empty line in the database file (5004 ms)
+
+  ● Empty line handling in database file › should emit an error when encountering an empty line in the database file
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Empty lines never appear in a healthy database"
+    Received: "Could not load corrupted row: "
+
+      20 |     db = new Dirty(testFilePath);
+      21 |     db.on("error", (err) => {
+    > 22 |       expect(err.message).toBe("Empty lines never appear in a healthy database");
+         |                           ^
+      23 |       done();
+      24 |     });
+      25 |   });
+
+      at Dirty.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-47144d2/testCase.test.ts:22:27)
+      at emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:136:20)
+          at Array.forEach (<anonymous>)
+      at ReadStream.forEach (../subject_repositories/node-dirty/lib/dirty/dirty.js:125:15)
+
+  ● Empty line handling in database file › should emit an error when encountering an empty line in the database file
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      17 |   });
+      18 |
+    > 19 |   it("should emit an error when encountering an empty line in the database file", (done) => {
+         |   ^
+      20 |     db = new Dirty(testFilePath);
+      21 |     db.on("error", (err) => {
+      22 |       expect(err.message).toBe("Empty lines never appear in a healthy database");
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-47144d2/testCase.test.ts:19:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-47144d2/testCase.test.ts:6:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.45 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-47144d2/testCase.test.ts".

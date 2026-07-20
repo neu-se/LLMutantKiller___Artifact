@@ -1,0 +1,46 @@
+[
+  {
+    "accessPath": "jsonfile.readFile",
+    "descriptor": {
+      "type": "function",
+      "signature": "(...args)",
+      "implementation": "function (...args) {\n    const cb = args[args.length - 1]\n    if (typeof cb !== 'function') return fn.apply(this, args)\n    else {\n      args.pop()\n      fn.apply(this, args).then(r => cb(null, r), cb)\n    }\n  }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "jsonfile"
+  },
+  {
+    "accessPath": "jsonfile.readFileSync",
+    "descriptor": {
+      "type": "function",
+      "signature": "(file, options = {})",
+      "implementation": "function readFileSync (file, options = {}) {\n  if (typeof options === 'string') {\n    options = { encoding: options }\n  }\n\n  const fs = options.fs || _fs\n\n  const shouldThrow = 'throws' in options ? options.throws : true\n\n  try {\n    let content = fs.readFileSync(file, options)\n    content = stripBom(content)\n    return JSON.parse(content, options.reviver)\n  } catch (err) {\n    if (shouldThrow) {\n      err.message = `${file}: ${err.message}`\n      throw err\n    } else {\n      return null\n    }\n  }\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "jsonfile"
+  },
+  {
+    "accessPath": "jsonfile.writeFile",
+    "descriptor": {
+      "type": "function",
+      "signature": "(...args)",
+      "implementation": "function (...args) {\n    const cb = args[args.length - 1]\n    if (typeof cb !== 'function') return fn.apply(this, args)\n    else {\n      args.pop()\n      fn.apply(this, args).then(r => cb(null, r), cb)\n    }\n  }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "jsonfile"
+  },
+  {
+    "accessPath": "jsonfile.writeFileSync",
+    "descriptor": {
+      "type": "function",
+      "signature": "(file, obj, options = {})",
+      "implementation": "function writeFileSync (file, obj, options = {}) {\n  const fs = options.fs || _fs\n\n  const str = stringify(obj, options)\n  // not sure if fs.writeFileSync returns anything, but just in case\n  return fs.writeFileSync(file, str, options)\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "jsonfile"
+  }
+]

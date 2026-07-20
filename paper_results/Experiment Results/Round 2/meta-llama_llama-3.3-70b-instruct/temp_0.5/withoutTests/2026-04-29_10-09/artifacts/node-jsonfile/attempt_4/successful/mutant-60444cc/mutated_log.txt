@@ -1,0 +1,33 @@
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-jsonfile/attempt_4/pending_category/mutant-60444cc/testCase.test.ts
+  stripBom function
+    ✕ should not call toString on non-buffer and non-string values (14 ms)
+
+  ● stripBom function › should not call toString on non-buffer and non-string values
+
+    expect(received).toThrowError(expected)
+
+    Expected constructor: TypeError
+    Received constructor: RangeError
+
+    Received message: "toString() radix argument must be between 2 and 36"
+
+           8 | function stripBom (content) {
+           9 |   // we do this because JSON.parse would convert it to a utf8 string if encoding wasn't specified
+        > 10 |      if (true) content = content.toString('utf8')
+             |                                  ^
+          11 |
+          12 |   return content.replace(/^\uFEFF/, '')
+          13 | }
+
+      at toString (../subject_repositories/node-jsonfile/utils.js:10:34)
+      at llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-jsonfile/attempt_4/pending_category/mutant-60444cc/testCase.test.ts:7:30
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-jsonfile/attempt_4/pending_category/mutant-60444cc/testCase.test.ts:9:8)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-jsonfile/attempt_4/pending_category/mutant-60444cc/testCase.test.ts:9:8)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.254 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-jsonfile/attempt_4/pending_category/mutant-60444cc/testCase.test.ts".

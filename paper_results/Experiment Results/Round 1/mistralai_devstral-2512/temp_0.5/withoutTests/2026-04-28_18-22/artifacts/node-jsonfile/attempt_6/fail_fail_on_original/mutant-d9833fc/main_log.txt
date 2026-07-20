@@ -1,0 +1,33 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-jsonfile/attempt_6/pending_category/mutant-d9833fc/testCase.test.ts[0m:[93m24[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '(args_0: PathOrFileDescriptor, args_1: { encoding?: null | undefined; flag?: string | undefined; } | { encoding: BufferEncoding; flag?: string | undefined; } | BufferEncoding | (ObjectEncodingOptions & { ...; }) | null | undefined) => string | NonSharedBuffer' is not assignable to type '{ (path: PathOrFileDescriptor, options?: { encoding?: null | undefined; flag?: string | undefined; } | null | undefined): NonSharedBuffer; (path: PathOrFileDescriptor, options: { ...; } | BufferEncoding): string; (path: PathOrFileDescriptor, options?: BufferEncoding | ... 2 more ... | undefined): string | NonSharedB...'.
+  Type 'string | NonSharedBuffer' is not assignable to type 'NonSharedBuffer'.
+    Type 'string' is not assignable to type 'Buffer<ArrayBuffer>'.
+
+[7m24[0m     fs.readFileSync = function(...args) {
+[7m  [0m [91m    ~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-jsonfile/attempt_6/pending_category/mutant-d9833fc/testCase.test.ts
+  graceful-fs fallback behavior
+    ✕ should use fs fallback when graceful-fs is unavailable (4 ms)
+
+  ● graceful-fs fallback behavior › should use fs fallback when graceful-fs is unavailable
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      31 |       const result = readFileSync(testFilePath);
+      32 |       expect(result).toEqual(testData);
+    > 33 |       expect(fsUsed).toBe(true);
+         |                      ^
+      34 |     } finally {
+      35 |       // Restore
+      36 |       fs.readFileSync = originalReadFileSync;
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-jsonfile/attempt_6/pending_category/mutant-d9833fc/testCase.test.ts:33:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.472 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-jsonfile/attempt_6/pending_category/mutant-d9833fc/testCase.test.ts".

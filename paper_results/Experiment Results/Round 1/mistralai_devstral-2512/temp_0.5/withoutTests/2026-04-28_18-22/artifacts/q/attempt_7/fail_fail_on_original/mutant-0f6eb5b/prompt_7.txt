@@ -1,0 +1,34 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-0f6eb5b/testCase.test.ts
+  Q.longStackSupport behavior
+    ✕ should produce long stack traces when Q_DEBUG is set and promise is rejected (3 ms)
+
+  ● Q.longStackSupport behavior › should produce long stack traces when Q_DEBUG is set and promise is rejected
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "From previous event:"
+    Received string:    "Error: Test error
+
+      10 |
+      11 |     // Create a promise chain that will reject
+    > 12 |     const error = new Error("Test error");
+         |                   ^
+      13 |     const rejectedPromise = QInstance.reject(error);
+      14 |
+      15 |     // Force the promise to be handled to trigger stack trace generation
+
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-0f6eb5b/testCase.test.ts:12:19)
+      at Object.toContain (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-0f6eb5b/testCase.test.ts:20:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.436 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-0f6eb5b/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

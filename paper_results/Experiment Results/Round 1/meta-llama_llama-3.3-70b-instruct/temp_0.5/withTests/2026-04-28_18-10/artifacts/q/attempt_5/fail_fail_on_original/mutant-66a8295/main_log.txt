@@ -1,0 +1,41 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-66a8295/testCase.test.ts[0m:[93m6[0m:[93m11[0m - [91merror[0m[90m TS2551: [0mProperty 'trackUnhandledRejections' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'. Did you mean 'resetUnhandledRejections'?
+
+[7m6[0m         Q.trackUnhandledRejections = true;
+[7m [0m [91m          ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96m../subject_repositories/q/q.js[0m:[93m1114[0m:[93m1[0m
+    [7m1114[0m Q.resetUnhandledRejections = resetUnhandledRejections;
+    [7m    [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'resetUnhandledRejections' is declared here.
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-66a8295/testCase.test.ts[0m:[93m9[0m:[93m18[0m - [91merror[0m[90m TS2551: [0mProperty 'unhandledRejections' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'. Did you mean 'resetUnhandledRejections'?
+
+[7m9[0m         expect(Q.unhandledRejections.length).toBe(1);
+[7m [0m [91m                 ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96m../subject_repositories/q/q.js[0m:[93m1114[0m:[93m1[0m
+    [7m1114[0m Q.resetUnhandledRejections = resetUnhandledRejections;
+    [7m    [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'resetUnhandledRejections' is declared here.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-66a8295/testCase.test.ts
+  Q
+    ✕ should track unhandled rejections (3 ms)
+
+  ● Q › should track unhandled rejections
+
+    TypeError: Cannot read properties of undefined (reading 'length')
+
+       7 |         var deferred = Q.defer();
+       8 |         deferred.reject('Test rejection');
+    >  9 |         expect(Q.unhandledRejections.length).toBe(1);
+         |                                      ^
+      10 |     });
+      11 | });
+
+      at Object.length (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-66a8295/testCase.test.ts:9:38)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.191 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-66a8295/testCase.test.ts".

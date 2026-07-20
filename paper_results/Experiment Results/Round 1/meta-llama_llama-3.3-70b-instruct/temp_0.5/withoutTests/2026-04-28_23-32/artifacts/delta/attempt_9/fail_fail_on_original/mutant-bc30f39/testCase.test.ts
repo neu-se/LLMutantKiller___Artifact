@@ -1,0 +1,16 @@
+import Iterator from "../../../../../../../../../../../subject_repositories/delta/src/OpIterator";
+import Op from '../../../../../../../../../../../subject_repositories/delta/src/Op';
+
+describe('OpIterator', () => {
+  it('should return an empty array when there are no more operations and hasNext is false', () => {
+    const ops: Op[] = [
+      { retain: 1 },
+    ];
+    const iterator = new Iterator(ops);
+    iterator.index = 0;
+    iterator.next();
+    iterator.index = 1;
+    const rest = iterator.rest();
+    expect(rest.length).toBe(1);
+  });
+});

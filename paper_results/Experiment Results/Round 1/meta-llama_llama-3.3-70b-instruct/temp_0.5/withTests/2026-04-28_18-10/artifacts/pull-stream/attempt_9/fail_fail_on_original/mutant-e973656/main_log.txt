@@ -1,0 +1,42 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-e973656/testCase.test.ts[0m:[93m17[0m:[93m18[0m - [91merror[0m[90m TS2349: [0mThis expression is not callable.
+  Type 'typeof export=' has no call signatures.
+
+[7m17[0m     const sink = pull(
+[7m  [0m [91m                 ~~~~[0m
+
+  [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-e973656/testCase.test.ts[0m:[93m1[0m:[93m1[0m
+    [7m1[0m import * as pull from '../../../../../../../../../../../subject_repositories/pull-stream/index.js';
+    [7m [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    Type originates at this import. A namespace-style import cannot be called or constructed, and will cause a failure at runtime. Consider using a default import or import require here instead.
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-e973656/testCase.test.ts[0m:[93m18[0m:[93m12[0m - [91merror[0m[90m TS2339: [0mProperty 'values' does not exist on type 'typeof export='.
+
+[7m18[0m       pull.values([1, 2, 3, 4, 5]),
+[7m  [0m [91m           ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-e973656/testCase.test.ts[0m:[93m19[0m:[93m12[0m - [91merror[0m[90m TS2339: [0mProperty 'drain' does not exist on type 'typeof export='.
+
+[7m19[0m       pull.drain(op, done)
+[7m  [0m [91m           ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-e973656/testCase.test.ts
+  drain
+    ✕ should handle end condition correctly (2 ms)
+
+  ● drain › should handle end condition correctly
+
+    TypeError: pull is not a function
+
+      15 |       return true;
+      16 |     };
+    > 17 |     const sink = pull(
+         |                  ^
+      18 |       pull.values([1, 2, 3, 4, 5]),
+      19 |       pull.drain(op, done)
+      20 |     );
+
+      at Object.pull (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-e973656/testCase.test.ts:17:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.082 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-e973656/testCase.test.ts".

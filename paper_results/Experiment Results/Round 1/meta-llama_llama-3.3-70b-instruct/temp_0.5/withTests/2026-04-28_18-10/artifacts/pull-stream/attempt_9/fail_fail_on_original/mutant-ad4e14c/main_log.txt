@@ -1,0 +1,35 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-ad4e14c/testCase.test.ts[0m:[93m18[0m:[93m20[0m - [91merror[0m[90m TS2554: [0mExpected 0-1 arguments, but got 2.
+
+[7m18[0m       stream(true, (end: any, data: any) => {
+[7m  [0m [91m                   ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m19[0m         expect(calledWithNull).toBe(true);
+[7m  [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m20[0m         done();
+[7m  [0m [91m~~~~~~~~~~~~~~~[0m
+[7m21[0m       });
+[7m  [0m [91m~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-ad4e14c/testCase.test.ts
+  through
+    ✕ should call onEnd with the correct argument (2 ms)
+
+  ● through › should call onEnd with the correct argument
+
+    TypeError: read is not a function
+
+      14 |     return function (end, cb) {
+      15 |       if(end) once(end)
+    > 16 |       return read(end, function (end, data) {
+         |              ^
+      17 |         if(!end) op && op(data)
+      18 |         else once(end)
+      19 |         cb(end, data)
+
+      at read (../subject_repositories/pull-stream/throughs/through.js:16:14)
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-ad4e14c/testCase.test.ts:17:17)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        4.001 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-ad4e14c/testCase.test.ts".

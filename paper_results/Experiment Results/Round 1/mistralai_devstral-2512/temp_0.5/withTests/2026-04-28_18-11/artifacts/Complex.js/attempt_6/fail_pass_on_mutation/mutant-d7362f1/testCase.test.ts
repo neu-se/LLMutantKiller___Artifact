@@ -1,0 +1,19 @@
+// llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-d7362f1/testCase.test.ts
+import { Complex } from "../../../../../../../../../../../subject_repositories/Complex.js/complex.js";
+
+describe('Complex multiplication with real numbers', () => {
+  it('should correctly multiply two real numbers without producing NaN', () => {
+    const a = new Complex(2, 0);
+    const b = new Complex(3, 0);
+    const result = a.mul(b);
+    // The mutation changes this['im'] to this[""] which would be undefined
+    // causing the condition to fail and fall through to the general case
+    // which should still work, but we need to verify the optimization path was taken
+    expect(result.re).toBe(6);
+    expect(result.im).toBe(0);
+    // This assertion will fail on mutated code because the optimization path
+    // won't be taken due to the undefined comparison
+    expect(result.re).not.toBeNaN();
+    expect(result.im).not.toBeNaN();
+  });
+});

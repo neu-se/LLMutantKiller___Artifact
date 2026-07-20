@@ -1,0 +1,51 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-c903301/testCase.test.ts (11.345 s)
+  Q Promise
+    ✕ should reject with the correct error when progress listener throws (10002 ms)
+
+  ● Q Promise › should reject with the correct error when progress listener throws
+
+    Progress listener error
+
+       5 |         const deferred = q.defer();
+       6 |         const promise = deferred.promise.then(void 0, void 0, () => {
+    >  7 |             throw new Error("Progress listener error");
+         |                   ^
+       8 |         });
+       9 |
+      10 |         deferred.notify();
+
+      at llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-c903301/testCase.test.ts:7:19
+      at progressed (../subject_repositories/q/q.js:873:51)
+      at _progressed (../subject_repositories/q/q.js:899:24)
+      at progressListener (../subject_repositories/q/q.js:662:17)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+  ● Q Promise › should reject with the correct error when progress listener throws
+
+    thrown: "Exceeded timeout of 10000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("Q Promise", () => {
+    > 4 |     it("should reject with the correct error when progress listener throws", () => {
+        |     ^
+      5 |         const deferred = q.defer();
+      6 |         const promise = deferred.promise.then(void 0, void 0, () => {
+      7 |             throw new Error("Progress listener error");
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-c903301/testCase.test.ts:4:5)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-c903301/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        11.501 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-c903301/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

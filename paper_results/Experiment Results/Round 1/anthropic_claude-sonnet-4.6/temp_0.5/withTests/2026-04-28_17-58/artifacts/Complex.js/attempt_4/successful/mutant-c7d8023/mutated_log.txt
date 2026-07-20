@@ -1,0 +1,26 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-c7d8023/testCase.test.ts
+  Complex acsch
+    ✕ acsch of tiny imaginary should not return zero (2 ms)
+
+  ● Complex acsch › acsch of tiny imaginary should not return zero
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      18 |     
+      19 |     // Actually, let's just check it's not zero
+    > 20 |     expect(result.re === 0).toBe(false); // NaN === 0 is false, so passes for NaN
+         |                             ^
+      21 |     // But if no underflow, result.re might be some finite value ≠ 0, still passes
+      22 |     // Mutated with underflow: result.re = -0, -0 === 0 is true, fails ✓
+      23 |   });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-c7d8023/testCase.test.ts:20:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.186 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-c7d8023/testCase.test.ts".

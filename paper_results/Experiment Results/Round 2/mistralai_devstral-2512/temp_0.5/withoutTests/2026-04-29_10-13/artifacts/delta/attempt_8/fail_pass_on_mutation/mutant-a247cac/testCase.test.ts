@@ -1,0 +1,11 @@
+import Delta from "../../../../../../../../../../../subject_repositories/delta/src/Delta";
+
+describe('Delta compose optimization', () => {
+  it('should correctly handle the optimization condition when composing with retain operations', () => {
+    const delta1 = new Delta().insert('test');
+    const delta2 = new Delta().retain(4).insert('!');
+    const result = delta1.compose(delta2);
+    expect(result.ops.length).toBe(1);
+    expect(result.ops[0]).toEqual({ insert: 'test!' });
+  });
+});

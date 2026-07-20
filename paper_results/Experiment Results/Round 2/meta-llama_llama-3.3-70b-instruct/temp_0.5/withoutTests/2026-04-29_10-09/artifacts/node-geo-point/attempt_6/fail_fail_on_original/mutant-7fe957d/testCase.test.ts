@@ -1,0 +1,10 @@
+import { GeoPoint } from "../../../../../../../../../../../subject_repositories/node-geo-point/src/geo-point";
+
+describe('GeoPoint', () => {
+  it('should calculate distance between two points correctly', () => {
+    const point1 = new GeoPoint(0, 0);
+    const point2 = new GeoPoint(90, 0);
+    const distance = GeoPoint.calculateDistance(point1, point2);
+    expect(distance).toBeCloseTo(10007.54 * 1000, 100); // approximately the distance from the equator to the north pole
+  });
+});

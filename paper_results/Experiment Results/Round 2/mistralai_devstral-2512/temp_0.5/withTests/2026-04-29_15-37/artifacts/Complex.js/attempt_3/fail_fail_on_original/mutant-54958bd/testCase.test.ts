@@ -1,0 +1,12 @@
+import { Complex } from "../../../../../../../../../../../subject_repositories/Complex.js/complex.js";
+
+describe("Complex.acosh()", () => {
+  it("should correctly handle the acosh transformation for a complex number with positive imaginary part", () => {
+    const c = new Complex(1, 1);
+    const result = c.acosh();
+    // The mutation changes res['re'] to res[""] which should cause a different behavior
+    // This test checks the specific transformation logic in acosh
+    expect(result.re).toBeCloseTo(1.0612750619050355);
+    expect(result.im).toBeCloseTo(0.9624236501192069);
+  });
+});

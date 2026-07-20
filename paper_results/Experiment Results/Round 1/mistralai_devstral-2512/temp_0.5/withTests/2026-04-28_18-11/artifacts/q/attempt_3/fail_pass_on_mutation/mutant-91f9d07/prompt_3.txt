@@ -1,0 +1,38 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-91f9d07/testCase.test.ts
+  Q.denodeify behavior with undefined callback
+    ✕ should handle undefined callback gracefully (13 ms)
+
+  ● Q.denodeify behavior with undefined callback › should handle undefined callback gracefully
+
+    expect(received).not.toThrow()
+
+    Error name:    "Error"
+    Error message: "Q can't wrap an undefined function"
+
+          1942 | Q.denodeify = function (callback /*...args*/) {
+          1943 |     if (callback === undefined) {
+        > 1944 |         throw new Error("Q can't wrap an undefined function");
+               |               ^
+          1945 |     }
+          1946 |     var baseArgs = array_slice(arguments, 1);
+          1947 |     return function () {
+
+      at Q.nfbind.Q.denodeify (../subject_repositories/q/q.js:1944:15)
+      at llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-91f9d07/testCase.test.ts:9:16
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-91f9d07/testCase.test.ts:10:12)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-91f9d07/testCase.test.ts:10:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.438 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-91f9d07/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

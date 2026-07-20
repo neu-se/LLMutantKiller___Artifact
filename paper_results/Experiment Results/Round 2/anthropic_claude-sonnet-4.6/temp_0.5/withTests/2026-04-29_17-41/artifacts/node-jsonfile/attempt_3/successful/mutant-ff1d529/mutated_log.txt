@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_3/pending_category/mutant-ff1d529/testCase.test.ts
+  readFileSync with string encoding option
+    ✕ should use encoding when string is passed as options, observable via custom fs (12 ms)
+
+  ● readFileSync with string encoding option › should use encoding when string is passed as options, observable via custom fs
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "café"
+    Received: "caf�"
+
+      45 |       // Mutated: reads as Buffer (utf8), 0xe9 is invalid utf8, JSON.parse may throw or give wrong result
+      46 |       expect(data).not.toBeNull()
+    > 47 |       expect(data.name).toBe('café')
+         |                         ^
+      48 |     } finally {
+      49 |       try { fs.rmSync(TEST_DIR, { recursive: true }) } catch (_) {}
+      50 |     }
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_3/pending_category/mutant-ff1d529/testCase.test.ts:47:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.506 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_3/pending_category/mutant-ff1d529/testCase.test.ts".

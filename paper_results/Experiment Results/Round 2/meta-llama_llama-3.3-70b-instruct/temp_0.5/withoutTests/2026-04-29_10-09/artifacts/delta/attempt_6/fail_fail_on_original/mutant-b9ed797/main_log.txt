@@ -1,0 +1,36 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-b9ed797/testCase.test.ts
+  Delta
+    ✕ should correctly handle the push operation with newOp when index equals ops length (5 ms)
+
+  ● Delta › should correctly handle the push operation with newOp when index equals ops length
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 4
+    + Received  + 1
+
+      Array [
+        Object {
+    -     "insert": "Hello",
+    -   },
+    -   Object {
+    -     "insert": " World",
+    +     "insert": "Hello World",
+        },
+      ]
+
+       7 |     const newOp = { insert: ' World' };
+       8 |     delta.push(newOp);
+    >  9 |     expect(delta.ops).toEqual([{ insert: 'Hello' }, { insert: ' World' }]);
+         |                       ^
+      10 |   });
+      11 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-b9ed797/testCase.test.ts:9:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.094 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-b9ed797/testCase.test.ts".

@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_2/pending_category/mutant-bd61080/testCase.test.ts[0m:[93m1[0m:[93m23[0m - [91merror[0m[90m TS2307: [0mCannot find module 'nock' or its corresponding type declarations.
+
+[7m1[0m import * as nock from 'nock';
+[7m [0m [91m                      ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_2/pending_category/mutant-bd61080/testCase.test.ts
+  request error message on non-200 status
+    ✕ should include the status code in the error message when response status is not 200 (1 ms)
+
+  ● request error message on non-200 status › should include the status code in the error message when response status is not 200
+
+    TypeError: nock is not a function
+
+       5 | describe('request error message on non-200 status', () => {
+       6 |   it('should include the status code in the error message when response status is not 200', async () => {
+    >  7 |     nock('http://testurl.com')
+         |     ^
+       8 |       .get('/image-404.jpg')
+       9 |       .reply(404, 'Not Found');
+      10 |
+
+      at Object.nock (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_2/pending_category/mutant-bd61080/testCase.test.ts:7:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.122 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_2/pending_category/mutant-bd61080/testCase.test.ts".

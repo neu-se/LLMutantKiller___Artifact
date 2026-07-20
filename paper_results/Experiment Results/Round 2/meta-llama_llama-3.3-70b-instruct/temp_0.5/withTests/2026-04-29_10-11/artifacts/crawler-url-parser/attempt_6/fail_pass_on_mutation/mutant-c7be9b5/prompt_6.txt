@@ -1,0 +1,68 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+node:internal/modules/cjs/loader:1215
+  throw err;
+  ^
+
+Error: Cannot find module './crawler-url-parser'
+Require stack:
+- /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/temp.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1212:15)
+    at Module._load (node:internal/modules/cjs/loader:1043:27)
+    at Module.require (node:internal/modules/cjs/loader:1298:19)
+    at require (node:internal/modules/helpers:182:18)
+    at Object.<anonymous> (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/temp.js:2:25)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at Module.load (node:internal/modules/cjs/loader:1275:32)
+    at Module._load (node:internal/modules/cjs/loader:1096:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/temp.js'
+  ]
+}
+
+Node.js v20.19.4
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_5/pending_category/mutant-c7be9b5/testCase.test.ts
+  crawler-url-parser
+    ✕ should pass when run against the original code and fail when run against the mutated code (53 ms)
+
+  ● crawler-url-parser › should pass when run against the original code and fail when run against the mutated code
+
+    Command failed: node temp.js
+    node:internal/modules/cjs/loader:1215
+      throw err;
+      ^
+
+    Error: Cannot find module './crawler-url-parser'
+    Require stack:
+    - /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/temp.js
+
+      1 |
+    > 2 |       const { parse } = require('./crawler-url-parser');
+        |                         ^
+      3 |       if (!module.parent) {
+      4 |         console.log("Test executed");
+      5 |       }
+
+      at Object.<anonymous> (temp.js:2:25)
+      at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12) {
+        code: 'MODULE_NOT_FOUND',
+        requireStack: [
+          '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/temp.js'
+        ]
+      }
+      Node.js v20.19.4
+      at Object.execSync (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_5/pending_category/mutant-c7be9b5/testCase.test.ts:15:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.335 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_5/pending_category/mutant-c7be9b5/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,24 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-159631c/testCase.test.ts
+  Dirty read stream close behavior
+    ✕ should emit read_close event after loading from file (3006 ms)
+
+  ● Dirty read stream close behavior › should emit read_close event after loading from file
+
+    read_close event was never emitted
+
+      25 |     const timeout = setTimeout(() => {
+      26 |       try { fs.unlinkSync(filePath); } catch (e) { /* ignore */ }
+    > 27 |       done(new Error('read_close event was never emitted'));
+         |            ^
+      28 |     }, 3000);
+      29 |
+      30 |     db.on('read_close', () => {
+
+      at Timeout._onTimeout (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-159631c/testCase.test.ts:27:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        4.641 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-159631c/testCase.test.ts".

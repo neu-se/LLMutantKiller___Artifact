@@ -1,0 +1,23 @@
+let mocha = require('mocha');
+let assert = require('assert');
+let q = require('q');
+
+describe('test q', function() {
+    it('test q.makePromise.prototype.denodeify - with multiple arguments', function(done) {
+        // Mock a Node.js-style function with multiple parameters
+        function mockAsyncFunction(arg1, arg2, arg3, callback) {
+            setTimeout(() => {
+                callback(null, `${arg1}-${arg2}-${arg3}`);
+            }, 10);
+        }
+
+        let denodeified = q.denodeify(mockAsyncFunction);
+        
+        denodeified('a', 'b', 'c')
+            .then(result => {
+                assert.strictEqual(result, 'a-b-c');
+                done();
+            })
+            .catch(done);
+    });
+});

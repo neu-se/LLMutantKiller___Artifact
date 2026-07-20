@@ -1,0 +1,12 @@
+// llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-d7362f1/testCase.test.ts
+import { Complex } from "../../../../../../../../../../../subject_repositories/Complex.js/complex.js";
+
+describe("Complex multiplication edge case", () => {
+  it("should handle multiplication where one operand has zero imaginary part", () => {
+    const a = new Complex(3, 0);
+    const b = new Complex(0, 5);
+    const result = a.mul(b);
+    expect(result.re).toBe(0);
+    expect(result.im).toBe(15);
+  });
+});

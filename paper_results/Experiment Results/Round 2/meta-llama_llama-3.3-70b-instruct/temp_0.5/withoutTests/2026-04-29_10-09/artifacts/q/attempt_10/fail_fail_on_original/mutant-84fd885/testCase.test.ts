@@ -1,0 +1,17 @@
+describe('Q.nsend', () => {
+    it('should pass arguments to the method', () => {
+        const Q = require('../../../../../../../../subject_repositories/q/q');
+        const object = {
+            method: jest.fn(),
+        };
+
+        const name = 'method';
+        const arg1 = 'arg1';
+        const arg2 = 'arg2';
+
+        Q.nsend(object, name, arg1, arg2);
+
+        expect(object.method).toHaveBeenCalledTimes(1);
+        expect(object.method).toHaveBeenCalledWith(arg1, arg2, expect.any(Function));
+    });
+});

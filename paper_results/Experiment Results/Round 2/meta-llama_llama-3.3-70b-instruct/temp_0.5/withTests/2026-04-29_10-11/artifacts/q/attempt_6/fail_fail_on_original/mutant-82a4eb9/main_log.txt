@@ -1,0 +1,29 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-82a4eb9/testCase.test.ts[0m:[93m6[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'undefined' is not assignable to type 'Module'.
+
+[7m6[0m         global.module = undefined;
+[7m [0m [91m        ~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-82a4eb9/testCase.test.ts
+  q
+    ✕ should not export q when exports is an object but module is not an object (2 ms)
+
+  ● q › should not export q when exports is an object but module is not an object
+
+    Cannot find module '../../../../../../../../../subject_repositories/q/q.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-82a4eb9/testCase.test.ts'
+
+       7 |         const originalExports = global.exports;
+       8 |         global.exports = {};
+    >  9 |         const qModule = require("../../../../../../../../../subject_repositories/q/q.js");
+         |                         ^
+      10 |         expect(qModule).toBeUndefined();
+      11 |         global.module = originalModule;
+      12 |         global.exports = originalExports;
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-82a4eb9/testCase.test.ts:9:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.493 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-82a4eb9/testCase.test.ts".

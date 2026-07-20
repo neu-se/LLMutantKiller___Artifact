@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-246ab6e/testCase.test.ts
+  Complex sin with imaginary component
+    ✕ detects cosh mutation by verifying sin(pi/2 + 2i) real part equals cosh(2) (2 ms)
+
+  ● Complex sin with imaginary component › detects cosh mutation by verifying sin(pi/2 + 2i) real part equals cosh(2)
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 3.7621956910213408
+    Received: 3.7621956910836314
+
+    Expected precision:    10
+    Expected difference: < 5e-11
+    Received difference:   6.229061710882888e-11
+
+      14 |     
+      15 |     // The correct value
+    > 16 |     expect(correctCosh).toBeCloseTo(3.7621956910213407, 10);
+         |                         ^
+      17 |     // Ensure mutation would differ
+      18 |     expect(mutatedCosh).not.toBeCloseTo(correctCosh, 5);
+      19 |     
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-246ab6e/testCase.test.ts:16:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.538 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-246ab6e/testCase.test.ts".

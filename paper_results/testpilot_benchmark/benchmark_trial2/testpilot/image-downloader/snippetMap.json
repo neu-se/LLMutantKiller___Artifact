@@ -1,0 +1,10 @@
+[
+  [
+    "image",
+    [
+      "const download = require('image-downloader');\n\nconst options = {\n  url: 'http://someurl.com/image.jpg',\n  dest: '/path/to/dest',               // will be saved to /path/to/dest/image.jpg\n};\n\ndownload.image(options)\n  .then(({ filename }) => {\n    console.log('Saved to', filename); // saved to /path/to/dest/image.jpg\n  })\n  .catch((err) => console.error(err));",
+      "const download = require('image-downloader');\n\noptions = {\n  url: 'http://someurl.com/image2.jpg',\n  dest: '/path/to/dest/photo.jpg',     // will be saved to /path/to/dest/photo.jpg\n};\n\ndownload.image(options)\n  .then(({ filename }) => {\n    console.log('Saved to', filename); // saved to /path/to/dest/photo.jpg\n  })\n  .catch((err) => console.error(err));",
+      "const download = require('image-downloader');\n\noptions = {\n  url: 'http://someurl.com/image3.jpg',\n  dest: '/path/to/dest/photo',         // will be saved to /path/to/dest/photo\n  extractFilename: false,\n};\n\ndownload.image(options)\n  .then(({ filename }) => {\n    console.log('Saved to', filename), // saved to /path/to/dest/photo\n  })\n  .catch((err) => console.error(err));"
+    ]
+  ]
+]

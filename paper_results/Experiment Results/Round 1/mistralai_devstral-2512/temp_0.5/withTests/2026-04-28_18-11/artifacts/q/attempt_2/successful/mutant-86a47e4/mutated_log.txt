@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-86a47e4/testCase.test.ts (6.463 s)
+  progress notification behavior
+    ✕ should call progress listeners when notify is called with a value (5005 ms)
+
+  ● progress notification behavior › should call progress listeners when notify is called with a value
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      16 |
+      17 |         setTimeout(() => {
+    > 18 |             expect(progressCalled).toBe(true);
+         |                                    ^
+      19 |             expect(progressValue).toBe("test");
+      20 |             done();
+      21 |         }, 10);
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-86a47e4/testCase.test.ts:18:36)
+
+  ● progress notification behavior › should call progress listeners when notify is called with a value
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("progress notification behavior", () => {
+    > 4 |     it("should call progress listeners when notify is called with a value", (done) => {
+        |     ^
+      5 |         const deferred = Q.defer();
+      6 |         let progressCalled = false;
+      7 |         let progressValue: any = null;
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-86a47e4/testCase.test.ts:4:5)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-86a47e4/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.673 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-86a47e4/testCase.test.ts".

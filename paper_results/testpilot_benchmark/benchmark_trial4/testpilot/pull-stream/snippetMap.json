@@ -1,0 +1,128 @@
+[
+  [
+    "pull-stream",
+    []
+  ],
+  [
+    "keys",
+    []
+  ],
+  [
+    "once",
+    []
+  ],
+  [
+    "values",
+    [
+      "pull(\n  pull.values(['file1', 'file2', 'file3']),\n  pull.asyncMap(fs.stat),\n  pull.collect(function (err, array) {\n    console.log(array)\n  })\n)",
+      "test('flatten arrays', function (t) {\n  pull(\n    pull.values([\n      [1, 2, 3],\n      [4, 5, 6],\n      [7, 8, 9]\n    ]),\n    pull.flatten(),\n    pull.collect(function (err, numbers) {\n      t.deepEqual([1, 2, 3, 4, 5, 6, 7, 8, 9], numbers)\n      t.end()\n    })\n  )\n})\n\ntest('flatten stream of streams', function (t) {\n\n  pull(\n    pull.values([\n      pull.values([1, 2, 3]),",
+      "pull(\n  values([0, 1, 2, 3]),\n  map(function (x) {\n    return x * x\n  }),\n  log()\n)\n// 0\n// 1\n// 4\n// 9",
+      "var pull = require('pull-stream')\n// var take = require('pull-stream/throughs/take') // if you just need take\n\npull(\n  pull.values(['a', 'b', 'c', 'd', 'e']),\n  pull.take(3),\n  pull.collect((err, data) => {\n    console.log(data)\n    // => ['a', 'b', 'c']\n  })\n)",
+      "pull(\n  pull.values([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),\n  pull.take(n => n < 4.6), { last: true }),  // include the last value tested (5)\n  pull.collect(function (err, results) {\n    console.log(results)\n    // => [1, 2, 3, 4, 5]\n  })\n})",
+      "pull(\n  pull.values([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),\n  pull.take(n => n < 4.6), { last: false }),  // exclude the last value tested (5)\n  pull.collect(function (err, results) {\n    console.log(results)\n    // => [1, 2, 3, 4]\n  })\n})"
+    ]
+  ],
+  [
+    "count",
+    []
+  ],
+  [
+    "infinite",
+    []
+  ],
+  [
+    "empty",
+    []
+  ],
+  [
+    "error",
+    []
+  ],
+  [
+    "map",
+    [
+      "pull(\n  values([0, 1, 2, 3]),\n  map(function (x) {\n    return x * x\n  }),\n  log()\n)\n// 0\n// 1\n// 4\n// 9"
+    ]
+  ],
+  [
+    "asyncMap",
+    [
+      "pull(\n  pull.values(['file1', 'file2', 'file3']),\n  pull.asyncMap(fs.stat),\n  pull.collect(function (err, array) {\n    console.log(array)\n  })\n)"
+    ]
+  ],
+  [
+    "filter",
+    []
+  ],
+  [
+    "filterNot",
+    []
+  ],
+  [
+    "through",
+    []
+  ],
+  [
+    "take",
+    [
+      "var pull = require('pull-stream')\n// var take = require('pull-stream/throughs/take') // if you just need take\n\npull(\n  pull.values(['a', 'b', 'c', 'd', 'e']),\n  pull.take(3),\n  pull.collect((err, data) => {\n    console.log(data)\n    // => ['a', 'b', 'c']\n  })\n)",
+      "pull(\n  pull.values([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),\n  pull.take(n => n < 4.6), { last: true }),  // include the last value tested (5)\n  pull.collect(function (err, results) {\n    console.log(results)\n    // => [1, 2, 3, 4, 5]\n  })\n})",
+      "pull(\n  pull.values([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),\n  pull.take(n => n < 4.6), { last: false }),  // exclude the last value tested (5)\n  pull.collect(function (err, results) {\n    console.log(results)\n    // => [1, 2, 3, 4]\n  })\n})"
+    ]
+  ],
+  [
+    "unique",
+    []
+  ],
+  [
+    "nonUnique",
+    []
+  ],
+  [
+    "flatten",
+    [
+      "test('flatten arrays', function (t) {\n  pull(\n    pull.values([\n      [1, 2, 3],\n      [4, 5, 6],\n      [7, 8, 9]\n    ]),\n    pull.flatten(),\n    pull.collect(function (err, numbers) {\n      t.deepEqual([1, 2, 3, 4, 5, 6, 7, 8, 9], numbers)\n      t.end()\n    })\n  )\n})\n\ntest('flatten stream of streams', function (t) {\n\n  pull(\n    pull.values([\n      pull.values([1, 2, 3]),"
+    ]
+  ],
+  [
+    "drain",
+    []
+  ],
+  [
+    "onEnd",
+    []
+  ],
+  [
+    "log",
+    [
+      "pull(\n  pull.values(['file1', 'file2', 'file3']),\n  pull.asyncMap(fs.stat),\n  pull.collect(function (err, array) {\n    console.log(array)\n  })\n)",
+      "// logger reads a source and logs it.\nfunction logger (read) {\n  read(null, function next(end, data) {\n    if(end === true) return\n    if(end) throw end\n\n    console.log(data)\n    read(null, next)\n  })\n}",
+      "pull(\n  values([0, 1, 2, 3]),\n  map(function (x) {\n    return x * x\n  }),\n  log()\n)\n// 0\n// 1\n// 4\n// 9",
+      "var pull = require('pull-stream')\n// var take = require('pull-stream/throughs/take') // if you just need take\n\npull(\n  pull.values(['a', 'b', 'c', 'd', 'e']),\n  pull.take(3),\n  pull.collect((err, data) => {\n    console.log(data)\n    // => ['a', 'b', 'c']\n  })\n)",
+      "pull(\n  pull.values([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),\n  pull.take(n => n < 4.6), { last: true }),  // include the last value tested (5)\n  pull.collect(function (err, results) {\n    console.log(results)\n    // => [1, 2, 3, 4, 5]\n  })\n})",
+      "pull(\n  pull.values([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),\n  pull.take(n => n < 4.6), { last: false }),  // exclude the last value tested (5)\n  pull.collect(function (err, results) {\n    console.log(results)\n    // => [1, 2, 3, 4]\n  })\n})"
+    ]
+  ],
+  [
+    "find",
+    []
+  ],
+  [
+    "reduce",
+    []
+  ],
+  [
+    "collect",
+    [
+      "pull(\n  pull.values(['file1', 'file2', 'file3']),\n  pull.asyncMap(fs.stat),\n  pull.collect(function (err, array) {\n    console.log(array)\n  })\n)",
+      "test('flatten arrays', function (t) {\n  pull(\n    pull.values([\n      [1, 2, 3],\n      [4, 5, 6],\n      [7, 8, 9]\n    ]),\n    pull.flatten(),\n    pull.collect(function (err, numbers) {\n      t.deepEqual([1, 2, 3, 4, 5, 6, 7, 8, 9], numbers)\n      t.end()\n    })\n  )\n})\n\ntest('flatten stream of streams', function (t) {\n\n  pull(\n    pull.values([\n      pull.values([1, 2, 3]),",
+      "var pull = require('pull-stream')\n// var take = require('pull-stream/throughs/take') // if you just need take\n\npull(\n  pull.values(['a', 'b', 'c', 'd', 'e']),\n  pull.take(3),\n  pull.collect((err, data) => {\n    console.log(data)\n    // => ['a', 'b', 'c']\n  })\n)",
+      "pull(\n  pull.values([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),\n  pull.take(n => n < 4.6), { last: true }),  // include the last value tested (5)\n  pull.collect(function (err, results) {\n    console.log(results)\n    // => [1, 2, 3, 4, 5]\n  })\n})",
+      "pull(\n  pull.values([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),\n  pull.take(n => n < 4.6), { last: false }),  // exclude the last value tested (5)\n  pull.collect(function (err, results) {\n    console.log(results)\n    // => [1, 2, 3, 4]\n  })\n})"
+    ]
+  ],
+  [
+    "concat",
+    []
+  ]
+]

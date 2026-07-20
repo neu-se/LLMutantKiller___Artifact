@@ -1,0 +1,31 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-cf5cfea/testCase.test.ts[0m:[93m45[0m:[93m13[0m - [91merror[0m[90m TS2352: [0mConversion of type 'null' to type 'Error' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+
+[7m45[0m     expect((rejectedReason as Error).message).toBe("thenable then threw");
+[7m  [0m [91m            ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-cf5cfea/testCase.test.ts
+  Q coerce error handling
+    ✕ should reject the promise when a thenable's then method throws an exception (503 ms)
+
+  ● Q coerce error handling › should reject the promise when a thenable's then method throws an exception
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      40 |     // Original: should be rejected
+      41 |     // Mutant: stays pending (neither fulfilled nor rejected)
+    > 42 |     expect(rejected).toBe(true);
+         |                      ^
+      43 |     expect(fulfilled).toBe(false);
+      44 |     expect(rejectedReason).not.toBeNull();
+      45 |     expect((rejectedReason as Error).message).toBe("thenable then threw");
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-cf5cfea/testCase.test.ts:42:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.626 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-cf5cfea/testCase.test.ts".

@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-443975f/testCase.test.ts
+  Q.nextTick behavior with setImmediate
+    ✕ should use setImmediate when available for nextTick (55 ms)
+
+  ● Q.nextTick behavior with setImmediate › should use setImmediate when available for nextTick
+
+    TypeError: done.fail is not a function
+
+      45 |             // The test should pass on original (setImmediate used) and fail on mutated (setTimeout used)
+      46 |             if (!hasSetImmediate && hasSetTimeout) {
+    > 47 |               done.fail(new Error("Expected setImmediate to be used but setTimeout was used instead"));
+         |                    ^
+      48 |             } else {
+      49 |               expect(hasSetImmediate).toBe(true);
+      50 |             }
+
+      at fail (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-443975f/testCase.test.ts:47:20)
+      at Timeout.callback [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-443975f/testCase.test.ts:26:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.385 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-443975f/testCase.test.ts".

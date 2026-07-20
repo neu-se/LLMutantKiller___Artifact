@@ -1,0 +1,29 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-d8227cc/testCase.test.ts[0m:[93m27[0m:[93m42[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'ReadableOptions<Readable>'.
+
+[7m27[0m     const testStream = new fs.ReadStream(dbPath);
+[7m  [0m [91m                                         ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-d8227cc/testCase.test.ts
+  Dirty database chunk processing
+    ✕ should handle data chunks without newlines during streaming (9 ms)
+
+  ● Dirty database chunk processing › should handle data chunks without newlines during streaming
+
+    Unexpected error: Corrupted row at the end of the db: {"key":"testKey","val":"testValue"}
+
+      48 |       // This should not happen in original code
+      49 |       // But will happen in mutated code due to incorrect newline check
+    > 50 |       done(new Error(`Unexpected error: ${err.message}`));
+         |            ^
+      51 |     });
+      52 |
+      53 |     // Safety timeout
+
+      at Dirty.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-d8227cc/testCase.test.ts:50:12)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:152:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.327 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-d8227cc/testCase.test.ts".

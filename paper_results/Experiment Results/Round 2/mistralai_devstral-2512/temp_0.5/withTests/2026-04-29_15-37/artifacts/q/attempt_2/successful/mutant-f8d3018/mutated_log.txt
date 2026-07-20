@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/q/q.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/q/q.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-f8d3018/testCase.test.ts (8.014 s)
+  progress callback in then
+    ✕ should call progress callback with the provided value (5001 ms)
+
+  ● progress callback in then › should call progress callback with the provided value
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "test-progress-value"
+    Received: null
+
+      19 |
+      20 |         setTimeout(() => {
+    > 21 |             expect(progressValue).toBe("test-progress-value");
+         |                                   ^
+      22 |             done();
+      23 |         }, 10);
+      24 |     });
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-f8d3018/testCase.test.ts:21:35)
+
+  ● progress callback in then › should call progress callback with the provided value
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("progress callback in then", () => {
+    > 4 |     it("should call progress callback with the provided value", (done) => {
+        |     ^
+      5 |         const deferred = defer();
+      6 |         let progressValue: any = null;
+      7 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-f8d3018/testCase.test.ts:4:5)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-f8d3018/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        8.363 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-f8d3018/testCase.test.ts".

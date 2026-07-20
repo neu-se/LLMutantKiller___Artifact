@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-11e6b02/testCase.test.ts
+  take mutation test
+    ✕ should correctly handle stream termination with last=false (11 ms)
+
+  ● take mutation test › should correctly handle stream termination with last=false
+
+    last was null during termination (expected false)
+
+      37 |           done(); // Original code behavior
+      38 |         } else {
+    > 39 |           done(new Error(`last was ${lastValueDuringTerminate} during termination (expected false)`));
+         |                ^
+      40 |         }
+      41 |       })
+      42 |     );
+
+      at llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-11e6b02/testCase.test.ts:39:16
+      at cb (../subject_repositories/pull-stream/sinks/reduce.js:10:5)
+      at done (../subject_repositories/pull-stream/sinks/drain.js:26:24)
+      at cb (../subject_repositories/pull-stream/throughs/take.js:30:13)
+      at cb (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-11e6b02/testCase.test.ts:14:9)
+      at read (../subject_repositories/pull-stream/throughs/take.js:27:9)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:45:8)
+      at s (../subject_repositories/pull-stream/pull.js:41:14)
+      at Object.pull (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-11e6b02/testCase.test.ts:32:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.602 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-11e6b02/testCase.test.ts".

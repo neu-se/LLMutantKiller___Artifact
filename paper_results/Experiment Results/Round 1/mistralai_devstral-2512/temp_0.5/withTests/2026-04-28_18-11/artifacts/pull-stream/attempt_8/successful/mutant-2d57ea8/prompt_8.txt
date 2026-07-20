@@ -1,0 +1,34 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-2d57ea8/testCase.test.ts
+  pull function error message validation
+    ✕ should throw TypeError with descriptive message when partial sink is called multiple times (1 ms)
+
+  ● pull function error message validation › should throw TypeError with descriptive message when partial sink is called multiple times
+
+    TypeError: partial sink should only be called once!
+
+       9 |     return function (read) {
+      10 |       if (args == null) {
+    > 11 |         throw new TypeError("partial sink should only be called once!")
+         |               ^
+      12 |       }
+      13 |
+      14 |       // Grab the reference after the check, because it's always an array now
+
+      at read (../subject_repositories/pull-stream/pull.js:11:15)
+      at partialSink (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-2d57ea8/testCase.test.ts:17:7)
+      at read (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-2d57ea8/testCase.test.ts:9:9)
+      at read (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-2d57ea8/testCase.test.ts:17:24)
+      at Object.read (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-2d57ea8/testCase.test.ts:29:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.412 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-2d57ea8/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

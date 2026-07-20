@@ -1,0 +1,46 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-22f4ba7/testCase.test.ts (6.111 s)
+  Dirty
+    ✕ should wait for pending writes to finish before closing (5002 ms)
+
+  ● Dirty › should wait for pending writes to finish before closing
+
+    TypeError: done.fail is not a function
+
+      23 |             done();
+      24 |           } else {
+    > 25 |             done.fail('Write stream closed before pending writes finished');
+         |                  ^
+      26 |           }
+      27 |         });
+      28 |
+
+      at Dirty.fail (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-22f4ba7/testCase.test.ts:25:18)
+      at WriteStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:177:12)
+
+  ● Dirty › should wait for pending writes to finish before closing
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       5 |
+       6 | describe('Dirty', () => {
+    >  7 |   it('should wait for pending writes to finish before closing', (done) => {
+         |   ^
+       8 |     const filePath = 'test.db';
+       9 |     const dirty = new Dirty(filePath);
+      10 |
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-22f4ba7/testCase.test.ts:7:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-22f4ba7/testCase.test.ts:6:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.282 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-22f4ba7/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

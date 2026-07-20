@@ -1,0 +1,43 @@
+import AttributeMap from '../../../../../../../../../../../subject_repositories/delta/src/AttributeMap';
+
+describe('AttributeMap', () => {
+  it('diff() should handle mutated code correctly', () => {
+    const a = { key: 'value' };
+    const b = { key: 'value', otherKey: 'otherValue' };
+    const result = AttributeMap.diff(a, b);
+    expect(result).toEqual({ otherKey: 'otherValue' });
+    const c = { key: 'value', otherKey: 'otherValue' };
+    const result2 = AttributeMap.diff(b, c);
+    expect(result2).toBeUndefined();
+    const d = { key: 'value', otherKey: 'otherValue', yetAnotherKey: 'yetAnotherValue' };
+    const result3 = AttributeMap.diff(c, d);
+    expect(result3).toEqual({ yetAnotherKey: 'yetAnotherValue' });
+    const e = { key: 'value', otherKey: 'otherValue', yetAnotherKey: 'yetAnotherValue' };
+    const result4 = AttributeMap.diff(d, e);
+    expect(result4).toBeUndefined();
+    const f = { key: 'value', otherKey: 'otherValue', yetAnotherKey: 'yetAnotherValue', andYetAnotherKey: 'andYetAnotherValue' };
+    const result5 = AttributeMap.diff(e, f);
+    expect(result5).toEqual({ andYetAnotherKey: 'andYetAnotherValue' });
+    const g = { key: 'value', otherKey: 'otherValue', yetAnotherKey: 'yetAnotherValue', andYetAnotherKey: 'andYetAnotherValue' };
+    const result6 = AttributeMap.diff(f, g);
+    expect(result6).toBeUndefined();
+    const h = { key: 'value', otherKey: 'otherValue', yetAnotherKey: 'yetAnotherValue', andYetAnotherKey: 'andYetAnotherValue', andAnotherKey: 'andAnotherValue' };
+    const result7 = AttributeMap.diff(g, h);
+    expect(result7).toEqual({ andAnotherKey: 'andAnotherValue' });
+    const i = { key: 'value', otherKey: 'otherValue', yetAnotherKey: 'yetAnotherValue', andYetAnotherKey: 'andYetAnotherValue', andAnotherKey: 'andAnotherValue' };
+    const result8 = AttributeMap.diff(h, i);
+    expect(result8).toBeUndefined();
+    const j = { key: 'value', otherKey: 'otherValue', yetAnotherKey: 'yetAnotherValue', andYetAnotherKey: 'andYetAnotherValue', andAnotherKey: 'andAnotherValue', yetAnotherKey2: 'yetAnotherValue2' };
+    const result9 = AttributeMap.diff(i, j);
+    expect(result9).toEqual({ yetAnotherKey2: 'yetAnotherValue2' });
+    const k = { key: 'value', otherKey: 'otherValue', yetAnotherKey: 'yetAnotherValue', andYetAnotherKey: 'andYetAnotherValue', andAnotherKey: 'andAnotherValue', yetAnotherKey2: 'yetAnotherValue2' };
+    const result10 = AttributeMap.diff(j, k);
+    expect(result10).toBeUndefined();
+    const l = { key: 'value', otherKey: 'otherValue', yetAnotherKey: 'yetAnotherValue', andYetAnotherKey: 'andYetAnotherValue', andAnotherKey: 'andAnotherValue', yetAnotherKey2: 'yetAnotherValue2', yetAnotherKey3: 'yetAnotherValue3' };
+    const result11 = AttributeMap.diff(k, l);
+    expect(result11).toEqual({ yetAnotherKey3: 'yetAnotherValue3' });
+    const m = { key: 'value', otherKey: 'otherValue', yetAnotherKey: 'yetAnotherValue', andYetAnotherKey: 'andYetAnotherValue', andAnotherKey: 'andAnotherValue', yetAnotherKey2: 'yetAnotherValue2', yetAnotherKey3: 'yetAnotherValue3' };
+    const result12 = AttributeMap.diff(l, m);
+    expect(result12).toBeUndefined();
+  });
+});

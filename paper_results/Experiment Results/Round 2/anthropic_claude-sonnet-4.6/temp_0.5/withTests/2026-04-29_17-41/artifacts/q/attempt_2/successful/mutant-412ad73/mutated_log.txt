@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-412ad73/testCase.test.ts
+  Q module bootstrap detection
+    ✕ should call bootstrap function when bootstrap is defined as a function in global scope (31 ms)
+
+  ● Q module bootstrap detection › should call bootstrap function when bootstrap is defined as a function in global scope
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      23 |       // On original code: bootstrap is a function, so bootstrap("promise", definition) is called
+      24 |       // On mutated code: if (false) means bootstrap is never called, falls through to CommonJS
+    > 25 |       expect(bootstrapCalled).toBe(true);
+         |                               ^
+      26 |       expect(bootstrapArgs[0]).toBe("promise");
+      27 |       expect(typeof bootstrapArgs[1]).toBe("function");
+      28 |     } finally {
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-412ad73/testCase.test.ts:25:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.544 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-412ad73/testCase.test.ts".

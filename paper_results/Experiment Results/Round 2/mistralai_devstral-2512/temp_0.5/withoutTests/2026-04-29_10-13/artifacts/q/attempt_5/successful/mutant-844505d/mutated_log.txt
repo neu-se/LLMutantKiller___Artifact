@@ -1,0 +1,56 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-844505d/testCase.test.ts[0m:[93m11[0m:[93m28[0m - [91merror[0m[90m TS7006: [0mParameter 'fn' implicitly has an 'any' type.
+
+[7m11[0m     domain.bind = function(fn) {
+[7m  [0m [91m                           ~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+(node:95992) [DEP0097] DeprecationWarning: Using a domain property in MakeCallback is deprecated. Use the async_context variant of MakeCallback or the AsyncResource class instead. (Triggered by calling processImmediate on process.)
+(Use `node --trace-deprecation ...` to show where the warning was created)
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-844505d/testCase.test.ts (7.175 s)
+  Q.done with domain
+    ✕ should bind error handler to domain when process.domain exists (5004 ms)
+
+  ● Q.done with domain › should bind error handler to domain when process.domain exists
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      23 |           // In the original code, the error handler should be bound to the domain
+      24 |           // In the mutated code (if (false)), it won't be bound
+    > 25 |           expect(bindCalled).toBe(true);
+         |                              ^
+      26 |           expect(error).toBeInstanceOf(Error);
+      27 |           expect(error.message).toBe("Test error");
+      28 |           done();
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-844505d/testCase.test.ts:25:30)
+      at rejected (../subject_repositories/q/q.js:864:24)
+      at _rejected (../subject_repositories/q/q.js:890:30)
+      at Promise.rejected (../subject_repositories/q/q.js:1142:31)
+      at Promise.apply [as promiseDispatch] (../subject_repositories/q/q.js:808:41)
+      at promiseDispatch (../subject_repositories/q/q.js:877:14)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+  ● Q.done with domain › should bind error handler to domain when process.domain exists
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("Q.done with domain", () => {
+    > 4 |   it("should bind error handler to domain when process.domain exists", (done) => {
+        |   ^
+      5 |     // Create a domain to test the binding behavior
+      6 |     const domain = require('domain').create();
+      7 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-844505d/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-844505d/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.455 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-844505d/testCase.test.ts".

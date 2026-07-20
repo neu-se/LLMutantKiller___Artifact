@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-8b8202a/testCase.test.ts (7.13 s)
+  Dirty
+    ✕ should not emit drain event when inFlightWrites is greater than 0 and then emit drain event when inFlightWrites is 0 (5004 ms)
+
+  ● Dirty › should not emit drain event when inFlightWrites is greater than 0 and then emit drain event when inFlightWrites is 0
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      13 |       expect(drainEmitted).toBe(false);
+      14 |       dirty.set('key2', 'value2', () => {
+    > 15 |         expect(drainEmitted).toBe(false);
+         |                              ^
+      16 |         dirty.close();
+      17 |         expect(drainEmitted).toBe(true);
+      18 |         fs.unlink('test.db', () => {
+
+      at toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-8b8202a/testCase.test.ts:15:30)
+      at Object.cb [as callback] (../subject_repositories/node-dirty/lib/dirty/dirty.js:191:31)
+
+  ● Dirty › should not emit drain event when inFlightWrites is greater than 0 and then emit drain event when inFlightWrites is 0
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      3 |
+      4 | describe('Dirty', () => {
+    > 5 |   it('should not emit drain event when inFlightWrites is greater than 0 and then emit drain event when inFlightWrites is 0', (done) => {
+        |   ^
+      6 |     const dirty = new Dirty('test.db');
+      7 |     let drainEmitted = false;
+      8 |     dirty.on('load', () => {
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-8b8202a/testCase.test.ts:5:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-8b8202a/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.339 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-8b8202a/testCase.test.ts".

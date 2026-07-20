@@ -1,0 +1,30 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-0a781b7/testCase.test.ts
+  calculateDestination mutation test
+    ✕ should calculate correct destination point for 45 degree bearing (1 ms)
+
+  ● calculateDestination mutation test › should calculate correct destination point for 45 degree bearing
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 6.36
+    Received: 0.06359162754546285
+
+    Expected precision:    2
+    Expected difference: < 0.005
+    Received difference:   6.296408372454538
+
+      11 |     // With the mutation (minus sign), the result would be significantly different
+      12 |     // Original formula should move us northeast
+    > 13 |     expect(result.latitude).toBeCloseTo(6.36, 2);
+         |                             ^
+      14 |     expect(result.longitude).toBeCloseTo(6.36, 2);
+      15 |   });
+      16 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-0a781b7/testCase.test.ts:13:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.835 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-0a781b7/testCase.test.ts".

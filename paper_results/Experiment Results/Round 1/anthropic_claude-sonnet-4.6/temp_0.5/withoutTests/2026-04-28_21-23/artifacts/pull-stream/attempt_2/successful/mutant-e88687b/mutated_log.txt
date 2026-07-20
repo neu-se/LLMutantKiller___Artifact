@@ -1,0 +1,60 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/pull-stream/sinks/drain.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/pull-stream/sinks/drain.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+  console.warn
+    Error: no done callback supplied
+        at drain (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/pull-stream/sinks/drain.js:9:22)
+        at Object.<anonymous> (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-e88687b/testCase.test.ts:16:23)
+        at Promise.then.completed (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/node_modules/jest-circus/build/utils.js:290:26)
+        at new Promise (<anonymous>)
+        at callAsyncCircusFn (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/node_modules/jest-circus/build/utils.js:231:10)
+        at _callCircusTest (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/node_modules/jest-circus/build/run.js:316:40)
+        at _runTest (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/node_modules/jest-circus/build/run.js:252:3)
+        at _runTestsForDescribeBlock (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/node_modules/jest-circus/build/run.js:126:9)
+        at _runTestsForDescribeBlock (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/node_modules/jest-circus/build/run.js:121:9)
+        at run (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/node_modules/jest-circus/build/run.js:71:3)
+        at runAndTransformResultsToJestFormat (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+        at jestAdapter (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+        at runTestInternal (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/node_modules/jest-runner/build/runTest.js:367:16)
+        at runTest (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/node_modules/jest-runner/build/runTest.js:444:34)
+
+      26 |               if(done) done(end === true ? null : end)
+      27 |               else if(end && end !== true) {
+    > 28 |                 console.warn(doneLackingErr)
+         |                         ^
+      29 |                 throw end
+      30 |               }
+      31 |             }
+
+      at warn (../subject_repositories/pull-stream/sinks/drain.js:28:25)
+      at Immediate.cb [as _onImmediate] (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-e88687b/testCase.test.ts:12:9)
+
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-e88687b/testCase.test.ts
+  drain abort with callback as first argument
+    ✕ should call the callback when a function is passed as the first argument to abort (105 ms)
+
+  ● drain abort with callback as first argument › should call the callback when a function is passed as the first argument to abort
+
+    thrown: [Function anonymous]
+
+      at _getError (node_modules/jest-circus/build/utils.js:432:18)
+          at Array.map (<anonymous>)
+
+  ● drain abort with callback as first argument › should call the callback when a function is passed as the first argument to abort
+
+    callback was never invoked - mutation detected
+
+      32 |       setTimeout(() => {
+      33 |         if (!callbackInvoked) {
+    > 34 |           done(new Error("callback was never invoked - mutation detected"));
+         |                ^
+      35 |         }
+      36 |       }, 100);
+      37 |     });
+
+      at Timeout._onTimeout (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-e88687b/testCase.test.ts:34:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.846 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-e88687b/testCase.test.ts".

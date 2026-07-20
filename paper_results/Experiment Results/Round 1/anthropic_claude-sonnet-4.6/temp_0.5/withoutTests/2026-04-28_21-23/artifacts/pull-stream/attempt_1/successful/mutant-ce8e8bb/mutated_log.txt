@@ -1,0 +1,32 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-ce8e8bb/testCase.test.ts
+  pull with object sink/source
+    ✕ should handle object streams (with sink and source) without throwing (13 ms)
+
+  ● pull with object sink/source › should handle object streams (with sink and source) without throwing
+
+    expect(received).not.toThrow()
+
+    Error name:    "TypeError"
+    Error message: "s is not a function"
+
+          40 |        if (true) {
+          41 |
+        > 42 |       read = s(read)
+             |              ^
+          43 |     } else if (s && typeof s === 'object') {
+          44 |       s.sink(read)
+          45 |       read = s.source
+
+      at s (../subject_repositories/pull-stream/pull.js:42:14)
+      at llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-ce8e8bb/testCase.test.ts:30:26
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-ce8e8bb/testCase.test.ts:31:12)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-ce8e8bb/testCase.test.ts:31:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.091 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-ce8e8bb/testCase.test.ts".

@@ -1,0 +1,40 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-5f76347/testCase.test.ts[0m:[93m2[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m2[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-5f76347/testCase.test.ts[0m:[93m10[0m:[93m45[0m - [91merror[0m[90m TS2339: [0mProperty 'dispatch' does not exist on type '{ keyToDelete: string; }'.
+
+[7m10[0m         const originalDispatch = testObject.dispatch;
+[7m  [0m [91m                                            ~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-5f76347/testCase.test.ts[0m:[93m11[0m:[93m20[0m - [91merror[0m[90m TS2339: [0mProperty 'dispatch' does not exist on type '{ keyToDelete: string; }'.
+
+[7m11[0m         testObject.dispatch = jest.fn((op: string, args: any[]) => {
+[7m  [0m [91m                   ~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-5f76347/testCase.test.ts[0m:[93m21[0m:[93m27[0m - [91merror[0m[90m TS2339: [0mProperty 'dispatch' does not exist on type '{ keyToDelete: string; }'.
+
+[7m21[0m         expect(testObject.dispatch).toHaveBeenCalledWith("delete", [key]);
+[7m  [0m [91m                          ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-5f76347/testCase.test.ts
+  Q.del mutation test
+    ✕ should pass the key to the delete operation (1 ms)
+
+  ● Q.del mutation test › should pass the key to the delete operation
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      16 |
+      17 |         // Use Q to wrap the object and call del
+    > 18 |         await Q(testObject).del(key);
+         |                ^
+      19 |
+      20 |         // Verify dispatch was called with "delete" operation
+      21 |         expect(testObject.dispatch).toHaveBeenCalledWith("delete", [key]);
+
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-5f76347/testCase.test.ts:18:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.881 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-5f76347/testCase.test.ts".

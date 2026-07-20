@@ -1,0 +1,86 @@
+Your task is to write a Jest test case that exposes a specific mutation in a JavaScript/TypeScript project.
+
+MUTATION DETAILS
+The mutation affects the following file:
+sinks/drain.js
+Here is the full content of that file (shown with a <PLACEHOLDER> marker):
+'use strict'
+
+module.exports = function drain (op, done) {
+  var read, abort
+
+  // Declared here so that it captures the drain's stack trace
+  var doneLackingErr
+  if (!done) {
+    doneLackingErr = new Error('no done callback supplied')
+  }
+
+  function sink (_read) {
+    read = _read
+    if(abort) return sink.abort()
+    //this function is much simpler to write if you
+    //just use recursion, but by using a while loop
+    //we do not blow the stack if the stream happens to be sync.
+    ;(function next() {
+        var loop = true, cbed = false
+        while(loop) {
+          cbed = false
+          read(null, function (end, data) {
+            cbed = true
+            if(end = end || abort) {
+              loop = false
+              if(done) done(end === true ? null : end)
+              else if(end && end !== true) {
+                console.warn(doneLackingErr)
+                throw end
+              }
+            }
+            else if(op && false === op(data) || abort) {
+              loop = false
+              <PLACEHOLDER>
+            }
+            else if(!loop){
+              next()
+            }
+          })
+          if(!cbed) {
+            loop = false
+            return
+          }
+        }
+      })()
+  }
+
+  sink.abort = function (err, cb) {
+    if('function' == typeof err)
+      cb = err, err = true
+    abort = err || true
+    if(read) return read(abort, cb || function () {})
+  }
+
+  return sink
+}
+
+In the original code, <PLACEHOLDER> has the value:
+
+-                 read(abort || true, done || function () {})
+In the mutated code, <PLACEHOLDER> has the value:
+
++                 read(abort && true, done || function () {})
+
+
+YOUR TASK
+Write one Jest test file that:
+    1. Passes when run against the original code.
+    2. Fails when run against the mutated code.
+    3. Tests the behavior of the mutated file in a way that reliably detects the mutation.
+The test will be saved at the following path, relative to this test-generation project’s root:
+llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-eac3cc0/testCase.test.ts
+
+ALLOWED LIBRARIES
+You may use:
+    1. Any built-in Node.js modules (e.g., fs, path, crypto, etc.).
+    
+You may not use any other third-party libraries.
+
+

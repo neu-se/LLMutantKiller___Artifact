@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/pull-stream/util/prop.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/pull-stream/util/prop.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-35b6ae5/testCase.test.ts
+  prop with regexp key
+    ✕ should return the matched string (v[0]), not the match array, when regex matches (3 ms)
+
+  ● prop with regexp key › should return the matched string (v[0]), not the match array, when regex matches
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "hello"
+    Received: ["hello"]
+
+       7 |     // Original: v && v[0] returns the matched string "hello"
+       8 |     // Mutated:  v || v[0] returns the RegExpExecArray object (truthy v itself)
+    >  9 |     expect(result).toBe("hello");
+         |                    ^
+      10 |     expect(typeof result).toBe("string");
+      11 |   });
+      12 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-35b6ae5/testCase.test.ts:9:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.553 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-35b6ae5/testCase.test.ts".

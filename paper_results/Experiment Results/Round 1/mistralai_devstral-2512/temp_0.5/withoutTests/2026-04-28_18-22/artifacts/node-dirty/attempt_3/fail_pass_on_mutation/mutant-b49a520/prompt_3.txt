@@ -1,0 +1,49 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-b49a520/testCase.test.ts (7.387 s)
+  Dirty database chunk processing
+    ✕ should correctly handle chunks without newlines (5002 ms)
+
+  ● Dirty database chunk processing › should correctly handle chunks without newlines
+
+    expect(received).toBeUndefined()
+
+    Received: [Error: Corrupted row at the end of the db: {"key":"test","val":42}]
+
+      33 |       // The original code should not emit an error for this case
+      34 |       // The mutated code will incorrectly process the chunk
+    > 35 |       expect(err).toBeUndefined();
+         |                   ^
+      36 |       done();
+      37 |     });
+      38 |
+
+      at Dirty.toBeUndefined (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-b49a520/testCase.test.ts:35:19)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:152:18)
+
+  ● Dirty database chunk processing › should correctly handle chunks without newlines
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      15 |   });
+      16 |
+    > 17 |   it('should correctly handle chunks without newlines', (done) => {
+         |   ^
+      18 |     const dirty = new Dirty(dbPath);
+      19 |     let loadCount = 0;
+      20 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-b49a520/testCase.test.ts:17:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-b49a520/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.666 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-b49a520/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,36 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-e0dce9c/testCase.test.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2348: [0mValue of type 'PromiseConstructor' is not callable. Did you mean to include 'new'?
+
+[7m  3[0m         const promise = Promise({
+[7m   [0m [91m                        ~~~~~~~~~[0m
+[7m  4[0m             "when": function (fulfilled: (value: any) => void, rejected: (reason: any) => void) {
+[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m...[0m 
+[7m 11[0m             throw new Error("Unsupported operation");
+[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m 12[0m         });
+[7m   [0m [91m~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-e0dce9c/testCase.test.ts
+  Q Promise
+    ✕ should handle promise rejection correctly (1 ms)
+
+  ● Q Promise › should handle promise rejection correctly
+
+    TypeError: Promise constructor cannot be invoked without 'new'
+        at Promise (<anonymous>)
+
+      1 | describe('Q Promise', () => {
+      2 |     it('should handle promise rejection correctly', () => {
+    > 3 |         const promise = Promise({
+        |                         ^
+      4 |             "when": function (fulfilled: (value: any) => void, rejected: (reason: any) => void) {
+      5 |                 rejected(new Error("Test rejection"));
+      6 |             }
+
+      at Object.Promise (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-e0dce9c/testCase.test.ts:3:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.278 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-e0dce9c/testCase.test.ts".

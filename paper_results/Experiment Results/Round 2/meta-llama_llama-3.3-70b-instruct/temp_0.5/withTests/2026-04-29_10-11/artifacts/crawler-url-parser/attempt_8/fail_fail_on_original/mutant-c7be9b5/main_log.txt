@@ -1,0 +1,29 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_8/pending_category/mutant-c7be9b5/testCase.test.ts[0m:[93m8[0m:[93m12[0m - [91merror[0m[90m TS18047: [0m'result' is possibly 'null'.
+
+[7m8[0m     expect(result.url).toBe("https://www.npmjs.com/package/electron-window-manager");
+[7m [0m [91m           ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_8/pending_category/mutant-c7be9b5/testCase.test.ts
+  crawler-url-parser
+    ✕ should pass when run against the original code and fail when run against the mutated code (6 ms)
+
+  ● crawler-url-parser › should pass when run against the original code and fail when run against the mutated code
+
+    Cannot find module '../../../../../../../../../../subject_repositories/crawler-url-parser/crawler-url-parser' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_8/pending_category/mutant-c7be9b5/testCase.test.ts'
+
+      10 |     const consoleLogSpy = jest.spyOn(console, 'log');
+      11 |     // Load the module again to check if the console.log statement is executed
+    > 12 |     const modulePath = require.resolve('../../../../../../../../../../subject_repositories/crawler-url-parser/crawler-url-parser');
+         |                                ^
+      13 |     delete require.cache[modulePath];
+      14 |     require(modulePath);
+      15 |     expect(consoleLogSpy).toHaveBeenCalledTimes(1);
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.resolve (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_8/pending_category/mutant-c7be9b5/testCase.test.ts:12:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.507 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_8/pending_category/mutant-c7be9b5/testCase.test.ts".

@@ -1,0 +1,33 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-cfcbab6/testCase.test.ts[0m:[93m6[0m:[93m28[0m - [91merror[0m[90m TS7006: [0mParameter 'read' implicitly has an 'any' type.
+
+[7m6[0m     const sink1 = function(read) {
+[7m [0m [91m                           ~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-cfcbab6/testCase.test.ts[0m:[93m9[0m:[93m28[0m - [91merror[0m[90m TS7006: [0mParameter 'read' implicitly has an 'any' type.
+
+[7m9[0m     const sink2 = function(read) {
+[7m [0m [91m                           ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-cfcbab6/testCase.test.ts
+  pull function
+    ✕ should handle the case where the number of arguments is equal to the length (5 ms)
+
+  ● pull function › should handle the case where the number of arguments is equal to the length
+
+    expect(received).toThrow()
+
+    Received function did not throw
+
+      20 |     expect(newResult).toBe(read)
+      21 |     const mutatedArgs = [read, sink1, sink2, () => {}]
+    > 22 |     expect(() => pull(...mutatedArgs)).toThrow()
+         |                                        ^
+      23 |   })
+      24 | })
+
+      at Object.toThrow (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-cfcbab6/testCase.test.ts:22:40)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.077 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-cfcbab6/testCase.test.ts".

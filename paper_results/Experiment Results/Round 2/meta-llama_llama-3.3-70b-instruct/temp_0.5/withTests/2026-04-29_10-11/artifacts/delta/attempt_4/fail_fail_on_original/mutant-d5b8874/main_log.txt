@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-d5b8874/testCase.test.ts[0m:[93m7[0m:[93m11[0m - [91merror[0m[90m TS6133: [0m'expected' is declared but its value is never read.
+
+[7m7[0m     const expected = new Delta().delete(1);
+[7m [0m [91m          ~~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-d5b8874/testCase.test.ts
+  Delta
+    ✕ compose with mutated code (6 ms)
+
+  ● Delta › compose with mutated code
+
+    expect(received).not.toEqual(expected) // deep equality
+
+    Expected: not {"ops": [{"delete": 1}]}
+
+       6 |     const b = new Delta().delete(1);
+       7 |     const expected = new Delta().delete(1);
+    >  8 |     expect(a.compose(b)).not.toEqual(new Delta().push({ delete: 1 }));
+         |                              ^
+       9 |   });
+      10 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-d5b8874/testCase.test.ts:8:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.526 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-d5b8874/testCase.test.ts".

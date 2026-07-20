@@ -1,0 +1,57 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-6b1154a/testCase.test.ts
+  Q
+    ✕ should test done method with fulfilled promise (2 ms)
+    ✕ should test done method with rejected promise
+    ✕ should test done method with no arguments (1 ms)
+
+  ● Q › should test done method with fulfilled promise
+
+    Cannot find module './q.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-6b1154a/testCase.test.ts'
+
+      1 | describe("Q", () => {
+      2 |     it("should test done method with fulfilled promise", () => {
+    > 3 |         const Q = require('./q.js');
+        |                   ^
+      4 |         const promise = Q(5);
+      5 |         const onFulfilled = jest.fn();
+      6 |         const onRejected = jest.fn();
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-6b1154a/testCase.test.ts:3:19)
+
+  ● Q › should test done method with rejected promise
+
+    Cannot find module './q.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-6b1154a/testCase.test.ts'
+
+      15 |
+      16 |     it("should test done method with rejected promise", () => {
+    > 17 |         const Q = require('./q.js');
+         |                   ^
+      18 |         const promise = Q.reject("error");
+      19 |         const onFulfilled = jest.fn();
+      20 |         const onRejected = jest.fn();
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-6b1154a/testCase.test.ts:17:19)
+
+  ● Q › should test done method with no arguments
+
+    Cannot find module './q.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-6b1154a/testCase.test.ts'
+
+      29 |
+      30 |     it("should test done method with no arguments", () => {
+    > 31 |         const Q = require('./q.js');
+         |                   ^
+      32 |         const promise = Q(5);
+      33 |         expect(() => promise.done()).toThrowError();
+      34 |     });
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-6b1154a/testCase.test.ts:31:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        2.913 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-6b1154a/testCase.test.ts".

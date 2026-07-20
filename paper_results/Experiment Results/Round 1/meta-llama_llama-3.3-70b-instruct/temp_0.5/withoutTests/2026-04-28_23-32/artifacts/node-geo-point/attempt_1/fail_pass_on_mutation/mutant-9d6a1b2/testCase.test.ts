@@ -1,0 +1,11 @@
+import { GeoPoint } from "../../../../../../../../../../../subject_repositories/node-geo-point/src/geo-point.ts";
+
+describe('GeoPoint', () => {
+  it('should create a GeoPoint from an object with latitude and longitude', () => {
+    const object = { latitude: 40.7128, longitude: -74.0060 };
+    const geoPoint = GeoPoint.fromObject(object);
+    expect(geoPoint).toBeInstanceOf(GeoPoint);
+    expect(geoPoint.latitude).toBe(object.latitude);
+    expect(geoPoint.longitude).toBe(object.longitude);
+  });
+});

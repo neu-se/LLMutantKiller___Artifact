@@ -1,0 +1,33 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-0e2fb4a/testCase.test.ts[0m:[93m10[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'toHaveLength' does not exist on type 'ArrayLikeMatchers<Op>'.
+
+[7m10[0m     expect(invertedDelta.ops).not.toHaveLength(0);
+[7m  [0m [91m                                  ~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-0e2fb4a/testCase.test.ts
+  Delta
+    ✕ should correctly handle retain operations in invert method (2 ms)
+
+  ● Delta › should correctly handle retain operations in invert method
+
+    cannot retain a string
+
+      22 |   }
+      23 |   if (typeof b !== 'object' || b === null) {
+    > 24 |     throw new Error(`cannot retain a ${typeof b}`);
+         |           ^
+      25 |   }
+      26 |   const embedType = Object.keys(a)[0];
+      27 |   if (!embedType || embedType !== Object.keys(b)[0]) {
+
+      at getEmbedTypeAndData (../subject_repositories/delta/src/Delta.ts:24:11)
+      at getEmbedTypeAndData (../subject_repositories/delta/src/Delta.ts:459:49)
+          at Array.reduce (<anonymous>)
+      at Delta.reduce (../subject_repositories/delta/src/Delta.ts:199:21)
+      at Delta.reduce (../subject_repositories/delta/src/Delta.ts:436:10)
+      at Object.invert (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-0e2fb4a/testCase.test.ts:9:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.809 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-0e2fb4a/testCase.test.ts".

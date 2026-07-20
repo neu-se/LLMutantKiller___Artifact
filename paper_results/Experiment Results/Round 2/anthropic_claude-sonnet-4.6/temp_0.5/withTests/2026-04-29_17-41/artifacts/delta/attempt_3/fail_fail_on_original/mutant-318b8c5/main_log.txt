@@ -1,0 +1,37 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-318b8c5/testCase.test.ts
+  diff()
+    ✕ insert at beginning when other has single op longer than diff insert segment (7 ms)
+
+  ● diff() › insert at beginning when other has single op longer than diff insert segment
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 3
+    + Received  + 0
+
+      Delta {
+        "ops": Array [
+          Object {
+            "insert": "A",
+          },
+    -     Object {
+    -       "retain": 1,
+    -     },
+        ],
+      }
+
+      14 |     const expected = new Delta().insert('A').retain(1);
+      15 |     const result = a.diff(b);
+    > 16 |     expect(result).toEqual(expected);
+         |                    ^
+      17 |   });
+      18 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-318b8c5/testCase.test.ts:16:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.08 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-318b8c5/testCase.test.ts".

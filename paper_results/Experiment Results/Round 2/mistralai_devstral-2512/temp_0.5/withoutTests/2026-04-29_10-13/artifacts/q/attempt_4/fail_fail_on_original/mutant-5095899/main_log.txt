@@ -1,0 +1,39 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-5095899/testCase.test.ts[0m:[93m15[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{}' is not assignable to type 'Window & typeof globalThis'.
+  Type '{}' is missing the following properties from type 'Window': clientInformation, closed, cookieStore, customElements, and 209 more.
+
+[7m15[0m       global.window = mockWindow;
+[7m  [0m [91m      ~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-5095899/testCase.test.ts[0m:[93m16[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{}' is not assignable to type 'Window & typeof globalThis'.
+  Type '{}' is missing the following properties from type 'Window': clientInformation, closed, cookieStore, customElements, and 209 more.
+
+[7m16[0m       global.self = mockSelf;
+[7m  [0m [91m      ~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-5095899/testCase.test.ts
+  Q library global object detection
+    ✕ should correctly detect when both window and self are defined (3 ms)
+
+  ● Q library global object detection › should correctly detect when both window and self are defined
+
+    expect(received).toHaveProperty(path)
+
+    Expected path: "Q"
+    Received path: []
+
+    Received value: [Object]
+
+      22 |       // In original code, Q should be attached to window (not self)
+      23 |       // The mutation would cause it to be attached to self instead
+    > 24 |       expect(mockWindow).toHaveProperty("Q");
+         |                          ^
+      25 |       expect(mockSelf).not.toHaveProperty("Q");
+      26 |
+      27 |     } finally {
+
+      at Object.toHaveProperty (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-5095899/testCase.test.ts:24:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.536 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-5095899/testCase.test.ts".

@@ -1,0 +1,26 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-dd04d59/testCase.test.ts
+  Complex.asinh()
+    ✕ should produce finite values for asinh(0.5+0.5i) (2 ms)
+
+  ● Complex.asinh() › should produce finite values for asinh(0.5+0.5i)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       7 |     // The mutation changes res['re'] = -res['im'] to res['re'] = -res[""]
+       8 |     // This will cause the real part to be NaN in the mutated version
+    >  9 |     expect(Number.isFinite(result.re)).toBe(true);
+         |                                        ^
+      10 |     expect(Number.isFinite(result.im)).toBe(true);
+      11 |   });
+      12 | });
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-dd04d59/testCase.test.ts:9:40)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.546 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-dd04d59/testCase.test.ts".

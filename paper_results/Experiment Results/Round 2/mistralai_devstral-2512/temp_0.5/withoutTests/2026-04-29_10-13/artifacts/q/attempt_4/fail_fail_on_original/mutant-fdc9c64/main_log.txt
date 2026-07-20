@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-fdc9c64/testCase.test.ts
+  Q stack trace filtering
+    ✕ should correctly identify internal stack frames (3 ms)
+
+  ● Q stack trace filtering › should correctly identify internal stack frames
+
+    expect(received).toBeLessThanOrEqual(expected)
+    Expected: <= 14
+    Received:    28
+
+      46 |           // In the mutated version, too many lines might be filtered (including non-Q lines)
+      47 |           // This would result in a significantly shorter stack
+    > 48 |           expect(filteredLines).toBeLessThanOrEqual(originalLines);
+         |                                 ^
+      49 |
+      50 |           // The key difference: in the mutated version, the OR condition would
+      51 |           // filter out many more lines, resulting in a much shorter stack
+
+      at toBeLessThanOrEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-fdc9c64/testCase.test.ts:48:33)
+      From previous event:
+      at Object.then (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-fdc9c64/testCase.test.ts:23:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.102 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-fdc9c64/testCase.test.ts".

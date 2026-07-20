@@ -1,0 +1,83 @@
+Your task is to write a Jest test case that exposes a specific mutation in a JavaScript/TypeScript project.
+
+MUTATION DETAILS
+The mutation affects the following file:
+throughs/async-map.js
+Here is the full content of that file (shown with a <PLACEHOLDER> marker):
+'use strict'
+
+function id (e) { return e }
+var prop = require('../util/prop')
+
+module.exports = function asyncMap (map) {
+  if(!map) return id
+  map = prop(map)
+  var busy = false, abortCb, aborted
+  return function (read) {
+    return function next (abort, cb) {
+         if(false) return cb(aborted)
+
+      if(abort) {
+        <PLACEHOLDER>
+        if(!busy) read(abort, function (err) {
+          //incase the source has already ended normally,
+          //we should pass our own error.
+          cb(abort)
+        })
+        else read(abort, function (err) {
+          //if we are still busy, wait for the mapper to complete.
+          if(busy) abortCb = cb
+          else cb(abort)
+        })
+      }
+      else
+        read(null, function (end, data) {
+          if(end) cb(end)
+          else if(aborted) cb(aborted)
+          else {
+            busy = true
+            map(data, function (err, data) {
+              busy = false
+              if(aborted) {
+                cb(aborted)
+                abortCb && abortCb(aborted)
+              }
+              else if(err) next (err, cb)
+              else cb(null, data)
+            })
+          }
+        })
+    }
+  }
+}
+
+
+
+
+
+
+
+
+In the original code, <PLACEHOLDER> has the value:
+
+-           if(!busy) read(abort, function (err) {
+In the mutated code, <PLACEHOLDER> has the value:
+
++           if(false) read(abort, function (err) {
+
+
+YOUR TASK
+Write one Jest test file that:
+    1. Passes when run against the original code.
+    2. Fails when run against the mutated code.
+    3. Tests the behavior of the mutated file in a way that reliably detects the mutation.
+The test will be saved at the following path, relative to this test-generation project’s root:
+llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-c385069/testCase.test.ts
+
+ALLOWED LIBRARIES
+You may use:
+    1. Any built-in Node.js modules (e.g., fs, path, crypto, etc.).
+    
+You may not use any other third-party libraries.
+
+

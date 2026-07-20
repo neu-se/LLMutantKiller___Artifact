@@ -1,0 +1,31 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-5c333f8/testCase.test.ts[0m:[93m32[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'stack' does not exist on type 'never'.
+
+[7m32[0m       return !(out?.stack ?? "").includes(marker);
+[7m  [0m [91m                    ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-5c333f8/testCase.test.ts
+  Q isInternalFrame >= boundary
+    ✕ should filter frame at qStartingLine (line 91) using >= not > (5 ms)
+
+  ● Q isInternalFrame >= boundary › should filter frame at qStartingLine (line 91) using >= not >
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      36 |     // Original (>=): 91 >= 91 → filtered → isFrameFiltered(91) returns true
+      37 |     // Mutant (>): 91 > 91 → false → NOT filtered → isFrameFiltered(91) returns false
+    > 38 |     expect(await isFrameFiltered(91)).toBe(true);
+         |                                       ^
+      39 |     
+      40 |     // Sanity check: line 90 should NOT be filtered (it's before Q's code)
+      41 |     expect(await isFrameFiltered(90)).toBe(false);
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-5c333f8/testCase.test.ts:38:39)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.524 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-5c333f8/testCase.test.ts".

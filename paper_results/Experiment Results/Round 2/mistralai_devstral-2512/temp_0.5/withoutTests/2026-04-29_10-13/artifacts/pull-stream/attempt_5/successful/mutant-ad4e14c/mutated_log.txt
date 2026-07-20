@@ -1,0 +1,30 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-ad4e14c/testCase.test.ts
+  through stream end behavior
+    ✕ should call onEnd with null when stream ends with true (2 ms)
+
+  ● through stream end behavior › should call onEnd with null when stream ends with true
+
+    expect(received).toBeNull()
+
+    Received: true
+
+      27 |       // In original code: onEnd(true === true ? null : true) → onEnd(null)
+      28 |       // In mutated code: onEnd(false ? null : true) → onEnd(true)
+    > 29 |       expect(onEndCalledWith).toBeNull();
+         |                               ^
+      30 |       done();
+      31 |     });
+      32 |   });
+
+      at toBeNull (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-ad4e14c/testCase.test.ts:29:31)
+      at cb (../subject_repositories/pull-stream/throughs/through.js:20:9)
+      at cb (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-ad4e14c/testCase.test.ts:14:9)
+      at read (../subject_repositories/pull-stream/throughs/through.js:17:14)
+      at Object.read (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-ad4e14c/testCase.test.ts:24:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.379 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-ad4e14c/testCase.test.ts".

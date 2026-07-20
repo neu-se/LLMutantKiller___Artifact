@@ -1,0 +1,425 @@
+[
+  [
+    "q",
+    []
+  ],
+  [
+    "nextTick",
+    [
+      "var enqueue = function (callback) {\n    //process.nextTick(callback); // NodeJS\n    setTimeout(callback, 1); // Naïve browser solution\n};\n\nvar defer = function () {\n    var pending = [], value;\n    return {\n        resolve: function (_value) {\n            if (pending) {\n                value = ref(_value);\n                for (var i = 0, ii = pending.length; i < ii; i++) {\n                    // XXX\n                    enqueue(function () {\n                        value.then.apply(value, pending[i]);\n                    });\n                }\n                pending = undefined;\n            }\n        },"
+    ]
+  ],
+  [
+    "runAfter",
+    []
+  ],
+  [
+    "defer",
+    [
+      "var deferred = Q.defer();\nFS.readFile(\"foo.txt\", \"utf-8\", function (error, text) {\n    if (error) {\n        deferred.reject(new Error(error));\n    } else {\n        deferred.resolve(text);\n    }\n});\nreturn deferred.promise;",
+      "function delay(ms) {\n    var deferred = Q.defer();\n    setTimeout(deferred.resolve, ms);\n    return deferred.promise;\n}",
+      "function timeout(promise, ms) {\n    var deferred = Q.defer();\n    Q.when(promise, deferred.resolve);\n    delay(ms).then(function () {\n        deferred.reject(new Error(\"Timed out\"));\n    });\n    return deferred.promise;\n}",
+      "function requestOkText(url) {\n    var request = new XMLHttpRequest();\n    var deferred = Q.defer();\n\n    request.open(\"GET\", url, true);\n    request.onload = onload;\n    request.onerror = onerror;\n    request.onprogress = onprogress;\n    request.send();\n\n    function onload() {\n        if (request.status === 200) {\n            deferred.resolve(request.responseText);\n        } else {\n            deferred.reject(new Error(\"Status code was \" + request.status));\n        }\n    }\n\n    function onerror() {\n        deferred.reject(new Error(\"Can't XHR \" + JSON.stringify(url)));",
+      "var deferred = Q.defer();\nFS.readFile(\"foo.txt\", \"utf-8\", deferred.makeNodeResolver());\nreturn deferred.promise;",
+      "var defer = function () {\n    var pending = [], value;\n    return {\n        resolve: function (_value) {\n            value = _value;\n            for (var i = 0, ii = pending.length; i < ii; i++) {\n                var callback = pending[i];\n                callback(value);\n            }\n            pending = undefined;\n        },\n        then: function (callback) {\n            if (pending) {\n                pending.push(callback);\n            } else {\n                callback(value);\n            }\n        }\n    }\n};",
+      "var defer = function () {\n    var pending = [], value;\n    return {\n        resolve: function (_value) {\n            if (pending) {\n                value = ref(_value); // values wrapped in a promise\n                for (var i = 0, ii = pending.length; i < ii; i++) {\n                    var callback = pending[i];\n                    value.then(callback); // then called instead\n                }\n                pending = undefined;\n            }\n        },\n        promise: {\n            then: function (_callback) {\n                var result = defer();\n                // callback is wrapped so that its return\n                // value is captured and used to resolve the promise\n                // that \"then\" returns\n                var callback = function (value) {",
+      "var maybeOneOneSecondLater = function (callback, errback) {\n    var result = defer();\n    setTimeout(function () {\n        if (Math.random() < .5) {\n            result.resolve(1);\n        } else {\n            result.resolve(reject(\"Can't provide one.\"));\n        }\n    }, 1000);\n    return result.promise;\n};",
+      "var defer = function () {\n    var pending = [], value;\n    return {\n        resolve: function (_value) {\n            if (pending) {\n                value = ref(_value);\n                for (var i = 0, ii = pending.length; i < ii; i++) {\n                    // apply the pending arguments to \"then\"\n                    value.then.apply(value, pending[i]);\n                }\n                pending = undefined;\n            }\n        },\n        promise: {\n            then: function (_callback, _errback) {\n                var result = defer();\n                var callback = function (value) {\n                    result.resolve(_callback(value));\n                };\n                var errback = function (reason) {",
+      "var defer = function () {\n    var pending = [], value;\n    return {\n        resolve: function (_value) {\n            if (pending) {\n                value = ref(_value);\n                for (var i = 0, ii = pending.length; i < ii; i++) {\n                    value.then.apply(value, pending[i]);\n                }\n                pending = undefined;\n            }\n        },\n        promise: {\n            then: function (_callback, _errback) {\n                var result = defer();\n                // provide default callbacks and errbacks\n                _callback = _callback || function (value) {\n                    // by default, forward fulfillment\n                    return value;\n                };",
+      "var when = function (value, _callback, _errback) {\n    var result = defer();\n    var done;\n\n    _callback = _callback || function (value) {\n        return value;\n    };\n    _errback = _errback || function (reason) {\n        return reject(reason);\n    };\n\n    var callback = function (value) {\n        try {\n            return _callback(value);\n        } catch (reason) {\n            return reject(reason);\n        }\n    };\n    var errback = function (reason) {\n        try {",
+      "var ref = function (object) {\n    if (object && typeof object.promiseSend !== \"undefined\") {\n        return object;\n    }\n    if (object && typeof object.then !== \"undefined\") {\n        return makePromise({\n            when: function () {\n                var result = defer();\n                object.then(result.resolve, result.reject);\n                return result;\n            }\n        }, function fallback(op) {\n            return Q.when(object, function (object) {\n                return Q.ref(object).promiseSend.apply(object, arguments);\n            });\n        });\n    }\n    return makePromise({\n        when: function () {\n            return object;",
+      "var defer = function () {\n    var pending = [], value;\n    return {\n        resolve: function (_value) {\n            if (pending) {\n                value = ref(_value);\n                for (var i = 0, ii = pending.length; i < ii; i++) {\n                    enqueue(function () {\n                        value.promiseSend.apply(value, pending[i]);\n                    });\n                }\n                pending = undefined;\n            }\n        },\n        promise: {\n            promiseSend: function () {\n                var args = Array.prototype.slice.call(arguments);\n                var result = defer();\n                if (pending) {\n                    pending.push(args);",
+      "var get = function (object, name) {\n    var result = defer();\n    ref(object).promiseSend(\"get\", result.resolve, name);\n    return result.promise;\n};\n\nget({\"a\": 10}, \"a\").then(function (ten) {\n    // ten === ten\n});"
+    ]
+  ],
+  [
+    "makeNodeResolver",
+    [
+      "var deferred = Q.defer();\nFS.readFile(\"foo.txt\", \"utf-8\", deferred.makeNodeResolver());\nreturn deferred.promise;"
+    ]
+  ],
+  [
+    "Promise",
+    [
+      "function requestOkText(url) {\n    return Q.Promise(function(resolve, reject, notify) {\n        var request = new XMLHttpRequest();\n\n        request.open(\"GET\", url, true);\n        request.onload = onload;\n        request.onerror = onerror;\n        request.onprogress = onprogress;\n        request.send();\n\n        function onload() {\n            if (request.status === 200) {\n                resolve(request.responseText);\n            } else {\n                reject(new Error(\"Status code was \" + request.status));\n            }\n        }\n\n        function onerror() {\n            reject(new Error(\"Can't XHR \" + JSON.stringify(url)));",
+      "var Promise = function () {\n};\n\nvar isPromise = function (value) {\n    return value instanceof Promise;\n};\n\nvar defer = function () {\n    var pending = [], value;\n    var promise = new Promise();\n    promise.then = function (callback) {\n        if (pending) {\n            pending.push(callback);\n        } else {\n            callback(value);\n        }\n    };\n    return {\n        resolve: function (_value) {\n            if (pending) {",
+      "function Promise() {}\nPromise.prototype.then = function (callback, errback) {\n    return when(this, callback, errback);\n};",
+      "var makePromise = function (handler, fallback) {\n    var promise = new Promise();\n    handler = handler || {};\n    fallback = fallback || function (op) {\n        return reject(\"Can't \" + op);\n    };\n    promise.promiseSend = function (op, callback) {\n        var args = Array.prototype.slice.call(arguments, 2);\n        var result;\n        callback = callback || function (value) {return value};\n        if (handler[op]) {\n            result = handler[op].apply(handler, args);\n        } else {\n            result = fallback.apply(handler, [op].concat(args));\n        }\n        return callback(result);\n    };\n    return promise;\n};"
+    ]
+  ],
+  [
+    "race",
+    []
+  ],
+  [
+    "all",
+    [
+      "return Q.all([\n    eventualAdd(2, 2),\n    eventualAdd(10, 20)\n]);",
+      "return Q.all([\n    eventualAdd(2, 2),\n    eventualAdd(10, 20)\n]);",
+      "return Q.fcall(function () {\n    return [a, b];\n})\n.all();",
+      "return Q.fcall(function () {\n    return [a, b];\n})\n.all();",
+      "\"use strict\";\n\nvar Q = require(\"../q\");\n\nfunction eventually(value) {\n    return Q.delay(value, 1000);\n}\n\nQ.all([1, 2, 3].map(eventually))\n.done(function (result) {\n    console.log(result);\n});\n\nQ.all([\n    eventually(10),\n    eventually(20)\n])\n.spread(function (x, y) {\n    console.log(x, y);\n})",
+      "\"use strict\";\n\nvar Q = require(\"../q\");\n\nfunction eventually(value) {\n    return Q.delay(value, 1000);\n}\n\nQ.all([1, 2, 3].map(eventually))\n.done(function (result) {\n    console.log(result);\n});\n\nQ.all([\n    eventually(10),\n    eventually(20)\n])\n.spread(function (x, y) {\n    console.log(x, y);\n})"
+    ]
+  ],
+  [
+    "reject",
+    [
+      "var deferred = Q.defer();\nFS.readFile(\"foo.txt\", \"utf-8\", function (error, text) {\n    if (error) {\n        deferred.reject(new Error(error));\n    } else {\n        deferred.resolve(text);\n    }\n});\nreturn deferred.promise;",
+      "// this:\ndeferred.reject(new Error(\"Can't do it\"));\n\n// is shorthand for:\nvar rejection = Q.fcall(function () {\n    throw new Error(\"Can't do it\");\n});\ndeferred.resolve(rejection);",
+      "function timeout(promise, ms) {\n    var deferred = Q.defer();\n    Q.when(promise, deferred.resolve);\n    delay(ms).then(function () {\n        deferred.reject(new Error(\"Timed out\"));\n    });\n    return deferred.promise;\n}",
+      "function requestOkText(url) {\n    var request = new XMLHttpRequest();\n    var deferred = Q.defer();\n\n    request.open(\"GET\", url, true);\n    request.onload = onload;\n    request.onerror = onerror;\n    request.onprogress = onprogress;\n    request.send();\n\n    function onload() {\n        if (request.status === 200) {\n            deferred.resolve(request.responseText);\n        } else {\n            deferred.reject(new Error(\"Status code was \" + request.status));\n        }\n    }\n\n    function onerror() {\n        deferred.reject(new Error(\"Can't XHR \" + JSON.stringify(url)));",
+      "function requestOkText(url) {\n    return Q.Promise(function(resolve, reject, notify) {\n        var request = new XMLHttpRequest();\n\n        request.open(\"GET\", url, true);\n        request.onload = onload;\n        request.onerror = onerror;\n        request.onprogress = onprogress;\n        request.send();\n\n        function onload() {\n            if (request.status === 200) {\n                resolve(request.responseText);\n            } else {\n                reject(new Error(\"Status code was \" + request.status));\n            }\n        }\n\n        function onerror() {\n            reject(new Error(\"Can't XHR \" + JSON.stringify(url)));",
+      "reject(\"Meh.\").then(function (value) {\n    // we never get here\n}, function (reason) {\n    // reason === \"Meh.\"\n});",
+      "var maybeOneOneSecondLater = function (callback, errback) {\n    var result = defer();\n    setTimeout(function () {\n        if (Math.random() < .5) {\n            result.resolve(1);\n        } else {\n            result.resolve(reject(\"Can't provide one.\"));\n        }\n    }, 1000);\n    return result.promise;\n};",
+      "var when = function (value, _callback, _errback) {\n    var result = defer();\n    var done;\n\n    _callback = _callback || function (value) {\n        return value;\n    };\n    _errback = _errback || function (reason) {\n        return reject(reason);\n    };\n\n    var callback = function (value) {\n        try {\n            return _callback(value);\n        } catch (reason) {\n            return reject(reason);\n        }\n    };\n    var errback = function (reason) {\n        try {",
+      "var makePromise = function (handler, fallback) {\n    var promise = new Promise();\n    handler = handler || {};\n    fallback = fallback || function (op) {\n        return reject(\"Can't \" + op);\n    };\n    promise.promiseSend = function (op, callback) {\n        var args = Array.prototype.slice.call(arguments, 2);\n        var result;\n        callback = callback || function (value) {return value};\n        if (handler[op]) {\n            result = handler[op].apply(handler, args);\n        } else {\n            result = fallback.apply(handler, [op].concat(args));\n        }\n        return callback(result);\n    };\n    return promise;\n};",
+      "var reject = function (reason) {\n    var forward = function (reason) {\n        return reject(reason);\n    };\n    return makePromise({\n        when: function (errback) {\n            errback = errback || forward;\n            return errback(reason);\n        }\n    }, forward);\n};"
+    ]
+  ],
+  [
+    "passByCopy",
+    []
+  ],
+  [
+    "join",
+    []
+  ],
+  [
+    "makePromise",
+    [
+      "var ref = function (object) {\n    if (object && typeof object.promiseSend !== \"undefined\") {\n        return object;\n    }\n    if (object && typeof object.then !== \"undefined\") {\n        return makePromise({\n            when: function () {\n                var result = defer();\n                object.then(result.resolve, result.reject);\n                return result;\n            }\n        }, function fallback(op) {\n            return Q.when(object, function (object) {\n                return Q.ref(object).promiseSend.apply(object, arguments);\n            });\n        });\n    }\n    return makePromise({\n        when: function () {\n            return object;",
+      "var reject = function (reason) {\n    var forward = function (reason) {\n        return reject(reason);\n    };\n    return makePromise({\n        when: function (errback) {\n            errback = errback || forward;\n            return errback(reason);\n        }\n    }, forward);\n};"
+    ]
+  ],
+  [
+    "toString",
+    []
+  ],
+  [
+    "then",
+    [
+      "Q.fcall(promisedStep1)\n.then(promisedStep2)\n.then(promisedStep3)\n.then(promisedStep4)\n.then(function (value4) {\n    // Do something with value4\n})\n.catch(function (error) {\n    // Handle any error from all above steps\n})\n.done();",
+      "promiseMeSomething()\n.then(function (value) {\n}, function (reason) {\n});",
+      "var outputPromise = getInputPromise()\n.then(function (input) {\n}, function (reason) {\n});",
+      "var outputPromise = getInputPromise()\n.then(function (value) {\n});",
+      "var outputPromise = getInputPromise()\n.then(null, function (error) {\n});",
+      "return getUsername()\n.then(function (username) {\n    return getUser(username)\n    .then(function (user) {\n        // if we get here without an error,\n        // the value returned here\n        // or the exception thrown here\n        // resolves the promise returned\n        // by the first line\n    })\n});",
+      "return getUsername()\n.then(function (username) {\n    return getUser(username);\n})\n.then(function (user) {\n    // if we get here without an error,\n    // the value returned here\n    // or the exception thrown here\n    // resolves the promise returned\n    // by the first line\n});",
+      "function authenticate() {\n    return getUsername()\n    .then(function (username) {\n        return getUser(username);\n    })\n    // chained because we will not need the user name in the next event\n    .then(function (user) {\n        return getPassword()\n        // nested because we need both user and password next\n        .then(function (password) {\n            if (user.passwordHash !== hash(password)) {\n                throw new Error(\"Can't authenticate\");\n            }\n        });\n    });\n}",
+      "return getUsername()\n.then(function (username) {\n    return [username, getUser(username)];\n})\n.spread(function (username, user) {\n});",
+      "Q.allSettled(promises)\n.then(function (results) {\n    results.forEach(function (result) {\n        if (result.state === \"fulfilled\") {\n            var value = result.value;\n        } else {\n            var reason = result.reason;\n        }\n    });\n});",
+      "Q.any(promises)\n.then(function (first) {\n    // Any of the promises was fulfilled.\n}, function (error) {\n    // All of the promises were rejected.\n});",
+      "var funcs = [foo, bar, baz, qux];\n\nvar result = Q(initialVal);\nfuncs.forEach(function (f) {\n    result = result.then(f);\n});\nreturn result;",
+      "return funcs.reduce(function (soFar, f) {\n    return soFar.then(f);\n}, Q(initialVal));",
+      "return foo()\n.then(function (value) {\n    throw new Error(\"Can't bar.\");\n}, function (error) {\n    // We only get here if \"foo\" fails\n});",
+      "return foo()\n.then(function (value) {\n    throw new Error(\"Can't bar.\");\n})\n.fail(function (error) {\n    // We get here with either foo's error or bar's error\n});",
+      "return uploadFile()\n.then(function () {\n    // Success uploading the file\n}, function (err) {\n    // There was an error, and we get the reason for error\n}, function (progress) {\n    // We get notified of the upload's progress as it is executed\n});",
+      "return foo()\n.then(function () {\n    return \"bar\";\n});",
+      "foo()\n.then(function () {\n    return \"bar\";\n})\n.done();",
+      "function timeout(promise, ms) {\n    var deferred = Q.defer();\n    Q.when(promise, deferred.resolve);\n    delay(ms).then(function () {\n        deferred.reject(new Error(\"Timed out\"));\n    });\n    return deferred.promise;\n}",
+      "requestOkText(\"http://localhost:3000\")\n.then(function (responseText) {\n    // If the HTTP response returns 200 OK, log the response text.\n    console.log(responseText);\n}, function (error) {\n    // If there's an error or a non-200 status code, log the error.\n    console.error(error);\n}, function (progress) {\n    // Log the progress as it comes in.\n    console.log(\"Request progress: \" + Math.round(progress * 100) + \"%\");\n});",
+      "return Q($.ajax(...))\n.then(function () {\n});",
+      "return Q.invoke($, 'ajax', ...)\n.then(function () {\n});",
+      "return Q.fcall(function () {\n    return [{ foo: \"bar\" }, { foo: \"baz\" }];\n})\n.then(function (value) {\n    return value[0].foo;\n});",
+      "var maybeOneOneSecondLater = function () {\n    var callback;\n    setTimeout(function () {\n        callback(1);\n    }, 1000);\n    return {\n        then: function (_callback) {\n            callback = _callback;\n        }\n    };\n};\n\nmaybeOneOneSecondLater().then(callback);",
+      "var a = oneOneSecondLater();\nvar b = oneOneSecondLater();\nvar c = a.then(function (a) {\n    return b.then(function (b) {\n        return a + b;\n    });\n});",
+      "var defer = function () {\n    var pending = [], value;\n    return {\n        resolve: function (_value) {\n            if (pending) {\n                value = ref(_value); // values wrapped in a promise\n                for (var i = 0, ii = pending.length; i < ii; i++) {\n                    var callback = pending[i];\n                    value.then(callback); // then called instead\n                }\n                pending = undefined;\n            }\n        },\n        promise: {\n            then: function (_callback) {\n                var result = defer();\n                // callback is wrapped so that its return\n                // value is captured and used to resolve the promise\n                // that \"then\" returns\n                var callback = function (value) {",
+      "reject(\"Meh.\").then(function (value) {\n    // we never get here\n}, function (reason) {\n    // reason === \"Meh.\"\n});",
+      "promises.reduce(function (accumulating, promise) {\n    return accumulating.then(function (accumulated) {\n        return promise.then(function (value) {\n            return accumulated + value;\n        });\n    });\n}, ref(0)) // start with a promise for zero, so we can call then on it\n           // just like any of the combined promises\n.then(function (sum) {\n    // the sum is here\n});",
+      "var blah = function () {\n    var result = foob().then(function () {\n        return barf();\n    });\n    var barf = function () {\n        return 10;\n    };\n    return result;\n};",
+      "promise.then(callback, errback);\npromise.promiseSend(\"when\", callback, errback);",
+      "var ref = function (object) {\n    if (object && typeof object.promiseSend !== \"undefined\") {\n        return object;\n    }\n    if (object && typeof object.then !== \"undefined\") {\n        return makePromise({\n            when: function () {\n                var result = defer();\n                object.then(result.resolve, result.reject);\n                return result;\n            }\n        }, function fallback(op) {\n            return Q.when(object, function (object) {\n                return Q.ref(object).promiseSend.apply(object, arguments);\n            });\n        });\n    }\n    return makePromise({\n        when: function () {\n            return object;",
+      "var get = function (object, name) {\n    var result = defer();\n    ref(object).promiseSend(\"get\", result.resolve, name);\n    return result.promise;\n};\n\nget({\"a\": 10}, \"a\").then(function (ten) {\n    // ten === ten\n});",
+      "var eventualAdd = Q.async(function* (oneP, twoP) {\n    var one = yield oneP;\n    var two = yield twoP;\n    return one + two;\n});\n\neventualAdd(eventualOne, eventualTwo).then(function (three) {\n    three === 3;\n});"
+    ]
+  ],
+  [
+    "tap",
+    []
+  ],
+  [
+    "thenResolve",
+    []
+  ],
+  [
+    "thenReject",
+    []
+  ],
+  [
+    "isPending",
+    []
+  ],
+  [
+    "isFulfilled",
+    []
+  ],
+  [
+    "isRejected",
+    []
+  ],
+  [
+    "spread",
+    [
+      "function eventualAdd(a, b) {\n    return Q.spread([a, b], function (a, b) {\n        return a + b;\n    })\n}",
+      "function eventualAdd(a, b) {\n    return Q.spread([a, b], function (a, b) {\n        return a + b;\n    })\n}",
+      "return getUsername()\n.then(function (username) {\n    return [username, getUser(username)];\n})\n.spread(function (username, user) {\n});",
+      "return getUsername()\n.then(function (username) {\n    return [username, getUser(username)];\n})\n.spread(function (username, user) {\n});",
+      "\"use strict\";\n\nvar Q = require(\"../q\");\n\nfunction eventually(value) {\n    return Q.delay(value, 1000);\n}\n\nQ.all([1, 2, 3].map(eventually))\n.done(function (result) {\n    console.log(result);\n});\n\nQ.all([\n    eventually(10),\n    eventually(20)\n])\n.spread(function (x, y) {\n    console.log(x, y);\n})",
+      "\"use strict\";\n\nvar Q = require(\"../q\");\n\nfunction eventually(value) {\n    return Q.delay(value, 1000);\n}\n\nQ.all([1, 2, 3].map(eventually))\n.done(function (result) {\n    console.log(result);\n});\n\nQ.all([\n    eventually(10),\n    eventually(20)\n])\n.spread(function (x, y) {\n    console.log(x, y);\n})"
+    ]
+  ],
+  [
+    "dispatch",
+    []
+  ],
+  [
+    "get",
+    [
+      "direct manipulation         using a promise as a proxy\n--------------------------  -------------------------------\nvalue.foo                   promise.get(\"foo\")\nvalue.foo = value           promise.put(\"foo\", value)\ndelete value.foo            promise.del(\"foo\")\nvalue.foo(...args)          promise.post(\"foo\", [args])\nvalue.foo(...args)          promise.invoke(\"foo\", ...args)\nvalue(...args)              promise.fapply([args])\nvalue(...args)              promise.fcall(...args)",
+      "direct manipulation         using a promise as a proxy\n--------------------------  -------------------------------\nvalue.foo                   promise.get(\"foo\")\nvalue.foo = value           promise.put(\"foo\", value)\ndelete value.foo            promise.del(\"foo\")\nvalue.foo(...args)          promise.post(\"foo\", [args])\nvalue.foo(...args)          promise.invoke(\"foo\", ...args)\nvalue(...args)              promise.fapply([args])\nvalue(...args)              promise.fcall(...args)",
+      "return Q.fcall(function () {\n    return [{ foo: \"bar\" }, { foo: \"baz\" }];\n})\n.get(0)\n.get(\"foo\");",
+      "return Q.fcall(function () {\n    return [{ foo: \"bar\" }, { foo: \"baz\" }];\n})\n.get(0)\n.get(\"foo\");",
+      "var get = function (object, name) {\n    var result = defer();\n    ref(object).promiseSend(\"get\", result.resolve, name);\n    return result.promise;\n};\n\nget({\"a\": 10}, \"a\").then(function (ten) {\n    // ten === ten\n});",
+      "var get = function (object, name) {\n    var result = defer();\n    ref(object).promiseSend(\"get\", result.resolve, name);\n    return result.promise;\n};\n\nget({\"a\": 10}, \"a\").then(function (ten) {\n    // ten === ten\n});"
+    ]
+  ],
+  [
+    "set",
+    []
+  ],
+  [
+    "delete",
+    []
+  ],
+  [
+    "post",
+    [
+      "direct manipulation         using a promise as a proxy\n--------------------------  -------------------------------\nvalue.foo                   promise.get(\"foo\")\nvalue.foo = value           promise.put(\"foo\", value)\ndelete value.foo            promise.del(\"foo\")\nvalue.foo(...args)          promise.post(\"foo\", [args])\nvalue.foo(...args)          promise.invoke(\"foo\", ...args)\nvalue(...args)              promise.fapply([args])\nvalue(...args)              promise.fcall(...args)",
+      "direct manipulation         using a promise as a proxy\n--------------------------  -------------------------------\nvalue.foo                   promise.get(\"foo\")\nvalue.foo = value           promise.put(\"foo\", value)\ndelete value.foo            promise.del(\"foo\")\nvalue.foo(...args)          promise.post(\"foo\", [args])\nvalue.foo(...args)          promise.invoke(\"foo\", ...args)\nvalue(...args)              promise.fapply([args])\nvalue(...args)              promise.fcall(...args)"
+    ]
+  ],
+  [
+    "invoke",
+    [
+      "return Q.invoke($, 'ajax', ...)\n.then(function () {\n});",
+      "return Q.invoke($, 'ajax', ...)\n.then(function () {\n});",
+      "direct manipulation         using a promise as a proxy\n--------------------------  -------------------------------\nvalue.foo                   promise.get(\"foo\")\nvalue.foo = value           promise.put(\"foo\", value)\ndelete value.foo            promise.del(\"foo\")\nvalue.foo(...args)          promise.post(\"foo\", [args])\nvalue.foo(...args)          promise.invoke(\"foo\", ...args)\nvalue(...args)              promise.fapply([args])\nvalue(...args)              promise.fcall(...args)",
+      "direct manipulation         using a promise as a proxy\n--------------------------  -------------------------------\nvalue.foo                   promise.get(\"foo\")\nvalue.foo = value           promise.put(\"foo\", value)\ndelete value.foo            promise.del(\"foo\")\nvalue.foo(...args)          promise.post(\"foo\", [args])\nvalue.foo(...args)          promise.invoke(\"foo\", ...args)\nvalue(...args)              promise.fapply([args])\nvalue(...args)              promise.fcall(...args)"
+    ]
+  ],
+  [
+    "fapply",
+    [
+      "direct manipulation         using a promise as a proxy\n--------------------------  -------------------------------\nvalue.foo                   promise.get(\"foo\")\nvalue.foo = value           promise.put(\"foo\", value)\ndelete value.foo            promise.del(\"foo\")\nvalue.foo(...args)          promise.post(\"foo\", [args])\nvalue.foo(...args)          promise.invoke(\"foo\", ...args)\nvalue(...args)              promise.fapply([args])\nvalue(...args)              promise.fcall(...args)",
+      "direct manipulation         using a promise as a proxy\n--------------------------  -------------------------------\nvalue.foo                   promise.get(\"foo\")\nvalue.foo = value           promise.put(\"foo\", value)\ndelete value.foo            promise.del(\"foo\")\nvalue.foo(...args)          promise.post(\"foo\", [args])\nvalue.foo(...args)          promise.invoke(\"foo\", ...args)\nvalue(...args)              promise.fapply([args])\nvalue(...args)              promise.fcall(...args)"
+    ]
+  ],
+  [
+    "fcall",
+    [
+      "Q.fcall(promisedStep1)\n.then(promisedStep2)\n.then(promisedStep3)\n.then(promisedStep4)\n.then(function (value4) {\n    // Do something with value4\n})\n.catch(function (error) {\n    // Handle any error from all above steps\n})\n.done();",
+      "Q.fcall(promisedStep1)\n.then(promisedStep2)\n.then(promisedStep3)\n.then(promisedStep4)\n.then(function (value4) {\n    // Do something with value4\n})\n.catch(function (error) {\n    // Handle any error from all above steps\n})\n.done();",
+      "return Q.fcall(function () {\n    return 10;\n});",
+      "return Q.fcall(function () {\n    return 10;\n});",
+      "return Q.fcall(function () {\n    throw new Error(\"Can't do it\");\n});",
+      "return Q.fcall(function () {\n    throw new Error(\"Can't do it\");\n});",
+      "// this:\ndeferred.reject(new Error(\"Can't do it\"));\n\n// is shorthand for:\nvar rejection = Q.fcall(function () {\n    throw new Error(\"Can't do it\");\n});\ndeferred.resolve(rejection);",
+      "// this:\ndeferred.reject(new Error(\"Can't do it\"));\n\n// is shorthand for:\nvar rejection = Q.fcall(function () {\n    throw new Error(\"Can't do it\");\n});\ndeferred.resolve(rejection);",
+      "return Q.fcall(function () {\n    return [a, b];\n})\n.all();",
+      "return Q.fcall(function () {\n    return [a, b];\n})\n.all();",
+      "direct manipulation         using a promise as a proxy\n--------------------------  -------------------------------\nvalue.foo                   promise.get(\"foo\")\nvalue.foo = value           promise.put(\"foo\", value)\ndelete value.foo            promise.del(\"foo\")\nvalue.foo(...args)          promise.post(\"foo\", [args])\nvalue.foo(...args)          promise.invoke(\"foo\", ...args)\nvalue(...args)              promise.fapply([args])\nvalue(...args)              promise.fcall(...args)",
+      "direct manipulation         using a promise as a proxy\n--------------------------  -------------------------------\nvalue.foo                   promise.get(\"foo\")\nvalue.foo = value           promise.put(\"foo\", value)\ndelete value.foo            promise.del(\"foo\")\nvalue.foo(...args)          promise.post(\"foo\", [args])\nvalue.foo(...args)          promise.invoke(\"foo\", ...args)\nvalue(...args)              promise.fapply([args])\nvalue(...args)              promise.fcall(...args)",
+      "return Q.fcall(function () {\n    return [{ foo: \"bar\" }, { foo: \"baz\" }];\n})\n.then(function (value) {\n    return value[0].foo;\n});",
+      "return Q.fcall(function () {\n    return [{ foo: \"bar\" }, { foo: \"baz\" }];\n})\n.then(function (value) {\n    return value[0].foo;\n});",
+      "return Q.fcall(function () {\n    return [{ foo: \"bar\" }, { foo: \"baz\" }];\n})\n.get(0)\n.get(\"foo\");",
+      "return Q.fcall(function () {\n    return [{ foo: \"bar\" }, { foo: \"baz\" }];\n})\n.get(0)\n.get(\"foo\");"
+    ]
+  ],
+  [
+    "fbind",
+    []
+  ],
+  [
+    "keys",
+    []
+  ],
+  [
+    "any",
+    [
+      "Q.any(promises)\n.then(function (first) {\n    // Any of the promises was fulfilled.\n}, function (error) {\n    // All of the promises were rejected.\n});",
+      "Q.any(promises)\n.then(function (first) {\n    // Any of the promises was fulfilled.\n}, function (error) {\n    // All of the promises were rejected.\n});"
+    ]
+  ],
+  [
+    "allResolved",
+    []
+  ],
+  [
+    "allSettled",
+    [
+      "Q.allSettled(promises)\n.then(function (results) {\n    results.forEach(function (result) {\n        if (result.state === \"fulfilled\") {\n            var value = result.value;\n        } else {\n            var reason = result.reason;\n        }\n    });\n});",
+      "Q.allSettled(promises)\n.then(function (results) {\n    results.forEach(function (result) {\n        if (result.state === \"fulfilled\") {\n            var value = result.value;\n        } else {\n            var reason = result.reason;\n        }\n    });\n});"
+    ]
+  ],
+  [
+    "catch",
+    [
+      "Q.fcall(promisedStep1)\n.then(promisedStep2)\n.then(promisedStep3)\n.then(promisedStep4)\n.then(function (value4) {\n    // Do something with value4\n})\n.catch(function (error) {\n    // Handle any error from all above steps\n})\n.done();",
+      "Q.fcall(promisedStep1)\n.then(promisedStep2)\n.then(promisedStep3)\n.then(promisedStep4)\n.then(function (value4) {\n    // Do something with value4\n})\n.catch(function (error) {\n    // Handle any error from all above steps\n})\n.done();"
+    ]
+  ],
+  [
+    "progress",
+    [
+      "return uploadFile().progress(function (progress) {\n    // We get notified of the upload's progress\n});",
+      "return uploadFile().progress(function (progress) {\n    // We get notified of the upload's progress\n});"
+    ]
+  ],
+  [
+    "finally",
+    []
+  ],
+  [
+    "done",
+    [
+      "Q.fcall(promisedStep1)\n.then(promisedStep2)\n.then(promisedStep3)\n.then(promisedStep4)\n.then(function (value4) {\n    // Do something with value4\n})\n.catch(function (error) {\n    // Handle any error from all above steps\n})\n.done();",
+      "Q.fcall(promisedStep1)\n.then(promisedStep2)\n.then(promisedStep3)\n.then(promisedStep4)\n.then(function (value4) {\n    // Do something with value4\n})\n.catch(function (error) {\n    // Handle any error from all above steps\n})\n.done();",
+      "foo()\n.then(function () {\n    return \"bar\";\n})\n.done();",
+      "foo()\n.then(function () {\n    return \"bar\";\n})\n.done();",
+      "function theDepthsOfMyProgram() {\n  Q.delay(100).done(function explode() {\n    throw new Error(\"boo!\");\n  });\n}\n\ntheDepthsOfMyProgram();",
+      "function theDepthsOfMyProgram() {\n  Q.delay(100).done(function explode() {\n    throw new Error(\"boo!\");\n  });\n}\n\ntheDepthsOfMyProgram();",
+      "\"use strict\";\n\nvar Q = require(\"../q\");\n\nfunction eventually(value) {\n    return Q.delay(value, 1000);\n}\n\nQ.all([1, 2, 3].map(eventually))\n.done(function (result) {\n    console.log(result);\n});\n\nQ.all([\n    eventually(10),\n    eventually(20)\n])\n.spread(function (x, y) {\n    console.log(x, y);\n})",
+      "\"use strict\";\n\nvar Q = require(\"../q\");\n\nfunction eventually(value) {\n    return Q.delay(value, 1000);\n}\n\nQ.all([1, 2, 3].map(eventually))\n.done(function (result) {\n    console.log(result);\n});\n\nQ.all([\n    eventually(10),\n    eventually(20)\n])\n.spread(function (x, y) {\n    console.log(x, y);\n})"
+    ]
+  ],
+  [
+    "timeout",
+    [
+      "function timeout(promise, ms) {\n    var deferred = Q.defer();\n    Q.when(promise, deferred.resolve);\n    delay(ms).then(function () {\n        deferred.reject(new Error(\"Timed out\"));\n    });\n    return deferred.promise;\n}",
+      "function timeout(promise, ms) {\n    var deferred = Q.defer();\n    Q.when(promise, deferred.resolve);\n    delay(ms).then(function () {\n        deferred.reject(new Error(\"Timed out\"));\n    });\n    return deferred.promise;\n}"
+    ]
+  ],
+  [
+    "delay",
+    [
+      "function delay(ms) {\n    var deferred = Q.defer();\n    setTimeout(deferred.resolve, ms);\n    return deferred.promise;\n}",
+      "function delay(ms) {\n    var deferred = Q.defer();\n    setTimeout(deferred.resolve, ms);\n    return deferred.promise;\n}",
+      "function timeout(promise, ms) {\n    var deferred = Q.defer();\n    Q.when(promise, deferred.resolve);\n    delay(ms).then(function () {\n        deferred.reject(new Error(\"Timed out\"));\n    });\n    return deferred.promise;\n}",
+      "function timeout(promise, ms) {\n    var deferred = Q.defer();\n    Q.when(promise, deferred.resolve);\n    delay(ms).then(function () {\n        deferred.reject(new Error(\"Timed out\"));\n    });\n    return deferred.promise;\n}",
+      "function theDepthsOfMyProgram() {\n  Q.delay(100).done(function explode() {\n    throw new Error(\"boo!\");\n  });\n}\n\ntheDepthsOfMyProgram();",
+      "function theDepthsOfMyProgram() {\n  Q.delay(100).done(function explode() {\n    throw new Error(\"boo!\");\n  });\n}\n\ntheDepthsOfMyProgram();",
+      "\"use strict\";\n\nvar Q = require(\"../q\");\n\nfunction eventually(value) {\n    return Q.delay(value, 1000);\n}\n\nQ.all([1, 2, 3].map(eventually))\n.done(function (result) {\n    console.log(result);\n});\n\nQ.all([\n    eventually(10),\n    eventually(20)\n])\n.spread(function (x, y) {\n    console.log(x, y);\n})",
+      "\"use strict\";\n\nvar Q = require(\"../q\");\n\nfunction eventually(value) {\n    return Q.delay(value, 1000);\n}\n\nQ.all([1, 2, 3].map(eventually))\n.done(function (result) {\n    console.log(result);\n});\n\nQ.all([\n    eventually(10),\n    eventually(20)\n])\n.spread(function (x, y) {\n    console.log(x, y);\n})"
+    ]
+  ],
+  [
+    "nfapply",
+    [
+      "return Q.nfcall(FS.readFile, \"foo.txt\", \"utf-8\");\nreturn Q.nfapply(FS.readFile, [\"foo.txt\", \"utf-8\"]);",
+      "return Q.nfcall(FS.readFile, \"foo.txt\", \"utf-8\");\nreturn Q.nfapply(FS.readFile, [\"foo.txt\", \"utf-8\"]);"
+    ]
+  ],
+  [
+    "nfcall",
+    [
+      "return Q.nfcall(FS.readFile, \"foo.txt\", \"utf-8\");\nreturn Q.nfapply(FS.readFile, [\"foo.txt\", \"utf-8\"]);",
+      "return Q.nfcall(FS.readFile, \"foo.txt\", \"utf-8\");\nreturn Q.nfapply(FS.readFile, [\"foo.txt\", \"utf-8\"]);"
+    ]
+  ],
+  [
+    "denodeify",
+    [
+      "var readFile = Q.denodeify(FS.readFile);\nreturn readFile(\"foo.txt\", \"utf-8\");\n\nvar redisClientGet = Q.nbind(redisClient.get, redisClient);\nreturn redisClientGet(\"user:1:id\");",
+      "var readFile = Q.denodeify(FS.readFile);\nreturn readFile(\"foo.txt\", \"utf-8\");\n\nvar redisClientGet = Q.nbind(redisClient.get, redisClient);\nreturn redisClientGet(\"user:1:id\");"
+    ]
+  ],
+  [
+    "nbind",
+    [
+      "var readFile = Q.denodeify(FS.readFile);\nreturn readFile(\"foo.txt\", \"utf-8\");\n\nvar redisClientGet = Q.nbind(redisClient.get, redisClient);\nreturn redisClientGet(\"user:1:id\");",
+      "var readFile = Q.denodeify(FS.readFile);\nreturn readFile(\"foo.txt\", \"utf-8\");\n\nvar redisClientGet = Q.nbind(redisClient.get, redisClient);\nreturn redisClientGet(\"user:1:id\");"
+    ]
+  ],
+  [
+    "npost",
+    [
+      "return Q.ninvoke(redisClient, \"get\", \"user:1:id\");\nreturn Q.npost(redisClient, \"get\", [\"user:1:id\"]);",
+      "return Q.ninvoke(redisClient, \"get\", \"user:1:id\");\nreturn Q.npost(redisClient, \"get\", [\"user:1:id\"]);"
+    ]
+  ],
+  [
+    "ninvoke",
+    [
+      "return Q.ninvoke(redisClient, \"get\", \"user:1:id\");\nreturn Q.npost(redisClient, \"get\", [\"user:1:id\"]);",
+      "return Q.ninvoke(redisClient, \"get\", \"user:1:id\");\nreturn Q.npost(redisClient, \"get\", [\"user:1:id\"]);"
+    ]
+  ],
+  [
+    "nodeify",
+    []
+  ],
+  [
+    "when",
+    [
+      "function timeout(promise, ms) {\n    var deferred = Q.defer();\n    Q.when(promise, deferred.resolve);\n    delay(ms).then(function () {\n        deferred.reject(new Error(\"Timed out\"));\n    });\n    return deferred.promise;\n}",
+      "return Q.when(valueOrPromise, function (value) {\n}, function (error) {\n});",
+      "function Promise() {}\nPromise.prototype.then = function (callback, errback) {\n    return when(this, callback, errback);\n};",
+      "var ref = function (object) {\n    if (object && typeof object.promiseSend !== \"undefined\") {\n        return object;\n    }\n    if (object && typeof object.then !== \"undefined\") {\n        return makePromise({\n            when: function () {\n                var result = defer();\n                object.then(result.resolve, result.reject);\n                return result;\n            }\n        }, function fallback(op) {\n            return Q.when(object, function (object) {\n                return Q.ref(object).promiseSend.apply(object, arguments);\n            });\n        });\n    }\n    return makePromise({\n        when: function () {\n            return object;"
+    ]
+  ],
+  [
+    "nearer",
+    []
+  ],
+  [
+    "isPromise",
+    []
+  ],
+  [
+    "isPromiseAlike",
+    []
+  ],
+  [
+    "resetUnhandledRejections",
+    []
+  ],
+  [
+    "getUnhandledReasons",
+    []
+  ],
+  [
+    "stopUnhandledRejectionTracking",
+    []
+  ],
+  [
+    "fulfill",
+    []
+  ],
+  [
+    "master",
+    []
+  ],
+  [
+    "async",
+    [
+      "var eventualAdd = Q.async(function* (oneP, twoP) {\n    var one = yield oneP;\n    var two = yield twoP;\n    return one + two;\n});\n\neventualAdd(eventualOne, eventualTwo).then(function (three) {\n    three === 3;\n});"
+    ]
+  ],
+  [
+    "spawn",
+    []
+  ],
+  [
+    "return",
+    []
+  ],
+  [
+    "promised",
+    []
+  ],
+  [
+    "noConflict",
+    []
+  ]
+]

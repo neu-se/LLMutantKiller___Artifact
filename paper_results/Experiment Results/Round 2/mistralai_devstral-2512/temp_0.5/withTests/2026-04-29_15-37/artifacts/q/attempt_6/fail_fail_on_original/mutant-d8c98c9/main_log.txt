@@ -1,0 +1,33 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-d8c98c9/testCase.test.ts[0m:[93m24[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '{ task: any; domain: { enter: () => void; exit: () => void; active: boolean; }; next: null; }' is not assignable to type 'null'.
+
+[7m24[0m             tail.next = { task: task, domain: mockDomain, next: null };
+[7m  [0m [91m            ~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-d8c98c9/testCase.test.ts
+  domain exit behavior
+    ✕ should properly handle domain exit in error scenarios (1 ms)
+
+  ● domain exit behavior › should properly handle domain exit in error scenarios
+
+    TypeError: Q.nextTick.runAfter is not a function
+
+      1075 |     }
+      1076 |     if (typeof process === "object" && typeof process.emit === "function") {
+    > 1077 |         Q.nextTick.runAfter(function () {
+           |                    ^
+      1078 |             if (array_indexOf(unhandledRejections, promise) !== -1) {
+      1079 |                 process.emit("unhandledRejection", reason, promise);
+      1080 |                 reportedUnhandledRejections.push(promise);
+
+      at runAfter (../subject_repositories/q/q.js:1077:20)
+      at trackRejection (../subject_repositories/q/q.js:1151:5)
+      at defer.reject (../subject_repositories/q/q.js:653:16)
+      at reject (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-d8c98c9/testCase.test.ts:43:22)
+      at Function.task [as nextTick] (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-d8c98c9/testCase.test.ts:27:13)
+      at Object.nextTick (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-d8c98c9/testCase.test.ts:42:11)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.076 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-d8c98c9/testCase.test.ts".

@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-c653c55/testCase.test.ts
+  ZIP compression with store option
+    ✕ should produce a zip with store:true (no actual compression) for medium compression level, resulting in a larger file than a truly compressed zip (101 ms)
+
+  ● ZIP compression with store option › should produce a zip with store:true (no actual compression) for medium compression level, resulting in a larger file than a truly compressed zip
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 5000
+    Received:   158
+
+      23 |         // With store:true, both should be uncompressed (same large size)
+      24 |         // With mutated code (no store:true), they'd be compressed (smaller)
+    > 25 |         expect(storedSize).toBeGreaterThan(5000); // stored zip should be large
+         |                            ^
+      26 |         expect(compressedSize).toBeGreaterThan(5000); // also stored, so large
+      27 |
+      28 |         fs.rmSync(tmpDir, { recursive: true });
+
+      at Object.toBeGreaterThan (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-c653c55/testCase.test.ts:25:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.391 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-c653c55/testCase.test.ts".

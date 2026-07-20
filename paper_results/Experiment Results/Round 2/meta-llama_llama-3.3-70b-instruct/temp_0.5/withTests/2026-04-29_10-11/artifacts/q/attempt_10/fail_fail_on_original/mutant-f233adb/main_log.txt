@@ -1,0 +1,32 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-f233adb/testCase.test.ts
+  Q
+    ✕ should check ses condition (12 ms)
+
+  ● Q › should check ses condition
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "This environment was not anticipated by Q. Please file a bug."
+    Received message:   "Cannot read properties of undefined (reading 'ok')"
+
+          10 |             (function (definition) {
+          11 |                 if ((globalThis as any).ses !== "undefined") {
+        > 12 |                     if (!((globalThis as any).ses).ok()) {
+             |                                                    ^
+          13 |                         return;
+          14 |                     } else {
+          15 |                         ((globalThis as any).ses).makeQ = definition;
+
+      at ok (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-f233adb/testCase.test.ts:12:52)
+      at llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-f233adb/testCase.test.ts:28:14
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-f233adb/testCase.test.ts:31:12)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-f233adb/testCase.test.ts:31:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.635 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-f233adb/testCase.test.ts".

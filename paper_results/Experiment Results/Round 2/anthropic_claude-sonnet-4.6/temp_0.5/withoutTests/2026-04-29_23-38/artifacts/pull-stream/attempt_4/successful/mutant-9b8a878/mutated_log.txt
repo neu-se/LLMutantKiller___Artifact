@@ -1,0 +1,32 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-9b8a878/testCase.test.ts
+  pull
+    ✕ Array constructor should be called with length for pre-allocation (4 ms)
+
+  ● pull › Array constructor should be called with length for pre-allocation
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 3
+    + Received  + 1
+
+    - Array [
+    -   2,
+    - ]
+    + Array []
+
+      37 |       // Original: new Array(2) → capturedArgs = [2]
+      38 |       // Mutated: new Array() → capturedArgs = []
+    > 39 |       expect(capturedArgs).toEqual([2]);
+         |                            ^
+      40 |     } finally {
+      41 |       (global as any).Array = OriginalArray;
+      42 |     }
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-9b8a878/testCase.test.ts:39:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.786 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-9b8a878/testCase.test.ts".

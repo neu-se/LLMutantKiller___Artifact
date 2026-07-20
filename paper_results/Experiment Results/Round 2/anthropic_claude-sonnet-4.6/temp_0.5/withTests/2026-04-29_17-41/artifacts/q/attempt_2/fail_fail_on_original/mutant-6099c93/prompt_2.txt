@@ -1,0 +1,35 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-6099c93/testCase.test.ts
+  untrackRejection rejectionHandled event
+    ✕ should emit rejectionHandled when a previously reported unhandled rejection gets handled (2 ms)
+
+  ● untrackRejection rejectionHandled event › should emit rejectionHandled when a previously reported unhandled rejection gets handled
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 1
+    Received:    0
+
+      38 |             try {
+      39 |               // The unhandledRejection should have been emitted
+    > 40 |               expect(unhandledRejections.length).toBeGreaterThanOrEqual(1);
+         |                                                  ^
+      41 |               // The rejectionHandled should have been emitted (original code)
+      42 |               // In mutated code, this will be 0 because `if (false)` prevents the emit
+      43 |               expect(handledRejections.length).toBeGreaterThanOrEqual(1);
+
+      at toBeGreaterThanOrEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-6099c93/testCase.test.ts:40:50)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:130:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.126 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-6099c93/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

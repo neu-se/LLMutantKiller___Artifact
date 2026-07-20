@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-f16e4a1/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/sinks/reduce.js"' has no exported member 'reduce'.
+
+[7m1[0m import { reduce } from '../../../../../../../../../../../subject_repositories/pull-stream/sinks/reduce.js';
+[7m [0m [91m         ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-f16e4a1/testCase.test.ts
+  reduce function
+    ✕ should return the correct result when the input stream ends immediately (1 ms)
+
+  ● reduce function › should return the correct result when the input stream ends immediately
+
+    TypeError: (0 , reduce_js_1.reduce) is not a function
+
+      4 |   it('should return the correct result when the input stream ends immediately', (done) => {
+      5 |     const source = () => (end: any, cb: any) => cb(true);
+    > 6 |     const result = reduce((acc: any, current: any) => acc + current, 0, (err: any, result: any) => {
+        |                          ^
+      7 |       if (err) done(err);
+      8 |       else {
+      9 |         done();
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-f16e4a1/testCase.test.ts:6:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.226 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-f16e4a1/testCase.test.ts".

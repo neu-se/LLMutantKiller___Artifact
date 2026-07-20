@@ -1,0 +1,464 @@
+Your task is to write a Jest test case that exposes a specific mutation in a JavaScript/TypeScript project.
+
+MUTATION DETAILS
+The mutation affects the following file:
+lib/ZipAFolder.ts
+Here is the full content of that file (shown with a <PLACEHOLDER> marker):
+'use strict';
+import {WriteStream} from 'fs';
+import * as path from 'path';
+import * as archiver from 'archiver';
+import * as fs from 'fs';
+import * as isGlob from 'is-glob';
+
+export enum COMPRESSION_LEVEL {
+    uncompressed = 0,
+    medium = 5,
+    high = 9,
+}
+
+/**
+ * Options to pass in to zip a folder
+ * compression default is 'high'
+ */
+export type ZipAFolderOptions = {
+    compression?: COMPRESSION_LEVEL;
+    customWriteStream?: WriteStream;
+};
+
+export class ZipAFolder {
+    /**
+     * Tars a given folder or a glob into a gzipped tar archive.
+     * If no zipAFolderOptions are passed in, the default compression level is high.
+     * @param src can be a string path or a glob
+     * @param tarFilePath path to the zip file
+     * @param zipAFolderOptions
+     */
+    static async tar(
+        src: string,
+        tarFilePath: string | undefined,
+        zipAFolderOptions?: ZipAFolderOptions
+    ): Promise<void | Error> {
+        const o: ZipAFolderOptions = zipAFolderOptions || {
+            compression: COMPRESSION_LEVEL.high,
+        };
+
+           <PLACEHOLDER>
+        } else {
+            await ZipAFolder.compress({
+                src,
+                targetFilePath: tarFilePath,
+                format: 'tar',
+                zipAFolderOptions,
+                archiverOptions: {
+                    gzip: true,
+                    gzipOptions: {
+                        level: o.compression,
+                    },
+                },
+            });
+        }
+    }
+
+    /**
+     * Zips a given folder or a glob into a zip archive.
+     * If no zipAFolderOptions are passed in, the default compression level is high.
+     * @param src can be a string path or a glob
+     * @param zipFilePath path to the zip file
+     * @param zipAFolderOptions
+     */
+    static async zip(
+        src: string,
+        zipFilePath: string | undefined,
+        zipAFolderOptions?: ZipAFolderOptions
+    ): Promise<void | Error> {
+        const o: ZipAFolderOptions = zipAFolderOptions || {
+            compression: COMPRESSION_LEVEL.high,
+        };
+
+        if (o.compression === COMPRESSION_LEVEL.uncompressed) {
+            await ZipAFolder.compress({
+                src,
+                targetFilePath: zipFilePath,
+                format: 'zip',
+                zipAFolderOptions,
+                archiverOptions: {
+                    store: true,
+                },
+            });
+        } else {
+            await ZipAFolder.compress({
+                src,
+                targetFilePath: zipFilePath,
+                format: 'zip',
+                zipAFolderOptions,
+                archiverOptions: {
+                    zlib: {
+                        level: o.compression,
+                    },
+                },
+            });
+        }
+    }
+
+    private static async compress({
+        src,
+        targetFilePath,
+        format,
+        zipAFolderOptions,
+        archiverOptions,
+    }: {
+        src: string;
+        targetFilePath?: string;
+        format: archiver.Format;
+        zipAFolderOptions?: ZipAFolderOptions;
+        archiverOptions?: archiver.ArchiverOptions;
+    }): Promise<void | Error> {
+        let output: WriteStream;
+
+        if (!zipAFolderOptions?.customWriteStream && targetFilePath) {
+            const targetBasePath: string = path.dirname(targetFilePath);
+
+            if (targetBasePath === src) {
+                throw new Error('Source and target folder must be different.');
+            }
+            try {
+                if (!isGlob(src)) {
+                    await fs.promises.access(src, fs.constants.R_OK); //eslint-disable-line no-bitwise
+                }
+                await fs.promises.access(targetBasePath, fs.constants.R_OK | fs.constants.W_OK); //eslint-disable-line no-bitwise
+            } catch (e: any) {
+                throw new Error(`Permission error: ${e.message}`);
+            }
+            output = fs.createWriteStream(targetFilePath);
+        } else if (zipAFolderOptions && zipAFolderOptions.customWriteStream) {
+            output = zipAFolderOptions?.customWriteStream;
+        } else {
+            throw new Error('You must either provide a target file path or a custom write stream to write to.');
+        }
+
+        const zipArchive: archiver.Archiver = archiver(format, archiverOptions || {});
+
+        return new Promise((resolve, reject) => {
+            output.on('close', resolve);
+            output.on('error', reject);
+
+            zipArchive.pipe(output);
+
+            if (isGlob(src)) {
+                src.split(',').forEach((globPart) => {
+                    zipArchive.glob(globPart);
+                });
+            } else {
+                zipArchive.directory(src, false);
+            }
+            zipArchive.finalize();
+        });
+    }
+}
+
+export const zip = ZipAFolder.zip;
+export const tar = ZipAFolder.tar;
+
+In the original code, <PLACEHOLDER> has the value:
+
+-           if (o.compression === COMPRESSION_LEVEL.uncompressed) {
+-               await ZipAFolder.compress({src, targetFilePath: tarFilePath, format: 'tar', zipAFolderOptions});
+-           } else {
+In the mutated code, <PLACEHOLDER> has the value:
+
++           if (o.compression === COMPRESSION_LEVEL.uncompressed) {} else {
+
+
+YOUR TASK
+Write one Jest test file that:
+    1. Passes when run against the original code.
+    2. Fails when run against the mutated code.
+    3. Tests the behavior of the mutated file in a way that reliably detects the mutation.
+The test will be saved at the following path, relative to this test-generation project’s root:
+llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-2a53823/testCase.test.ts
+
+RESOURCES AVAILABLE
+Existing test cases you may use for style or structure inspiration, focusing on how they reflect the project’s expected behavior and typical inputs:
+// test/tests-ZipAFolder.ts
+
+'use strict';
+import 'jest-extended';
+import * as fs from 'fs';
+import * as rimraf from 'rimraf';
+import * as path from 'path';
+import {COMPRESSION_LEVEL, tar, zip, ZipAFolder as zipafolder} from '../lib/ZipAFolder';
+
+describe('Zip-A-Folder Test', function () {
+    const testZIP = path.resolve(__dirname, 'test.zip');
+    const testUNCOMPRESSEDZIP = path.resolve(__dirname, 'testUNCOMPRESSED.zip');
+    const testMEDIUMZIP = path.resolve(__dirname, 'testMEDIUM.zip');
+    const testSMALLZIP = path.resolve(__dirname, 'testSMALL.zip');
+    const testSameDirectoryZIP = path.resolve(__dirname, 'data/test.zip');
+    const testnotexistingZIP = path.resolve(__dirname, '/notexisting/testcallback.zip');
+    const testGlobZIP = path.resolve(__dirname, 'test.globbed.zip');
+    const testGlobMultiZIP = path.resolve(__dirname, 'test.globbed.multi.zip');
+
+    const testTAR = path.resolve(__dirname, 'test.tgz');
+    const testUNCOMPRESSEDTAR = path.resolve(__dirname, 'testUNCOMPRESSED.tar');
+    const testMEDIUMTAR = path.resolve(__dirname, 'testMEDIUM.tgz');
+    const testSMALLTAR = path.resolve(__dirname, 'testSMALL.tgz');
+    const testSameDirectoryTAR = path.resolve(__dirname, 'data/test.tgz');
+    const testnotexistingTAR = path.resolve(__dirname, '/notexisting/testcallback.tgz');
+    const testGlobTAR = path.resolve(__dirname, 'test.globbed.tgz');
+    const testGlobMultiTAR = path.resolve(__dirname, 'test.globbed.multi.tgz');
+
+    beforeAll(() => {
+        rimraf.sync('test/*.tgz');
+        rimraf.sync('test/*.tar');
+        rimraf.sync('test/*.zip');
+    });
+
+    it('Called without a targetFilePath or a customWriteStream should throw an error', async () => {
+        await expect(
+            zipafolder.zip(path.resolve(__dirname, 'data/'), undefined, {customWriteStream: undefined})
+        ).rejects.toThrow(/You must either provide a target file path or a custom write stream to write to./);
+        await expect(zipafolder.zip(path.resolve(__dirname, 'data/'), undefined)).rejects.toThrow(
+            /You must either provide a target file path or a custom write stream to write to./
+        );
+        await expect(
+            zipafolder.tar(path.resolve(__dirname, 'data/'), undefined, {customWriteStream: undefined})
+        ).rejects.toThrow(/You must either provide a target file path or a custom write stream to write to./);
+        await expect(zipafolder.tar(path.resolve(__dirname, 'data/'), undefined)).rejects.toThrow(
+            /You must either provide a target file path or a custom write stream to write to./
+        );
+    });
+
+    it('ZIP test folder and zip target in same directory should throw an error', async () => {
+        await expect(zipafolder.zip(path.resolve(__dirname, 'data/'), testSameDirectoryZIP)).rejects.toThrow(
+            /Source and target folder must be different./
+        );
+    });
+
+    it('ZIP test folder', async () => {
+        await zipafolder.zip(path.resolve(__dirname, 'data/'), testZIP);
+
+        expect(fs.existsSync(testZIP)).toBe(true);
+    });
+
+    it('ZIP test folder using compression rate', async () => {
+        await zipafolder.zip(path.resolve(__dirname, 'data/'), testUNCOMPRESSEDZIP, {
+            compression: COMPRESSION_LEVEL.uncompressed,
+        });
+        await zipafolder.zip(path.resolve(__dirname, 'data/'), testMEDIUMZIP, {compression: COMPRESSION_LEVEL.medium});
+        await zipafolder.zip(path.resolve(__dirname, 'data/'), testSMALLZIP, {compression: COMPRESSION_LEVEL.high});
+
+        const sizeUNCOMPRESSED = fs.statSync(testUNCOMPRESSEDZIP).size;
+        const sizeMEDIUM = fs.statSync(testMEDIUMZIP).size;
+        const sizeSMALL = fs.statSync(testSMALLZIP).size;
+        expect(sizeMEDIUM).toBeLessThan(sizeUNCOMPRESSED);
+        expect(sizeSMALL).toBeLessThan(sizeMEDIUM);
+    });
+
+    it('ZIP test folder direct via constant', async () => {
+        await zip(path.resolve(__dirname, 'data/'), testZIP);
+
+        expect(fs.existsSync(testZIP)).toBe(true);
+    });
+
+    it('ZIP test folder failing', async () => {
+        expect.assertions(1);
+        try {
+            await zipafolder.zip(path.resolve(__dirname, 'notexisting/'), testZIP);
+        } catch (e: any) {
+            expect(e.message).toMatch(/no such file or directory/);
+        }
+    });
+
+    it('ZIP test folder into a zipfile in a notexisting folder', async () => {
+        expect.assertions(1);
+        try {
+            await zipafolder.zip(path.resolve(__dirname, 'data/'), testnotexistingZIP);
+        } catch (e: any) {
+            expect(e.message).toMatch(/no such file or directory/);
+        }
+    });
+
+    it('ZIP test globbing', async () => {
+        await zip('**/*.json', testGlobZIP);
+
+        expect(fs.existsSync(testGlobZIP)).toBe(true);
+    });
+
+    it('ZIP test globbing with multiple paths', async () => {
+        await zip('**/*.json, **/*.txt', testGlobMultiZIP);
+
+        expect(fs.existsSync(testGlobMultiZIP)).toBe(true);
+    });
+
+    it('TGZ test folder and tar target in same directory should throw an error', async () => {
+        await expect(zipafolder.tar(path.resolve(__dirname, 'data/'), testSameDirectoryTAR)).rejects.toThrow(
+            /Source and target folder must be different./
+        );
+    });
+
+    it('TGZ test folder', async () => {
+        await zipafolder.tar(path.resolve(__dirname, 'data/'), testTAR);
+
+        expect(fs.existsSync(testTAR)).toBe(true);
+    });
+
+    it('TGZ test folder using compression rate', async () => {
+        await zipafolder.tar(path.resolve(__dirname, 'data/'), testUNCOMPRESSEDTAR, {
+            compression: COMPRESSION_LEVEL.uncompressed,
+        });
+        await zipafolder.tar(path.resolve(__dirname, 'data/'), testMEDIUMTAR, {compression: COMPRESSION_LEVEL.medium});
+        await zipafolder.tar(path.resolve(__dirname, 'data/'), testSMALLTAR, {compression: COMPRESSION_LEVEL.high});
+
+        const sizeUNCOMPRESSED = fs.statSync(testUNCOMPRESSEDTAR).size;
+        const sizeBIG = fs.statSync(testMEDIUMTAR).size;
+        const sizeSMALL = fs.statSync(testSMALLTAR).size;
+        expect(sizeBIG).toBeLessThan(sizeUNCOMPRESSED);
+        expect(sizeSMALL).toBeLessThan(sizeBIG);
+    });
+
+    it('TGZ test folder direct via constant', async () => {
+        await tar(path.resolve(__dirname, 'data/'), testTAR);
+
+        expect(fs.existsSync(testTAR)).toBe(true);
+    });
+
+    it('TGZ test folder failing', async () => {
+        expect.assertions(1);
+        try {
+            await zipafolder.tar(path.resolve(__dirname, 'notexisting/'), testTAR);
+        } catch (e: any) {
+            expect(e.message).toMatch(/no such file or directory/);
+        }
+    });
+
+    it('TGZ test folder into a gzipped tarfile in a notexisting folder', async () => {
+        expect.assertions(1);
+        try {
+            await zipafolder.tar(path.resolve(__dirname, 'data/'), testnotexistingTAR);
+        } catch (e: any) {
+            expect(e.message).toMatch(/no such file or directory/);
+        }
+    });
+
+    it('ZIP test custom writestream with zipfilepath empty string', async () => {
+        const customWS = fs.createWriteStream('test/123.zip');
+        await zipafolder.zip(path.resolve(__dirname, 'data/'), '', {customWriteStream: customWS});
+        expect(fs.existsSync('test/123.zip')).toBeTruthy();
+    });
+
+    it('ZIP test custom writestream with zipfilepath undefined', async () => {
+        const customWS = fs.createWriteStream('test/1234.zip');
+        await zipafolder.zip(path.resolve(__dirname, 'data/'), undefined, {customWriteStream: customWS});
+        expect(fs.existsSync('test/1234.zip')).toBeTruthy();
+    });
+
+    it('TGZ test custom writestream with tarfilepath empty string', async () => {
+        const customWS = fs.createWriteStream('test/123.tgz');
+        await zipafolder.tar(path.resolve(__dirname, 'data/'), '', {customWriteStream: customWS});
+        expect(fs.existsSync('test/123.tgz')).toBeTruthy();
+    });
+
+    it('TGZ test custom writestream with tarfilepath undefined', async () => {
+        const customWS = fs.createWriteStream('test/1234.tgz');
+        await zipafolder.tar(path.resolve(__dirname, 'data/'), undefined, {customWriteStream: customWS});
+        expect(fs.existsSync('test/1234.tgz')).toBeTruthy();
+    });
+
+    it('TGZ test globbing', async () => {
+        await tar('**/*.json', testGlobTAR);
+
+        expect(fs.existsSync(testGlobTAR)).toBe(true);
+    });
+
+    it('TGZ test globbing with multiple paths', async () => {
+        await tar('**/*.json, **/*.txt', testGlobMultiTAR);
+
+        expect(fs.existsSync(testGlobMultiTAR)).toBe(true);
+    });
+
+    /**
+     * As this test is huuuuuuge I decided to only run it locally to check on github issue:
+     * https://github.com/maugenst/zip-a-folder/issues/32
+     * Preparation to run this test:
+     *  * create a folder in test called 'largeFolder'
+     *  * copy huge / tons of files into it
+     *  * remove 'skip' and run the test
+     */
+    it.skip('Zip a very large folder ', async () => {
+        await zipafolder.zip(path.resolve(__dirname, 'largeFolder'), 'test/large.zip');
+        expect(fs.existsSync('test/large.zip')).toBeTruthy();
+    });
+});
+
+The test runner configuration (package.json):
+{
+  "name": "zip-a-folder",
+  "version": "2.0.0",
+  "description": "Zip/Tar a complete folder or a glob list into a zip/tgz file",
+  "author": "Marius Augenstein",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maugenst/zip-a-folder/issues"
+  },
+  "homepage": "https://github.com/maugenst/zip-a-folder#readme",
+  "main": "dist/lib/ZipAFolder.js",
+  "typings": "dist/lib/ZipAFolder.d.ts",
+  "files": [
+    "README.md",
+    "lib",
+    "dist"
+  ],
+  "scripts": {
+    "test": "jest --coverage",
+    "build": "tsc --build --clean && tsc && npm run lint",
+    "lint": "eslint . --ext .ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maugenst/zip-a-folder.git"
+  },
+  "keywords": [
+    "zip",
+    "folder",
+    "async",
+    "promise"
+  ],
+  "devDependencies": {
+    "@types/archiver": "^5.3.2",
+    "@types/is-glob": "^4.0.2",
+    "@types/jest": "^29.5.2",
+    "@types/node": "^20.2.5",
+    "@types/rimraf": "^3.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.59.9",
+    "@typescript-eslint/parser": "^5.59.9",
+    "coveralls": "^3.1.1",
+    "eslint": "^8.42.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jest": "^27.2.1",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "eslint-plugin-prettier": "^4.2.1",
+    "jest": "^29.5.0",
+    "jest-extended": "^4.0.0",
+    "prettier": "^2.8.8",
+    "rimraf": "^5.0.1",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "archiver": "^5.3.1",
+    "is-glob": "^4.0.3"
+  }
+}
+
+ALLOWED LIBRARIES
+You may use:
+    1. Any built-in Node.js modules (e.g., fs, path, crypto, etc.).
+    2. The following external libraries are explicitly permitted:
+    - rimraf 
+    - jest-extended 
+    - archiver
+    - is-glob
+You may not use any other third-party libraries.

@@ -1,0 +1,24 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-fda66fb/testCase.test.ts
+  Dirty database drain event timing
+    ✕ should not emit drain prematurely when queue is not empty (60 ms)
+
+  ● Dirty database drain event timing › should not emit drain prematurely when queue is not empty
+
+    Drain was emitted before all writes completed
+
+      39 |           db.close();
+      40 |           fs.rmSync(testDir, { recursive: true, force: true });
+    > 41 |           done(new Error('Drain was emitted before all writes completed'));
+         |                ^
+      42 |         } else {
+      43 |           db.close();
+      44 |           fs.rmSync(testDir, { recursive: true, force: true });
+
+      at Timeout._onTimeout (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-fda66fb/testCase.test.ts:41:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.755 s, estimated 7 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-fda66fb/testCase.test.ts".

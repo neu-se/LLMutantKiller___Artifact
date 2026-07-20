@@ -1,0 +1,59 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts[0m:[93m2[0m:[93m19[0m - [91merror[0m[90m TS2307: [0mCannot find module './q.js' or its corresponding type declarations.
+
+[7m2[0m import { Q } from "./q.js";
+[7m [0m [91m                  ~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts[0m:[93m9[0m:[93m34[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m9[0m         const originalQ = global.Q;
+[7m [0m [91m                                 ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts[0m:[93m12[0m:[93m23[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m12[0m         delete global.Q;
+[7m  [0m [91m                      ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts[0m:[93m13[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType '{}' is not assignable to type 'Window & typeof globalThis'.
+  Type '{}' is missing the following properties from type 'Window': clientInformation, closed, cookieStore, customElements, and 209 more.
+
+[7m13[0m         global.window = {}; // window is defined
+[7m  [0m [91m        ~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts[0m:[93m14[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'undefined' is not assignable to type 'Window & typeof globalThis'.
+  Type 'undefined' is not assignable to type 'Window'.
+
+[7m14[0m         global.self = undefined; // self is undefined
+[7m  [0m [91m        ~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts[0m:[93m23[0m:[93m23[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m23[0m         expect(global.Q).toBeDefined();
+[7m  [0m [91m                      ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts[0m:[93m24[0m:[93m23[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m24[0m         expect(global.Q).toBe(Q);
+[7m  [0m [91m                      ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts[0m:[93m29[0m:[93m16[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m29[0m         global.Q = originalQ;
+[7m  [0m [91m               ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts
+  Q library global object detection
+    ✕ should expose Q as a global when window is defined but self is undefined (2 ms)
+
+  ● Q library global object detection › should expose Q as a global when window is defined but self is undefined
+
+    Cannot find module './q.js' from 'llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts'
+
+      15 |
+      16 |         // Clear the require cache to force a fresh load of the module
+    > 17 |         delete require.cache[require.resolve("./q.js")];
+         |                                      ^
+      18 |
+      19 |         // Load Q which should expose itself as a global
+      20 |         const Q = require("./q.js");
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.resolve (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts:17:38)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.612 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts".

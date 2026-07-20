@@ -1,0 +1,43 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-66dbaca/testCase.test.ts
+  Delta export verification
+    ✕ should be able to create and use Delta instances (5 ms)
+
+  ● Delta export verification › should be able to create and use Delta instances
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 4
+    + Received  + 1
+
+      Array [
+        Object {
+    -     "insert": "World",
+    -   },
+    -   Object {
+    -     "insert": "Hello",
+    +     "insert": "WorldHello",
+        },
+      ]
+
+       9 |     // Test composition which requires proper class methods
+      10 |     const composed = delta1.compose(delta2);
+    > 11 |     expect(composed.ops).toEqual([
+         |                          ^
+      12 |       { insert: 'World' },
+      13 |       { insert: 'Hello' }
+      14 |     ]);
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-66dbaca/testCase.test.ts:11:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.856 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-66dbaca/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,51 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-416df1a/testCase.test.ts[0m:[93m11[0m:[93m32[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m11[0m     dirty.set('key', 'value', (err) => {
+[7m  [0m [91m                               ~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-416df1a/testCase.test.ts[0m:[93m17[0m:[93m5[0m - [91merror[0m[90m TS18047: [0m'dirty._writeStream' is possibly 'null'.
+
+[7m17[0m     dirty._writeStream.write('invalid data', (err) => {
+[7m  [0m [91m    ~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-416df1a/testCase.test.ts (7.334 s)
+  Dirty
+    ✕ should not emit error when there are callbacks and an error occurs (5001 ms)
+
+  ● Dirty › should not emit error when there are callbacks and an error occurs
+
+    expect(received).toBeUndefined()
+
+    Received: null
+
+      10 |     });
+      11 |     dirty.set('key', 'value', (err) => {
+    > 12 |       expect(err).toBeUndefined();
+         |                   ^
+      13 |       fs.unlink(dbPath, () => {
+      14 |         done();
+      15 |       });
+
+      at toBeUndefined (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-416df1a/testCase.test.ts:12:19)
+      at Object.cb [as callback] (../subject_repositories/node-dirty/lib/dirty/dirty.js:191:31)
+
+  ● Dirty › should not emit error when there are callbacks and an error occurs
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      3 |
+      4 | describe('Dirty', () => {
+    > 5 |   it('should not emit error when there are callbacks and an error occurs', (done) => {
+        |   ^
+      6 |     const dbPath = 'test.db';
+      7 |     const dirty = new Dirty(dbPath);
+      8 |     dirty.on('error', (err) => {
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-416df1a/testCase.test.ts:5:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-416df1a/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.725 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-416df1a/testCase.test.ts".

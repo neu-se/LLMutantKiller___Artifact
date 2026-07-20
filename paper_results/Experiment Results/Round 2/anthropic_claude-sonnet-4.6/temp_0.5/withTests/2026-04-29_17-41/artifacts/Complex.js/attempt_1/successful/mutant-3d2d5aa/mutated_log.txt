@@ -1,0 +1,24 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-3d2d5aa/testCase.test.ts
+  Complex acoth mutation test
+    ✕ should correctly compute acoth for very small imaginary values where d underflows to zero (2 ms)
+
+  ● Complex acoth mutation test › should correctly compute acoth for very small imaginary values where d underflows to zero
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not 0
+
+      11 |     // Mutated: (false) ? -b/0 : 0 => 0
+      12 |     // Then .atanh() is called on Complex(0, -Infinity) vs Complex(0, 0)
+    > 13 |     expect(result.re).not.toBe(0); // original gives non-zero result
+         |                           ^
+      14 |   });
+      15 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-3d2d5aa/testCase.test.ts:13:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.989 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-3d2d5aa/testCase.test.ts".

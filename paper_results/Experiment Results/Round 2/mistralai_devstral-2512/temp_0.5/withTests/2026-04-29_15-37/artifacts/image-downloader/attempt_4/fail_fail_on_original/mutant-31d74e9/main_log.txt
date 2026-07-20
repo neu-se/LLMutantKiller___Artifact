@@ -1,0 +1,29 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_4/pending_category/mutant-31d74e9/testCase.test.ts[0m:[93m4[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/image-downloader/lib/request.js"' has no exported member 'request'.
+
+[7m4[0m import { request } from '../../../../../../../../../../../subject_repositories/image-downloader/lib/request.js';
+[7m [0m [91m         ~~~~~~~[0m
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_4/pending_category/mutant-31d74e9/testCase.test.ts
+  request error handling
+    ✕ should handle stream errors correctly (1 ms)
+
+  ● request error handling › should handle stream errors correctly
+
+    TypeError: Cannot redefine property: createWriteStream
+        at Function.defineProperty (<anonymous>)
+
+      26 |
+      27 |     // Spy on createWriteStream to return our mock
+    > 28 |     const createWriteStreamSpy = jest.spyOn(fs, 'createWriteStream').mockReturnValue(mockWriteStream as any);
+         |                                       ^
+      29 |
+      30 |     await expect(request({ url: mockUrl, dest })).rejects.toThrow('Write stream error');
+      31 |
+
+      at ModuleMocker.spyOn (node_modules/jest-mock/build/index.js:776:16)
+      at Object.spyOn (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_4/pending_category/mutant-31d74e9/testCase.test.ts:28:39)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.077 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_4/pending_category/mutant-31d74e9/testCase.test.ts".

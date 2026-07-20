@@ -1,0 +1,30 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-c653c55/testCase.test.ts
+  ZipAFolder.zip with uncompressed option
+    ✕ should create a ZIP file with store compression when uncompressed option is used (13 ms)
+
+  ● ZipAFolder.zip with uncompressed option › should create a ZIP file with store compression when uncompressed option is used
+
+    TypeError: rimraf is not a function
+
+      33 |             // Cleanup
+      34 |             await new Promise<void>((resolve, reject) => {
+    > 35 |                 rimraf(testDir, (err) => {
+         |                 ^
+      36 |                     if (err) reject(err);
+      37 |                     else resolve();
+      38 |                 });
+
+      at rimraf (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-c653c55/testCase.test.ts:35:17)
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-c653c55/testCase.test.ts:34:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.181 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-c653c55/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

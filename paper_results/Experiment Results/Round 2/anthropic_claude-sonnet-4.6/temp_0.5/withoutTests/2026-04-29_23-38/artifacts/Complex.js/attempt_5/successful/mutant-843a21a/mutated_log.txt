@@ -1,0 +1,26 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-843a21a/testCase.test.ts
+  Complex asech
+    ✕ detects mutation in asech d=0 fallback using negative subnormal (2 ms)
+
+  ● Complex asech › detects mutation in asech d=0 fallback using negative subnormal
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: NaN
+    Received: -0
+
+      16 |     // Original gives acosh(-Infinity, 0), mutated gives acosh(0, 0)
+      17 |     // Check that result matches original (acosh(-Infinity))
+    > 18 |     expect(resultNeg.re).toEqual(negInfAcosh.re);
+         |                          ^
+      19 |     expect(resultNeg.im).toEqual(negInfAcosh.im);
+      20 |   });
+      21 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-843a21a/testCase.test.ts:18:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.996 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-843a21a/testCase.test.ts".

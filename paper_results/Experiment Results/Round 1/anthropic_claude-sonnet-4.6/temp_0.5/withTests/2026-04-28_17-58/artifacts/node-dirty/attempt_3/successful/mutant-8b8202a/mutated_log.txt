@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/node-dirty/lib/dirty/dirty.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/node-dirty/lib/dirty/dirty.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-8b8202a/testCase.test.ts (6.407 s)
+  drain event count with backpressure
+    ✕ should emit drain exactly once after all writes complete (5003 ms)
+
+  ● drain event count with backpressure › should emit drain exactly once after all writes complete
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 2
+
+      35 |                 // In mutated: drain fires from stream drain handler too (extra drain).
+      36 |                 // So mutated code emits drain more times than original.
+    > 37 |                 expect(drainCount).toBe(1);
+         |                                    ^
+      38 |                 try { fs.unlinkSync(file); } catch (e) {}
+      39 |                 try { fs.rmdirSync(tmpDir); } catch (e) {}
+      40 |                 done();
+
+      at Immediate.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-8b8202a/testCase.test.ts:37:36)
+
+  ● drain event count with backpressure › should emit drain exactly once after all writes complete
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       5 |
+       6 | describe('drain event count with backpressure', () => {
+    >  7 |   it('should emit drain exactly once after all writes complete', (done) => {
+         |   ^
+       8 |     const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'dirty-drain-test-'));
+       9 |     const file = path.join(tmpDir, 'test.dirty');
+      10 |     const db = new (Dirty as any)(file);
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-8b8202a/testCase.test.ts:7:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-8b8202a/testCase.test.ts:6:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.574 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-8b8202a/testCase.test.ts".

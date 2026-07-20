@@ -1,0 +1,19 @@
+let assert = require('assert');
+let pull_stream = require('pull-stream');
+
+describe('test pull_stream', function() {
+    it('test pull-stream.map with empty stream', function(done) {
+        const source = pull_stream.values([]);
+        const mapper = x => x * 2;
+        
+        pull_stream(
+            source,
+            pull_stream.map(mapper),
+            pull_stream.collect(function(err, results) {
+                assert.ifError(err);
+                assert.deepEqual(results, []);
+                done();
+            })
+        );
+    });
+});

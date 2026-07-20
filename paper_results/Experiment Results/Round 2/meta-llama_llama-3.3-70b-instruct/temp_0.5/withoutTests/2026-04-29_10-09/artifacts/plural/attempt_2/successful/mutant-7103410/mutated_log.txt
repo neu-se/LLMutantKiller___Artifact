@@ -1,0 +1,36 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/plural/attempt_2/pending_category/mutant-7103410/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2616: [0m'plural' can only be imported by using 'import plural = require("../../../../../../../../../../../subject_repositories/plural/index")' or a default import.
+
+[7m1[0m import { plural, monkeyPatch, unmonkeyPatch } from '../../../../../../../../../../../subject_repositories/plural/index';
+[7m [0m [91m         ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/plural/attempt_2/pending_category/mutant-7103410/testCase.test.ts[0m:[93m8[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'plural' does not exist on type '"cat"'.
+
+[7m8[0m     expect(word.plural(num)).toBe('cats');
+[7m [0m [91m                ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/plural/index.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/plural/index.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/plural/attempt_2/pending_category/mutant-7103410/testCase.test.ts
+  plural function
+    ✕ should return the correct plural form of a word (2 ms)
+
+  ● plural function › should return the correct plural form of a word
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "cats"
+    Received: undefined
+
+       6 |     const word = 'cat';
+       7 |     const num = 2;
+    >  8 |     expect(word.plural(num)).toBe('cats');
+         |                              ^
+       9 |     unmonkeyPatch();
+      10 |   });
+      11 | });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/plural/attempt_2/pending_category/mutant-7103410/testCase.test.ts:8:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.723 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/plural/attempt_2/pending_category/mutant-7103410/testCase.test.ts".

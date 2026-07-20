@@ -1,0 +1,34 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-68d2151/testCase.test.ts[0m:[93m1[0m:[93m26[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import { GeoPoint } from "../../../../../../../../../../../subject_repositories/node-geo-point/src/geo-point.ts";
+[7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-68d2151/testCase.test.ts
+  GeoPoint.calculateDestination
+    ✕ should calculate correct destination with specific bearing and distance (2 ms)
+
+  ● GeoPoint.calculateDestination › should calculate correct destination with specific bearing and distance
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.898315
+    Received: 0.8993216059187716
+
+    Expected precision:    5
+    Expected difference: < 0.000005
+    Received difference:   0.0010066059187716636
+
+       5 |     const startPoint = new GeoPoint(0, 0);
+       6 |     const result = GeoPoint.calculateDestination(startPoint, 100000, 90);
+    >  7 |     expect(result.longitude).toBeCloseTo(0.898315, 5);
+         |                              ^
+       8 |     expect(result.latitude).toBeCloseTo(0, 5);
+       9 |   });
+      10 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-68d2151/testCase.test.ts:7:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.754 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-68d2151/testCase.test.ts".

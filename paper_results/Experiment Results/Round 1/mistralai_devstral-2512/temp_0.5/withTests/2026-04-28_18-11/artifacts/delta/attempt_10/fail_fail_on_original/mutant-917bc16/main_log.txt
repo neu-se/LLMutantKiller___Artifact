@@ -1,0 +1,53 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_10/pending_category/mutant-917bc16/testCase.test.ts
+  compose() optimization
+    ✕ should optimize when rest of other is just retain with matching attributes (7 ms)
+
+  ● compose() optimization › should optimize when rest of other is just retain with matching attributes
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 11
+    + Received  +  2
+
+      Array [
+        Object {
+          "attributes": Object {
+            "bold": true,
+          },
+    -     "insert": "A",
+    -   },
+    -   Object {
+    -     "insert": "B",
+    -   },
+    -   Object {
+    -     "attributes": Object {
+    -       "bold": true,
+    -     },
+    -     "insert": "C",
+    +     "insert": "ABC",
+        },
+        Object {
+          "attributes": Object {
+            "bold": true,
+          },
+    -     "retain": 7,
+    +     "retain": 2,
+        },
+      ]
+
+      11 |     const result = a.compose(b);
+      12 |     // The optimization should merge the retains
+    > 13 |     expect(result.ops).toEqual([
+         |                        ^
+      14 |       { insert: 'A', attributes: { bold: true } },
+      15 |       { insert: 'B' },
+      16 |       { insert: 'C', attributes: { bold: true } },
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_10/pending_category/mutant-917bc16/testCase.test.ts:13:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.942 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_10/pending_category/mutant-917bc16/testCase.test.ts".

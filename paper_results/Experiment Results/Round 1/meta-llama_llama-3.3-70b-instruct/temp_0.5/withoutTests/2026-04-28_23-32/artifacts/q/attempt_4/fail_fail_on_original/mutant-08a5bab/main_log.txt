@@ -1,0 +1,44 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-08a5bab/testCase.test.ts[0m:[93m9[0m:[93m29[0m - [91merror[0m[90m TS18048: [0m'lines.length' is possibly 'undefined'.
+
+[7m9[0m         for (let i = 0; i < lines?.length; ++i) {
+[7m [0m [91m                            ~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-08a5bab/testCase.test.ts[0m:[93m10[0m:[93m26[0m - [91merror[0m[90m TS18048: [0m'lines' is possibly 'undefined'.
+
+[7m10[0m             const line = lines[i];
+[7m  [0m [91m                         ~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-08a5bab/testCase.test.ts[0m:[93m11[0m:[93m45[0m - [91merror[0m[90m TS2339: [0mProperty 'getFileNameAndLineNumber' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'.
+
+[7m11[0m             const fileNameAndLineNumber = Q.getFileNameAndLineNumber(line);
+[7m  [0m [91m                                            ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-08a5bab/testCase.test.ts[0m:[93m12[0m:[93m73[0m - [91merror[0m[90m TS2339: [0mProperty 'qFileName' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'.
+
+[7m12[0m             if (fileNameAndLineNumber && fileNameAndLineNumber[0] !== Q.qFileName && fileNameAndLineNumber[1] >= Q.qStartingLine) {
+[7m  [0m [91m                                                                        ~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-08a5bab/testCase.test.ts[0m:[93m12[0m:[93m116[0m - [91merror[0m[90m TS2339: [0mProperty 'qStartingLine' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'.
+
+[7m12[0m             if (fileNameAndLineNumber && fileNameAndLineNumber[0] !== Q.qFileName && fileNameAndLineNumber[1] >= Q.qStartingLine) {
+[7m  [0m [91m                                                                                                                   ~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-08a5bab/testCase.test.ts
+  Q
+    ✕ should filter internal frames from stack traces (2 ms)
+
+  ● Q › should filter internal frames from stack traces
+
+    TypeError: q_js_1.default.getFileNameAndLineNumber is not a function
+
+       9 |         for (let i = 0; i < lines?.length; ++i) {
+      10 |             const line = lines[i];
+    > 11 |             const fileNameAndLineNumber = Q.getFileNameAndLineNumber(line);
+         |                                             ^
+      12 |             if (fileNameAndLineNumber && fileNameAndLineNumber[0] !== Q.qFileName && fileNameAndLineNumber[1] >= Q.qStartingLine) {
+      13 |                 desiredLines.push(line);
+      14 |             }
+
+      at Object.getFileNameAndLineNumber (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-08a5bab/testCase.test.ts:11:45)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.447 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-08a5bab/testCase.test.ts".

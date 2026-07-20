@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-e7b88d9/testCase.test.ts
+  take function
+    ✕ should pass when run against the original code and fail when run against the mutated code (1 ms)
+
+  ● take function › should pass when run against the original code and fail when run against the mutated code
+
+    TypeError: cb is not a function
+
+      1 | module.exports = function abortCb(cb, abort, onAbort) {
+    > 2 |   cb(abort)
+        |   ^
+      3 |   onAbort && onAbort(abort === true ? null: abort)
+      4 |   return
+      5 | }
+
+      at cb (../subject_repositories/pull-stream/util/abort-cb.js:2:3)
+      at abortCb (../subject_repositories/pull-stream/sources/values.js:17:14)
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-e7b88d9/testCase.test.ts:10:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.697 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-e7b88d9/testCase.test.ts".

@@ -1,0 +1,36 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_2/pending_category/mutant-384e5c2/testCase.test.ts[0m:[93m7[0m:[93m21[0m - [91merror[0m[90m TS2322: [0mType 'number[]' is not assignable to type 'number'.
+
+[7m7[0m       coordinates: [[-0.15, 51.5]]
+[7m [0m [91m                    ~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_2/pending_category/mutant-384e5c2/testCase.test.ts
+  GeoPoint tests
+    ✕ should not throw an error when type is Point (51 ms)
+
+  ● GeoPoint tests › should not throw an error when type is Point
+
+    expect(received).not.toThrowError()
+
+    Error name:    "TypeError"
+    Error message: "coordinates must be an array and contain 2 elements"
+
+          71 |
+          72 |     if (!Array.isArray(point.coordinates) || point.coordinates.length !== 2) {
+        > 73 |       throw new TypeError('coordinates must be an array and contain 2 elements');
+             |             ^
+          74 |     }
+          75 |
+          76 |     return this.fromLngLatArray(point.coordinates);
+
+      at Function.fromGeoJSON (../subject_repositories/node-geo-point/src/geo-point.ts:73:13)
+      at fromGeoJSON (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_2/pending_category/mutant-384e5c2/testCase.test.ts:5:27)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_2/pending_category/mutant-384e5c2/testCase.test.ts:8:13)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_2/pending_category/mutant-384e5c2/testCase.test.ts:8:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.052 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_2/pending_category/mutant-384e5c2/testCase.test.ts".

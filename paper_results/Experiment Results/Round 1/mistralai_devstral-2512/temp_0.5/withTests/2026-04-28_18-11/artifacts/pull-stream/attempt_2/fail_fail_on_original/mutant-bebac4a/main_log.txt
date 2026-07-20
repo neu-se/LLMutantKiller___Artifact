@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-bebac4a/testCase.test.ts (7.072 s)
+  drain abort behavior
+    ✕ should not call read when abort is called before read is set (5003 ms)
+
+  ● drain abort behavior › should not call read when abort is called before read is set
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      21 |
+      22 |     setImmediate(() => {
+    > 23 |       expect(readCalled).toBe(false);
+         |                          ^
+      24 |       done();
+      25 |     });
+      26 |   });
+
+      at Immediate.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-bebac4a/testCase.test.ts:23:26)
+
+  ● drain abort behavior › should not call read when abort is called before read is set
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("drain abort behavior", () => {
+    > 4 |   it("should not call read when abort is called before read is set", (done) => {
+        |   ^
+      5 |     let readCalled = false;
+      6 |     const source = (abort: any, cb: any) => {
+      7 |       readCalled = true;
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-bebac4a/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-bebac4a/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.311 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-bebac4a/testCase.test.ts".

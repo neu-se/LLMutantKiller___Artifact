@@ -1,0 +1,37 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_9/pending_category/mutant-36cda1c/testCase.test.ts[0m:[93m29[0m:[93m34[0m - [91merror[0m[90m TS6133: [0m'idx' is declared but its value is never read.
+
+[7m29[0m     delta.eachLine((line, attrs, idx) => {
+[7m  [0m [91m                                 ~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_9/pending_category/mutant-36cda1c/testCase.test.ts
+  eachLine() embed at start followed by string with newline in same op
+    ✕ correctly handles embed followed by string containing newline in same push (2 ms)
+
+  ● eachLine() embed at start followed by string with newline in same op › correctly handles embed followed by string containing newline in same push
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 3
+    Received: 2
+
+      32 |     });
+      33 |
+    > 34 |     expect(lines.length).toBe(3);
+         |                          ^
+      35 |     expect(lines[0].ops).toEqual([
+      36 |       { insert: { image: 'a.png' } },
+      37 |       { insert: 'text' },
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_9/pending_category/mutant-36cda1c/testCase.test.ts:34:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.29 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_9/pending_category/mutant-36cda1c/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

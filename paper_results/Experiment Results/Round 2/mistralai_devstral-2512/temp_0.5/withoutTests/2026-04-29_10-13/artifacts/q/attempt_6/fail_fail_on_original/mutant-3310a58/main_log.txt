@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-3310a58/testCase.test.ts
+  Q long stack support
+    ✕ should enable long stack support when Q_DEBUG is set (3 ms)
+
+  ● Q long stack support › should enable long stack support when Q_DEBUG is set
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      18 |       // which is only incremented when long stack support is enabled
+      19 |       const promise = QWithDebug.resolve("test");
+    > 20 |       expect(QWithDebug.longStackSupport).toBe(true);
+         |                                           ^
+      21 |       expect(promise.stackCounter).toBeGreaterThan(0);
+      22 |     } finally {
+      23 |       // Restore original env
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-3310a58/testCase.test.ts:20:43)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.366 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-3310a58/testCase.test.ts".

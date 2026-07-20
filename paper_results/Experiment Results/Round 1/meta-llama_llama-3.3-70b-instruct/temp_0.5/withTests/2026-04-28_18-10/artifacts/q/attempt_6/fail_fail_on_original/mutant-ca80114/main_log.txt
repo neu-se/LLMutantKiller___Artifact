@@ -1,0 +1,40 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-ca80114/testCase.test.ts (6.184 s)
+  Q
+    ✕ should handle exceptions in Node.js (5001 ms)
+
+  ● Q › should handle exceptions in Node.js
+
+    Test error
+
+       5 |         const deferred = q.defer();
+       6 |         const promise = deferred.promise;
+    >  7 |         const error = new Error('Test error');
+         |                       ^
+       8 |         q.nextTick(function () {
+       9 |             throw error;
+      10 |         });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-ca80114/testCase.test.ts:7:23)
+
+  ● Q › should handle exceptions in Node.js
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe('Q', () => {
+    > 4 |     it('should handle exceptions in Node.js', () => {
+        |     ^
+      5 |         const deferred = q.defer();
+      6 |         const promise = deferred.promise;
+      7 |         const error = new Error('Test error');
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-ca80114/testCase.test.ts:4:5)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-ca80114/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.311 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-ca80114/testCase.test.ts".

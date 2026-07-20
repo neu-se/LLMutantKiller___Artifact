@@ -1,0 +1,50 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_7/pending_category/mutant-318b8c5/testCase.test.ts
+  Delta diff with insert operations
+    ✕ should correctly compute diff when other has insert with partial match (7 ms)
+
+  ● Delta diff with insert operations › should correctly compute diff when other has insert with partial match
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  3
+    + Received  + 12
+
+      Array [
+        Object {
+    -     "retain": 5,
+    +     "retain": 6,
+    +   },
+    +   Object {
+    +     "insert": "the",
+    +   },
+    +   Object {
+    +     "delete": 2,
+    +   },
+    +   Object {
+    +     "retain": 1,
+        },
+        Object {
+    -     "insert": " there",
+    +     "insert": "e",
+        },
+        Object {
+    -     "delete": 6,
+    +     "delete": 2,
+        },
+      ]
+
+       7 |     const diff = base.diff(other);
+       8 |     const expected = new Delta().retain(5).delete(6).insert(' there');
+    >  9 |     expect(diff.ops).toEqual(expected.ops);
+         |                      ^
+      10 |   });
+      11 | });
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_7/pending_category/mutant-318b8c5/testCase.test.ts:9:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.747 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_7/pending_category/mutant-318b8c5/testCase.test.ts".

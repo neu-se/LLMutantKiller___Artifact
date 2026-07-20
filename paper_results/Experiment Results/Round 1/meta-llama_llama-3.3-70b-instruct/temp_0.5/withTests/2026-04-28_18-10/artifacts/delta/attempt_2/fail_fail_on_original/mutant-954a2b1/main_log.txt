@@ -1,0 +1,55 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-954a2b1/testCase.test.ts
+  compose()
+    ✕ should return the correct result when firstOther is not null and firstOther.retain is a number (5 ms)
+    ✕ should return the correct result when firstOther is not null and firstOther.retain is not a number
+
+  ● compose() › should return the correct result when firstOther is not null and firstOther.retain is a number
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 3
+    + Received  + 0
+
+      Delta {
+        "ops": Array [
+          Object {
+    -       "attributes": Object {
+    -         "retain": 1,
+    -       },
+            "insert": "A",
+          },
+        ],
+      }
+
+       6 |     const b = new Delta().retain(1);
+       7 |     const expected = new Delta().insert('A', { retain: 1 });
+    >  8 |     expect(a.compose(b)).toEqual(expected);
+         |                          ^
+       9 |   });
+      10 |
+      11 |   it('should return the correct result when firstOther is not null and firstOther.retain is not a number', () => {
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-954a2b1/testCase.test.ts:8:26)
+
+  ● compose() › should return the correct result when firstOther is not null and firstOther.retain is not a number
+
+    cannot retain a string
+
+      19 | ): [string, unknown, unknown] => {
+      20 |   if (typeof a !== 'object' || a === null) {
+    > 21 |     throw new Error(`cannot retain a ${typeof a}`);
+         |           ^
+      22 |   }
+      23 |   if (typeof b !== 'object' || b === null) {
+      24 |     throw new Error(`cannot retain a ${typeof b}`);
+
+      at getEmbedTypeAndData (../subject_repositories/delta/src/Delta.ts:21:11)
+      at Delta.getEmbedTypeAndData [as compose] (../subject_repositories/delta/src/Delta.ts:282:56)
+      at Object.compose (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-954a2b1/testCase.test.ts:15:14)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.429 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-954a2b1/testCase.test.ts".

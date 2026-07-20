@@ -1,0 +1,58 @@
+Your task is to write a Jest test case that exposes a specific mutation in a JavaScript/TypeScript project.
+
+MUTATION DETAILS
+The mutation affects the following file:
+lib/request.js
+Here is the full content of that file (shown with a <PLACEHOLDER> marker):
+const { createWriteStream } = require('fs');
+const { TimeoutError } = require('./TimeoutError');
+const { http, https } = require('follow-redirects');
+
+module.exports = ({ url, dest, ...options }) => new Promise((resolve, reject) => {
+  const request = url.trimLeft().startsWith('https') ? https : http;
+
+  request
+    .get(url, options, (res) => {
+      if (res.statusCode !== 200) {
+        // Consume response data to free up memory
+        res.resume();
+        reject(new Error('Request Failed.\n' +
+                         `Status Code: ${res.statusCode}`));
+
+        return;
+      }
+
+      res.pipe(createWriteStream(dest))
+           <PLACEHOLDER>
+
+        .once('close', () => resolve({ filename: dest }));
+    })
+    .on('timeout', () => reject(new TimeoutError()))
+    .on('error', reject);
+});
+
+In the original code, <PLACEHOLDER> has the value:
+
+-           .on('error', reject)
+In the mutated code, <PLACEHOLDER> has the value:
+
++           .on("", reject)
+
+
+YOUR TASK
+Write one Jest test file that:
+    1. Passes when run against the original code.
+    2. Fails when run against the mutated code.
+    3. Tests the behavior of the mutated file in a way that reliably detects the mutation.
+The test will be saved at the following path, relative to this test-generation project’s root:
+llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-31d74e9/testCase.test.ts
+
+ALLOWED LIBRARIES
+You may use:
+    1. Any built-in Node.js modules (e.g., fs, path, crypto, etc.).
+    2. The following external libraries are explicitly permitted:
+    - nock
+    - follow-redirects 
+You may not use any other third-party libraries.
+
+

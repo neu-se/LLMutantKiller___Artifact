@@ -1,0 +1,30 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/pull-stream/sinks/drain.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/pull-stream/sinks/drain.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-22f4109/testCase.test.ts
+  drain sink behavior when done callback is not provided
+    ✕ should not set doneLackingErr when done callback is provided, and should set it when done is not provided (3 ms)
+
+  ● drain sink behavior when done callback is not provided › should not set doneLackingErr when done callback is provided, and should set it when done is not provided
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: Error
+
+    Received value has no prototype
+    Received value: undefined
+
+      62 |       // Original: warnedValue should be an Error instance
+      63 |       // Mutated: warnedValue should be undefined
+    > 64 |       expect(warnedValue).toBeInstanceOf(Error)
+         |                           ^
+      65 |       expect(warnedValue.message).toBe("no done callback supplied")
+      66 |     } finally {
+      67 |       console.warn = originalWarn
+
+      at Object.toBeInstanceOf (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-22f4109/testCase.test.ts:64:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.658 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-22f4109/testCase.test.ts".

@@ -1,0 +1,26 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-4cfb86c/testCase.test.ts
+  Complex acot
+    ✕ should pass re=0 to atan when a=0 and d=0 (fallback branch) (3 ms)
+
+  ● Complex acot › should pass re=0 to atan when a=0 and d=0 (fallback branch)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: NaN
+
+      20 |     // Original: re = (0 !== 0) ? 0/0 : 0 = 0
+      21 |     // Mutated:  re = (0 === 0) ? 0/0 : 0 = NaN
+    > 22 |     expect(capturedRe).toBe(0);
+         |                        ^
+      23 |     expect(isNaN(capturedRe!)).toBe(false);
+      24 |   });
+      25 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-4cfb86c/testCase.test.ts:22:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.017 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-4cfb86c/testCase.test.ts".

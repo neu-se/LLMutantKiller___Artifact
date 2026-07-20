@@ -1,0 +1,46 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-ba5f198/testCase.test.ts[0m:[93m10[0m:[93m5[0m - [91merror[0m[90m TS2741: [0mProperty '__promisify__' is missing in type '(callback: (...args: any[]) => void) => any' but required in type 'typeof setImmediate'.
+
+[7m10[0m     global.setImmediate = function(callback: (...args: any[]) => void): any {
+[7m  [0m [91m    ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/node/timers.d.ts[0m:[93m180[0m:[93m22[0m
+    [7m180[0m             export { __promisify__ };
+    [7m   [0m [96m                     ~~~~~~~~~~~~~[0m
+    '__promisify__' is declared here.
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-ba5f198/testCase.test.ts[0m:[93m28[0m:[93m17[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m28[0m         .catch((err) => {
+[7m  [0m [91m                ~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-ba5f198/testCase.test.ts
+  Q async scheduling behavior
+    ✕ should correctly detect and use setImmediate when available (3 ms)
+
+  ● Q async scheduling behavior › should correctly detect and use setImmediate when available
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      23 |           // In the original code, setImmediate should be used when available
+      24 |           // The mutation would prevent this
+    > 25 |           expect(setImmediateUsed).toBe(true);
+         |                                    ^
+      26 |           done();
+      27 |         })
+      28 |         .catch((err) => {
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-ba5f198/testCase.test.ts:25:36)
+      at fulfilled (../subject_repositories/q/q.js:854:54)
+      at _fulfilled (../subject_repositories/q/q.js:883:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:816:13)
+      at promiseDispatch (../subject_repositories/q/q.js:877:14)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.003 s, estimated 7 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-ba5f198/testCase.test.ts".

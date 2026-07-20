@@ -1,0 +1,50 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-150356c/testCase.test.ts
+  compose
+    ✕ retain start optimization does not consume retain ops from a (7 ms)
+
+  ● compose › retain start optimization does not consume retain ops from a
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 7
+
+    @@ -2,9 +2,15 @@
+        "ops": Array [
+          Object {
+            "retain": 2,
+          },
+          Object {
+    -       "insert": "XHello",
+    +       "insert": "X",
+    +     },
+    +     Object {
+    +       "retain": 1,
+    +     },
+    +     Object {
+    +       "insert": "Hello",
+          },
+        ],
+      }
+
+       9 |     // Mutation: consumes retain(3), firstLeft goes negative, otherIter advances too far
+      10 |     const result = a.compose(b);
+    > 11 |     expect(result).toEqual(new Delta().retain(2).insert('XHello'));
+         |                    ^
+      12 |   });
+      13 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-150356c/testCase.test.ts:11:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.961 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-150356c/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

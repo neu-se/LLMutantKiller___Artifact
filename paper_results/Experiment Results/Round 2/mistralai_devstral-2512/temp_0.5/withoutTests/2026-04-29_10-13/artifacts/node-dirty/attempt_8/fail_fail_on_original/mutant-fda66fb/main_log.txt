@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_8/pending_category/mutant-fda66fb/testCase.test.ts (6.381 s)
+  Dirty database flush behavior
+    ✕ should correctly handle empty queue state (5004 ms)
+
+  ● Dirty database flush behavior › should correctly handle empty queue state
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+      27 |       // Immediately check that drain was emitted (since no callbacks were queued)
+      28 |       setImmediate(() => {
+    > 29 |         expect(drainCount).toBe(1);
+         |                            ^
+      30 |         expect(db.size()).toBe(1);
+      31 |
+      32 |         // Now set another value with callback
+
+      at Immediate.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_8/pending_category/mutant-fda66fb/testCase.test.ts:29:28)
+
+  ● Dirty database flush behavior › should correctly handle empty queue state
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 |
+      5 | describe('Dirty database flush behavior', () => {
+    > 6 |   it('should correctly handle empty queue state', (done) => {
+        |   ^
+      7 |     const testDir = path.join(__dirname, 'test-db');
+      8 |     const dbPath = path.join(testDir, 'test.db');
+      9 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_8/pending_category/mutant-fda66fb/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_8/pending_category/mutant-fda66fb/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.558 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_8/pending_category/mutant-fda66fb/testCase.test.ts".

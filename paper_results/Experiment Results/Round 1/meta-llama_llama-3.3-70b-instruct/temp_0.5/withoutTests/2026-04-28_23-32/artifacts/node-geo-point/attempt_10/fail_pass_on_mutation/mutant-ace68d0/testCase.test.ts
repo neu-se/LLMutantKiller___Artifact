@@ -1,0 +1,8 @@
+import { GeoPoint } from "../../../../../../../../../../../subject_repositories/node-geo-point/src/geo-point.ts";
+
+describe('GeoPoint', () => {
+  it('should throw TypeError when creating GeoPoint from invalid object', () => {
+    expect(() => GeoPoint.fromObject({ latitude: 1, longitude: 2 })).not.toThrow(TypeError);
+    expect(() => GeoPoint.fromObject({})).toThrow(TypeError);
+  });
+});

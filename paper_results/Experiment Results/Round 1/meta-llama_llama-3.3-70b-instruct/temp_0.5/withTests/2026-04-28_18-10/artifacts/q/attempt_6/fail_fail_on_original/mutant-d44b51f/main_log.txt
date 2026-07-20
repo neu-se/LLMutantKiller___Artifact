@@ -1,0 +1,55 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-d44b51f/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-d44b51f/testCase.test.ts[0m:[93m13[0m:[93m45[0m - [91merror[0m[90m TS7006: [0mParameter 'that' implicitly has an 'any' type.
+
+[7m13[0m         Q.Promise.prototype.join = function(that) {
+[7m  [0m [91m                                            ~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-d44b51f/testCase.test.ts[0m:[93m14[0m:[93m53[0m - [91merror[0m[90m TS7006: [0mParameter 'x' implicitly has an 'any' type.
+
+[7m14[0m             return Q([this, that]).spread(function (x, y) {
+[7m  [0m [91m                                                    ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-d44b51f/testCase.test.ts[0m:[93m14[0m:[93m56[0m - [91merror[0m[90m TS7006: [0mParameter 'y' implicitly has an 'any' type.
+
+[7m14[0m             return Q([this, that]).spread(function (x, y) {
+[7m  [0m [91m                                                       ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-d44b51f/testCase.test.ts
+  Promise.join
+    ✕ should throw an error with a specific message when the values are not the same (1 ms)
+    ✕ should throw an error with a different message when the mutation is present
+
+  ● Promise.join › should throw an error with a specific message when the values are not the same
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      3 | describe("Promise.join", () => {
+      4 |     it("should throw an error with a specific message when the values are not the same", () => {
+    > 5 |         const error = Q(1).join(Q(2));
+        |                        ^
+      6 |         expect(error instanceof Error).toBe(true);
+      7 |         expect(error.message).toContain("Q can't join: not the same: 1 2");
+      8 |     });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-d44b51f/testCase.test.ts:5:24)
+
+  ● Promise.join › should throw an error with a different message when the mutation is present
+
+    TypeError: Cannot read properties of undefined (reading 'Promise')
+
+      10 |     it("should throw an error with a different message when the mutation is present", () => {
+      11 |         // Simulate the mutation by replacing the throw statement with a custom error message
+    > 12 |         const originalJoin = Q.Promise.prototype.join;
+         |                                ^
+      13 |         Q.Promise.prototype.join = function(that) {
+      14 |             return Q([this, that]).spread(function (x, y) {
+      15 |                 if (x === y) {
+
+      at Object.Promise (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-d44b51f/testCase.test.ts:12:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.866 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-d44b51f/testCase.test.ts".

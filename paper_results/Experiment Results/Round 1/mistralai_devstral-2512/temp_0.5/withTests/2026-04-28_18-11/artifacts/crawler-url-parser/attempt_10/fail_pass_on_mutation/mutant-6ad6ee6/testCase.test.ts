@@ -1,0 +1,9 @@
+// test/mutant-6ad6ee6.test.ts
+import { parse } from "../../../../../../../../../../../subject_repositories/crawler-url-parser/crawler-url-parser.js";
+
+describe('parse function with fragment handling', () => {
+  it('should correctly handle URLs with fragments containing exactly one character followed by a dot and more characters', () => {
+    const result = parse("http://example.com/path#a.bc");
+    expect(result.url).toBe("http://example.com/path");
+  });
+});

@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-3f7a416/testCase.test.ts
+  allSettled
+    ✕ should return a promise that resolves to an array of state snapshots for mixed fulfilled and rejected promises (4 ms)
+
+  ● allSettled › should return a promise that resolves to an array of state snapshots for mixed fulfilled and rejected promises
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: [{"state": "fulfilled", "value": 1}, {"reason": [Error: fail], "state": "rejected"}, {"state": "fulfilled", "value": 3}]
+    Received: undefined
+
+      4 |   it("should return a promise that resolves to an array of state snapshots for mixed fulfilled and rejected promises", async () => {
+      5 |     const result = await Q.allSettled([Q(1), Q.reject(new Error("fail")), Q(3)]);
+    > 6 |     expect(result).toEqual([
+        |                    ^
+      7 |       { state: "fulfilled", value: 1 },
+      8 |       { state: "rejected", reason: new Error("fail") },
+      9 |       { state: "fulfilled", value: 3 },
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-3f7a416/testCase.test.ts:6:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.239 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-3f7a416/testCase.test.ts".

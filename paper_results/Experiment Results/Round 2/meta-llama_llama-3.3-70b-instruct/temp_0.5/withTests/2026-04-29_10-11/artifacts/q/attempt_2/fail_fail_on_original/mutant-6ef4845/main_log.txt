@@ -1,0 +1,52 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-6ef4845/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-6ef4845/testCase.test.ts[0m:[93m5[0m:[93m13[0m - [91merror[0m[90m TS7034: [0mVariable 'result' implicitly has type 'any' in some locations where its type cannot be determined.
+
+[7m5[0m         var result;
+[7m [0m [91m            ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-6ef4845/testCase.test.ts[0m:[93m6[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'resolve' implicitly has an 'any' type.
+
+[7m6[0m         var promise = Q((resolve, reject) => {
+[7m [0m [91m                         ~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-6ef4845/testCase.test.ts[0m:[93m6[0m:[93m35[0m - [91merror[0m[90m TS7006: [0mParameter 'reject' implicitly has an 'any' type.
+
+[7m6[0m         var promise = Q((resolve, reject) => {
+[7m [0m [91m                                  ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-6ef4845/testCase.test.ts[0m:[93m11[0m:[93m34[0m - [91merror[0m[90m TS7006: [0mParameter 'op' implicitly has an 'any' type.
+
+[7m11[0m             }, function fallback(op) {
+[7m  [0m [91m                                 ~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-6ef4845/testCase.test.ts[0m:[93m16[0m:[93m23[0m - [91merror[0m[90m TS7006: [0mParameter 'promise' implicitly has an 'any' type.
+
+[7m16[0m         promise.then((promise) => {
+[7m  [0m [91m                      ~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-6ef4845/testCase.test.ts[0m:[93m21[0m:[93m20[0m - [91merror[0m[90m TS7005: [0mVariable 'result' implicitly has an 'any' type.
+
+[7m21[0m             expect(result).toBe("nonExistingOperation");
+[7m  [0m [91m                   ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-6ef4845/testCase.test.ts
+  Promise
+    ✕ should call the fallback function when the descriptor does not have the operation (1 ms)
+
+  ● Promise › should call the fallback function when the descriptor does not have the operation
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      4 |     it("should call the fallback function when the descriptor does not have the operation", () => {
+      5 |         var result;
+    > 6 |         var promise = Q((resolve, reject) => {
+        |                        ^
+      7 |             resolve(Q.Promise({
+      8 |                 "when": function () {
+      9 |                     result = "success";
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-6ef4845/testCase.test.ts:6:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.042 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-6ef4845/testCase.test.ts".

@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_2/pending_category/mutant-d9833fc/testCase.test.ts
+  fs module fallback
+    ✕ should fall back to standard fs module when graceful-fs throws an error (3 ms)
+
+  ● fs module fallback › should fall back to standard fs module when graceful-fs throws an error
+
+    /var/folders/hj/385qyhcj33q7n5tssd7_jvkh0000gn/T/jsonfile-test-fs-fallback/test.json: Forced graceful-fs error
+
+      21 |       fs: {
+      22 |         readFileSync: () => {
+    > 23 |           throw new Error('Forced graceful-fs error');
+         |                 ^
+      24 |         }
+      25 |       }
+      26 |     });
+
+      at Object.readFileSync (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_2/pending_category/mutant-d9833fc/testCase.test.ts:23:17)
+      at readFileSync (../subject_repositories/node-jsonfile/index.js:50:22)
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_2/pending_category/mutant-d9833fc/testCase.test.ts:20:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.327 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_2/pending_category/mutant-d9833fc/testCase.test.ts".

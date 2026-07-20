@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-2d2076b/testCase.test.ts
+  Q.delay
+    ✕ should resolve immediately when timeout is undefined (26 ms)
+
+  ● Q.delay › should resolve immediately when timeout is undefined
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "test"
+    Received: undefined
+
+       8 |     Q.delay(originalValue, undefined).then((value: any) => {
+       9 |       const elapsedTime = Date.now() - startTime;
+    > 10 |       expect(value).toBe(originalValue);
+         |                     ^
+      11 |       expect(elapsedTime).toBeLessThan(10); // Should resolve immediately
+      12 |       done();
+      13 |     }).catch((error: any) => {
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-2d2076b/testCase.test.ts:10:21)
+      at fulfilled (../subject_repositories/q/q.js:854:54)
+      at _fulfilled (../subject_repositories/q/q.js:883:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:816:13)
+      at apply (../subject_repositories/q/q.js:624:44)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.461 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-2d2076b/testCase.test.ts".

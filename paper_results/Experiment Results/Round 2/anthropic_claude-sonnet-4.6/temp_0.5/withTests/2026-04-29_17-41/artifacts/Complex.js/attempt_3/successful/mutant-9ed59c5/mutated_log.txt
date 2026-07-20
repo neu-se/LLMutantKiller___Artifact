@@ -1,0 +1,26 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-9ed59c5/testCase.test.ts
+  Complex.js AMD module export
+    ✕ should call define with a factory function returning Complex when AMD environment is detected (4 ms)
+
+  ● Complex.js AMD module export › should call define with a factory function returning Complex when AMD environment is detected
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      33 |     // In original code: define is called with [] and a factory returning Complex
+      34 |     // In mutated code: define block is empty, so amdDefineCalled remains false
+    > 35 |     expect(amdDefineCalled).toBe(true);
+         |                             ^
+      36 |     expect(Array.isArray(amdDefineArgs[0])).toBe(true);
+      37 |     expect(amdDefineArgs[0]).toHaveLength(0);
+      38 |     expect(typeof amdDefineArgs[1]).toBe('function');
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-9ed59c5/testCase.test.ts:35:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-9ed59c5/testCase.test.ts".

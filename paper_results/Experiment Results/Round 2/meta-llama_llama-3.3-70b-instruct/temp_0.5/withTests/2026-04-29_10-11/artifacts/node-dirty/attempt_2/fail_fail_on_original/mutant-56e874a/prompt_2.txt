@@ -1,0 +1,46 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-56e874a/testCase.test.ts
+  Dirty
+    ✕ should not write to disk when queue is empty or waiting for drain (26 ms)
+
+  ● Dirty › should not write to disk when queue is empty or waiting for drain
+
+    File size increased unexpectedly
+
+      22 |             done();
+      23 |           } else {
+    > 24 |             done(new Error('File size increased unexpectedly'));
+         |                  ^
+      25 |           }
+      26 |         });
+      27 |       });
+
+      at Dirty.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-56e874a/testCase.test.ts:24:18)
+      at emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:190:70)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.944 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-56e874a/testCase.test.ts".
+node:internal/process/promises:391
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+Error: File size increased unexpectedly
+    at Dirty.<anonymous> (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-56e874a/testCase.test.ts:24:18)
+    at Dirty.emit (node:events:536:35)
+    at emit (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/node-dirty/lib/dirty/dirty.js:190:70)
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+    at node:internal/fs/streams:485:5
+    at node:internal/fs/streams:441:7
+    at FSReqCallback.wrapper [as oncomplete] (node:fs:825:5)
+
+Node.js v20.19.4
+
+---
+Please try again and give me a new test case.

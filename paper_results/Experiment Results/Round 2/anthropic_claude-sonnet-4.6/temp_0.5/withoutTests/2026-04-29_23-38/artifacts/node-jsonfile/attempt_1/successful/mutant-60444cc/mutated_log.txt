@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-jsonfile/attempt_1/pending_category/mutant-60444cc/testCase.test.ts
+  stripBom
+    ✕ should not call toString on a plain string input (2 ms)
+
+  ● stripBom › should not call toString on a plain string input
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "replace called on original object"
+
+    Received function did not throw
+
+       99 |     // In mutated: if(true), toString('utf8') called -> '\uFEFFworld', then '\uFEFFworld'.replace(/^\uFEFF/, '') -> 'world'
+      100 |     
+    > 101 |     expect(() => stripBom(nonBufferObj as any)).toThrow("replace called on original object")
+          |                                                 ^
+      102 |   })
+      103 | })
+
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-jsonfile/attempt_1/pending_category/mutant-60444cc/testCase.test.ts:101:49)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.023 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-jsonfile/attempt_1/pending_category/mutant-60444cc/testCase.test.ts".

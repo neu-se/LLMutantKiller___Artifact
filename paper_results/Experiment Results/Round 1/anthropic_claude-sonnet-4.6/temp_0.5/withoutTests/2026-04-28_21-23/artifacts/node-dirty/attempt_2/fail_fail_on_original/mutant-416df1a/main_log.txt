@@ -1,0 +1,42 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-416df1a/testCase.test.ts (6.212 s)
+  Dirty error emission without callback
+    ✕ should emit error event when write fails and set is called without a callback (5002 ms)
+
+  ● Dirty error emission without callback › should emit error event when write fails and set is called without a callback
+
+    TypeError: Cannot read properties of null (reading 'cork')
+
+      181 |   _flush() {
+      182 |     if (!this._queue.size || this._waitForDrain) return;
+    > 183 |     this._writeStream.cork();
+          |                       ^
+      184 |     for (const [key, cbs] of this._queue) {
+      185 |       this._queue.delete(key);
+      186 |       const data = `${JSON.stringify({key, val: this._data.get(key)})}\n`;
+
+      at Dirty.cork [as _flush] (../subject_repositories/node-dirty/lib/dirty/dirty.js:183:23)
+      at Dirty._flush [as set] (../subject_repositories/node-dirty/lib/dirty/dirty.js:37:12)
+      at WriteStream.set (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-416df1a/testCase.test.ts:33:21)
+
+  ● Dirty error emission without callback › should emit error event when write fails and set is called without a callback
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 |
+      5 | describe('Dirty error emission without callback', () => {
+    > 6 |   it('should emit error event when write fails and set is called without a callback', (done) => {
+        |   ^
+      7 |     const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'dirty-test-'));
+      8 |     const dbPath = path.join(tmpDir, 'test.db');
+      9 |
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-416df1a/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-416df1a/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.382 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-416df1a/testCase.test.ts".

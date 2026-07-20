@@ -1,0 +1,29 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_3/pending_category/mutant-44b6d2c/testCase.test.ts[0m:[93m4[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m4[0m import * as rimraf from 'rimraf'
+[7m [0m [91m                        ~~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_3/pending_category/mutant-44b6d2c/testCase.test.ts
+  + stripBom()
+    ✕ should only remove BOM from start of string (3 ms)
+
+  ● + stripBom() › should only remove BOM from start of string
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 15
+    Received: 16
+
+       8 |     const fileContent = '\uFEFF{"key": "value"}\uFEFF';
+       9 |     const result = stripBom(fileContent);
+    > 10 |     expect(result.indexOf('\uFEFF')).toBe(15); // 15 is the index of the second \uFEFF
+         |                                      ^
+      11 |   });
+      12 | });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_3/pending_category/mutant-44b6d2c/testCase.test.ts:10:38)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.266 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_3/pending_category/mutant-44b6d2c/testCase.test.ts".

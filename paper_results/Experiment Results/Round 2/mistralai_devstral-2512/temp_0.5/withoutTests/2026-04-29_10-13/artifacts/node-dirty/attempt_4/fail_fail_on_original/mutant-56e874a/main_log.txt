@@ -1,0 +1,61 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-56e874a/testCase.test.ts[0m:[93m33[0m:[93m29[0m - [91merror[0m[90m TS18047: [0m'db._writeStream' is possibly 'null'.
+
+[7m33[0m       const originalWrite = db._writeStream.write.bind(db._writeStream);
+[7m  [0m [91m                            ~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-56e874a/testCase.test.ts[0m:[93m34[0m:[93m7[0m - [91merror[0m[90m TS18047: [0m'db._writeStream' is possibly 'null'.
+
+[7m34[0m       db._writeStream.write = function(data, cb) {
+[7m  [0m [91m      ~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-56e874a/testCase.test.ts[0m:[93m36[0m:[93m36[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 2, '(chunk: any, callback?: ((error: Error | null | undefined) => void) | undefined): boolean', gave the following error.
+    Argument of type 'BufferEncoding | ((error: Error | null | undefined) => void) | undefined' is not assignable to parameter of type '((error: Error | null | undefined) => void) | undefined'.
+      Type 'string' is not assignable to type '(error: Error | null | undefined) => void'.
+  Overload 2 of 2, '(chunk: any, encoding: BufferEncoding, callback?: ((error: Error | null | undefined) => void) | undefined): boolean', gave the following error.
+    Argument of type 'BufferEncoding | ((error: Error | null | undefined) => void) | undefined' is not assignable to parameter of type 'BufferEncoding'.
+      Type 'undefined' is not assignable to type 'BufferEncoding'.
+
+[7m36[0m         return originalWrite(data, cb);
+[7m  [0m [91m                                   ~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-56e874a/testCase.test.ts (6.232 s)
+  Dirty database flush behavior
+    ✕ should not write when queue is empty and waitForDrain is false (5004 ms)
+
+  ● Dirty database flush behavior › should not write when queue is empty and waitForDrain is false
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      46 |           // In original code, _flush should return early when queue is empty
+      47 |           // In mutated code, it will proceed and call write
+    > 48 |           expect(writeCalled).toBe(false);
+         |                               ^
+      49 |           done();
+      50 |         });
+      51 |       });
+
+      at Immediate.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-56e874a/testCase.test.ts:48:31)
+
+  ● Dirty database flush behavior › should not write when queue is empty and waitForDrain is false
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      25 |   });
+      26 |
+    > 27 |   it('should not write when queue is empty and waitForDrain is false', (done) => {
+         |   ^
+      28 |     const db = new Dirty(dbPath);
+      29 |     let writeCalled = false;
+      30 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-56e874a/testCase.test.ts:27:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-56e874a/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.389 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-56e874a/testCase.test.ts".

@@ -1,0 +1,36 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-9cc6e1f/testCase.test.ts
+  Delta transform with embeds
+    ✕ should correctly handle embed type mismatch in transform (3 ms)
+
+  ● Delta transform with embeds › should correctly handle embed type mismatch in transform
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        Object {
+          "retain": Object {
+    -       "other-embed": 3,
+    +       "test-embed": undefined,
+          },
+        },
+      ]
+
+      20 |     // In original code: should retain the other data as-is (with embed)
+      21 |     // In mutated code: will incorrectly try to use handler (if true)
+    > 22 |     expect(result.ops).toEqual([{ retain: { 'other-embed': 3 } }]);
+         |                        ^
+      23 |
+      24 |     // Clean up
+      25 |     Delta.unregisterEmbed('test-embed');
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-9cc6e1f/testCase.test.ts:22:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.349 s, estimated 2 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-9cc6e1f/testCase.test.ts".

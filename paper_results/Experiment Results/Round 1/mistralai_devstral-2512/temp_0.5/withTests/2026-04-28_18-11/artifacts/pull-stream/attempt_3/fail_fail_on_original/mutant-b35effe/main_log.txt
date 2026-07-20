@@ -1,0 +1,24 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-b35effe/testCase.test.ts
+  find error handling
+    ✕ should handle true error value correctly (1 ms)
+
+  ● find error handling › should handle true error value correctly
+
+    TypeError: Cannot read properties of undefined (reading 'find')
+
+      13 |     pull(
+      14 |       source,
+    > 15 |       pull.sinks.find((data: any) => false, (err: any, result: any) => {
+         |                  ^
+      16 |         // Original: cb(err === true ? null : err, null) -> passes null when err is true
+      17 |         // Mutated: cb(err !== true ? null : err, null) -> passes true when err is true
+      18 |         if (err === null) {
+
+      at Object.find (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-b35effe/testCase.test.ts:15:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.363 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-b35effe/testCase.test.ts".

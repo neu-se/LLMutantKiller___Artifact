@@ -1,0 +1,55 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-0e2fb4a/testCase.test.ts[0m:[93m8[0m:[93m17[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m8[0m       compose: (a: any, b: any) => b,
+[7m [0m [91m                ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-0e2fb4a/testCase.test.ts[0m:[93m9[0m:[93m24[0m - [91merror[0m[90m TS6133: [0m'b' is declared but its value is never read.
+
+[7m9[0m       invert: (a: any, b: any) => a,
+[7m [0m [91m                       ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-0e2fb4a/testCase.test.ts[0m:[93m10[0m:[93m19[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m10[0m       transform: (a: any, b: any, priority: boolean) => b
+[7m  [0m [91m                  ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-0e2fb4a/testCase.test.ts[0m:[93m10[0m:[93m35[0m - [91merror[0m[90m TS6133: [0m'priority' is declared but its value is never read.
+
+[7m10[0m       transform: (a: any, b: any, priority: boolean) => b
+[7m  [0m [91m                                  ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-0e2fb4a/testCase.test.ts
+  Delta invert with embed
+    ✕ should correctly handle object retain with null value during inversion (5 ms)
+
+  ● Delta invert with embed › should correctly handle object retain with null value during inversion
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+      Array [
+        Object {
+          "attributes": Object {
+            "bold": null,
+          },
+    -     "retain": 1,
+    +     "retain": Object {
+    +       "custom": null,
+    +     },
+        },
+      ]
+
+      24 |     // The mutated code will process it (true instead of op.retain !== null)
+      25 |     const expectedOps = [{ retain: 1, attributes: { bold: null } }];
+    > 26 |     expect(inverted.ops).toEqual(expectedOps);
+         |                          ^
+      27 |
+      28 |     // Clean up
+      29 |     Delta.unregisterEmbed(embedType);
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-0e2fb4a/testCase.test.ts:26:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.91 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-0e2fb4a/testCase.test.ts".

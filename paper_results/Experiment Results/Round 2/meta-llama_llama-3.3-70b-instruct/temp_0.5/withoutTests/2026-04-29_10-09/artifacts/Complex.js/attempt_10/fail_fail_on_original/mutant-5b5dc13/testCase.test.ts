@@ -1,0 +1,14 @@
+import { Complex } from "./complex.js";
+
+describe('Complex', () => {
+  it('should correctly calculate acsch for complex numbers', () => {
+    const complex = new Complex(0, 1);
+    const result = complex.acsch();
+    expect(result.re).toBeCloseTo(0, 10);
+    expect(result.im).toBeCloseTo(-Infinity, 10);
+    const complex2 = new Complex(1, 0);
+    const result2 = complex2.acsch();
+    expect(result2.re).toBeNaN();
+    expect(result2.im).toBeNaN();
+  });
+});

@@ -1,0 +1,40 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-c8926c6/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-c8926c6/testCase.test.ts[0m:[93m9[0m:[93m13[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'toString' does not exist in type 'Process'.
+
+[7m9[0m             toString: () => "[object process]",
+[7m [0m [91m            ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-c8926c6/testCase.test.ts[0m:[93m22[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType 'undefined' is not assignable to type '(callback: Function, ...args: any[]) => void'.
+
+[7m22[0m             nextTick: undefined,
+[7m  [0m [91m            ~~~~~~~~[0m
+
+  [96mnode_modules/@types/node/process.d.ts[0m:[93m1695[0m:[93m17[0m
+    [7m1695[0m                 nextTick(callback: Function, ...args: any[]): void;
+    [7m    [0m [96m                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    The expected type comes from property 'nextTick' which is declared here on type 'Process'
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-c8926c6/testCase.test.ts
+  Q
+    ✕ should not throw an error when process.nextTick is defined (4 ms)
+    ✕ should throw an error when process.nextTick is not defined and process.toString returns "[object process]" (1 ms)
+
+  ● Q › should not throw an error when process.nextTick is defined
+
+    TypeError: process.cwd is not a function
+
+      at Object.toThrow (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-c8926c6/testCase.test.ts:12:31)
+
+  ● Q › should throw an error when process.nextTick is not defined and process.toString returns "[object process]"
+
+    TypeError: process.cwd is not a function
+
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-c8926c6/testCase.test.ts:26:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        2.114 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-c8926c6/testCase.test.ts".

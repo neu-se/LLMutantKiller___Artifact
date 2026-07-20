@@ -1,0 +1,30 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-403a79a/testCase.test.ts
+  Dirty empty line error message
+    ✕ should emit an error with the correct message when an empty line is encountered in the database file (9 ms)
+
+  ● Dirty empty line error message › should emit an error with the correct message when an empty line is encountered in the database file
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Empty lines never appear in a healthy database"
+    Received: ""
+
+      19 |     db.on('error', (err: Error) => {
+      20 |       try {
+    > 21 |         expect(err.message).toBe('Empty lines never appear in a healthy database');
+         |                             ^
+      22 |         fs.unlinkSync(dbPath);
+      23 |         done();
+      24 |       } catch (e) {
+
+      at Dirty.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-403a79a/testCase.test.ts:21:29)
+      at emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:127:23)
+          at Array.forEach (<anonymous>)
+      at ReadStream.forEach (../subject_repositories/node-dirty/lib/dirty/dirty.js:125:15)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.078 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-403a79a/testCase.test.ts".

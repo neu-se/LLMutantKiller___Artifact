@@ -1,0 +1,46 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-d8227cc/testCase.test.ts[0m:[93m4[0m:[93m20[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m4[0m import rimraf from 'rimraf';
+[7m [0m [91m                   ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-d8227cc/testCase.test.ts
+  Dirty database chunk processing
+    ✕ should correctly process chunks without newlines (13 ms)
+
+  ● Dirty database chunk processing › should correctly process chunks without newlines
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "testValue"
+    Received: undefined
+
+      29 |       db2.on('load', () => {
+      30 |         // The database should not emit an error and should load correctly
+    > 31 |         expect(db2.get('testKey')).toBe('testValue');
+         |                                    ^
+      32 |         done();
+      33 |       });
+      34 |
+
+      at Dirty.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-d8227cc/testCase.test.ts:31:36)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:154:16)
+
+  ● Dirty database chunk processing › should correctly process chunks without newlines
+
+    Corrupted row at the end of the db: {"key":"testKey","val":"testValue"}
+
+      150 |         .on('end', () => {
+      151 |           if (buffer.length) {
+    > 152 |             this.emit('error', new Error(`Corrupted row at the end of the db: ${buffer}`));
+          |                                ^
+      153 |           }
+      154 |           this.emit('load', this._data.size);
+      155 |         })
+
+      at ReadStream.<anonymous> (../subject_repositories/node-dirty/lib/dirty/dirty.js:152:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.496 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-d8227cc/testCase.test.ts".

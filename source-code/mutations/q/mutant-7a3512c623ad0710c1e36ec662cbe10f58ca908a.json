@@ -1,0 +1,53 @@
+{
+  "file": "q.js",
+  "startLine": 1776,
+  "startColumn": 52,
+  "endLine": 1792,
+  "endColumn": 5,
+  "originalCode": "\n-   Promise.prototype[\"finally\"] = function (callback) {\n-       if (!callback || typeof callback.apply !== \"function\") {\n-           throw new Error(\"Q can't apply finally callback\");\n-       }\n-       callback = Q(callback);\n-       return this.then(function (value) {\n-           return callback.fcall().then(function () {\n-               return value;\n-           });\n-       }, function (reason) {\n-           // TODO attempt to recycle the rejection with \"this\".\n-           return callback.fcall().then(function () {\n-               throw reason;\n-           });\n-       });\n-   };",
+  "replacement": "\n+   Promise.prototype[\"finally\"] = function (callback) {};\n",
+  "removedLines": [
+    "   Promise.prototype[\"finally\"] = function (callback) {",
+    "       if (!callback || typeof callback.apply !== \"function\") {",
+    "           throw new Error(\"Q can't apply finally callback\");",
+    "       }",
+    "       callback = Q(callback);",
+    "       return this.then(function (value) {",
+    "           return callback.fcall().then(function () {",
+    "               return value;",
+    "           });",
+    "       }, function (reason) {",
+    "           // TODO attempt to recycle the rejection with \"this\".",
+    "           return callback.fcall().then(function () {",
+    "               throw reason;",
+    "           });",
+    "       });",
+    "   };"
+  ],
+  "addedLines": [
+    "   Promise.prototype[\"finally\"] = function (callback) {};",
+    ""
+  ],
+  "lineSummary": [
+    "-   Promise.prototype[\"finally\"] = function (callback) {",
+    "-       if (!callback || typeof callback.apply !== \"function\") {",
+    "-           throw new Error(\"Q can't apply finally callback\");",
+    "-       }",
+    "-       callback = Q(callback);",
+    "-       return this.then(function (value) {",
+    "-           return callback.fcall().then(function () {",
+    "-               return value;",
+    "-           });",
+    "-       }, function (reason) {",
+    "-           // TODO attempt to recycle the rejection with \"this\".",
+    "-           return callback.fcall().then(function () {",
+    "-               throw reason;",
+    "-           });",
+    "-       });",
+    "-   };",
+    "+   Promise.prototype[\"finally\"] = function (callback) {};",
+    ""
+  ],
+  "mutatorName": "BlockStatement",
+  "strykerMutationId": "939"
+}

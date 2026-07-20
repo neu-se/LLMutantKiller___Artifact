@@ -1,0 +1,33 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-6a644d7/testCase.test.ts[0m:[93m7[0m:[93m45[0m - [91merror[0m[90m TS2339: [0mProperty 'then' does not exist on type 'void'.
+
+[7m7[0m         return Q.race([promise1, promise2]).then((value) => {
+[7m [0m [91m                                            ~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-6a644d7/testCase.test.ts[0m:[93m7[0m:[93m51[0m - [91merror[0m[90m TS7006: [0mParameter 'value' implicitly has an 'any' type.
+
+[7m7[0m         return Q.race([promise1, promise2]).then((value) => {
+[7m [0m [91m                                                  ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/subject_repositories/q/q.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/subject_repositories/q/q.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-6a644d7/testCase.test.ts
+  Q.race
+    ✕ should resolve with the first fulfilled promise (1 ms)
+
+  ● Q.race › should resolve with the first fulfilled promise
+
+    TypeError: Cannot read properties of undefined (reading 'then')
+
+       5 |         const promise1 = Q.resolve("Promise 1");
+       6 |         const promise2 = Q.resolve("Promise 2");
+    >  7 |         return Q.race([promise1, promise2]).then((value) => {
+         |                                            ^
+       8 |             expect(value).toBe("Promise 1");
+       9 |         });
+      10 |     });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-6a644d7/testCase.test.ts:7:44)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.717 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-6a644d7/testCase.test.ts".

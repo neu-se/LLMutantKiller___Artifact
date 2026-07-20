@@ -1,0 +1,24 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-4a79492/testCase.test.ts
+  dirty drain event with pending queue items
+    ✕ should only emit drain after all queued items have been flushed to disk (522 ms)
+
+  ● dirty drain event with pending queue items › should only emit drain after all queued items have been flushed to disk
+
+    Expected 200 lines on disk, got 16 after drain
+
+      53 |               
+      54 |               if (lines2.length !== numKeys) {
+    > 55 |                 done(new Error(`Expected ${numKeys} lines on disk, got ${lines2.length} after drain`));
+         |                      ^
+      56 |               } else {
+      57 |                 try { fs.unlinkSync(file); } catch (e) { /* ignore */ }
+      58 |                 done();
+
+      at Timeout._onTimeout (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-4a79492/testCase.test.ts:55:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.075 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-4a79492/testCase.test.ts".

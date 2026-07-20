@@ -1,0 +1,15 @@
+import * as Q from "../../../../../../../../../../../subject_repositories/q/q.js";
+
+describe("Q", () => {
+    it("should correctly handle unhandled rejections", () => {
+        const processEmitSpy = jest.spyOn(process, 'emit');
+        const deferred = Q.defer();
+        const promise = deferred.promise;
+        const error = new Error("Test error");
+
+        deferred.reject(error);
+
+        expect(processEmitSpy).toHaveBeenCalledTimes(1);
+        expect(processEmitSpy).toHaveBeenCalledWith('unhandledRejection', error, promise);
+    });
+});

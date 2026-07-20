@@ -1,0 +1,41 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-eb150b3/testCase.test.ts[0m:[93m13[0m:[93m16[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m13[0m       invert: (a, b) => b,
+[7m  [0m [91m               ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-eb150b3/testCase.test.ts[0m:[93m33[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'toHaveLength' does not exist on type 'ArrayLikeMatchers<Op>'.
+
+[7m33[0m     expect(result.ops).toHaveLength(1);
+[7m  [0m [91m                       ~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-eb150b3/testCase.test.ts
+  compose() with embeds
+    ✕ composes embeds with null handling based on action type (6 ms)
+
+  ● compose() with embeds › composes embeds with null handling based on action type
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+        "insert": Object {
+    -     "test": null,
+    +     "test": "original",
+        },
+      }
+
+      32 |     // With mutated code (keepNull=false for retain), should keep original value
+      33 |     expect(result.ops).toHaveLength(1);
+    > 34 |     expect(result.ops[0]).toEqual({ insert: { test: null } });
+         |                           ^
+      35 |   });
+      36 | });
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-eb150b3/testCase.test.ts:34:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.877 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-eb150b3/testCase.test.ts".

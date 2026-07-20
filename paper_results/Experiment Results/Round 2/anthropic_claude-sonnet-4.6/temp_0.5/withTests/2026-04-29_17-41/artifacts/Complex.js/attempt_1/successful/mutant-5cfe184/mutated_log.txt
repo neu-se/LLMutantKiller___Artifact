@@ -1,0 +1,29 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-5cfe184/testCase.test.ts
+  Complex atanh
+    ✕ should correctly compute atanh for a purely imaginary number (3 ms)
+
+  ● Complex atanh › should correctly compute atanh for a purely imaginary number
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.7853981633974483
+    Received: -0.7853981633974483
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   1.5707963267948966
+
+      10 |     // With mutation (noIM = true always), im would be negated to -π/4
+      11 |     expect(result.re).toBeCloseTo(0, 10);
+    > 12 |     expect(result.im).toBeCloseTo(Math.PI / 4, 10);
+         |                       ^
+      13 |   });
+      14 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-5cfe184/testCase.test.ts:12:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.996 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-5cfe184/testCase.test.ts".

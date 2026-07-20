@@ -1,0 +1,30 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-92aa6e3/testCase.test.ts[0m:[93m10[0m:[93m65[0m - [91merror[0m[90m TS2339: [0mProperty 'any' does not exist on type '{ <T extends jasmine.Func>(spy: T | Spy<T>): FunctionMatchers<T>; <T>(actual: ArrayLike<T>): ArrayLikeMatchers<T>; <T>(actual: T): Matchers<T>; (): NothingMatcher; }'.
+
+[7m10[0m     expect(composedDelta.ops[0].retain).toEqual({ image: expect.any(Function) });
+[7m  [0m [91m                                                                ~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-92aa6e3/testCase.test.ts
+  Delta
+    ✕ should correctly compose embeds when the action is "retain" (2 ms)
+
+  ● Delta › should correctly compose embeds when the action is "retain"
+
+    no handlers for embed type "image"
+
+      50 |     const handler = this.handlers[embedType];
+      51 |     if (!handler) {
+    > 52 |       throw new Error(`no handlers for embed type "${embedType}"`);
+         |             ^
+      53 |     }
+      54 |     return handler;
+      55 |   }
+
+      at Function.getHandler (../subject_repositories/delta/src/Delta.ts:52:13)
+      at Delta.getHandler [as compose] (../subject_repositories/delta/src/Delta.ts:286:37)
+      at Object.compose (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-92aa6e3/testCase.test.ts:9:34)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.981 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-92aa6e3/testCase.test.ts".

@@ -1,0 +1,12 @@
+import { image } from "../../../../../../../../../../../subject_repositories/image-downloader/index.js";
+
+describe('image downloader', () => {
+  it('should resolve the destination path correctly', async () => {
+    const url = 'http://example.com/image.jpg';
+    const dest = './relative/path';
+    const options = { url, dest, extractFilename: false };
+    await expect(image(options)).rejects.toThrow();
+    const absoluteOptions = { url, dest: '/absolute/path', extractFilename: false };
+    await expect(image(absoluteOptions)).rejects.toThrow();
+  });
+});

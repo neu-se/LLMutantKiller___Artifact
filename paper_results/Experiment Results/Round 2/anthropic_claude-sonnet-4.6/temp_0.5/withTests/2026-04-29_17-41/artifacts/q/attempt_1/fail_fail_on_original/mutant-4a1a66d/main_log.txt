@@ -1,0 +1,31 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-4a1a66d/testCase.test.ts[0m:[93m30[0m:[93m23[0m - [91merror[0m[90m TS7009: [0m'new' expression, whose target lacks a construct signature, implicitly has an 'any' type.
+
+[7m30[0m           const err = new FakeStopIteration(stopIterationValue);
+[7m  [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-4a1a66d/testCase.test.ts
+  Q.async with StopIteration defined
+    ✕ should use the SpiderMonkey generator path when StopIteration is defined (1 ms)
+
+  ● Q.async with StopIteration defined › should use the SpiderMonkey generator path when StopIteration is defined
+
+    thrown: FakeStopIteration {
+      "value": 42,
+    }
+
+      2 |
+      3 | describe("Q.async with StopIteration defined", () => {
+    > 4 |   it("should use the SpiderMonkey generator path when StopIteration is defined", async () => {
+        |   ^
+      5 |     // In the original code: if (typeof StopIteration === "undefined") uses ES6 path
+      6 |     // when StopIteration IS defined, it falls to the else (SpiderMonkey) path
+      7 |     // In the mutated code: if (true) always uses ES6 path
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-4a1a66d/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-4a1a66d/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.804 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-4a1a66d/testCase.test.ts".

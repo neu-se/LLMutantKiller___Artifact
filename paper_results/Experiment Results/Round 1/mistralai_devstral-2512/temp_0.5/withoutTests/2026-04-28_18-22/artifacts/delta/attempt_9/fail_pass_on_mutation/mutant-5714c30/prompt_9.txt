@@ -1,0 +1,46 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_8/pending_category/mutant-5714c30/testCase.test.ts[0m:[93m7[0m:[93m17[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m7[0m       compose: (a: any, b: any) => b,
+[7m [0m [91m                ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_8/pending_category/mutant-5714c30/testCase.test.ts[0m:[93m8[0m:[93m24[0m - [91merror[0m[90m TS6133: [0m'b' is declared but its value is never read.
+
+[7m8[0m       invert: (a: any, b: any) => a,
+[7m [0m [91m                       ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_8/pending_category/mutant-5714c30/testCase.test.ts
+  Delta transform with embeds
+    ✕ should correctly handle object embed data with null thisData during transform (5 ms)
+
+  ● Delta transform with embeds › should correctly handle object embed data with null thisData during transform
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+    -   "key": "value2",
+    +   "key": "value1",
+      }
+
+      21 |       expect('test' in result.ops[0].retain).toBe(true);
+      22 |       if ('test' in result.ops[0].retain) {
+    > 23 |         expect((result.ops[0].retain as any).test).toEqual({ key: 'value2' });
+         |                                                    ^
+      24 |       }
+      25 |     }
+      26 |
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_8/pending_category/mutant-5714c30/testCase.test.ts:23:52)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.218 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_8/pending_category/mutant-5714c30/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,54 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-c8b2cff/testCase.test.ts
+  drain
+    ✕ should call the done function with the correct arguments when op returns false (5 ms)
+    ✕ should call the done function with an error when op returns false and abort is true (1 ms)
+
+  ● drain › should call the done function with the correct arguments when op returns false
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: null
+    Received: null, "data"
+
+    Number of calls: 1
+
+      20 |
+      21 |     expect(doneSpy).toHaveBeenCalledTimes(1);
+    > 22 |     expect(doneSpy).toHaveBeenCalledWith(null);
+         |                     ^
+      23 |   });
+      24 |
+      25 |   it('should call the done function with an error when op returns false and abort is true', () => {
+
+      at Object.toHaveBeenCalledWith (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-c8b2cff/testCase.test.ts:22:21)
+
+  ● drain › should call the done function with an error when op returns false and abort is true
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: true
+    Received: true, "data"
+
+    Number of calls: 1
+
+      41 |
+      42 |     expect(doneSpy).toHaveBeenCalledTimes(1);
+    > 43 |     expect(doneSpy).toHaveBeenCalledWith(true);
+         |                     ^
+      44 |   });
+      45 | });
+
+      at Object.toHaveBeenCalledWith (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-c8b2cff/testCase.test.ts:43:21)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        2.359 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-c8b2cff/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

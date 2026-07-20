@@ -1,0 +1,61 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-c125836/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-c125836/testCase.test.ts[0m:[93m6[0m:[93m46[0m - [91merror[0m[90m TS7006: [0mParameter 'result' implicitly has an 'any' type.
+
+[7m6[0m         return Q.allResolved(promises).then((result) => {
+[7m [0m [91m                                             ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-c125836/testCase.test.ts[0m:[93m13[0m:[93m46[0m - [91merror[0m[90m TS7006: [0mParameter 'result' implicitly has an 'any' type.
+
+[7m13[0m         return Q.allResolved(promises).then((result) => {
+[7m  [0m [91m                                             ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-c125836/testCase.test.ts[0m:[93m15[0m:[93m19[0m - [91merror[0m[90m TS7006: [0mParameter 'error' implicitly has an 'any' type.
+
+[7m15[0m         }).catch((error) => {
+[7m  [0m [91m                  ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-c125836/testCase.test.ts
+  Q.allResolved function
+    ✕ should resolve with an array of promises when all promises are resolved (2 ms)
+    ✕ should reject when any of the promises are rejected (1 ms)
+
+  ● Q.allResolved function › should resolve with an array of promises when all promises are resolved
+
+    TypeError: Cannot read properties of undefined (reading 'resolve')
+
+      3 | describe("Q.allResolved function", () => {
+      4 |     it("should resolve with an array of promises when all promises are resolved", () => {
+    > 5 |         const promises = [Q.resolve(1), Q.resolve(2), Q.resolve(3)];
+        |                             ^
+      6 |         return Q.allResolved(promises).then((result) => {
+      7 |             expect(result).toEqual(promises);
+      8 |         });
+
+      at Object.resolve (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-c125836/testCase.test.ts:5:29)
+
+  ● Q.allResolved function › should reject when any of the promises are rejected
+
+    TypeError: Cannot read properties of undefined (reading 'resolve')
+
+      10 |
+      11 |     it("should reject when any of the promises are rejected", () => {
+    > 12 |         const promises = [Q.resolve(1), Q.reject(2), Q.resolve(3)];
+         |                             ^
+      13 |         return Q.allResolved(promises).then((result) => {
+      14 |             expect(result).toBeUndefined();
+      15 |         }).catch((error) => {
+
+      at Object.resolve (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-c125836/testCase.test.ts:12:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        2.226 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-c125836/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

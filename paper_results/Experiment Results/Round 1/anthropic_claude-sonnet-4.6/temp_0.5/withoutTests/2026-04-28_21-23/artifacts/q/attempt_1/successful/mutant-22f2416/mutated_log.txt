@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/q/q.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/q/q.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-22f2416/testCase.test.ts
+  makeNodeResolver
+    ✕ should resolve with the single value when callback is called with exactly 2 arguments (null, value) (4 ms)
+
+  ● makeNodeResolver › should resolve with the single value when callback is called with exactly 2 arguments (null, value)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "hello"
+    Received: ["hello"]
+
+      13 |     // Original code: resolves with "hello" (not ["hello"])
+      14 |     // Mutated code: resolves with ["hello"] because arguments.length >= 2 is true
+    > 15 |     expect(result).toBe("hello");
+         |                    ^
+      16 |     expect(Array.isArray(result)).toBe(false);
+      17 |   });
+      18 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-22f2416/testCase.test.ts:15:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.987 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-22f2416/testCase.test.ts".

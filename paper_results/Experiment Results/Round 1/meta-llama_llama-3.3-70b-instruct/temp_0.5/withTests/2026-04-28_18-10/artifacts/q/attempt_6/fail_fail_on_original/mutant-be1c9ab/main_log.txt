@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-be1c9ab/testCase.test.ts[0m:[93m6[0m:[93m36[0m - [91merror[0m[90m TS2339: [0mProperty 'QReturnValue' does not exist on type 'typeof export='.
+
+[7m6[0m         const qReturnValue = new q.QReturnValue();
+[7m [0m [91m                                   ~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-be1c9ab/testCase.test.ts[0m:[93m10[0m:[93m118[0m - [91merror[0m[90m TS2339: [0mProperty 'QReturnValue' does not exist on type 'typeof export='.
+
+[7m10[0m         expect(objectToString.call(stopIterationException) === "[object StopIteration]" || qReturnValue instanceof q.QReturnValue).toBe(true);
+[7m  [0m [91m                                                                                                                     ~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-be1c9ab/testCase.test.ts
+  isStopIteration function
+    ✕ should correctly identify StopIteration exceptions (1 ms)
+
+  ● isStopIteration function › should correctly identify StopIteration exceptions
+
+    TypeError: q.QReturnValue is not a constructor
+
+      4 |     it("should correctly identify StopIteration exceptions", () => {
+      5 |         const stopIterationException = { toString: () => "[object StopIteration]" };
+    > 6 |         const qReturnValue = new q.QReturnValue();
+        |                              ^
+      7 |         const objectToString = Object.prototype.toString;
+      8 |
+      9 |         // In the original code, this should return true
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-be1c9ab/testCase.test.ts:6:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.743 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-be1c9ab/testCase.test.ts".

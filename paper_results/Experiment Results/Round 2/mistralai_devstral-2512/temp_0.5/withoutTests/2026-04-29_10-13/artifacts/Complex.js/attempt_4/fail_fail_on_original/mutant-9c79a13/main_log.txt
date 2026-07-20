@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-9c79a13/testCase.test.ts
+  Complex.sech()
+    ✕ should correctly compute the hyperbolic secant for a complex number with b=π/4 (6 ms)
+
+  ● Complex.sech() › should correctly compute the hyperbolic secant for a complex number with b=π/4
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.49833703055518686
+    Received: 0.5800457341341665
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   0.08170870357897964
+
+       7 |     // With the mutation, the denominator becomes Math.cos(b) which is √2/2 at π/4
+       8 |     // This will produce different results than the original division
+    >  9 |     expect(result.re).toBeCloseTo(0.49833703055518686, 10);
+         |                       ^
+      10 |     expect(result.im).toBeCloseTo(-0.3990721294952787, 10);
+      11 |   });
+      12 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-9c79a13/testCase.test.ts:9:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.274 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-9c79a13/testCase.test.ts".

@@ -1,0 +1,55 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-b973647/testCase.test.ts (6.111 s)
+  Dirty error event on read stream error
+    ✕ should emit "error" event (not empty string) when a non-ENOENT read stream error occurs (5003 ms)
+
+  ● Dirty error event on read stream error › should emit "error" event (not empty string) when a non-ENOENT read stream error occurs
+
+    EISDIR: illegal operation on a directory, open '/var/folders/hj/385qyhcj33q7n5tssd7_jvkh0000gn/T/dirty-dir-1777435960309'
+
+
+
+  ● Dirty error event on read stream error › should emit "error" event (not empty string) when a non-ENOENT read stream error occurs
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: "error"
+    Received array: []
+
+      50 |       // In original code: 'error' should be in emittedEvents
+      51 |       // In mutated code: '' should be emitted instead of 'error'
+    > 52 |       expect(emittedEvents).toContain('error');
+         |                             ^
+      53 |       expect(emittedEvents).not.toContain('');
+      54 |       done();
+      55 |     }, 500);
+
+      at Timeout.toContain [as _onTimeout] (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-b973647/testCase.test.ts:52:29)
+
+  ● Dirty error event on read stream error › should emit "error" event (not empty string) when a non-ENOENT read stream error occurs
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 |
+      5 | describe('Dirty error event on read stream error', () => {
+    > 6 |   it('should emit "error" event (not empty string) when a non-ENOENT read stream error occurs', (done) => {
+        |   ^
+      7 |     const tmpDir = os.tmpdir();
+      8 |     const dirPath = path.join(tmpDir, `dirty-dir-${Date.now()}`);
+      9 |     fs.mkdirSync(dirPath);
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-b973647/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-b973647/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.265 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-b973647/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

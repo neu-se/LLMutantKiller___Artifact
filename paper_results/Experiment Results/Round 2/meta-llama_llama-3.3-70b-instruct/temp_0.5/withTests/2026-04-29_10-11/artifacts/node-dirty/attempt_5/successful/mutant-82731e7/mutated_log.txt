@@ -1,0 +1,32 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-82731e7/testCase.test.ts
+  Dirty
+    ✕ should not throw an error when closing without a write stream (49 ms)
+
+  ● Dirty › should not throw an error when closing without a write stream
+
+    expect(received).not.toThrow()
+
+    Error name:    "TypeError"
+    Error message: "Cannot read properties of null (reading 'end')"
+
+          90 |     }
+          91 |     if (this._readStream) this._readStream.destroy();
+        > 92 |        if (true) this._writeStream.end(() => this._writeStream.destroy());
+             |                                    ^
+          93 |
+          94 |   }
+          95 |
+
+      at Dirty.end [as close] (../subject_repositories/node-dirty/lib/dirty/dirty.js:92:36)
+      at close (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-82731e7/testCase.test.ts:8:21)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-82731e7/testCase.test.ts:8:34)
+      at Object.toThrow (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-82731e7/testCase.test.ts:8:34)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.646 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-82731e7/testCase.test.ts".

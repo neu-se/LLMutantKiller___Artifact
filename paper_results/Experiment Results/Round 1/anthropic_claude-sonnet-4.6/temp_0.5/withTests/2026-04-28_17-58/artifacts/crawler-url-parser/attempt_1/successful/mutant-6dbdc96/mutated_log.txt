@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-6dbdc96/testCase.test.ts
+  extract should filter out short hrefs with length less than 3
+    ✕ should not include links with href shorter than 3 characters (11 ms)
+
+  ● extract should filter out short hrefs with length less than 3 › should not include links with href shorter than 3 characters
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 2
+
+      15 |     const hasShortHref = urls.some((url: string) => url.includes('ab') && !url.includes('example.com'));
+      16 |     expect(hasShortHref).toBe(false);
+    > 17 |     expect(result.length).toBe(1);
+         |                           ^
+      18 |     expect(result[0].url).toBe('http://www.example.com/valid');
+      19 |   });
+      20 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-6dbdc96/testCase.test.ts:17:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.102 s, estimated 4 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-6dbdc96/testCase.test.ts".

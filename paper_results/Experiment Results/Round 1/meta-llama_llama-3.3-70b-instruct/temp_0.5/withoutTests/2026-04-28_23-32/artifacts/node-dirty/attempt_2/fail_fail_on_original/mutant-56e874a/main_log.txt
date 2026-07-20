@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-56e874a/testCase.test.ts
+  Dirty
+    ✕ should not write to disk when _waitForDrain is true (106 ms)
+
+  ● Dirty › should not write to disk when _waitForDrain is true
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 28
+
+      15 |     await new Promise(resolve => setTimeout(resolve, 100));
+      16 |     const stats = await fs.promises.stat(filePath);
+    > 17 |     expect(stats.size).toBe(0);
+         |                        ^
+      18 |     fs.unlinkSync(filePath);
+      19 |     fs.rmdirSync(tempDir);
+      20 |   });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-56e874a/testCase.test.ts:17:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.424 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-56e874a/testCase.test.ts".

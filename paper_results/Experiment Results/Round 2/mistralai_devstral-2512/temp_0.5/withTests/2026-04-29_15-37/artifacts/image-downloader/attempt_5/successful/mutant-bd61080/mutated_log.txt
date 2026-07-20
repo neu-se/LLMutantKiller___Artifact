@@ -1,0 +1,45 @@
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/image-downloader/index.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/image-downloader/index.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/image-downloader/lib/request.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/image-downloader/lib/request.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_5/pending_category/mutant-bd61080/testCase.test.ts (5.97 s)
+  Error message validation
+    ✕ should include status code in error message for non-200 responses (5004 ms)
+
+  ● Error message validation › should include status code in error message for non-200 responses
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Status Code: 404"
+    Received string:    "Request Failed.
+    "
+
+      12 |       .then(() => done(new Error('Should have rejected with error')))
+      13 |       .catch((err: Error) => {
+    > 14 |         expect(err.message).toContain('Status Code: 404');
+         |                             ^
+      15 |         done();
+      16 |       });
+      17 |   });
+
+      at toContain (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_5/pending_category/mutant-bd61080/testCase.test.ts:14:29)
+
+  ● Error message validation › should include status code in error message for non-200 responses
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 |
+      5 | describe('Error message validation', () => {
+    > 6 |   it('should include status code in error message for non-200 responses', (done) => {
+        |   ^
+      7 |     nock('http://test.com')
+      8 |       .get('/error')
+      9 |       .reply(404, 'Not Found');
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_5/pending_category/mutant-bd61080/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_5/pending_category/mutant-bd61080/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.13 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_5/pending_category/mutant-bd61080/testCase.test.ts".

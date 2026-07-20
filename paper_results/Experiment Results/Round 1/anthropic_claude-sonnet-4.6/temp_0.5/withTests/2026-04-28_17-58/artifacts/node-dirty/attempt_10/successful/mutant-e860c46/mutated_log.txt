@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-e860c46/testCase.test.ts (6.602 s)
+  close waits for in-flight writes
+    ✕ should emit drain even when close is called during backpressure with empty queue (5002 ms)
+
+  ● close waits for in-flight writes › should emit drain even when close is called during backpressure with empty queue
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      44 |         // Give time for everything to settle
+      45 |         setTimeout(() => {
+    > 46 |           expect(drainFired).toBe(true);
+         |                              ^
+      47 |           try { fs.unlinkSync(file); } catch (e) { /* ignore */ }
+      48 |           done();
+      49 |         }, 500);
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-e860c46/testCase.test.ts:46:30)
+
+  ● close waits for in-flight writes › should emit drain even when close is called during backpressure with empty queue
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       6 |
+       7 | describe('close waits for in-flight writes', () => {
+    >  8 |   it('should emit drain even when close is called during backpressure with empty queue', (done) => {
+         |   ^
+       9 |     const tmpDir = os.tmpdir();
+      10 |     const file = path.join(tmpDir, `dirty-close-drain-${process.pid}.dirty`);
+      11 |
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-e860c46/testCase.test.ts:8:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-e860c46/testCase.test.ts:7:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.78 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-e860c46/testCase.test.ts".

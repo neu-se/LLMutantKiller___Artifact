@@ -1,0 +1,1095 @@
+[
+  {
+    "accessPath": "q",
+    "descriptor": {
+      "type": "function",
+      "signature": "(value)",
+      "implementation": "function Q(value) {\n    // If the object is already a Promise, return it directly.  This enables\n    // the resolve function to both be used to created references from objects,\n    // but to tolerably coerce non-promises to promises.\n    if (value instanceof Promise) {\n        return value;\n    }\n\n    // assimilate thenables\n    if (isPromiseAlike(value)) {\n        return coerce(value);\n    } else {\n        return fulfill(value);\n    }\n}",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n * Constructs a promise for an immediate reference, passes promises through, or\n * coerces promises from different systems.\n * @param value immediate reference or promise\n "
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.nextTick",
+    "descriptor": {
+      "type": "function",
+      "signature": "(task)",
+      "implementation": "function (task) {\n        tail = tail.next = {\n            task: task,\n            domain: isNodeJS && process.domain,\n            next: null\n        };\n\n        if (!flushing) {\n            flushing = true;\n            requestTick();\n        }\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.nextTick.runAfter",
+    "descriptor": {
+      "type": "function",
+      "signature": "(task)",
+      "implementation": "function (task) {\n        laterQueue.push(task);\n        if (!flushing) {\n            flushing = true;\n            requestTick();\n        }\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.defer",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function defer() {\n    // if \"messages\" is an \"Array\", that indicates that the promise has not yet\n    // been resolved.  If it is \"undefined\", it has been resolved.  Each\n    // element of the messages array is itself an array of complete arguments to\n    // forward to the resolved promise.  We coerce the resolution value to a\n    // promise using the `resolve` function because it handles both fully\n    // non-thenable values and other thenables gracefully.\n    var messages = [], progressListeners = [], resolvedPromise;\n\n    var deferred = object_create(defer.prototype);\n    var promise = object_create(Promise.prototype);\n\n    promise.promiseDispatch = function (resolve, op, operands) {\n        var args = array_slice(arguments);\n        if (messages) {\n            messages.push(args);\n            if (op === \"when\" && operands[1]) { // progress operand\n                progressListeners.push(operands[1]);\n            }\n        } else {\n            Q.nextTick(function () {\n                resolvedPromise.promiseDispatch.apply(resolvedPromise, args);\n            });\n        }\n    };\n\n    // XXX deprecated\n    promise.valueOf = function () {\n        if (messages) {\n            return promise;\n        }\n        var nearerValue = nearer(resolvedPromise);\n        if (isPromise(nearerValue)) {\n            resolvedPromise = nearerValue; // shorten chain\n        }\n        return nearerValue;\n    };\n\n    promise.inspect = function () {\n        if (!resolvedPromise) {\n            return { state: \"pending\" };\n        }\n        return resolvedPromise.inspect();\n    };\n\n    if (Q.longStackSupport && hasStacks) {\n        try {\n            throw new Error();\n        } catch (e) {\n            // NOTE: don't try to use `Error.captureStackTrace` or transfer the\n            // accessor around; that causes memory leaks as per GH-111. Just\n            // reify the stack trace as a string ASAP.\n            //\n            // At the same time, cut off the first line; it's always just\n            // \"[object Promise]\\n\", as per the `toString`.\n            promise.stack = e.stack.substring(e.stack.indexOf(\"\\n\") + 1);\n            promise.stackCounter = longStackCounter++;\n        }\n    }\n\n    // NOTE: we do the checks for `resolvedPromise` in each method, instead of\n    // consolidating them into `become`, since otherwise we'd create new\n    // promises with the lines `become(whatever(value))`. See e.g. GH-252.\n\n    function become(newPromise) {\n        resolvedPromise = newPromise;\n\n        if (Q.longStackSupport && hasStacks) {\n            // Only hold a reference to the new promise if long stacks\n            // are enabled to reduce memory usage\n            promise.source = newPromise;\n        }\n\n        array_reduce(messages, function (undefined, message) {\n            Q.nextTick(function () {\n                newPromise.promiseDispatch.apply(newPromise, message);\n            });\n        }, void 0);\n\n        messages = void 0;\n        progressListeners = void 0;\n    }\n\n    deferred.promise = promise;\n    deferred.resolve = function (value) {\n        if (resolvedPromise) {\n            return;\n        }\n\n        become(Q(value));\n    };\n\n    deferred.fulfill = function (value) {\n        if (resolvedPromise) {\n            return;\n        }\n\n        become(fulfill(value));\n    };\n    deferred.reject = function (reason) {\n        if (resolvedPromise) {\n            return;\n        }\n\n        become(reject(reason));\n    };\n    deferred.notify = function (progress) {\n        if (resolvedPromise) {\n            return;\n        }\n\n        array_reduce(progressListeners, function (undefined, progressListener) {\n            Q.nextTick(function () {\n                progressListener(progress);\n            });\n        }, void 0);\n    };\n\n    return deferred;\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.defer.prototype.makeNodeResolver",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function () {\n    var self = this;\n    return function (error, value) {\n        if (error) {\n            self.reject(error);\n        } else if (arguments.length > 2) {\n            self.resolve(array_slice(arguments, 1));\n        } else {\n            self.resolve(value);\n        }\n    };\n}",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n * Creates a Node-style callback that will resolve or reject the deferred\n * promise.\n * @returns a nodeback\n "
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.Promise",
+    "descriptor": {
+      "type": "function",
+      "signature": "(resolver)",
+      "implementation": "function promise(resolver) {\n    if (typeof resolver !== \"function\") {\n        throw new TypeError(\"resolver must be a function.\");\n    }\n    var deferred = defer();\n    try {\n        resolver(deferred.resolve, deferred.reject, deferred.notify);\n    } catch (reason) {\n        deferred.reject(reason);\n    }\n    return deferred.promise;\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.Promise.race",
+    "descriptor": {
+      "type": "function",
+      "signature": "(answerPs)",
+      "implementation": "function race(answerPs) {\n    return promise(function (resolve, reject) {\n        // Switch to this once we can assume at least ES5\n        // answerPs.forEach(function (answerP) {\n        //     Q(answerP).then(resolve, reject);\n        // });\n        // Use this in the meantime\n        for (var i = 0, len = answerPs.length; i < len; i++) {\n            Q(answerPs[i]).then(resolve, reject);\n        }\n    });\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.Promise.all",
+    "descriptor": {
+      "type": "function",
+      "signature": "(promises)",
+      "implementation": "function all(promises) {\n    return when(promises, function (promises) {\n        var pendingCount = 0;\n        var deferred = defer();\n        array_reduce(promises, function (undefined, promise, index) {\n            var snapshot;\n            if (\n                isPromise(promise) &&\n                (snapshot = promise.inspect()).state === \"fulfilled\"\n            ) {\n                promises[index] = snapshot.value;\n            } else {\n                ++pendingCount;\n                when(\n                    promise,\n                    function (value) {\n                        promises[index] = value;\n                        if (--pendingCount === 0) {\n                            deferred.resolve(promises);\n                        }\n                    },\n                    deferred.reject,\n                    function (progress) {\n                        deferred.notify({ index: index, value: progress });\n                    }\n                );\n            }\n        }, void 0);\n        if (pendingCount === 0) {\n            deferred.resolve(promises);\n        }\n        return deferred.promise;\n    });\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.Promise.reject",
+    "descriptor": {
+      "type": "function",
+      "signature": "(reason)",
+      "implementation": "function reject(reason) {\n    var rejection = Promise({\n        \"when\": function (rejected) {\n            // note that the error has been handled\n            if (rejected) {\n                untrackRejection(this);\n            }\n            return rejected ? rejected(reason) : this;\n        }\n    }, function fallback() {\n        return this;\n    }, function inspect() {\n        return { state: \"rejected\", reason: reason };\n    });\n\n    // Note that the reason has not been handled.\n    trackRejection(rejection, reason);\n\n    return rejection;\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.passByCopy",
+    "descriptor": {
+      "type": "function",
+      "signature": "(object)",
+      "implementation": "function (object) {\n    //freeze(object);\n    //passByCopies.set(object, true);\n    return object;\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.join",
+    "descriptor": {
+      "type": "function",
+      "signature": "(x, y)",
+      "implementation": "function (x, y) {\n    return Q(x).join(y);\n}",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n * If two promises eventually fulfill to the same value, promises that value,\n * but otherwise rejects.\n * @param x {Any*}\n * @param y {Any*}\n * @returns {Any*} a promise for x and y if they are the same, but a rejection\n * otherwise.\n *\n "
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise",
+    "descriptor": {
+      "type": "function",
+      "signature": "(descriptor, fallback, inspect)",
+      "implementation": "function Promise(descriptor, fallback, inspect) {\n    if (fallback === void 0) {\n        fallback = function (op) {\n            return reject(new Error(\n                \"Promise does not support operation: \" + op\n            ));\n        };\n    }\n    if (inspect === void 0) {\n        inspect = function () {\n            return {state: \"unknown\"};\n        };\n    }\n\n    var promise = object_create(Promise.prototype);\n\n    promise.promiseDispatch = function (resolve, op, args) {\n        var result;\n        try {\n            if (descriptor[op]) {\n                result = descriptor[op].apply(promise, args);\n            } else {\n                result = fallback.call(promise, op, args);\n            }\n        } catch (exception) {\n            result = reject(exception);\n        }\n        if (resolve) {\n            resolve(result);\n        }\n    };\n\n    promise.inspect = inspect;\n\n    // XXX deprecated `valueOf` and `exception` support\n    if (inspect) {\n        var inspected = inspect();\n        if (inspected.state === \"rejected\") {\n            promise.exception = inspected.reason;\n        }\n\n        promise.valueOf = function () {\n            var inspected = inspect();\n            if (inspected.state === \"pending\" ||\n                inspected.state === \"rejected\") {\n                return promise;\n            }\n            return inspected.value;\n        };\n    }\n\n    return promise;\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.passByCopy",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function () {\n    //freeze(object);\n    //passByCopies.set(object, true);\n    return this;\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.join",
+    "descriptor": {
+      "type": "function",
+      "signature": "(that)",
+      "implementation": "function (that) {\n    return Q([this, that]).spread(function (x, y) {\n        if (x === y) {\n            // TODO: \"===\" should be Object.is or equiv\n            return x;\n        } else {\n            throw new Error(\"Q can't join: not the same: \" + x + \" \" + y);\n        }\n    });\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.race",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function () {\n    return this.then(Q.race);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.toString",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function () {\n    return \"[object Promise]\";\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.then",
+    "descriptor": {
+      "type": "function",
+      "signature": "(fulfilled, rejected, progressed)",
+      "implementation": "function (fulfilled, rejected, progressed) {\n    var self = this;\n    var deferred = defer();\n    var done = false;   // ensure the untrusted promise makes at most a\n                        // single call to one of the callbacks\n\n    function _fulfilled(value) {\n        try {\n            return typeof fulfilled === \"function\" ? fulfilled(value) : value;\n        } catch (exception) {\n            return reject(exception);\n        }\n    }\n\n    function _rejected(exception) {\n        if (typeof rejected === \"function\") {\n            makeStackTraceLong(exception, self);\n            try {\n                return rejected(exception);\n            } catch (newException) {\n                return reject(newException);\n            }\n        }\n        return reject(exception);\n    }\n\n    function _progressed(value) {\n        return typeof progressed === \"function\" ? progressed(value) : value;\n    }\n\n    Q.nextTick(function () {\n        self.promiseDispatch(function (value) {\n            if (done) {\n                return;\n            }\n            done = true;\n\n            deferred.resolve(_fulfilled(value));\n        }, \"when\", [function (exception) {\n            if (done) {\n                return;\n            }\n            done = true;\n\n            deferred.resolve(_rejected(exception));\n        }]);\n    });\n\n    // Progress propagator need to be attached in the current tick.\n    self.promiseDispatch(void 0, \"when\", [void 0, function (value) {\n        var newValue;\n        var threw = false;\n        try {\n            newValue = _progressed(value);\n        } catch (e) {\n            threw = true;\n            if (Q.onerror) {\n                Q.onerror(e);\n            } else {\n                throw e;\n            }\n        }\n\n        if (!threw) {\n            deferred.notify(newValue);\n        }\n    }]);\n\n    return deferred.promise;\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.tap",
+    "descriptor": {
+      "type": "function",
+      "signature": "(callback)",
+      "implementation": "function (callback) {\n    callback = Q(callback);\n\n    return this.then(function (value) {\n        return callback.fcall(value).thenResolve(value);\n    });\n}",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n * Works almost like \"finally\", but not called for rejections.\n * Original resolution value is passed through callback unaffected.\n * Callback may return a promise that will be awaited for.\n * @param {Function} callback\n * @returns {Q.Promise}\n * @example\n * doSomething()\n *   .then(...)\n *   .tap(console.log)\n *   .then(...);\n "
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.thenResolve",
+    "descriptor": {
+      "type": "function",
+      "signature": "(value)",
+      "implementation": "function (value) {\n    return this.then(function () { return value; });\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.thenReject",
+    "descriptor": {
+      "type": "function",
+      "signature": "(reason)",
+      "implementation": "function (reason) {\n    return this.then(function () { throw reason; });\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.isPending",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function () {\n    return this.inspect().state === \"pending\";\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.isFulfilled",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function () {\n    return this.inspect().state === \"fulfilled\";\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.isRejected",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function () {\n    return this.inspect().state === \"rejected\";\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.spread",
+    "descriptor": {
+      "type": "function",
+      "signature": "(fulfilled, rejected)",
+      "implementation": "function (fulfilled, rejected) {\n    return this.all().then(function (array) {\n        return fulfilled.apply(void 0, array);\n    }, rejected);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.dispatch",
+    "descriptor": {
+      "type": "function",
+      "signature": "(op, args)",
+      "implementation": "function (op, args) {\n    var self = this;\n    var deferred = defer();\n    Q.nextTick(function () {\n        self.promiseDispatch(deferred.resolve, op, args);\n    });\n    return deferred.promise;\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.get",
+    "descriptor": {
+      "type": "function",
+      "signature": "(key)",
+      "implementation": "function (key) {\n    return this.dispatch(\"get\", [key]);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.set",
+    "descriptor": {
+      "type": "function",
+      "signature": "(key, value)",
+      "implementation": "function (key, value) {\n    return this.dispatch(\"set\", [key, value]);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.delete",
+    "descriptor": {
+      "type": "function",
+      "signature": "(key)",
+      "implementation": "function (key) {\n    return this.dispatch(\"delete\", [key]);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.post",
+    "descriptor": {
+      "type": "function",
+      "signature": "(name, args)",
+      "implementation": "function (name, args) {\n    return this.dispatch(\"post\", [name, args]);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.invoke",
+    "descriptor": {
+      "type": "function",
+      "signature": "(name /*...args*/)",
+      "implementation": "function (name /*...args*/) {\n    return this.dispatch(\"post\", [name, array_slice(arguments, 1)]);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.fapply",
+    "descriptor": {
+      "type": "function",
+      "signature": "(args)",
+      "implementation": "function (args) {\n    return this.dispatch(\"apply\", [void 0, args]);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.fcall",
+    "descriptor": {
+      "type": "function",
+      "signature": "(/*...args*/)",
+      "implementation": "function (/*...args*/) {\n    return this.dispatch(\"apply\", [void 0, array_slice(arguments)]);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.fbind",
+    "descriptor": {
+      "type": "function",
+      "signature": "(/*...args*/)",
+      "implementation": "function (/*...args*/) {\n    var promise = this;\n    var args = array_slice(arguments);\n    return function fbound() {\n        return promise.dispatch(\"apply\", [\n            this,\n            args.concat(array_slice(arguments))\n        ]);\n    };\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.keys",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function () {\n    return this.dispatch(\"keys\", []);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.all",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function () {\n    return all(this);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.any",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function () {\n    return any(this);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.allResolved",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function () {\n    return allResolved(this);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.allSettled",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function () {\n    return this.then(function (promises) {\n        return all(array_map(promises, function (promise) {\n            promise = Q(promise);\n            function regardless() {\n                return promise.inspect();\n            }\n            return promise.then(regardless, regardless);\n        }));\n    });\n}",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n * Turns an array of promises into a promise for an array of their states (as\n * returned by `inspect`) when they have all settled.\n * @param {Array[Any*]} values an array (or promise for an array) of values (or\n * promises for values)\n * @returns {Array[State]} an array of states for the respective values.\n "
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.catch",
+    "descriptor": {
+      "type": "function",
+      "signature": "(rejected)",
+      "implementation": "function (rejected) {\n    return this.then(void 0, rejected);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.progress",
+    "descriptor": {
+      "type": "function",
+      "signature": "(progressed)",
+      "implementation": "function (progressed) {\n    return this.then(void 0, void 0, progressed);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.finally",
+    "descriptor": {
+      "type": "function",
+      "signature": "(callback)",
+      "implementation": "function (callback) {\n    if (!callback || typeof callback.apply !== \"function\") {\n        throw new Error(\"Q can't apply finally callback\");\n    }\n    callback = Q(callback);\n    return this.then(function (value) {\n        return callback.fcall().then(function () {\n            return value;\n        });\n    }, function (reason) {\n        // TODO attempt to recycle the rejection with \"this\".\n        return callback.fcall().then(function () {\n            throw reason;\n        });\n    });\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.done",
+    "descriptor": {
+      "type": "function",
+      "signature": "(fulfilled, rejected, progress)",
+      "implementation": "function (fulfilled, rejected, progress) {\n    var onUnhandledError = function (error) {\n        // forward to a future turn so that ``when``\n        // does not catch it and turn it into a rejection.\n        Q.nextTick(function () {\n            makeStackTraceLong(error, promise);\n            if (Q.onerror) {\n                Q.onerror(error);\n            } else {\n                throw error;\n            }\n        });\n    };\n\n    // Avoid unnecessary `nextTick`ing via an unnecessary `when`.\n    var promise = fulfilled || rejected || progress ?\n        this.then(fulfilled, rejected, progress) :\n        this;\n\n    if (typeof process === \"object\" && process && process.domain) {\n        onUnhandledError = process.domain.bind(onUnhandledError);\n    }\n\n    promise.then(void 0, onUnhandledError);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.timeout",
+    "descriptor": {
+      "type": "function",
+      "signature": "(ms, error)",
+      "implementation": "function (ms, error) {\n    var deferred = defer();\n    var timeoutId = setTimeout(function () {\n        if (!error || \"string\" === typeof error) {\n            error = new Error(error || \"Timed out after \" + ms + \" ms\");\n            error.code = \"ETIMEDOUT\";\n        }\n        deferred.reject(error);\n    }, ms);\n\n    this.then(function (value) {\n        clearTimeout(timeoutId);\n        deferred.resolve(value);\n    }, function (exception) {\n        clearTimeout(timeoutId);\n        deferred.reject(exception);\n    }, deferred.notify);\n\n    return deferred.promise;\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.delay",
+    "descriptor": {
+      "type": "function",
+      "signature": "(timeout)",
+      "implementation": "function (timeout) {\n    return this.then(function (value) {\n        var deferred = defer();\n        setTimeout(function () {\n            deferred.resolve(value);\n        }, timeout);\n        return deferred.promise;\n    });\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.nfapply",
+    "descriptor": {
+      "type": "function",
+      "signature": "(args)",
+      "implementation": "function (args) {\n    var deferred = defer();\n    var nodeArgs = array_slice(args);\n    nodeArgs.push(deferred.makeNodeResolver());\n    this.fapply(nodeArgs).fail(deferred.reject);\n    return deferred.promise;\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.nfcall",
+    "descriptor": {
+      "type": "function",
+      "signature": "(/*...args*/)",
+      "implementation": "function (/*...args*/) {\n    var nodeArgs = array_slice(arguments);\n    var deferred = defer();\n    nodeArgs.push(deferred.makeNodeResolver());\n    this.fapply(nodeArgs).fail(deferred.reject);\n    return deferred.promise;\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.denodeify",
+    "descriptor": {
+      "type": "function",
+      "signature": "(/*...args*/)",
+      "implementation": "function (/*...args*/) {\n    var args = array_slice(arguments);\n    args.unshift(this);\n    return Q.denodeify.apply(void 0, args);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.nbind",
+    "descriptor": {
+      "type": "function",
+      "signature": "(/*thisp, ...args*/)",
+      "implementation": "function (/*thisp, ...args*/) {\n    var args = array_slice(arguments, 0);\n    args.unshift(this);\n    return Q.nbind.apply(void 0, args);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.npost",
+    "descriptor": {
+      "type": "function",
+      "signature": "(name, args)",
+      "implementation": "function (name, args) {\n    var nodeArgs = array_slice(args || []);\n    var deferred = defer();\n    nodeArgs.push(deferred.makeNodeResolver());\n    this.dispatch(\"post\", [name, nodeArgs]).fail(deferred.reject);\n    return deferred.promise;\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.ninvoke",
+    "descriptor": {
+      "type": "function",
+      "signature": "(name /*...args*/)",
+      "implementation": "function (name /*...args*/) {\n    var nodeArgs = array_slice(arguments, 1);\n    var deferred = defer();\n    nodeArgs.push(deferred.makeNodeResolver());\n    this.dispatch(\"post\", [name, nodeArgs]).fail(deferred.reject);\n    return deferred.promise;\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.makePromise.prototype.nodeify",
+    "descriptor": {
+      "type": "function",
+      "signature": "(nodeback)",
+      "implementation": "function (nodeback) {\n    if (nodeback) {\n        this.then(function (value) {\n            Q.nextTick(function () {\n                nodeback(null, value);\n            });\n        }, function (error) {\n            Q.nextTick(function () {\n                nodeback(error);\n            });\n        });\n    } else {\n        return this;\n    }\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.tap",
+    "descriptor": {
+      "type": "function",
+      "signature": "(promise, callback)",
+      "implementation": "function (promise, callback) {\n    return Q(promise).tap(callback);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.when",
+    "descriptor": {
+      "type": "function",
+      "signature": "(value, fulfilled, rejected, progressed)",
+      "implementation": "function when(value, fulfilled, rejected, progressed) {\n    return Q(value).then(fulfilled, rejected, progressed);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.thenResolve",
+    "descriptor": {
+      "type": "function",
+      "signature": "(promise, value)",
+      "implementation": "function (promise, value) {\n    return Q(promise).thenResolve(value);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.thenReject",
+    "descriptor": {
+      "type": "function",
+      "signature": "(promise, reason)",
+      "implementation": "function (promise, reason) {\n    return Q(promise).thenReject(reason);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.nearer",
+    "descriptor": {
+      "type": "function",
+      "signature": "(value)",
+      "implementation": "function nearer(value) {\n    if (isPromise(value)) {\n        var inspected = value.inspect();\n        if (inspected.state === \"fulfilled\") {\n            return inspected.value;\n        }\n    }\n    return value;\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.isPromise",
+    "descriptor": {
+      "type": "function",
+      "signature": "(object)",
+      "implementation": "function isPromise(object) {\n    return object instanceof Promise;\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.isPromiseAlike",
+    "descriptor": {
+      "type": "function",
+      "signature": "(object)",
+      "implementation": "function isPromiseAlike(object) {\n    return isObject(object) && typeof object.then === \"function\";\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.isPending",
+    "descriptor": {
+      "type": "function",
+      "signature": "(object)",
+      "implementation": "function isPending(object) {\n    return isPromise(object) && object.inspect().state === \"pending\";\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.isFulfilled",
+    "descriptor": {
+      "type": "function",
+      "signature": "(object)",
+      "implementation": "function isFulfilled(object) {\n    return !isPromise(object) || object.inspect().state === \"fulfilled\";\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.isRejected",
+    "descriptor": {
+      "type": "function",
+      "signature": "(object)",
+      "implementation": "function isRejected(object) {\n    return isPromise(object) && object.inspect().state === \"rejected\";\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.resetUnhandledRejections",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function resetUnhandledRejections() {\n    unhandledReasons.length = 0;\n    unhandledRejections.length = 0;\n\n    if (!trackUnhandledRejections) {\n        trackUnhandledRejections = true;\n    }\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.getUnhandledReasons",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function () {\n    // Make a copy so that consumers can't interfere with our internal state.\n    return unhandledReasons.slice();\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.stopUnhandledRejectionTracking",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function () {\n    resetUnhandledRejections();\n    trackUnhandledRejections = false;\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.fulfill",
+    "descriptor": {
+      "type": "function",
+      "signature": "(value)",
+      "implementation": "function fulfill(value) {\n    return Promise({\n        \"when\": function () {\n            return value;\n        },\n        \"get\": function (name) {\n            return value[name];\n        },\n        \"set\": function (name, rhs) {\n            value[name] = rhs;\n        },\n        \"delete\": function (name) {\n            delete value[name];\n        },\n        \"post\": function (name, args) {\n            // Mark Miller proposes that post with no name should apply a\n            // promised function.\n            if (name === null || name === void 0) {\n                return value.apply(void 0, args);\n            } else {\n                return value[name].apply(value, args);\n            }\n        },\n        \"apply\": function (thisp, args) {\n            return value.apply(thisp, args);\n        },\n        \"keys\": function () {\n            return object_keys(value);\n        }\n    }, void 0, function inspect() {\n        return { state: \"fulfilled\", value: value };\n    });\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.master",
+    "descriptor": {
+      "type": "function",
+      "signature": "(object)",
+      "implementation": "function master(object) {\n    return Promise({\n        \"isDef\": function () {}\n    }, function fallback(op, args) {\n        return dispatch(object, op, args);\n    }, function () {\n        return Q(object).inspect();\n    });\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.spread",
+    "descriptor": {
+      "type": "function",
+      "signature": "(value, fulfilled, rejected)",
+      "implementation": "function spread(value, fulfilled, rejected) {\n    return Q(value).spread(fulfilled, rejected);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.async",
+    "descriptor": {
+      "type": "function",
+      "signature": "(makeGenerator)",
+      "implementation": "function async(makeGenerator) {\n    return function () {\n        // when verb is \"send\", arg is a value\n        // when verb is \"throw\", arg is an exception\n        function continuer(verb, arg) {\n            var result;\n\n            // Until V8 3.19 / Chromium 29 is released, SpiderMonkey is the only\n            // engine that has a deployed base of browsers that support generators.\n            // However, SM's generators use the Python-inspired semantics of\n            // outdated ES6 drafts.  We would like to support ES6, but we'd also\n            // like to make it possible to use generators in deployed browsers, so\n            // we also support Python-style generators.  At some point we can remove\n            // this block.\n\n            if (typeof StopIteration === \"undefined\") {\n                // ES6 Generators\n                try {\n                    result = generator[verb](arg);\n                } catch (exception) {\n                    return reject(exception);\n                }\n                if (result.done) {\n                    return Q(result.value);\n                } else {\n                    return when(result.value, callback, errback);\n                }\n            } else {\n                // SpiderMonkey Generators\n                // FIXME: Remove this case when SM does ES6 generators.\n                try {\n                    result = generator[verb](arg);\n                } catch (exception) {\n                    if (isStopIteration(exception)) {\n                        return Q(exception.value);\n                    } else {\n                        return reject(exception);\n                    }\n                }\n                return when(result, callback, errback);\n            }\n        }\n        var generator = makeGenerator.apply(this, arguments);\n        var callback = continuer.bind(continuer, \"next\");\n        var errback = continuer.bind(continuer, \"throw\");\n        return callback();\n    };\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.spawn",
+    "descriptor": {
+      "type": "function",
+      "signature": "(makeGenerator)",
+      "implementation": "function spawn(makeGenerator) {\n    Q.done(Q.async(makeGenerator)());\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.return",
+    "descriptor": {
+      "type": "function",
+      "signature": "(value)",
+      "implementation": "function _return(value) {\n    throw new QReturnValue(value);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.promised",
+    "descriptor": {
+      "type": "function",
+      "signature": "(callback)",
+      "implementation": "function promised(callback) {\n    return function () {\n        return spread([this, all(arguments)], function (self, args) {\n            return callback.apply(self, args);\n        });\n    };\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.dispatch",
+    "descriptor": {
+      "type": "function",
+      "signature": "(object, op, args)",
+      "implementation": "function dispatch(object, op, args) {\n    return Q(object).dispatch(op, args);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.get",
+    "descriptor": {
+      "type": "function",
+      "signature": "(object, key)",
+      "implementation": "function (object, key) {\n    return Q(object).dispatch(\"get\", [key]);\n}",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n * Gets the value of a property in a future turn.\n * @param object    promise or immediate reference for target object\n * @param name      name of property to get\n * @return promise for the property value\n "
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.set",
+    "descriptor": {
+      "type": "function",
+      "signature": "(object, key, value)",
+      "implementation": "function (object, key, value) {\n    return Q(object).dispatch(\"set\", [key, value]);\n}",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n * Sets the value of a property in a future turn.\n * @param object    promise or immediate reference for object object\n * @param name      name of property to set\n * @param value     new value of property\n * @return promise for the return value\n "
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.delete",
+    "descriptor": {
+      "type": "function",
+      "signature": "(object, key)",
+      "implementation": "function (object, key) {\n    return Q(object).dispatch(\"delete\", [key]);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.post",
+    "descriptor": {
+      "type": "function",
+      "signature": "(object, name, args)",
+      "implementation": "function (object, name, args) {\n    return Q(object).dispatch(\"post\", [name, args]);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.invoke",
+    "descriptor": {
+      "type": "function",
+      "signature": "(object, name /*...args*/)",
+      "implementation": "function (object, name /*...args*/) {\n    return Q(object).dispatch(\"post\", [name, array_slice(arguments, 2)]);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.fapply",
+    "descriptor": {
+      "type": "function",
+      "signature": "(object, args)",
+      "implementation": "function (object, args) {\n    return Q(object).dispatch(\"apply\", [void 0, args]);\n}",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n * Applies the promised function in a future turn.\n * @param object    promise or immediate reference for target function\n * @param args      array of application arguments\n "
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.fcall",
+    "descriptor": {
+      "type": "function",
+      "signature": "(object /* ...args*/)",
+      "implementation": "function (object /* ...args*/) {\n    return Q(object).dispatch(\"apply\", [void 0, array_slice(arguments, 1)]);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.fbind",
+    "descriptor": {
+      "type": "function",
+      "signature": "(object /*...args*/)",
+      "implementation": "function (object /*...args*/) {\n    var promise = Q(object);\n    var args = array_slice(arguments, 1);\n    return function fbound() {\n        return promise.dispatch(\"apply\", [\n            this,\n            args.concat(array_slice(arguments))\n        ]);\n    };\n}",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n * Binds the promised function, transforming return values into a fulfilled\n * promise and thrown errors into a rejected one.\n * @param object    promise or immediate reference for target function\n * @param ...args   array of application arguments\n "
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.keys",
+    "descriptor": {
+      "type": "function",
+      "signature": "(object)",
+      "implementation": "function (object) {\n    return Q(object).dispatch(\"keys\", []);\n}",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n * Requests the names of the owned properties of a promised\n * object in a future turn.\n * @param object    promise or immediate reference for target object\n * @return promise for the keys of the eventually settled object\n "
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.any",
+    "descriptor": {
+      "type": "function",
+      "signature": "(promises)",
+      "implementation": "function any(promises) {\n    if (promises.length === 0) {\n        return Q.resolve();\n    }\n\n    var deferred = Q.defer();\n    var pendingCount = 0;\n    array_reduce(promises, function (prev, current, index) {\n        var promise = promises[index];\n\n        pendingCount++;\n\n        when(promise, onFulfilled, onRejected, onProgress);\n        function onFulfilled(result) {\n            deferred.resolve(result);\n        }\n        function onRejected(err) {\n            pendingCount--;\n            if (pendingCount === 0) {\n                var rejection = err || new Error(\"\" + err);\n\n                rejection.message = (\"Q can't get fulfillment value from any promise, all \" +\n                    \"promises were rejected. Last error message: \" + rejection.message);\n\n                deferred.reject(rejection);\n            }\n        }\n        function onProgress(progress) {\n            deferred.notify({\n                index: index,\n                value: progress\n            });\n        }\n    }, undefined);\n\n    return deferred.promise;\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.allResolved",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function () {\n        if (typeof console !== \"undefined\" &&\n            typeof console.warn === \"function\") {\n            console.warn(name + \" is deprecated, use \" + alternative +\n                         \" instead.\", new Error(\"\").stack);\n        }\n        return callback.apply(callback, arguments);\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.allSettled",
+    "descriptor": {
+      "type": "function",
+      "signature": "(promises)",
+      "implementation": "function allSettled(promises) {\n    return Q(promises).allSettled();\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.catch",
+    "descriptor": {
+      "type": "function",
+      "signature": "(object, rejected)",
+      "implementation": "function (object, rejected) {\n    return Q(object).then(void 0, rejected);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.progress",
+    "descriptor": {
+      "type": "function",
+      "signature": "(object, progressed)",
+      "implementation": "function progress(object, progressed) {\n    return Q(object).then(void 0, void 0, progressed);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.finally",
+    "descriptor": {
+      "type": "function",
+      "signature": "(object, callback)",
+      "implementation": "function (object, callback) {\n    return Q(object)[\"finally\"](callback);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.done",
+    "descriptor": {
+      "type": "function",
+      "signature": "(object, fulfilled, rejected, progress)",
+      "implementation": "function (object, fulfilled, rejected, progress) {\n    return Q(object).done(fulfilled, rejected, progress);\n}",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n * Terminates a chain of promises, forcing rejections to be\n * thrown as exceptions.\n * @param {Any*} promise at the end of a chain of promises\n * @returns nothing\n "
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.timeout",
+    "descriptor": {
+      "type": "function",
+      "signature": "(object, ms, error)",
+      "implementation": "function (object, ms, error) {\n    return Q(object).timeout(ms, error);\n}",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n * Causes a promise to be rejected if it does not get fulfilled before\n * some milliseconds time out.\n * @param {Any*} promise\n * @param {Number} milliseconds timeout\n * @param {Any*} custom error message or Error object (optional)\n * @returns a promise for the resolution of the given promise if it is\n * fulfilled before the timeout, otherwise rejected.\n "
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.delay",
+    "descriptor": {
+      "type": "function",
+      "signature": "(object, timeout)",
+      "implementation": "function (object, timeout) {\n    if (timeout === void 0) {\n        timeout = object;\n        object = void 0;\n    }\n    return Q(object).delay(timeout);\n}",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n * Returns a promise for the given value (or promised value), some\n * milliseconds after it resolved. Passes rejections immediately.\n * @param {Any*} promise\n * @param {Number} milliseconds\n * @returns a promise for the resolution of the given promise after milliseconds\n * time has elapsed since the resolution of the given promise.\n * If the given promise rejects, that is passed immediately.\n "
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.nfapply",
+    "descriptor": {
+      "type": "function",
+      "signature": "(callback, args)",
+      "implementation": "function (callback, args) {\n    return Q(callback).nfapply(args);\n}",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n * Passes a continuation to a Node function, which is called with the given\n * arguments provided as an array, and returns a promise.\n *\n *      Q.nfapply(FS.readFile, [__filename])\n *      .then(function (content) {\n *      })\n *\n "
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.nfcall",
+    "descriptor": {
+      "type": "function",
+      "signature": "(callback /*...args*/)",
+      "implementation": "function (callback /*...args*/) {\n    var args = array_slice(arguments, 1);\n    return Q(callback).nfapply(args);\n}",
+      "isAsync": false,
+      "isConstructor": false,
+      "docComment": "*\n * Passes a continuation to a Node function, which is called with the given\n * arguments provided individually, and returns a promise.\n * @example\n * Q.nfcall(FS.readFile, __filename)\n * .then(function (content) {\n * })\n *\n "
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.denodeify",
+    "descriptor": {
+      "type": "function",
+      "signature": "(callback /*...args*/)",
+      "implementation": "function (callback /*...args*/) {\n    if (callback === undefined) {\n        throw new Error(\"Q can't wrap an undefined function\");\n    }\n    var baseArgs = array_slice(arguments, 1);\n    return function () {\n        var nodeArgs = baseArgs.concat(array_slice(arguments));\n        var deferred = defer();\n        nodeArgs.push(deferred.makeNodeResolver());\n        Q(callback).fapply(nodeArgs).fail(deferred.reject);\n        return deferred.promise;\n    };\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.nbind",
+    "descriptor": {
+      "type": "function",
+      "signature": "(callback, thisp /*...args*/)",
+      "implementation": "function (callback, thisp /*...args*/) {\n    var baseArgs = array_slice(arguments, 2);\n    return function () {\n        var nodeArgs = baseArgs.concat(array_slice(arguments));\n        var deferred = defer();\n        nodeArgs.push(deferred.makeNodeResolver());\n        function bound() {\n            return callback.apply(thisp, arguments);\n        }\n        Q(bound).fapply(nodeArgs).fail(deferred.reject);\n        return deferred.promise;\n    };\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.npost",
+    "descriptor": {
+      "type": "function",
+      "signature": "(object, name, args)",
+      "implementation": "function (object, name, args) {\n    return Q(object).npost(name, args);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.ninvoke",
+    "descriptor": {
+      "type": "function",
+      "signature": "(object, name /*...args*/)",
+      "implementation": "function (object, name /*...args*/) {\n    var nodeArgs = array_slice(arguments, 2);\n    var deferred = defer();\n    nodeArgs.push(deferred.makeNodeResolver());\n    Q(object).dispatch(\"post\", [name, nodeArgs]).fail(deferred.reject);\n    return deferred.promise;\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.nodeify",
+    "descriptor": {
+      "type": "function",
+      "signature": "(object, nodeback)",
+      "implementation": "function nodeify(object, nodeback) {\n    return Q(object).nodeify(nodeback);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  },
+  {
+    "accessPath": "q.noConflict",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n    throw new Error(\"Q.noConflict only works when Q is used as a global\");\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "q"
+  }
+]

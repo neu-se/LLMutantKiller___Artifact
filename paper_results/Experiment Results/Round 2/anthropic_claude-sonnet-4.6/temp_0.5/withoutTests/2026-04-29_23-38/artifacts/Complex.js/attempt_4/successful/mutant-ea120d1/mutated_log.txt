@@ -1,0 +1,26 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-ea120d1/testCase.test.ts
+  logHypot boundary condition
+    ✕ uses safe path when |b| === 3000 and |a| < 3000 (2 ms)
+
+  ● logHypot boundary condition › uses safe path when |b| === 3000 and |a| < 3000
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 8.352939491263552
+    Received: 8.352939491263554
+
+       9 |       const fastResult = Math.log(a*a + b*b) * 0.5;
+      10 |       if (safeResult !== fastResult) {
+    > 11 |         expect(new Complex(a, b).log().re).toBe(safeResult);
+         |                                            ^
+      12 |         return;
+      13 |       }
+      14 |     }
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-ea120d1/testCase.test.ts:11:44)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.085 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-ea120d1/testCase.test.ts".

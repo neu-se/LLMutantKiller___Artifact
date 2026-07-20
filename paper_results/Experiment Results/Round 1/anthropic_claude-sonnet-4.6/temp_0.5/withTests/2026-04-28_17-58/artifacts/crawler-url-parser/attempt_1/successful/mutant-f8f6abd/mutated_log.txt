@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-f8f6abd/testCase.test.ts
+  extract should skip anchors with undefined href
+    ✕ should not include links with undefined href in the extracted results (7 ms)
+
+  ● extract should skip anchors with undefined href › should not include links with undefined href in the extracted results
+
+    TypeError: Cannot read properties of undefined (reading 'length')
+
+       95 | 		let text = $(this).text().trim();
+       96 | 		//href = href.replace(/;.*$/g,"");
+    >  97 |    		if (false || href.length < 3 || /^(javascript|mailto:|ftp:)/ig.test(href)) return;
+          |    		                  ^
+       98 |
+       99 |
+      100 | 		let currentUrl = parse(href, baseUrlStr);
+
+      at Element.length (../subject_repositories/crawler-url-parser/crawler-url-parser.js:97:24)
+      at LoadedCheerio.each (../subject_repositories/crawler-url-parser/node_modules/cheerio/src/api/traversing.ts:648:24)
+      at each (../subject_repositories/crawler-url-parser/crawler-url-parser.js:93:9)
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-f8f6abd/testCase.test.ts:13:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.914 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-f8f6abd/testCase.test.ts".

@@ -1,0 +1,33 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-5b2a054/testCase.test.ts
+  Q error handling
+    ✕ should properly re-throw uncaught exceptions in browser environment (1 ms)
+
+  ● Q error handling › should properly re-throw uncaught exceptions in browser environment
+
+    The error below may be caused by using the wrong test environment, see https://jestjs.io/docs/configuration#testenvironment-string.
+    Consider using the "jsdom" test environment.
+
+    ReferenceError: window is not defined
+
+       7 |
+       8 |         // Override the global error handler to detect re-thrown errors
+    >  9 |         const originalOnerror = window.onerror;
+         |                                 ^
+      10 |         window.onerror = function(message, source, lineno, colno, error) {
+      11 |             if (error && error.message === "Handler error") {
+      12 |                 errorThrown = true;
+
+      at Object.window (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-5b2a054/testCase.test.ts:9:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.739 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-5b2a054/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

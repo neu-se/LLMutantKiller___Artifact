@@ -1,0 +1,38 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-63e4667/testCase.test.ts[0m:[93m6[0m:[93m29[0m - [91merror[0m[90m TS7006: [0mParameter 'value' implicitly has an 'any' type.
+
+[7m6[0m         return Q(obj).then((value) => {
+[7m [0m [91m                            ~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-63e4667/testCase.test.ts[0m:[93m8[0m:[93m18[0m - [91merror[0m[90m TS7006: [0mParameter 'keys' implicitly has an 'any' type.
+
+[7m8[0m         }).then((keys) => {
+[7m [0m [91m                 ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-63e4667/testCase.test.ts
+  Promise
+    ✕ should return keys of an object (2 ms)
+
+  ● Promise › should return keys of an object
+
+    TypeError: value.keys is not a function
+
+       5 |         const obj = { a: 1, b: 2 };
+       6 |         return Q(obj).then((value) => {
+    >  7 |             return value.keys();
+         |                          ^
+       8 |         }).then((keys) => {
+       9 |             expect(keys).toEqual(['a', 'b']);
+      10 |         });
+
+      at keys (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-63e4667/testCase.test.ts:7:26)
+      at fulfilled (../subject_repositories/q/q.js:854:54)
+      at _fulfilled (../subject_repositories/q/q.js:883:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:816:13)
+      at promiseDispatch (../subject_repositories/q/q.js:877:14)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.402 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-63e4667/testCase.test.ts".

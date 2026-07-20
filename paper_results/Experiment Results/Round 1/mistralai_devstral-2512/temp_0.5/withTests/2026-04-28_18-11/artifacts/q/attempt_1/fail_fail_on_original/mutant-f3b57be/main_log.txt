@@ -1,0 +1,40 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f3b57be/testCase.test.ts[0m:[93m2[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m2[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f3b57be/testCase.test.ts[0m:[93m10[0m:[93m41[0m - [91merror[0m[90m TS7006: [0mParameter 'resolve' implicitly has an 'any' type.
+
+[7m10[0m         const result = await Q.Promise((resolve) => {
+[7m  [0m [91m                                        ~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f3b57be/testCase.test.ts[0m:[93m14[0m:[93m28[0m - [91merror[0m[90m TS18048: [0m'acc' is possibly 'undefined'.
+
+[7m14[0m                     return acc + val;
+[7m  [0m [91m                           ~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f3b57be/testCase.test.ts[0m:[93m14[0m:[93m34[0m - [91merror[0m[90m TS18048: [0m'val' is possibly 'undefined'.
+
+[7m14[0m                     return acc + val;
+[7m  [0m [91m                                 ~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f3b57be/testCase.test.ts
+  array_reduce mutation test
+    ✕ should correctly handle reduce with initial value on sparse arrays (1 ms)
+
+  ● array_reduce mutation test › should correctly handle reduce with initial value on sparse arrays
+
+    TypeError: Cannot read properties of undefined (reading 'Promise')
+
+       8 |
+       9 |         // Use Q to wrap the reduce operation to ensure it uses the shim
+    > 10 |         const result = await Q.Promise((resolve) => {
+         |                                ^
+      11 |             // This will use the array_reduce shim since we're in a promise context
+      12 |             const sum = sparseArray.reduce((acc, val, idx) => {
+      13 |                 if (idx in sparseArray) {
+
+      at Object.Promise (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f3b57be/testCase.test.ts:10:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.167 s, estimated 4 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f3b57be/testCase.test.ts".

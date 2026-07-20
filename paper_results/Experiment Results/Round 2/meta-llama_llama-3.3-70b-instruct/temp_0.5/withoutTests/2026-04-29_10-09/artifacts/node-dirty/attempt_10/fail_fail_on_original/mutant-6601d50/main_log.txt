@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-6601d50/testCase.test.ts[0m:[93m22[0m:[93m18[0m - [91merror[0m[90m TS2540: [0mCannot assign to 'size' because it is a read-only property.
+
+[7m22[0m     dirty._queue.size = 1;
+[7m  [0m [91m                 ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-6601d50/testCase.test.ts
+  Dirty
+    ✕ should close the database file streams when there are no pending writes (6 ms)
+
+  ● Dirty › should close the database file streams when there are no pending writes
+
+    TypeError: Cannot set property size of #<Map> which has only a getter
+
+      20 |     });
+      21 |     const closeSpy = jest.spyOn(dirty, 'close');
+    > 22 |     dirty._queue.size = 1;
+         |                      ^
+      23 |     dirty.emit('drain');
+      24 |     expect(closeSpy).toHaveBeenCalledTimes(1);
+      25 |   });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-6601d50/testCase.test.ts:22:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.896 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-6601d50/testCase.test.ts".

@@ -1,0 +1,52 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+  console.warn
+    allResolved is deprecated, use allSettled instead. Error: 
+        at Function.allResolved (/Users/anon/Documents/research/LLMTestGeneration/subject_repositories/q/q.js:483:39)
+        at Object.allResolved (/Users/anon/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-853eebc/testCase.test.ts:9:28)
+        at Promise.then.completed (/Users/anon/Documents/research/LLMTestGeneration/mutant-killer/node_modules/jest-circus/build/utils.js:298:28)
+        at new Promise (<anonymous>)
+        at callAsyncCircusFn (/Users/anon/Documents/research/LLMTestGeneration/mutant-killer/node_modules/jest-circus/build/utils.js:231:10)
+        at _callCircusTest (/Users/anon/Documents/research/LLMTestGeneration/mutant-killer/node_modules/jest-circus/build/run.js:316:40)
+        at _runTest (/Users/anon/Documents/research/LLMTestGeneration/mutant-killer/node_modules/jest-circus/build/run.js:252:3)
+        at _runTestsForDescribeBlock (/Users/anon/Documents/research/LLMTestGeneration/mutant-killer/node_modules/jest-circus/build/run.js:126:9)
+        at _runTestsForDescribeBlock (/Users/anon/Documents/research/LLMTestGeneration/mutant-killer/node_modules/jest-circus/build/run.js:121:9)
+        at run (/Users/anon/Documents/research/LLMTestGeneration/mutant-killer/node_modules/jest-circus/build/run.js:71:3)
+        at runAndTransformResultsToJestFormat (/Users/anon/Documents/research/LLMTestGeneration/mutant-killer/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+        at jestAdapter (/Users/anon/Documents/research/LLMTestGeneration/mutant-killer/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+        at runTestInternal (/Users/anon/Documents/research/LLMTestGeneration/mutant-killer/node_modules/jest-runner/build/runTest.js:367:16)
+        at runTest (/Users/anon/Documents/research/LLMTestGeneration/mutant-killer/node_modules/jest-runner/build/runTest.js:444:34)
+
+      480 |         if (typeof console !== "undefined" &&
+      481 |             typeof console.warn === "function") {
+    > 482 |             console.warn(name + " is deprecated, use " + alternative +
+          |                     ^
+      483 |                          " instead.", new Error("").stack);
+      484 |         }
+      485 |         return callback.apply(callback, arguments);
+
+      at Function.warn [as allResolved] (../subject_repositories/q/q.js:482:21)
+      at Object.allResolved (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-853eebc/testCase.test.ts:9:28)
+
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-853eebc/testCase.test.ts
+  array_map fallback
+    ✕ should collect mapped values via array_reduce in the array_map fallback (22 ms)
+
+  ● array_map fallback › should collect mapped values via array_reduce in the array_map fallback
+
+    TypeError: values[0].inspect is not a function
+
+      11 |     expect(result).toHaveLength(2);
+      12 |     const values = await Q.all(result.map((p: any) => p));
+    > 13 |     expect(values[0].inspect().value).toBe(42);
+         |                      ^
+      14 |     expect(values[1].inspect().value).toBe(99);
+      15 |   });
+      16 | });
+
+      at Object.inspect (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-853eebc/testCase.test.ts:13:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.986 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-853eebc/testCase.test.ts".

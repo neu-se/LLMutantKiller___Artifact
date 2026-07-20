@@ -1,0 +1,29 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-c03310a/testCase.test.ts[0m:[93m1[0m:[93m26[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import { GeoPoint } from "../../../../../../../../../../../subject_repositories/node-geo-point/src/geo-point.ts";
+[7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-c03310a/testCase.test.ts
+  GeoPoint
+    ✕ should throw an error when fromGeoJSON is called with a non-object (1 ms)
+
+  ● GeoPoint › should throw an error when fromGeoJSON is called with a non-object
+
+    TypeError: GeoPoint: Argument must be an object
+
+      59 |   static fromGeoJSON(point: Point): GeoPoint {
+      60 |     if (!isObject(point)) {
+    > 61 |       throw new TypeError('GeoPoint: Argument must be an object');
+         |             ^
+      62 |     }
+      63 |
+      64 |     if (!point.hasOwnProperty('type') || !point.hasOwnProperty('coordinates')) {
+
+      at Function.fromGeoJSON (../subject_repositories/node-geo-point/src/geo-point.ts:61:13)
+      at Object.fromGeoJSON (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-c03310a/testCase.test.ts:7:14)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.333 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-c03310a/testCase.test.ts".

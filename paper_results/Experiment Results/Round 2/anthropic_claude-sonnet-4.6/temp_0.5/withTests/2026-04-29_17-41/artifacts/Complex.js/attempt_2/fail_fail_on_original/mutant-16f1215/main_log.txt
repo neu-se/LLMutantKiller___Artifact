@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-16f1215/testCase.test.ts
+  Complex acsc method
+    ✕ should correctly compute acsc for a complex number with only imaginary part, using +b/d sign (not -b/d) (2 ms)
+
+  ● Complex acsc method › should correctly compute acsc for a complex number with only imaginary part, using +b/d sign (not -b/d)
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   -0.48121182505960347
+
+      24 |     // acsc uses +b/d (not -b/d) for imaginary part
+      25 |     // The result should have a specific imaginary sign
+    > 26 |     expect(result.im).toBeGreaterThan(0);
+         |                       ^
+      27 |     
+      28 |     // Now force the d===0 path: pass NaN to make d=NaN, skip early return
+      29 |     // Actually test with a=0, b=0 to confirm early return still gives PI/2, Inf
+
+      at Object.toBeGreaterThan (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-16f1215/testCase.test.ts:26:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.455 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-16f1215/testCase.test.ts".

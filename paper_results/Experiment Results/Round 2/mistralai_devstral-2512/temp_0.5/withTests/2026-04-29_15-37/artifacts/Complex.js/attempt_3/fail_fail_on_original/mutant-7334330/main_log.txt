@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-7334330/testCase.test.ts
+  Complex division mutation test
+    ✕ should correctly compute division when denominator has small real part (2 ms)
+
+  ● Complex division mutation test › should correctly compute division when denominator has small real part
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 2.002997
+    Received: 3.001996998003002
+
+    Expected precision:    5
+    Expected difference: < 0.000005
+    Received difference:   0.998999998003002
+
+       6 |     const denominator = new Complex(0.001, 1);
+       7 |     const result = numerator.div(denominator);
+    >  8 |     expect(result.re).toBeCloseTo(2.002997, 5);
+         |                       ^
+       9 |     expect(result.im).toBeCloseTo(-2.997003, 5);
+      10 |   });
+      11 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-7334330/testCase.test.ts:8:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.257 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-7334330/testCase.test.ts".

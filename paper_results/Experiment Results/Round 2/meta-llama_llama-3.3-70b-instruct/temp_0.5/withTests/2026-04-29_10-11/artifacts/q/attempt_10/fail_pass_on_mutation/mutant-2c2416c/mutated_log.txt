@@ -1,0 +1,24 @@
+  console.warn
+    test is deprecated, use alternative instead.
+
+      3 |         const consoleWarnSpy = jest.spyOn(console, "warn");
+      4 |         const deprecatedFunction = function () {
+    > 5 |             console.warn("test is deprecated, use alternative instead.");
+        |                     ^
+      6 |         };
+      7 |         deprecatedFunction();
+      8 |         expect(consoleWarnSpy).toHaveBeenCalledTimes(1);
+
+      at console.<anonymous> (node_modules/jest-mock/build/index.js:794:25)
+      at warn (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-2c2416c/testCase.test.ts:5:21)
+      at Object.deprecatedFunction (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-2c2416c/testCase.test.ts:7:9)
+
+PASS llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-2c2416c/testCase.test.ts
+  deprecate function
+    ✓ should log a deprecation warning with the correct message when the deprecated function is called (19 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        1.453 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-2c2416c/testCase.test.ts".

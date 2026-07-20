@@ -1,0 +1,51 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-545198e/testCase.test.ts[0m:[93m4[0m:[93m20[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m4[0m import rimraf from 'rimraf';
+[7m [0m [91m                   ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-545198e/testCase.test.ts (6.655 s)
+  Dirty
+    ✕ should handle chunks without newlines correctly (5003 ms)
+
+  ● Dirty › should handle chunks without newlines correctly
+
+    expect(received).toBe(expected) // Object.is equality
+
+    - Expected  - 1
+    + Received  + 1
+
+    - key:"key","val":"value"
+    + {"key":"key","val":"value"}
+      ↵
+
+      19 |         });
+      20 |         readStream.on('end', () => {
+    > 21 |           expect(data).toBe(chunk + '\n');
+         |                        ^
+      22 |           rimraf.sync(tempDir);
+      23 |           done();
+      24 |         });
+
+      at ReadStream.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-545198e/testCase.test.ts:21:24)
+
+  ● Dirty › should handle chunks without newlines correctly
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       5 |
+       6 | describe('Dirty', () => {
+    >  7 |   it('should handle chunks without newlines correctly', (done) => {
+         |   ^
+       8 |     const tempDir = path.join(__dirname, 'temp');
+       9 |     const filePath = path.join(tempDir, 'test.db');
+      10 |     fs.mkdirSync(tempDir);
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-545198e/testCase.test.ts:7:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-545198e/testCase.test.ts:6:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.849 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-545198e/testCase.test.ts".

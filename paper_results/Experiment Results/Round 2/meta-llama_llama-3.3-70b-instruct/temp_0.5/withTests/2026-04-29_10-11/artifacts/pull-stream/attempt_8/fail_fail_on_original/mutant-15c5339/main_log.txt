@@ -1,0 +1,36 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-15c5339/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/throughs/take.js"' has no exported member 'take'.
+
+[7m1[0m import { take } from '../../../../../../../../../../../subject_repositories/pull-stream/throughs/take.js';
+[7m [0m [91m         ~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-15c5339/testCase.test.ts[0m:[93m2[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/sources/values.js"' has no exported member 'values'.
+
+[7m2[0m import { values } from '../../../../../../../../../../../subject_repositories/pull-stream/sources/values.js';
+[7m [0m [91m         ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-15c5339/testCase.test.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/sinks/collect.js"' has no exported member 'collect'.
+
+[7m3[0m import { collect } from '../../../../../../../../../../../subject_repositories/pull-stream/sinks/collect.js';
+[7m [0m [91m         ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-15c5339/testCase.test.ts
+  take
+    ✕ should pass when run against the original code and fail when run against the mutated code (1 ms)
+
+  ● take › should pass when run against the original code and fail when run against the mutated code
+
+    TypeError: (0 , take_js_1.take) is not a function
+
+       5 | describe('take', () => {
+       6 |   it('should pass when run against the original code and fail when run against the mutated code', async () => {
+    >  7 |     const read = take(1, { last: false });
+         |                      ^
+       8 |     const data = values([1, 2, 3]);
+       9 |     const result = collect();
+      10 |     data(read, result);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-15c5339/testCase.test.ts:7:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.805 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-15c5339/testCase.test.ts".

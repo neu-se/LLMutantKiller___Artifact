@@ -1,0 +1,33 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_7/pending_category/mutant-a95e7e4/testCase.test.ts[0m:[93m16[0m:[93m15[0m - [91merror[0m[90m TS6133: [0m'archiverKeys' is declared but its value is never read.
+
+[7m16[0m         const archiverKeys = Object.keys(archiverModule);
+[7m  [0m [91m              ~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+(node:55550) [DEP0147] DeprecationWarning: In future versions of Node.js, fs.rmdir(path, { recursive: true }) will be removed. Use fs.rm(path, { recursive: true }) instead
+(Use `node --trace-deprecation ...` to show where the warning was created)
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_7/pending_category/mutant-a95e7e4/testCase.test.ts
+  ZipAFolder zip with uncompressed level
+    ✕ should invoke archiver with store:true option when COMPRESSION_LEVEL.uncompressed is specified (108 ms)
+
+  ● ZipAFolder zip with uncompressed level › should invoke archiver with store:true option when COMPRESSION_LEVEL.uncompressed is specified
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      46 |             // Original: store:true in options => store property present
+      47 |             // Mutated: zlib:{level:0} in options => no store property
+    > 48 |             expect(capturedCalls.length).toBeGreaterThan(0);
+         |                                          ^
+      49 |             const options = capturedCalls[0].options;
+      50 |             expect(options).toHaveProperty('store', true);
+      51 |         } finally {
+
+      at Object.toBeGreaterThan (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_7/pending_category/mutant-a95e7e4/testCase.test.ts:48:42)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.066 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_7/pending_category/mutant-a95e7e4/testCase.test.ts".

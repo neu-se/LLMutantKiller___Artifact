@@ -1,0 +1,67 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-443975f/testCase.test.ts[0m:[93m14[0m:[93m9[0m - [91merror[0m[90m TS2741: [0mProperty '__promisify__' is missing in type '(callback: any) => Immediate' but required in type 'typeof setImmediate'.
+
+[7m14[0m         global.setImmediate = function(callback: any) {
+[7m  [0m [91m        ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/node/timers.d.ts[0m:[93m180[0m:[93m22[0m
+    [7m180[0m             export { __promisify__ };
+    [7m   [0m [96m                     ~~~~~~~~~~~~~[0m
+    '__promisify__' is declared here.
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-443975f/testCase.test.ts[0m:[93m21[0m:[93m9[0m - [91merror[0m[90m TS2741: [0mProperty '__promisify__' is missing in type '(callback: any, ms?: number | undefined) => Timeout' but required in type 'typeof setTimeout'.
+
+[7m21[0m         global.setTimeout = function(callback: any, ms?: number) {
+[7m  [0m [91m        ~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/node/timers.d.ts[0m:[93m241[0m:[93m22[0m
+    [7m241[0m             export { __promisify__ };
+    [7m   [0m [96m                     ~~~~~~~~~~~~~[0m
+    '__promisify__' is declared here.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-443975f/testCase.test.ts (6.29 s)
+  Q library scheduling mechanism
+    ✕ should use setImmediate when available (5003 ms)
+
+  ● Q library scheduling mechanism › should use setImmediate when available
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      42 |                 // In mutated code: setImmediate won't be used (falls back to setTimeout)
+      43 |                 if (typeof originalSetImmediate === 'function') {
+    > 44 |                     expect(setImmediateUsed).toBe(true);
+         |                                              ^
+      45 |                     expect(executionOrder[0]).toBe("setImmediate");
+      46 |                 }
+      47 |                 done();
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-443975f/testCase.test.ts:44:46)
+      at fulfilled (../subject_repositories/q/q.js:854:54)
+      at _fulfilled (../subject_repositories/q/q.js:883:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:816:13)
+      at apply (../subject_repositories/q/q.js:570:49)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+  ● Q library scheduling mechanism › should use setImmediate when available
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("Q library scheduling mechanism", () => {
+    > 4 |     it("should use setImmediate when available", (done) => {
+        |     ^
+      5 |         // Track the order of execution to detect scheduling mechanism
+      6 |         const executionOrder: string[] = [];
+      7 |         const originalSetImmediate = global.setImmediate;
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-443975f/testCase.test.ts:4:5)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-443975f/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.445 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-443975f/testCase.test.ts".

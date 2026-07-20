@@ -1,0 +1,24 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-d8227cc/testCase.test.ts
+  test newline detection in data chunks
+    ✕ should correctly handle chunks without newlines during streaming (10 ms)
+
+  ● test newline detection in data chunks › should correctly handle chunks without newlines during streaming
+
+    Corrupted row at the end of the db: {"key":"test2","val":"data2"}
+
+      150 |         .on('end', () => {
+      151 |           if (buffer.length) {
+    > 152 |             this.emit('error', new Error(`Corrupted row at the end of the db: ${buffer}`));
+          |                                ^
+      153 |           }
+      154 |           this.emit('load', this._data.size);
+      155 |         })
+
+      at ReadStream.<anonymous> (../subject_repositories/node-dirty/lib/dirty/dirty.js:152:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.367 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-d8227cc/testCase.test.ts".

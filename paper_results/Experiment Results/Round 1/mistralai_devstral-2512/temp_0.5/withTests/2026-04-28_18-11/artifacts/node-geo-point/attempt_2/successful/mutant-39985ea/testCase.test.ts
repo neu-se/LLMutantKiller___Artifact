@@ -1,0 +1,9 @@
+import { GeoPoint } from "../../../../../../../../../../../subject_repositories/node-geo-point/src/geo-point";
+
+describe('GeoPoint.fromObject validation', () => {
+  it('should throw TypeError with specific message when input is not an object', () => {
+    expect(() => {
+      GeoPoint.fromObject(null as any);
+    }).toThrow('GeoPoint: Argument must be an object');
+  });
+});

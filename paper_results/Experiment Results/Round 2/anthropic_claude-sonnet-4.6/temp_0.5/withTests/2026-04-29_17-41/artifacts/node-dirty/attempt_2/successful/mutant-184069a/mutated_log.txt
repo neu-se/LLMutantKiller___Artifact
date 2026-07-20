@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-184069a/testCase.test.ts
+  dirty error handling
+    ✕ should emit error event for non-ENOENT errors, not load event (12 ms)
+
+  ● dirty error handling › should emit error event for non-ENOENT errors, not load event
+
+    load should not be emitted for non-ENOENT errors (EACCES should emit error)
+
+      25 |     
+      26 |     db.on('load', () => {
+    > 27 |       finish(new Error('load should not be emitted for non-ENOENT errors (EACCES should emit error)'));
+         |              ^
+      28 |     });
+      29 |     
+      30 |     db.on('error', (err: any) => {
+
+      at Dirty.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-184069a/testCase.test.ts:27:14)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:115:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.276 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-184069a/testCase.test.ts".

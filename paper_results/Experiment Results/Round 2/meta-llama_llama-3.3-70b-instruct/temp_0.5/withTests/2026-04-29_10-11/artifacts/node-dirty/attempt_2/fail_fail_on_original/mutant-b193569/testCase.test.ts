@@ -1,0 +1,23 @@
+import { Dirty } from '../../../../../../../../../../../subject_repositories/node-dirty/lib/dirty/dirty.js';
+import * as fs from 'fs';
+import * as path from 'path';
+
+describe('Dirty database', () => {
+  it('should emit an error event when a corrupted row is found at the end of the database file', (done) => {
+    const filePath = 'test.dirty';
+    const db = new Dirty(filePath);
+
+    // Create a corrupted database file
+    fs.writeFileSync(filePath, '{"key":"test","val":"value"}\n{"key":"test2"');
+
+    db.on('load', () => {
+      // If the test hasn't failed by now, it means the error event wasn't emitted
+      done(new Error('Expected an error event to be emitted'));
+    });
+
+    db.on('error', (err) => {
+      expect(err.message).toBe('Corrupted row at the end of the db: {"key":"test2"}');
+      done();
+    });
+  });
+});

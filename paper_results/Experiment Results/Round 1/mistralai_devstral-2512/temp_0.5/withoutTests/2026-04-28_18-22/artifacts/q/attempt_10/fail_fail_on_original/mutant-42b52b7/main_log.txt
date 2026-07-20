@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-42b52b7/testCase.test.ts
+  Q rejection tracking behavior
+    ✕ should demonstrate different behavior between original and mutated code (4 ms)
+
+  ● Q rejection tracking behavior › should demonstrate different behavior between original and mutated code
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      39 |     // This test will pass on original and fail on mutated
+      40 |     const hasRejectionHandled = emissions.includes("rejectionHandled");
+    > 41 |     expect(hasRejectionHandled).toBe(true);
+         |                                 ^
+      42 |
+      43 |     // Clean up
+      44 |     delete (global as any).process;
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-42b52b7/testCase.test.ts:41:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.498 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-42b52b7/testCase.test.ts".

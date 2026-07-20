@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_7/pending_category/mutant-318b8c5/testCase.test.ts
+  Delta diff with insert
+    ✕ should correctly handle insert operations with limited length (3 ms)
+
+  ● Delta diff with insert › should correctly handle insert operations with limited length
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 5
+    Received: 4
+
+       8 |     const totalDelete = diff.ops.reduce((sum, op) => sum + (op.delete || 0), 0);
+       9 |     const totalInsert = diff.ops.reduce((sum, op) => sum + (typeof op.insert === 'string' ? op.insert.length : 0), 0);
+    > 10 |     expect(totalDelete).toBe(5);
+         |                         ^
+      11 |     expect(totalInsert).toBe(5);
+      12 |   });
+      13 | });
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_7/pending_category/mutant-318b8c5/testCase.test.ts:10:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.508 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_7/pending_category/mutant-318b8c5/testCase.test.ts".

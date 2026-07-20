@@ -1,0 +1,36 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-f7d009c/testCase.test.ts
+  Complex.js hypot function mutation
+    ✕ should detect mutation in hypot function with boundary value (2 ms)
+
+  ● Complex.js hypot function mutation › should detect mutation in hypot function with boundary value
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 3000.000166666662
+    Received: 3000.0001666666626
+
+    Expected precision:    14
+    Expected difference: < 5e-15
+    Received difference:   4.547473508864641e-13
+
+       9 |     // The mutated code uses the first branch (b <= 3000 is true)
+      10 |     // Use toBeCloseTo with high precision to detect calculation differences
+    > 11 |     expect(absValue).toBeCloseTo(3000.000166666662, 14);
+         |                      ^
+      12 |   });
+      13 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-f7d009c/testCase.test.ts:11:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.305 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-f7d009c/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

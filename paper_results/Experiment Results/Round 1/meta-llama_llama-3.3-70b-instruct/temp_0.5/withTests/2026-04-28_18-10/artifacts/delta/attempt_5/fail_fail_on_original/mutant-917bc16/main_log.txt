@@ -1,0 +1,35 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-917bc16/testCase.test.ts
+  compose()
+    ✕ optimization condition (9 ms)
+
+  ● compose() › optimization condition
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Delta {
+        "ops": Array [
+          Object {
+    -       "insert": "AB",
+    +       "insert": "BA",
+          },
+        ],
+      }
+
+       9 |     const result = a.compose(b).compose(c).compose(d);
+      10 |     const expected = new Delta().insert('A').insert('B');
+    > 11 |     expect(result).toEqual(expected);
+         |                    ^
+      12 |   });
+      13 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-917bc16/testCase.test.ts:11:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.177 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-917bc16/testCase.test.ts".

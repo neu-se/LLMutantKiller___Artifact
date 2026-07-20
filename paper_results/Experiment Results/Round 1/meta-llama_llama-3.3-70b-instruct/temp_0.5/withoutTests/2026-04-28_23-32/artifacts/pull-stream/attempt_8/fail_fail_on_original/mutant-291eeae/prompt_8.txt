@@ -1,0 +1,31 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-291eeae/testCase.test.ts
+  log function
+    ✕ should log data to the console (2 ms)
+
+  ● log function › should log data to the console
+
+    Cannot find module '../../../../../../../../../../subject_repositories/pull-stream/sinks/drain.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-291eeae/testCase.test.ts'
+
+      16 |       });
+      17 |     };
+    > 18 |     jest.mock('../../../../../../../../../../subject_repositories/pull-stream/sinks/drain.js', () => ({ __esModule: true, default: drain }));
+         |          ^
+      19 |     log(done);
+      20 |     expect(console.log).toHaveBeenCalledTimes(1);
+      21 |     expect(console.log).toHaveBeenCalledWith('Test data');
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.mock (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-291eeae/testCase.test.ts:18:10)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.158 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-291eeae/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

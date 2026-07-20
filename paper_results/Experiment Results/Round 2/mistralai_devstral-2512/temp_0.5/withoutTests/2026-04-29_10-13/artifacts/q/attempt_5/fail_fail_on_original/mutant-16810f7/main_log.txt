@@ -1,0 +1,53 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-16810f7/testCase.test.ts[0m:[93m32[0m:[93m27[0m - [91merror[0m[90m TS2493: [0mTuple type '[event: "worker", listener: WorkerListener]' of length '2' has no element at index '2'.
+
+[7m32[0m           expect(callArgs[2]).toBe(promise);
+[7m  [0m [91m                          ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-16810f7/testCase.test.ts
+  Q unhandled rejection tracking
+    ✕ should properly emit unhandledRejection events in Node.js environment (18 ms)
+
+  ● Q unhandled rejection tracking › should properly emit unhandledRejection events in Node.js environment
+
+    expect(received).toBe(expected) // Object.is equality
+
+    - Expected  - 1
+    + Received  + 2
+
+    @@ -8,18 +8,19 @@
+        "delay": [Function anonymous],
+        "delete": [Function anonymous],
+        "denodeify": [Function anonymous],
+        "dispatch": [Function anonymous],
+        "done": [Function anonymous],
+    +   "exception": [Error: Test error],
+        "fail": [Function anonymous],
+        "fapply": [Function anonymous],
+        "fbind": [Function anonymous],
+        "fcall": [Function anonymous],
+        "fin": [Function anonymous],
+        "finally": [Function anonymous],
+        "get": [Function anonymous],
+    -   "inspect": [Function anonymous],
+    +   "inspect": [Function inspect],
+        "invoke": [Function anonymous],
+        "isFulfilled": [Function anonymous],
+        "isPending": [Function anonymous],
+        "isRejected": [Function anonymous],
+        "join": [Function anonymous],
+
+      30 |           expect(callArgs[0]).toBe('unhandledRejection');
+      31 |           expect(callArgs[1]).toBeInstanceOf(Error);
+    > 32 |           expect(callArgs[2]).toBe(promise);
+         |                               ^
+      33 |
+      34 |           // Clean up
+      35 |           Q.stopUnhandledRejectionTracking();
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-16810f7/testCase.test.ts:32:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.679 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-16810f7/testCase.test.ts".

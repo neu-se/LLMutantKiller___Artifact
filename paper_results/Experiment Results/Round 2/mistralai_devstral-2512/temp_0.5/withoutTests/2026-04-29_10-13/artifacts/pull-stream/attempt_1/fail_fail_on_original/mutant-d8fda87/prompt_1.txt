@@ -1,0 +1,46 @@
+Your task is to write a Jest test case that exposes a specific mutation in a JavaScript/TypeScript project.
+
+MUTATION DETAILS
+The mutation affects the following file:
+sources/once.js
+Here is the full content of that file (shown with a <PLACEHOLDER> marker):
+'use strict'
+var abortCb = require('../util/abort-cb')
+
+module.exports = function once (value, onAbort) {
+  return function (abort, cb) {
+    <PLACEHOLDER>
+      return abortCb(cb, abort, onAbort)
+    if(value != null) {
+      var _value = value; value = null
+      cb(null, _value)
+    } else
+      cb(true)
+  }
+}
+
+
+
+In the original code, <PLACEHOLDER> has the value:
+
+-       if(abort)
+In the mutated code, <PLACEHOLDER> has the value:
+
++       if(false)
+
+
+YOUR TASK
+Write one Jest test file that:
+    1. Passes when run against the original code.
+    2. Fails when run against the mutated code.
+    3. Tests the behavior of the mutated file in a way that reliably detects the mutation.
+The test will be saved at the following path, relative to this test-generation project’s root:
+llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-d8fda87/testCase.test.ts
+
+ALLOWED LIBRARIES
+You may use:
+    1. Any built-in Node.js modules (e.g., fs, path, crypto, etc.).
+    
+You may not use any other third-party libraries.
+
+

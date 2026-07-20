@@ -1,0 +1,34 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-dc041e2/testCase.test.ts
+  Q SES support
+    ✕ should return undefined when ses is defined and ses.ok returns false in the original code, but throw an error in the mutated code (1 ms)
+
+  ● Q SES support › should return undefined when ses is defined and ses.ok returns false in the original code, but throw an error in the mutated code
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "SES ok is false"
+
+    Received function did not throw
+
+      31 |                 // Q implementation
+      32 |             });
+    > 33 |         }).toThrowError("SES ok is false");
+         |            ^
+      34 |
+      35 |         // Cleanup
+      36 |         (globalThis as any).ses = originalSES;
+
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-dc041e2/testCase.test.ts:33:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.328 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-dc041e2/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-89f7a90/testCase.test.ts
+  parse with baseUrl containing fragment
+    ✕ should set baseurl field to the fragment-stripped base URL (4 ms)
+
+  ● parse with baseUrl containing fragment › should set baseurl field to the fragment-stripped base URL
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "http://www.stackoverflow.com/aaa/bbb/ccc"
+    Received: "http://www.stackoverflow.com/aaa/bbb/cccStryker%20was%20here!"
+
+      11 |     const result = parse("./ddd", "http://www.stackoverflow.com/aaa/bbb/ccc#fragment");
+      12 |     expect(result).not.toBeNull();
+    > 13 |     expect(result!.baseurl).toBe("http://www.stackoverflow.com/aaa/bbb/ccc");
+         |                             ^
+      14 |   });
+      15 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-89f7a90/testCase.test.ts:13:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.018 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-89f7a90/testCase.test.ts".

@@ -1,0 +1,57 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-d00c108/testCase.test.ts
+  Q.race
+    ✕ should resolve with the first fulfilled promise (3 ms)
+    ✕ should reject with the first rejected promise (1 ms)
+    ✕ should fail when no promises are provided (1 ms)
+
+  ● Q.race › should resolve with the first fulfilled promise
+
+    Cannot find module './q.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-d00c108/testCase.test.ts'
+
+      1 | describe("Q.race", () => {
+      2 |     it("should resolve with the first fulfilled promise", () => {
+    > 3 |         const Q = require('./q.js');
+        |                   ^
+      4 |         const promise1 = Q.delay(100).then(() => "Promise 1");
+      5 |         const promise2 = Q.delay(50).then(() => "Promise 2");
+      6 |         return Q.race([promise1, promise2]).then((value: any) => {
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-d00c108/testCase.test.ts:3:19)
+
+  ● Q.race › should reject with the first rejected promise
+
+    Cannot find module './q.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-d00c108/testCase.test.ts'
+
+      10 |
+      11 |     it("should reject with the first rejected promise", () => {
+    > 12 |         const Q = require('./q.js');
+         |                   ^
+      13 |         const promise1 = Q.delay(100).then(() => { throw new Error("Promise 1"); });
+      14 |         const promise2 = Q.delay(50).then(() => { throw new Error("Promise 2"); });
+      15 |         return Q.race([promise1, promise2]).then(() => {
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-d00c108/testCase.test.ts:12:19)
+
+  ● Q.race › should fail when no promises are provided
+
+    Cannot find module './q.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-d00c108/testCase.test.ts'
+
+      21 |
+      22 |     it("should fail when no promises are provided", () => {
+    > 23 |         const Q = require('./q.js');
+         |                   ^
+      24 |         return Q.race([]).then(() => {
+      25 |             expect(true).toBe(false);
+      26 |         }, (error: any) => {
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-d00c108/testCase.test.ts:23:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        2.328 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-d00c108/testCase.test.ts".

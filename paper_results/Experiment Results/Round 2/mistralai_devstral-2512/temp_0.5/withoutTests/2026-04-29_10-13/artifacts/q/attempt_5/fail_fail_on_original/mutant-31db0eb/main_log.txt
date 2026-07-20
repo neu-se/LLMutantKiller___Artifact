@@ -1,0 +1,45 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-31db0eb/testCase.test.ts
+  Q library setImmediate binding behavior
+    ✕ should bind setImmediate to window when window is defined (3 ms)
+
+  ● Q library setImmediate binding behavior › should bind setImmediate to window when window is defined
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      32 |     Q1.resolve("test").then(() => {
+      33 |       // In original code, when window is defined, setImmediate.bind(window, flush) should be called
+    > 34 |       expect(bindCalledWithWindow).toBe(true);
+         |                                    ^
+      35 |
+      36 |       // Restore environment
+      37 |       global.window = originalWindow;
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-31db0eb/testCase.test.ts:34:36)
+      at fulfilled (../subject_repositories/q/q.js:854:54)
+      at _fulfilled (../subject_repositories/q/q.js:883:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:816:13)
+      at promiseDispatch (../subject_repositories/q/q.js:877:14)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.12 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-31db0eb/testCase.test.ts".
+/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-31db0eb/testCase.test.ts:50
+      done("Test timed out");
+      ^
+
+ErrorWithStack: Caught error after test environment was torn down
+
+Failed: "Test timed out"
+    at Timeout.done [as _onTimeout] (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-31db0eb/testCase.test.ts:53:7)
+    at listOnTimeout (node:internal/timers:581:17)
+    at processTimers (node:internal/timers:519:7)
+
+Node.js v20.19.4

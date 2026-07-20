@@ -1,0 +1,25 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-d7362f1/testCase.test.ts
+  Complex mul
+    ✕ should correctly multiply two real numbers where general formula im computation differs from optimization (3 ms)
+
+  ● Complex mul › should correctly multiply two real numbers where general formula im computation differs from optimization
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: Infinity
+    Received: -Infinity
+
+      66 |     // 1/(+0) = +Infinity, 1/(-0) = -Infinity
+      67 |     const sign = 1 / result.im;
+    > 68 |     expect(sign).toBe(Infinity); // +Infinity means im is +0 (optimization path taken)
+         |                  ^
+      69 |   });
+      70 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-d7362f1/testCase.test.ts:68:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.197 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-d7362f1/testCase.test.ts".

@@ -1,0 +1,29 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-630b40d/testCase.test.ts
+  Complex abs with large values
+    ✕ should correctly calculate the absolute value when values exceed 3000 (3 ms)
+
+  ● Complex abs with large values › should correctly calculate the absolute value when values exceed 3000
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 5000
+    Received: 3200
+
+    Expected precision:    5
+    Expected difference: < 0.000005
+    Received difference:   1800
+
+       9 |     // Mutated: return 4000 / sqrt(1 + 0.75^2) = 4000 / 1.25 = 3200
+      10 |     const c = new Complex(3000, 4000);
+    > 11 |     expect(c.abs()).toBeCloseTo(5000, 5);
+         |                     ^
+      12 |   });
+      13 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-630b40d/testCase.test.ts:11:21)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.313 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-630b40d/testCase.test.ts".

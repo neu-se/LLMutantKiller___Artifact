@@ -1,0 +1,32 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-5b5dc13/testCase.test.ts
+  Complex acsch mutation detection
+    ✕ detects mutation in acsch d=0 fallback via spy on asinh (1 ms)
+
+  ● Complex acsch mutation detection › detects mutation in acsch d=0 fallback via spy on asinh
+
+    TypeError: 'caller', 'callee', and 'arguments' properties may not be accessed on strict mode functions or the arguments objects for calls to them
+
+      15 |       const result = originalAsinh.call(this);
+      16 |       // Re-install wrapper for subsequent calls
+    > 17 |       (Complex.prototype as any)['asinh'] = arguments.callee;
+         |                                                       ^
+      18 |       return result;
+      19 |     };
+      20 |     
+
+      at Complex.callee (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-5b5dc13/testCase.test.ts:17:55)
+      at Complex.asinh (../subject_repositories/Complex.js/complex.js:1146:35)
+      at Object.acsch (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-5b5dc13/testCase.test.ts:22:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.662 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-5b5dc13/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

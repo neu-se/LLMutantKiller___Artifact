@@ -1,0 +1,19 @@
+// testCase.test.ts
+const Q = require("../../../../../../../../../../../subject_repositories/q/q.js");
+
+describe("Q.timeout", () => {
+  it("should reject with the provided string error when timeout occurs", (done) => {
+    const customError = "Timeout occurred";
+    const promise = Q.delay(100).timeout(50, customError);
+
+    promise.then(
+      () => {
+        done(new Error("Promise should have been rejected"));
+      },
+      (error: string) => {
+        expect(error).toBe(customError);
+        done();
+      }
+    );
+  });
+});

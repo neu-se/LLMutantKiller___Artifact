@@ -1,0 +1,2 @@
+```typescript
+import { extract } from "../../../../../../../../../../../

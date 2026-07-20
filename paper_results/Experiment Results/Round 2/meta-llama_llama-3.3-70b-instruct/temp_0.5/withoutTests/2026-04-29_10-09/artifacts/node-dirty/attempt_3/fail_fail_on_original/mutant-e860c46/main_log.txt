@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-e860c46/testCase.test.ts
+  Dirty
+    ✕ should close correctly when there are in-flight writes (16 ms)
+
+  ● Dirty › should close correctly when there are in-flight writes
+
+    Drain event should not be emitted
+
+      20 |       // If the drain event is emitted, it means the close event will not be emitted
+      21 |       // because the in-flight writes are not zero in the mutated code
+    > 22 |       done(new Error('Drain event should not be emitted'));
+         |            ^
+      23 |     });
+      24 |
+      25 |     // Wait for a short period of time
+
+      at Dirty.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-e860c46/testCase.test.ts:22:12)
+      at emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:190:70)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.63 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-e860c46/testCase.test.ts".

@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-681d07e/testCase.test.ts
+  pull function with partial sink
+    ✕ should trigger the args null check when using a function with length 1 (1 ms)
+
+  ● pull function with partial sink › should trigger the args null check when using a function with length 1
+
+    TypeError: Cannot assign to read only property 'length' of function 'read => {
+          return (end, data) => {};
+        }'
+
+       6 |       return (end: any, data: any) => {};
+       7 |     };
+    >  8 |     testFn.length = 1;
+         |                  ^
+       9 |
+      10 |     const result = pull(testFn);
+      11 |     expect(typeof result).toBe('function');
+
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-681d07e/testCase.test.ts:8:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.345 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-681d07e/testCase.test.ts".

@@ -1,0 +1,27 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-2576d8b/testCase.test.ts[0m:[93m6[0m:[93m11[0m - [91merror[0m[90m TS2540: [0mCannot assign to 'longStackSupport' because it is a read-only property.
+
+[7m6[0m         q.longStackSupport = true;
+[7m [0m [91m          ~~~~~~~~~~~~~~~~[0m
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-2576d8b/testCase.test.ts
+  makeStackTraceLong mutation test
+    ✕ should properly build long stack traces through promise chain (1 ms)
+
+  ● makeStackTraceLong mutation test › should properly build long stack traces through promise chain
+
+    TypeError: Cannot set property longStackSupport of #<Object> which has only a getter
+
+      4 |     it("should properly build long stack traces through promise chain", () => {
+      5 |         // Enable long stack traces
+    > 6 |         q.longStackSupport = true;
+        |                           ^
+      7 |
+      8 |         // Create a chain of promises that will be rejected
+      9 |         const error = new Error("Test error");
+
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-2576d8b/testCase.test.ts:6:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.065 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-2576d8b/testCase.test.ts".

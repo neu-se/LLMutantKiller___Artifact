@@ -1,0 +1,47 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-11e6b02/testCase.test.ts[0m:[93m10[0m:[93m22[0m - [91merror[0m[90m TS2554: [0mExpected 0-1 arguments, but got 2.
+
+[7m 10[0m     takeStream(null, (end: any, data: any) => {
+[7m   [0m [91m                     ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m 11[0m       if (data!== undefined) {
+[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m...[0m 
+[7m 13[0m       }
+[7m   [0m [91m~~~~~~~[0m
+[7m 14[0m     });
+[7m   [0m [91m~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-11e6b02/testCase.test.ts[0m:[93m15[0m:[93m19[0m - [91merror[0m[90m TS2554: [0mExpected 0-1 arguments, but got 2.
+
+[7m15[0m     takeStream(1, (end: any, data: any) => {
+[7m  [0m [91m                  ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m16[0m       expect(lastItem).toBeUndefined();
+[7m  [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m17[0m       done();
+[7m  [0m [91m~~~~~~~~~~~~~[0m
+[7m18[0m     });
+[7m  [0m [91m~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-11e6b02/testCase.test.ts (7.957 s)
+  take
+    ✕ should not pass last item when last is false (5002 ms)
+
+  ● take › should not pass last item when last is false
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe('take', () => {
+    > 4 |   it('should not pass last item when last is false', (done) => {
+        |   ^
+      5 |     const test = jest.fn((data: any) => data < 2);
+      6 |     const opts = { last: false };
+      7 |     const takeStream = take(test, opts);
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-11e6b02/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-11e6b02/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        8.178 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-11e6b02/testCase.test.ts".

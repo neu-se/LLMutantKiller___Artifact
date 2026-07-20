@@ -1,0 +1,35 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-2a53823/testCase.test.ts[0m:[93m5[0m:[93m29[0m - [91merror[0m[90m TS6133: [0m'tar' is declared but its value is never read.
+
+[7m5[0m import { COMPRESSION_LEVEL, tar, ZipAFolder as zipafolder } from '../../../../../../../../../../../subject_repositories/zip-a-folder/lib/ZipAFolder';
+[7m [0m [91m                            ~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-2a53823/testCase.test.ts[0m:[93m8[0m:[93m11[0m - [91merror[0m[90m TS6133: [0m'testTAR' is declared but its value is never read.
+
+[7m8[0m     const testTAR = path.resolve(__dirname, 'test.tgz');
+[7m [0m [91m          ~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-2a53823/testCase.test.ts
+  Zip-A-Folder Test
+    ✕ TGZ test folder with compression level set to uncompressed should create a tar file (5 ms)
+
+  ● Zip-A-Folder Test › TGZ test folder with compression level set to uncompressed should create a tar file
+
+    expect(received).resolves.not.toThrow()
+
+    Received promise rejected instead of resolved
+    Rejected to value: [Error: Permission error: ENOENT: no such file or directory, access '/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-2a53823/data']
+
+      15 |
+      16 |     it('TGZ test folder with compression level set to uncompressed should create a tar file', async () => {
+    > 17 |         await expect(
+         |               ^
+      18 |             zipafolder.tar(path.resolve(__dirname, 'data/'), testUNCOMPRESSEDTAR, {
+      19 |                 compression: COMPRESSION_LEVEL.uncompressed,
+      20 |             })
+
+      at expect (node_modules/expect/build/index.js:113:15)
+      at Object.expect (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-2a53823/testCase.test.ts:17:15)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.473 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_1/pending_category/mutant-2a53823/testCase.test.ts".

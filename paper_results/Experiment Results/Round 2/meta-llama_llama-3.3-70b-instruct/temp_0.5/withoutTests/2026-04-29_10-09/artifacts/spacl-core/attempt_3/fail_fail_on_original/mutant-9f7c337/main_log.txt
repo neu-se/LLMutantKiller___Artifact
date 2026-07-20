@@ -1,0 +1,32 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_3/pending_category/mutant-9f7c337/testCase.test.ts
+  Matcher
+    ✕ should throw an error for paths containing a forward slash followed by a wildcard in version 1 (13 ms)
+
+  ● Matcher › should throw an error for paths containing a forward slash followed by a wildcard in version 1
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "Path contains malformed wildcards"
+    Received message:   "Path must not end with a slash"
+
+          28 |     }
+          29 |     if (spec.match(/^.+\/$/) !== null) {
+        > 30 |       throw new Error('Path must not end with a slash')
+             |             ^
+          31 |     }
+          32 |     const { regex, props } = compile(spec)
+          33 |     super(regex)
+
+      at new Matcher (../subject_repositories/spacl-core/src/matcher.ts:30:13)
+      at llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_3/pending_category/mutant-9f7c337/testCase.test.ts:5:18
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_3/pending_category/mutant-9f7c337/testCase.test.ts:5:45)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_3/pending_category/mutant-9f7c337/testCase.test.ts:5:45)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.321 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_3/pending_category/mutant-9f7c337/testCase.test.ts".

@@ -1,0 +1,49 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-79747e0/testCase.test.ts (6.073 s)
+  drain mutation test
+    ✕ should not call done when done is not provided (5004 ms)
+
+  ● drain mutation test › should not call done when done is not provided
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      23 |       // In original code, done should not be called when done is not provided
+      24 |       // In mutated code, done will be called because of `if(true)`
+    > 25 |       expect(doneCalled).toBe(false);
+         |                          ^
+      26 |       done();
+      27 |     }, 100);
+      28 |   });
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-79747e0/testCase.test.ts:25:26)
+
+  ● drain mutation test › should not call done when done is not provided
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      3 |
+      4 | describe('drain mutation test', () => {
+    > 5 |   it('should not call done when done is not provided', (done) => {
+        |   ^
+      6 |     let doneCalled = false;
+      7 |     const mockDone = () => {
+      8 |       doneCalled = true;
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-79747e0/testCase.test.ts:5:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-79747e0/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.222 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-79747e0/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

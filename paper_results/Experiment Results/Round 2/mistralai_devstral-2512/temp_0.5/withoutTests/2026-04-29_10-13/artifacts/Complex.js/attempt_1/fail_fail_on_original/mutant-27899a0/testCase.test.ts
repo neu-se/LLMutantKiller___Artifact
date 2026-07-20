@@ -1,0 +1,9 @@
+import { Complex } from "./complex.js";
+
+describe("Complex.atanh", () => {
+  it("should return correct result for real input -1", () => {
+    const result = new Complex(-1, 0).atanh();
+    expect(result.re).toBe(-Infinity);
+    expect(result.im).toBe(0);
+  });
+});

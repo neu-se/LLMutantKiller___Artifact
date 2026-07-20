@@ -1,0 +1,31 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-ccef39b/testCase.test.ts
+  close behavior with pending operations
+    ✕ should wait for drain when there are only in-flight writes (12 ms)
+
+  ● close behavior with pending operations › should wait for drain when there are only in-flight writes
+
+    Mutation detected: close fired before drain completed
+
+      44 |         // If drain fired before write_close, the mutation is present
+      45 |         if (drainFired) {
+    > 46 |           done(new Error('Mutation detected: close fired before drain completed'));
+         |                ^
+      47 |         } else {
+      48 |           // Verify file was written
+      49 |           try {
+
+      at Dirty.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-ccef39b/testCase.test.ts:46:16)
+      at WriteStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:177:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.141 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-ccef39b/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

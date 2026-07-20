@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-2ed8f4e/testCase.test.ts
+  Q
+    ✕ should filter out internal and node frames from stack traces (16 ms)
+
+  ● Q › should filter out internal and node frames from stack traces
+
+    Cannot find module '../../../../../../../subject_repositories/q/q' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-2ed8f4e/testCase.test.ts'
+
+      1 | describe('Q', () => {
+      2 |   it('should filter out internal and node frames from stack traces', () => {
+    > 3 |     const Q = require('../../../../../../../subject_repositories/q/q')();
+        |               ^
+      4 |     const error = new Error();
+      5 |     error.stack = 'Error\n    at Q.filterStackString (q.js:10:15)\n    at Object.<anonymous> (q.js:20:15)';
+      6 |     const originalStack = error.stack;
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-2ed8f4e/testCase.test.ts:3:15)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.565 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-2ed8f4e/testCase.test.ts".

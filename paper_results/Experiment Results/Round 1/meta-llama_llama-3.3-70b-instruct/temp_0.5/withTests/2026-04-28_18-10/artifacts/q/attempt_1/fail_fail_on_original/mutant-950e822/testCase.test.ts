@@ -1,0 +1,8 @@
+import { Q } from "../../../../../../../../subject_repositories/q/q";
+
+describe("Promise.prototype.toString", () => {
+    it("should return '[object Promise]' when called on a promise", () => {
+        const promise = Q(10);
+        expect(promise.toString()).toBe("[object Promise]");
+    });
+});

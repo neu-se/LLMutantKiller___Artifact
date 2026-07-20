@@ -1,0 +1,37 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-7cd0f61/testCase.test.ts
+  Delta
+    ✕ diff() should throw an error when comparing non-document deltas (28 ms)
+
+  ● Delta › diff() should throw an error when comparing non-document deltas
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "diff() called with non-document"
+    Received message:   "diff() called on non-document"
+
+          349 |              const prep = true ? 'on' : 'with';
+          350 |
+        > 351 |           throw new Error('diff() called ' + prep + ' non-document');
+              |                 ^
+          352 |         })
+          353 |         .join('');
+          354 |     });
+
+      at ../subject_repositories/delta/src/Delta.ts:351:17
+                at Array.map (<anonymous>)
+      at Delta.map (../subject_repositories/delta/src/Delta.ts:182:21)
+      at map (../subject_repositories/delta/src/Delta.ts:345:10)
+                at Array.map (<anonymous>)
+      at Delta.map [as diff] (../subject_repositories/delta/src/Delta.ts:343:35)
+      at diff (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-7cd0f61/testCase.test.ts:7:20)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-7cd0f61/testCase.test.ts:7:29)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-7cd0f61/testCase.test.ts:7:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.908 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-7cd0f61/testCase.test.ts".

@@ -1,0 +1,33 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-02bba5e/testCase.test.ts[0m:[93m6[0m:[93m27[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 0.
+
+[7m6[0m         const promise = Q.resolve();
+[7m [0m [91m                          ~~~~~~~[0m
+
+  [96m../subject_repositories/q/q.js[0m:[93m497[0m:[93m12[0m
+    [7m497[0m function Q(value) {
+    [7m   [0m [96m           ~~~~~[0m
+    An argument for 'value' was not provided.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-02bba5e/testCase.test.ts
+  Q
+    ✕ should make a long stack trace only if the error is not null (1 ms)
+
+  ● Q › should make a long stack trace only if the error is not null
+
+    ReferenceError: makeStackTraceLong is not defined
+
+       5 |         const error = new Error();
+       6 |         const promise = Q.resolve();
+    >  7 |         makeStackTraceLong(error, promise);
+         |         ^
+       8 |         expect(error.stack).toBeDefined();
+       9 |         expect(makeStackTraceLong(null, promise)).toBeUndefined();
+      10 |     });
+
+      at Object.makeStackTraceLong (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-02bba5e/testCase.test.ts:7:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.924 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-02bba5e/testCase.test.ts".

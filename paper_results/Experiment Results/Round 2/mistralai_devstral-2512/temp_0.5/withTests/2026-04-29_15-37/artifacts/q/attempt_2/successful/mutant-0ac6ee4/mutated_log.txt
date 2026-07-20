@@ -1,0 +1,30 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/q/q.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/q/q.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-0ac6ee4/testCase.test.ts
+  timeout error message
+    ✕ should include 'ms' unit in the timeout error message (21 ms)
+
+  ● timeout error message › should include 'ms' unit in the timeout error message
+
+    expect(received).rejects.toThrowError(expected)
+
+    Expected pattern: /Timed out after \d+ ms/
+    Received message: "Timed out after 10"
+
+          1844 |     var timeoutId = setTimeout(function () {
+          1845 |         if (!error || "string" === typeof error) {
+        > 1846 |                error = new Error(error || "Timed out after " + ms + "");
+               |                        ^
+          1847 |
+          1848 |             error.code = "ETIMEDOUT";
+          1849 |         }
+
+      at Timeout._onTimeout (../subject_repositories/q/q.js:1846:24)
+      at Object.toThrowError (node_modules/expect/build/index.js:218:22)
+      at Object.toThrowError (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-0ac6ee4/testCase.test.ts:11:43)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.079 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-0ac6ee4/testCase.test.ts".

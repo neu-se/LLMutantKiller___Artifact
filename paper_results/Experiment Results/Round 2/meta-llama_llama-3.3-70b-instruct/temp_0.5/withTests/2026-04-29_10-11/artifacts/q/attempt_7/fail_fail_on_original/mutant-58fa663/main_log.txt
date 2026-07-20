@@ -1,0 +1,55 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-58fa663/testCase.test.ts
+  Q
+    ✕ should correctly handle unhandled rejections (111 ms)
+
+  ● Q › should correctly handle unhandled rejections
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    - Expected
+    + Received
+
+      "unhandledRejection",
+      [Error: Test error],
+      Promise {
+    -   "inspect": [Function anonymous],
+    +   "exception": [Error: Test error],
+    +   "inspect": [Function inspect],
+        "promiseDispatch": [Function anonymous],
+        "valueOf": [Function anonymous],
+      },
+
+    Number of calls: 1
+
+      14 |         setTimeout(() => {
+      15 |             expect(processEmitSpy).toHaveBeenCalledTimes(1);
+    > 16 |             expect(processEmitSpy).toHaveBeenCalledWith('unhandledRejection', error, promise);
+         |                                    ^
+      17 |             done();
+      18 |         }, 10);
+      19 |     }, 100);
+
+      at Timeout.toHaveBeenCalledWith [as _onTimeout] (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-58fa663/testCase.test.ts:16:36)
+
+  ● Q › should correctly handle unhandled rejections
+
+    thrown: "Exceeded timeout of 100 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("Q", () => {
+    > 4 |     it("should correctly handle unhandled rejections", (done) => {
+        |     ^
+      5 |         const processEmitSpy = jest.spyOn(process, 'emit');
+      6 |         const deferred = Q.defer();
+      7 |         const promise = deferred.promise;
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-58fa663/testCase.test.ts:4:5)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-58fa663/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.956 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-58fa663/testCase.test.ts".

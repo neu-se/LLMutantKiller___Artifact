@@ -1,0 +1,30 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f918cff/testCase.test.ts
+  Promise promiseDispatch exception handling
+    ✕ should resolve with a rejected promise when a descriptor method throws an exception (1 ms)
+
+  ● Promise promiseDispatch exception handling › should resolve with a rejected promise when a descriptor method throws an exception
+
+    Expected rejection but got fulfillment with value: undefined
+
+      21 |         // In the original code, resolve is called with reject(exception),
+      22 |         // so this branch should NOT be taken
+    > 23 |         done(new Error("Expected rejection but got fulfillment with value: " + value));
+         |              ^
+      24 |       },
+      25 |       function (reason: unknown) {
+      26 |         // Original code: resolve(reject(exception)) causes rejection with the thrown error
+
+      at llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f918cff/testCase.test.ts:23:14
+      at fulfilled (../subject_repositories/q/q.js:853:54)
+      at _fulfilled (../subject_repositories/q/q.js:882:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:815:13)
+      at apply (../subject_repositories/q/q.js:570:49)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.136 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f918cff/testCase.test.ts".

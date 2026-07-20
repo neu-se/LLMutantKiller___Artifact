@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/subject_repositories/q/queue.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/subject_repositories/q/queue.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-b4b9e27/testCase.test.ts
+  Queue
+    ✕ should throw an error when getting from a closed queue (2 ms)
+
+  ● Queue › should throw an error when getting from a closed queue
+
+    expect(received).rejects.toThrowError()
+
+    Received promise resolved instead of rejected
+    Resolved to value: undefined
+
+      5 |         const queue = Queue();
+      6 |         queue.close();
+    > 7 |         await expect(queue.get()).rejects.toThrowError('Can\'t get value from closed queue');
+        |               ^
+      8 |     });
+      9 | });
+
+      at expect (node_modules/expect/build/index.js:113:15)
+      at Object.expect (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-b4b9e27/testCase.test.ts:7:15)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.143 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-b4b9e27/testCase.test.ts".

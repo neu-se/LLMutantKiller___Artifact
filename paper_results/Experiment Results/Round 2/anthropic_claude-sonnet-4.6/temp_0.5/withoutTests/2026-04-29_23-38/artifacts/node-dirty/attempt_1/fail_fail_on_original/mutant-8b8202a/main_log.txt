@@ -1,0 +1,45 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-8b8202a/testCase.test.ts[0m:[93m4[0m:[93m24[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m4[0m import { rimraf } from 'rimraf';
+[7m [0m [91m                       ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-8b8202a/testCase.test.ts (6.175 s)
+  Dirty drain event
+    ✕ should emit drain only once when all in-flight writes are complete, not prematurely when stream drains with pending writes (5001 ms)
+
+  ● Dirty drain event › should emit drain only once when all in-flight writes are complete, not prematurely when stream drains with pending writes
+
+    TypeError: (0 , rimraf_1.rimraf) is not a function
+
+      41 |             rimraf(tmpDir).then(() => done()).catch(done);
+      42 |           } catch (err) {
+    > 43 |             rimraf(tmpDir).then(() => done(err)).catch(done);
+         |                   ^
+      44 |           }
+      45 |         }
+      46 |       };
+
+      at checkDone (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-8b8202a/testCase.test.ts:43:19)
+      at cb (../subject_repositories/node-dirty/lib/dirty/dirty.js:191:31)
+
+  ● Dirty drain event › should emit drain only once when all in-flight writes are complete, not prematurely when stream drains with pending writes
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       6 |
+       7 | describe('Dirty drain event', () => {
+    >  8 |   it('should emit drain only once when all in-flight writes are complete, not prematurely when stream drains with pending writes', (done) => {
+         |   ^
+       9 |     const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'dirty-test-'));
+      10 |     const dbPath = path.join(tmpDir, 'test.db');
+      11 |     
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-8b8202a/testCase.test.ts:8:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-8b8202a/testCase.test.ts:7:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.328 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-8b8202a/testCase.test.ts".

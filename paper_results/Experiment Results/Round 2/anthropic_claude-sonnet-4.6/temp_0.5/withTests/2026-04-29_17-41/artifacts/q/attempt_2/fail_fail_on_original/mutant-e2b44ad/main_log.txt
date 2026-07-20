@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-e2b44ad/testCase.test.ts
+  Promise.prototype.done domain support
+    ✕ should bind onUnhandledError to the active domain so thrown errors are caught by the domain (3 ms)
+
+  ● Promise.prototype.done domain support › should bind onUnhandledError to the active domain so thrown errors are caught by the domain
+
+    Error went to Q.onerror instead of domain - domain binding failed
+
+      21 |     (Q as any).onerror = (err: Error) => {
+      22 |       clearTimeout(timeout);
+    > 23 |       done(new Error("Error went to Q.onerror instead of domain - domain binding failed"));
+         |            ^
+      24 |     };
+      25 |
+      26 |     d.run(() => {
+
+      at Function.q_js_1.default.onerror (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-e2b44ad/testCase.test.ts:23:12)
+      at onerror (../subject_repositories/q/q.js:1810:19)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.24 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-e2b44ad/testCase.test.ts".

@@ -1,0 +1,34 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-77d932f/testCase.test.ts
+  getFileNameAndLineNumber stack filtering
+    ✕ should filter Q internal frames from stack traces (2 ms)
+
+  ● getFileNameAndLineNumber stack filtering › should filter Q internal frames from stack traces
+
+    expect(received).not.toMatch(expected)
+
+    Expected pattern: not /q\.js/
+    Received string:      "Error: test error
+
+       9 |     await Q.promise((resolve: Function, reject: Function) => {
+      10 |       Q.nextTick(() => {
+    > 11 |         reject(new Error("test error"));
+         |                ^
+      12 |       });
+      13 |     }).fail((err: Error) => {
+      14 |       capturedStack = err.stack || "";
+
+      at llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-77d932f/testCase.test.ts:11:16
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+      From previous event:
+      at defer (../subject_repositories/q/q.js:578:19)
+      at Function.defer [as promise] (../subject_repositories/q/q.js:682:20)
+      at Object.promise (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-77d932f/testCase.test.ts:9:13)
+      at Object.toMatch (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-77d932f/testCase.test.ts:23:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.165 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-77d932f/testCase.test.ts".

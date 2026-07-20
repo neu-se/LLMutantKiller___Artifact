@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-87bd40c/testCase.test.ts (6.886 s)
+  Dirty close method
+    ✕ should destroy read stream synchronously when close is called, emitting read_close before write_close (5002 ms)
+
+  ● Dirty close method › should destroy read stream synchronously when close is called, emitting read_close before write_close
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "read_close"
+    Received: "write_close"
+
+      21 |       try { fs.unlinkSync(file); } catch (e) { /* ignore */ }
+      22 |       // In original: read stream is destroyed immediately, so read_close fires before write_close
+    > 23 |       expect(events[0]).toBe('read_close');
+         |                         ^
+      24 |       done();
+      25 |     });
+      26 |
+
+      at Dirty.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-87bd40c/testCase.test.ts:23:25)
+      at WriteStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:178:12)
+
+  ● Dirty close method › should destroy read stream synchronously when close is called, emitting read_close before write_close
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       6 |
+       7 | describe('Dirty close method', () => {
+    >  8 |   it('should destroy read stream synchronously when close is called, emitting read_close before write_close', (done) => {
+         |   ^
+       9 |     const file = path.join(os.tmpdir(), 'dirty-test-order-' + process.pid + '.dirty');
+      10 |
+      11 |     // Write large data so read stream is still open when we call close()
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-87bd40c/testCase.test.ts:8:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-87bd40c/testCase.test.ts:7:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.093 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-87bd40c/testCase.test.ts".

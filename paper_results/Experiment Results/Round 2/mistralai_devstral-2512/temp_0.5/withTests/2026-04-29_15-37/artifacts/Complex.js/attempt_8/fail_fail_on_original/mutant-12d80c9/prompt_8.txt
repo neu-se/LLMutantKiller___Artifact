@@ -1,0 +1,37 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-12d80c9/testCase.test.ts
+  Complex.asech
+    ✕ should correctly compute asech for complex numbers where a is 0 (1 ms)
+
+  ● Complex.asech › should correctly compute asech for complex numbers where a is 0
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.8813735870195429
+    Received: 1.4436354751788103
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   0.5622618881592674
+
+       8 |     // The mutation changes the condition from (a !== 0) to (false)
+       9 |     // This should cause different behavior when a is 0
+    > 10 |     expect(result.re).toBeCloseTo(0.8813735870195429, 10);
+         |                       ^
+      11 |     expect(result.im).toBeCloseTo(-1.5707963267948966, 10);
+      12 |   });
+      13 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-12d80c9/testCase.test.ts:10:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.023 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-12d80c9/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

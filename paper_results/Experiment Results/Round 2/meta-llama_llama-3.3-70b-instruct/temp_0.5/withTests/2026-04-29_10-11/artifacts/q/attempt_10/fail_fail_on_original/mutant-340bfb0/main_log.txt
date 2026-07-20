@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-340bfb0/testCase.test.ts
+  makeStackTraceLong
+    ✕ should throw an error when trying to define a property with an empty string as the property name (17 ms)
+
+  ● makeStackTraceLong › should throw an error when trying to define a property with an empty string as the property name
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "Invalid property name"
+    Received message:   "makeStackTraceLong is not defined"
+
+          10 |             return originalDefineProperty(obj, prop, descriptor);
+          11 |         });
+        > 12 |         expect(() => makeStackTraceLong(error, promise)).toThrowError("Invalid property name");
+             |                      ^
+          13 |         Object.defineProperty = originalDefineProperty;
+          14 |     });
+          15 | });
+
+      at makeStackTraceLong (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-340bfb0/testCase.test.ts:12:22)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-340bfb0/testCase.test.ts:12:58)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-340bfb0/testCase.test.ts:12:58)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.697 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-340bfb0/testCase.test.ts".

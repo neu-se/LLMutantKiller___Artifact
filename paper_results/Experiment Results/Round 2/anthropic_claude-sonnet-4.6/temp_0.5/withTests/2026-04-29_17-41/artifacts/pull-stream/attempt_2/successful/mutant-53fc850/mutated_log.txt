@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/pull-stream/util/tester.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/pull-stream/util/tester.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-53fc850/testCase.test.ts
+  tester with regexp
+    ✕ should return a function that uses regexp.test() when given a regexp-like object (3 ms)
+
+  ● tester with regexp › should return a function that uses regexp.test() when given a regexp-like object
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: "hello"
+
+       8 |     // With original code: condition 'object' === typeof test is true for RegExp,
+       9 |     // so returns (data) => test.test(data), which correctly matches
+    > 10 |     expect(testFn('hello world')).toBe(true)
+         |                                   ^
+      11 |     expect(testFn('world hello')).toBe(false)
+      12 |
+      13 |     // With mutated code: condition 'object' !== typeof test is false for RegExp,
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-53fc850/testCase.test.ts:10:35)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.761 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-53fc850/testCase.test.ts".

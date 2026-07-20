@@ -1,0 +1,41 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-82731e7/testCase.test.ts[0m:[93m4[0m:[93m20[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m4[0m import rimraf from 'rimraf';
+[7m [0m [91m                   ~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-82731e7/testCase.test.ts[0m:[93m21[0m:[93m49[0m - [91merror[0m[90m TS2339: [0mProperty 'destroy' does not exist on type 'never'.
+
+[7m21[0m     const originalDestroy = dirty._writeStream?.destroy;
+[7m  [0m [91m                                                ~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-82731e7/testCase.test.ts[0m:[93m24[0m:[93m7[0m - [91merror[0m[90m TS18047: [0m'dirty._writeStream' is possibly 'null'.
+
+[7m24[0m       dirty._writeStream.destroy = function(...args) {
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-82731e7/testCase.test.ts[0m:[93m24[0m:[93m45[0m - [91merror[0m[90m TS7019: [0mRest parameter 'args' implicitly has an 'any[]' type.
+
+[7m24[0m       dirty._writeStream.destroy = function(...args) {
+[7m  [0m [91m                                            ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-82731e7/testCase.test.ts
+  Dirty close method behavior
+    ✕ should not destroy writeStream when writeStream is null (3 ms)
+
+  ● Dirty close method behavior › should not destroy writeStream when writeStream is null
+
+    TypeError: Cannot read properties of null (reading 'end')
+
+      90 |     }
+      91 |     if (this._readStream) this._readStream.destroy();
+    > 92 |        if (true) this._writeStream.end(() => this._writeStream.destroy());
+         |                                    ^
+      93 |
+      94 |   }
+      95 |
+
+      at Dirty.end [as close] (../subject_repositories/node-dirty/lib/dirty/dirty.js:92:36)
+      at Object.close (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-82731e7/testCase.test.ts:30:11)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.865 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-82731e7/testCase.test.ts".

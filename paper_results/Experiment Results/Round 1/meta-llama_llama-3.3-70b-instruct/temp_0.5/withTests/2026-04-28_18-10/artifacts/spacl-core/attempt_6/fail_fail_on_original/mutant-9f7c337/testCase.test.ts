@@ -1,0 +1,9 @@
+import { Matcher } from '../../../../../../../../../../../subject_repositories/spacl-core/src/matcher';
+import { describe, it } from '@jest/globals';
+
+describe('Matcher', () => {
+  it('rejects paths with malformed wildcards', () => {
+    const spec = '/+/[/]foo';
+    expect(() => Matcher.for(spec)).toThrowError('Path contains malformed wildcards');
+  });
+});

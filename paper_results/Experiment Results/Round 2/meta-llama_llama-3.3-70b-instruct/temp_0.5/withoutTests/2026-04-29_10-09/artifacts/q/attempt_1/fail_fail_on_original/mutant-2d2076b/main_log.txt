@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-2d2076b/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-2d2076b/testCase.test.ts[0m:[93m6[0m:[93m53[0m - [91merror[0m[90m TS7006: [0mParameter 'value' implicitly has an 'any' type.
+
+[7m6[0m         Q.delay(Promise.resolve("test"), 100).then((value) => {
+[7m [0m [91m                                                    ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-2d2076b/testCase.test.ts
+  Q.delay function
+    ✕ should delay the resolution of a promise by the specified timeout (1 ms)
+
+  ● Q.delay function › should delay the resolution of a promise by the specified timeout
+
+    TypeError: Cannot read properties of undefined (reading 'delay')
+
+      4 |     it("should delay the resolution of a promise by the specified timeout", (done) => {
+      5 |         const startTime = new Date().getTime();
+    > 6 |         Q.delay(Promise.resolve("test"), 100).then((value) => {
+        |           ^
+      7 |             const endTime = new Date().getTime();
+      8 |             expect(value).toBe("test");
+      9 |             expect(endTime - startTime).toBeGreaterThanOrEqual(100);
+
+      at Object.delay (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-2d2076b/testCase.test.ts:6:11)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.681 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-2d2076b/testCase.test.ts".

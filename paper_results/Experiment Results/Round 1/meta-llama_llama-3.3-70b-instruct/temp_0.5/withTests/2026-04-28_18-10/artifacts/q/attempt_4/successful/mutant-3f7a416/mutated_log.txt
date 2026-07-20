@@ -1,0 +1,29 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-3f7a416/testCase.test.ts[0m:[93m6[0m:[93m45[0m - [91merror[0m[90m TS7006: [0mParameter 'results' implicitly has an 'any' type.
+
+[7m6[0m         return q.allSettled(promises).then((results) => {
+[7m [0m [91m                                            ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/subject_repositories/q/q.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/subject_repositories/q/q.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-3f7a416/testCase.test.ts
+  Promise.prototype.allSettled
+    ✕ should return a promise that resolves with an array of settled states (1 ms)
+
+  ● Promise.prototype.allSettled › should return a promise that resolves with an array of settled states
+
+    TypeError: Cannot read properties of undefined (reading 'then')
+
+      4 |     it("should return a promise that resolves with an array of settled states", () => {
+      5 |         const promises = [q(1), q(2), q.reject(3)];
+    > 6 |         return q.allSettled(promises).then((results) => {
+        |                                      ^
+      7 |             expect(results).toEqual([
+      8 |                 { state: "fulfilled", value: 1 },
+      9 |                 { state: "fulfilled", value: 2 },
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-3f7a416/testCase.test.ts:6:38)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.428 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-3f7a416/testCase.test.ts".

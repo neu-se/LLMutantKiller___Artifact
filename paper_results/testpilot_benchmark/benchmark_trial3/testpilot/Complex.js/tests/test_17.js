@@ -1,0 +1,30 @@
+let mocha = require('mocha');
+let assert = require('assert');
+let complex_js = require('complex.js');
+
+describe('test complex_js', function() {
+    it('test complex.js.ZERO.add', function(done) {
+        // Test adding two real numbers
+        let result1 = complex_js.ZERO.add(3, 4);
+        assert.equal(result1.re, 3);
+        assert.equal(result1.im, 4);
+
+        // Test adding zero to zero
+        let result2 = complex_js.ZERO.add(0, 0);
+        assert.equal(result2.re, 0);
+        assert.equal(result2.im, 0);
+
+        // Test adding negative numbers
+        let result3 = complex_js.ZERO.add(-2, -5);
+        assert.equal(result3.re, -2);
+        assert.equal(result3.im, -5);
+
+        // Test adding decimal numbers
+        let result4 = complex_js.ZERO.add(1.5, 2.7);
+        assert.equal(result4.re, 1.5);
+        assert.equal(result4.im, 2.7);
+
+        done();
+    });
+
+    })

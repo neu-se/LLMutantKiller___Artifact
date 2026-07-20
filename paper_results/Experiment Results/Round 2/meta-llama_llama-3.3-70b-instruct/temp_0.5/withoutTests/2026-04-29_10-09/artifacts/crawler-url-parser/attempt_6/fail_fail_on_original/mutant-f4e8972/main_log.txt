@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_6/pending_category/mutant-f4e8972/testCase.test.ts[0m:[93m2[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module 'cheerio' or its corresponding type declarations.
+
+[7m2[0m import { cheerio } from 'cheerio';
+[7m [0m [91m                        ~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_6/pending_category/mutant-f4e8972/testCase.test.ts
+  crawler-url-parser
+    ✕ should correctly parse HTML data and extract URLs (1 ms)
+
+  ● crawler-url-parser › should correctly parse HTML data and extract URLs
+
+    TypeError: Cannot read properties of undefined (reading 'load')
+
+       6 |     const data = '<html><body><a href="https://www.example.com">Example</a></body></html>';
+       7 |     const sourceUrl = 'https://www.example.com';
+    >  8 |     const $ = cheerio.load(data);
+         |                       ^
+       9 |     const result = extract($, sourceUrl);
+      10 |     expect(result).not.toBeNull();
+      11 |     expect(result).not.toBeUndefined();
+
+      at Object.load (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_6/pending_category/mutant-f4e8972/testCase.test.ts:8:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.966 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_6/pending_category/mutant-f4e8972/testCase.test.ts".

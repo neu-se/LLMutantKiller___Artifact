@@ -1,0 +1,29 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_8/pending_category/mutant-f7d009c/testCase.test.ts
+  Complex.js hypot function mutation test
+    ✕ should correctly handle the boundary case where b equals exactly 3000 (2 ms)
+
+  ● Complex.js hypot function mutation test › should correctly handle the boundary case where b equals exactly 3000
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 3000.0001666666626
+    Received: 3000.000166666662
+
+    Expected precision:    14
+    Expected difference: < 5e-15
+    Received difference:   4.547473508864641e-13
+
+      13 |     // The mutated code uses simple sqrt when b <= 3000
+      14 |     // We need to verify the precise calculation is used
+    > 15 |     expect(absValue).toBeCloseTo(preciseResult, 14);
+         |                      ^
+      16 |   });
+      17 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_8/pending_category/mutant-f7d009c/testCase.test.ts:15:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.169 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_8/pending_category/mutant-f7d009c/testCase.test.ts".

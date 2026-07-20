@@ -1,0 +1,30 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-c117ebd/testCase.test.ts
+  Dirty createReadStream encoding
+    ✕ should correctly read data when a multi-byte character is split across stream chunks (1 ms)
+
+  ● Dirty createReadStream encoding › should correctly read data when a multi-byte character is split across stream chunks
+
+    TypeError: Cannot set property createReadStream of #<Object> which has only a getter
+
+      42 |     // Monkey-patch createReadStream to use a tiny highWaterMark to force chunk splits
+      43 |     const origCreateReadStream = fs.createReadStream;
+    > 44 |     (fs as any).createReadStream = (p: string, opts: any) => {
+         |                                 ^
+      45 |       return origCreateReadStream(p, { ...opts, highWaterMark: 8 });
+      46 |     };
+      47 |     
+
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-c117ebd/testCase.test.ts:44:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.166 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-c117ebd/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

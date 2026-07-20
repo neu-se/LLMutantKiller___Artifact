@@ -1,0 +1,38 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-c903301/testCase.test.ts
+  Q promise progress handler error propagation
+    ✕ should throw errors from progress handlers when no error handler is present (105 ms)
+
+  ● Q promise progress handler error propagation › should throw errors from progress handlers when no error handler is present
+
+    Progress handler error
+
+       9 |     // Create a promise with a progress handler that throws
+      10 |     const deferred = Q.defer();
+    > 11 |     const testError = new Error("Progress handler error");
+         |                       ^
+      12 |
+      13 |     // Set up unhandled rejection listener
+      14 |     const rejectionListener = (reason: any, promise: any) => {
+
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-c903301/testCase.test.ts:11:23)
+
+  ● Q promise progress handler error propagation › should throw errors from progress handlers when no error handler is present
+
+    Error was not propagated from progress handler
+
+      42 |     setTimeout(() => {
+      43 |       cleanup();
+    > 44 |       done(new Error("Error was not propagated from progress handler"));
+         |            ^
+      45 |     }, 100);
+      46 |   });
+      47 | });
+
+      at Timeout._onTimeout (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-c903301/testCase.test.ts:44:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.118 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-c903301/testCase.test.ts".

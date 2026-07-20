@@ -1,0 +1,31 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-7ad20c8/testCase.test.ts
+  module loading side effects
+    ✕ should not execute the testing block when required as a module (3 ms)
+
+  ● module loading side effects › should not execute the testing block when required as a module
+
+    Cannot find module '../crawler-url-parser.js' from 'llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-7ad20c8/testCase.test.ts'
+
+      4 |
+      5 |     // Clear module cache to force re-evaluation of the module
+    > 6 |     const modulePath = require.resolve('../crawler-url-parser.js');
+        |                                ^
+      7 |     delete require.cache[modulePath];
+      8 |
+      9 |     require('../crawler-url-parser.js');
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.resolve (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-7ad20c8/testCase.test.ts:6:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.341 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-7ad20c8/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

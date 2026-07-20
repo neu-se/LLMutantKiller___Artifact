@@ -1,0 +1,36 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-565699c/testCase.test.ts
+  cosm1 function behavior
+    ✕ should correctly compute cos(x) - 1 for very small x values (2 ms)
+
+  ● cosm1 function behavior › should correctly compute cos(x) - 1 for very small x values
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.00010000000016670123
+    Received: 0.00010000500016667084
+
+    Expected precision:    10
+    Expected difference: < 5e-11
+    Received difference:   4.999999969612645e-9
+
+      10 |     // The mutation (xx * 20922789888000 instead of xx / 20922789888000) will cause a significant difference
+      11 |     const expected = Math.expm1(0.0001) * Math.cos(0) + (Math.cos(0.0001) - 1);
+    > 12 |     expect(result.re).toBeCloseTo(expected, 10);
+         |                       ^
+      13 |   });
+      14 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-565699c/testCase.test.ts:12:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.259 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-565699c/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

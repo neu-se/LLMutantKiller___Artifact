@@ -1,0 +1,58 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f910da2/testCase.test.ts[0m:[93m11[0m:[93m17[0m - [91merror[0m[90m TS7057: [0m'yield' expression implicitly results in an 'any' type because its containing generator lacks a return-type annotation.
+
+[7m11[0m       const a = yield Q(1);
+[7m  [0m [91m                ~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f910da2/testCase.test.ts[0m:[93m12[0m:[93m17[0m - [91merror[0m[90m TS7057: [0m'yield' expression implicitly results in an 'any' type because its containing generator lacks a return-type annotation.
+
+[7m12[0m       const b = yield Q(2);
+[7m  [0m [91m                ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+
+<--- Last few GCs --->
+
+[49414:0x130008000]   143464 ms: Scavenge 3702.6 (4117.8) -> 3695.1 (4122.1) MB, 37.71 / 0.00 ms  (average mu = 0.215, current mu = 0.159) allocation failure; 
+[49414:0x130008000]   143500 ms: Scavenge 3707.0 (4122.1) -> 3699.5 (4126.6) MB, 31.04 / 0.00 ms  (average mu = 0.215, current mu = 0.159) allocation failure; 
+[49414:0x130008000]   143539 ms: Scavenge 3711.5 (4126.6) -> 3703.9 (4130.8) MB, 29.71 / 0.00 ms  (average mu = 0.215, current mu = 0.159) allocation failure; 
+
+
+<--- JS stacktrace --->
+
+FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
+----- Native stack trace -----
+
+ 1: 0x1043655b8 node::OOMErrorHandler(char const*, v8::OOMDetails const&) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 2: 0x104523968 v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, v8::OOMDetails const&) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 3: 0x1047317bc v8::internal::Heap::GarbageCollectionReasonToString(v8::internal::GarbageCollectionReason) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 4: 0x1047352b8 v8::internal::Heap::CollectGarbageShared(v8::internal::LocalHeap*, v8::internal::GarbageCollectionReason) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 5: 0x104732134 v8::internal::Heap::PerformGarbageCollection(v8::internal::GarbageCollector, v8::internal::GarbageCollectionReason, char const*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 6: 0x10472fcb0 v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 7: 0x104725fc0 v8::internal::HeapAllocator::AllocateRawWithLightRetrySlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 8: 0x104726818 v8::internal::HeapAllocator::AllocateRawWithRetryOrFailSlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 9: 0x10470acf8 v8::internal::Factory::NewFillerObject(int, v8::internal::AllocationAlignment, v8::internal::AllocationType, v8::internal::AllocationOrigin) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+10: 0x104b17e30 v8::internal::Runtime_AllocateInYoungGeneration(int, unsigned long*, v8::internal::Isolate*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+11: 0x104eacc44 Builtins_CEntry_Return1_ArgvOnStack_NoBuiltinExit [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+12: 0x104ed6d24 Builtins_ArrayPrototypeSlice [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+13: 0x10a18969c 
+14: 0x10a1bae28 
+15: 0x109fd0c5c 
+16: 0x104e243e4 Builtins_InterpreterEntryTrampoline [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+17: 0x104e2250c Builtins_JSEntryTrampoline [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+18: 0x104e221f4 Builtins_JSEntry [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+19: 0x10469c274 v8::internal::(anonymous namespace)::Invoke(v8::internal::Isolate*, v8::internal::(anonymous namespace)::InvokeParams const&) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+20: 0x10469bb08 v8::internal::Execution::Call(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Object>, int, v8::internal::Handle<v8::internal::Object>*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+21: 0x10453f998 v8::Function::Call(v8::Local<v8::Context>, v8::Local<v8::Value>, int, v8::Local<v8::Value>*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+22: 0x10427cd5c node::InternalCallbackScope::Close() [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+23: 0x10427cfb4 node::InternalMakeCallback(node::Environment*, v8::Local<v8::Object>, v8::Local<v8::Object>, v8::Local<v8::Function>, int, v8::Local<v8::Value>*, node::async_context) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+24: 0x10429130c node::AsyncWrap::MakeCallback(v8::Local<v8::Function>, int, v8::Local<v8::Value>*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+25: 0x10436afc4 node::fs::FSReqCallback::Resolve(v8::Local<v8::Value>) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+26: 0x10436b8a4 node::fs::AfterStat(uv_fs_s*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+27: 0x10435e44c node::MakeLibuvRequestCallback<uv_fs_s, void (*)(uv_fs_s*)>::Wrapper(uv_fs_s*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+28: 0x104dfd500 uv__work_done [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+29: 0x104e00f28 uv__async_io [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+30: 0x104e13bd0 uv__io_poll [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+31: 0x104e01490 uv_run [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+32: 0x10427d7e8 node::SpinEventLoopInternal(node::Environment*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+33: 0x1043a9eec node::NodeMainInstance::Run() [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+34: 0x104327cfc node::Start(int, char**) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+35: 0x18cd9ab98 start [/usr/lib/dyld]

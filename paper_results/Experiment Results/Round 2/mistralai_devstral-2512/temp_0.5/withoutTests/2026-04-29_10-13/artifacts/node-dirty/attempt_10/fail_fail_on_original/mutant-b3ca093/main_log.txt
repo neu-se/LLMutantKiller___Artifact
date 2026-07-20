@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-b3ca093/testCase.test.ts (11.174 s)
+  Dirty database flush behavior
+    ✕ should flush queue when waitForDrain is true and queue is not empty (10004 ms)
+
+  ● Dirty database flush behavior › should flush queue when waitForDrain is true and queue is not empty
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      45 |           // In mutated code, second write might not complete
+      46 |           expect(firstWriteCompleted).toBe(true);
+    > 47 |           expect(secondWriteCompleted).toBe(true);
+         |                                        ^
+      48 |           expect(db.size()).toBe(2);
+      49 |           db.close();
+      50 |           done();
+
+      at Dirty.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-b3ca093/testCase.test.ts:47:40)
+      at emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:190:70)
+
+  ● Dirty database flush behavior › should flush queue when waitForDrain is true and queue is not empty
+
+    thrown: "Exceeded timeout of 10000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      20 |   });
+      21 |
+    > 22 |   it('should flush queue when waitForDrain is true and queue is not empty', (done) => {
+         |   ^
+      23 |     const db = new Dirty(dbPath);
+      24 |     let firstWriteCompleted = false;
+      25 |     let secondWriteCompleted = false;
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-b3ca093/testCase.test.ts:22:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-b3ca093/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        11.333 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-b3ca093/testCase.test.ts".

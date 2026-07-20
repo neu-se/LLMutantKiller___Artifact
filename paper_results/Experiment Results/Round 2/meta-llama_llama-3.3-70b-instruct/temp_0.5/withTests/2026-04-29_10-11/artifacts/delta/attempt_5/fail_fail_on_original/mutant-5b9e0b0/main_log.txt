@@ -1,0 +1,60 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-5b9e0b0/testCase.test.ts[0m:[93m6[0m:[93m29[0m - [91merror[0m[90m TS2698: [0mSpread types may only be created from object types.
+
+[7m6[0m       compose: (a, b) => ({ ...a, ...b }),
+[7m [0m [91m                            ~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-5b9e0b0/testCase.test.ts[0m:[93m6[0m:[93m35[0m - [91merror[0m[90m TS2698: [0mSpread types may only be created from object types.
+
+[7m6[0m       compose: (a, b) => ({ ...a, ...b }),
+[7m [0m [91m                                  ~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-5b9e0b0/testCase.test.ts[0m:[93m7[0m:[93m19[0m - [91merror[0m[90m TS6133: [0m'b' is declared but its value is never read.
+
+[7m7[0m       invert: (a, b) => a,
+[7m [0m [91m                  ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-5b9e0b0/testCase.test.ts[0m:[93m8[0m:[93m22[0m - [91merror[0m[90m TS6133: [0m'b' is declared but its value is never read.
+
+[7m8[0m       transform: (a, b, priority) => a,
+[7m [0m [91m                     ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-5b9e0b0/testCase.test.ts[0m:[93m8[0m:[93m25[0m - [91merror[0m[90m TS6133: [0m'priority' is declared but its value is never read.
+
+[7m8[0m       transform: (a, b, priority) => a,
+[7m [0m [91m                        ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-5b9e0b0/testCase.test.ts
+  compose
+    ✕ should handle retain with embed correctly when thisOp.retain is not null (6 ms)
+
+  ● compose › should handle retain with embed correctly when thisOp.retain is not null
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 4
+    + Received  + 1
+
+      Delta {
+        "ops": Array [
+          Object {
+            "insert": Object {
+    -         "embed": Object {
+    -           "1": 1,
+    -           "2": 2,
+    -         },
+    +         "embed": Object {},
+            },
+          },
+        ],
+      }
+
+      11 |     const delta2 = new Delta().retain({ embed: 2 });
+      12 |     const expected = new Delta().insert({ embed: { 1: 1, 2: 2 } });
+    > 13 |     expect(delta1.compose(delta2)).toEqual(expected);
+         |                                    ^
+      14 |   });
+      15 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-5b9e0b0/testCase.test.ts:13:36)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.199 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-5b9e0b0/testCase.test.ts".

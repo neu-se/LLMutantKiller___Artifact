@@ -1,0 +1,67 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-775e92b/testCase.test.ts[0m:[93m1[0m:[93m26[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import { GeoPoint } from "../../../../../../../../../../../subject_repositories/node-geo-point/src/geo-point.ts";
+[7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-775e92b/testCase.test.ts[0m:[93m5[0m:[93m38[0m - [91merror[0m[90m TS2345: [0mArgument of type '{}' is not assignable to parameter of type 'LatLng'.
+  Type '{}' is missing the following properties from type 'LatLng': latitude, longitude
+
+[7m5[0m     expect(() => GeoPoint.fromObject({})).not.toThrowError();
+[7m [0m [91m                                     ~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-775e92b/testCase.test.ts[0m:[93m7[0m:[93m38[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ latitude: number; }' is not assignable to parameter of type 'LatLng'.
+  Property 'longitude' is missing in type '{ latitude: number; }' but required in type 'LatLng'.
+
+[7m7[0m     expect(() => GeoPoint.fromObject({ latitude: 0 })).toThrowError(TypeError);
+[7m [0m [91m                                     ~~~~~~~~~~~~~~~[0m
+
+  [96m../subject_repositories/node-geo-point/src/geo-point.ts[0m:[93m20[0m:[93m3[0m
+    [7m20[0m   longitude: number;
+    [7m  [0m [96m  ~~~~~~~~~[0m
+    'longitude' is declared here.
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-775e92b/testCase.test.ts[0m:[93m8[0m:[93m38[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ longitude: number; }' is not assignable to parameter of type 'LatLng'.
+  Property 'latitude' is missing in type '{ longitude: number; }' but required in type 'LatLng'.
+
+[7m8[0m     expect(() => GeoPoint.fromObject({ longitude: 0 })).toThrowError(TypeError);
+[7m [0m [91m                                     ~~~~~~~~~~~~~~~~[0m
+
+  [96m../subject_repositories/node-geo-point/src/geo-point.ts[0m:[93m19[0m:[93m3[0m
+    [7m19[0m   latitude: number;
+    [7m  [0m [96m  ~~~~~~~~[0m
+    'latitude' is declared here.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-775e92b/testCase.test.ts
+  GeoPoint
+    ✕ should throw an error when creating a GeoPoint from a non-object (15 ms)
+
+  ● GeoPoint › should throw an error when creating a GeoPoint from a non-object
+
+    expect(received).not.toThrowError()
+
+    Error name:    "TypeError"
+    Error message: "Object must have latitude and longitude"
+
+          88 |
+          89 |     if (!object.hasOwnProperty('latitude') || !object.hasOwnProperty('longitude')) {
+        > 90 |       throw new TypeError('Object must have latitude and longitude');
+             |             ^
+          91 |     }
+          92 |
+          93 |     return new GeoPoint(object.latitude, object.longitude);
+
+      at Function.fromObject (../subject_repositories/node-geo-point/src/geo-point.ts:90:13)
+      at fromObject (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-775e92b/testCase.test.ts:5:27)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-775e92b/testCase.test.ts:5:47)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-775e92b/testCase.test.ts:5:47)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.034 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-775e92b/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

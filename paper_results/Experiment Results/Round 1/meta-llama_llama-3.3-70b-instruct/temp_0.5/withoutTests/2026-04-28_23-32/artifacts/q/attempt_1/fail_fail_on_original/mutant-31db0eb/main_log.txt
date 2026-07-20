@@ -1,0 +1,38 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-31db0eb/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-31db0eb/testCase.test.ts[0m:[93m8[0m:[93m9[0m - [91merror[0m[90m TS2741: [0mProperty '__promisify__' is missing in type 'Mock<any, any, any>' but required in type 'typeof setImmediate'.
+
+[7m8[0m         global.setImmediate = mockSetImmediate;
+[7m [0m [91m        ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/node/timers.d.ts[0m:[93m180[0m:[93m22[0m
+    [7m180[0m             export { __promisify__ };
+    [7m   [0m [96m                     ~~~~~~~~~~~~~[0m
+    '__promisify__' is declared here.
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-31db0eb/testCase.test.ts[0m:[93m13[0m:[93m9[0m - [91merror[0m[90m TS2740: [0mType '{ nextTick: Mock<any, any, any>; }' is missing the following properties from type 'Process': stdout, stderr, stdin, argv, and 63 more.
+
+[7m13[0m         global.process = mockProcess;
+[7m  [0m [91m        ~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-31db0eb/testCase.test.ts[0m:[93m18[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType '{}' is not assignable to type 'Window & typeof globalThis'.
+  Type '{}' is missing the following properties from type 'Window': clientInformation, closed, cookieStore, customElements, and 209 more.
+
+[7m18[0m         global.window = mockWindow;
+[7m  [0m [91m        ~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-31db0eb/testCase.test.ts
+  Q
+    ✕ should use setImmediate if available in a non-Node environment (1 ms)
+
+  ● Q › should use setImmediate if available in a non-Node environment
+
+    TypeError: Cannot read properties of undefined (reading 'defer')
+
+      at Object.defer (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-31db0eb/testCase.test.ts:21:11)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.702 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-31db0eb/testCase.test.ts".

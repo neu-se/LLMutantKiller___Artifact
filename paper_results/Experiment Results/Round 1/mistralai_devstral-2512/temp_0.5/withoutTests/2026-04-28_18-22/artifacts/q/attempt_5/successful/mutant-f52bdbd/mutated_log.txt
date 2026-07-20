@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-f52bdbd/testCase.test.ts (6.49 s)
+  Q unhandled rejection tracking
+    ✕ should include stack traces in unhandled rejection tracking (5003 ms)
+
+  ● Q unhandled rejection tracking › should include stack traces in unhandled rejection tracking
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Error: Test error with stack
+
+       7 |
+       8 |     // Create an error with a stack trace
+    >  9 |     const error = new Error("Test error with stack");
+         |                   ^
+      10 |     const rejectedPromise = Q.reject(error);
+      11 |
+      12 |     // Give the event loop time to process the unhandled rejection
+
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-f52bdbd/testCase.test.ts:9:19)
+      Received string:    "(no stack) Error: Test error with stack"
+      at Timeout.toContain [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-f52bdbd/testCase.test.ts:21:22)
+
+  ● Q unhandled rejection tracking › should include stack traces in unhandled rejection tracking
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("Q unhandled rejection tracking", () => {
+    > 4 |   it("should include stack traces in unhandled rejection tracking", (done) => {
+        |   ^
+      5 |     // Reset tracking before test
+      6 |     Q.resetUnhandledRejections();
+      7 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-f52bdbd/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-f52bdbd/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.661 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-f52bdbd/testCase.test.ts".

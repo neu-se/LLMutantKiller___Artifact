@@ -1,0 +1,11 @@
+import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+
+describe("q.js", () => {
+    it("should correctly handle stack traces", () => {
+        const error = new Error("Test error");
+        const stackLine = "at test (/path/to/test.js:10:20)";
+        const attempt1 = /at .+ \((.+):(\d+):(?:\d+)\)$/.exec(stackLine);
+        expect(attempt1).not.toBeNull();
+        expect(attempt1[2]).toBe("20");
+    });
+});

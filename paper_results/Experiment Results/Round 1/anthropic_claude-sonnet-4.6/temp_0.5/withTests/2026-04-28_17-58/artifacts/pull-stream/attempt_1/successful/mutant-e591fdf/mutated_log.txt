@@ -1,0 +1,38 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-e591fdf/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/pull.js"' has no exported member 'pull'.
+
+[7m1[0m import { pull } from "../../../../../../../../../../../subject_repositories/pull-stream/pull.js"
+[7m [0m [91m         ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/pull-stream/pull.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/pull-stream/pull.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-e591fdf/testCase.test.ts
+  pull with non-function first argument
+    ✕ should not treat a non-function argument as a partial pipeline (85 ms)
+
+  ● pull with non-function first argument › should not treat a non-function argument as a partial pipeline
+
+    expect(received).not.toThrow()
+
+    Error name:    "Error"
+    Error message: "expect(received).toBe(expected) // Object.is equality·
+    Expected: \"string\"
+    Received: \"function\""
+
+          12 |       // In original: result is 'x' (just returned as read)
+          13 |       // In mutated: result is a function (partial pipeline)
+        > 14 |       expect(typeof result).toBe('string')
+             |                             ^
+          15 |     }).not.toThrow()
+          16 |   })
+          17 | })
+
+      at toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-e591fdf/testCase.test.ts:14:29)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-e591fdf/testCase.test.ts:15:12)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-e591fdf/testCase.test.ts:15:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.522 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-e591fdf/testCase.test.ts".

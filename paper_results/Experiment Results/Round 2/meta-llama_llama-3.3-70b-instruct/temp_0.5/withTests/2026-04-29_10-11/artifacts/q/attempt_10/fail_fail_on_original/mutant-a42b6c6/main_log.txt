@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-a42b6c6/testCase.test.ts
+  Q.defer
+    ✕ should reject with the error if it is truthy in the original code and fail in the mutated code (3 ms)
+
+  ● Q.defer › should reject with the error if it is truthy in the original code and fail in the mutated code
+
+    Cannot find module '../../../../q.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-a42b6c6/testCase.test.ts'
+
+      1 | describe('Q.defer', function () {
+      2 |     it('should reject with the error if it is truthy in the original code and fail in the mutated code', function () {
+    > 3 |         var Q = require('../../../../q.js');
+        |                 ^
+      4 |         var deferred = Q.defer();
+      5 |         var error = new Error('Test error');
+      6 |         deferred.makeNodeResolver()(error);
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-a42b6c6/testCase.test.ts:3:17)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.456 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-a42b6c6/testCase.test.ts".

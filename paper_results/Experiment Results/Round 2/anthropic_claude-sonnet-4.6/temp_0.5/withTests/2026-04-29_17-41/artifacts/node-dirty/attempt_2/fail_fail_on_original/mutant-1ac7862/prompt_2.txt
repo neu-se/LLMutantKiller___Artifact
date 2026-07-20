@@ -1,0 +1,34 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-1ac7862/testCase.test.ts
+  flush loop processes all queued keys in single flush
+    ✕ should invoke callbacks for all keys set before drain fires (13 ms)
+
+  ● flush loop processes all queued keys in single flush › should invoke callbacks for all keys set before drain fires
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: "key3"
+    Received array: ["key1", "key2"]
+
+      35 |           expect(callbacksFired).toContain('key1');
+      36 |           expect(callbacksFired).toContain('key2');
+    > 37 |           expect(callbacksFired).toContain('key3');
+         |                                  ^
+      38 |           expect(callbacksFired.length).toBe(3);
+      39 |           
+      40 |           // Cleanup
+
+      at Dirty.toContain (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-1ac7862/testCase.test.ts:37:34)
+      at Object.emit [as callback] (../subject_repositories/node-dirty/lib/dirty/dirty.js:190:70)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.554 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-1ac7862/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

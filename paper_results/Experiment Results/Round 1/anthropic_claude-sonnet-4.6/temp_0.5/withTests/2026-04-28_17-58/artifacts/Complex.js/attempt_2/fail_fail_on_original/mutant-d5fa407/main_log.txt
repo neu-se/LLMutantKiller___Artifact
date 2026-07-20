@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-d5fa407/testCase.test.ts
+  Complex acot mutation detection
+    ✕ detects mutation in acot d=0 branch by checking behavior with b non-zero when d approaches 0 (3 ms)
+
+  ● Complex acot mutation detection › detects mutation in acot d=0 branch by checking behavior with b non-zero when d approaches 0
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: NaN
+    Received: NaN
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   NaN
+
+      21 |       // new Complex(0, 0).atan() = 0
+      22 |       const originalAtan = new Complex(0, -Infinity).atan();
+    > 23 |       expect(result.re).toBeCloseTo(originalAtan.re, 10);
+         |                         ^
+      24 |       expect(result.im).toBeCloseTo(originalAtan.im, 10);
+      25 |     } else {
+      26 |       // If no underflow, skip - but let's ensure underflow happens
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-d5fa407/testCase.test.ts:23:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.79 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-d5fa407/testCase.test.ts".

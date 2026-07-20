@@ -1,0 +1,24 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-545198e/testCase.test.ts
+  dirty db
+    ✕ correctly processes data arriving in chunks without newlines (2 ms)
+
+  ● dirty db › correctly processes data arriving in chunks without newlines
+
+    TypeError: Cannot set property createReadStream of #<Object> which has only a getter
+
+      28 |     // Patch the fs module used by dirty
+      29 |     const originalCreateReadStream = fs.createReadStream;
+    > 30 |     (fs as any).createReadStream = () => readable;
+         |                                 ^
+      31 |     
+      32 |     jest.resetModules();
+      33 |     const Dirty = require('../../../../../../../../../../../subject_repositories/node-dirty/lib/dirty/dirty.js');
+
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-545198e/testCase.test.ts:30:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.705 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-545198e/testCase.test.ts".

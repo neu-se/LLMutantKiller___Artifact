@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-0f64dd3/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-0f64dd3/testCase.test.ts[0m:[93m19[0m:[93m22[0m - [91merror[0m[90m TS7006: [0mParameter 'result' implicitly has an 'any' type.
+
+[7m19[0m             }).then((result) => {
+[7m  [0m [91m                     ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-0f64dd3/testCase.test.ts
+  stack trace handling with missing line information
+    ✕ should handle stack traces without file information gracefully (1 ms)
+
+  ● stack trace handling with missing line information › should handle stack traces without file information gracefully
+
+    TypeError: Cannot read properties of undefined (reading 'hasStacks')
+
+      4 |     it("should handle stack traces without file information gracefully", () => {
+      5 |         // Create a scenario where stack trace parsing might fail
+    > 6 |         const originalHasStacks = (Q as any).hasStacks;
+        |                                              ^
+      7 |         try {
+      8 |             // Force the library to think stacks are available
+      9 |             (Q as any).hasStacks = true;
+
+      at Object.hasStacks (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-0f64dd3/testCase.test.ts:6:46)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.005 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-0f64dd3/testCase.test.ts".

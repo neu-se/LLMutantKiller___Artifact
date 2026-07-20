@@ -1,0 +1,35 @@
+// Test case to detect the mutation in q.js
+describe("Q library initialization", () => {
+  it("should expose Q as a global when running in a browser-like environment with window defined", () => {
+    // Simulate a browser-like environment with window defined
+    const globalAny: any = global;
+    const originalWindow = globalAny.window;
+    const originalSelf = globalAny.self;
+    const originalQ = globalAny.Q;
+
+    // Setup a mock window object
+    globalAny.window = {};
+    delete globalAny.self;
+    delete globalAny.Q;
+
+    // Load Q in this environment by requiring it
+    // The original code should expose Q on window when window is defined
+    // The mutated code (with `false || typeof self !== "undefined"`) should not expose Q on window
+    const qPath = require.resolve("../../../../../../../../../../../subject_repositories/q/q.js");
+    require(qPath);
+
+    // Verify Q is exposed on window in original code
+    expect(globalAny.window.Q).toBeDefined();
+    expect(typeof globalAny.window.Q).toBe("function");
+
+    // Verify Q has the expected properties
+    expect(typeof globalAny.window.Q.defer).toBe("function");
+    expect(typeof globalAny.window.Q.when).toBe("function");
+    expect(typeof globalAny.window.Q.Promise).toBe("function");
+
+    // Cleanup
+    globalAny.window = originalWindow;
+    globalAny.self = originalSelf;
+    globalAny.Q = originalQ;
+  });
+});

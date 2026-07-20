@@ -1,0 +1,31 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_2/pending_category/mutant-952ac07/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/image-downloader/lib/request.js"' has no exported member 'request'.
+
+[7m1[0m import { request } from '../../../../../../../../../../../subject_repositories/image-downloader/lib/request.js';
+[7m [0m [91m         ~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_2/pending_category/mutant-952ac07/testCase.test.ts[0m:[93m2[0m:[93m18[0m - [91merror[0m[90m TS2307: [0mCannot find module 'nock' or its corresponding type declarations.
+
+[7m2[0m import nock from 'nock';
+[7m [0m [91m                 ~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_2/pending_category/mutant-952ac07/testCase.test.ts
+  request
+    ✕ should reject the promise when an error occurs during the request (2 ms)
+
+  ● request › should reject the promise when an error occurs during the request
+
+    TypeError: (0 , request_js_1.request) is not a function
+
+      16 |
+      17 |     // Act and Assert
+    > 18 |     await expect(request({ url, dest, ...options })).rejects.toThrow(Error);
+         |                         ^
+      19 |
+      20 |     // Clean up
+      21 |     nock.cleanAll();
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_2/pending_category/mutant-952ac07/testCase.test.ts:18:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.322 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_2/pending_category/mutant-952ac07/testCase.test.ts".

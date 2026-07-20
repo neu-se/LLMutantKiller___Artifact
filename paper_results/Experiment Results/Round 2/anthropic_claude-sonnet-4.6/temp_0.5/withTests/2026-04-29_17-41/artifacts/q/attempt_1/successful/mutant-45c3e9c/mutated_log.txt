@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-45c3e9c/testCase.test.ts (6.16 s)
+  nextTick.runAfter
+    ✕ should execute the runAfter task even when the event loop is not currently flushing (5003 ms)
+
+  ● nextTick.runAfter › should execute the runAfter task even when the event loop is not currently flushing
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      12 |     // Give enough time for the task to execute
+      13 |     setTimeout(function () {
+    > 14 |       expect(wasExecuted).toBe(true);
+         |                           ^
+      15 |       done();
+      16 |     }, 100);
+      17 |   });
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-45c3e9c/testCase.test.ts:14:27)
+
+  ● nextTick.runAfter › should execute the runAfter task even when the event loop is not currently flushing
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("nextTick.runAfter", () => {
+    > 4 |   it("should execute the runAfter task even when the event loop is not currently flushing", (done) => {
+        |   ^
+      5 |     let wasExecuted = false;
+      6 |
+      7 |     // Call runAfter when the event loop is idle (flushing = false)
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-45c3e9c/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-45c3e9c/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.313 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-45c3e9c/testCase.test.ts".

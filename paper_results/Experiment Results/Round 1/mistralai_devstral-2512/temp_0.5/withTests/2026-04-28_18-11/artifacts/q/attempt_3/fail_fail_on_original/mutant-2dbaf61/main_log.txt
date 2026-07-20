@@ -1,0 +1,30 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-2dbaf61/testCase.test.ts[0m:[93m4[0m:[93m79[0m - [91merror[0m[90m TS2345: [0mArgument of type '() => boolean' is not assignable to parameter of type 'ProvidesCallback | undefined'.
+  Type '() => boolean' is not assignable to type '(cb: DoneCallback) => void | undefined'.
+    Type 'boolean' is not assignable to type 'void'.
+
+[7m4[0m     it("should properly filter internal stack frames when hasStacks is true", () => {
+[7m [0m [91m                                                                              ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-2dbaf61/testCase.test.ts
+  Stack trace filtering
+    ✕ should properly filter internal stack frames when hasStacks is true (4 ms)
+
+  ● Stack trace filtering › should properly filter internal stack frames when hasStacks is true
+
+    TypeError: Q._filterStackString is not a function
+
+      13 |         if (error.stack) {
+      14 |             // If we have stack traces, verify the filtering works
+    > 15 |             const filtered = Q._filterStackString(error.stack);
+         |                                ^
+      16 |             expect(typeof filtered).toBe("string");
+      17 |
+      18 |             // The key difference is that with the mutation, hasStacks would be false
+
+      at Object._filterStackString (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-2dbaf61/testCase.test.ts:15:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.87 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-2dbaf61/testCase.test.ts".

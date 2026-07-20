@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-7145248/testCase.test.ts
+  makeNodeResolver with multiple success arguments
+    ✕ should resolve with an array of values when callback is called with more than one success argument (3 ms)
+
+  ● makeNodeResolver with multiple success arguments › should resolve with an array of values when callback is called with more than one success argument
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      13 |     // In original code: arguments.length > 2 is true (3 > 2), so resolves with array ["first", "second"]
+      14 |     // In mutated code: arguments.length <= 2 is false (3 <= 2 is false), so falls to else: resolves with just "first"
+    > 15 |     expect(Array.isArray(result)).toBe(true);
+         |                                   ^
+      16 |     expect(result).toEqual(["first", "second"]);
+      17 |   });
+      18 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-7145248/testCase.test.ts:15:35)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.122 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-7145248/testCase.test.ts".

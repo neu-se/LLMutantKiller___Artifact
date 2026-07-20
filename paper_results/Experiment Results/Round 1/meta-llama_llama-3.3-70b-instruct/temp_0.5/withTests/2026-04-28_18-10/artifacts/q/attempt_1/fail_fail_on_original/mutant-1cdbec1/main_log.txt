@@ -1,0 +1,93 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts[0m:[93m5[0m:[93m27[0m - [91merror[0m[90m TS7006: [0mParameter 'value' implicitly has an 'any' type.
+
+[7m5[0m         return Q(5).then((value) => {
+[7m [0m [91m                          ~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts[0m:[93m11[0m:[93m57[0m - [91merror[0m[90m TS7006: [0mParameter 'error' implicitly has an 'any' type.
+
+[7m11[0m         return Q.reject(new Error("Test error")).catch((error) => {
+[7m  [0m [91m                                                        ~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts[0m:[93m17[0m:[93m30[0m - [91merror[0m[90m TS7006: [0mParameter 'value' implicitly has an 'any' type.
+
+[7m17[0m         return Q(Q(5)).then((value) => {
+[7m  [0m [91m                             ~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts[0m:[93m24[0m:[93m20[0m - [91merror[0m[90m TS7006: [0mParameter 'resolve' implicitly has an 'any' type.
+
+[7m24[0m             then: (resolve) => {
+[7m  [0m [91m                   ~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts[0m:[93m28[0m:[93m34[0m - [91merror[0m[90m TS7006: [0mParameter 'value' implicitly has an 'any' type.
+
+[7m28[0m         return Q(thenable).then((value) => {
+[7m  [0m [91m                                 ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts
+  Q function behavior
+    ✕ should resolve with the given value (1 ms)
+    ✕ should reject with the given reason
+    ✕ should handle promises correctly
+    ✕ should handle thenables correctly
+
+  ● Q function behavior › should resolve with the given value
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      3 | describe("Q function behavior", () => {
+      4 |     it("should resolve with the given value", () => {
+    > 5 |         return Q(5).then((value) => {
+        |                 ^
+      6 |             expect(value).toBe(5);
+      7 |         });
+      8 |     });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts:5:17)
+
+  ● Q function behavior › should reject with the given reason
+
+    TypeError: Cannot read properties of undefined (reading 'reject')
+
+       9 |
+      10 |     it("should reject with the given reason", () => {
+    > 11 |         return Q.reject(new Error("Test error")).catch((error) => {
+         |                  ^
+      12 |             expect(error.message).toBe("Test error");
+      13 |         });
+      14 |     });
+
+      at Object.reject (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts:11:18)
+
+  ● Q function behavior › should handle promises correctly
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      15 |
+      16 |     it("should handle promises correctly", () => {
+    > 17 |         return Q(Q(5)).then((value) => {
+         |                   ^
+      18 |             expect(value).toBe(5);
+      19 |         });
+      20 |     });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts:17:19)
+
+  ● Q function behavior › should handle thenables correctly
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      26 |             },
+      27 |         };
+    > 28 |         return Q(thenable).then((value) => {
+         |                 ^
+      29 |             expect(value).toBe(10);
+      30 |         });
+      31 |     });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts:28:17)
+
+Test Suites: 1 failed, 1 total
+Tests:       4 failed, 4 total
+Snapshots:   0 total
+Time:        1.821 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts".

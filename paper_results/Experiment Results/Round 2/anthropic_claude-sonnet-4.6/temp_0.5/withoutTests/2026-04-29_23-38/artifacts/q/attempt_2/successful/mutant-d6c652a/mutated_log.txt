@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-d6c652a/testCase.test.ts
+  Q module captureLine early return when hasStacks is false
+    ✕ should load successfully when Error objects have no stack property (10 ms)
+
+  ● Q module captureLine early return when hasStacks is false › should load successfully when Error objects have no stack property
+
+    expect(received).toBeNull()
+
+    Received: [TypeError: Cannot read properties of undefined (reading 'split')]
+
+      31 |     // Original code: captureLine returns early when !hasStacks, no error
+      32 |     // Mutated code: captureLine continues, tries e.stack.split() where e.stack is undefined -> TypeError
+    > 33 |     expect(loadError).toBeNull();
+         |                       ^
+      34 |   });
+      35 | });
+
+      at Object.toBeNull (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-d6c652a/testCase.test.ts:33:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.277 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-d6c652a/testCase.test.ts".

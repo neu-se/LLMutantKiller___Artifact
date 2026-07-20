@@ -1,0 +1,46 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/node-dirty/lib/dirty/dirty.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/node-dirty/lib/dirty/dirty.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-d8227cc/testCase.test.ts (6.407 s)
+  dirty db loading
+    ✕ should process corrupted row during data event, not at stream end, when chunk lastIndexOf newline equals 1 (5003 ms)
+
+  ● dirty db loading › should process corrupted row during data event, not at stream end, when chunk lastIndexOf newline equals 1
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /Could not load corrupted row/
+    Received string:  "Corrupted row at the end of the db: a
+    "
+
+      22 |     db.on('load', () => {
+      23 |       try { fs.unlinkSync(tmpFile); } catch (e) { /* ignore */ }
+    > 24 |       expect(errorMessage).toMatch(/Could not load corrupted row/);
+         |                            ^
+      25 |       done();
+      26 |     });
+      27 |   });
+
+      at Dirty.toMatch (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-d8227cc/testCase.test.ts:24:28)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:155:16)
+
+  ● dirty db loading › should process corrupted row during data event, not at stream end, when chunk lastIndexOf newline equals 1
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       6 |
+       7 | describe('dirty db loading', () => {
+    >  8 |   it('should process corrupted row during data event, not at stream end, when chunk lastIndexOf newline equals 1', (done) => {
+         |   ^
+       9 |     const tmpFile = path.join(os.tmpdir(), `dirty-mutant-test-${process.pid}.dirty`);
+      10 |     // Write exactly 'a\n' - when read as a chunk, lastIndexOf('\n') === 1
+      11 |     // Original: processes the chunk (1 !== -1), emits "Could not load corrupted row: a"
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-d8227cc/testCase.test.ts:8:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-d8227cc/testCase.test.ts:7:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.58 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-d8227cc/testCase.test.ts".

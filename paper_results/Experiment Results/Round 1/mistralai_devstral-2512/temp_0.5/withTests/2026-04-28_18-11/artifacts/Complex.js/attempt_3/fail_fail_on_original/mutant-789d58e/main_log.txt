@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-789d58e/testCase.test.ts
+  Complex.expm1
+    ✕ should correctly compute expm1 for a small complex number with non-zero imaginary part (2 ms)
+
+  ● Complex.expm1 › should correctly compute expm1 for a small complex number with non-zero imaginary part
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: -0.005000004166666664
+    Received: -0.004995834721974235
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   0.0000041694446924287615
+
+       8 |     // The mutation changes the cosm1 calculation, which affects expm1's real part
+       9 |     // For small x, the difference between -1/3628800 and -1*3628800 is significant
+    > 10 |     expect(result.re).toBeCloseTo(-0.005000004166666664, 10);
+         |                       ^
+      11 |     expect(result.im).toBeCloseTo(0.09983341664682815, 10);
+      12 |   });
+      13 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-789d58e/testCase.test.ts:10:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.342 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-789d58e/testCase.test.ts".

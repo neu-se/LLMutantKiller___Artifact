@@ -1,0 +1,17 @@
+let mocha = require('mocha');
+let assert = require('assert');
+let complex_js = require('complex.js');
+
+describe('test complex_js', function() {
+    it('test complex.js.ZERO.tanh', function(done) {
+        // Test that tanh of zero equals zero
+        let result = complex_js.ZERO.tanh();
+        
+        // tanh(0) should equal 0
+        assert.strictEqual(result.re, 0, 'Real part of tanh(0) should be 0');
+        assert.strictEqual(result.im, 0, 'Imaginary part of tanh(0) should be 0');
+        
+        done();
+    });
+    
+    })

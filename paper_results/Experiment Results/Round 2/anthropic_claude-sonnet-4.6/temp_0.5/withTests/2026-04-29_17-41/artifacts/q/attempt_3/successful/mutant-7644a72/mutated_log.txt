@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-7644a72/testCase.test.ts
+  QReturnValue uses global ReturnValue when defined
+    ✕ Q.return throws an instance of the global ReturnValue constructor when ReturnValue is defined (37 ms)
+
+  ● QReturnValue uses global ReturnValue when defined › Q.return throws an instance of the global ReturnValue constructor when ReturnValue is defined
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      31 |     // In original code: QReturnValue === global ReturnValue (MyReturnValue), so instanceof works
+      32 |     // In mutated code: QReturnValue is the local fallback, NOT MyReturnValue, so instanceof fails
+    > 33 |     expect(thrown instanceof MyReturnValue).toBe(true);
+         |                                             ^
+      34 |   });
+      35 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-7644a72/testCase.test.ts:33:45)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.551 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-7644a72/testCase.test.ts".

@@ -1,0 +1,32 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-d557c4c/testCase.test.ts
+  pull function
+    ✕ should handle objects and functions correctly (2 ms)
+
+  ● pull function › should handle objects and functions correctly
+
+    expect(received).toThrowError()
+
+    Received function did not throw
+
+       8 |     expect(typeof result).toBe('string');
+       9 |     const t = { source: () => 't', sink: () => {} };
+    > 10 |     expect(() => pull(read, t)).toThrowError();
+         |                                 ^
+      11 |     const u = {};
+      12 |     expect(() => pull(read, u)).toThrowError();
+      13 |   });
+
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-d557c4c/testCase.test.ts:10:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.493 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-d557c4c/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,11 @@
+// llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-ea1200d1/testCase.test.ts
+import { Complex } from "../../../../../../../../../../../subject_repositories/Complex.js/complex.js";
+
+describe("Complex.logHypot", () => {
+  it("should use the optimized path when b is exactly 3000 and a is small", () => {
+    const c = new Complex(0.5, 3000);
+    const result = c.log();
+    const expectedRe = Math.log(Math.sqrt(0.5 * 0.5 + 3000 * 3000));
+    expect(result.re).toBeCloseTo(expectedRe, 10);
+  });
+});

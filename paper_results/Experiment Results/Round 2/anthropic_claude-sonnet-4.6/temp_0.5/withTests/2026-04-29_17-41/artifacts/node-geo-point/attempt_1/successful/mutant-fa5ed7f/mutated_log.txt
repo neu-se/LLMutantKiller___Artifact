@@ -1,0 +1,36 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-fa5ed7f/testCase.test.ts[0m:[93m1[0m:[93m26[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import { GeoPoint } from "../../../../../../../../../../../subject_repositories/node-geo-point/src/geo-point.ts";
+[7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-fa5ed7f/testCase.test.ts
+  GeoPoint.fromGeoJSON
+    ✕ should throw a TypeError with a descriptive message when coordinates array does not have 2 elements (15 ms)
+
+  ● GeoPoint.fromGeoJSON › should throw a TypeError with a descriptive message when coordinates array does not have 2 elements
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "coordinates must be an array and contain 2 elements"
+    Received message:   ""
+
+          71 |
+          72 |     if (!Array.isArray(point.coordinates) || point.coordinates.length !== 2) {
+        > 73 |          throw new TypeError("");
+             |                ^
+          74 |
+          75 |     }
+          76 |
+
+      at Function.fromGeoJSON (../subject_repositories/node-geo-point/src/geo-point.ts:73:16)
+      at fromGeoJSON (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-fa5ed7f/testCase.test.ts:13:16)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-fa5ed7f/testCase.test.ts:17:8)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-fa5ed7f/testCase.test.ts:17:8)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.855 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-fa5ed7f/testCase.test.ts".

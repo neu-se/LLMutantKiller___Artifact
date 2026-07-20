@@ -1,0 +1,35 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-6099c93/testCase.test.ts[0m:[93m8[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '(event: string, reason: any, promise: any) => any' is not assignable to type '{ (event: "beforeExit", code: number): boolean; (event: "disconnect"): boolean; (event: "exit", code: number): boolean; (event: "rejectionHandled", promise: Promise<unknown>): boolean; (event: "uncaughtException", error: Error): boolean; (event: "uncaughtExceptionMonitor", error: Error): boolean; (event: "unhandledR...'.
+  Target signature provides too few arguments. Expected 3 or more, but got 2.
+
+[7m8[0m     process.emit = function(event: string, reason: any, promise: any) {
+[7m [0m [91m    ~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-6099c93/testCase.test.ts
+  Q unhandled rejection tracking
+    ✕ should emit rejectionHandled event with correct parameters (104 ms)
+
+  ● Q unhandled rejection tracking › should emit rejectionHandled event with correct parameters
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "string"
+    Received: "undefined"
+
+      10 |         rejectionHandledCalled = true;
+      11 |         // Verify the reason contains our error message
+    > 12 |         expect(typeof reason).toBe("string");
+         |                               ^
+      13 |         expect(reason).toContain("test error");
+      14 |         // Verify the promise is actually rejected
+      15 |         expect(Q.isRejected(promise)).toBe(true);
+
+      at process.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-6099c93/testCase.test.ts:12:31)
+      at emit (../subject_repositories/q/q.js:1104:29)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:130:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.696 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-6099c93/testCase.test.ts".

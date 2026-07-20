@@ -1,0 +1,48 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-08d1e81/testCase.test.ts[0m:[93m9[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '(event: string, ...args: any[]) => boolean' is not assignable to type '{ (event: "beforeExit", code: number): boolean; (event: "disconnect"): boolean; (event: "exit", code: number): boolean; (event: "rejectionHandled", promise: Promise<unknown>): boolean; (event: "uncaughtException", error: Error): boolean; (event: "uncaughtExceptionMonitor", error: Error): boolean; (event: "unhandledR...'.
+  Type 'boolean' is not assignable to type 'Process'.
+
+[7m9[0m     process.emit = function(event: string, ...args: any[]): boolean {
+[7m [0m [91m    ~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-08d1e81/testCase.test.ts (6.9 s)
+  Q unhandled rejection tracking
+    ✕ should not emit unhandledRejection when process.emit is not a function (5002 ms)
+
+  ● Q unhandled rejection tracking › should not emit unhandledRejection when process.emit is not a function
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      25 |       // In the original code, emit should not be called because process.emit is a function
+      26 |       // But the test is designed to fail when the condition is always true (mutation)
+    > 27 |       expect(emitCalled).toBe(false);
+         |                          ^
+      28 |       done();
+      29 |     }, 10);
+      30 |   });
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-08d1e81/testCase.test.ts:27:26)
+
+  ● Q unhandled rejection tracking › should not emit unhandledRejection when process.emit is not a function
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("Q unhandled rejection tracking", () => {
+    > 4 |   it("should not emit unhandledRejection when process.emit is not a function", (done) => {
+        |   ^
+      5 |     const originalEmit = process.emit;
+      6 |     let emitCalled = false;
+      7 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-08d1e81/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-08d1e81/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.067 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-08d1e81/testCase.test.ts".

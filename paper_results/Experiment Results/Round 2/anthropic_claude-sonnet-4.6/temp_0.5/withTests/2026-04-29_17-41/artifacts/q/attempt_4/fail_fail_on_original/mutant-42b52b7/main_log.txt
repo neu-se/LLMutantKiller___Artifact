@@ -1,0 +1,49 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-42b52b7/testCase.test.ts[0m:[93m15[0m:[93m27[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'Signals'.
+
+[7m15[0m       return originalEmit(event, ...args);
+[7m  [0m [91m                          ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-42b52b7/testCase.test.ts (6.177 s)
+  unhandled rejection tracking
+    ✕ emits rejectionHandled event when a reported unhandled rejection is later handled (5001 ms)
+
+  ● unhandled rejection tracking › emits rejectionHandled event when a reported unhandled rejection is later handled
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+      31 |         // In original: process.emit IS a function → rejectionHandled IS emitted
+      32 |         // In mutated: process.emit IS a function but condition is !== → rejectionHandled NOT emitted
+    > 33 |         expect(rejectionHandledEvents.length).toBe(1);
+         |                                               ^
+      34 |         done();
+      35 |       });
+      36 |     });
+
+      at toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-42b52b7/testCase.test.ts:33:47)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:130:13)
+
+  ● unhandled rejection tracking › emits rejectionHandled event when a reported unhandled rejection is later handled
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("unhandled rejection tracking", () => {
+    > 4 |   it("emits rejectionHandled event when a reported unhandled rejection is later handled", (done) => {
+        |   ^
+      5 |     Q.resetUnhandledRejections();
+      6 |
+      7 |     const rejectionHandledEvents: any[] = [];
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-42b52b7/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-42b52b7/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.33 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-42b52b7/testCase.test.ts".

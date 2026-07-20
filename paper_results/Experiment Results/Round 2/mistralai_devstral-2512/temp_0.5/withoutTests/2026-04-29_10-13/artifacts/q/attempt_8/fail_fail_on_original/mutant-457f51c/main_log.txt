@@ -1,0 +1,40 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-457f51c/testCase.test.ts[0m:[93m26[0m:[93m8[0m - [91merror[0m[90m TS7006: [0mParameter 'rejectionError' implicitly has an 'any' type.
+
+[7m26[0m       (rejectionError) => {
+[7m  [0m [91m       ~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-457f51c/testCase.test.ts
+  Q promise exception property mutation
+    ✕ should only set exception property when state is rejected (4 ms)
+
+  ● Q promise exception property mutation › should only set exception property when state is rejected
+
+    expect(received).toHaveProperty(path)
+
+    Expected path: "exception"
+    Received path: []
+
+    Received value: {"inspect": [Function anonymous], "promiseDispatch": [Function anonymous], "valueOf": [Function anonymous]}
+
+      27 |         // In original code, rejected promises should have exception property
+      28 |         expect(promise.isRejected()).toBe(true);
+    > 29 |         expect(promise).toHaveProperty("exception");
+         |                         ^
+      30 |         expect(promise.exception).toBe(error);
+      31 |       }
+      32 |     );
+
+      at toHaveProperty (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-457f51c/testCase.test.ts:29:25)
+      at rejected (../subject_repositories/q/q.js:864:24)
+      at _rejected (../subject_repositories/q/q.js:890:30)
+      at Promise.rejected (../subject_repositories/q/q.js:1142:31)
+      at Promise.apply [as promiseDispatch] (../subject_repositories/q/q.js:808:41)
+      at apply (../subject_repositories/q/q.js:624:44)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.726 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-457f51c/testCase.test.ts".

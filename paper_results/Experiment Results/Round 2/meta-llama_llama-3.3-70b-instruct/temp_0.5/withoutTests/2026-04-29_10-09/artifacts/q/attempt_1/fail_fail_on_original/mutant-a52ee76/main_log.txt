@@ -1,0 +1,29 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-a52ee76/testCase.test.ts[0m:[93m1[0m:[93m19[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../../../../../subject_repositories/q/q.js' or its corresponding type declarations.
+
+[7m1[0m import { Q } from "../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-a52ee76/testCase.test.ts
+  Q
+    ✕ should set longStackSupport to true when Q_DEBUG is set (2 ms)
+
+  ● Q › should set longStackSupport to true when Q_DEBUG is set
+
+    Cannot find module '../../../../../../../../subject_repositories/q/q.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-a52ee76/testCase.test.ts'
+
+       7 |
+       8 |         // Reset Q to ensure it picks up the new environment variable
+    >  9 |         delete require.cache[require.resolve('../../../../../../../../subject_repositories/q/q.js')];
+         |                                      ^
+      10 |         const Q = require('../../../../../../../../subject_repositories/q/q.js');
+      11 |
+      12 |         // Check if longStackSupport is true
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.resolve (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-a52ee76/testCase.test.ts:9:38)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.561 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-a52ee76/testCase.test.ts".

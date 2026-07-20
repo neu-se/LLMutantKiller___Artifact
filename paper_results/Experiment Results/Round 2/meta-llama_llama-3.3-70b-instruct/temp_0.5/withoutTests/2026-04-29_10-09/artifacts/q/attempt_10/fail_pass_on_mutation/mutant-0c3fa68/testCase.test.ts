@@ -1,0 +1,40 @@
+import * as q from "../../../../../../../../../../../subject_repositories/q/q.js";
+
+describe('Q', () => {
+    it('should have a progress function that does not call the callback for a promise that is already notified and then notified and then notified and then notified and then notified and then notified and then notified and then notified and then notified and then notified and then notified and then notified and then notified and then notified and then notified and then notified and then notified and then notified and then notified and then notified and then notified and then notified and then notified and then notified and then notified and then notified and then rejected', () => {
+        const progress = q.progress;
+        const callback = jest.fn();
+        const promise = q.defer();
+        promise.notify('progress1');
+        promise.notify('progress2');
+        promise.notify('progress3');
+        promise.notify('progress4');
+        promise.notify('progress5');
+        promise.notify('progress6');
+        promise.notify('progress7');
+        promise.notify('progress8');
+        promise.notify('progress9');
+        promise.notify('progress10');
+        promise.notify('progress11');
+        promise.notify('progress12');
+        promise.notify('progress13');
+        promise.notify('progress14');
+        promise.notify('progress15');
+        promise.notify('progress16');
+        promise.notify('progress17');
+        promise.notify('progress18');
+        promise.notify('progress19');
+        promise.notify('progress20');
+        promise.notify('progress21');
+        promise.notify('progress22');
+        promise.notify('progress23');
+        promise.notify('progress24');
+        promise.notify('progress25');
+        promise.notify('progress26');
+        promise.notify('progress27');
+        promise.notify('progress28');
+        promise.reject('rejected');
+        progress(promise.promise, callback);
+        expect(callback).toHaveBeenCalledTimes(0);
+    });
+});

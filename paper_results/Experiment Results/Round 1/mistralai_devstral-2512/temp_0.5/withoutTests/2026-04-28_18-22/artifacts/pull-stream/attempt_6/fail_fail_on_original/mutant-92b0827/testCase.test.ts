@@ -1,0 +1,18 @@
+const reduce = require("../../../../../../../../../../../subject_repositories/pull-stream/sinks/reduce.js");
+
+describe('reduce sink with immediate end', () => {
+  it('should distinguish between true and non-true end values', (done) => {
+    const reducer = (acc: any, data: any) => data;
+    const source = (end: any, cb: (end: boolean, data: any) => void) => {
+      cb(true, null);
+    };
+
+    const sink = reduce(reducer, (err: any, result: any) => {
+      expect(err).toBeNull();
+      expect(result).toBeNull();
+      done();
+    });
+
+    sink(source);
+  });
+});

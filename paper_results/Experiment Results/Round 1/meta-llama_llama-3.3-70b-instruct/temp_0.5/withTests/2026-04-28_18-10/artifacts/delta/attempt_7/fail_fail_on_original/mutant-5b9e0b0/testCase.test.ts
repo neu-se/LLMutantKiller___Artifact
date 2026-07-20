@@ -1,0 +1,16 @@
+import Delta from '../../../../../../../../../../../subject_repositories/delta/src/Delta';
+
+describe('Delta', () => {
+  it('compose with embed and retain', () => {
+    Delta.registerEmbed('embed', {
+      compose: (a, b, keepNull) => a,
+      transform: (a, b, priority) => a,
+      invert: (a, b) => a,
+    });
+    const a = new Delta().insert({ embed: 1 });
+    const b = new Delta().retain({ embed: 1 });
+    const result = a.compose(b);
+    expect(Object.keys(result.ops[0])[0]).toBe('retain');
+    Delta.unregisterEmbed('embed');
+  });
+});

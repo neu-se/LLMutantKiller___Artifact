@@ -1,0 +1,43 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-d8fda87/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/sources/once.js"' has no exported member 'once'.
+
+[7m1[0m import { once } from '../../../../../../../../../../../subject_repositories/pull-stream/sources/once.js';
+[7m [0m [91m         ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-d8fda87/testCase.test.ts
+  once
+    ✕ should call cb with value when value is not null and abort is false (2 ms)
+    ✕ should call onAbort when value is not null and abort is true
+
+  ● once › should call cb with value when value is not null and abort is false
+
+    TypeError: (0 , once_js_1.once) is not a function
+
+       6 |     const onAbort = jest.fn();
+       7 |     const cb = jest.fn();
+    >  8 |     const onceFn = once(value, onAbort);
+         |                        ^
+       9 |     onceFn(false, cb);
+      10 |     expect(cb).toHaveBeenCalledTimes(1);
+      11 |     expect(cb).toHaveBeenCalledWith(null, value);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-d8fda87/testCase.test.ts:8:24)
+
+  ● once › should call onAbort when value is not null and abort is true
+
+    TypeError: (0 , once_js_1.once) is not a function
+
+      17 |     const onAbort = jest.fn();
+      18 |     const cb = jest.fn();
+    > 19 |     const onceFn = once(value, onAbort);
+         |                        ^
+      20 |     onceFn(true, cb);
+      21 |     expect(onAbort).toHaveBeenCalledTimes(1);
+      22 |   });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-d8fda87/testCase.test.ts:19:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        3.551 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-d8fda87/testCase.test.ts".

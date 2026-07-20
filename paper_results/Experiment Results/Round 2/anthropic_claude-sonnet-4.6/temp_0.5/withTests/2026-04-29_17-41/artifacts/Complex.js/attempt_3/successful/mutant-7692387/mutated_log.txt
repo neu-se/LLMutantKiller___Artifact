@@ -1,0 +1,29 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-7692387/testCase.test.ts
+  Complex asinh mutation detection
+    ✕ should not permanently mutate the original complex number after asinh (3 ms)
+
+  ● Complex asinh mutation detection › should not permanently mutate the original complex number after asinh
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 4
+    Received: -3
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   7
+
+       7 |     
+       8 |     // After asinh, the original object's im should be restored to 4
+    >  9 |     expect(c.im).toBeCloseTo(4, 10);
+         |                  ^
+      10 |   });
+      11 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-7692387/testCase.test.ts:9:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.976 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-7692387/testCase.test.ts".

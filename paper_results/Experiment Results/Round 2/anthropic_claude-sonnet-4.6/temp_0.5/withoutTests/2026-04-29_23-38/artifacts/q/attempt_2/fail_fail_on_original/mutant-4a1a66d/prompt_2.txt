@@ -1,0 +1,33 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-4a1a66d/testCase.test.ts
+  Q.async with StopIteration defined
+    ✕ should use SpiderMonkey generator path when StopIteration is defined (1 ms)
+
+  ● Q.async with StopIteration defined › should use SpiderMonkey generator path when StopIteration is defined
+
+    thrown: MockStopIteration {
+      "value": 42,
+    }
+
+      2 |
+      3 | describe("Q.async with StopIteration defined", () => {
+    > 4 |   it("should use SpiderMonkey generator path when StopIteration is defined", async () => {
+        |   ^
+      5 |     // Define StopIteration globally to simulate SpiderMonkey environment
+      6 |     const originalStopIteration = (global as any).StopIteration;
+      7 |     
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-4a1a66d/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-4a1a66d/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.979 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-4a1a66d/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

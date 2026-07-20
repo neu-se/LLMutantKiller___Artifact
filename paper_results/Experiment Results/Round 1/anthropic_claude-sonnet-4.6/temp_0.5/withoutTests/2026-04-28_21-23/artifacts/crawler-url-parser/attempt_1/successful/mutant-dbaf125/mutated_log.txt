@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/crawler-url-parser/crawler-url-parser.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/crawler-url-parser/crawler-url-parser.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-dbaf125/testCase.test.ts
+  extract function - duplicate URL text handling
+    ✕ should not duplicate text when the same text appears multiple times for the same URL (8 ms)
+
+  ● extract function - duplicate URL text handling › should not duplicate text when the same text appears multiple times for the same URL
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Link Text"
+    Received: "Link Text Link Text"
+
+      18 |     // In the original code, if text already includes the duplicate, it won't append again
+      19 |     // In the mutated code (if (true)), it always appends, resulting in "Link Text Link Text"
+    > 20 |     expect(page!.text).toBe('Link Text');
+         |                        ^
+      21 |   });
+      22 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-dbaf125/testCase.test.ts:20:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.615 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-dbaf125/testCase.test.ts".

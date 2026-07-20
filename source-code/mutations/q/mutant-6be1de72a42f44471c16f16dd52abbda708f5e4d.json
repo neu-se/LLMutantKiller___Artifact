@@ -1,0 +1,51 @@
+{
+  "file": "q.js",
+  "startLine": 140,
+  "startColumn": 27,
+  "endLine": 155,
+  "endColumn": 23,
+  "originalCode": "\n-               if (isNodeJS) {\n-                   // In node, uncaught exceptions are considered fatal errors.\n-                   // Re-throw them synchronously to interrupt flushing!\n-                   // Ensure continuation if the uncaught exception is suppressed\n-                   // listening \"uncaughtException\" events (as domains does).\n-                   // Continue in next event to avoid tick recursion.\n-                   if (domain) {\n-                       domain.exit();\n-                   }\n-                   setTimeout(flush, 0);\n-                   if (domain) {\n-                       domain.enter();\n-                   }\n-                   throw e;\n-               } else {",
+  "replacement": "\n+               if (isNodeJS) {} else {\n",
+  "removedLines": [
+    "               if (isNodeJS) {",
+    "                   // In node, uncaught exceptions are considered fatal errors.",
+    "                   // Re-throw them synchronously to interrupt flushing!",
+    "                   // Ensure continuation if the uncaught exception is suppressed",
+    "                   // listening \"uncaughtException\" events (as domains does).",
+    "                   // Continue in next event to avoid tick recursion.",
+    "                   if (domain) {",
+    "                       domain.exit();",
+    "                   }",
+    "                   setTimeout(flush, 0);",
+    "                   if (domain) {",
+    "                       domain.enter();",
+    "                   }",
+    "                   throw e;",
+    "               } else {"
+  ],
+  "addedLines": [
+    "               if (isNodeJS) {} else {",
+    ""
+  ],
+  "lineSummary": [
+    "-               if (isNodeJS) {",
+    "-                   // In node, uncaught exceptions are considered fatal errors.",
+    "-                   // Re-throw them synchronously to interrupt flushing!",
+    "-                   // Ensure continuation if the uncaught exception is suppressed",
+    "-                   // listening \"uncaughtException\" events (as domains does).",
+    "-                   // Continue in next event to avoid tick recursion.",
+    "-                   if (domain) {",
+    "-                       domain.exit();",
+    "-                   }",
+    "-                   setTimeout(flush, 0);",
+    "-                   if (domain) {",
+    "-                       domain.enter();",
+    "-                   }",
+    "-                   throw e;",
+    "-               } else {",
+    "+               if (isNodeJS) {} else {",
+    ""
+  ],
+  "mutatorName": "BlockStatement",
+  "strykerMutationId": "76"
+}

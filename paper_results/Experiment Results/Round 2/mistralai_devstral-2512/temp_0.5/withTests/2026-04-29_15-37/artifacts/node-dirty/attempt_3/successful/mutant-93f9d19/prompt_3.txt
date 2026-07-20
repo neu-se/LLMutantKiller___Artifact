@@ -1,0 +1,41 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-93f9d19/testCase.test.ts
+  error event emission on corrupted row
+    ✕ should emit error event with correct event name when loading corrupted data (10 ms)
+
+  ● error event emission on corrupted row › should emit error event with correct event name when loading corrupted data
+
+    Load event fired instead of error event
+
+      34 |     db.on('load', () => {
+      35 |       // This should not be reached if error event is properly emitted
+    > 36 |       done(new Error('Load event fired instead of error event'));
+         |            ^
+      37 |     });
+      38 |
+      39 |     // Use a different event name to detect the mutation
+
+      at Dirty.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-93f9d19/testCase.test.ts:36:12)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:154:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.573 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-93f9d19/testCase.test.ts".
+node:internal/process/promises:391
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+Error: No error event was emitted for corrupted data
+    at Timeout._onTimeout (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-93f9d19/testCase.test.ts:48:14)
+    at listOnTimeout (node:internal/timers:581:17)
+    at processTimers (node:internal/timers:519:7)
+
+Node.js v20.19.4
+
+---
+Please try again and give me a new test case.

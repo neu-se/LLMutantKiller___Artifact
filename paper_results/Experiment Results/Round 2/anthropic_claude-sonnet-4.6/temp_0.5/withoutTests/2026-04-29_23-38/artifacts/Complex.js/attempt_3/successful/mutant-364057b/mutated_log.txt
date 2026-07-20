@@ -1,0 +1,25 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-364057b/testCase.test.ts
+  Complex asech mutation detection
+    ✕ should not produce NaN in asech d===0 branch when a is 0 (3 ms)
+
+  ● Complex asech mutation detection › should not produce NaN in asech d===0 branch when a is 0
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      10 |     // Original: (a !== 0) ? a/0 : 0 => a=0 => 0, then acosh(0 + i*0) => finite
+      11 |     // Mutated:  (a === 0) ? a/0 : 0 => a=0 => 0/0 = NaN, then acosh(NaN + i*0) => NaN
+    > 12 |     expect(result.isNaN()).toBe(false);
+         |                            ^
+      13 |   });
+      14 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-364057b/testCase.test.ts:12:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.117 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-364057b/testCase.test.ts".

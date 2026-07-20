@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-7cc0e64/testCase.test.ts
+  Promise.prototype.done
+    ✕ should not throw when calling done() on a fulfilled promise without an active domain (2 ms)
+
+  ● Promise.prototype.done › should not throw when calling done() on a fulfilled promise without an active domain
+
+    expect(received).toBeNull()
+
+    Received: [TypeError: Cannot read properties of null (reading 'bind')]
+
+      41 |     // In original code: no error because process.domain is falsy, condition is false
+      42 |     // In mutated code: TypeError because process.domain is null and null.bind() throws
+    > 43 |     expect(caughtError).toBeNull();
+         |                         ^
+      44 |     
+      45 |     // Wait for async operations to complete
+      46 |     await new Promise(resolve => setTimeout(resolve, 50));
+
+      at Object.toBeNull (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-7cc0e64/testCase.test.ts:43:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.18 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-7cc0e64/testCase.test.ts".

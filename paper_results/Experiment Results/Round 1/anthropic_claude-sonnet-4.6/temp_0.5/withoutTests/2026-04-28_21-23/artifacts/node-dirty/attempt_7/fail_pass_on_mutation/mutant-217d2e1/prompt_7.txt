@@ -1,0 +1,33 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-217d2e1/testCase.test.ts
+  Dirty database
+    ✕ should call set callback after persisting data to disk (27 ms)
+
+  ● Dirty database › should call set callback after persisting data to disk
+
+    expect(received).toBeUndefined()
+
+    Received: null
+
+      17 |         callbackCalled = true;
+      18 |         try {
+    > 19 |           expect(err).toBeUndefined();
+         |                       ^
+      20 |           expect(db.get('key1')).toBe('value1');
+      21 |
+      22 |           // Now reload from disk to verify persistence
+
+      at toBeUndefined (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-217d2e1/testCase.test.ts:19:23)
+      at cb (../subject_repositories/node-dirty/lib/dirty/dirty.js:191:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.357 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-217d2e1/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

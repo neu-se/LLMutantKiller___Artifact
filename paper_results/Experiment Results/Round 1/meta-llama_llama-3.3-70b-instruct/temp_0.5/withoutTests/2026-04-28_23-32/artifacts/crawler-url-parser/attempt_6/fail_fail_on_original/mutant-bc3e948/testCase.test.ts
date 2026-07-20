@@ -1,0 +1,12 @@
+import { extract } from '../../../../../../../../subject_repositories/crawler-url-parser/crawler-url-parser.js';
+
+describe('crawler-url-parser', () => {
+  it('should extract links with correct text', () => {
+    const html = '<html><body><a href="https://www.example.com">Example</a></body></html>';
+    const sourceUrl = 'https://www.example.com';
+    const result = extract(html, sourceUrl);
+    expect(result[0].text).not.toBeNull();
+    expect(result[0].text).not.toBeUndefined();
+    expect(result[0].text).not.toBe('');
+  });
+});

@@ -1,0 +1,26 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-c669b15/testCase.test.ts
+  Complex division
+    ✕ correctly divides when |c| equals |d| with opposite signs (2 ms)
+
+  ● Complex division › correctly divides when |c| equals |d| with opposite signs
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+       8 |     // Mutated (if branch): t = -Infinity, re = -0
+       9 |     const result = new Complex(1, 1).div(new Complex(1e308, -1e308));
+    > 10 |     expect(Object.is(result.re, -0)).toBe(false);
+         |                                      ^
+      11 |     expect(result.re).toBe(0);
+      12 |   });
+      13 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-c669b15/testCase.test.ts:10:38)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.012 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-c669b15/testCase.test.ts".

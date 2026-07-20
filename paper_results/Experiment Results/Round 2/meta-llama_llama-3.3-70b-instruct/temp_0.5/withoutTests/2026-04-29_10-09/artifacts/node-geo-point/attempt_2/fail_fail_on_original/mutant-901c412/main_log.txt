@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_2/pending_category/mutant-901c412/testCase.test.ts
+  GeoPoint
+    ✕ should throw an error when latitude is less than or equal to -90 in the mutated code but not in the original code (2 ms)
+
+  ● GeoPoint › should throw an error when latitude is less than or equal to -90 in the mutated code but not in the original code
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: RangeError
+
+    Received function did not throw
+
+      3 | describe("GeoPoint", () => {
+      4 |   it("should throw an error when latitude is less than or equal to -90 in the mutated code but not in the original code", () => {
+    > 5 |     expect(() => new GeoPoint(-90, 0)).toThrow(RangeError);
+        |                                        ^
+      6 |     expect(() => new GeoPoint(-90.1, 0)).toThrow(RangeError);
+      7 |   });
+      8 | });
+
+      at Object.toThrow (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_2/pending_category/mutant-901c412/testCase.test.ts:5:40)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.223 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_2/pending_category/mutant-901c412/testCase.test.ts".

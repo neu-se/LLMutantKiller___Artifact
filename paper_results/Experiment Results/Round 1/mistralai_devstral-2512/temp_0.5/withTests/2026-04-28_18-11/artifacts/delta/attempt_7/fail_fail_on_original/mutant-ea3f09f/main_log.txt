@@ -1,0 +1,40 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_7/pending_category/mutant-ea3f09f/testCase.test.ts[0m:[93m14[0m:[93m16[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m14[0m       invert: (a, b) => b,
+[7m  [0m [91m               ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_7/pending_category/mutant-ea3f09f/testCase.test.ts[0m:[93m19[0m:[93m11[0m - [91merror[0m[90m TS6133: [0m'expected' is declared but its value is never read.
+
+[7m19[0m     const expected = new Delta().retain(5).retain({ test: 'a' });
+[7m  [0m [91m          ~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_7/pending_category/mutant-ea3f09f/testCase.test.ts[0m:[93m22[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'toHaveLength' does not exist on type 'ArrayLikeMatchers<Op>'.
+
+[7m22[0m     expect(result.ops).toHaveLength(2);
+[7m  [0m [91m                       ~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_7/pending_category/mutant-ea3f09f/testCase.test.ts
+  transform() with embeds
+    ✕ should handle case where thisData is object and otherData is not object (2 ms)
+
+  ● transform() with embeds › should handle case where thisData is object and otherData is not object
+
+    expect(received).toHaveLength(expected)
+
+    Expected length: 2
+    Received length: 0
+    Received array:  []
+
+      20 |
+      21 |     const result = a.transform(b, true);
+    > 22 |     expect(result.ops).toHaveLength(2);
+         |                        ^
+      23 |     expect(result.ops[0]).toEqual({ retain: 5 });
+      24 |     expect(result.ops[1]).toEqual({ retain: { test: 'a' } });
+      25 |
+
+      at Object.toHaveLength (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_7/pending_category/mutant-ea3f09f/testCase.test.ts:22:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.125 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_7/pending_category/mutant-ea3f09f/testCase.test.ts".

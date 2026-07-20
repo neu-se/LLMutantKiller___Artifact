@@ -1,0 +1,57 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-a2618bc/testCase.test.ts[0m:[93m4[0m:[93m20[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m4[0m import rimraf from 'rimraf';
+[7m [0m [91m                   ~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-a2618bc/testCase.test.ts[0m:[93m30[0m:[93m29[0m - [91merror[0m[90m TS18047: [0m'db._writeStream' is possibly 'null'.
+
+[7m30[0m       const originalWrite = db._writeStream.write;
+[7m  [0m [91m                            ~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-a2618bc/testCase.test.ts[0m:[93m31[0m:[93m7[0m - [91merror[0m[90m TS18047: [0m'db._writeStream' is possibly 'null'.
+
+[7m31[0m       db._writeStream.write = function(chunk, cb) {
+[7m  [0m [91m      ~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-a2618bc/testCase.test.ts[0m:[93m34[0m:[93m30[0m - [91merror[0m[90m TS2349: [0mThis expression is not callable.
+  Not all constituents of type 'BufferEncoding | ((error: Error | null | undefined) => void)' are callable.
+    Type '"ascii"' has no call signatures.
+
+[7m34[0m           setImmediate(() => cb());
+[7m  [0m [91m                             ~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-a2618bc/testCase.test.ts[0m:[93m34[0m:[93m30[0m - [91merror[0m[90m TS2722: [0mCannot invoke an object which is possibly 'undefined'.
+
+[7m34[0m           setImmediate(() => cb());
+[7m  [0m [91m                             ~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-a2618bc/testCase.test.ts[0m:[93m37[0m:[93m48[0m - [91merror[0m[90m TS2345: [0mArgument of type 'BufferEncoding | ((error: Error | null | undefined) => void) | undefined' is not assignable to parameter of type 'BufferEncoding'.
+  Type 'undefined' is not assignable to type 'BufferEncoding'.
+
+[7m37[0m         return originalWrite.call(this, chunk, cb);
+[7m  [0m [91m                                               ~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-a2618bc/testCase.test.ts[0m:[93m41[0m:[93m42[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m41[0m         db.set(`key${i}`, { value: i }, (err) => {
+[7m  [0m [91m                                         ~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-a2618bc/testCase.test.ts (6.692 s)
+  Dirty database write behavior
+    ✕ should properly break write loop when drain is needed (5005 ms)
+
+  ● Dirty database write behavior › should properly break write loop when drain is needed
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      16 |   });
+      17 |
+    > 18 |   it('should properly break write loop when drain is needed', (done) => {
+         |   ^
+      19 |     const db = new Dirty(dbPath);
+      20 |     let writeCount = 0;
+      21 |     const totalWrites = 100;
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-a2618bc/testCase.test.ts:18:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-a2618bc/testCase.test.ts:6:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.965 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-a2618bc/testCase.test.ts".

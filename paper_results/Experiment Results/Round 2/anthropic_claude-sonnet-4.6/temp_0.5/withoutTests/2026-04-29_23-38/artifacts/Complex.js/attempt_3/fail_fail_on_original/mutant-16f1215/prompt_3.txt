@@ -1,0 +1,32 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-16f1215/testCase.test.ts
+  Complex acsc
+    ✕ acsc with subnormal real part where d underflows to zero should return finite real part (2 ms)
+
+  ● Complex acsc › acsc with subnormal real part where d underflows to zero should return finite real part
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      12 |     // Mutated: (true) ? a/0 : 0 => 0/0 = NaN
+      13 |     const result = new Complex(0, Number.MIN_VALUE).acsc();
+    > 14 |     expect(isNaN(result.re)).toBe(false);
+         |                              ^
+      15 |   });
+      16 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-16f1215/testCase.test.ts:14:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.518 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-16f1215/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

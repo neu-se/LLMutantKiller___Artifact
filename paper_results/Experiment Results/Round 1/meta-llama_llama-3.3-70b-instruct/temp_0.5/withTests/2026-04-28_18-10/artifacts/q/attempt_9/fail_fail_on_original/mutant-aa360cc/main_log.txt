@@ -1,0 +1,30 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-aa360cc/testCase.test.ts
+  Q
+    ✕ should log a deprecation warning when using a deprecated function (6 ms)
+
+  ● Q › should log a deprecation warning when using a deprecated function
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: "oldFunction is deprecated, use newFunction instead.", Any<Error>
+    Received: "oldFunction is deprecated, use newFunction instead.", "Error:·
+
+       8 |         const deprecatedFunction = function () {
+       9 |             if (typeof console.warn === "function") {
+    > 10 |                 console.warn(name + " is deprecated, use " + alternative + " instead.", new Error("").stack);
+         |                                                                                         ^
+      11 |             }
+      12 |             return callback();
+      13 |         };
+
+      at deprecatedFunction (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-aa360cc/testCase.test.ts:10:89)
+      at Object.deprecatedFunction (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-aa360cc/testCase.test.ts:14:9)
+      Number of calls: 1
+      at Object.toHaveBeenCalledWith (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-aa360cc/testCase.test.ts:16:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.55 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-aa360cc/testCase.test.ts".

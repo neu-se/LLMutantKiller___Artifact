@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-cd69f27/testCase.test.ts
+  ses environment - early return behavior
+    ✕ should not throw when ses.ok() returns false (original returns early) (4 ms)
+
+  ● ses environment - early return behavior › should not throw when ses.ok() returns false (original returns early)
+
+    expect(received).toThrow()
+
+    Received function did not throw
+
+      25 |     // Mutated: ses.ok() false -> no return -> falls through to the else-if chain
+      26 |     // which checks window/self (undefined) -> throws "environment not anticipated"
+    > 27 |     expect(() => vm.runInContext(code, context)).toThrow();
+         |                                                  ^
+      28 |   });
+      29 | });
+
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-cd69f27/testCase.test.ts:27:50)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.528 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-cd69f27/testCase.test.ts".

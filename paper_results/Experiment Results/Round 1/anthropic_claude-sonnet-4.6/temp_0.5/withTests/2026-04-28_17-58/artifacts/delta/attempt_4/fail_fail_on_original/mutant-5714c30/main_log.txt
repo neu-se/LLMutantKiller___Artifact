@@ -1,0 +1,48 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-5714c30/testCase.test.ts[0m:[93m9[0m:[93m19[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m9[0m       transform: (a: unknown, b: unknown, priority: boolean) => {
+[7m [0m [91m                  ~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-5714c30/testCase.test.ts[0m:[93m9[0m:[93m43[0m - [91merror[0m[90m TS6133: [0m'priority' is declared but its value is never read.
+
+[7m9[0m       transform: (a: unknown, b: unknown, priority: boolean) => {
+[7m [0m [91m                                          ~~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-5714c30/testCase.test.ts[0m:[93m14[0m:[93m16[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m14[0m       invert: (a: unknown, b: unknown) => ({ val: (b as any).val }),
+[7m  [0m [91m               ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-5714c30/testCase.test.ts
+  transform()
+    ✕ transform embed retain against numeric retain calls handler only when both are embeds (6 ms)
+
+  ● transform() › transform embed retain against numeric retain calls handler only when both are embeds
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 5
+    + Received  + 1
+
+      Delta {
+    -   "ops": Array [
+    -     Object {
+    -       "retain": 1,
+    -     },
+    -   ],
+    +   "ops": Array [],
+      }
+
+      77 |       const result = a.transform(b, true);
+      78 |       // Both original and mutated: transformedData = 1 (length), retain(1)
+    > 79 |       expect(result).toEqual(new Delta().retain(1));
+         |                      ^
+      80 |       expect(handlerCallCount).toBe(0);
+      81 |     } finally {
+      82 |       Delta.unregisterEmbed('myembed');
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-5714c30/testCase.test.ts:79:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.214 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-5714c30/testCase.test.ts".

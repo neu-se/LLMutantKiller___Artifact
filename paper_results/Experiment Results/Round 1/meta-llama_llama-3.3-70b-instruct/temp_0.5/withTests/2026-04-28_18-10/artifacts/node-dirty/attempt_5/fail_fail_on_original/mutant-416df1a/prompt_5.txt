@@ -1,0 +1,47 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-416df1a/testCase.test.ts (8.404 s)
+  Dirty
+    ✕ should emit error event when writing to disk with an error and no callbacks (5003 ms)
+
+  ● Dirty › should emit error event when writing to disk with an error and no callbacks
+
+    TypeError: done.fail is not a function
+
+      13 |       fs.writeFileSync(file, 'invalid json');
+      14 |       db.set('key2', 'value2', (err: any) => {
+    > 15 |         done.fail('Callback should not be called');
+         |              ^
+      16 |       });
+      17 |       db.on('error', (err: any) => {
+      18 |         done();
+
+      at fail (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-416df1a/testCase.test.ts:15:14)
+      at Object.cb [as callback] (../subject_repositories/node-dirty/lib/dirty/dirty.js:191:31)
+
+  ● Dirty › should emit error event when writing to disk with an error and no callbacks
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 |
+      5 | describe('Dirty', () => {
+    > 6 |   it('should emit error event when writing to disk with an error and no callbacks', (done) => {
+        |   ^
+      7 |     const file = path.join(__dirname, 'test.dirty');
+      8 |     const db = new Dirty(file);
+      9 |
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-416df1a/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-416df1a/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        8.73 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-416df1a/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

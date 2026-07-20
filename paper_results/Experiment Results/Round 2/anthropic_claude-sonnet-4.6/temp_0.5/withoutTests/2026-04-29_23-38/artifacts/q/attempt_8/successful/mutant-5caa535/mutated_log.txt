@@ -1,0 +1,32 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-5caa535/testCase.test.ts
+  Q array_indexOf fallback off-by-one
+    ✕ detects mutation: fallback indexOf should not access arr[arr.length] (299 ms)
+
+  ● Q array_indexOf fallback off-by-one › detects mutation: fallback indexOf should not access arr[arr.length]
+
+    TypeError: OBJECT_NAMES.indexOf is not a function
+
+      64 |       // Original: no rejectionHandled events
+      65 |       // Mutated: rejectionHandled event emitted
+    > 66 |       expect(rejectionHandledEvents.length).toBe(0);
+         |                                             ^
+      67 |       
+      68 |     } finally {
+      69 |       process.removeListener("rejectionHandled", rejectionHandledHandler);
+
+      at testName (node_modules/pretty-format/build/plugins/DOMCollection.js:19:16)
+      at Object.test (node_modules/pretty-format/build/plugins/DOMCollection.js:24:3)
+      at findPlugin (node_modules/pretty-format/build/index.js:302:22)
+      at format (node_modules/pretty-format/build/index.js:451:22)
+      at message (node_modules/expect/build/matchers.js:93:56)
+      at getMessage (node_modules/expect/build/index.js:152:15)
+      at processResult (node_modules/expect/build/index.js:270:25)
+      at Object.throwingMatcher [as toBe] (node_modules/expect/build/index.js:336:16)
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-5caa535/testCase.test.ts:66:45)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.791 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-5caa535/testCase.test.ts".

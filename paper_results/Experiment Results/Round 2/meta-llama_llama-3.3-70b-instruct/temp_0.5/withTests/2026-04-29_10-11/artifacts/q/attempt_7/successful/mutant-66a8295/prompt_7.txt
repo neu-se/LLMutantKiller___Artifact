@@ -1,0 +1,101 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-66a8295/testCase.test.ts[0m:[93m8[0m:[93m11[0m - [91merror[0m[90m TS2551: [0mProperty 'trackUnhandledRejections' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'. Did you mean 'resetUnhandledRejections'?
+
+[7m8[0m         Q.trackUnhandledRejections = true;
+[7m [0m [91m          ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96m../subject_repositories/q/q.js[0m:[93m1114[0m:[93m1[0m
+    [7m1114[0m Q.resetUnhandledRejections = resetUnhandledRejections;
+    [7m    [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'resetUnhandledRejections' is declared here.
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-66a8295/testCase.test.ts[0m:[93m22[0m:[93m11[0m - [91merror[0m[90m TS2551: [0mProperty 'trackUnhandledRejections' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'. Did you mean 'resetUnhandledRejections'?
+
+[7m22[0m         Q.trackUnhandledRejections = false;
+[7m  [0m [91m          ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96m../subject_repositories/q/q.js[0m:[93m1114[0m:[93m1[0m
+    [7m1114[0m Q.resetUnhandledRejections = resetUnhandledRejections;
+    [7m    [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'resetUnhandledRejections' is declared here.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-66a8295/testCase.test.ts (12.774 s)
+  Q
+    ✕ should track unhandled rejections when trackUnhandledRejections is true (5002 ms)
+    ✕ should not track unhandled rejections when trackUnhandledRejections is false (5001 ms)
+
+  ● Q › should track unhandled rejections when trackUnhandledRejections is true
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+      12 |         });
+      13 |         setTimeout(function () {
+    > 14 |             expect(Q.getUnhandledReasons().length).toBe(1);
+         |                                                    ^
+      15 |             done();
+      16 |         }, 100);
+      17 |     });
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-66a8295/testCase.test.ts:14:52)
+
+  ● Q › should track unhandled rejections when trackUnhandledRejections is true
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe('Q', () => {
+    > 4 |     it('should track unhandled rejections when trackUnhandledRejections is true', (done) => {
+        |     ^
+      5 |         Q.stopUnhandledRejectionTracking();
+      6 |         Q.resetUnhandledRejections();
+      7 |         Q.stopUnhandledRejectionTracking();
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-66a8295/testCase.test.ts:4:5)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-66a8295/testCase.test.ts:3:1)
+
+  ● Q › should not track unhandled rejections when trackUnhandledRejections is false
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      26 |         });
+      27 |         setTimeout(function () {
+    > 28 |             expect(Q.getUnhandledReasons().length).toBe(0);
+         |                                                    ^
+      29 |             done();
+      30 |         }, 100);
+      31 |     });
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-66a8295/testCase.test.ts:28:52)
+
+  ● Q › should not track unhandled rejections when trackUnhandledRejections is false
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      17 |     });
+      18 |
+    > 19 |     it('should not track unhandled rejections when trackUnhandledRejections is false', (done) => {
+         |     ^
+      20 |         Q.stopUnhandledRejectionTracking();
+      21 |         Q.resetUnhandledRejections();
+      22 |         Q.trackUnhandledRejections = false;
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-66a8295/testCase.test.ts:19:5)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-66a8295/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        13.033 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-66a8295/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,12 @@
+describe('Complex', () => {
+  it('should parse complex number from string correctly', () => {
+    const Complex = require('./complex.js').Complex;
+    const complexNumber = new Complex('1+2i');
+    expect(complexNumber.re).toBe(1);
+    expect(complexNumber.im).toBe(2);
+    const complexNumber2 = new Complex('1');
+    expect(complexNumber2.re).toBe(1);
+    expect(complexNumber2.im).toBe(0);
+    expect(() => new Complex('a')).toThrowError('Invalid Param');
+  });
+});

@@ -1,0 +1,24 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-3a62fa1/testCase.test.ts
+  Q nextTick process detection
+    ✕ loads without error in a context where process is not an object (8 ms)
+
+  ● Q nextTick process detection › loads without error in a context where process is not an object
+
+    expect(received).toBeNull()
+
+    Received: [ReferenceError: process is not defined]
+
+      36 |     // Original: typeof process === "object" where process is undefined → false → safe
+      37 |     // Mutated: true && process.nextTick where process is undefined → TypeError
+    > 38 |     expect(error).toBeNull();
+         |                   ^
+      39 |   });
+      40 | });
+
+      at Object.toBeNull (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-3a62fa1/testCase.test.ts:38:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.055 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-3a62fa1/testCase.test.ts".

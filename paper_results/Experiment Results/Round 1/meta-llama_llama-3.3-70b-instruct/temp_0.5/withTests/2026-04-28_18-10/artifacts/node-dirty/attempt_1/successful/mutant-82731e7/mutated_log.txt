@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/subject_repositories/node-dirty/lib/dirty/dirty.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/subject_repositories/node-dirty/lib/dirty/dirty.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-82731e7/testCase.test.ts
+  Dirty close method
+    ✕ should not close write stream if _writeStream is null (2 ms)
+
+  ● Dirty close method › should not close write stream if _writeStream is null
+
+    TypeError: Cannot read properties of null (reading 'end')
+
+      90 |     }
+      91 |     if (this._readStream) this._readStream.destroy();
+    > 92 |        if (true) this._writeStream.end(() => this._writeStream.destroy());
+         |                                    ^
+      93 |
+      94 |   }
+      95 |
+
+      at Dirty.end [as close] (../subject_repositories/node-dirty/lib/dirty/dirty.js:92:36)
+      at Object.close (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-82731e7/testCase.test.ts:8:8)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.114 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-82731e7/testCase.test.ts".

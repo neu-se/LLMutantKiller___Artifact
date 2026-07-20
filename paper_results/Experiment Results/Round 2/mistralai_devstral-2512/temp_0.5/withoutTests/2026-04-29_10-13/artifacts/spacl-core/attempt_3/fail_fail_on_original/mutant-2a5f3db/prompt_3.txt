@@ -1,0 +1,38 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-2a5f3db/testCase.test.ts[0m:[93m6[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'allow' does not exist on type 'typeof Rule'.
+
+[7m6[0m     const rule1 = Rule.allow('/path1', 'GET');
+[7m [0m [91m                       ~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-2a5f3db/testCase.test.ts[0m:[93m7[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'deny' does not exist on type 'typeof Rule'.
+
+[7m7[0m     const rule2 = Rule.deny('/path2', 'POST');
+[7m [0m [91m                       ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-2a5f3db/testCase.test.ts
+  Policy clone behavior
+    ✕ should create a deep clone by default (2 ms)
+
+  ● Policy clone behavior › should create a deep clone by default
+
+    TypeError: rule_1.Rule.allow is not a function
+
+      4 | describe('Policy clone behavior', () => {
+      5 |   it('should create a deep clone by default', () => {
+    > 6 |     const rule1 = Rule.allow('/path1', 'GET');
+        |                        ^
+      7 |     const rule2 = Rule.deny('/path2', 'POST');
+      8 |     const originalPolicy = new Policy('testPolicy', rule1, rule2);
+      9 |
+
+      at Object.allow (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-2a5f3db/testCase.test.ts:6:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.87 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-2a5f3db/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

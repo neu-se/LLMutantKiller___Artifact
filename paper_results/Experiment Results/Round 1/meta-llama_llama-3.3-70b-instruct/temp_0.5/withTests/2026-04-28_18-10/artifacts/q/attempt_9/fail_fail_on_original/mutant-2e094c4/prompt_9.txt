@@ -1,0 +1,34 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-2e094c4/testCase.test.ts[0m:[93m11[0m:[93m43[0m - [91merror[0m[90m TS2339: [0mProperty 'isInternalFrame' does not exist on type 'typeof export='.
+
+[7m11[0m                 const isInternalFrame = Q.isInternalFrame(stackLine);
+[7m  [0m [91m                                          ~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-2e094c4/testCase.test.ts
+  q.js
+    ✕ should correctly identify Node.js frames in a stack trace (1 ms)
+
+  ● q.js › should correctly identify Node.js frames in a stack trace
+
+    TypeError: Q.isInternalFrame is not a function
+
+       9 |             if (lines.length > 0) {
+      10 |                 const stackLine = lines[0];
+    > 11 |                 const isInternalFrame = Q.isInternalFrame(stackLine);
+         |                                           ^
+      12 |                 expect(isInternalFrame).not.toBe(false);
+      13 |             }
+      14 |         }
+
+      at Object.isInternalFrame (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-2e094c4/testCase.test.ts:11:43)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.087 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-2e094c4/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

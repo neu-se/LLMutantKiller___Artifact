@@ -1,0 +1,35 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_10/pending_category/mutant-9cc6e1f/testCase.test.ts
+  Delta transform function
+    ✕ should not transform embed types when they do not match (4 ms)
+
+  ● Delta transform function › should not transform embed types when they do not match
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        Object {
+          "insert": Object {
+    -       "a": "value1",
+    +       "b": "value2",
+          },
+        },
+      ]
+
+       6 |     const delta2 = new Delta().insert({ b: 'value2' });
+       7 |     const transformedDelta = delta1.transform(delta2);
+    >  8 |     expect(transformedDelta.ops).toEqual(delta1.ops);
+         |                                  ^
+       9 |   });
+      10 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_10/pending_category/mutant-9cc6e1f/testCase.test.ts:8:34)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.221 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_10/pending_category/mutant-9cc6e1f/testCase.test.ts".

@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/pull-stream/throughs/flatten.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/pull-stream/throughs/flatten.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-e59db35/testCase.test.ts
+  flatten abort behavior
+    ✕ should pass the abort error to the outer read when aborting and inner stream ends cleanly (3 ms)
+
+  ● flatten abort behavior › should pass the abort error to the outer read when aborting and inner stream ends cleanly
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      129 |     flatStream3(abortSignal, (err: any) => {
+      130 |       // After abort completes, check that outer read was called with the abort signal
+    > 131 |       expect(outerReadCalledWithAbort).toBe(true);
+          |                                        ^
+      132 |       expect(outerAbortReceived).toBe(abortSignal);
+      133 |       done();
+      134 |     });
+
+      at toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-e59db35/testCase.test.ts:131:40)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-e59db35/testCase.test.ts:117:9)
+      at read (../subject_repositories/pull-stream/throughs/flatten.js:13:14)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-e59db35/testCase.test.ts:96:9)
+      at _read (../subject_repositories/pull-stream/throughs/flatten.js:12:17)
+      at Object.flatStream3 (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-e59db35/testCase.test.ts:129:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.571 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-e59db35/testCase.test.ts".

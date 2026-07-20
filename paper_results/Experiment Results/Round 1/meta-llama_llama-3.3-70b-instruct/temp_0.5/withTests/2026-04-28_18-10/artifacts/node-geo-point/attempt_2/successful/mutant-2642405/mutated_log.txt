@@ -1,0 +1,37 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_2/pending_category/mutant-2642405/testCase.test.ts[0m:[93m5[0m:[93m39[0m - [91merror[0m[90m TS2345: [0mArgument of type '{}' is not assignable to parameter of type 'Point'.
+  Type '{}' is missing the following properties from type 'Point': type, coordinates
+
+[7m5[0m     expect(() => GeoPoint.fromGeoJSON({})).toThrowError('Object must have type and coordinates');
+[7m [0m [91m                                      ~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_2/pending_category/mutant-2642405/testCase.test.ts
+  GeoPoint
+    ✕ should throw an error with a message when creating a GeoPoint from GeoJSON without type and coordinates (20 ms)
+
+  ● GeoPoint › should throw an error with a message when creating a GeoPoint from GeoJSON without type and coordinates
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "Object must have type and coordinates"
+    Received message:   ""
+
+          63 |
+          64 |     if (!point.hasOwnProperty('type') || !point.hasOwnProperty('coordinates')) {
+        > 65 |          throw new TypeError("");
+             |                ^
+          66 |
+          67 |     }
+          68 |
+
+      at Function.fromGeoJSON (../subject_repositories/node-geo-point/src/geo-point.ts:65:16)
+      at fromGeoJSON (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_2/pending_category/mutant-2642405/testCase.test.ts:5:27)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_2/pending_category/mutant-2642405/testCase.test.ts:5:44)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_2/pending_category/mutant-2642405/testCase.test.ts:5:44)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.661 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_2/pending_category/mutant-2642405/testCase.test.ts".

@@ -1,0 +1,37 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-f233adb/testCase.test.ts[0m:[93m3[0m:[93m36[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m3[0m         const originalSes = global.ses;
+[7m [0m [91m                                   ~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-f233adb/testCase.test.ts[0m:[93m4[0m:[93m23[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m4[0m         delete global.ses;
+[7m [0m [91m                      ~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-f233adb/testCase.test.ts[0m:[93m8[0m:[93m20[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m8[0m             global.ses = originalSes;
+[7m [0m [91m                   ~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-f233adb/testCase.test.ts
+  Q
+    ✕ should define Q when ses is not defined (3 ms)
+
+  ● Q › should define Q when ses is not defined
+
+    Cannot find module './q.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-f233adb/testCase.test.ts'
+
+      3 |         const originalSes = global.ses;
+      4 |         delete global.ses;
+    > 5 |         const Q = require('./q.js');
+        |                   ^
+      6 |         expect(Q).toBeDefined();
+      7 |         if (originalSes) {
+      8 |             global.ses = originalSes;
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-f233adb/testCase.test.ts:5:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.499 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-f233adb/testCase.test.ts".

@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-390f195/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-390f195/testCase.test.ts[0m:[93m7[0m:[93m38[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m7[0m         const stack = promise.catch((e) => e.stack);
+[7m [0m [91m                                     ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-390f195/testCase.test.ts
+  Q
+    ✕ should create a promise with a stack trace (1 ms)
+
+  ● Q › should create a promise with a stack trace
+
+    TypeError: Cannot read properties of undefined (reading 'reject')
+
+      4 |     it("should create a promise with a stack trace", () => {
+      5 |         const error = new Error();
+    > 6 |         const promise = Q.reject(error);
+        |                           ^
+      7 |         const stack = promise.catch((e) => e.stack);
+      8 |         expect(stack).toBeDefined();
+      9 |     });
+
+      at Object.reject (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-390f195/testCase.test.ts:6:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.091 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-390f195/testCase.test.ts".

@@ -1,0 +1,10 @@
+import { Complex } from "../../../../../../../../subject_repositories/Complex.js/complex.js";
+
+describe('Complex', () => {
+  it('should correctly calculate the ceiling of a complex number', () => {
+    const complex = new Complex(1.2345, 6.789);
+    const resultOriginal = complex.ceil(2);
+    expect(resultOriginal.re).toBeCloseTo(1.24, 2);
+    expect(resultOriginal.im).toBeCloseTo(6.79, 2);
+  });
+});

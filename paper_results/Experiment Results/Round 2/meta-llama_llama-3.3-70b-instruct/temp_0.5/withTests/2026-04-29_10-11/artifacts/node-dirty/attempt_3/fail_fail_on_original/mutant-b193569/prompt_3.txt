@@ -1,0 +1,50 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-b193569/testCase.test.ts (6.428 s)
+  Dirty database
+    ✕ should emit an error event when a corrupted row is found at the end of the database file (5003 ms)
+
+  ● Dirty database › should emit an error event when a corrupted row is found at the end of the database file
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Corrupted row at the end of the db: {\"key\":\"test2\"}"
+    Received: "Corrupted row at the end of the db: {\"key\":\"test2\""
+
+      17 |
+      18 |     db.on('error', (err) => {
+    > 19 |       expect(err.message).toBe('Corrupted row at the end of the db: {"key":"test2"}');
+         |                           ^
+      20 |       done();
+      21 |     });
+      22 |   });
+
+      at Dirty.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-b193569/testCase.test.ts:19:27)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:152:18)
+
+  ● Dirty database › should emit an error event when a corrupted row is found at the end of the database file
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 |
+      5 | describe('Dirty database', () => {
+    > 6 |   it('should emit an error event when a corrupted row is found at the end of the database file', (done) => {
+        |   ^
+      7 |     const filePath = 'test.dirty';
+      8 |     const db = new Dirty(filePath);
+      9 |
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-b193569/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-b193569/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.63 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-b193569/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

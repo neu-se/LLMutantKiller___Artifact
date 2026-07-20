@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-9c79a13/testCase.test.ts
+  Complex.sech()
+    ✕ should correctly compute the hyperbolic secant for a complex number with b=π/4 (2 ms)
+
+  ● Complex.sech() › should correctly compute the hyperbolic secant for a complex number with b=π/4
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: -1.0334546991900089
+    Received: 1.0334546991900089
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   2.0669093983800177
+
+       9 |     const expectedRe = 2 * Math.cosh(0.5) * Math.cos(Math.PI/4) / (Math.cos(Math.PI/2) - Math.cosh(1));
+      10 |     const expectedIm = -2 * Math.sinh(0.5) * Math.sin(Math.PI/4) / (Math.cos(Math.PI/2) - Math.cosh(1));
+    > 11 |     expect(result.re).toBeCloseTo(expectedRe, 10);
+         |                       ^
+      12 |     expect(result.im).toBeCloseTo(expectedIm, 10);
+      13 |   });
+      14 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-9c79a13/testCase.test.ts:11:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.321 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-9c79a13/testCase.test.ts".

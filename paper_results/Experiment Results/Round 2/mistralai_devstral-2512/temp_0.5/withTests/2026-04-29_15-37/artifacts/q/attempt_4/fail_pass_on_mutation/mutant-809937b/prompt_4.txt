@@ -1,0 +1,48 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-809937b/testCase.test.ts[0m:[93m11[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '(event: string, ...args: any[]) => Process' is not assignable to type '{ (event: "beforeExit", code: number): boolean; (event: "disconnect"): boolean; (event: "exit", code: number): boolean; (event: "rejectionHandled", promise: Promise<unknown>): boolean; (event: "uncaughtException", error: Error): boolean; (event: "uncaughtExceptionMonitor", error: Error): boolean; (event: "unhandledR...'.
+  Type 'Process' is not assignable to type 'boolean'.
+
+[7m11[0m     process.emit = function(event: string, ...args: any[]) {
+[7m  [0m [91m    ~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-809937b/testCase.test.ts[0m:[93m13[0m:[93m44[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type '"worker"'.
+
+[7m13[0m       return originalEmit?.apply(process, [event, ...args]);
+[7m  [0m [91m                                           ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-809937b/testCase.test.ts
+  unhandled rejection tracking
+    ✕ should handle unhandled rejections correctly when process.emit is not a function (57 ms)
+
+  ● unhandled rejection tracking › should handle unhandled rejections correctly when process.emit is not a function
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      29 |       // In original code: emitCalled should be false
+      30 |       // In mutated code: emitCalled should be true
+    > 31 |       expect(emitCalled).toBe(false);
+         |                          ^
+      32 |     });
+      33 |   });
+      34 | });
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-809937b/testCase.test.ts:31:26)
+      at fulfilled (../subject_repositories/q/q.js:854:54)
+      at _fulfilled (../subject_repositories/q/q.js:883:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:816:13)
+      at apply (../subject_repositories/q/q.js:624:44)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.848 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-809937b/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,57 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6099c93/testCase.test.ts[0m:[93m8[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '(event: "beforeExit" | "disconnect" | "exit" | "rejectionHandled" | "uncaughtException" | "uncaughtExceptionMonitor" | "unhandledRejection" | "warning" | "message" | Signals | "multipleResolves" | "worker", args_0: unknown, args_1: unknown, args_2: unknown) => Process' is not assignable to type '{ (event: "beforeExit", code: number): boolean; (event: "disconnect"): boolean; (event: "exit", code: number): boolean; (event: "rejectionHandled", promise: Promise<unknown>): boolean; (event: "uncaughtException", error: Error): boolean; (event: "uncaughtExceptionMonitor", error: Error): boolean; (event: "unhandledR...'.
+  Target signature provides too few arguments. Expected 4 or more, but got 2.
+
+[7m8[0m     process.emit = function(event, ...args) {
+[7m [0m [91m    ~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6099c93/testCase.test.ts[0m:[93m12[0m:[93m43[0m - [91merror[0m[90m TS2322: [0mType '"beforeExit" | "disconnect" | "exit" | "rejectionHandled" | "uncaughtException" | "uncaughtExceptionMonitor" | "unhandledRejection" | "warning" | "message" | Signals | "multipleResolves" | "worker"' is not assignable to type '"worker"'.
+  Type '"beforeExit"' is not assignable to type '"worker"'.
+
+[7m12[0m       return originalEmit.apply(process, [event, ...args]);
+[7m  [0m [91m                                          ~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6099c93/testCase.test.ts[0m:[93m12[0m:[93m50[0m - [91merror[0m[90m TS2322: [0mType 'unknown' is not assignable to type 'WorkerListener'.
+
+[7m12[0m       return originalEmit.apply(process, [event, ...args]);
+[7m  [0m [91m                                                 ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6099c93/testCase.test.ts (7.645 s)
+  unhandled rejection tracking
+    ✕ should emit 'rejectionHandled' event when a rejected promise is handled (5003 ms)
+
+  ● unhandled rejection tracking › should emit 'rejectionHandled' event when a rejected promise is handled
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      25 |         // After handling, check if the event was emitted
+      26 |         setTimeout(() => {
+    > 27 |           expect(rejectionHandledEmitted).toBe(true);
+         |                                           ^
+      28 |           process.emit = originalEmit;
+      29 |           done();
+      30 |         }, 100);
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6099c93/testCase.test.ts:27:43)
+
+  ● unhandled rejection tracking › should emit 'rejectionHandled' event when a rejected promise is handled
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("unhandled rejection tracking", () => {
+    > 4 |   it("should emit 'rejectionHandled' event when a rejected promise is handled", (done) => {
+        |   ^
+      5 |     // Track rejectionHandled events
+      6 |     let rejectionHandledEmitted = false;
+      7 |     const originalEmit = process.emit;
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6099c93/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6099c93/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.946 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6099c93/testCase.test.ts".

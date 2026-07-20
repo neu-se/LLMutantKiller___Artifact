@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-ae47177/testCase.test.ts
+  Complex
+    ✕ should calculate atan correctly for a = 0 and b = 1 (17 ms)
+
+  ● Complex › should calculate atan correctly for a = 0 and b = 1
+
+    Cannot find module './complex' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-ae47177/testCase.test.ts'
+
+      1 | describe('Complex', () => {
+      2 |   it('should calculate atan correctly for a = 0 and b = 1', () => {
+    > 3 |     const complex = new (require('./complex').Complex)(0, 1);
+        |                          ^
+      4 |     const result = complex.atan();
+      5 |     expect(result.re).toBeCloseTo(0);
+      6 |     expect(result.im).toBeCloseTo(Infinity);
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-ae47177/testCase.test.ts:3:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.626 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-ae47177/testCase.test.ts".

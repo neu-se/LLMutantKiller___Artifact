@@ -1,0 +1,32 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-8f6b188/testCase.test.ts
+  drain function
+    ✕ should call done with error when end is an object that equals true (4 ms)
+
+  ● drain function › should call done with error when end is an object that equals true
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    - Expected
+    + Received
+
+    - {"valueOf": [Function valueOf]},
+    + {"valueOf": [Function valueOf]},
+
+    Number of calls: 1
+
+      10 |     sink(read);
+      11 |     expect(callback).toHaveBeenCalledTimes(1);
+    > 12 |     expect(callback).toHaveBeenCalledWith({ valueOf: () => true });
+         |                      ^
+      13 |     done();
+      14 |   });
+      15 | });
+
+      at Object.toHaveBeenCalledWith (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-8f6b188/testCase.test.ts:12:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.361 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-8f6b188/testCase.test.ts".

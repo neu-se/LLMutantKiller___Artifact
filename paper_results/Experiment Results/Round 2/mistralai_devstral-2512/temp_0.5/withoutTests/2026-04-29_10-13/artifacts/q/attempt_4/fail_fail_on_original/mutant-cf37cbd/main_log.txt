@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-cf37cbd/testCase.test.ts
+  Q stack trace parsing
+    ✕ should correctly parse stack traces with single-digit column numbers (1 ms)
+
+  ● Q stack trace parsing › should correctly parse stack traces with single-digit column numbers
+
+    ENOENT: no such file or directory, open '../../../../../../../../../../../subject_repositories/q/q.js'
+
+      11 |     const getFileNameAndLineNumber = qModule.__getFileNameAndLineNumber || (() => {
+      12 |       // Extract the function from the module if not exported
+    > 13 |       const moduleCode = require('fs').readFileSync("../../../../../../../../../../../subject_repositories/q/q.js", 'utf8');
+         |                                        ^
+      14 |       const match = moduleCode.match(/function getFileNameAndLineNumber\(([\s\S]*?)^\s*}/m);
+      15 |       if (match) {
+      16 |         return new Function('stackLine', match[0]);
+
+      at readFileSync (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-cf37cbd/testCase.test.ts:13:40)
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-cf37cbd/testCase.test.ts:19:6)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.08 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-cf37cbd/testCase.test.ts".

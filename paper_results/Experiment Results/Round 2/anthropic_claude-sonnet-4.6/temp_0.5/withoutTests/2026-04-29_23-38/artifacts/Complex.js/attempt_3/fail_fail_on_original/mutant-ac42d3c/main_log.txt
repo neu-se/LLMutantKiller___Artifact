@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-ac42d3c/testCase.test.ts
+  Complex atan
+    ✕ should compute atan correctly for a general complex number near the special case (2 ms)
+
+  ● Complex atan › should compute atan correctly for a general complex number near the special case
+
+    expect(received).toBeLessThan(expected)
+
+    Expected: < -100000000
+    Received:   -11.859499013930018
+
+      10 |     const result = c.atan();
+      11 |     // For z = -i - epsilon*i, atan should have a very large negative imaginary part
+    > 12 |     expect(result.im).toBeLessThan(-1e8);
+         |                       ^
+      13 |     expect(isFinite(result.re)).toBe(true);
+      14 |   });
+      15 | });
+
+      at Object.toBeLessThan (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-ac42d3c/testCase.test.ts:12:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.405 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-ac42d3c/testCase.test.ts".

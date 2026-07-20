@@ -1,0 +1,29 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-07128d9/testCase.test.ts[0m:[93m11[0m:[93m15[0m - [91merror[0m[90m TS2554: [0mExpected 0-1 arguments, but got 2.
+
+[7m11[0m     sink(err, null);
+[7m  [0m [91m              ~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-07128d9/testCase.test.ts
+  drain
+    ✕ should call done with error when end is an error (2 ms)
+
+  ● drain › should call done with error when end is an error
+
+    TypeError: read is not a function
+
+      20 |         while(loop) {
+      21 |           cbed = false
+    > 22 |           read(null, function (end, data) {
+         |           ^
+      23 |             cbed = true
+      24 |             if(end = end || abort) {
+      25 |               loop = false
+
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:45:8)
+      at Object.sink (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-07128d9/testCase.test.ts:11:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.155 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_7/pending_category/mutant-07128d9/testCase.test.ts".

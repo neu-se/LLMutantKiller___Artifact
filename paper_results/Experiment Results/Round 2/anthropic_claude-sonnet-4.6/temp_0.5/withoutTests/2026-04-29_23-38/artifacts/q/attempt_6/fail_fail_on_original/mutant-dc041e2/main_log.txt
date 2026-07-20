@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-dc041e2/testCase.test.ts
+  Q ses branch
+    ✕ should set global Q when ses is defined and ses.ok() returns true (3 ms)
+
+  ● Q ses branch › should set global Q when ses is defined and ses.ok() returns true
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      35 |     // Original with ses.ok()=true: !true=false => skips empty block => enters window else-if => Q IS set
+      36 |     // Mutated with ses.ok()=true:  true=true  => enters empty block => skips window else-if => Q NOT set
+    > 37 |     expect(fakeWindow["Q"]).toBeDefined();
+         |                             ^
+      38 |   });
+      39 | });
+
+      at Object.toBeDefined (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-dc041e2/testCase.test.ts:37:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.261 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-dc041e2/testCase.test.ts".

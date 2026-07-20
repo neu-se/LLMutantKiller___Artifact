@@ -1,0 +1,33 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-98d178f/testCase.test.ts
+  Complex.atanh
+    ✕ should correctly compute atanh for a complex number with non-zero real and imaginary parts (2 ms)
+
+  ● Complex.atanh › should correctly compute atanh for a complex number with non-zero real and imaginary parts
+
+    expect(received).toBeLessThan(expected)
+
+    Expected: < 1e-10
+    Received:   0.1469466662255297
+
+       9 |     const expectedRe = 0.5 * Math.log((1 + 0.5) / (1 - 0.5));
+      10 |     const expectedIm = 0.5 * Math.atan2(0.5, 1 - 0.5 * 0.5 - 0.5 * 0.5);
+    > 11 |     expect(Math.abs(result.re - expectedRe)).toBeLessThan(1e-10);
+         |                                              ^
+      12 |     expect(Math.abs(result.im - expectedIm)).toBeLessThan(1e-10);
+      13 |   });
+      14 | });
+
+      at Object.toBeLessThan (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-98d178f/testCase.test.ts:11:46)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.073 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-98d178f/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

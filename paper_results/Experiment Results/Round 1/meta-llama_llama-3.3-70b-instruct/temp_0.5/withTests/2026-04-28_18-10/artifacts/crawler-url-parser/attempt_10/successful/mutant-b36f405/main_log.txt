@@ -1,0 +1,57 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_10/pending_category/mutant-b36f405/split_pass_only.test.ts[0m:[93m7[0m:[93m16[0m - [91merror[0m[90m TS18047: [0m'result' is possibly 'null'.
+
+[7m7[0m         expect(result.url).toBe('https://www.example.com/path?a=1');
+[7m [0m [91m               ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_10/pending_category/mutant-b36f405/split_pass_only.test.ts[0m:[93m13[0m:[93m16[0m - [91merror[0m[90m TS18047: [0m'result' is possibly 'null'.
+
+[7m13[0m         expect(result.url).toBe('https://www.example.com/path?a=1&b=2');
+[7m  [0m [91m               ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_10/pending_category/mutant-b36f405/split_pass_only.test.ts[0m:[93m19[0m:[93m16[0m - [91merror[0m[90m TS18047: [0m'result' is possibly 'null'.
+
+[7m19[0m         expect(result.url).toBe('https://www.example.com/path?a=1');
+[7m  [0m [91m               ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_10/pending_category/mutant-b36f405/split_pass_only.test.ts
+  parse function with removeQueryParameters option
+    ✕ should remove utm query parameters and fail on mutant due to W (5 ms)
+    ✓ should not remove non-utm query parameters
+    ✕ should remove ref query parameter and fail on mutant due to W (1 ms)
+
+  ● parse function with removeQueryParameters option › should remove utm query parameters and fail on mutant due to W
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "https://www.example.com/path?a=1"
+    Received: "https://www.example.com/path?a=1&utm_source=google&utm_medium=cpc&utm_campaign=spring_sale"
+
+       5 |         const url = 'https://www.example.com/path?a=1&utm_source=google&utm_medium=cpc&utm_campaign=spring_sale';
+       6 |         const result = parse(url);
+    >  7 |         expect(result.url).toBe('https://www.example.com/path?a=1');
+         |                            ^
+       8 |     });
+       9 |
+      10 |     it('should not remove non-utm query parameters', () => {
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_10/pending_category/mutant-b36f405/split_pass_only.test.ts:7:28)
+
+  ● parse function with removeQueryParameters option › should remove ref query parameter and fail on mutant due to W
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "https://www.example.com/path?a=1"
+    Received: "https://www.example.com/path?a=1&ref=123"
+
+      17 |         const url = 'https://www.example.com/path?a=1&ref=123';
+      18 |         const result = parse(url);
+    > 19 |         expect(result.url).toBe('https://www.example.com/path?a=1');
+         |                            ^
+      20 |     });
+      21 | });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_10/pending_category/mutant-b36f405/split_pass_only.test.ts:19:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 1 passed, 3 total
+Snapshots:   0 total
+Time:        1.76 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_10/pending_category/mutant-b36f405/split_pass_only.test.ts".

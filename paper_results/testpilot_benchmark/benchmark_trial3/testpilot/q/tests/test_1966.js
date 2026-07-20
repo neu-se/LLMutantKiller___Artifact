@@ -1,0 +1,25 @@
+let mocha = require('mocha');
+let assert = require('assert');
+let q = require('q');
+
+describe('test q', function() {
+    it('test q.allSettled with mixed resolved and rejected promises', function(done) {
+        let promises = [
+            q.resolve('success'),
+            q.reject(new Error('failure')),
+            q.resolve(42)
+        ];
+        
+        q.allSettled(promises).then(function(results) {
+            assert.equal(results.length, 3);
+            assert.equal(results[0].state, 'fulfilled');
+            assert.equal(results[0].value, 'success');
+            assert.equal(results[1].state, 'rejected');
+            assert.equal(results[1].reason.message, 'failure');
+            assert.equal(results[2].state, 'fulfilled');
+            assert.equal(results[2].value, 42);
+            done();
+        }).catch(done);
+    });
+
+    })

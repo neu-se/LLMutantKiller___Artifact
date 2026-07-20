@@ -1,0 +1,24 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_8/pending_category/mutant-9a3bb96/testCase.test.ts
+  close behavior with pending operations
+    ✕ should not close immediately when there are pending writes (18 ms)
+
+  ● close behavior with pending operations › should not close immediately when there are pending writes
+
+    Close should not have fired immediately with pending writes
+
+      36 |         if (writeCloseFired) {
+      37 |           // Mutated code behavior - close happened immediately
+    > 38 |           done(new Error('Close should not have fired immediately with pending writes'));
+         |                ^
+      39 |         }
+      40 |         // Original code behavior - close is delayed, test passes
+      41 |       }, 10);
+
+      at Timeout._onTimeout (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_8/pending_category/mutant-9a3bb96/testCase.test.ts:38:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.383 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_8/pending_category/mutant-9a3bb96/testCase.test.ts".

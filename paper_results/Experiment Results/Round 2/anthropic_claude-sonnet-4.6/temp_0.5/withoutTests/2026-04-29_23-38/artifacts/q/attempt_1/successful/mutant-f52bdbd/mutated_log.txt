@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-f52bdbd/testCase.test.ts
+  trackRejection unhandled reasons
+    ✕ should push reason.stack to unhandledReasons when reason has a stack property (54 ms)
+
+  ● trackRejection unhandled reasons › should push reason.stack to unhandledReasons when reason has a stack property
+
+    expect(received).not.toMatch(expected)
+
+    Expected pattern: not /^\(no stack\)/
+    Received string:      "(no stack) Error: test error"
+
+      26 |     // The original code pushes reason.stack which contains the stack trace
+      27 |     // The mutated code pushes "(no stack) Error: test error" because if(false) skips the stack branch
+    > 28 |     expect(reason).not.toMatch(/^\(no stack\)/);
+         |                        ^
+      29 |     expect(reason).toContain("Error: test error");
+      30 |   });
+      31 | });
+
+      at Object.toMatch (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-f52bdbd/testCase.test.ts:28:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.401 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-f52bdbd/testCase.test.ts".

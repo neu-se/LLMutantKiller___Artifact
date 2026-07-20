@@ -1,0 +1,10 @@
+import { gettype } from "../../../../../../../../../../../subject_repositories/crawler-url-parser/crawler-url-parser.js";
+
+describe("gettype function", () => {
+  it("should correctly normalize default.html to directory path when determining link type", () => {
+    const pageUrl = "http://example.com/path/default.html";
+    const linkUrl = "http://example.com/path/";
+    const result = gettype(linkUrl, pageUrl);
+    expect(result).toBe("samelevel");
+  });
+});

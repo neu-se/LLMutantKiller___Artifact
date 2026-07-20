@@ -1,0 +1,20 @@
+import * as q from "../../../../../../../../../../../subject_repositories/q/q.js";
+
+describe("q", () => {
+    it("should filter out Node.js stack frames", () => {
+        const error = new Error("Test error");
+
+        // Simulate a promise chain
+        const promise = q.Q()
+            .then(() => {
+                throw error;
+            })
+            .catch((err: any) => {
+                const stack = err.stack;
+                expect(stack).not.toContain("node.js:");
+                return err;
+            });
+
+        return promise;
+    });
+});

@@ -1,0 +1,32 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-4575935/testCase.test.ts
+  Q global exposure in browser environment
+    ✕ should expose Q as global when window or self is defined (31 ms)
+
+  ● Q global exposure in browser environment › should expose Q as global when window or self is defined
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      22 |             // The critical test: In browser environment, Q should be available as global
+      23 |             // This will fail in the mutated version where the condition is always false
+    > 24 |             expect(globalAny.Q).toBeDefined();
+         |                                 ^
+      25 |             expect(typeof globalAny.Q).toBe('function');
+      26 |
+      27 |             // Verify it's the same Q we imported
+
+      at Object.toBeDefined (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-4575935/testCase.test.ts:24:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.736 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-4575935/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

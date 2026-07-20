@@ -1,0 +1,39 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-45bd0bb/testCase.test.ts[0m:[93m9[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'null' is not assignable to type '{ (o: object | null): any; (o: object | null, properties: PropertyDescriptorMap & ThisType<any>): any; }'.
+
+[7m9[0m         Object.create = null;
+[7m [0m [91m        ~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-45bd0bb/testCase.test.ts[0m:[93m13[0m:[93m15[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type 'typeof export='.
+
+[7m13[0m             q.Q.defer();
+[7m  [0m [91m              ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-45bd0bb/testCase.test.ts
+  Q
+    ✕ should throw an error when object_create is not a function (12 ms)
+
+  ● Q › should throw an error when object_create is not a function
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "Q can't create object"
+    Received message:   "Cannot read properties of undefined (reading 'defer')"
+
+          11 |         // Try to create a new object with Q
+          12 |         expect(() => {
+        > 13 |             q.Q.defer();
+             |                 ^
+          14 |         }).toThrowError("Q can't create object");
+          15 |
+          16 |         // Restore Object.create
+
+      at defer (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-45bd0bb/testCase.test.ts:13:17)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-45bd0bb/testCase.test.ts:14:12)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-45bd0bb/testCase.test.ts:14:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.67 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-45bd0bb/testCase.test.ts".

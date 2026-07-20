@@ -1,0 +1,49 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-028c3db/testCase.test.ts[0m:[93m1[0m:[93m19[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import Delta from "../../../../../../../../../../../subject_repositories/delta/src/Delta.ts";
+[7m [0m [91m                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) [96m../subject_repositories/delta/src/Delta.ts[0m:[93m244[0m:[93m25[0m - [91merror[0m[90m TS2339: [0mProperty 'retain' does not exist on type 'never'.
+
+[7m244[0m       typeof firstOther.retain === 'number' &&
+[7m   [0m [91m                        ~~~~~~[0m
+[96m../subject_repositories/delta/src/Delta.ts[0m:[93m245[0m:[93m18[0m - [91merror[0m[90m TS2339: [0mProperty 'attributes' does not exist on type 'never'.
+
+[7m245[0m       firstOther.attributes == null
+[7m   [0m [91m                 ~~~~~~~~~~[0m
+[96m../subject_repositories/delta/src/Delta.ts[0m:[93m247[0m:[93m34[0m - [91merror[0m[90m TS2339: [0mProperty 'retain' does not exist on type 'never'.
+
+[7m247[0m       let firstLeft = firstOther.retain;
+[7m   [0m [91m                                 ~~~~~~[0m
+[96m../subject_repositories/delta/src/Delta.ts[0m:[93m255[0m:[93m22[0m - [91merror[0m[90m TS2339: [0mProperty 'retain' does not exist on type 'never'.
+
+[7m255[0m       if (firstOther.retain - firstLeft > 0) {
+[7m   [0m [91m                     ~~~~~~[0m
+[96m../subject_repositories/delta/src/Delta.ts[0m:[93m256[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'retain' does not exist on type 'never'.
+
+[7m256[0m         otherIter.next(firstOther.retain - firstLeft);
+[7m   [0m [91m                                  ~~~~~~[0m
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-028c3db/testCase.test.ts
+  Delta compose with null firstOther
+    ✕ should handle null firstOther correctly (1 ms)
+
+  ● Delta compose with null firstOther › should handle null firstOther correctly
+
+    TypeError: Cannot read properties of undefined (reading 'retain')
+
+      242 |          firstOther == null &&
+      243 |
+    > 244 |       typeof firstOther.retain === 'number' &&
+          |                         ^
+      245 |       firstOther.attributes == null
+      246 |     ) {
+      247 |       let firstLeft = firstOther.retain;
+
+      at Delta.retain [as compose] (../subject_repositories/delta/src/Delta.ts:244:25)
+      at Object.compose (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-028c3db/testCase.test.ts:7:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.839 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-028c3db/testCase.test.ts".

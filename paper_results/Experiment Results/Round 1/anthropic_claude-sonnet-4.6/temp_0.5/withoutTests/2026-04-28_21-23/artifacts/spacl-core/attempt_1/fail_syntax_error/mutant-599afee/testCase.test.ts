@@ -1,0 +1,1 @@
+if (prop === undefined || match[index + 1] !== prop) {

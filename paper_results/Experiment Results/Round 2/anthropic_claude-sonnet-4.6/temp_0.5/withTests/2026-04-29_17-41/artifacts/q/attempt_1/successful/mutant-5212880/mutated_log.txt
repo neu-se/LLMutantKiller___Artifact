@@ -1,0 +1,33 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-5212880/testCase.test.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 4 arguments, but got 2.
+
+[7m7[0m     Q.done(Q(42), function (value: number) {
+[7m [0m [91m      ~~~~[0m
+
+  [96m../subject_repositories/q/q.js[0m:[93m1799[0m:[93m42[0m
+    [7m1799[0m    Q.done = function (object, fulfilled, rejected, progress) {};
+    [7m    [0m [96m                                         ~~~~~~~~[0m
+    An argument for 'rejected' was not provided.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-5212880/testCase.test.ts
+  Q.done static method
+    ✕ should call the fulfilled callback when used as Q.done(promise, fulfilled) (503 ms)
+
+  ● Q.done static method › should call the fulfilled callback when used as Q.done(promise, fulfilled)
+
+    Q.done did not invoke the fulfilled callback
+
+      14 |     setTimeout(() => {
+      15 |       if (!called) {
+    > 16 |         done(new Error("Q.done did not invoke the fulfilled callback"));
+         |              ^
+      17 |       }
+      18 |     }, 500);
+      19 |   });
+
+      at Timeout._onTimeout (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-5212880/testCase.test.ts:16:14)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.742 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-5212880/testCase.test.ts".

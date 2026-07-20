@@ -1,0 +1,40 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-e860c46/testCase.test.ts (6.747 s)
+  close method with in-flight writes
+    ✕ should delay close when inFlightWrites > 0 (5003 ms)
+
+  ● close method with in-flight writes › should delay close when inFlightWrites > 0
+
+    Close was called immediately despite in-flight writes
+
+      45 |         if (db._inFlightWrites > 0 && closeCalled) {
+      46 |           // This indicates mutated behavior (close called despite in-flight writes)
+    > 47 |           throw new Error('Close was called immediately despite in-flight writes');
+         |                 ^
+      48 |         } else {
+      49 |           // Original behavior - close was delayed
+      50 |           db.on('write_close', () => {
+
+      at Immediate.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-e860c46/testCase.test.ts:47:17)
+
+  ● close method with in-flight writes › should delay close when inFlightWrites > 0
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      19 |   });
+      20 |
+    > 21 |   it('should delay close when inFlightWrites > 0', (done) => {
+         |   ^
+      22 |     db = new Dirty(testFile);
+      23 |     db.on('load', () => {
+      24 |       // Create writes to ensure in-flight writes
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-e860c46/testCase.test.ts:21:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-e860c46/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.94 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-e860c46/testCase.test.ts".

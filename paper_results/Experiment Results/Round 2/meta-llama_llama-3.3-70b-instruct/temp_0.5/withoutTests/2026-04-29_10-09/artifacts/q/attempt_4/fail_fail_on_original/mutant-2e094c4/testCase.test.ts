@@ -1,0 +1,11 @@
+import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+
+describe('Q', () => {
+    it('should correctly identify Node.js frames in stack traces', () => {
+        const isNodeFrame = (stackLine: string) => stackLine.indexOf("(module.js:") !== -1 || stackLine.indexOf("(node.js:") !== -1;
+        const error = new Error();
+        const stackLines = error.stack?.split('\n') || [];
+        const result = stackLines.some(isNodeFrame);
+        expect(result).toBeTruthy();
+    });
+});

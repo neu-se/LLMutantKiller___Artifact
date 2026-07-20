@@ -1,0 +1,32 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-7ad20c8/testCase.test.ts
+  crawler-url-parser module loading side effects
+    ✕ should not call console.log when the module is required as a dependency (202 ms)
+
+  ● crawler-url-parser module loading side effects › should not call console.log when the module is required as a dependency
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      24 |     // In original: module.parent is set, so !module.parent is false, block does NOT run
+      25 |     // In mutated: if(true) always runs, so console.log IS called
+    > 26 |     expect(wasCalledWithTestingPurpose).toBe(false);
+         |                                         ^
+      27 |   });
+      28 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-7ad20c8/testCase.test.ts:26:41)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.694 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-7ad20c8/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,69 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-9cc6e1f/testCase.test.ts[0m:[93m6[0m:[93m17[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m6[0m       compose: (a, b) => ({ embed: { foo: 'bar' } }),
+[7m [0m [91m                ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-9cc6e1f/testCase.test.ts[0m:[93m6[0m:[93m20[0m - [91merror[0m[90m TS6133: [0m'b' is declared but its value is never read.
+
+[7m6[0m       compose: (a, b) => ({ embed: { foo: 'bar' } }),
+[7m [0m [91m                   ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-9cc6e1f/testCase.test.ts[0m:[93m7[0m:[93m19[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m7[0m       transform: (a, b, priority) => ({ embed: { foo: 'bar' } }),
+[7m [0m [91m                  ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-9cc6e1f/testCase.test.ts[0m:[93m7[0m:[93m22[0m - [91merror[0m[90m TS6133: [0m'b' is declared but its value is never read.
+
+[7m7[0m       transform: (a, b, priority) => ({ embed: { foo: 'bar' } }),
+[7m [0m [91m                     ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-9cc6e1f/testCase.test.ts[0m:[93m7[0m:[93m25[0m - [91merror[0m[90m TS6133: [0m'priority' is declared but its value is never read.
+
+[7m7[0m       transform: (a, b, priority) => ({ embed: { foo: 'bar' } }),
+[7m [0m [91m                        ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-9cc6e1f/testCase.test.ts[0m:[93m8[0m:[93m16[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m8[0m       invert: (a, b) => ({ embed: { foo: 'bar' } }),
+[7m [0m [91m               ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-9cc6e1f/testCase.test.ts[0m:[93m8[0m:[93m19[0m - [91merror[0m[90m TS6133: [0m'b' is declared but its value is never read.
+
+[7m8[0m       invert: (a, b) => ({ embed: { foo: 'bar' } }),
+[7m [0m [91m                  ~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-9cc6e1f/testCase.test.ts
+  transform
+    ✕ should transform embeds correctly (6 ms)
+
+  ● transform › should transform embeds correctly
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 4
+
+      Delta {
+        "ops": Array [
+          Object {
+    +       "retain": 1,
+    +     },
+    +     Object {
+            "retain": Object {
+              "embed": Object {
+    -           "foo": "bar",
+    +           "foo": "baz",
+              },
+            },
+          },
+        ],
+      }
+
+      11 |     const b = new Delta().retain({ embed: { foo: 'baz' } });
+      12 |     const expected = new Delta().retain({ embed: { foo: 'bar' } });
+    > 13 |     expect(a.transform(b)).toEqual(expected);
+         |                            ^
+      14 |   });
+      15 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-9cc6e1f/testCase.test.ts:13:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.516 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-9cc6e1f/testCase.test.ts".

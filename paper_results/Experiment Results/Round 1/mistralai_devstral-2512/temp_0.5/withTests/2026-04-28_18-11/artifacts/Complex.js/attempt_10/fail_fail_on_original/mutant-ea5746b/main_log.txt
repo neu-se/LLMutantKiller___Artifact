@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-ea5746b/testCase.test.ts
+  Complex.expm1()
+    ✕ should correctly compute expm1 for complex numbers with small imaginary part in Taylor series range (2 ms)
+
+  ● Complex.expm1() › should correctly compute expm1 for complex numbers with small imaginary part in Taylor series range
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 6447.901167049842
+    Received: -0.07612046748871323
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   6447.977287517331
+
+      21 |     const expectedRe = Math.expm1(0) * Math.cos(Math.PI/8) + taylorCosm1;
+      22 |     const expectedIm = Math.exp(0) * Math.sin(Math.PI/8);
+    > 23 |     expect(result.re).toBeCloseTo(expectedRe, 10);
+         |                       ^
+      24 |     expect(result.im).toBeCloseTo(expectedIm, 10);
+      25 |   });
+      26 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-ea5746b/testCase.test.ts:23:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.299 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-ea5746b/testCase.test.ts".

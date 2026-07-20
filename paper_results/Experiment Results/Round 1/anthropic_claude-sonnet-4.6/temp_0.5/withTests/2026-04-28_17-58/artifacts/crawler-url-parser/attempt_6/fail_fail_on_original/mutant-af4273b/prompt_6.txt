@@ -1,0 +1,32 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_5/pending_category/mutant-af4273b/testCase.test.ts
+  parse relative URL against base URL with special chars in query
+    ✕ should handle base URL with encoded brackets in query string (6 ms)
+
+  ● parse relative URL against base URL with special chars in query › should handle base URL with encoded brackets in query string
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "http://www.stackoverflow.com/aaa/bbb?a%5B%5D=1"
+    Received: "http://www.stackoverflow.com/aaa/bbb?a[]=1"
+
+       8 |     // With parseQueryString=true: query={'a[]':'1'}, formatted as 'a%5B%5D=1'
+       9 |     // With parseQueryString=false: search='?a[]=1', preserved as-is
+    > 10 |     expect(result!.baseurl).toBe("http://www.stackoverflow.com/aaa/bbb?a%5B%5D=1");
+         |                             ^
+      11 |   });
+      12 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_5/pending_category/mutant-af4273b/testCase.test.ts:10:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.206 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_5/pending_category/mutant-af4273b/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

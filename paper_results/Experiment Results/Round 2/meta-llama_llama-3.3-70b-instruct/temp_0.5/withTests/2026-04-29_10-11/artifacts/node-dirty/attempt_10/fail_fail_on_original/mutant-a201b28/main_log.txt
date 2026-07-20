@@ -1,0 +1,54 @@
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-a201b28/testCase.test.ts (6.2 s)
+  Dirty
+    ✕ should emit error event when a corrupted row is encountered (5011 ms)
+
+  ● Dirty › should emit error event when a corrupted row is encountered
+
+    assert.strictEqual(received, expected)
+
+    Expected value to strictly be equal to:
+      "Could not load corrupted row: {\"key\":\"test2\"}"
+    Received:
+      "test"
+
+    Difference:
+
+    - Expected
+    + Received
+
+    - Could not load corrupted row: {"key":"test2"}
+    + test
+
+      13 |     db.on('error', (err) => {
+      14 |       assert.ok(err instanceof Error);
+    > 15 |       assert.strictEqual(err.message, 'Could not load corrupted row: {"key":"test2"}');
+         |              ^
+      16 |       errorEmitted = true;
+      17 |     });
+      18 |
+
+      at Dirty.strictEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-a201b28/testCase.test.ts:15:14)
+      at Dirty.emit (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-a201b28/testCase.test.ts:26:31)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:154:16)
+
+  ● Dirty › should emit error event when a corrupted row is encountered
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 |
+      5 | describe('Dirty', () => {
+    > 6 |   it('should emit error event when a corrupted row is encountered', (done) => {
+        |   ^
+      7 |     const filePath = 'test.dirty';
+      8 |     fs.writeFileSync(filePath, '{"key":"test","val":"test"}\n{"key":"test2"}\n');
+      9 |
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-a201b28/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-a201b28/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.377 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-a201b28/testCase.test.ts".

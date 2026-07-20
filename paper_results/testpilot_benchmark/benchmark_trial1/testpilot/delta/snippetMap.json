@@ -1,0 +1,194 @@
+[
+  [
+    "quill-delta",
+    []
+  ],
+  [
+    "length",
+    [
+      "new Delta().insert('Hello').length();  // Returns 5\n\nnew Delta().insert('A').retain(2).delete(1).length(); // Returns 4",
+      "new Delta().insert('Hello').length();  // Returns 5\n\nnew Delta().insert('A').retain(2).delete(1).length(); // Returns 4"
+    ]
+  ],
+  [
+    "OpIterator",
+    []
+  ],
+  [
+    "hasNext",
+    []
+  ],
+  [
+    "next",
+    []
+  ],
+  [
+    "peek",
+    []
+  ],
+  [
+    "peekLength",
+    []
+  ],
+  [
+    "peekType",
+    []
+  ],
+  [
+    "rest",
+    []
+  ],
+  [
+    "compose",
+    [
+      "// Document with text \"Gandalf the Grey\"\n// with \"Gandalf\" bolded, and \"Grey\" in grey\nconst delta = new Delta([\n  { insert: 'Gandalf', attributes: { bold: true } },\n  { insert: ' the ' },\n  { insert: 'Grey', attributes: { color: '#ccc' } }\n]);\n\n// Change intended to be applied to above:\n// Keep the first 12 characters, insert a white 'White'\n// and delete the next four characters ('Grey')\nconst death = new Delta().retain(12)\n                         .insert('White', { color: '#fff' })\n                         .delete(4);\n// {\n//   ops: [\n//     { retain: 12 },\n//     { insert: 'White', attributes: { color: '#fff' } },\n//     { delete: 4 }\n//   ]",
+      "const a = new Delta().insert('Hello');\nconst b = new Delta().insert('Hello!');\n\nconst diff = a.diff(b);  // { ops: [{ retain: 5 }, { insert: '!' }] }\n                         // a.compose(diff) == b\n",
+      "const a = new Delta().insert('Hello');\nconst b = new Delta().insert('Hello!');\n\nconst diff = a.diff(b);  // { ops: [{ retain: 5 }, { insert: '!' }] }\n                         // a.compose(diff) == b\n",
+      "const base = new Delta().insert('Hello\\n')\n                        .insert('World');\nconst delta = new Delta().retain(6, { bold: true }).insert('!').delete(5);\n\nconst inverted = delta.invert(base);  // { ops: [\n                                      //   { retain: 6, attributes: { bold: null } },\n                                      //   { insert: 'World' },\n                                      //   { delete: 1 }\n                                      // ]}\n                                      // base.compose(delta).compose(inverted) === base",
+      "const base = new Delta().insert('Hello\\n')\n                        .insert('World');\nconst delta = new Delta().retain(6, { bold: true }).insert('!').delete(5);\n\nconst inverted = delta.invert(base);  // { ops: [\n                                      //   { retain: 6, attributes: { bold: null } },\n                                      //   { insert: 'World' },\n                                      //   { delete: 1 }\n                                      // ]}\n                                      // base.compose(delta).compose(inverted) === base",
+      "const a = new Delta().insert('abc');\nconst b = new Delta().retain(1).delete(1);\n\nconst composed = a.compose(b);  // composed == new Delta().insert('ac');\n",
+      "const a = new Delta().insert('abc');\nconst b = new Delta().retain(1).delete(1);\n\nconst composed = a.compose(b);  // composed == new Delta().insert('ac');\n"
+    ]
+  ],
+  [
+    "diff",
+    [
+      "const a = new Delta().insert('Hello');\nconst b = new Delta().insert('Hello!');\n\nconst diff = a.diff(b);  // { ops: [{ retain: 5 }, { insert: '!' }] }\n                         // a.compose(diff) == b\n",
+      "const a = new Delta().insert('Hello');\nconst b = new Delta().insert('Hello!');\n\nconst diff = a.diff(b);  // { ops: [{ retain: 5 }, { insert: '!' }] }\n                         // a.compose(diff) == b\n"
+    ]
+  ],
+  [
+    "invert",
+    [
+      "const base = new Delta().insert('Hello\\n')\n                        .insert('World');\nconst delta = new Delta().retain(6, { bold: true }).insert('!').delete(5);\n\nconst inverted = delta.invert(base);  // { ops: [\n                                      //   { retain: 6, attributes: { bold: null } },\n                                      //   { insert: 'World' },\n                                      //   { delete: 1 }\n                                      // ]}\n                                      // base.compose(delta).compose(inverted) === base",
+      "const base = new Delta().insert('Hello\\n')\n                        .insert('World');\nconst delta = new Delta().retain(6, { bold: true }).insert('!').delete(5);\n\nconst inverted = delta.invert(base);  // { ops: [\n                                      //   { retain: 6, attributes: { bold: null } },\n                                      //   { insert: 'World' },\n                                      //   { delete: 1 }\n                                      // ]}\n                                      // base.compose(delta).compose(inverted) === base"
+    ]
+  ],
+  [
+    "transform",
+    [
+      "const a = new Delta().insert('a');\nconst b = new Delta().insert('b').retain(5).insert('c');\n\na.transform(b, true);  // new Delta().retain(1).insert('b').retain(5).insert('c');\na.transform(b, false); // new Delta().insert('b').retain(6).insert('c');",
+      "const a = new Delta().insert('a');\nconst b = new Delta().insert('b').retain(5).insert('c');\n\na.transform(b, true);  // new Delta().retain(1).insert('b').retain(5).insert('c');\na.transform(b, false); // new Delta().insert('b').retain(6).insert('c');"
+    ]
+  ],
+  [
+    "insert",
+    [
+      "// Document with text \"Gandalf the Grey\"\n// with \"Gandalf\" bolded, and \"Grey\" in grey\nconst delta = new Delta([\n  { insert: 'Gandalf', attributes: { bold: true } },\n  { insert: ' the ' },\n  { insert: 'Grey', attributes: { color: '#ccc' } }\n]);\n\n// Change intended to be applied to above:\n// Keep the first 12 characters, insert a white 'White'\n// and delete the next four characters ('Grey')\nconst death = new Delta().retain(12)\n                         .insert('White', { color: '#fff' })\n                         .delete(4);\n// {\n//   ops: [\n//     { retain: 12 },\n//     { insert: 'White', attributes: { color: '#fff' } },\n//     { delete: 4 }\n//   ]",
+      "const delta = new Delta([\n  { insert: 'Hello World' },\n  { insert: '!', attributes: { bold: true }}\n]);\n\nconst packet = JSON.stringify(delta);\n\nconst other = new Delta(JSON.parse(packet));\n\nconst chained = new Delta().insert('Hello World').insert('!', { bold: true });",
+      "delta.insert('Text', { bold: true, color: '#ccc' });\ndelta.insert({ image: 'https://octodex.github.com/images/labtocat.png' });",
+      "const a = new Delta().insert('Hello');\nconst b = new Delta().insert('!', { bold: true });\n\n\n// {\n//   ops: [\n//     { insert: 'Hello' },\n//     { insert: '!', attributes: { bold: true } }\n//   ]\n// }\nconst concat = a.concat(b);",
+      "const a = new Delta().insert('Hello');\nconst b = new Delta().insert('Hello!');\n\nconst diff = a.diff(b);  // { ops: [{ retain: 5 }, { insert: '!' }] }\n                         // a.compose(diff) == b\n",
+      "const delta = new Delta().insert('Hello\\n\\n')\n                         .insert('World')\n                         .insert({ image: 'octocat.png' })\n                         .insert('\\n', { align: 'right' })\n                         .insert('!');\n\ndelta.eachLine((line, attributes, i) => {\n  console.log(line, attributes, i);\n  // Can return false to exit loop early\n});\n// Should log:\n// { ops: [{ insert: 'Hello' }] }, {}, 0\n// { ops: [] }, {}, 1\n// { ops: [{ insert: 'World' }, { insert: { image: 'octocat.png' } }] }, { align: 'right' }, 2\n// { ops: [{ insert: '!' }] }, {}, 3",
+      "const base = new Delta().insert('Hello\\n')\n                        .insert('World');\nconst delta = new Delta().retain(6, { bold: true }).insert('!').delete(5);\n\nconst inverted = delta.invert(base);  // { ops: [\n                                      //   { retain: 6, attributes: { bold: null } },\n                                      //   { insert: 'World' },\n                                      //   { delete: 1 }\n                                      // ]}\n                                      // base.compose(delta).compose(inverted) === base",
+      "const delta = new Delta().insert('Hello', { bold: true })\n                         .insert({ image: 'https://octodex.github.com/images/labtocat.png' })\n                         .insert('World!');\n\nconst text = delta\n  .filter((op) => typeof op.insert === 'string')\n  .map((op) => op.insert)\n  .join('');",
+      "new Delta().insert('Hello').length();  // Returns 5\n\nnew Delta().insert('A').retain(2).delete(1).length(); // Returns 4",
+      "const delta = new Delta().insert('Hello', { bold: true })\n                         .insert({ image: 'https://octodex.github.com/images/labtocat.png' })\n                         .insert('World!');\n\nconst text = delta\n  .map((op) => {\n    if (typeof op.insert === 'string') {\n      return op.insert;\n    } else {\n      return '';\n    }\n  })\n  .join('');",
+      "const delta = new Delta().insert('Hello', { bold: true })\n                         .insert({ image: 'https://octodex.github.com/images/labtocat.png' })\n                         .insert('World!');\n\nconst results = delta.partition((op) => typeof op.insert === 'string');\nconst passed = results[0];  // [{ insert: 'Hello', attributes: { bold: true }},\n                            //  { insert: 'World'}]\nconst failed = results[1];  // [{ insert: { image: 'https://octodex.github.com/images/labtocat.png' }}]",
+      "const delta = new Delta().insert('Hello', { bold: true })\n                         .insert({ image: 'https://octodex.github.com/images/labtocat.png' })\n                         .insert('World!');\n\nconst length = delta.reduce((length, op) => (\n  length + (op.insert.length || 1);\n), 0);",
+      "const delta = new Delta().insert('Hello', { bold: true }).insert(' World');\n\n// {\n//   ops: [\n//     { insert: 'Hello', attributes: { bold: true } },\n//     { insert: ' World' }\n//   ]\n// }\nconst copy = delta.slice();\n\n// { ops: [{ insert: 'World' }] }\nconst world = delta.slice(6);\n\n// { ops: [{ insert: ' ' }] }\nconst space = delta.slice(5, 6);",
+      "const a = new Delta().insert('abc');\nconst b = new Delta().retain(1).delete(1);\n\nconst composed = a.compose(b);  // composed == new Delta().insert('ac');\n",
+      "const a = new Delta().insert('a');\nconst b = new Delta().insert('b').retain(5).insert('c');\n\na.transform(b, true);  // new Delta().retain(1).insert('b').retain(5).insert('c');\na.transform(b, false); // new Delta().insert('b').retain(6).insert('c');",
+      "const delta = new Delta().retain(5).insert('a');\ndelta.transformPosition(4); // 4\ndelta.transformPosition(5); // 6"
+    ]
+  ],
+  [
+    "delete",
+    [
+      "// Document with text \"Gandalf the Grey\"\n// with \"Gandalf\" bolded, and \"Grey\" in grey\nconst delta = new Delta([\n  { insert: 'Gandalf', attributes: { bold: true } },\n  { insert: ' the ' },\n  { insert: 'Grey', attributes: { color: '#ccc' } }\n]);\n\n// Change intended to be applied to above:\n// Keep the first 12 characters, insert a white 'White'\n// and delete the next four characters ('Grey')\nconst death = new Delta().retain(12)\n                         .insert('White', { color: '#fff' })\n                         .delete(4);\n// {\n//   ops: [\n//     { retain: 12 },\n//     { insert: 'White', attributes: { color: '#fff' } },\n//     { delete: 4 }\n//   ]",
+      "const base = new Delta().insert('Hello\\n')\n                        .insert('World');\nconst delta = new Delta().retain(6, { bold: true }).insert('!').delete(5);\n\nconst inverted = delta.invert(base);  // { ops: [\n                                      //   { retain: 6, attributes: { bold: null } },\n                                      //   { insert: 'World' },\n                                      //   { delete: 1 }\n                                      // ]}\n                                      // base.compose(delta).compose(inverted) === base",
+      "new Delta().insert('Hello').length();  // Returns 5\n\nnew Delta().insert('A').retain(2).delete(1).length(); // Returns 4",
+      "const a = new Delta().insert('abc');\nconst b = new Delta().retain(1).delete(1);\n\nconst composed = a.compose(b);  // composed == new Delta().insert('ac');\n"
+    ]
+  ],
+  [
+    "retain",
+    [
+      "// Document with text \"Gandalf the Grey\"\n// with \"Gandalf\" bolded, and \"Grey\" in grey\nconst delta = new Delta([\n  { insert: 'Gandalf', attributes: { bold: true } },\n  { insert: ' the ' },\n  { insert: 'Grey', attributes: { color: '#ccc' } }\n]);\n\n// Change intended to be applied to above:\n// Keep the first 12 characters, insert a white 'White'\n// and delete the next four characters ('Grey')\nconst death = new Delta().retain(12)\n                         .insert('White', { color: '#fff' })\n                         .delete(4);\n// {\n//   ops: [\n//     { retain: 12 },\n//     { insert: 'White', attributes: { color: '#fff' } },\n//     { delete: 4 }\n//   ]",
+      "const base = new Delta().insert('Hello\\n')\n                        .insert('World');\nconst delta = new Delta().retain(6, { bold: true }).insert('!').delete(5);\n\nconst inverted = delta.invert(base);  // { ops: [\n                                      //   { retain: 6, attributes: { bold: null } },\n                                      //   { insert: 'World' },\n                                      //   { delete: 1 }\n                                      // ]}\n                                      // base.compose(delta).compose(inverted) === base",
+      "new Delta().insert('Hello').length();  // Returns 5\n\nnew Delta().insert('A').retain(2).delete(1).length(); // Returns 4",
+      "const a = new Delta().insert('abc');\nconst b = new Delta().retain(1).delete(1);\n\nconst composed = a.compose(b);  // composed == new Delta().insert('ac');\n",
+      "const a = new Delta().insert('a');\nconst b = new Delta().insert('b').retain(5).insert('c');\n\na.transform(b, true);  // new Delta().retain(1).insert('b').retain(5).insert('c');\na.transform(b, false); // new Delta().insert('b').retain(6).insert('c');",
+      "const delta = new Delta().retain(5).insert('a');\ndelta.transformPosition(4); // 4\ndelta.transformPosition(5); // 6"
+    ]
+  ],
+  [
+    "push",
+    []
+  ],
+  [
+    "chop",
+    []
+  ],
+  [
+    "filter",
+    [
+      "const delta = new Delta().insert('Hello', { bold: true })\n                         .insert({ image: 'https://octodex.github.com/images/labtocat.png' })\n                         .insert('World!');\n\nconst text = delta\n  .filter((op) => typeof op.insert === 'string')\n  .map((op) => op.insert)\n  .join('');"
+    ]
+  ],
+  [
+    "forEach",
+    [
+      "delta.forEach((op) => {\n  console.log(op);\n});"
+    ]
+  ],
+  [
+    "map",
+    [
+      "const delta = new Delta().insert('Hello', { bold: true })\n                         .insert({ image: 'https://octodex.github.com/images/labtocat.png' })\n                         .insert('World!');\n\nconst text = delta\n  .filter((op) => typeof op.insert === 'string')\n  .map((op) => op.insert)\n  .join('');",
+      "const delta = new Delta().insert('Hello', { bold: true })\n                         .insert({ image: 'https://octodex.github.com/images/labtocat.png' })\n                         .insert('World!');\n\nconst text = delta\n  .map((op) => {\n    if (typeof op.insert === 'string') {\n      return op.insert;\n    } else {\n      return '';\n    }\n  })\n  .join('');"
+    ]
+  ],
+  [
+    "partition",
+    [
+      "const delta = new Delta().insert('Hello', { bold: true })\n                         .insert({ image: 'https://octodex.github.com/images/labtocat.png' })\n                         .insert('World!');\n\nconst results = delta.partition((op) => typeof op.insert === 'string');\nconst passed = results[0];  // [{ insert: 'Hello', attributes: { bold: true }},\n                            //  { insert: 'World'}]\nconst failed = results[1];  // [{ insert: { image: 'https://octodex.github.com/images/labtocat.png' }}]"
+    ]
+  ],
+  [
+    "reduce",
+    [
+      "const delta = new Delta().insert('Hello', { bold: true })\n                         .insert({ image: 'https://octodex.github.com/images/labtocat.png' })\n                         .insert('World!');\n\nconst length = delta.reduce((length, op) => (\n  length + (op.insert.length || 1);\n), 0);"
+    ]
+  ],
+  [
+    "changeLength",
+    []
+  ],
+  [
+    "slice",
+    [
+      "const delta = new Delta().insert('Hello', { bold: true }).insert(' World');\n\n// {\n//   ops: [\n//     { insert: 'Hello', attributes: { bold: true } },\n//     { insert: ' World' }\n//   ]\n// }\nconst copy = delta.slice();\n\n// { ops: [{ insert: 'World' }] }\nconst world = delta.slice(6);\n\n// { ops: [{ insert: ' ' }] }\nconst space = delta.slice(5, 6);"
+    ]
+  ],
+  [
+    "concat",
+    [
+      "const a = new Delta().insert('Hello');\nconst b = new Delta().insert('!', { bold: true });\n\n\n// {\n//   ops: [\n//     { insert: 'Hello' },\n//     { insert: '!', attributes: { bold: true } }\n//   ]\n// }\nconst concat = a.concat(b);"
+    ]
+  ],
+  [
+    "eachLine",
+    [
+      "const delta = new Delta().insert('Hello\\n\\n')\n                         .insert('World')\n                         .insert({ image: 'octocat.png' })\n                         .insert('\\n', { align: 'right' })\n                         .insert('!');\n\ndelta.eachLine((line, attributes, i) => {\n  console.log(line, attributes, i);\n  // Can return false to exit loop early\n});\n// Should log:\n// { ops: [{ insert: 'Hello' }] }, {}, 0\n// { ops: [] }, {}, 1\n// { ops: [{ insert: 'World' }, { insert: { image: 'octocat.png' } }] }, { align: 'right' }, 2\n// { ops: [{ insert: '!' }] }, {}, 3"
+    ]
+  ],
+  [
+    "transformPosition",
+    [
+      "const delta = new Delta().retain(5).insert('a');\ndelta.transformPosition(4); // 4\ndelta.transformPosition(5); // 6"
+    ]
+  ],
+  [
+    "registerEmbed",
+    []
+  ],
+  [
+    "unregisterEmbed",
+    []
+  ],
+  [
+    "getHandler",
+    []
+  ]
+]

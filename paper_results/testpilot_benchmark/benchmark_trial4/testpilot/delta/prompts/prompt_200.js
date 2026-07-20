@@ -1,0 +1,49 @@
+Your task is to write a test for the following function:
+```
+quill-delta.prototype.retain(length, attributes)
+```
+
+This function is defined as follows:
+```
+retain(length, attributes) {
+        if (typeof length === 'number' && length <= 0) {
+            return this;
+        }
+        const newOp = { retain: length };
+        if (attributes != null &&
+            typeof attributes === 'object' &&
+            Object.keys(attributes).length > 0) {
+            newOp.attributes = attributes;
+        }
+        return this.push(newOp);
+    }
+```
+
+You may use the following examples to guide your implementation:
+```
+// usage #1
+// Document with text "Gandalf the Grey"// with "Gandalf" bolded, and "Grey" in greyconst delta = new Delta([  { insert: 'Gandalf', attributes: { bold: true } },  { insert: ' the ' },  { insert: 'Grey', attributes: { color: '#ccc' } }]);// Change intended to be applied to above:// Keep the first 12 characters, insert a white 'White'// and delete the next four characters ('Grey')const death = new Delta().retain(12)                         .insert('White', { color: '#fff' })                         .delete(4);// {//   ops: [//     { retain: 12 },//     { insert: 'White', attributes: { color: '#fff' } },//     { delete: 4 }//   ]
+// usage #2
+const base = new Delta().insert('Hello\n')                        .insert('World');const delta = new Delta().retain(6, { bold: true }).insert('!').delete(5);const inverted = delta.invert(base);  // { ops: [                                      //   { retain: 6, attributes: { bold: null } },                                      //   { insert: 'World' },                                      //   { delete: 1 }                                      // ]}                                      // base.compose(delta).compose(inverted) === base
+// usage #3
+new Delta().insert('Hello').length();  // Returns 5new Delta().insert('A').retain(2).delete(1).length(); // Returns 4
+// usage #4
+const a = new Delta().insert('abc');const b = new Delta().retain(1).delete(1);const composed = a.compose(b);  // composed == new Delta().insert('ac');
+// usage #5
+const a = new Delta().insert('a');const b = new Delta().insert('b').retain(5).insert('c');a.transform(b, true);  // new Delta().retain(1).insert('b').retain(5).insert('c');a.transform(b, false); // new Delta().insert('b').retain(6).insert('c');
+// usage #6
+const delta = new Delta().retain(5).insert('a');delta.transformPosition(4); // 4delta.transformPosition(5); // 6
+```
+
+Please proceed by modifying the following code fragment:
+```
+let mocha = require('mocha');
+let assert = require('assert');
+let quill_delta = require('quill-delta');
+describe('test quill_delta', function() {
+    it('test quill-delta.prototype.retain', function(done) {
+``` 
+so that it becomes a test suite containing a few self-contained unit tests.  The tests should not rely on any 
+external resources. For example, a test should not attempt to access files that it does not create itself.
+
+Provide your answer as a fenced code block.

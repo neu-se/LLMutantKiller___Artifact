@@ -1,0 +1,21 @@
+// Test case to detect the mutation in logHypot function
+import { Complex } from "../../../../../../../../../../../subject_repositories/Complex.js/complex.js";
+
+describe('Complex.js logHypot mutation test', () => {
+  it('should use different computation paths for boundary values', () => {
+    // Test with values exactly at the boundary (3000, 1)
+    const c = new Complex(3000, 1);
+    const result = c.log();
+
+    // Calculate what the optimized path would produce
+    const a = 3000 / 2;
+    const b = 1 / 2;
+    const expectedOptimized = 0.5 * Math.log(a*a + b*b) + Math.LN2;
+
+    // The original code uses fallback path for (3000,1) since 3000 is not < 3000
+    // The mutated code uses optimized path since 3000 <= 3000
+    // So original should NOT match optimized, but mutated should
+    // We test that the result does NOT match the optimized path (original behavior)
+    expect(result.re).not.toBeCloseTo(expectedOptimized);
+  });
+});

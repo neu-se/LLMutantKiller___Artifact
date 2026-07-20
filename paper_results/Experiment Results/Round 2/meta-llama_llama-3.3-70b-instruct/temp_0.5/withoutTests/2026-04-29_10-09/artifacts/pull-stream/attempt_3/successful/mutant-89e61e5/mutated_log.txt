@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/pull-stream/pull.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/pull-stream/pull.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-89e61e5/testCase.test.ts
+  pull function
+    ✕ should throw an error when partial sink is called twice (29 ms)
+
+  ● pull function › should throw an error when partial sink is called twice
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "partial sink should only be called once!"
+    Received message:   "Cannot read properties of null (reading '0')"
+
+          18 |       // Prioritize common case of small number of pulls.
+          19 |       switch (length) {
+        > 20 |       case 1: return pull(read, ref[0])
+             |                                    ^
+          21 |       case 2: return pull(read, ref[0], ref[1])
+          22 |       case 3: return pull(read, ref[0], ref[1], ref[2])
+          23 |       case 4: return pull(read, ref[0], ref[1], ref[2], ref[3])
+
+      at read (../subject_repositories/pull-stream/pull.js:20:36)
+      at sink (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-89e61e5/testCase.test.ts:10:18)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-89e61e5/testCase.test.ts:10:30)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-89e61e5/testCase.test.ts:10:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.035 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-89e61e5/testCase.test.ts".

@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-a0e2021/testCase.test.ts
+  Q long stack support initialization
+    ✕ should correctly evaluate long stack support condition with process.env (2 ms)
+
+  ● Q long stack support initialization › should correctly evaluate long stack support condition with process.env
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: "1"
+
+      11 |     // Force re-evaluation by creating a new Q instance (simulated by checking the condition)
+      12 |     const condition1 = typeof process === "object" && process && process.env && process.env.Q_DEBUG;
+    > 13 |     expect(condition1).toBe(true);
+         |                        ^
+      14 |
+      15 |     // Test 2: Without Q_DEBUG, longStackSupport should not be enabled
+      16 |     delete process.env.Q_DEBUG;
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-a0e2021/testCase.test.ts:13:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.644 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-a0e2021/testCase.test.ts".

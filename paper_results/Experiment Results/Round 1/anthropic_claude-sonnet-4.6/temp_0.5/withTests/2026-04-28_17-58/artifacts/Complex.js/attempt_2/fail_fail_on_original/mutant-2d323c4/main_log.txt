@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-2d323c4/testCase.test.ts
+  Complex acsch
+    ✕ computes acsch correctly for purely imaginary input where d = -b^2 is non-zero (2 ms)
+
+  ● Complex acsch › computes acsch correctly for purely imaginary input where d = -b^2 is non-zero
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.5235987755982989
+    Received: -0.5235987755982989
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   1.0471975511965979
+
+      11 |     const expected = new Complex(0, 0.5).asinh();
+      12 |     expect(result.re).toBeCloseTo(expected.re, 10);
+    > 13 |     expect(result.im).toBeCloseTo(expected.im, 10);
+         |                       ^
+      14 |     // Both original and mutated use first branch here (d = -4 != 0)
+      15 |     // so this verifies basic correctness
+      16 |     expect(isFinite(result.re)).toBe(true);
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-2d323c4/testCase.test.ts:13:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.451 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-2d323c4/testCase.test.ts".

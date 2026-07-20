@@ -1,0 +1,25 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-c7be9b5/testCase.test.ts
+  crawler-url-parser direct execution
+    ✕ should output "for testing purpose" when run directly (module.parent is null) (178 ms)
+
+  ● crawler-url-parser direct execution › should output "for testing purpose" when run directly (module.parent is null)
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "for testing purpose"
+    Received string:    ""
+
+      17 |     // Original: !module.parent is true when run directly, so "for testing purpose" is logged
+      18 |     // Mutated: if(false) means it never logs
+    > 19 |     expect(output).toContain('for testing purpose');
+         |                    ^
+      20 |   });
+      21 | });
+
+      at Object.toContain (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-c7be9b5/testCase.test.ts:19:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.35 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-c7be9b5/testCase.test.ts".

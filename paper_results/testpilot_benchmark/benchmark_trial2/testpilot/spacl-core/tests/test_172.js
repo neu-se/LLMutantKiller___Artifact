@@ -1,0 +1,25 @@
+let mocha = require('mocha');
+let assert = require('assert');
+let _spacl_core = require('@spacl/core');
+
+describe('test _spacl_core', function() {
+    it('test PolicyMap edge cases', function(done) {
+        try {
+            let policyMap = new _spacl_core.PolicyMap();
+            
+            // Test with empty strings
+            policyMap.addPolicy('emptyPolicy', '', {});
+            let result1 = policyMap.matches('emptyPolicy', '', {});
+            assert.strictEqual(result1, true, 'Should handle empty strings');
+            
+            // Test with special characters in path
+            policyMap.addPolicy('specialPolicy', '/api/test-resource_123', { id: 'special' });
+            let result2 = policyMap.matches('specialPolicy', '/api/test-resource_123', { id: 'special' });
+            assert.strictEqual(result2, true, 'Should handle special characters');
+            
+            done();
+        } catch (error) {
+            done(error);
+        }
+    });
+});

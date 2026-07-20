@@ -1,0 +1,26 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-f7d009c/testCase.test.ts
+  hypot function via abs()
+    ✕ abs is symmetric for boundary value im=3000 (3 ms)
+
+  ● hypot function via abs() › abs is symmetric for boundary value im=3000
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 3000.0001666666626
+    Received: 3000.000166666662
+
+      18 |         const stable = 3000 * Math.sqrt(1 + (re / 3000) * (re / 3000));
+      19 |         if (direct !== stable) {
+    > 20 |           expect(new Complex(re, 3000).abs()).toBe(new Complex(3000, re).abs());
+         |                                               ^
+      21 |           found = true;
+      22 |           break;
+      23 |         }
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-f7d009c/testCase.test.ts:20:47)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.677 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-f7d009c/testCase.test.ts".

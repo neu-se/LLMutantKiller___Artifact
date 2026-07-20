@@ -1,0 +1,31 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_4/pending_category/mutant-2a53823/testCase.test.ts[0m:[93m1[0m:[93m1[0m - [91merror[0m[90m TS6133: [0m'fs' is declared but its value is never read.
+
+[7m1[0m import * as fs from 'fs';
+[7m [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_4/pending_category/mutant-2a53823/testCase.test.ts
+  Zip-A-Folder Test
+    ✕ TGZ test folder with compression rate (4 ms)
+
+  ● Zip-A-Folder Test › TGZ test folder with compression rate
+
+    expect(received).resolves.not.toThrow()
+
+    Received promise rejected instead of resolved
+    Rejected to value: [Error: Permission error: ENOENT: no such file or directory, access '/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_4/pending_category/mutant-2a53823/data']
+
+      13 |
+      14 |     it('TGZ test folder with compression rate', async () => {
+    > 15 |         await expect(zipafolder.tar(path.resolve(__dirname, 'data/'), testUNCOMPRESSEDTAR, {
+         |               ^
+      16 |             compression: COMPRESSION_LEVEL.uncompressed,
+      17 |         })).resolves.not.toThrow();
+      18 |     });
+
+      at expect (node_modules/expect/build/index.js:113:15)
+      at Object.expect (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_4/pending_category/mutant-2a53823/testCase.test.ts:15:15)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.134 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_4/pending_category/mutant-2a53823/testCase.test.ts".

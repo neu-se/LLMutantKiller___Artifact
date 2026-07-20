@@ -1,0 +1,49 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-9f3959c/testCase.test.ts
+  AttributeMap compose
+    ✕ should correctly compose attribute maps (3 ms)
+    ✕ should fail when mutation is present
+
+  ● AttributeMap compose › should correctly compose attribute maps
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 1
+
+      Object {
+        "a": 1,
+    +   "b": 2,
+        "c": 3,
+      }
+
+       6 |     const b = { b: undefined, c: 3 };
+       7 |     const result = AttributeMap.compose(a, b);
+    >  8 |     expect(result).toEqual({ a: 1, c: 3 });
+         |                    ^
+       9 |   });
+      10 |
+      11 |   it('should fail when mutation is present', () => {
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-9f3959c/testCase.test.ts:8:20)
+
+  ● AttributeMap compose › should fail when mutation is present
+
+    expect(received).not.toEqual(expected) // deep equality
+
+    Expected: not {"a": 1, "b": 2, "c": 3}
+
+      13 |     const b = { b: undefined, c: 3 };
+      14 |     const result = AttributeMap.compose(a, b);
+    > 15 |     expect(result).not.toEqual({ a: 1, b: 2, c: 3 });
+         |                        ^
+      16 |   });
+      17 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-9f3959c/testCase.test.ts:15:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.24 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-9f3959c/testCase.test.ts".

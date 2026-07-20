@@ -1,0 +1,25 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_9/pending_category/mutant-894c254/testCase.test.ts
+  removeQueryParameters regex anchor
+    ✕ regex should be anchored to start of string (252 ms)
+
+  ● removeQueryParameters regex anchor › regex should be anchored to start of string
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      33 |     // Original /^utm_\w+/i: source is '^utm_\\w+', won't match 'autm_source'
+      34 |     // Mutant /utm_\w+/i: source is 'utm_\\w+', will match 'autm_source'
+    > 35 |     expect(regex.test('autm_source')).toBe(false);
+         |                                       ^
+      36 |   });
+      37 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_9/pending_category/mutant-894c254/testCase.test.ts:35:39)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.196 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_9/pending_category/mutant-894c254/testCase.test.ts".

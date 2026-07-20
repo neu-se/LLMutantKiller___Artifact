@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-22f4ba7/testCase.test.ts
+  Dirty close
+    ✕ should persist all queued writes when close is called while writes are pending (62 ms)
+
+  ● Dirty close › should persist all queued writes when close is called while writes are pending
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 3
+    Received: 1
+
+      43 |             db2.on('load', (count: number) => {
+      44 |               try {
+    > 45 |                 expect(count).toBe(3);
+         |                               ^
+      46 |                 expect(db2.get('key1')).toBe('value1');
+      47 |                 expect(db2.get('key2')).toBe('value2');
+      48 |                 db2.close();
+
+      at Dirty.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-22f4ba7/testCase.test.ts:45:31)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:152:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.159 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-22f4ba7/testCase.test.ts".

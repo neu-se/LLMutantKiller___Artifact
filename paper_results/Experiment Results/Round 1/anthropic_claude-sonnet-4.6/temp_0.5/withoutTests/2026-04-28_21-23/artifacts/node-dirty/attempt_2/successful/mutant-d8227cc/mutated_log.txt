@@ -1,0 +1,29 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/node-dirty/lib/dirty/dirty.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/node-dirty/lib/dirty/dirty.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-d8227cc/testCase.test.ts
+  Dirty database loading
+    ✕ should process a chunk with a newline at index 1 as a row (not skip it) (12 ms)
+
+  ● Dirty database loading › should process a chunk with a newline at index 1 as a row (not skip it)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      36 |         // Mutated emits the "end of db" error (buffer non-empty at end).
+      37 |         // Only the original produces a message containing 'Could not load corrupted row'.
+    > 38 |         expect(errorMessages.some(m => m.includes('Could not load corrupted row'))).toBe(true);
+         |                                                                                     ^
+      39 |         fs.rmSync(tmpDir, { recursive: true, force: true });
+      40 |         done();
+      41 |       } catch (e) {
+
+      at Dirty.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-d8227cc/testCase.test.ts:38:85)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:155:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.166 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-d8227cc/testCase.test.ts".

@@ -1,0 +1,36 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/q/q.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/q/q.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-72fa361/testCase.test.ts
+  makeStackTraceLong
+    ✕ should augment error stack traces with promise chain information when longStackSupport is enabled (4 ms)
+
+  ● makeStackTraceLong › should augment error stack traces with promise chain information when longStackSupport is enabled
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "From previous event:"
+    Received string:    "Error: test error
+
+      14 |       // Set up a rejection handler that captures the error
+      15 |       const resultPromise = deferred.promise.then(function step1() {
+    > 16 |         return Q.reject(new Error("test error"));
+         |                         ^
+      17 |       });
+      18 |
+      19 |       // Resolve the deferred to trigger the chain
+
+      at step1 (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-72fa361/testCase.test.ts:16:25)
+      at fulfilled (../subject_repositories/q/q.js:833:54)
+      at _fulfilled (../subject_repositories/q/q.js:862:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:795:13)
+      at apply (../subject_repositories/q/q.js:549:49)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+      at processTicksAndRejections (node:internal/process/task_queues:77:11)"
+      at Object.toContain (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-72fa361/testCase.test.ts:32:36)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.226 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-72fa361/testCase.test.ts".

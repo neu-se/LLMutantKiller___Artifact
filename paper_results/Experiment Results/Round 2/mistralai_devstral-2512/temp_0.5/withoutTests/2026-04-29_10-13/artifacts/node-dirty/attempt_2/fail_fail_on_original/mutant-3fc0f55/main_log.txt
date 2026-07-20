@@ -1,0 +1,48 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-3fc0f55/testCase.test.ts[0m:[93m4[0m:[93m20[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m4[0m import rimraf from 'rimraf';
+[7m [0m [91m                   ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-3fc0f55/testCase.test.ts (6.611 s)
+  Dirty database write stream drain handling
+    ✕ should properly handle drain events and continue flushing queue (5004 ms)
+
+  ● Dirty database write stream drain handling › should properly handle drain events and continue flushing queue
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+      47 |
+      48 |     db.on('write_close', () => {
+    > 49 |       expect(firstDrainCount).toBe(1);
+         |                               ^
+      50 |       expect(secondDrainCount).toBe(1);
+      51 |       expect(allDataWritten).toBe(true);
+      52 |       expect(db.size()).toBe(100);
+
+      at Dirty.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-3fc0f55/testCase.test.ts:49:31)
+      at WriteStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:177:12)
+
+  ● Dirty database write stream drain handling › should properly handle drain events and continue flushing queue
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       5 |
+       6 | describe('Dirty database write stream drain handling', () => {
+    >  7 |   it('should properly handle drain events and continue flushing queue', (done) => {
+         |   ^
+       8 |     const testDir = path.join(__dirname, 'test-dirty-db');
+       9 |     const dbPath = path.join(testDir, 'test.db');
+      10 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-3fc0f55/testCase.test.ts:7:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-3fc0f55/testCase.test.ts:6:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.776 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-3fc0f55/testCase.test.ts".

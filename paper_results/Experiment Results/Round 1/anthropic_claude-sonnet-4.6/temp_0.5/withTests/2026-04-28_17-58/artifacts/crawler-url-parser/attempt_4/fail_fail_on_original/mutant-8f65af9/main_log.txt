@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_4/pending_category/mutant-8f65af9/testCase.test.ts
+  extract function - text when null text anchor
+    ✕ should set text to empty string when anchor text is null via cheerio object (7 ms)
+
+  ● extract function - text when null text anchor › should set text to empty string when anchor text is null via cheerio object
+
+    TypeError: Cannot read properties of null (reading 'trim')
+
+      93 | 	$('a').each(function (i, el) {
+      94 | 		let href = $(this).attr('href');
+    > 95 | 		let text = $(this).text().trim();
+         | 		                         ^
+      96 | 		//href = href.replace(/;.*$/g,"");
+      97 | 		if (typeof href == "undefined" || href.length < 3 || /^(javascript|mailto:|ftp:)/ig.test(href)) return;
+      98 |
+
+      at Element.<anonymous> (../subject_repositories/crawler-url-parser/crawler-url-parser.js:95:28)
+      at LoadedCheerio.each (../subject_repositories/crawler-url-parser/node_modules/cheerio/src/api/traversing.ts:648:24)
+      at each (../subject_repositories/crawler-url-parser/crawler-url-parser.js:93:9)
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_4/pending_category/mutant-8f65af9/testCase.test.ts:18:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.995 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_4/pending_category/mutant-8f65af9/testCase.test.ts".

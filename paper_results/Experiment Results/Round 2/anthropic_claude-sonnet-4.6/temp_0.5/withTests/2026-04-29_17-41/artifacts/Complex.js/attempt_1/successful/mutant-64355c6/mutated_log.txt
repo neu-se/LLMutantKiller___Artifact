@@ -1,0 +1,26 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-64355c6/testCase.test.ts
+  asec mutation detection
+    ✕ should correctly compute asec(i) where re=0 and im=1, not return (0, Infinity) (2 ms)
+
+  ● asec mutation detection › should correctly compute asec(i) where re=0 and im=1, not return (0, Infinity)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      10 |     // In the original code, this should be a finite complex number
+      11 |     // In the mutated code, this incorrectly returns Complex(0, Infinity)
+    > 12 |     expect(result.isInfinite()).toBe(false);
+         |                                 ^
+      13 |     expect(isFinite(result.re)).toBe(true);
+      14 |     expect(isFinite(result.im)).toBe(true);
+      15 |
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-64355c6/testCase.test.ts:12:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.476 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-64355c6/testCase.test.ts".

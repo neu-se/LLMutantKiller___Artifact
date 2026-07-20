@@ -1,0 +1,37 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-c8926c6/testCase.test.ts[0m:[93m27[0m:[93m9[0m - [91merror[0m[90m TS2741: [0mProperty '__promisify__' is missing in type '(callback: Function) => NodeJS.Immediate' but required in type 'typeof setImmediate'.
+
+[7m27[0m         global.setImmediate = (callback: Function) => {
+[7m  [0m [91m        ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/node/timers.d.ts[0m:[93m180[0m:[93m22[0m
+    [7m180[0m             export { __promisify__ };
+    [7m   [0m [96m                     ~~~~~~~~~~~~~[0m
+    '__promisify__' is declared here.
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-c8926c6/testCase.test.ts[0m:[93m29[0m:[93m43[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 2, '(callback: () => void): Immediate', gave the following error.
+    Argument of type 'Function' is not assignable to parameter of type '() => void'.
+      Type 'Function' provides no match for the signature '(): void'.
+  Overload 2 of 2, '(callback: (_: void) => void): Immediate', gave the following error.
+    Argument of type 'Function' is not assignable to parameter of type '(_: void) => void'.
+      Type 'Function' provides no match for the signature '(_: void): void'.
+
+[7m29[0m             return originalSetImmediate?.(callback);
+[7m  [0m [91m                                          ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-c8926c6/testCase.test.ts (5.997 s)
+  Node.js environment detection
+    ✕ should use correct async mechanism based on environment detection (5003 ms)
+
+  ● Node.js environment detection › should use correct async mechanism based on environment detection
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-c8926c6/testCase.test.ts:5:5)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-c8926c6/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.132 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-c8926c6/testCase.test.ts".

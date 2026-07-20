@@ -1,0 +1,42 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-56cf9b4/testCase.test.ts
+  invert() with retain operation without attributes
+    ✕ should correctly handle retain operation without attributes (6 ms)
+
+  ● invert() with retain operation without attributes › should correctly handle retain operation without attributes
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 5
+    + Received  + 1
+
+      Delta {
+    -   "ops": Array [
+    -     Object {
+    -       "retain": 2,
+    -     },
+    -   ],
+    +   "ops": Array [],
+      }
+
+       7 |     const expected = new Delta().retain(2);
+       8 |     const inverted = delta.invert(base);
+    >  9 |     expect(inverted).toEqual(expected);
+         |                      ^
+      10 |     expect(base.compose(delta).compose(inverted)).toEqual(base);
+      11 |   });
+      12 | });
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-56cf9b4/testCase.test.ts:9:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.604 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-56cf9b4/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

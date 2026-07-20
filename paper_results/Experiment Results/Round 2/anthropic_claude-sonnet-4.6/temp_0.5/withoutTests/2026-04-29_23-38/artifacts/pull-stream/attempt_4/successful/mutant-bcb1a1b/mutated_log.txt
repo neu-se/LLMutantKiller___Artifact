@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-bcb1a1b/testCase.test.ts
+  reduce sink
+    ✕ should return the single emitted value unchanged when called with 2 arguments and source emits one value (3 ms)
+
+  ● reduce sink › should return the single emitted value unchanged when called with 2 arguments and source emits one value
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 42
+    Received: -999
+
+      25 |         // Original: first value 42 becomes acc, source ends, result = 42
+      26 |         // Mutated: acc=null, reducer(null, 42) = -999
+    > 27 |         expect(result).toBe(42);
+         |                        ^
+      28 |         done();
+      29 |       }
+      30 |     );
+
+      at toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-bcb1a1b/testCase.test.ts:27:24)
+      at cb (../subject_repositories/pull-stream/sinks/reduce.js:10:5)
+      at done (../subject_repositories/pull-stream/sinks/drain.js:26:24)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-bcb1a1b/testCase.test.ts:11:9)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:45:8)
+      at Object.sink (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-bcb1a1b/testCase.test.ts:32:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.452 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-bcb1a1b/testCase.test.ts".

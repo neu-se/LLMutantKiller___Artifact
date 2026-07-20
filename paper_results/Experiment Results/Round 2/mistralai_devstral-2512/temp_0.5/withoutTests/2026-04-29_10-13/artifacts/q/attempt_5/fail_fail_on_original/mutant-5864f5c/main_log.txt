@@ -1,0 +1,41 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-5864f5c/testCase.test.ts[0m:[93m17[0m:[93m8[0m - [91merror[0m[90m TS7006: [0mParameter 'value' implicitly has an 'any' type.
+
+[7m17[0m       (value) => {
+[7m  [0m [91m       ~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-5864f5c/testCase.test.ts[0m:[93m21[0m:[93m8[0m - [91merror[0m[90m TS7006: [0mParameter 'reason' implicitly has an 'any' type.
+
+[7m21[0m       (reason) => {
+[7m  [0m [91m       ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-5864f5c/testCase.test.ts
+  isStopIteration mutation
+    ✕ should correctly handle StopIteration in generator functions (3 ms)
+
+  ● isStopIteration mutation › should correctly handle StopIteration in generator functions
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: {"toString": [Function toString]}
+    Received: [Function anonymous]
+
+      17 |       (value) => {
+      18 |         // In original code, this should be called with the StopIteration value
+    > 19 |         expect(value).toBe(stopIteration);
+         |                       ^
+      20 |       },
+      21 |       (reason) => {
+      22 |         // In mutated code, this should be called
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-5864f5c/testCase.test.ts:19:23)
+      at fulfilled (../subject_repositories/q/q.js:854:54)
+      at _fulfilled (../subject_repositories/q/q.js:883:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:816:13)
+      at promiseDispatch (../subject_repositories/q/q.js:877:14)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.08 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-5864f5c/testCase.test.ts".

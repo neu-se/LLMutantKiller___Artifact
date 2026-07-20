@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-ba5f198/testCase.test.ts (11.115 s)
+  Q promise library setImmediate detection
+    ✕ should correctly use setImmediate when available for async scheduling (10002 ms)
+
+  ● Q promise library setImmediate detection › should correctly use setImmediate when available for async scheduling
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      48 |                 // In the original code, setImmediate should be called when available
+      49 |                 // In the mutated code, the condition is reversed so it won't be called
+    > 50 |                 expect(setImmediateCalled).toBe(true);
+         |                                            ^
+      51 |                 expect(resolved).toBe(true);
+      52 |                 done();
+      53 |             }, 50);
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-ba5f198/testCase.test.ts:50:44)
+
+  ● Q promise library setImmediate detection › should correctly use setImmediate when available for async scheduling
+
+    thrown: "Exceeded timeout of 10000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      3 |
+      4 | describe("Q promise library setImmediate detection", () => {
+    > 5 |     it("should correctly use setImmediate when available for async scheduling", (done) => {
+        |     ^
+      6 |         // Save original setImmediate if it exists
+      7 |         const originalSetImmediate = global.setImmediate;
+      8 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-ba5f198/testCase.test.ts:5:5)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-ba5f198/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        11.278 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-ba5f198/testCase.test.ts".

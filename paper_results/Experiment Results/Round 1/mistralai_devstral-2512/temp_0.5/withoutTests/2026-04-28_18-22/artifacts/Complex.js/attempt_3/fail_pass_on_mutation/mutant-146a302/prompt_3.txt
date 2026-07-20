@@ -1,0 +1,30 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-146a302/testCase.test.ts
+  Complex.sec()
+    ✕ should correctly compute sec for complex numbers with non-zero real parts (1 ms)
+
+  ● Complex.sec() › should correctly compute sec for complex numbers with non-zero real parts
+
+    ReferenceError: cosh is not defined
+
+       9 |     // For a=1, b=1:
+      10 |     // d = 0.5 * cosh(2) + 0.5 * cos(2)
+    > 11 |     const expectedRe = Math.cos(1) * cosh(1) / (0.5 * cosh(2) + 0.5 * Math.cos(2));
+         |                             ^
+      12 |     const expectedIm = Math.sin(1) * sinh(1) / (0.5 * cosh(2) + 0.5 * Math.cos(2));
+      13 |     expect(result.re).toBeCloseTo(expectedRe, 10);
+      14 |     expect(result.im).toBeCloseTo(expectedIm, 10);
+
+      at Object.cos (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-146a302/testCase.test.ts:11:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.35 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-146a302/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

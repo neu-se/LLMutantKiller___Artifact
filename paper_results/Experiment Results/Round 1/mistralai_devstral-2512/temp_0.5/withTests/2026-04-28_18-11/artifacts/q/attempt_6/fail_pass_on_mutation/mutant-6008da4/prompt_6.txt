@@ -1,0 +1,44 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-6008da4/testCase.test.ts[0m:[93m21[0m:[93m7[0m - [91merror[0m[90m TS2339: [0mProperty 'onerror' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'.
+
+[7m21[0m     Q.onerror = (e: any) => {
+[7m  [0m [91m      ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+PASS llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-6008da4/testCase.test.ts
+  NodeJS environment detection
+    ✓ should correctly detect NodeJS environment for error handling (3 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        1.589 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-6008da4/testCase.test.ts".
+/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/node_modules/expect/build/index.js:314
+      throw error;
+      ^
+
+JestAssertionError: expect(received).toBe(expected) // Object.is equality
+
+Expected: "Error handler should have been called"
+Received: false
+    at Timeout.toBe [as _onTimeout] (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-6008da4/testCase.test.ts:32:21)
+    at listOnTimeout (node:internal/timers:581:17)
+    at processTimers (node:internal/timers:519:7) {
+  matcherResult: {
+    actual: false,
+    expected: 'Error handler should have been called',
+    message: 'expect(received).toBe(expected) // Object.is equality\n' +
+      '\n' +
+      'Expected: "Error handler should have been called"\n' +
+      'Received: false',
+    name: 'toBe',
+    pass: false
+  }
+}
+
+Node.js v20.19.4
+
+---
+Please try again and give me a new test case.

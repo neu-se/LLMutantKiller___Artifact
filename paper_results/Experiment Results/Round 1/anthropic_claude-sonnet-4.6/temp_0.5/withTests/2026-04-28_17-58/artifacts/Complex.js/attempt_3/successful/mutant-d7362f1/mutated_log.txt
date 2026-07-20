@@ -1,0 +1,26 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-d7362f1/testCase.test.ts
+  Complex multiplication with NaN real part
+    ✕ should have imaginary part of 0 when multiplying NaN+0i by a real number (2 ms)
+
+  ● Complex multiplication with NaN real part › should have imaginary part of 0 when multiplying NaN+0i by a real number
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      13 |     // In original: im === 0 (fast path used)
+      14 |     // In mutated: im === NaN (general formula used)
+    > 15 |     expect(isNaN(result.im)).toBe(false);
+         |                              ^
+      16 |     expect(result.im).toBe(0);
+      17 |   });
+      18 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-d7362f1/testCase.test.ts:15:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.057 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-d7362f1/testCase.test.ts".

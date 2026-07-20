@@ -1,0 +1,37 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-54a1090/testCase.test.ts
+  Delta compose
+    ✕ should handle short insert in this when other has a longer plain retain at start (6 ms)
+
+  ● Delta compose › should handle short insert in this when other has a longer plain retain at start
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 3
+    + Received  + 0
+
+      Delta {
+        "ops": Array [
+          Object {
+            "insert": "Hi",
+          },
+    -     Object {
+    -       "retain": 5,
+    -     },
+        ],
+      }
+
+      10 |     const result = a.compose(b);
+      11 |     // Should preserve the insert and the retain
+    > 12 |     expect(result).toEqual(new Delta().insert('Hi').retain(5));
+         |                    ^
+      13 |   });
+      14 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-54a1090/testCase.test.ts:12:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.97 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-54a1090/testCase.test.ts".

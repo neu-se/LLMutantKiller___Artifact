@@ -1,0 +1,24 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-8b8202a/testCase.test.ts
+  Dirty database drain event behavior
+    ✕ should emit drain event only when write queue is empty and no writes are in flight (108 ms)
+
+  ● Dirty database drain event behavior › should emit drain event only when write queue is empty and no writes are in flight
+
+    drain event emitted while write was still in progress
+
+      38 |       setTimeout(() => {
+      39 |         if (drainEmittedDuringWrite) {
+    > 40 |           done(new Error('drain event emitted while write was still in progress'));
+         |                ^
+      41 |         } else if (writeCompleted) {
+      42 |           done();
+      43 |         } else {
+
+      at Timeout._onTimeout (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-8b8202a/testCase.test.ts:40:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.014 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-8b8202a/testCase.test.ts".

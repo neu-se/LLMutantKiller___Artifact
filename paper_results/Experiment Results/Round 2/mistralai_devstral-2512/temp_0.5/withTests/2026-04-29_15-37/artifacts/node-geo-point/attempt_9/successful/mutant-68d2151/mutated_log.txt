@@ -1,0 +1,30 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_9/pending_category/mutant-68d2151/testCase.test.ts
+  GeoPoint.calculateDestination
+    ✕ should calculate correct destination for point at 45 degrees latitude with bearing 90 (2 ms)
+
+  ● GeoPoint.calculateDestination › should calculate correct destination for point at 45 degrees latitude with bearing 90
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 1.2717
+    Received: 2.542204957234162
+
+    Expected precision:    4
+    Expected difference: < 0.00005
+    Received difference:   1.270504957234162
+
+       5 |     const startPoint = new GeoPoint(45, 0);
+       6 |     const result = GeoPoint.calculateDestination(startPoint, 100000, 90);
+    >  7 |     expect(result.longitude).toBeCloseTo(1.2717, 4);
+         |                              ^
+       8 |     expect(result.latitude).toBeCloseTo(44.9929, 4);
+       9 |   });
+      10 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_9/pending_category/mutant-68d2151/testCase.test.ts:7:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.829 s, estimated 1 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_9/pending_category/mutant-68d2151/testCase.test.ts".

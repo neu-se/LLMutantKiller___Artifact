@@ -1,0 +1,30 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-d72d145/testCase.test.ts
+  Complex acsc method
+    ✕ should correctly compute acsc for a complex number (2 ms)
+
+  ● Complex acsc method › should correctly compute acsc for a complex number
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.1504
+    Received: 0.19245144716045318
+
+    Expected precision:    3
+    Expected difference: < 0.0005
+    Received difference:   0.04205144716045317
+
+       9 |     // Mutated: d = a / a + b * b (which is 1 + b * b for a=2)
+      10 |     // This will produce different results, especially for the real part
+    > 11 |     expect(result.re).toBeCloseTo(0.1504, 3);
+         |                       ^
+      12 |     expect(result.im).toBeCloseTo(-0.2313, 3);
+      13 |   });
+      14 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-d72d145/testCase.test.ts:11:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.826 s, estimated 2 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-d72d145/testCase.test.ts".

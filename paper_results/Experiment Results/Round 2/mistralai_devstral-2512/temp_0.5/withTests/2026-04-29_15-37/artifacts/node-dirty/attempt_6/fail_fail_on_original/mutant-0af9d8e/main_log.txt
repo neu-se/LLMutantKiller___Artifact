@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-0af9d8e/testCase.test.ts
+  drain event emission condition
+    ✕ should emit drain when inFlightWrites reaches zero (10 ms)
+
+  ● drain event emission condition › should emit drain when inFlightWrites reaches zero
+
+    Drain emitted before all writes completed
+
+      47 |         // In mutated code: drain emits when inFlightWrites > 0 (prematurely)
+      48 |         if (writeCallbacksCompleted < totalWrites) {
+    > 49 |           done(new Error('Drain emitted before all writes completed'));
+         |                ^
+      50 |         } else {
+      51 |           done();
+      52 |         }
+
+      at Dirty.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-0af9d8e/testCase.test.ts:49:16)
+      at Object.emit [as callback] (../subject_repositories/node-dirty/lib/dirty/dirty.js:190:70)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.363 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-0af9d8e/testCase.test.ts".

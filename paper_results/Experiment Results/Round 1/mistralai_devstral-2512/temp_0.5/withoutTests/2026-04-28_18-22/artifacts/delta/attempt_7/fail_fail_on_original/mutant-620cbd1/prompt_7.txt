@@ -1,0 +1,49 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-620cbd1/testCase.test.ts
+  Delta compose with empty retain
+    ✕ should optimize when composing with empty retain at start (7 ms)
+
+  ● Delta compose with empty retain › should optimize when composing with empty retain at start
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 10
+    + Received  +  1
+
+      Array [
+        Object {
+    -     "attributes": Object {
+    -       "color": "red",
+    -     },
+    -     "insert": "a",
+    -   },
+    -   Object {
+    -     "attributes": Object {
+    -       "color": "red",
+    -     },
+    -     "insert": "b",
+    +     "insert": "ab",
+        },
+      ]
+
+       6 |     const delta2 = new Delta().retain(0, { color: "red" });
+       7 |     const result = delta1.compose(delta2);
+    >  8 |     expect(result.ops).toEqual([
+         |                        ^
+       9 |       { insert: "a", attributes: { color: "red" } },
+      10 |       { insert: "b", attributes: { color: "red" } }
+      11 |     ]);
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-620cbd1/testCase.test.ts:8:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.061 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-620cbd1/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

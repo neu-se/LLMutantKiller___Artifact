@@ -1,0 +1,32 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-6acdfa8/testCase.test.ts
+  retain() with non-object attributes
+    ✕ should not add attributes when attributes is a non-object primitive string (5 ms)
+
+  ● retain() with non-object attributes › should not add attributes when attributes is a non-object primitive string
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 1
+
+      Object {
+    +   "attributes": "bold",
+        "retain": 2,
+      }
+
+       8 |     const delta = new Delta().retain(2, 'bold' as any);
+       9 |     expect(delta.ops.length).toEqual(1);
+    > 10 |     expect(delta.ops[0]).toEqual({ retain: 2 });
+         |                          ^
+      11 |     expect((delta.ops[0] as any).attributes).toBeUndefined();
+      12 |   });
+      13 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-6acdfa8/testCase.test.ts:10:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.861 s, estimated 4 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-6acdfa8/testCase.test.ts".

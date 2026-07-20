@@ -1,0 +1,49 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-1042f74/testCase.test.ts (7.411 s)
+  drain function
+    ✕ should call the done callback with an error when the read function throws an error (5003 ms)
+
+  ● drain function › should call the done callback with an error when the read function throws an error
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 1
+    Received:   1
+
+      17 |     // and the read function should be called again
+      18 |     setTimeout(() => {
+    > 19 |       expect(readCount).toBeGreaterThan(1);
+         |                         ^
+      20 |       expect(doneCallback).toHaveBeenCalledTimes(1);
+      21 |       expect(doneCallback).toHaveBeenCalledWith(true);
+      22 |       done();
+
+      at Timeout.toBeGreaterThan [as _onTimeout] (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-1042f74/testCase.test.ts:19:25)
+
+  ● drain function › should call the done callback with an error when the read function throws an error
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe('drain function', () => {
+    > 4 |   it('should call the done callback with an error when the read function throws an error', (done) => {
+        |   ^
+      5 |     let readCount = 0;
+      6 |     const read = jest.fn((err, cb) => {
+      7 |       readCount++;
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-1042f74/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-1042f74/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.645 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-1042f74/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

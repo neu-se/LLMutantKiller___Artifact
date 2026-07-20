@@ -1,0 +1,30 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-7978ad2/testCase.test.ts[0m:[93m1[0m:[93m26[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import AttributeMap from "../../../../../../../../../../../subject_repositories/delta/src/AttributeMap.ts";
+[7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-7978ad2/testCase.test.ts
+  AttributeMap.diff
+    ✕ should treat non-object b as empty object and return null for keys in a (1 ms)
+
+  ● AttributeMap.diff › should treat non-object b as empty object and return null for keys in a
+
+    TypeError: Cannot convert undefined or null to object
+        at Function.keys (<anonymous>)
+
+      46 |     }
+      47 |     const attributes = Object.keys(a)
+    > 48 |       .concat(Object.keys(b))
+         |                      ^
+      49 |       .reduce<AttributeMap>((attrs, key) => {
+      50 |         if (!isEqual(a[key], b[key])) {
+      51 |           attrs[key] = b[key] === undefined ? null : b[key];
+
+      at Object.keys (../subject_repositories/delta/src/AttributeMap.ts:48:22)
+      at Object.diff (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-7978ad2/testCase.test.ts:11:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.38 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-7978ad2/testCase.test.ts".

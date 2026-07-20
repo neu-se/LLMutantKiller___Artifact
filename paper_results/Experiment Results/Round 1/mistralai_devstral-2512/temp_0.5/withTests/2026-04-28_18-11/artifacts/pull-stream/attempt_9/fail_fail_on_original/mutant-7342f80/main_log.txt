@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-7342f80/testCase.test.ts
+  drain without done callback
+    ✕ should warn when no done callback is provided (105 ms)
+
+  ● drain without done callback › should warn when no done callback is provided
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: Any<Error>
+
+    Number of calls: 0
+
+      19 |     setTimeout(() => {
+      20 |       try {
+    > 21 |         expect(consoleWarnSpy).toHaveBeenCalledWith(expect.any(Error));
+         |                                ^
+      22 |         const error = consoleWarnSpy.mock.calls[0][0];
+      23 |         expect(error.message).toBe('no done callback supplied');
+      24 |         done();
+
+      at Timeout.toHaveBeenCalledWith [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-7342f80/testCase.test.ts:21:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.508 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-7342f80/testCase.test.ts".

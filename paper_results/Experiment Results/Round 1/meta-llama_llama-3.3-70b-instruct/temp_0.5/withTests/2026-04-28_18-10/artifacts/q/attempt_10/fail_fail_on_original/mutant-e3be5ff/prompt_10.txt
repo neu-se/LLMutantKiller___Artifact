@@ -1,0 +1,46 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-e3be5ff/testCase.test.ts[0m:[93m9[0m:[93m15[0m - [91merror[0m[90m TS2551: [0mProperty 'trackUnhandledRejections' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'. Did you mean 'resetUnhandledRejections'?
+
+[7m9[0m         if (Q.trackUnhandledRejections) {
+[7m [0m [91m              ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96m../subject_repositories/q/q.js[0m:[93m1114[0m:[93m1[0m
+    [7m1114[0m Q.resetUnhandledRejections = resetUnhandledRejections;
+    [7m    [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'resetUnhandledRejections' is declared here.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-e3be5ff/testCase.test.ts
+  Q
+    ✕ should handle unhandled rejections correctly (4 ms)
+
+  ● Q › should handle unhandled rejections correctly
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 1
+
+      Array [
+        "(no stack) test reason",
+    +   "(no stack) test reason 2",
+      ]
+
+      11 |         }
+      12 |         Q.reject("test reason 2");
+    > 13 |         expect(Q.getUnhandledReasons()).toEqual([`(no stack) ${reason}`]);
+         |                                         ^
+      14 |     });
+      15 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-e3be5ff/testCase.test.ts:13:41)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.763 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-e3be5ff/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

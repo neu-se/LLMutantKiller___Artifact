@@ -1,0 +1,41 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-7abceb4/testCase.test.ts
+  Complex
+    ✕ should handle acsch correctly for b === 0 (2 ms)
+    ✕ should handle acsch correctly for b !== 0 (1 ms)
+
+  ● Complex › should handle acsch correctly for b === 0
+
+    Cannot find module './complex.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-7abceb4/testCase.test.ts'
+
+      1 | describe('Complex', () => {
+      2 |   it('should handle acsch correctly for b === 0', () => {
+    > 3 |     const Complex = require('./complex.js').Complex;
+        |                     ^
+      4 |     const c = new Complex(1, 0);
+      5 |     const result = c.acsch();
+      6 |     expect(result.re).toBeCloseTo(0, 10);
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-7abceb4/testCase.test.ts:3:21)
+
+  ● Complex › should handle acsch correctly for b !== 0
+
+    Cannot find module './complex.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-7abceb4/testCase.test.ts'
+
+       9 |
+      10 |   it('should handle acsch correctly for b !== 0', () => {
+    > 11 |     const Complex = require('./complex.js').Complex;
+         |                     ^
+      12 |     const c = new Complex(0, 1);
+      13 |     const result = c.acsch();
+      14 |     expect(result.re).toBeCloseTo(0, 10);
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-7abceb4/testCase.test.ts:11:21)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        2.575 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-7abceb4/testCase.test.ts".

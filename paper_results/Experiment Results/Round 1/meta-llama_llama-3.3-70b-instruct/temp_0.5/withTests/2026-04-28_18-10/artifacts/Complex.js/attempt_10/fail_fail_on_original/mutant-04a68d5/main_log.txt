@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-04a68d5/testCase.test.ts
+  Complex
+    ✕ should throw an error when sech is called with invalid this[""] (2 ms)
+
+  ● Complex › should throw an error when sech is called with invalid this[""]
+
+    Cannot find module './complex.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-04a68d5/testCase.test.ts'
+
+      1 | describe('Complex', () => {
+      2 |   it('should throw an error when sech is called with invalid this[""]', () => {
+    > 3 |     const Complex = require('./complex.js');
+        |                     ^
+      4 |     const complex = new Complex(1, 0);
+      5 |     complex.re = undefined;
+      6 |     expect(() => complex.sech()).toThrowError();
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-04a68d5/testCase.test.ts:3:21)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.071 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-04a68d5/testCase.test.ts".

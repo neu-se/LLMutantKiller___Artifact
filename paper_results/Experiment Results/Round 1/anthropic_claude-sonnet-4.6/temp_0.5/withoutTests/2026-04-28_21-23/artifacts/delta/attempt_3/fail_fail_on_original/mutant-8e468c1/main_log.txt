@@ -1,0 +1,39 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-8e468c1/testCase.test.ts
+  Delta compose
+    ✕ correctly composes when other starts with plain retain followed by insert and this starts with delete then insert (6 ms)
+
+  ● Delta compose › correctly composes when other starts with plain retain followed by insert and this starts with delete then insert
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Delta {
+        "ops": Array [
+          Object {
+    -       "delete": 3,
+    +       "insert": "ABCDE!",
+          },
+          Object {
+    -       "insert": "ABCDE!",
+    +       "delete": 3,
+          },
+        ],
+      }
+
+      15 |     // the optimization loop copies delete(3) and advances other's retain by 3,
+      16 |     // leaving only retain(2) which only covers "AB" before the "!" is inserted
+    > 17 |     expect(result).toEqual(new Delta([{ delete: 3 }, { insert: 'ABCDE!' }]));
+         |                    ^
+      18 |   });
+      19 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-8e468c1/testCase.test.ts:17:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.064 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-8e468c1/testCase.test.ts".

@@ -1,0 +1,46 @@
+[
+  {
+    "accessPath": "plural",
+    "descriptor": {
+      "type": "function",
+      "signature": "(word, num)",
+      "implementation": "function plural(word, num) {\n  var i\n    , rule\n\n  if (num !== 1 || num === undefined) {\n    for (i = 0; i < rules.length; i++) {\n      rule = rules[i]\n\n      if (type(rule[0]) === 'RegExp' && rule[0].test(word)) {\n        return type(rule[1]) === 'Function' ? rule[1](word, rule[0]) : rule[1]\n      }\n      if (type(rule[0]) === 'String' && rule[0] === word) {\n        return type(rule[1]) === 'Function' ? rule[1](word) : rule[1]\n      }\n\n    }\n\n    return word + 's'\n  }\n  return word\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "plural"
+  },
+  {
+    "accessPath": "plural.addRule",
+    "descriptor": {
+      "type": "function",
+      "signature": "(match, result)",
+      "implementation": "function addRule(match, result) {\n  rules.unshift([match, result])\n  return plural\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "plural"
+  },
+  {
+    "accessPath": "plural.unmonkeyPatch",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n  String.prototype.plural = null;\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "plural"
+  },
+  {
+    "accessPath": "plural.monkeyPatch",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function() {\n  if (String.prototype.plural === undefined) {\n    String.prototype.plural = function(num) {\n      return plural(this, num)\n    }\n  }\n  else {\n    throw new Error('Unable to add plural function to String object')\n  }\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "plural"
+  }
+]

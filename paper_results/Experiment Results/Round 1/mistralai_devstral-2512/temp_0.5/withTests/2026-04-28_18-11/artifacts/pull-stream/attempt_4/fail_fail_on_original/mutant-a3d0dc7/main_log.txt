@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-a3d0dc7/testCase.test.ts
+  values source behavior on abort
+    ✕ should handle abort correctly when called with non-true value (3 ms)
+
+  ● values source behavior on abort › should handle abort correctly when called with non-true value
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: null
+
+      17 |         // In mutated code, this WILL trigger abortCb because of "if(true)"
+      18 |         callbackCalled = true;
+    > 19 |         expect(end).toBe(false);
+         |                     ^
+      20 |         expect(data).toBeUndefined();
+      21 |         done();
+      22 |       });
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-a3d0dc7/testCase.test.ts:19:21)
+      at cb (../subject_repositories/pull-stream/sources/values.js:21:7)
+      at read (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-a3d0dc7/testCase.test.ts:15:7)
+      at cb (../subject_repositories/pull-stream/sources/values.js:21:7)
+      at Object.read (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-a3d0dc7/testCase.test.ts:10:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.21 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-a3d0dc7/testCase.test.ts".

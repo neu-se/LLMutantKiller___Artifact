@@ -1,0 +1,35 @@
+import { Q } from "../../../../../../../../subject_repositories/q/q.js";
+
+describe('Q.mapply', () => {
+    it('should dispatch "post" operation', () => {
+        const object = {
+            dispatch: jest.fn(),
+        };
+        const name = 'test';
+        const args = ['arg1', 'arg2'];
+
+        Q.mapply(object, name, args);
+
+        expect(object.dispatch).toHaveBeenCalledTimes(1);
+        expect(object.dispatch).toHaveBeenCalledWith('post', [name, args]);
+    });
+
+    it('should throw an error for mutated code', () => {
+        const object = {
+            dispatch: jest.fn(),
+        };
+        const name = 'test';
+        const args = ['arg1', 'arg2'];
+
+        // Simulate mutated code
+        const originalMapply = Q.mapply;
+        Q.mapply = function(object, name, args) {
+            return object.dispatch('', [name, args]);
+        };
+
+        expect(() => Q.mapply(object, name, args)).toThrow();
+
+        // Restore original mapply function
+        Q.mapply = originalMapply;
+    });
+});

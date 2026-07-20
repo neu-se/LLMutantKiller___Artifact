@@ -1,0 +1,34 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-11e6b02/testCase.test.ts[0m:[93m5[0m:[93m19[0m - [91merror[0m[90m TS7006: [0mParameter 'any' implicitly has an 'any' type.
+
+[7m5[0m     const test = (any) => data !== 'stop';
+[7m [0m [91m                  ~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-11e6b02/testCase.test.ts[0m:[93m7[0m:[93m44[0m - [91merror[0m[90m TS7051: [0mParameter has a name but no type. Did you mean 'arg1: any'?
+
+[7m7[0m     const read = (end: any, cb: (err: any, any) => void) => {
+[7m [0m [91m                                           ~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-11e6b02/testCase.test.ts
+  take function
+    ✕ should behave as expected when last is false (1 ms)
+
+  ● take function › should behave as expected when last is false
+
+    TypeError: cb is not a function
+
+       7 |     const read = (end: any, cb: (err: any, any) => void) => {
+       8 |       if (end) {
+    >  9 |         cb(null, 'stop');
+         |         ^
+      10 |       } else {
+      11 |         cb(null, 'data');
+      12 |       }
+
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-11e6b02/testCase.test.ts:9:9)
+      at read (../subject_repositories/pull-stream/throughs/take.js:25:28)
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-11e6b02/testCase.test.ts:14:21)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.752 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-11e6b02/testCase.test.ts".

@@ -1,0 +1,36 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-f681451/testCase.test.ts
+  Delta transform
+    ✕ complex transform with delete and retain ops (5 ms)
+
+  ● Delta transform › complex transform with delete and retain ops
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 4
+
+      Array [
+        Object {
+    -     "retain": 2,
+    +     "retain": 1,
+    +   },
+    +   Object {
+    +     "delete": 1,
+        },
+      ]
+
+      11 |     // 'b' wants to retain 1 (the inserted 'a') and delete 1 (already deleted)
+      12 |     // transform should give: retain(2) for the insert, then nothing for the delete
+    > 13 |     expect(result.ops).toEqual([{ retain: 2 }]);
+         |                        ^
+      14 |   });
+      15 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-f681451/testCase.test.ts:13:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.188 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-f681451/testCase.test.ts".

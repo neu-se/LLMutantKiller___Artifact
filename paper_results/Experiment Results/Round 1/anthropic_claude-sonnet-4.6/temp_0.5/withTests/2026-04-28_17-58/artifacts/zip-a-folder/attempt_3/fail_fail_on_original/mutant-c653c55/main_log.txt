@@ -1,0 +1,31 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-c653c55/testCase.test.ts[0m:[93m4[0m:[93m47[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m4[0m import { COMPRESSION_LEVEL, ZipAFolder } from "../../../../../../../../../../../subject_repositories/zip-a-folder/lib/ZipAFolder.ts";
+[7m [0m [91m                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-c653c55/testCase.test.ts
+  ZIP store option
+    ✕ should set compression method to STORE (0) in ZIP local file header when store:true is in archiverOptions (32 ms)
+
+  ● ZIP store option › should set compression method to STORE (0) in ZIP local file header when store:true is in archiverOptions
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 8
+
+      28 |         // Original (store:true): compression method = 0 (STORE)
+      29 |         // Mutated (no store:true): compression method = 8 (DEFLATE)
+    > 30 |         expect(compressionMethod).toBe(0);
+         |                                   ^
+      31 |
+      32 |         fs.rmSync(tmpDir, { recursive: true });
+      33 |     });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-c653c55/testCase.test.ts:30:35)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.623 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-c653c55/testCase.test.ts".

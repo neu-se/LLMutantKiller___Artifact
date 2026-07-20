@@ -1,0 +1,27 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_10/pending_category/mutant-d9f9fcf/testCase.test.ts[0m:[93m23[0m:[93m40[0m - [91merror[0m[90m TS2552: [0mCannot find name 'ZipAFolder'. Did you mean 'zipafolder'?
+
+[7m23[0m         const compressSpy = jest.spyOn(ZipAFolder, 'compress');
+[7m  [0m [91m                                       ~~~~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_10/pending_category/mutant-d9f9fcf/testCase.test.ts
+  Zip-A-Folder Test
+    ✕ ZIP test folder with uncompressed compression should call compress with store: true (1 ms)
+
+  ● Zip-A-Folder Test › ZIP test folder with uncompressed compression should call compress with store: true
+
+    ReferenceError: ZipAFolder is not defined
+
+      21 |
+      22 |     it('ZIP test folder with uncompressed compression should call compress with store: true', async () => {
+    > 23 |         const compressSpy = jest.spyOn(ZipAFolder, 'compress');
+         |                                        ^
+      24 |         await zipafolder.zip(testDir, testUNCOMPRESSEDZIP, {
+      25 |             compression: COMPRESSION_LEVEL.uncompressed,
+      26 |         });
+
+      at Object.ZipAFolder (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_10/pending_category/mutant-d9f9fcf/testCase.test.ts:23:40)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.171 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_10/pending_category/mutant-d9f9fcf/testCase.test.ts".

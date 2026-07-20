@@ -1,0 +1,37 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-150356c/testCase.test.ts
+  Delta compose
+    ✕ should reorder insert before delete when composing raw ops with a leading plain retain (6 ms)
+
+  ● Delta compose › should reorder insert before delete when composing raw ops with a leading plain retain
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Array [
+        Object {
+    -     "insert": "X",
+    +     "delete": 2,
+        },
+        Object {
+    -     "delete": 2,
+    +     "insert": "X",
+        },
+      ]
+
+       7 |     const result = delta1.compose(delta2);
+       8 |     const expected = new Delta([{ insert: "X" }, { delete: 2 }]);
+    >  9 |     expect(result.ops).toEqual(expected.ops);
+         |                        ^
+      10 |   });
+      11 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-150356c/testCase.test.ts:9:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.962 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-150356c/testCase.test.ts".

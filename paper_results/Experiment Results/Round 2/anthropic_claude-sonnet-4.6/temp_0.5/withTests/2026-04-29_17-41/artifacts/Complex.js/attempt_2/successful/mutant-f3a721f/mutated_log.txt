@@ -1,0 +1,25 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-f3a721f/testCase.test.ts
+  Complex equals method boundary condition
+    ✕ should return true when two complex numbers are exactly EPSILON apart (boundary of equality) (2 ms)
+
+  ● Complex equals method boundary condition › should return true when two complex numbers are exactly EPSILON apart (boundary of equality)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      10 |     // Original uses <=: Math.abs(epsilon - 0) <= epsilon => true
+      11 |     // Mutant uses <:  Math.abs(epsilon - 0) < epsilon  => false
+    > 12 |     expect(c1.equals(c2)).toBe(true);
+         |                           ^
+      13 |   });
+      14 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-f3a721f/testCase.test.ts:12:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.786 s, estimated 1 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-f3a721f/testCase.test.ts".

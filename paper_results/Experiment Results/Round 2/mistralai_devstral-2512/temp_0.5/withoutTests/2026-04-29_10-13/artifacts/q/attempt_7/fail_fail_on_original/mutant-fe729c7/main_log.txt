@@ -1,0 +1,39 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-fe729c7/testCase.test.ts[0m:[93m9[0m:[93m47[0m - [91merror[0m[90m TS2345: [0mArgument of type '(acc: number, val: any, idx: number, array: any) => number' is not assignable to parameter of type '(previousValue: unknown, currentValue: any, currentIndex: number, array: any[]) => unknown'.
+  Types of parameters 'acc' and 'previousValue' are incompatible.
+    Type 'unknown' is not assignable to type 'number'.
+
+[7m9[0m       return Array.prototype.reduce.call(arr, (acc: number, val: any, idx: number, array: any) => {
+[7m [0m [91m                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-fe729c7/testCase.test.ts
+  Q array_reduce mutation test
+    ✕ should correctly handle sparse arrays in reduce by detecting hole processing (2 ms)
+
+  ● Q array_reduce mutation test › should correctly handle sparse arrays in reduce by detecting hole processing
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      17 |       // Original code: holeDetected should be true (hole is properly detected)
+      18 |       // Mutated code: holeDetected should be false (all indices treated as existing)
+    > 19 |       expect(holeDetected).toBe(true);
+         |                            ^
+      20 |     });
+      21 |   });
+      22 | });
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-fe729c7/testCase.test.ts:19:28)
+      at fulfilled (../subject_repositories/q/q.js:854:54)
+      at _fulfilled (../subject_repositories/q/q.js:883:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:816:13)
+      at apply (../subject_repositories/q/q.js:570:49)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.12 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-fe729c7/testCase.test.ts".

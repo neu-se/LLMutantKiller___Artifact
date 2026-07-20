@@ -1,0 +1,34 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-5e8749f/testCase.test.ts[0m:[93m9[0m:[93m11[0m - [91merror[0m[90m TS2339: [0mProperty 'untrackRejection' does not exist on type 'typeof export='.
+
+[7m9[0m         q.untrackRejection(promise);
+[7m [0m [91m          ~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-5e8749f/testCase.test.ts
+  Q library
+    ✕ should track and untrack rejections properly (4 ms)
+
+  ● Q library › should track and untrack rejections properly
+
+    TypeError: q.untrackRejection is not a function
+
+       7 |         const initialLength = q.getUnhandledReasons().length;
+       8 |         expect(initialLength).toBe(1);
+    >  9 |         q.untrackRejection(promise);
+         |           ^
+      10 |         const finalLength = q.getUnhandledReasons().length;
+      11 |         expect(finalLength).toBe(0);
+      12 |     });
+
+      at Object.untrackRejection (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-5e8749f/testCase.test.ts:9:11)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.267 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-5e8749f/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

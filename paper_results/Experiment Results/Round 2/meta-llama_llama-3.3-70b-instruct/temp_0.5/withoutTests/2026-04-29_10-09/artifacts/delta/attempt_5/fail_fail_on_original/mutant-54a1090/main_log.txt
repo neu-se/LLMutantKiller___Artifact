@@ -1,0 +1,36 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-54a1090/testCase.test.ts
+  Delta
+    ✕ should compose correctly when thisIter.peekType() is "insert" and thisIter.peekLength() is less than or equal to firstLeft (6 ms)
+
+  ● Delta › should compose correctly when thisIter.peekType() is "insert" and thisIter.peekLength() is less than or equal to firstLeft
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 4
+
+      Array [
+        Object {
+    -     "insert": "b",
+    +     "insert": "ab",
+    +   },
+    +   Object {
+    +     "delete": 1,
+        },
+      ]
+
+       6 |     const delta2 = new Delta([{ retain: 1 }, { insert: 'b' }]);
+       7 |     const composedDelta = delta1.compose(delta2);
+    >  8 |     expect(composedDelta.ops).toEqual([{ insert: 'b' }]);
+         |                               ^
+       9 |   });
+      10 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-54a1090/testCase.test.ts:8:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.052 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-54a1090/testCase.test.ts".

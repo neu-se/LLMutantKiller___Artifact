@@ -1,0 +1,16 @@
+import { Q } from "../../../q.js";
+
+describe('Q', () => {
+    it('should reject the promise with a timeout error when the timeout is reached', () => {
+        const promise = Q(10).timeout(1);
+        return promise.then(
+            () => {
+                expect(true).toBe(false);
+            },
+            (error: any) => {
+                expect(error).toBeInstanceOf(Error);
+                expect(error.code).toBe('ETIMEDOUT');
+            }
+        );
+    });
+});

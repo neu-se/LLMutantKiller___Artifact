@@ -1,0 +1,102 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-e4a515f/testCase.test.ts
+  Q function
+    ✕ should return a promise when given a resolver that is a function (2 ms)
+    ✕ should throw an error when given a resolver that is not a function (1 ms)
+    ✕ should return a promise when given a resolver that is a function again
+    ✕ should throw an error when given a resolver that is not a function again
+    ✕ should return a promise when given a resolver that is a function again (2 ms)
+
+  ● Q function › should return a promise when given a resolver that is a function
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: Promise
+    Received constructor: Promise
+
+       5 |         const resolver = function () {};
+       6 |         const promise = q(resolver);
+    >  7 |         expect(promise).toBeInstanceOf(Promise);
+         |                         ^
+       8 |     });
+       9 |     it("should throw an error when given a resolver that is not a function", () => {
+      10 |         const resolver = {};
+
+      at Object.toBeInstanceOf (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-e4a515f/testCase.test.ts:7:25)
+
+  ● Q function › should throw an error when given a resolver that is not a function
+
+    expect(received).toThrowError()
+
+    Received function did not throw
+
+       9 |     it("should throw an error when given a resolver that is not a function", () => {
+      10 |         const resolver = {};
+    > 11 |         expect(() => q(resolver)).toThrowError();
+         |                                   ^
+      12 |     });
+      13 |     it("should return a promise when given a resolver that is a function again", () => {
+      14 |         const resolver = function () {};
+
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-e4a515f/testCase.test.ts:11:35)
+
+  ● Q function › should return a promise when given a resolver that is a function again
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: Promise
+    Received constructor: Promise
+
+      14 |         const resolver = function () {};
+      15 |         const promise = q(resolver);
+    > 16 |         expect(promise).toBeInstanceOf(Promise);
+         |                         ^
+      17 |     });
+      18 |     it("should throw an error when given a resolver that is not a function again", () => {
+      19 |         const resolver = {};
+
+      at Object.toBeInstanceOf (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-e4a515f/testCase.test.ts:16:25)
+
+  ● Q function › should throw an error when given a resolver that is not a function again
+
+    expect(received).toThrowError()
+
+    Received function did not throw
+
+      18 |     it("should throw an error when given a resolver that is not a function again", () => {
+      19 |         const resolver = {};
+    > 20 |         expect(() => q(resolver)).toThrowError();
+         |                                   ^
+      21 |     });
+      22 |     it("should return a promise when given a resolver that is a function again", () => {
+      23 |         const resolver = function () {};
+
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-e4a515f/testCase.test.ts:20:35)
+
+  ● Q function › should return a promise when given a resolver that is a function again
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: Promise
+    Received constructor: Promise
+
+      23 |         const resolver = function () {};
+      24 |         const promise = q(resolver);
+    > 25 |         expect(promise).toBeInstanceOf(Promise);
+         |                         ^
+      26 |     });
+      27 | });
+
+      at Object.toBeInstanceOf (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-e4a515f/testCase.test.ts:25:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       5 failed, 5 total
+Snapshots:   0 total
+Time:        2.66 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-e4a515f/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

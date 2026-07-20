@@ -1,0 +1,52 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-ea3f09f/testCase.test.ts[0m:[93m11[0m:[93m24[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 2, '(o: {}): string[]', gave the following error.
+    Argument of type 'number | Record<string, unknown> | undefined' is not assignable to parameter of type '{}'.
+      Type 'undefined' is not assignable to type '{}'.
+  Overload 2 of 2, '(o: object): string[]', gave the following error.
+    Argument of type 'number | Record<string, unknown> | undefined' is not assignable to parameter of type 'object'.
+      Type 'undefined' is not assignable to type 'object'.
+
+[7m11[0m     expect(Object.keys(transformed.ops[0].retain)).toEqual(['test']);
+[7m  [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-ea3f09f/testCase.test.ts[0m:[93m12[0m:[93m12[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m12[0m     expect(transformed.ops[0].retain.test).not.toBe('data2');
+[7m  [0m [91m           ~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-ea3f09f/testCase.test.ts[0m:[93m12[0m:[93m38[0m - [91merror[0m[90m TS2339: [0mProperty 'test' does not exist on type 'number | Record<string, unknown>'.
+  Property 'test' does not exist on type 'number'.
+
+[7m12[0m     expect(transformed.ops[0].retain.test).not.toBe('data2');
+[7m  [0m [91m                                     ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-ea3f09f/testCase.test.ts
+  Delta
+    ✕ should transform correctly when otherData is null (1 ms)
+
+  ● Delta › should transform correctly when otherData is null
+
+    no handlers for embed type "test"
+
+      50 |     const handler = this.handlers[embedType];
+      51 |     if (!handler) {
+    > 52 |       throw new Error(`no handlers for embed type "${embedType}"`);
+         |             ^
+      53 |     }
+      54 |     return handler;
+      55 |   }
+
+      at Function.getHandler (../subject_repositories/delta/src/Delta.ts:52:13)
+      at Delta.getHandler [as transform] (../subject_repositories/delta/src/Delta.ts:518:37)
+      at Object.transform (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-ea3f09f/testCase.test.ts:9:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.833 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-ea3f09f/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

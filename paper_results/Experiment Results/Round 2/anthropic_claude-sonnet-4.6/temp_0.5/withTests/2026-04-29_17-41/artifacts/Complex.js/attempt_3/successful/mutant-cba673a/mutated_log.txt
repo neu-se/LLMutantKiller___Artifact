@@ -1,0 +1,30 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-cba673a/testCase.test.ts
+  Complex cosh fallback behavior
+    ✕ should correctly compute sin of complex number with imaginary part using cosh fallback (8 ms)
+
+  ● Complex cosh fallback behavior › should correctly compute sin of complex number with imaginary part using cosh fallback
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 1.2984575814159773
+    Received: NaN
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   NaN
+
+      10 |     const z = new Complex(1, 1);
+      11 |     const result = z.sin();
+    > 12 |     expect(result.re).toBeCloseTo(Math.sin(1) * Math.cosh(1), 10);
+         |                       ^
+      13 |     expect(result.im).toBeCloseTo(Math.cos(1) * Math.sinh(1), 10);
+      14 |   });
+      15 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-cba673a/testCase.test.ts:12:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.057 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-cba673a/testCase.test.ts".

@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-b5c744e/testCase.test.ts[0m:[93m2[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m2[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-b5c744e/testCase.test.ts
+  Q.any() behavior
+    ✕ should reject when all promises are rejected (1 ms)
+
+  ● Q.any() behavior › should reject when all promises are rejected
+
+    TypeError: Cannot read properties of undefined (reading 'defer')
+
+      4 | describe("Q.any() behavior", () => {
+      5 |   it("should reject when all promises are rejected", async () => {
+    > 6 |     const deferred1 = Q.defer();
+        |                         ^
+      7 |     const deferred2 = Q.defer();
+      8 |     const promises = [deferred1.promise, deferred2.promise];
+      9 |
+
+      at Object.defer (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-b5c744e/testCase.test.ts:6:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.028 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-b5c744e/testCase.test.ts".

@@ -1,0 +1,49 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-468c1de/testCase.test.ts[0m:[93m17[0m:[93m24[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 1.
+
+[7m17[0m     const promise2 = Q.delay(10).then(() => {
+[7m  [0m [91m                       ~~~~~[0m
+
+  [96m../subject_repositories/q/q.js[0m:[93m1872[0m:[93m29[0m
+    [7m1872[0m Q.delay = function (object, timeout) {
+    [7m    [0m [96m                            ~~~~~~~[0m
+    An argument for 'timeout' was not provided.
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-468c1de/testCase.test.ts[0m:[93m23[0m:[93m14[0m - [91merror[0m[90m TS7006: [0mParameter 'results' implicitly has an 'any' type.
+
+[7m23[0m       .then((results) => {
+[7m  [0m [91m             ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-468c1de/testCase.test.ts
+  long stack traces mutation test
+    ✕ should correctly filter stack traces based on minimum stack counter (16 ms)
+
+  ● long stack traces mutation test › should correctly filter stack traces based on minimum stack counter
+
+    expect(received).not.toBe(expected) // Object.is equality
+    Expected: not "Error: Test error
+
+       8 |     // Create a scenario where we can observe the stack trace filtering behavior
+       9 |     // by creating multiple promises in a chain that all reject with the same error
+    > 10 |     const error = new Error("Test error");
+         |                   ^
+      11 |
+      12 |     // Create first promise that rejects
+      13 |     const promise1 = Q.reject(error);
+
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-468c1de/testCase.test.ts:10:19)
+      From previous event:
+      at Object.then (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-468c1de/testCase.test.ts:17:34)
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-468c1de/testCase.test.ts:39:32)
+      From previous event:
+      at Object.then (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-468c1de/testCase.test.ts:23:8)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.52 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-468c1de/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

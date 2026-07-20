@@ -1,0 +1,89 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f1f5f73/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f1f5f73/testCase.test.ts[0m:[93m7[0m:[93m28[0m - [91merror[0m[90m TS7006: [0mParameter 'value' implicitly has an 'any' type.
+
+[7m7[0m             .tap(function (value) {
+[7m [0m [91m                           ~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f1f5f73/testCase.test.ts[0m:[93m19[0m:[93m28[0m - [91merror[0m[90m TS7006: [0mParameter 'value' implicitly has an 'any' type.
+
+[7m19[0m             .tap(function (value) {
+[7m  [0m [91m                           ~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f1f5f73/testCase.test.ts[0m:[93m32[0m:[93m39[0m - [91merror[0m[90m TS7006: [0mParameter 'value' implicitly has an 'any' type.
+
+[7m32[0m         return promise.then(function (value) {
+[7m  [0m [91m                                      ~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f1f5f73/testCase.test.ts[0m:[93m43[0m:[93m45[0m - [91merror[0m[90m TS7006: [0mParameter 'reason' implicitly has an 'any' type.
+
+[7m43[0m         return promise.then(null, function (reason) {
+[7m  [0m [91m                                            ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f1f5f73/testCase.test.ts
+  Q.tap
+    ✕ should call the callback with the value of the promise (1 ms)
+    ✕ should not call the callback if the promise is rejected
+    ✕ should return a promise that fulfills with the original value
+    ✕ should return a promise that rejects with the original reason if the callback throws
+
+  ● Q.tap › should call the callback with the value of the promise
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      4 |     it("should call the callback with the value of the promise", () => {
+      5 |         var called = false;
+    > 6 |         var promise = Q("foo")
+        |                        ^
+      7 |             .tap(function (value) {
+      8 |                 called = true;
+      9 |                 expect(value).toBe("foo");
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f1f5f73/testCase.test.ts:6:24)
+
+  ● Q.tap › should not call the callback if the promise is rejected
+
+    TypeError: Cannot read properties of undefined (reading 'reject')
+
+      16 |     it("should not call the callback if the promise is rejected", () => {
+      17 |         var called = false;
+    > 18 |         var promise = Q.reject("error")
+         |                         ^
+      19 |             .tap(function (value) {
+      20 |                 called = true;
+      21 |             });
+
+      at Object.reject (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f1f5f73/testCase.test.ts:18:25)
+
+  ● Q.tap › should return a promise that fulfills with the original value
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      26 |
+      27 |     it("should return a promise that fulfills with the original value", () => {
+    > 28 |         var promise = Q("foo")
+         |                        ^
+      29 |             .tap(function () {
+      30 |                 return "bar";
+      31 |             });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f1f5f73/testCase.test.ts:28:24)
+
+  ● Q.tap › should return a promise that rejects with the original reason if the callback throws
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      37 |     it("should return a promise that rejects with the original reason if the callback throws", () => {
+      38 |         var error = new Error("test");
+    > 39 |         var promise = Q("foo")
+         |                        ^
+      40 |             .tap(function () {
+      41 |                 throw error;
+      42 |             });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f1f5f73/testCase.test.ts:39:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       4 failed, 4 total
+Snapshots:   0 total
+Time:        2.536 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-f1f5f73/testCase.test.ts".

@@ -1,0 +1,26 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-22bddba/testCase.test.ts
+  Q browser global loading
+    ✕ loads Q onto window when window is defined but self is not defined (67 ms)
+
+  ● Q browser global loading › loads Q onto window when window is defined but self is not defined
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "ok"
+    Received: "error: This environment was not anticipated by Q. Please file a bug."
+
+      35 |     try {
+      36 |       const result = execSync(`node ${JSON.stringify(tmpFile)}`, { encoding: "utf8" });
+    > 37 |       expect(result).toBe("ok");
+         |                      ^
+      38 |     } finally {
+      39 |       fs.unlinkSync(tmpFile);
+      40 |     }
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-22bddba/testCase.test.ts:37:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.46 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-22bddba/testCase.test.ts".

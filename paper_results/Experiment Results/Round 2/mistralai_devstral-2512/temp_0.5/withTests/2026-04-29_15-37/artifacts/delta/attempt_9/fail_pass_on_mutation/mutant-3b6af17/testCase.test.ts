@@ -1,0 +1,22 @@
+import Delta from "../../../../../../../../../../../subject_repositories/delta/src/Delta";
+
+describe('transform() with embeds', () => {
+  it('should correctly transform when thisData is a string and otherData is an embed without priority', () => {
+    Delta.registerEmbed<string>('embed', {
+      compose: (a, b) => a + b,
+      transform: (a, b, priority) => priority ? a : b,
+      invert: (b) => b,
+    });
+
+    const a = new Delta().insert('Hello');
+    const b = new Delta().retain({ embed: 'World' });
+    const result = a.transform(b, false);
+
+    Delta.unregisterEmbed('embed');
+
+    expect(result.ops).toEqual([
+      { retain: 5 },
+      { retain: { embed: 'World' } }
+    ]);
+  });
+});

@@ -1,0 +1,26 @@
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-0802500/testCase.test.ts
+  Delta
+    ✕ should correctly handle composition with insert and retain (3 ms)
+
+  ● Delta › should correctly handle composition with insert and retain
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 2
+    Received: 1
+
+       9 |     delta2.insert('world');
+      10 |     const composedDelta = delta1.compose(delta2);
+    > 11 |     expect(composedDelta.ops.length).toBe(2);
+         |                                      ^
+      12 |     expect(composedDelta.ops[0].insert).toBe('Hello, ');
+      13 |     expect(composedDelta.ops[1].insert).toBe('world');
+      14 |   });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-0802500/testCase.test.ts:11:38)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.278 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-0802500/testCase.test.ts".

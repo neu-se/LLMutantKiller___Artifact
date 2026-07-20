@@ -1,0 +1,27 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-6954c2a/testCase.test.ts[0m:[93m4[0m:[93m29[0m - [91merror[0m[90m TS2307: [0mCannot find module 'follow-redirects' or its corresponding type declarations.
+
+[7m4[0m import { http, https } from 'follow-redirects';
+[7m [0m [91m                            ~~~~~~~~~~~~~~~~~~[0m
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-6954c2a/testCase.test.ts
+  Error message validation
+    ✕ should reject with a properly formatted error message for non-200 status codes (103 ms)
+
+  ● Error message validation › should reject with a properly formatted error message for non-200 status codes
+
+    Should throw an error
+
+      26 |
+      27 |     download.image({ url: 'http://someurl.com/image-error.jpg', dest: '/tmp' })
+    > 28 |       .then(() => done(new Error('Should throw an error')))
+         |                        ^
+      29 |       .catch((err: Error) => {
+      30 |         expect(err.message).toMatch('Request Failed.');
+      31 |         expect(err.message).toMatch('Status Code: 404');
+
+      at llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-6954c2a/testCase.test.ts:28:24
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.038 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-6954c2a/testCase.test.ts".

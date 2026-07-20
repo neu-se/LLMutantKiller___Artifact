@@ -1,0 +1,42 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+(node:90833) [DEP0097] DeprecationWarning: Using a domain property in MakeCallback is deprecated. Use the async_context variant of MakeCallback or the AsyncResource class instead. (Triggered by calling processImmediate on process.)
+(Use `node --trace-deprecation ...` to show where the warning was created)
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-d8c98c9/testCase.test.ts
+  domain exit behavior
+    ✕ should properly handle domain exit after task execution (107 ms)
+
+  ● domain exit behavior › should properly handle domain exit after task execution
+
+    test error
+
+      15 |         taskCompleted = true;
+      16 |         // Force an error to trigger the domain exit path
+    > 17 |         throw new Error("test error");
+         |               ^
+      18 |       });
+      19 |     });
+      20 |
+
+      at llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-d8c98c9/testCase.test.ts:17:15
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+  ● domain exit behavior › should properly handle domain exit after task execution
+
+    Domain did not exit properly
+
+      31 |       // but false in mutated code
+      32 |       if (!domainExited) {
+    > 33 |         done(new Error("Domain did not exit properly"));
+         |              ^
+      34 |         return;
+      35 |       }
+      36 |       expect(domainExited).toBe(true);
+
+      at Timeout._onTimeout (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-d8c98c9/testCase.test.ts:33:14)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.947 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-d8c98c9/testCase.test.ts".

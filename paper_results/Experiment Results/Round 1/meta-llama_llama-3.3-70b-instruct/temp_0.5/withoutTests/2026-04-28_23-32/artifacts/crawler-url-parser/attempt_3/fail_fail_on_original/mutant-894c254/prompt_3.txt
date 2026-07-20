@@ -1,0 +1,45 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-894c254/testCase.test.ts[0m:[93m7[0m:[93m12[0m - [91merror[0m[90m TS18047: [0m'result' is possibly 'null'.
+
+[7m7[0m     expect(result.search).not.toContain('utm_source');
+[7m [0m [91m           ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-894c254/testCase.test.ts[0m:[93m8[0m:[93m12[0m - [91merror[0m[90m TS18047: [0m'result' is possibly 'null'.
+
+[7m8[0m     expect(result.search).not.toContain('ref');
+[7m [0m [91m           ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-894c254/testCase.test.ts[0m:[93m9[0m:[93m12[0m - [91merror[0m[90m TS18047: [0m'result' is possibly 'null'.
+
+[7m9[0m     expect(result.search).toBe('?');
+[7m [0m [91m           ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-894c254/testCase.test.ts
+  crawler-url-parser
+    ✕ should correctly remove query parameters (8 ms)
+
+  ● crawler-url-parser › should correctly remove query parameters
+
+    expect(received).not.toContain(expected) // indexOf
+
+    Expected substring: not "utm_source"
+    Received string:        "?utm_source=google&ref=123"
+
+       5 |     const url = 'https://www.example.com/path?utm_source=google&ref=123';
+       6 |     const result = parse(url);
+    >  7 |     expect(result.search).not.toContain('utm_source');
+         |                               ^
+       8 |     expect(result.search).not.toContain('ref');
+       9 |     expect(result.search).toBe('?');
+      10 |   });
+
+      at Object.toContain (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-894c254/testCase.test.ts:7:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.914 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-894c254/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

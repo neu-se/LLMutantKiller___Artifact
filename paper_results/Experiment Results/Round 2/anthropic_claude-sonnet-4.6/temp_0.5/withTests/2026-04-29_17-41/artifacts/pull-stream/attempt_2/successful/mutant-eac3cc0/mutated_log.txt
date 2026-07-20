@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-eac3cc0/testCase.test.ts
+  drain
+    ✕ should read from source exactly once when op immediately returns false (3 ms)
+
+  ● drain › should read from source exactly once when op immediately returns false
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 2
+
+      17 |       // Original: readCount should be 1 (op returned false after first read, then read(true, done) aborts)
+      18 |       // Mutated: read(undefined, done) causes another read, so done is called with (null, 2) - readCount=2
+    > 19 |       expect(readCount).toBe(1);
+         |                         ^
+      20 |       done();
+      21 |     });
+      22 |
+
+      at toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-eac3cc0/testCase.test.ts:19:25)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-eac3cc0/testCase.test.ts:13:7)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:34:18)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-eac3cc0/testCase.test.ts:13:7)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:46:8)
+      at Object.sink (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-eac3cc0/testCase.test.ts:30:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.43 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-eac3cc0/testCase.test.ts".

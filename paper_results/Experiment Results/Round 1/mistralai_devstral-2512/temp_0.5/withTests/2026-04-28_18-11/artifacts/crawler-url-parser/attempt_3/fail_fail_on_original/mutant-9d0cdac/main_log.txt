@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-9d0cdac/testCase.test.ts
+  parse function protocol validation
+    ✕ should correctly handle two-character protocols when base URL is provided (3 ms)
+
+  ● parse function protocol validation › should correctly handle two-character protocols when base URL is provided
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "http://base.com/ht:test"
+    Received: undefined
+
+       9 |     const result = parse("ht:test", "http://base.com");
+      10 |     // Original code treats "ht:" as relative path and resolves against base URL
+    > 11 |     expect(result?.url).toBe("http://base.com/ht:test");
+         |                         ^
+      12 |   });
+      13 | });
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-9d0cdac/testCase.test.ts:11:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.444 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-9d0cdac/testCase.test.ts".

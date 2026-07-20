@@ -1,0 +1,57 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-a201b28/testCase.test.ts
+  dirty db
+    ✕ should emit error event with a message when a corrupted row is encountered (9 ms)
+
+  ● dirty db › should emit error event with a message when a corrupted row is encountered
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: Error
+    Received constructor: Error
+
+      15 |
+      16 |     db.on('error', (err) => {
+    > 17 |       expect(err).toBeInstanceOf(Error);
+         |                   ^
+      18 |       expect(err.message).not.toBe('');
+      19 |       fs.unlinkSync(filePath);
+      20 |       done();
+
+      at Dirty.toBeInstanceOf (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-a201b28/testCase.test.ts:17:19)
+      at emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:189:46)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.299 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-a201b28/testCase.test.ts".
+node:events:502
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: write after end
+    at _write (node:internal/streams/writable:489:11)
+    at WriteStream.Writable.write (node:internal/streams/writable:510:10)
+    at Dirty.write [as _flush] (/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/node-dirty/lib/dirty/dirty.js:188:47)
+    at Dirty._flush [as set] (/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/node-dirty/lib/dirty/dirty.js:37:12)
+    at Dirty.set (/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-a201b28/testCase.test.ts:24:10)
+    at Dirty.emit (node:events:536:35)
+    at ReadStream.emit (/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/node-dirty/lib/dirty/dirty.js:154:16)
+    at ReadStream.emit (node:events:524:28)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21)
+Emitted 'error' event on WriteStream instance at:
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'ERR_STREAM_WRITE_AFTER_END'
+}
+
+Node.js v20.19.4
+
+---
+Please try again and give me a new test case.

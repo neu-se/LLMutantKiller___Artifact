@@ -1,0 +1,58 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-bcb1a1b/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/sinks/reduce.js"' has no exported member 'reduce'.
+
+[7m1[0m import { reduce } from '../../../../../../../../../../../subject_repositories/pull-stream/sinks/reduce.js';
+[7m [0m [91m         ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-bcb1a1b/testCase.test.ts
+  reduce function
+    ✕ should return a function that calls the callback with the accumulated value when the source stream ends (1 ms)
+    ✕ should return the sink function when the callback is not provided and two arguments are passed
+    ✕ should return the sink function when the callback is not provided and one argument is passed (1 ms)
+
+  ● reduce function › should return a function that calls the callback with the accumulated value when the source stream ends
+
+    TypeError: (0 , reduce_js_1.reduce) is not a function
+
+      21 |     };
+      22 |
+    > 23 |     const sink = reduce(reducer, 0, cb);
+         |                        ^
+      24 |     expect(typeof sink).toBe('function');
+      25 |     sink(source);
+      26 |     expect(called).toBe(true);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-bcb1a1b/testCase.test.ts:23:24)
+
+  ● reduce function › should return the sink function when the callback is not provided and two arguments are passed
+
+    TypeError: (0 , reduce_js_1.reduce) is not a function
+
+      39 |
+      40 |     const reducer = (acc: number, current: number) => acc + current;
+    > 41 |     const sink = reduce(reducer, 0);
+         |                        ^
+      42 |     expect(typeof sink).toBe('function');
+      43 |     sink(source);
+      44 |   });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-bcb1a1b/testCase.test.ts:41:24)
+
+  ● reduce function › should return the sink function when the callback is not provided and one argument is passed
+
+    TypeError: (0 , reduce_js_1.reduce) is not a function
+
+      56 |
+      57 |     const reducer = (acc: number, current: number) => acc + current;
+    > 58 |     const sink = reduce(reducer, (err: any, result: number) => {
+         |                        ^
+      59 |       expect(err).toBeNull();
+      60 |       expect(result).toBe(3);
+      61 |     });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-bcb1a1b/testCase.test.ts:58:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        1.576 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-bcb1a1b/testCase.test.ts".

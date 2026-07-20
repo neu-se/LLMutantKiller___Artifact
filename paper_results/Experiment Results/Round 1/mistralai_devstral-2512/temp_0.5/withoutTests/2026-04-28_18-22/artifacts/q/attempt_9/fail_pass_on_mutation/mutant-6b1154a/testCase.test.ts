@@ -1,0 +1,28 @@
+const Q = require("../../../../../../../../../../../subject_repositories/q/q.js");
+
+describe("Q.done behavior with progress callback", () => {
+  it("should handle promise correctly when only progress callback is provided", (done) => {
+    const deferred = Q.defer();
+    let progressCalled = false;
+
+    // Call done with only progress callback
+    const result = deferred.promise.done(undefined, undefined, (value: any) => {
+      progressCalled = true;
+    });
+
+    // In original code, when only progress is provided, it should return undefined
+    // In mutated code, it returns false
+    expect(result).toBeUndefined();
+
+    // Notify progress
+    deferred.notify("test");
+
+    // Also test that the promise still works correctly
+    deferred.resolve("success");
+
+    setTimeout(() => {
+      expect(progressCalled).toBe(true);
+      done();
+    }, 10);
+  });
+});

@@ -1,0 +1,58 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-382b9b0/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-382b9b0/testCase.test.ts
+  nodeify function
+    ✕ should call the callback with the result of the promise (1 ms)
+    ✕ should call the callback with an error if the promise is rejected
+    ✕ should throw an error if no callback is provided in the mutated code
+
+  ● nodeify function › should call the callback with the result of the promise
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      3 | describe("nodeify function", () => {
+      4 |     it("should call the callback with the result of the promise", () => {
+    > 5 |         const promise = Q(10);
+        |                          ^
+      6 |         let called = false;
+      7 |         promise.nodeify((err: any, result: any) => {
+      8 |             expect(err).toBeNull();
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-382b9b0/testCase.test.ts:5:26)
+
+  ● nodeify function › should call the callback with an error if the promise is rejected
+
+    TypeError: Cannot read properties of undefined (reading 'reject')
+
+      14 |
+      15 |     it("should call the callback with an error if the promise is rejected", () => {
+    > 16 |         const promise = Q.reject(new Error("Test error"));
+         |                           ^
+      17 |         let called = false;
+      18 |         promise.nodeify((err: any, result: any) => {
+      19 |             expect(err).toBeInstanceOf(Error);
+
+      at Object.reject (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-382b9b0/testCase.test.ts:16:27)
+
+  ● nodeify function › should throw an error if no callback is provided in the mutated code
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      26 |
+      27 |     it("should throw an error if no callback is provided in the mutated code", () => {
+    > 28 |         const promise = Q(10);
+         |                          ^
+      29 |         expect(() => promise.nodeify()).toThrowError();
+      30 |     });
+      31 | });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-382b9b0/testCase.test.ts:28:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        1.161 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-382b9b0/testCase.test.ts".

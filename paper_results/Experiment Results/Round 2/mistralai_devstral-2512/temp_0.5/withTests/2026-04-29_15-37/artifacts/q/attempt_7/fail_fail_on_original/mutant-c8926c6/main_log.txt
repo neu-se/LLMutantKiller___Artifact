@@ -1,0 +1,49 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-c8926c6/testCase.test.ts[0m:[93m25[0m:[93m9[0m - [91merror[0m[90m TS2741: [0mProperty '__promisify__' is missing in type '(callback: Function) => NodeJS.Immediate' but required in type 'typeof setImmediate'.
+
+[7m25[0m         global.setImmediate = (callback: Function) => {
+[7m  [0m [91m        ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/node/timers.d.ts[0m:[93m180[0m:[93m22[0m
+    [7m180[0m             export { __promisify__ };
+    [7m   [0m [96m                     ~~~~~~~~~~~~~[0m
+    '__promisify__' is declared here.
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-c8926c6/testCase.test.ts[0m:[93m27[0m:[93m43[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 2, '(callback: () => void): Immediate', gave the following error.
+    Argument of type 'Function' is not assignable to parameter of type '() => void'.
+      Type 'Function' provides no match for the signature '(): void'.
+  Overload 2 of 2, '(callback: (_: void) => void): Immediate', gave the following error.
+    Argument of type 'Function' is not assignable to parameter of type '(_: void) => void'.
+      Type 'Function' provides no match for the signature '(_: void): void'.
+
+[7m27[0m             return originalSetImmediate?.(callback);
+[7m  [0m [91m                                          ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-c8926c6/testCase.test.ts
+  Node.js environment detection
+    ✕ should use correct async mechanism in non-Node.js environments with process.nextTick (2 ms)
+
+  ● Node.js environment detection › should use correct async mechanism in non-Node.js environments with process.nextTick
+
+    process.nextTick was incorrectly used
+
+      at Object.nextTick (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-c8926c6/testCase.test.ts:15:22)
+      at nextTick (../../../subject_repositories/q/q.js:197:21)
+      at Function.requestTick [as nextTick] (../../../subject_repositories/q/q.js:180:13)
+      at Promise.nextTick [as then] (../../../subject_repositories/q/q.js:876:7)
+      at Object.then (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-c8926c6/testCase.test.ts:32:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.171 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-c8926c6/testCase.test.ts".
+node:internal/process/promises:391
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+Error: Test timed out
+    at Timeout._onTimeout (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-c8926c6/testCase.test.ts:50:18)
+    at listOnTimeout (node:internal/timers:581:17)
+    at processTimers (node:internal/timers:519:7)
+
+Node.js v20.19.4

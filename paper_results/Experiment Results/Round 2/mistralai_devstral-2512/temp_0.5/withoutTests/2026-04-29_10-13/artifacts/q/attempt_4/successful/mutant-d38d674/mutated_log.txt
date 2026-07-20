@@ -1,0 +1,34 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/subject_repositories/q/q.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/subject_repositories/q/q.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-d38d674/testCase.test.ts
+  Q.makePromise fallback behavior
+    ✕ should use fallback when descriptor method is missing (6 ms)
+
+  ● Q.makePromise fallback behavior › should use fallback when descriptor method is missing
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "fallback result"
+    Received: {"exception": [Error: Promise does not support operation: when], "inspect": [Function inspect], "promiseDispatch": [Function anonymous], "valueOf": [Function anonymous]}
+
+       7 |
+       8 |     return promise.then((result: any) => {
+    >  9 |       expect(result).toBe("fallback result");
+         |                      ^
+      10 |       expect(fallback).toHaveBeenCalled();
+      11 |     });
+      12 |   });
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-d38d674/testCase.test.ts:9:22)
+      at fulfilled (../subject_repositories/q/q.js:855:54)
+      at _fulfilled (../subject_repositories/q/q.js:884:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:817:13)
+      at promiseDispatch (../subject_repositories/q/q.js:878:14)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.828 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-d38d674/testCase.test.ts".

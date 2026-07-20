@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-7480cba/testCase.test.ts
+  parse localhost URL with protocol-like prefix
+    ✕ should correctly parse localhost:// URL without double-prepending http:// (4 ms)
+
+  ● parse localhost URL with protocol-like prefix › should correctly parse localhost:// URL without double-prepending http://
+
+    expect(received).toBeNull()
+
+    Received: {"baseurl": null, "domain": null, "host": "localhost", "path": "//something", "protocol": "http:", "querycount": 0, "search": null, "subdomain": null, "url": "http://localhost//something"}
+
+       8 |     // Both should return null since localhost: is not http/https
+       9 |     // But the URL string differs, let's check what actually happens
+    > 10 |     expect(result).toBeNull();
+         |                    ^
+      11 |   });
+      12 | });
+
+      at Object.toBeNull (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-7480cba/testCase.test.ts:10:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.108 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-7480cba/testCase.test.ts".

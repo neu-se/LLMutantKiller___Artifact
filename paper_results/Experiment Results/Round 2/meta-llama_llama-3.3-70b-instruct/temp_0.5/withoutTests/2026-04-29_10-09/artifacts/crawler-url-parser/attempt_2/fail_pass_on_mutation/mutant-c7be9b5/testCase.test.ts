@@ -1,0 +1,9 @@
+import { parse } from '../../../../../../../../../../../subject_repositories/crawler-url-parser/crawler-url-parser.js';
+
+describe('parse function', () => {
+  it('should return an object with a url property when called with a valid URL', () => {
+    const url = 'https://www.npmjs.com/package/electron-window-manager';
+    const result = parse(url);
+    expect(result).toHaveProperty('url');
+  });
+});

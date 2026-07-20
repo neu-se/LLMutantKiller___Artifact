@@ -1,0 +1,31 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-0af9d8e/testCase.test.ts
+  drain event emission condition
+    ✕ should emit drain only when all writes are completed (9 ms)
+
+  ● drain event emission condition › should emit drain only when all writes are completed
+
+    Drain emitted before all writes completed
+
+      40 |         // Check if all writes completed before drain
+      41 |         if (writeCallbacksCompleted < totalWrites) {
+    > 42 |           done(new Error('Drain emitted before all writes completed'));
+         |                ^
+      43 |           return;
+      44 |         }
+      45 |
+
+      at Dirty.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-0af9d8e/testCase.test.ts:42:16)
+      at Object.emit [as callback] (../subject_repositories/node-dirty/lib/dirty/dirty.js:190:70)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.415 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-0af9d8e/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

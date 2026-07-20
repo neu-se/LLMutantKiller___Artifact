@@ -1,0 +1,24 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-5c7557f/testCase.test.ts
+  dirty drain event after write stream backpressure
+    ✕ should emit drain event when write stream drains with empty queue and no in-flight writes (3008 ms)
+
+  ● dirty drain event after write stream backpressure › should emit drain event when write stream drains with empty queue and no in-flight writes
+
+    drain event was never emitted
+
+      17 |       const drainPromise = new Promise<void>((resolve, reject) => {
+      18 |         const timeout = setTimeout(
+    > 19 |           () => reject(new Error('drain event was never emitted')),
+         |                        ^
+      20 |           3000
+      21 |         );
+      22 |         db.once('drain', () => {
+
+      at Timeout._onTimeout (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-5c7557f/testCase.test.ts:19:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        4.951 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-5c7557f/testCase.test.ts".

@@ -1,0 +1,14 @@
+// llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-2a78613/testCase.test.ts
+import { Complex } from "../../../../../../../../../../../subject_repositories/Complex.js/complex.js";
+
+describe("Complex multiplication with real numbers", () => {
+  it("should correctly multiply two real numbers using the optimized path", () => {
+    const a = new Complex(1.23456789, 0);
+    const b = new Complex(9.87654321, 0);
+    const result = a.mul(b);
+    // This test specifically targets the optimization path that was mutated
+    // The mutation removes the return statement, causing incorrect behavior
+    expect(result.re).toBeCloseTo(1.23456789 * 9.87654321);
+    expect(result.im).toBe(0);
+  });
+});

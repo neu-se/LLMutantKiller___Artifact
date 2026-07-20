@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-3dbd53a/testCase.test.ts
+  Dirty write stream encoding
+    ✕ should pass utf-8 as encoding option to createWriteStream (1 ms)
+
+  ● Dirty write stream encoding › should pass utf-8 as encoding option to createWriteStream
+
+    TypeError: Cannot redefine property: createWriteStream
+        at Function.defineProperty (<anonymous>)
+
+      12 |     let capturedEncoding: string | undefined;
+      13 |     
+    > 14 |     Object.defineProperty(fs, 'createWriteStream', {
+         |            ^
+      15 |       configurable: true,
+      16 |       writable: true,
+      17 |       value: function(path: any, options?: any) {
+
+      at Object.defineProperty (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-3dbd53a/testCase.test.ts:14:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.109 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_9/pending_category/mutant-3dbd53a/testCase.test.ts".

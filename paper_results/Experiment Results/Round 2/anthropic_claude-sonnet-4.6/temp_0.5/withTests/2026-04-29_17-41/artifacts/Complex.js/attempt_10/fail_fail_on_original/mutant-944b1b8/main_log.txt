@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-944b1b8/testCase.test.ts
+  asec
+    ✕ asec of purely imaginary tiny number should give finite real part (3 ms)
+
+  ● asec › asec of purely imaginary tiny number should give finite real part
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+       7 |     // Original: d = tiny*tiny = 0 (underflow), a=0 so re=0, im=-Infinity -> acos(0,-Inf)
+       8 |     // Mutated: re=NaN, im=-Infinity -> acos(NaN,-Inf) -> NaN result
+    >  9 |     expect(isNaN(result.re)).toBe(false);
+         |                              ^
+      10 |   });
+      11 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-944b1b8/testCase.test.ts:9:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.053 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-944b1b8/testCase.test.ts".

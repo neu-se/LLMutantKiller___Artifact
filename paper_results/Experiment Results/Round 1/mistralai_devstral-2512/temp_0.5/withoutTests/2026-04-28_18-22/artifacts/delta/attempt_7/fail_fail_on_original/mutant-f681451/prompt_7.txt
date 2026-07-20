@@ -1,0 +1,42 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-f681451/testCase.test.ts
+  Delta transform
+    ✕ should correctly handle overlapping delete operations during transform (5 ms)
+
+  ● Delta transform › should correctly handle overlapping delete operations during transform
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        Object {
+          "retain": 1,
+        },
+        Object {
+    -     "delete": 2,
+    +     "delete": 1,
+        },
+      ]
+
+       7 |     const result = delta1.transform(delta2, false);
+       8 |     const expected = new Delta().retain(1).delete(2);
+    >  9 |     expect(result.ops).toEqual(expected.ops);
+         |                        ^
+      10 |   });
+      11 | });
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-f681451/testCase.test.ts:9:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.888 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-f681451/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

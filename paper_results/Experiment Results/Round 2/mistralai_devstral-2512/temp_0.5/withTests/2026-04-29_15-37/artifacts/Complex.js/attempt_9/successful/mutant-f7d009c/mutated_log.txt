@@ -1,0 +1,29 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-f7d009c/testCase.test.ts
+  Complex.js hypot function mutation
+    ✕ should detect mutation in hypot function with boundary value (3 ms)
+
+  ● Complex.js hypot function mutation › should detect mutation in hypot function with boundary value
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 3000.0001666666626
+    Received: 3000.000166666662
+
+    Expected precision:    13
+    Expected difference: < 5e-14
+    Received difference:   4.547473508864641e-13
+
+      14 |     // Original should match second branch, mutated should match first branch
+      15 |     // Use a precision that will fail when the calculation path changes
+    > 16 |     expect(absValue).toBeCloseTo(expectedSecondBranch, 13);
+         |                      ^
+      17 |   });
+      18 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-f7d009c/testCase.test.ts:16:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.977 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-f7d009c/testCase.test.ts".

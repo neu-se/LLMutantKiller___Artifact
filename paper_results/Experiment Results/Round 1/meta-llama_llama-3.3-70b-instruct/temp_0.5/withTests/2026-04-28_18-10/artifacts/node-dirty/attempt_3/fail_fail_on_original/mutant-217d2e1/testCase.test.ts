@@ -1,0 +1,22 @@
+import { Dirty } from "../../../../../../../../../../../subject_repositories/node-dirty/lib/dirty/dirty.js";
+import * as fs from 'fs';
+import * as path from 'path';
+
+describe('Dirty', () => {
+  it('should not return a string when loading corrupted rows', (done) => {
+    const tmpFile = path.join(__dirname, 'tmp.dirty');
+    fs.writeFileSync(tmpFile, '{"key":"x"}\n{"key":"y"}\nStryker was here!\n');
+    const db = new Dirty(tmpFile);
+    db.on('load', () => {
+      db.forEach((key, value) => {
+        if (typeof value === 'string' && value === 'Stryker was here!') {
+          done.fail('Expected the corrupted row to be ignored');
+        }
+      });
+      done();
+    });
+    db.on('error', (err) => {
+      done.fail('Expected no error to be emitted');
+    });
+  });
+});

@@ -1,0 +1,51 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-56e874a/testCase.test.ts[0m:[93m34[0m:[93m29[0m - [91merror[0m[90m TS18047: [0m'writeStream' is possibly 'null'.
+
+[7m34[0m       const originalWrite = writeStream.write.bind(writeStream);
+[7m  [0m [91m                            ~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-56e874a/testCase.test.ts[0m:[93m35[0m:[93m7[0m - [91merror[0m[90m TS18047: [0m'writeStream' is possibly 'null'.
+
+[7m35[0m       writeStream.write = function(data: any, encoding?: any, cb?: any) {
+[7m  [0m [91m      ~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-56e874a/testCase.test.ts (6.687 s)
+  Dirty database flush behavior
+    ✕ should not write to disk when queue is empty (5004 ms)
+
+  ● Dirty database flush behavior › should not write to disk when queue is empty
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 2
+
+      47 |           // In original code, _flush should return early when queue is empty
+      48 |           // In mutated code, it will proceed and call write
+    > 49 |           expect(writeOperations).toBe(0);
+         |                                   ^
+      50 |           done();
+      51 |         });
+      52 |       });
+
+      at Immediate.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-56e874a/testCase.test.ts:49:35)
+
+  ● Dirty database flush behavior › should not write to disk when queue is empty
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      25 |   });
+      26 |
+    > 27 |   it('should not write to disk when queue is empty', (done) => {
+         |   ^
+      28 |     const db = new Dirty(dbPath);
+      29 |     let writeOperations = 0;
+      30 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-56e874a/testCase.test.ts:27:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-56e874a/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.985 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-56e874a/testCase.test.ts".

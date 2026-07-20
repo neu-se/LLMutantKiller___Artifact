@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-2dfeb02/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2616: [0m'Queue' can only be imported by using 'import Queue = require("../../../../../../../../../../../subject_repositories/q/queue.js")' or a default import.
+
+[7m1[0m import { Queue } from "../../../../../../../../../../../subject_repositories/q/queue.js";
+[7m [0m [91m         ~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-2dfeb02/testCase.test.ts[0m:[93m1[0m:[93m23[0m - [91merror[0m[90m TS2497: [0mThis module can only be referenced with ECMAScript imports/exports by turning on the 'esModuleInterop' flag and referencing its default export.
+
+[7m1[0m import { Queue } from "../../../../../../../../../../../subject_repositories/q/queue.js";
+[7m [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-2dfeb02/testCase.test.ts
+  Queue
+    ✕ should reject with an error when closed (1 ms)
+
+  ● Queue › should reject with an error when closed
+
+    TypeError: queue_js_1.Queue is not a constructor
+
+      3 | describe('Queue', () => {
+      4 |     it('should reject with an error when closed', async () => {
+    > 5 |         const queue = new Queue();
+        |                       ^
+      6 |         queue.close();
+      7 |         await expect(queue.get()).rejects.toThrowError('Can\'t get value from closed queue');
+      8 |     });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-2dfeb02/testCase.test.ts:5:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.749 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-2dfeb02/testCase.test.ts".

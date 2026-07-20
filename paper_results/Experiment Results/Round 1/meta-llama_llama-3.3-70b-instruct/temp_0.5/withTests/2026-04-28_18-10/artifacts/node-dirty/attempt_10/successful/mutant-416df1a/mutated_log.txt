@@ -1,0 +1,46 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-416df1a/testCase.test.ts (8.24 s)
+  Dirty
+    ✕ should not emit error event when writing to disk with an error and callbacks (5002 ms)
+
+  ● Dirty › should not emit error event when writing to disk with an error and callbacks
+
+    Unhandled error. (Error: Could not load corrupted row: invalid json{"key":"key2","val":"value2"}
+
+      136 |               }
+      137 |             } catch (e) {
+    > 138 |               this.emit('error', new Error(`Could not load corrupted row: ${rowStr}`));
+          |                                  ^
+      139 |               return '';
+      140 |             }
+      141 |
+
+      at ../subject_repositories/node-dirty/lib/dirty/dirty.js:138:34
+          at Array.forEach (<anonymous>)
+      at ReadStream.forEach (../subject_repositories/node-dirty/lib/dirty/dirty.js:125:15)
+      at FSReqCallback.wrapper [as oncomplete] (node:fs:683:5))
+      at emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:138:20)
+          at Array.forEach (<anonymous>)
+      at ReadStream.forEach (../subject_repositories/node-dirty/lib/dirty/dirty.js:125:15)
+
+  ● Dirty › should not emit error event when writing to disk with an error and callbacks
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 |
+      5 | describe('Dirty', () => {
+    > 6 |   it('should not emit error event when writing to disk with an error and callbacks', (done) => {
+        |   ^
+      7 |     const file = path.join(__dirname, 'test.dirty');
+      8 |     const db = new Dirty(file);
+      9 |
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-416df1a/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-416df1a/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        8.653 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-416df1a/testCase.test.ts".

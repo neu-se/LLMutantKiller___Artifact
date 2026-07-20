@@ -1,0 +1,33 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-4d10e5e/testCase.test.ts
+  hasStacks behavior
+    ✕ should not attach stack property to deferred promise when longStackSupport is enabled (hasStacks is false by default) (4 ms)
+
+  ● hasStacks behavior › should not attach stack property to deferred promise when longStackSupport is enabled (hasStacks is false by default)
+
+    expect(received).toBeUndefined()
+
+    Received: "    at Function.defer (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js:596:19)
+
+       7 |
+       8 |     try {
+    >  9 |       const deferred = Q.defer();
+         |                          ^
+      10 |       // In the original code, hasStacks = false, so even with longStackSupport = true,
+      11 |       // the condition `if (Q.longStackSupport && hasStacks)` is false,
+      12 |       // and promise.stack should NOT be set.
+
+      at Object.defer (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-4d10e5e/testCase.test.ts:9:26)
+      at Object.toBeUndefined (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-4d10e5e/testCase.test.ts:14:47)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.919 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-4d10e5e/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

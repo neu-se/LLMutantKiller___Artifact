@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-6008da4/testCase.test.ts
+  Q runSingle error handling
+    ✕ re-throws errors asynchronously (non-node behavior) so flush continues (110 ms)
+
+  ● Q runSingle error handling › re-throws errors asynchronously (non-node behavior) so flush continues
+
+    intentional
+
+      14 |     // Schedule throwing task followed by normal task
+      15 |     Q.nextTick(() => {
+    > 16 |       throw new Error("intentional");
+         |             ^
+      17 |     });
+      18 |     Q.nextTick(() => {
+      19 |       secondTaskRan.push(true);
+
+      at llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-6008da4/testCase.test.ts:16:13
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.867 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-6008da4/testCase.test.ts".

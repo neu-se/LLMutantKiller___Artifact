@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-6cbdd2b/testCase.test.ts
+  compose()
+    ✕ throws when composing string insert with boolean retain value (4 ms)
+
+  ● compose() › throws when composing string insert with boolean retain value
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "cannot retain a string"
+
+    Received function did not throw
+
+       7 |     // mutated enters optimization, copies 'A' into ops, advances otherIter, main loop never runs
+       8 |     const b = new Delta([{ retain: true as any }]);
+    >  9 |     expect(() => a.compose(b)).toThrow('cannot retain a string');
+         |                                ^
+      10 |   });
+      11 | });
+
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-6cbdd2b/testCase.test.ts:9:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.427 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-6cbdd2b/testCase.test.ts".

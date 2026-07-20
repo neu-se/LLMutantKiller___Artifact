@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/image-downloader/lib/request.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/image-downloader/lib/request.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_4/pending_category/mutant-31d74e9/testCase.test.ts (5.98 s)
+  download an image
+    ✕ should handle write stream errors during download (5002 ms)
+
+  ● download an image › should handle write stream errors during download
+
+    ENOENT: no such file or directory, open '/invalid/directory/structure/that/does/not/exist/image.png'
+
+
+
+  ● download an image › should handle write stream errors during download
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 |
+      5 | describe('download an image', () => {
+    > 6 |   it('should handle write stream errors during download', async () => {
+        |   ^
+      7 |     const mockUrl = 'http://someurl.com/image-success.png';
+      8 |     const invalidDest = '/invalid/directory/structure/that/does/not/exist/image.png';
+      9 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_4/pending_category/mutant-31d74e9/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_4/pending_category/mutant-31d74e9/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.124 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_4/pending_category/mutant-31d74e9/testCase.test.ts".

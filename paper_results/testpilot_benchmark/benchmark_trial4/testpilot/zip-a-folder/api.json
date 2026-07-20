@@ -1,0 +1,46 @@
+[
+  {
+    "accessPath": "zip-a-folder.ZipAFolder",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "class ZipAFolder {\n    static async tar(srcFolder, tarFilePath, zipAFolderOptions) {\n        const o = zipAFolderOptions || {\n            compression: COMPRESSION_LEVEL.high,\n        };\n        if (o.compression === COMPRESSION_LEVEL.uncompressed) {\n            await ZipAFolder.compress({ srcFolder, targetFilePath: tarFilePath, format: 'tar', zipAFolderOptions });\n        }\n        else {\n            await ZipAFolder.compress({\n                srcFolder,\n                targetFilePath: tarFilePath,\n                format: 'tar',\n                zipAFolderOptions,\n                archiverOptions: {\n                    gzip: true,\n                    gzipOptions: {\n                        level: o.compression,\n                    },\n                },\n            });\n        }\n    }\n    static async zip(srcFolder, zipFilePath, zipAFolderOptions) {\n        const o = zipAFolderOptions || {\n            compression: COMPRESSION_LEVEL.high,\n        };\n        if (o.compression === COMPRESSION_LEVEL.uncompressed) {\n            await ZipAFolder.compress({\n                srcFolder,\n                targetFilePath: zipFilePath,\n                format: 'zip',\n                zipAFolderOptions,\n                archiverOptions: {\n                    store: true,\n                },\n            });\n        }\n        else {\n            await ZipAFolder.compress({\n                srcFolder,\n                targetFilePath: zipFilePath,\n                format: 'zip',\n                zipAFolderOptions,\n                archiverOptions: {\n                    zlib: {\n                        level: o.compression,\n                    },\n                },\n            });\n        }\n    }\n    static async compress({ srcFolder, targetFilePath, format, zipAFolderOptions, archiverOptions, }) {\n        let output;\n        if (!(zipAFolderOptions === null || zipAFolderOptions === void 0 ? void 0 : zipAFolderOptions.customWriteStream) && targetFilePath) {\n            const targetBasePath = path.dirname(targetFilePath);\n            if (targetBasePath === srcFolder) {\n                throw new Error('Source and target folder must be different.');\n            }\n            try {\n                await fs.promises.access(srcFolder, fs.constants.R_OK);\n                await fs.promises.access(targetBasePath, fs.constants.R_OK | fs.constants.W_OK);\n            }\n            catch (e) {\n                throw new Error(`Permission error: ${e.message}`);\n            }\n            output = fs.createWriteStream(targetFilePath);\n        }\n        else if (zipAFolderOptions && zipAFolderOptions.customWriteStream) {\n            output = zipAFolderOptions === null || zipAFolderOptions === void 0 ? void 0 : zipAFolderOptions.customWriteStream;\n        }\n        else {\n            throw new Error('You must either provide a target file path or a custom write stream to write to.');\n        }\n        const zipArchive = archiver(format, archiverOptions || {});\n        return new Promise((resolve, reject) => {\n            output.on('close', resolve);\n            output.on('error', reject);\n            zipArchive.pipe(output);\n            zipArchive.directory(srcFolder, false);\n            zipArchive.finalize();\n        });\n    }\n}",
+      "isAsync": false,
+      "isConstructor": true
+    },
+    "packageName": "zip-a-folder"
+  },
+  {
+    "accessPath": "zip-a-folder.ZipAFolder.tar",
+    "descriptor": {
+      "type": "function",
+      "signature": "(srcFolder, tarFilePath, zipAFolderOptions)",
+      "implementation": "async tar(srcFolder, tarFilePath, zipAFolderOptions) {\n        const o = zipAFolderOptions || {\n            compression: COMPRESSION_LEVEL.high,\n        };\n        if (o.compression === COMPRESSION_LEVEL.uncompressed) {\n            await ZipAFolder.compress({ srcFolder, targetFilePath: tarFilePath, format: 'tar', zipAFolderOptions });\n        }\n        else {\n            await ZipAFolder.compress({\n                srcFolder,\n                targetFilePath: tarFilePath,\n                format: 'tar',\n                zipAFolderOptions,\n                archiverOptions: {\n                    gzip: true,\n                    gzipOptions: {\n                        level: o.compression,\n                    },\n                },\n            });\n        }\n    }",
+      "isAsync": true,
+      "isConstructor": false
+    },
+    "packageName": "zip-a-folder"
+  },
+  {
+    "accessPath": "zip-a-folder.ZipAFolder.zip",
+    "descriptor": {
+      "type": "function",
+      "signature": "(srcFolder, zipFilePath, zipAFolderOptions)",
+      "implementation": "async zip(srcFolder, zipFilePath, zipAFolderOptions) {\n        const o = zipAFolderOptions || {\n            compression: COMPRESSION_LEVEL.high,\n        };\n        if (o.compression === COMPRESSION_LEVEL.uncompressed) {\n            await ZipAFolder.compress({\n                srcFolder,\n                targetFilePath: zipFilePath,\n                format: 'zip',\n                zipAFolderOptions,\n                archiverOptions: {\n                    store: true,\n                },\n            });\n        }\n        else {\n            await ZipAFolder.compress({\n                srcFolder,\n                targetFilePath: zipFilePath,\n                format: 'zip',\n                zipAFolderOptions,\n                archiverOptions: {\n                    zlib: {\n                        level: o.compression,\n                    },\n                },\n            });\n        }\n    }",
+      "isAsync": true,
+      "isConstructor": false
+    },
+    "packageName": "zip-a-folder"
+  },
+  {
+    "accessPath": "zip-a-folder.ZipAFolder.compress",
+    "descriptor": {
+      "type": "function",
+      "signature": "({ srcFolder, targetFilePath, format, zipAFolderOptions, archiverOptions, })",
+      "implementation": "async compress({ srcFolder, targetFilePath, format, zipAFolderOptions, archiverOptions, }) {\n        let output;\n        if (!(zipAFolderOptions === null || zipAFolderOptions === void 0 ? void 0 : zipAFolderOptions.customWriteStream) && targetFilePath) {\n            const targetBasePath = path.dirname(targetFilePath);\n            if (targetBasePath === srcFolder) {\n                throw new Error('Source and target folder must be different.');\n            }\n            try {\n                await fs.promises.access(srcFolder, fs.constants.R_OK);\n                await fs.promises.access(targetBasePath, fs.constants.R_OK | fs.constants.W_OK);\n            }\n            catch (e) {\n                throw new Error(`Permission error: ${e.message}`);\n            }\n            output = fs.createWriteStream(targetFilePath);\n        }\n        else if (zipAFolderOptions && zipAFolderOptions.customWriteStream) {\n            output = zipAFolderOptions === null || zipAFolderOptions === void 0 ? void 0 : zipAFolderOptions.customWriteStream;\n        }\n        else {\n            throw new Error('You must either provide a target file path or a custom write stream to write to.');\n        }\n        const zipArchive = archiver(format, archiverOptions || {});\n        return new Promise((resolve, reject) => {\n            output.on('close', resolve);\n            output.on('error', reject);\n            zipArchive.pipe(output);\n            zipArchive.directory(srcFolder, false);\n            zipArchive.finalize();\n        });\n    }",
+      "isAsync": true,
+      "isConstructor": false
+    },
+    "packageName": "zip-a-folder"
+  }
+]

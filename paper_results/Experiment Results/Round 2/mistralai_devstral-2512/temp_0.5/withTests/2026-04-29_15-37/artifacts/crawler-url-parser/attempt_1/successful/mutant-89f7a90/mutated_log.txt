@@ -1,0 +1,26 @@
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/crawler-url-parser/crawler-url-parser.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/crawler-url-parser/crawler-url-parser.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-89f7a90/testCase.test.ts
+  baseUrl fragment handling
+    ✕ should remove fragment from baseUrl when provided (5 ms)
+
+  ● baseUrl fragment handling › should remove fragment from baseUrl when provided
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "http://example.com/path"
+    Received: "http://example.com/pathStryker%20was%20here!"
+
+      5 |     const baseUrl = "http://example.com/path#fragment";
+      6 |     const result = parse("relative", baseUrl);
+    > 7 |     expect(result?.baseurl).toBe("http://example.com/path");
+        |                             ^
+      8 |   });
+      9 | });
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-89f7a90/testCase.test.ts:7:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.58 s, estimated 2 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-89f7a90/testCase.test.ts".

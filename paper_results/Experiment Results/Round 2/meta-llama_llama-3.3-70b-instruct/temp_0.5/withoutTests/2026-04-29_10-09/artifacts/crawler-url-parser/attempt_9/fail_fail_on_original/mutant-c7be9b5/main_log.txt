@@ -1,0 +1,44 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_9/pending_category/mutant-c7be9b5/testCase.test.ts[0m:[93m5[0m:[93m37[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m5[0m     const originalDebugger = global.debugger;
+[7m [0m [91m                                    ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_9/pending_category/mutant-c7be9b5/testCase.test.ts[0m:[93m6[0m:[93m12[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m6[0m     global.debugger = () => {
+[7m [0m [91m           ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_9/pending_category/mutant-c7be9b5/testCase.test.ts[0m:[93m14[0m:[93m12[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m14[0m     global.debugger = originalDebugger;
+[7m  [0m [91m           ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_9/pending_category/mutant-c7be9b5/testCase.test.ts
+  parse function
+    ✕ should throw an error when called with a debugger statement (14 ms)
+
+  ● parse function › should throw an error when called with a debugger statement
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "Debugger called"
+    Received message:   "Cannot find module '../../../../../../../../../subject_repositories/crawler-url-parser/crawler-url-parser.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_9/pending_category/mutant-c7be9b5/testCase.test.ts'"
+
+           9 |     const url = 'https://www.npmjs.com/package/electron-window-manager';
+          10 |     expect(() => {
+        > 11 |       require('../../../../../../../../../subject_repositories/crawler-url-parser/crawler-url-parser.js');
+             |       ^
+          12 |       parse(url);
+          13 |     }).toThrowError('Debugger called');
+          14 |     global.debugger = originalDebugger;
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_9/pending_category/mutant-c7be9b5/testCase.test.ts:11:7)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_9/pending_category/mutant-c7be9b5/testCase.test.ts:13:8)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_9/pending_category/mutant-c7be9b5/testCase.test.ts:13:8)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.968 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_9/pending_category/mutant-c7be9b5/testCase.test.ts".

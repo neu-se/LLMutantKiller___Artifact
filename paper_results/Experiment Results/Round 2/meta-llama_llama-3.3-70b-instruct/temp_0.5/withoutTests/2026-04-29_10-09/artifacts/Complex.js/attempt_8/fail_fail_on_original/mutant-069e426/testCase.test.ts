@@ -1,0 +1,40 @@
+import { Complex } from "../../../../../../../../../../../subject_repositories/Complex.js/complex.js";
+
+describe('Complex', () => {
+  it('should handle asec correctly', () => {
+    const complex = new Complex(0, 0);
+    const result = complex.asec();
+    expect(result.re).toBeCloseTo(0);
+    expect(result.im).toBeCloseTo(Infinity);
+    const complex2 = new Complex(1, 0);
+    const result2 = complex2.asec();
+    expect(result2.re).toBeCloseTo(Math.PI / 2);
+    expect(result2.im).toBeCloseTo(0);
+    const complex3 = new Complex(0, 1);
+    const result3 = complex3.asec();
+    expect(result3.re).toBeCloseTo(0);
+    expect(result3.im).toBeCloseTo(Infinity);
+    expect(result3.re).not.toBeNaN();
+    expect(result2.re).not.toBeNaN();
+    expect(result.re).not.toBeNaN();
+    expect(result2.re).not.toBe(0);
+    expect(result3.re).not.toBe(0);
+    expect(result.re).not.toBe(0);
+    expect(result2.im).not.toBe(0);
+    expect(result3.im).not.toBe(0);
+    expect(result.im).not.toBe(0);
+    expect(result2.re).not.toBe(Infinity);
+    expect(result3.re).not.toBe(Infinity);
+    expect(result.re).not.toBe(Infinity);
+    expect(result2.im).not.toBe(Infinity);
+    expect(result3.im).not.toBe(Infinity);
+    expect(result.im).not.toBe(Infinity);
+    expect(result2.re).not.toBeNaN();
+    expect(result3.re).not.toBeNaN();
+    expect(result2.im).not.toBeNaN();
+    expect(result3.im).not.toBeNaN();
+    expect(result.re).not.toBeNaN();
+    expect(result.im).not.toBeNaN();
+    expect(result2.im).not.toBeNaN();
+  });
+});

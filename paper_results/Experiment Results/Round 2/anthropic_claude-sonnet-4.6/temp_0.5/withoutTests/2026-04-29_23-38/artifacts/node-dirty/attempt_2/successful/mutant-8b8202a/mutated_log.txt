@@ -1,0 +1,29 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-8b8202a/testCase.test.ts
+  Dirty drain event
+    ✕ should only emit drain after all in-flight writes complete, not prematurely when stream backpressure resolves with pending writes (23 ms)
+
+  ● Dirty drain event › should only emit drain after all in-flight writes complete, not prematurely when stream backpressure resolves with pending writes
+
+    expect(received).toHaveLength(expected)
+
+    Expected length: 0
+    Received length: 1
+    Received array:  [1]
+
+      32 |             // In mutated code: drain may be emitted with _inFlightWrites > 0
+      33 |             const prematureDrains = inFlightAtDrain.filter(n => n > 0);
+    > 34 |             expect(prematureDrains).toHaveLength(0);
+         |                                     ^
+      35 |           } catch (err) {
+      36 |             fs.rmSync(tmpDir, { recursive: true, force: true });
+      37 |             done(err);
+
+      at toHaveLength (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-8b8202a/testCase.test.ts:34:37)
+      at cb (../subject_repositories/node-dirty/lib/dirty/dirty.js:192:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.474 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-8b8202a/testCase.test.ts".

@@ -1,0 +1,37 @@
+{
+  "file": "lib/dirty/dirty.js",
+  "startLine": 166,
+  "startColumn": 41,
+  "endLine": 174,
+  "endColumn": 10,
+  "originalCode": "\n-       this._writeStream.on('drain', () => {\n-         this._waitForDrain = false;\n-         if (!this._queue.size) {\n-           if (this._inFlightWrites <= 0) this.emit('drain');\n-         } else {\n-           this._flush();\n-         }\n-       });",
+  "replacement": "\n+       this._writeStream.on('drain', () => {});\n",
+  "removedLines": [
+    "       this._writeStream.on('drain', () => {",
+    "         this._waitForDrain = false;",
+    "         if (!this._queue.size) {",
+    "           if (this._inFlightWrites <= 0) this.emit('drain');",
+    "         } else {",
+    "           this._flush();",
+    "         }",
+    "       });"
+  ],
+  "addedLines": [
+    "       this._writeStream.on('drain', () => {});",
+    ""
+  ],
+  "lineSummary": [
+    "-       this._writeStream.on('drain', () => {",
+    "-         this._waitForDrain = false;",
+    "-         if (!this._queue.size) {",
+    "-           if (this._inFlightWrites <= 0) this.emit('drain');",
+    "-         } else {",
+    "-           this._flush();",
+    "-         }",
+    "-       });",
+    "+       this._writeStream.on('drain', () => {});",
+    ""
+  ],
+  "mutatorName": "BlockStatement",
+  "strykerMutationId": "114"
+}

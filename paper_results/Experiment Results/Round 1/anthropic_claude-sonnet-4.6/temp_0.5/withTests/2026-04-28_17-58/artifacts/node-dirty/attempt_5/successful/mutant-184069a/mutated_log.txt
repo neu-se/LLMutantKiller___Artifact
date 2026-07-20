@@ -1,0 +1,30 @@
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/node-dirty/lib/dirty/dirty.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/node-dirty/lib/dirty/dirty.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-184069a/testCase.test.ts
+  dirty non-ENOENT error handling
+    ✕ should emit error event (not load) when read stream fails with non-ENOENT error (779 ms)
+
+  ● dirty non-ENOENT error handling › should emit error event (not load) when read stream fails with non-ENOENT error
+
+    load event must not fire for non-ENOENT errors
+
+      56 |     db.on('load', () => {
+      57 |       // Mutated code (if true) emits load for ALL errors - wrong
+    > 58 |       finish(new Error('load event must not fire for non-ENOENT errors'));
+         |              ^
+      59 |     });
+      60 |
+      61 |     db.on('error', () => {
+
+      at Dirty.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-184069a/testCase.test.ts:58:14)
+      at EventEmitter.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:115:18)
+      at emit (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-184069a/testCase.test.ts:70:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.8 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-184069a/testCase.test.ts".
+Jest did not exit one second after the test run has completed.
+
+'This usually means that there are asynchronous operations that weren't stopped in your tests. Consider running Jest with `--detectOpenHandles` to troubleshoot this issue.

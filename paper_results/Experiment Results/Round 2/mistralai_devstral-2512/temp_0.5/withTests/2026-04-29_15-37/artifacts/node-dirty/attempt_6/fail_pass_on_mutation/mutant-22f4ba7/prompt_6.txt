@@ -1,0 +1,49 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-22f4ba7/testCase.test.ts (5.964 s)
+  close behavior with pending writes
+    ✕ should emit drain event before closing when writes are pending (5002 ms)
+
+  ● close behavior with pending writes › should emit drain event before closing when writes are pending
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      46 |           db.on('write_close', () => {
+      47 |             writeCloseFired = true;
+    > 48 |             expect(drainFired).toBe(true);
+         |                                ^
+      49 |             expect(db._writeStream).toBeNull();
+      50 |             done();
+      51 |           });
+
+      at Dirty.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-22f4ba7/testCase.test.ts:48:32)
+      at WriteStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:177:12)
+
+  ● close behavior with pending writes › should emit drain event before closing when writes are pending
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      26 |   });
+      27 |
+    > 28 |   it('should emit drain event before closing when writes are pending', (done) => {
+         |   ^
+      29 |     const db = new Dirty(testFile);
+      30 |     let drainFired = false;
+      31 |     let writeCloseFired = false;
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-22f4ba7/testCase.test.ts:28:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-22f4ba7/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.105 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-22f4ba7/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

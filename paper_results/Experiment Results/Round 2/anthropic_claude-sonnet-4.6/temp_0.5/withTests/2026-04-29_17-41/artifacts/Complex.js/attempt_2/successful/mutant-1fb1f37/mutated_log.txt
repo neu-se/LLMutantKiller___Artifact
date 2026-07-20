@@ -1,0 +1,25 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-1fb1f37/testCase.test.ts
+  Complex sin with small imaginary part
+    ✕ sin(pi/2 + i*epsilon) real part reflects cosh fallback returning 1-x (10 ms)
+
+  ● Complex sin with small imaginary part › sin(pi/2 + i*epsilon) real part reflects cosh fallback returning 1-x
+
+    expect(received).toBeLessThan(expected)
+
+    Expected: < 1
+    Received:   1
+
+      13 |     // original: re = 1 * (1 - x) = 1 - 5e-10 < 1
+      14 |     // mutated:  re = 1 * cosh(x) ≈ 1 + x²/2 > 1... wait no, (exp(x)+exp(-x))/2 > 1 for x>0
+    > 15 |     expect(result.re).toBeLessThan(1.0);
+         |                       ^
+      16 |   });
+      17 | });
+
+      at Object.toBeLessThan (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-1fb1f37/testCase.test.ts:15:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.984 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-1fb1f37/testCase.test.ts".

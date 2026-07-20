@@ -1,0 +1,39 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_8/pending_category/mutant-7978ad2/testCase.test.ts
+  AttributeMap.diff
+    ✕ should handle non-object b parameter by treating it as empty object (9 ms)
+
+  ● AttributeMap.diff › should handle non-object b parameter by treating it as empty object
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "key1": "value1",
+    -   "key2": "value2",
+    +   "key1": null,
+    +   "key2": null,
+      }
+
+       8 |     // In the original code, non-object b is converted to {}
+       9 |     // So all keys from a should appear in the diff with their original values
+    > 10 |     expect(result).toEqual({ key1: 'value1', key2: 'value2' });
+         |                    ^
+      11 |   });
+      12 | });
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_8/pending_category/mutant-7978ad2/testCase.test.ts:10:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.592 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_8/pending_category/mutant-7978ad2/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

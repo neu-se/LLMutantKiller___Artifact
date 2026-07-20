@@ -1,0 +1,52 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_8/pending_category/mutant-06b2438/testCase.test.ts[0m:[93m3[0m:[93m30[0m - [91merror[0m[90m TS7006: [0mParameter 'a' implicitly has an 'any' type.
+
+[7m3[0m     const Complex = function(a, b) {
+[7m [0m [91m                             ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_8/pending_category/mutant-06b2438/testCase.test.ts[0m:[93m3[0m:[93m33[0m - [91merror[0m[90m TS7006: [0mParameter 'b' implicitly has an 'any' type.
+
+[7m3[0m     const Complex = function(a, b) {
+[7m [0m [91m                                ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_8/pending_category/mutant-06b2438/testCase.test.ts[0m:[93m4[0m:[93m7[0m - [91merror[0m[90m TS2683: [0m'this' implicitly has type 'any' because it does not have a type annotation.
+
+[7m4[0m       this.re = a;
+[7m [0m [91m      ~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_8/pending_category/mutant-06b2438/testCase.test.ts[0m:[93m5[0m:[93m7[0m - [91merror[0m[90m TS2683: [0m'this' implicitly has type 'any' because it does not have a type annotation.
+
+[7m5[0m       this.im = b;
+[7m [0m [91m      ~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_8/pending_category/mutant-06b2438/testCase.test.ts[0m:[93m20[0m:[93m21[0m - [91merror[0m[90m TS7009: [0m'new' expression, whose target lacks a construct signature, implicitly has an 'any' type.
+
+[7m20[0m     const complex = new Complex(1, 0);
+[7m  [0m [91m                    ~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_8/pending_category/mutant-06b2438/testCase.test.ts
+  Complex
+    ✕ should throw an error when calling an undefined method (51 ms)
+
+  ● Complex › should throw an error when calling an undefined method
+
+    expect(received).not.toThrow()
+
+    Error name:    "TypeError"
+    Error message: "this.acos is not a function"
+
+           6 |     };
+           7 |     Complex.prototype.acosh = function() {
+        >  8 |       var res = this.acos();
+             |                      ^
+           9 |       if (res.im <= 0) {
+          10 |         var tmp = res.re;
+          11 |         res.re = -res.im;
+
+      at Complex.acos [as acosh] (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_8/pending_category/mutant-06b2438/testCase.test.ts:8:22)
+      at llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_8/pending_category/mutant-06b2438/testCase.test.ts:21:34
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_8/pending_category/mutant-06b2438/testCase.test.ts:21:42)
+      at Object.toThrow (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_8/pending_category/mutant-06b2438/testCase.test.ts:21:42)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.138 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_8/pending_category/mutant-06b2438/testCase.test.ts".

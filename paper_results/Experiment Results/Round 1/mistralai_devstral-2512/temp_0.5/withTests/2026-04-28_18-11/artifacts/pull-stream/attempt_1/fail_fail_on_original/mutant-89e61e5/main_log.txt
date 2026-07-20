@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-89e61e5/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/pull.js"' has no exported member 'pull'.
+
+[7m1[0m import { pull } from "../../../../../../../../../../../subject_repositories/pull-stream/pull.js";
+[7m [0m [91m         ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-89e61e5/testCase.test.ts
+  pull stream partial sink error handling
+    ✕ should throw TypeError when partial sink is called more than once (1 ms)
+
+  ● pull stream partial sink error handling › should throw TypeError when partial sink is called more than once
+
+    TypeError: (0 , pull_js_1.pull) is not a function
+
+      3 | describe("pull stream partial sink error handling", () => {
+      4 |   it("should throw TypeError when partial sink is called more than once", () => {
+    > 5 |     const partialSink = pull((read: any) => {
+        |                             ^
+      6 |       // First call should work
+      7 |       const result1 = read(null, (end: any, data: any) => {});
+      8 |       // Second call should throw
+
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-89e61e5/testCase.test.ts:5:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.985 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-89e61e5/testCase.test.ts".

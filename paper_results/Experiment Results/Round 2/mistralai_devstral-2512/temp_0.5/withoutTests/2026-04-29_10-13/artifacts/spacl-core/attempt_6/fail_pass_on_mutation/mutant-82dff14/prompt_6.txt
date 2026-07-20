@@ -1,0 +1,38 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_5/pending_category/mutant-82dff14/testCase.test.ts
+  Matcher version parameter validation
+    ✕ should throw error for malformed wildcards in version 1 but not in 1.1 (11 ms)
+
+  ● Matcher version parameter validation › should throw error for malformed wildcards in version 1 but not in 1.1
+
+    expect(received).not.toThrow()
+
+    Error name:    "Error"
+    Error message: "Path contains malformed wildcards"
+
+          22 |       ? /[*+][^/]|[^/][*+]/
+          23 |       : /\*[^*/]|\+[^+/]|[^/*]\*|[^/+]\+|\*\*\*|\+\+\+/) !== null) {
+        > 24 |       throw new Error('Path contains malformed wildcards')
+             |             ^
+          25 |     }
+          26 |     if (spec.match(/[^/]:|:\/|:$/) !== null) {
+          27 |       throw new Error('Path contains malformed captures')
+
+      at new Matcher (../subject_repositories/spacl-core/src/matcher.ts:24:13)
+      at Function.for (../subject_repositories/spacl-core/src/matcher.ts:49:12)
+      at llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_5/pending_category/mutant-82dff14/testCase.test.ts:11:18
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_5/pending_category/mutant-82dff14/testCase.test.ts:12:12)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_5/pending_category/mutant-82dff14/testCase.test.ts:12:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.135 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_5/pending_category/mutant-82dff14/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

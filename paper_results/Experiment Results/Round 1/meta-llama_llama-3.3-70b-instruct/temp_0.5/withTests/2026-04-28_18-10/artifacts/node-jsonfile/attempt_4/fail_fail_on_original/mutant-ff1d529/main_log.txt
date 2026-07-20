@@ -1,0 +1,53 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+(node:53684) [DEP0147] DeprecationWarning: In future versions of Node.js, fs.rmdir(path, { recursive: true }) will be removed. Use fs.rm(path, { recursive: true }) instead
+(Use `node --trace-deprecation ...` to show where the warning was created)
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_4/pending_category/mutant-ff1d529/testCase.test.ts
+  + readFileSync()
+    ✕ should throw an error when encoding is not a string and options is not an object (3 ms)
+    ✕ should throw an error when encoding is not a string and options is an empty object (1 ms)
+
+  ● + readFileSync() › should throw an error when encoding is not a string and options is not an object
+
+    assert.throws(function)
+
+    Expected the function to throw an error.
+    But it didn't throw anything.
+
+    Message:
+      Missing expected exception (Error).
+
+      22 |     fs.writeFileSync(file, JSON.stringify(obj))
+      23 |
+    > 24 |     assert.throws(() => {
+         |            ^
+      25 |       readFileSync(file, 'utf8')
+      26 |     }, Error)
+      27 |   })
+
+      at Object.throws (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_4/pending_category/mutant-ff1d529/testCase.test.ts:24:12)
+
+  ● + readFileSync() › should throw an error when encoding is not a string and options is an empty object
+
+    assert.throws(function)
+
+    Expected the function to throw an error.
+    But it didn't throw anything.
+
+    Message:
+      Missing expected exception (Error).
+
+      32 |     fs.writeFileSync(file, JSON.stringify(obj))
+      33 |
+    > 34 |     assert.throws(() => {
+         |            ^
+      35 |       readFileSync(file, {})
+      36 |     }, Error)
+      37 |   })
+
+      at Object.throws (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_4/pending_category/mutant-ff1d529/testCase.test.ts:34:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.388 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_4/pending_category/mutant-ff1d529/testCase.test.ts".

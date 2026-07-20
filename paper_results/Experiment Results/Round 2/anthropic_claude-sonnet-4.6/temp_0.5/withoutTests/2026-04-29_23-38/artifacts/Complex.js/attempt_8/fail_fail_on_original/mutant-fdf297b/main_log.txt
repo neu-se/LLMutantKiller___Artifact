@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_8/pending_category/mutant-fdf297b/testCase.test.ts
+  Complex sub method with infinity
+    ✕ should return Infinity when subtracting Infinity from Infinity is NaN but single infinite gives Infinity (4 ms)
+
+  ● Complex sub method with infinity › should return Infinity when subtracting Infinity from Infinity is NaN but single infinite gives Infinity
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: Infinity
+
+      13 |     const result2 = new Complex(Infinity, 0).sub(new Complex(1, 0));
+      14 |     expect(result2.re).toBe(Infinity);
+    > 15 |     expect(result2.im).toBe(0); // In mutated, falls through: 0 - 0 = 0, not Infinity
+         |                        ^
+      16 |   });
+      17 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_8/pending_category/mutant-fdf297b/testCase.test.ts:15:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.485 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_8/pending_category/mutant-fdf297b/testCase.test.ts".

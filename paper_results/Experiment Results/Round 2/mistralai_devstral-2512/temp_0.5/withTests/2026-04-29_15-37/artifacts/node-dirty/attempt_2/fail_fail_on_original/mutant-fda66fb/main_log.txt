@@ -1,0 +1,30 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-fda66fb/testCase.test.ts[0m:[93m4[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m4[0m import * as rimraf from "rimraf";
+[7m [0m [91m                        ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-fda66fb/testCase.test.ts (6.169 s)
+  test write stream drain handling
+    ✕ should correctly handle drain when queue is empty (5004 ms)
+
+  ● test write stream drain handling › should correctly handle drain when queue is empty
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      14 |   });
+      15 |
+    > 16 |   it("should correctly handle drain when queue is empty", (done) => {
+         |   ^
+      17 |     const db = new Dirty(testFile);
+      18 |     db.on("load", () => {
+      19 |       // Set a value to trigger a write
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-fda66fb/testCase.test.ts:16:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-fda66fb/testCase.test.ts:6:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.326 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-fda66fb/testCase.test.ts".

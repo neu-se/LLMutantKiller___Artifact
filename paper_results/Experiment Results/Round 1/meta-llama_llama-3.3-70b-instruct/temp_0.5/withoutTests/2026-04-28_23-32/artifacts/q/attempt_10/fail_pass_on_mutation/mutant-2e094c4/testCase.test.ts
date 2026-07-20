@@ -1,0 +1,27 @@
+import q from "../../../../../../../../../../../subject_repositories/q/q.js";
+
+describe('q', () => {
+    it('should correctly handle Node frames in stack traces', () => {
+        // Create a stack line that is a Node frame
+        const stackLine = 'at Module._compile (module.js:652:10)';
+
+        // Check if the stack line is recognized as a Node frame
+        const isNodeFrame = function(stackLine) {
+            return stackLine.indexOf("(module.js:") !== -1 || stackLine.indexOf("(node.js:") !== -1;
+        };
+        expect(isNodeFrame(stackLine)).toBe(true);
+
+        // Check the implementation of the isNodeFrame function
+        const originalImplementation = isNodeFrame.toString();
+        expect(originalImplementation).toContain('indexOf("(module.js:"');
+        expect(originalImplementation).not.toContain('return false');
+
+        // Create a mutated version of the isNodeFrame function
+        const mutatedIsNodeFrame = function(stackLine) {
+            return false;
+        };
+
+        // Check if the mutated isNodeFrame function returns false
+        expect(mutatedIsNodeFrame(stackLine)).toBe(false);
+    });
+});

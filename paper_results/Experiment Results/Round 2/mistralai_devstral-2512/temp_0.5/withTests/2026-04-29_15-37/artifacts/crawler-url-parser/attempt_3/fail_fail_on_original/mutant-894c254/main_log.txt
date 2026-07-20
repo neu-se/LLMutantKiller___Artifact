@@ -1,0 +1,25 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-894c254/testCase.test.ts
+  URL query parameter normalization
+    ✕ should remove UTM parameters case-insensitively from URLs (4 ms)
+
+  ● URL query parameter normalization › should remove UTM parameters case-insensitively from URLs
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "http://example.com/path?ref=abc"
+    Received: "http://example.com/path?utm_source=test&UTM_MEDIUM=email&ref=abc"
+
+       7 |         const result = parse(urlWithUTM);
+       8 |         expect(result).not.toBeNull();
+    >  9 |         expect(result!.url).toBe("http://example.com/path?ref=abc");
+         |                             ^
+      10 |     });
+      11 | });
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-894c254/testCase.test.ts:9:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.49 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-894c254/testCase.test.ts".

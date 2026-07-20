@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-5a40200/testCase.test.ts
+  Complex.js cosh function
+    ✕ should correctly compute cosh for values at the threshold boundary (2 ms)
+
+  ● Complex.js cosh function › should correctly compute cosh for values at the threshold boundary
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.9999999991
+    Received: 1
+
+    Expected precision:    12
+    Expected difference: < 5e-13
+    Received difference:   8.999999634440314e-10
+
+      11 |     // For values below threshold, should use Taylor approximation (1 - x)
+      12 |     // For values above threshold, should use exponential formula
+    > 13 |     expect(result1.re).toBeCloseTo(1 - 0.9e-9, 12);
+         |                        ^
+      14 |     expect(result2.re).toBeGreaterThan(1 - 1.1e-9);
+      15 |     expect(result2.re).toBeLessThan(1.000000000002);
+      16 |     expect(result1.im).toBeCloseTo(0, 12);
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-5a40200/testCase.test.ts:13:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.268 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-5a40200/testCase.test.ts".

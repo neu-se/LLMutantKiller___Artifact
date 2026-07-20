@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-12d80c9/testCase.test.ts
+  Complex.asech
+    ✕ should handle division by zero in the fallback path when a is 0 (2 ms)
+
+  ● Complex.asech › should handle division by zero in the fallback path when a is 0
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: Infinity
+    Received: 0.8813735870195429
+
+       8 |     // The mutation changes (a !== 0) to (false), which should affect the result
+       9 |     // when a is 0 by forcing it to use the fallback path
+    > 10 |     expect(result.re).toBe(Infinity);
+         |                       ^
+      11 |     expect(result.im).toBe(-Infinity);
+      12 |   });
+      13 | });
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-12d80c9/testCase.test.ts:10:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.997 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-12d80c9/testCase.test.ts".

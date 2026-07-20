@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-49c08d0/testCase.test.ts
+  Promise constructor with inspect function
+    ✕ should use the provided inspect function when defined (3 ms)
+
+  ● Promise constructor with inspect function › should use the provided inspect function when defined
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+    -   "state": "custom",
+    +   "state": "unknown",
+      }
+
+      5 |     const customInspect = () => ({ state: "custom" });
+      6 |     const promise = Q.makePromise({}, void 0, customInspect);
+    > 7 |     expect(promise.inspect()).toEqual({ state: "custom" });
+        |                               ^
+      8 |   });
+      9 | });
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-49c08d0/testCase.test.ts:7:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.066 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-49c08d0/testCase.test.ts".

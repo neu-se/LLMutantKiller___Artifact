@@ -1,0 +1,55 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-0e2fb4a/testCase.test.ts[0m:[93m1[0m:[93m19[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import Delta from "../../../../../../../../../../../subject_repositories/delta/src/Delta.ts";
+[7m [0m [91m                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-0e2fb4a/testCase.test.ts[0m:[93m7[0m:[93m17[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m7[0m       compose: (a, b) => b,
+[7m [0m [91m                ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-0e2fb4a/testCase.test.ts[0m:[93m8[0m:[93m19[0m - [91merror[0m[90m TS6133: [0m'b' is declared but its value is never read.
+
+[7m8[0m       invert: (a, b) => a,
+[7m [0m [91m                  ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-0e2fb4a/testCase.test.ts[0m:[93m9[0m:[93m19[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m9[0m       transform: (a, b) => b
+[7m [0m [91m                  ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-0e2fb4a/testCase.test.ts
+  Delta invert with object retain
+    ✕ should correctly invert a delta with object retain and attributes (6 ms)
+
+  ● Delta invert with object retain › should correctly invert a delta with object retain and attributes
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 1
+
+      Array [
+        Object {
+          "attributes": Object {
+    -       "bold": true,
+            "italic": null,
+          },
+          "retain": Object {
+    -       "test": "value",
+    +       "test": "newValue",
+          },
+        },
+      ]
+
+      17 |       .retain({ test: 'value' }, { bold: true, italic: null });
+      18 |
+    > 19 |     expect(inverted.ops).toEqual(expected.ops);
+         |                          ^
+      20 |   });
+      21 | });
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-0e2fb4a/testCase.test.ts:19:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.674 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-0e2fb4a/testCase.test.ts".

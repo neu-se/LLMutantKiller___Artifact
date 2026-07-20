@@ -1,0 +1,52 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-92aa6e3/testCase.test.ts[0m:[93m1[0m:[93m19[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import Delta from "../../../../../../../../../../../subject_repositories/delta/src/Delta.ts";
+[7m [0m [91m                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-92aa6e3/testCase.test.ts[0m:[93m27[0m:[93m14[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m27[0m       invert(a: unknown, b: unknown): unknown {
+[7m  [0m [91m             ~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-92aa6e3/testCase.test.ts[0m:[93m30[0m:[93m17[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m30[0m       transform(a: unknown, b: unknown, priority: boolean): unknown {
+[7m  [0m [91m                ~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-92aa6e3/testCase.test.ts[0m:[93m30[0m:[93m41[0m - [91merror[0m[90m TS6133: [0m'priority' is declared but its value is never read.
+
+[7m30[0m       transform(a: unknown, b: unknown, priority: boolean): unknown {
+[7m  [0m [91m                                        ~~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-92aa6e3/testCase.test.ts[0m:[93m49[0m:[93m26[0m - [91merror[0m[90m TS2339: [0mProperty 'toHaveLength' does not exist on type 'ArrayLikeMatchers<Op>'.
+
+[7m49[0m       expect(result.ops).toHaveLength(1);
+[7m  [0m [91m                         ~~~~~~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-92aa6e3/testCase.test.ts[0m:[93m54[0m:[93m33[0m - [91merror[0m[90m TS2339: [0mProperty 'toHaveProperty' does not exist on type 'Matchers<Record<string, unknown>>'.
+
+[7m54[0m       expect(insertedImage).not.toHaveProperty("alt");
+[7m  [0m [91m                                ~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-92aa6e3/testCase.test.ts
+  Delta compose with embed handler keepNull parameter
+    ✕ should pass keepNull=false when composing an insert embed with a retain embed (4 ms)
+
+  ● Delta compose with embed handler keepNull parameter › should pass keepNull=false when composing an insert embed with a retain embed
+
+    expect(received).not.toHaveProperty(path)
+
+    Expected path: not "alt"
+
+    Received value: null
+
+      52 |       
+      53 |       // In original (keepNull=false): alt is deleted
+    > 54 |       expect(insertedImage).not.toHaveProperty("alt");
+         |                                 ^
+      55 |       // In mutation (keepNull=true): alt would be null
+      56 |     } finally {
+      57 |       Delta.unregisterEmbed("image");
+
+      at Object.toHaveProperty (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-92aa6e3/testCase.test.ts:54:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.72 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-92aa6e3/testCase.test.ts".

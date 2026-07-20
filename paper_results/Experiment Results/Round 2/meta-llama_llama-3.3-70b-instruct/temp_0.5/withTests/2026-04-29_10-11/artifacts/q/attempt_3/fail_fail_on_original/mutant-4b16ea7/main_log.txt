@@ -1,0 +1,41 @@
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-4b16ea7/testCase.test.ts
+  q.js
+    ✕ should test the behavior of the mutated file (14 ms)
+
+  ● q.js › should test the behavior of the mutated file
+
+    TypeError: promise.resolve is not a function
+
+      11 |         });
+      12 |         Q.nextTick(() => {
+    > 13 |             promise.resolve();
+         |                     ^
+      14 |         });
+      15 |         await new Promise(resolve => setTimeout(resolve, 10));
+      16 |         expect(resolved).toBe(true);
+
+      at resolve (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-4b16ea7/testCase.test.ts:13:21)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+  ● q.js › should test the behavior of the mutated file
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      14 |         });
+      15 |         await new Promise(resolve => setTimeout(resolve, 10));
+    > 16 |         expect(resolved).toBe(true);
+         |                          ^
+      17 |     });
+      18 | });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-4b16ea7/testCase.test.ts:16:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.222 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-4b16ea7/testCase.test.ts".

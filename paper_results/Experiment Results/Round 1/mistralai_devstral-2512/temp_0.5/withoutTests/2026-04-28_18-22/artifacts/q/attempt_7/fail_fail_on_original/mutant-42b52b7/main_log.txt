@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-42b52b7/testCase.test.ts
+  Q unhandled rejection tracking
+    ✕ should properly track rejection handling when process.emit exists (4 ms)
+
+  ● Q unhandled rejection tracking › should properly track rejection handling when process.emit exists
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      35 |     // In original code, rejectionHandled should be called (process.emit exists)
+      36 |     // In mutated code, it won't be called (condition is inverted)
+    > 37 |     expect(rejectionHandledCalled).toBe(true);
+         |                                    ^
+      38 |
+      39 |     // Clean up
+      40 |     delete (global as any).process;
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-42b52b7/testCase.test.ts:37:36)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.61 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-42b52b7/testCase.test.ts".

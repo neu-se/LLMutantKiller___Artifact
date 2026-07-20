@@ -1,0 +1,36 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-15c5339/testCase.test.ts[0m:[93m10[0m:[93m23[0m - [91merror[0m[90m TS2554: [0mExpected 0-1 arguments, but got 2.
+
+[7m10[0m       collect(stream, (err: any, data: any) => {
+[7m  [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m11[0m         if (err) reject(err);
+[7m  [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m12[0m         else resolve(data);
+[7m  [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m13[0m       });
+[7m  [0m [91m~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-15c5339/testCase.test.ts (8.401 s)
+  take
+    ✕ should pass when run against the original code and fail when run against the mutated code (5013 ms)
+
+  ● take › should pass when run against the original code and fail when run against the mutated code
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 |
+      5 | describe('take', () => {
+    > 6 |   it('should pass when run against the original code and fail when run against the mutated code', async () => {
+        |   ^
+      7 |     const read = take(1, { last: true });
+      8 |     const stream = values([1, 2, 3]);
+      9 |     const result = await new Promise((resolve, reject) => {
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-15c5339/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-15c5339/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        8.834 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-15c5339/testCase.test.ts".

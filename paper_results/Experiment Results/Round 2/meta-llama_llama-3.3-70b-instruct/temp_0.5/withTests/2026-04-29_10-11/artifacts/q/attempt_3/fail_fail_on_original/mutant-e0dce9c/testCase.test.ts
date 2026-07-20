@@ -1,0 +1,17 @@
+import { Q } from "../../../../../../../../subject_repositories/q/q";
+
+describe("Promise", () => {
+    it("should behave differently for inspected.state !== 'rejected'", () => {
+        const promise = Q(10);
+        const inspected = promise.inspect();
+        expect(inspected.state).toBe("fulfilled");
+        const valueOf = promise.valueOf();
+        expect(valueOf).toBe(10);
+
+        const rejectedPromise = Q.reject(new Error("Test"));
+        const rejectedInspected = rejectedPromise.inspect();
+        expect(rejectedInspected.state).toBe("rejected");
+        const rejectedValueOf = rejectedPromise.valueOf();
+        expect(rejectedValueOf).toBe(rejectedPromise);
+    });
+});

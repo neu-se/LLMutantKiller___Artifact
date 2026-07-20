@@ -1,0 +1,48 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-47e95e7/testCase.test.ts
+  Promise valueOf behavior
+    ✕ should return the promise itself when state is pending or rejected (9 ms)
+
+  ● Promise valueOf behavior › should return the promise itself when state is pending or rejected
+
+    expect(received).toBe(expected) // Object.is equality
+
+    - Expected  - 1
+    + Received  + 2
+
+    @@ -8,18 +8,19 @@
+        "delay": [Function anonymous],
+        "delete": [Function anonymous],
+        "denodeify": [Function anonymous],
+        "dispatch": [Function anonymous],
+        "done": [Function anonymous],
+    +   "exception": [Error: test error],
+        "fail": [Function anonymous],
+        "fapply": [Function anonymous],
+        "fbind": [Function anonymous],
+        "fcall": [Function anonymous],
+        "fin": [Function anonymous],
+        "finally": [Function anonymous],
+        "get": [Function anonymous],
+    -   "inspect": [Function anonymous],
+    +   "inspect": [Function inspect],
+        "invoke": [Function anonymous],
+        "isFulfilled": [Function anonymous],
+        "isPending": [Function anonymous],
+        "isRejected": [Function anonymous],
+        "join": [Function anonymous],
+
+      12 |     // Test rejected state
+      13 |     deferred.reject(new Error("test error"));
+    > 14 |     expect(promise.valueOf()).toBe(promise);
+         |                               ^
+      15 |   });
+      16 | });
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-47e95e7/testCase.test.ts:14:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.791 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-47e95e7/testCase.test.ts".

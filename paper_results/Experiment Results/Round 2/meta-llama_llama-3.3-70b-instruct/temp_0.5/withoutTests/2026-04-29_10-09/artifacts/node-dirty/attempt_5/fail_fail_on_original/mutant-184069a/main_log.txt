@@ -1,0 +1,43 @@
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-184069a/testCase.test.ts (6.095 s)
+  Dirty
+    ✕ should emit an error when the file does not exist (5003 ms)
+
+  ● Dirty › should emit an error when the file does not exist
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 2
+
+       8 |     const dirty = new Dirty(filePath);
+       9 |     dirty.on('load', (size) => {
+    > 10 |       expect(size).toBe(0);
+         |                    ^
+      11 |       dirty.set('test', 'test');
+      12 |       dirty.set('test2', 'test2');
+      13 |       dirty.close();
+
+      at Dirty.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-184069a/testCase.test.ts:10:20)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:154:16)
+
+  ● Dirty › should emit an error when the file does not exist
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 |
+      5 | describe('Dirty', () => {
+    > 6 |   it('should emit an error when the file does not exist', (done) => {
+        |   ^
+      7 |     const filePath = 'test.db';
+      8 |     const dirty = new Dirty(filePath);
+      9 |     dirty.on('load', (size) => {
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-184069a/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-184069a/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.266 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-184069a/testCase.test.ts".

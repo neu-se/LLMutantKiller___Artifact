@@ -1,0 +1,52 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-31db0eb/testCase.test.ts[0m:[93m12[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType 'undefined' is not assignable to type 'Window & typeof globalThis'.
+  Type 'undefined' is not assignable to type 'Window'.
+
+[7m12[0m     global.window = undefined;
+[7m  [0m [91m    ~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-31db0eb/testCase.test.ts[0m:[93m13[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType 'undefined' is not assignable to type 'Process'.
+
+[7m13[0m     global.process = undefined;
+[7m  [0m [91m    ~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-31db0eb/testCase.test.ts[0m:[93m14[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType 'undefined' is not assignable to type 'typeof setImmediate'.
+
+[7m14[0m     global.setImmediate = undefined;
+[7m  [0m [91m    ~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-31db0eb/testCase.test.ts[0m:[93m15[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '() => void' is not assignable to type '{ new (): MessageChannel; prototype: MessageChannel; }'.
+  Type '() => void' provides no match for the signature 'new (): MessageChannel'.
+
+[7m15[0m     global.MessageChannel = function() {
+[7m  [0m [91m    ~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-31db0eb/testCase.test.ts[0m:[93m16[0m:[93m12[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m16[0m       this.port1 = { onmessage: null, postMessage: () => {} };
+[7m  [0m [91m           ~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-31db0eb/testCase.test.ts[0m:[93m17[0m:[93m12[0m - [91merror[0m[90m TS7017: [0mElement implicitly has an 'any' type because type 'typeof globalThis' has no index signature.
+
+[7m17[0m       this.port2 = { postMessage: () => {}, onmessage: null };
+[7m  [0m [91m           ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-31db0eb/testCase.test.ts
+  Q library MessageChannel detection
+    ✕ should use setTimeout fallback when window is undefined but MessageChannel exists (1 ms)
+
+  ● Q library MessageChannel detection › should use setTimeout fallback when window is undefined but MessageChannel exists
+
+    TypeError: Cannot read properties of undefined (reading 'domain')
+
+      172 |         tail = tail.next = {
+      173 |             task: task,
+    > 174 |             domain: isNodeJS && process.domain,
+          |                                         ^
+      175 |             next: null
+      176 |         };
+      177 |
+
+      at Function.domain [as nextTick] (../subject_repositories/q/q.js:174:41)
+      at Promise.nextTick [as then] (../subject_repositories/q/q.js:876:7)
+      at Object.then (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-31db0eb/testCase.test.ts:24:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.846 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-31db0eb/testCase.test.ts".

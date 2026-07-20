@@ -1,0 +1,26 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-44979cd/testCase.test.ts
+  Q module export condition
+    ✕ should detect when exports check is bypassed (8 ms)
+
+  ● Q module export condition › should detect when exports check is bypassed
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      48 |         if (hasMutatedCondition) {
+      49 |             // With mutated code, the export path should be taken even when exports is not an object
+    > 50 |             expect(exportPathTaken).toBe(true);
+         |                                     ^
+      51 |             fail("Mutation detected: Export path was taken when exports was not an object");
+      52 |         } else if (hasOriginalCondition) {
+      53 |             // With original code, the export path should NOT be taken when exports is not an object
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-44979cd/testCase.test.ts:50:37)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.099 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-44979cd/testCase.test.ts".

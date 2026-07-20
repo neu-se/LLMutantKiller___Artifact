@@ -1,0 +1,46 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-f5a2f7f/testCase.test.ts[0m:[93m6[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'resolve' implicitly has an 'any' type.
+
+[7m6[0m       q.default(function(resolve, reject) {
+[7m [0m [91m                         ~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-f5a2f7f/testCase.test.ts[0m:[93m6[0m:[93m35[0m - [91merror[0m[90m TS7006: [0mParameter 'reject' implicitly has an 'any' type.
+
+[7m6[0m       q.default(function(resolve, reject) {
+[7m [0m [91m                                  ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-f5a2f7f/testCase.test.ts[0m:[93m10[0m:[93m14[0m - [91merror[0m[90m TS18046: [0m'error' is of type 'unknown'.
+
+[7m10[0m       expect(error.stack).toContain("q.js");
+[7m  [0m [91m             ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-f5a2f7f/testCase.test.ts
+  Q
+    ✕ should capture a stack trace when an error is thrown (4 ms)
+
+  ● Q › should capture a stack trace when an error is thrown
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "q.js"
+    Received string:    "TypeError: q.default(...) is not a function
+
+       6 |       q.default(function(resolve, reject) {
+       7 |         throw new Error("Test error");
+    >  8 |       })();
+         |         ^
+       9 |     } catch (error) {
+      10 |       expect(error.stack).toContain("q.js");
+      11 |     }
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-f5a2f7f/testCase.test.ts:8:9)
+      at Object.toContain (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-f5a2f7f/testCase.test.ts:10:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.014 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-f5a2f7f/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

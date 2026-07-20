@@ -1,0 +1,26 @@
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_10/pending_category/mutant-3e4eff6/testCase.test.ts
+  Matcher
+    ✕ should correctly handle path specifications with optional segments (3 ms)
+
+  ● Matcher › should correctly handle path specifications with optional segments
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+       5 |     const matcher = Matcher.for('/a/*', '1');
+       6 |     expect(matcher.test('/a/b')).toBe(true);
+    >  7 |     expect(matcher.test('/a/b/c')).toBe(false);
+         |                                    ^
+       8 |     const matcher2 = Matcher.for('/a/*', '1.1');
+       9 |     expect(matcher2.test('/a/b/c')).toBe(false);
+      10 |     const matcher3 = Matcher.for('/a/*', '1');
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_10/pending_category/mutant-3e4eff6/testCase.test.ts:7:36)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.626 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_10/pending_category/mutant-3e4eff6/testCase.test.ts".

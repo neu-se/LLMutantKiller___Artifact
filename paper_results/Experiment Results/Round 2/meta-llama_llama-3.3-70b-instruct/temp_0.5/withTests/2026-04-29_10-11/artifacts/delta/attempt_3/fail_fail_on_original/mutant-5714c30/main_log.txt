@@ -1,0 +1,45 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-5714c30/testCase.test.ts[0m:[93m2[0m:[93m19[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m2[0m import Delta from '../../../../../../../../../../../subject_repositories/delta/src/Delta.ts';
+[7m [0m [91m                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-5714c30/testCase.test.ts[0m:[93m8[0m:[93m25[0m - [91merror[0m[90m TS6133: [0m'priority' is declared but its value is never read.
+
+[7m8[0m       transform: (a, b, priority) => Object.assign({}, a, b),
+[7m [0m [91m                        ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-5714c30/testCase.test.ts
+  transform
+    ✕ should return correct result when thisData is an object and otherData is an object (5 ms)
+
+  ● transform › should return correct result when thisData is an object and otherData is an object
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 7
+
+      Object {
+    -   "test": "data1",
+    +   "test": Object {
+    +     "0": "d",
+    +     "1": "a",
+    +     "2": "t",
+    +     "3": "a",
+    +     "4": "2",
+    +   },
+      }
+
+      12 |     const delta2 = new Delta().retain({ test: 'data2' });
+      13 |     const result = delta1.transform(delta2);
+    > 14 |     expect(result.ops[0].retain).toEqual({ test: 'data1' });
+         |                                  ^
+      15 |   });
+      16 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-5714c30/testCase.test.ts:14:34)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.56 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-5714c30/testCase.test.ts".

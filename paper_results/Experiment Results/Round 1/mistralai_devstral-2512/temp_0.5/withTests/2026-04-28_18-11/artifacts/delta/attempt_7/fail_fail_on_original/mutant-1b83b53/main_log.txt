@@ -1,0 +1,30 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_7/pending_category/mutant-1b83b53/testCase.test.ts[0m:[93m7[0m:[93m23[0m - [91merror[0m[90m TS6133: [0m'keepNull' is declared but its value is never read.
+
+[7m7[0m       compose: (a, b, keepNull) => {
+[7m [0m [91m                      ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_7/pending_category/mutant-1b83b53/testCase.test.ts
+  compose() with embed handler
+    ✕ should correctly compose retain embed with number retain and preserve attributes (5 ms)
+
+  ● compose() with embed handler › should correctly compose retain embed with number retain and preserve attributes
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: {"attributes": {"bold": true}, "retain": 0}
+    Received: undefined
+
+      25 |     expect(result.ops[0].attributes).toEqual({ bold: true });
+      26 |     expect(result.ops[0].retain).toEqual({ delta: [{ insert: 'b' }] });
+    > 27 |     expect(result.ops[1]).toEqual({ retain: 0, attributes: { bold: true } });
+         |                           ^
+      28 |   });
+      29 | });
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_7/pending_category/mutant-1b83b53/testCase.test.ts:27:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.888 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_7/pending_category/mutant-1b83b53/testCase.test.ts".

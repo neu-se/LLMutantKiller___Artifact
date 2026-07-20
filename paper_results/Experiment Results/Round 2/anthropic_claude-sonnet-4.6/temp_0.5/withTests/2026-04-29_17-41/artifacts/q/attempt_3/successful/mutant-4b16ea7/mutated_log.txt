@@ -1,0 +1,44 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-4b16ea7/testCase.test.ts (6.091 s)
+  Q setImmediate branch
+    ✕ should call setImmediate with window as this context when window is defined (5003 ms)
+
+  ● Q setImmediate branch › should call setImmediate with window as this context when window is defined
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: {"Q": [Function Q]}
+    Received: undefined
+
+      44 |       // Original: setImmediate.bind(window, flush) → called with this=window
+      45 |       // Mutated: function() { setImmediate(flush); } → called with this=global/undefined
+    > 46 |       expect(setImmediateThis).toBe(mockWindow);
+         |                                ^
+      47 |       done();
+      48 |     });
+      49 |   });
+
+      at toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-4b16ea7/testCase.test.ts:46:32)
+      at runSingle (evalmachine.<anonymous>:137:13)
+      at Immediate.flush (evalmachine.<anonymous>:125:13)
+
+  ● Q setImmediate branch › should call setImmediate with window as this context when window is defined
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 |
+      5 | describe("Q setImmediate branch", () => {
+    > 6 |   it("should call setImmediate with window as this context when window is defined", (done) => {
+        |   ^
+      7 |     const qSource = fs.readFileSync(
+      8 |       path.resolve(__dirname, "../../../../../../../../../../../subject_repositories/q/q.js"),
+      9 |       "utf8"
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-4b16ea7/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-4b16ea7/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.36 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-4b16ea7/testCase.test.ts".

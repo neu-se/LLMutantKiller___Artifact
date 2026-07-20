@@ -1,0 +1,7 @@
+import plural from "../../../../../../../../../../../subject_repositories/plural/index.js";
+
+describe('plural function', () => {
+  it('should return the plural form of a word when the number is not 1', () => {
+    expect(plural('cat', 0)).toBe('cats');
+  });
+});

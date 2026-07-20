@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-e88687b/testCase.test.ts
+  drain sink abort parameter swapping
+    ✕ should correctly swap parameters when first argument is a function (9 ms)
+
+  ● drain sink abort parameter swapping › should correctly swap parameters when first argument is a function
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: [Function testCallback]
+    Received: true
+
+      19 |     // In mutated code: parameters don't get swapped because "" === typeof err is false
+      20 |     // So mockRead should receive (testFunction, testCallback)
+    > 21 |     expect(results[0].end).toBe(testCallback);
+         |                            ^
+      22 |     expect(results[0].cb).toBe(testFunction);
+      23 |   });
+      24 | });
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-e88687b/testCase.test.ts:21:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.596 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-e88687b/testCase.test.ts".

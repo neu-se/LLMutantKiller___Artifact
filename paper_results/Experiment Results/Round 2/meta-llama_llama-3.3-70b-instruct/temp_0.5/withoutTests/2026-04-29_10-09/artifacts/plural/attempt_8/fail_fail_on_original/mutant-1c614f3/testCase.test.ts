@@ -1,0 +1,40 @@
+const plural = require('./index.js');
+
+describe('plural', () => {
+  it('should correctly handle the plural form of a word that has a custom rule', () => {
+    expect(plural('cactus', 2)).toBe('cacti');
+    expect(plural('focus', 2)).toBe('foci');
+    expect(plural('fungus', 2)).toBe('fungi');
+    expect(plural('criterion', 2)).toBe('criteria');
+    expect(plural('bacterium', 2)).toBe('bacteria');
+    expect(plural('memo', 2)).toBe('memos');
+    expect(plural('cactus', 1)).toBe('cactus');
+    expect(plural('focus', 1)).toBe('focus');
+    expect(plural('fungus', 1)).toBe('fungus');
+    expect(plural('criterion', 1)).toBe('criterion');
+    expect(plural('bacterium', 1)).toBe('bacterium');
+    expect(plural('memo', 1)).toBe('memo');
+    expect(plural('soliloquy', 2)).toBe('soliloquies');
+    expect(plural('cherry', 2)).toBe('cherries');
+    expect(plural('basis', 2)).toBe('bases');
+    expect(plural('stereo', 2)).toBe('stereos');
+    expect(plural('goose', 2)).toBe('geese');
+    expect(plural('tooth', 2)).toBe('teeth');
+    expect(plural('foot', 2)).toBe('feet');
+    expect(plural('man', 2)).toBe('men');
+    expect(plural('woman', 2)).toBe('women');
+    expect(plural('child', 2)).toBe('children');
+    expect(plural('ox', 2)).toBe('oxen');
+    expect(plural('mouse', 2)).toBe('mice');
+    expect(plural('person', 2)).toBe('people');
+    expect(plural('deer', 2)).toBe('deer');
+    expect(plural('fish', 2)).toBe('fish');
+    expect(plural('series', 2)).toBe('series');
+    expect(plural('species', 2)).toBe('species');
+    expect(plural('sheep', 2)).toBe('sheep');
+    expect(plural('grouse', 2)).toBe('grouse');
+    expect(plural('salmon', 2)).toBe('salmon');
+    expect(plural('shrimp', 2)).toBe('shrimp');
+    expect(plural('squid', 2)).toBe('squid');
+  });
+});

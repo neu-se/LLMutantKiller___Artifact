@@ -1,0 +1,10 @@
+import { Complex } from '../../complex';
+
+describe('Complex', () => {
+  it('should calculate the complex acosh correctly', () => {
+    const complex = new Complex(Math.PI / 2, 0);
+    const result = complex.acosh();
+    expect(result.re).toBeCloseTo(0);
+    expect(result.im).toBeCloseTo(Math.PI / 2);
+  });
+});

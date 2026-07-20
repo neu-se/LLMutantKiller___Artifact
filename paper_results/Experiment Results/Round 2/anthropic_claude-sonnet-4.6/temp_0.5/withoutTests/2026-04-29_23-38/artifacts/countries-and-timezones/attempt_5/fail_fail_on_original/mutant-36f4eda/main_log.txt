@@ -1,0 +1,42 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/countries-and-timezones/attempt_5/pending_category/mutant-36f4eda/testCase.test.ts
+  getTimezonesForCountry
+    ✕ returns empty array not [null] for countries with no timezones in raw data (5 ms)
+
+  ● getTimezonesForCountry › returns empty array not [null] for countries with no timezones in raw data
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 13
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "aliasOf": null,
+    +     "countries": Array [
+    +       "AD",
+    +     ],
+    +     "dstOffset": 120,
+    +     "dstOffsetStr": "+02:00",
+    +     "name": "Europe/Andorra",
+    +     "utcOffset": 60,
+    +     "utcOffsetStr": "+01:00",
+    +   },
+    + ]
+
+      15 |       // Original: country.timezones is falsy, fallback [] → result = []
+      16 |       // Mutant: fallback ["Stryker was here"] → getTimezone returns null → result = [null]
+    > 17 |       expect(result).toEqual([]);
+         |                      ^
+      18 |     }
+      19 |   });
+      20 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/countries-and-timezones/attempt_5/pending_category/mutant-36f4eda/testCase.test.ts:17:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.443 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/countries-and-timezones/attempt_5/pending_category/mutant-36f4eda/testCase.test.ts".

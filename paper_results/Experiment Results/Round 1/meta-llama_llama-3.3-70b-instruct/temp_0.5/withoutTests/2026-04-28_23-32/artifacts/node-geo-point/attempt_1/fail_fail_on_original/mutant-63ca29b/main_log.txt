@@ -1,0 +1,42 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-63ca29b/testCase.test.ts[0m:[93m1[0m:[93m26[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import { GeoPoint } from "../../../../../../../../../../../subject_repositories/node-geo-point/src/geo-point.ts";
+[7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-63ca29b/testCase.test.ts[0m:[93m10[0m:[93m39[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ type: string; coordinates: number[]; }' is not assignable to parameter of type 'Point'.
+  Types of property 'type' are incompatible.
+    Type 'string' is not assignable to type '"Point"'.
+
+[7m10[0m     expect(() => GeoPoint.fromGeoJSON(invalidPoint)).toThrowError('Object must have type and coordinates');
+[7m  [0m [91m                                      ~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-63ca29b/testCase.test.ts
+  GeoPoint
+    ✕ throws an error when creating a GeoPoint from GeoJSON with invalid coordinates (19 ms)
+
+  ● GeoPoint › throws an error when creating a GeoPoint from GeoJSON with invalid coordinates
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "Object must have type and coordinates"
+    Received message:   "coordinates must be an array and contain 2 elements"
+
+          71 |
+          72 |     if (!Array.isArray(point.coordinates) || point.coordinates.length !== 2) {
+        > 73 |       throw new TypeError('coordinates must be an array and contain 2 elements');
+             |             ^
+          74 |     }
+          75 |
+          76 |     return this.fromLngLatArray(point.coordinates);
+
+      at Function.fromGeoJSON (../subject_repositories/node-geo-point/src/geo-point.ts:73:13)
+      at fromGeoJSON (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-63ca29b/testCase.test.ts:10:27)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-63ca29b/testCase.test.ts:10:54)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-63ca29b/testCase.test.ts:10:54)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.089 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_1/pending_category/mutant-63ca29b/testCase.test.ts".

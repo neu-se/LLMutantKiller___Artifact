@@ -1,0 +1,67 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-36cda1c/testCase.test.ts
+  Delta
+    ✕ eachLine() with newline at the end (3 ms)
+    ✕ eachLine() with newline in the middle (1 ms)
+    ✕ eachLine() without newlines (1 ms)
+
+  ● Delta › eachLine() with newline at the end
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 3
+    Received: 2
+
+       8 |       lines.push(line);
+       9 |     });
+    > 10 |     expect(lines.length).toEqual(3);
+         |                          ^
+      11 |     expect(lines[0].toString()).toEqual('Hello');
+      12 |     expect(lines[1].toString()).toEqual('World!');
+      13 |     expect(lines[2].toString()).toEqual('');
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-36cda1c/testCase.test.ts:10:26)
+
+  ● Delta › eachLine() with newline in the middle
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "Hello"
+    Received: "[object Object]"
+
+      21 |     });
+      22 |     expect(lines.length).toEqual(2);
+    > 23 |     expect(lines[0].toString()).toEqual('Hello');
+         |                                 ^
+      24 |     expect(lines[1].toString()).toEqual('World!');
+      25 |   });
+      26 |
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-36cda1c/testCase.test.ts:23:33)
+
+  ● Delta › eachLine() without newlines
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "HelloWorld!"
+    Received: "[object Object]"
+
+      32 |     });
+      33 |     expect(lines.length).toEqual(1);
+    > 34 |     expect(lines[0].toString()).toEqual('HelloWorld!');
+         |                                 ^
+      35 |   });
+      36 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-36cda1c/testCase.test.ts:34:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        1.53 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-36cda1c/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

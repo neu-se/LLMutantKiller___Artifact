@@ -1,0 +1,50 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_3/pending_category/mutant-952ac07/testCase.test.ts[0m:[93m3[0m:[93m29[0m - [91merror[0m[90m TS2307: [0mCannot find module 'follow-redirects' or its corresponding type declarations.
+
+[7m3[0m import { http, https } from 'follow-redirects';
+[7m [0m [91m                            ~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_3/pending_category/mutant-952ac07/testCase.test.ts[0m:[93m39[0m:[93m15[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m39[0m       .catch((err) => {
+[7m  [0m [91m              ~~~[0m
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_3/pending_category/mutant-952ac07/testCase.test.ts (6.256 s)
+  request error handling
+    ✕ should reject with error when request emits error event (5003 ms)
+
+  ● request error handling › should reject with error when request emits error event
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Request failed"
+    Received: "Cannot read properties of undefined (reading 'once')"
+
+      38 |       })
+      39 |       .catch((err) => {
+    > 40 |         expect(err.message).toBe('Request failed');
+         |                             ^
+      41 |         http.get = originalGet;
+      42 |         done();
+      43 |       });
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_3/pending_category/mutant-952ac07/testCase.test.ts:40:29)
+
+  ● request error handling › should reject with error when request emits error event
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 |
+      5 | describe('request error handling', () => {
+    > 6 |   it('should reject with error when request emits error event', (done) => {
+        |   ^
+      7 |     const request = require("../../../../../../../../../../../subject_repositories/image-downloader/lib/request");
+      8 |
+      9 |     // Mock the http module to simulate an error event
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_3/pending_category/mutant-952ac07/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_3/pending_category/mutant-952ac07/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.458 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_3/pending_category/mutant-952ac07/testCase.test.ts".

@@ -1,0 +1,37 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-f681451/testCase.test.ts
+  Delta transform
+    ✕ should correctly handle delete operations during transform with priority (5 ms)
+
+  ● Delta transform › should correctly handle delete operations during transform with priority
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 3
+    + Received  + 0
+
+    @@ -3,9 +3,6 @@
+          "retain": 2,
+        },
+        Object {
+          "delete": 1,
+        },
+    -   Object {
+    -     "retain": 1,
+    -   },
+      ]
+
+       7 |     const result = delta1.transform(delta2, true);
+       8 |     const expected = new Delta().retain(2).delete(1).retain(1);
+    >  9 |     expect(result.ops).toEqual(expected.ops);
+         |                        ^
+      10 |   });
+      11 | });
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-f681451/testCase.test.ts:9:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.095 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-f681451/testCase.test.ts".

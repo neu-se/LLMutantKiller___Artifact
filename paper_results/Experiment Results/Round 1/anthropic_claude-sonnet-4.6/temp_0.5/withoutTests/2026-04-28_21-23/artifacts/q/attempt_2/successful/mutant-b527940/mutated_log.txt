@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-b527940/testCase.test.ts (6.305 s)
+  unhandled rejection tracking
+    ✕ should not emit unhandledRejection when the rejection has been handled before the runAfter callback fires (5001 ms)
+
+  ● unhandled rejection tracking › should not emit unhandledRejection when the rejection has been handled before the runAfter callback fires
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      25 |       // Original: indexOf returns -1 (not in array), -1 !== -1 is false -> does NOT emit -> emitCount = 0
+      26 |       // Mutated:  indexOf returns -1 (not in array), -1 !== +1 is true  -> DOES emit    -> emitCount > 0
+    > 27 |       expect(emitCount).toBe(0);
+         |                         ^
+      28 |       Q.resetUnhandledRejections();
+      29 |       done();
+      30 |     }, 300);
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-b527940/testCase.test.ts:27:25)
+
+  ● unhandled rejection tracking › should not emit unhandledRejection when the rejection has been handled before the runAfter callback fires
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("unhandled rejection tracking", () => {
+    > 4 |   it("should not emit unhandledRejection when the rejection has been handled before the runAfter callback fires", (done) => {
+        |   ^
+      5 |     Q.resetUnhandledRejections();
+      6 |
+      7 |     const testReason = new Error("test rejection that gets handled");
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-b527940/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-b527940/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.456 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-b527940/testCase.test.ts".

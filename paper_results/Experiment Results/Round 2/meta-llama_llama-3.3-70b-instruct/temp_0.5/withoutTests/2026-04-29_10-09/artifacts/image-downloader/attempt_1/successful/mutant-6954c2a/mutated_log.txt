@@ -1,0 +1,36 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-6954c2a/testCase.test.ts[0m:[93m1[0m:[93m18[0m - [91merror[0m[90m TS2307: [0mCannot find module 'nock' or its corresponding type declarations.
+
+[7m1[0m import nock from 'nock';
+[7m [0m [91m                 ~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-6954c2a/testCase.test.ts
+  request
+    ✕ should reject with a meaningful error message when the status code is not 200 (19 ms)
+
+  ● request › should reject with a meaningful error message when the status code is not 200
+
+    expect(received).rejects.toThrowError(expected)
+
+    Expected substring: "Request Failed.
+    Status Code: 404"
+    Received message:   "Status Code: 404"
+
+          11 |         // Consume response data to free up memory
+          12 |         res.resume();
+        > 13 |            reject(new Error("" +
+             |                   ^
+          14 |
+          15 |                          `Status Code: ${res.statusCode}`));
+          16 |
+
+      at RedirectableRequest.<anonymous> (../subject_repositories/image-downloader/lib/request.js:13:19)
+      at RedirectableRequest.Object.<anonymous>.RedirectableRequest._processResponse (../subject_repositories/image-downloader/node_modules/follow-redirects/index.js:346:10)
+      at OverriddenClientRequest.RedirectableRequest._onNativeResponse (../subject_repositories/image-downloader/node_modules/follow-redirects/index.js:57:10)
+      at Timeout.respond [as _onTimeout] (../subject_repositories/image-downloader/node_modules/nock/lib/playback_interceptor.js:307:11)
+      at Object.toThrowError (node_modules/expect/build/index.js:218:22)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-6954c2a/testCase.test.ts:16:50)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.154 s, estimated 2 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-6954c2a/testCase.test.ts".

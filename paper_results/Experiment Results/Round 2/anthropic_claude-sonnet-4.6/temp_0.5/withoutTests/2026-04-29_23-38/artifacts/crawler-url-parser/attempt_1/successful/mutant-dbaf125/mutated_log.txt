@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-dbaf125/testCase.test.ts
+  extract function - duplicate URL text handling
+    ✕ should not duplicate text when the same link appears multiple times with the same text (9 ms)
+
+  ● extract function - duplicate URL text handling › should not duplicate text when the same link appears multiple times with the same text
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Link Text"
+    Received: "Link Text Link Text Link Text"
+
+      20 |     // So "Link Text" appearing 3 times should NOT result in "Link Text Link Text Link Text"
+      21 |     // It should remain "Link Text" since the text is already included
+    > 22 |     expect(targetUrl!.text).toBe('Link Text');
+         |                             ^
+      23 |   });
+      24 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-dbaf125/testCase.test.ts:22:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.692 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-dbaf125/testCase.test.ts".

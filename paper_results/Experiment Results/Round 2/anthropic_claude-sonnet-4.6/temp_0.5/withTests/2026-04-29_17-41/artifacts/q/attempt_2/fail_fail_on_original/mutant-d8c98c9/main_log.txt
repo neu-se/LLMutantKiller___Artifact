@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-d8c98c9/testCase.test.ts
+  domain exit after task execution
+    ✕ should call domain.exit() after running a domain-bound task so subsequent tasks run outside the domain (2 ms)
+
+  ● domain exit after task execution › should call domain.exit() after running a domain-bound task so subsequent tasks run outside the domain
+
+    domain was not exited after task - mutation detected
+
+      34 |         if (currentDomain === d) {
+      35 |           // Mutation detected: domain was not exited
+    > 36 |           done(new Error("domain was not exited after task - mutation detected"));
+         |                ^
+      37 |         } else {
+      38 |           // Original behavior: domain was properly exited
+      39 |           expect(domainCaughtErrors).toHaveLength(0);
+
+      at llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-d8c98c9/testCase.test.ts:36:16
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.383 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-d8c98c9/testCase.test.ts".

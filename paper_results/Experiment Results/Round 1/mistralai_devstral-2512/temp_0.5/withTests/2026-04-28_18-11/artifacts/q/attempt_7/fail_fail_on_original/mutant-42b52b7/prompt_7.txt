@@ -1,0 +1,43 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-42b52b7/testCase.test.ts
+  unhandled rejection tracking
+    ✕ should emit rejectionHandled event when process.emit exists (420 ms)
+
+  ● unhandled rejection tracking › should emit rejectionHandled event when process.emit exists
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: "rejectionHandled", Any<String>, {"exception": [Error: Test rejection], "inspect": [Function inspect], "promiseDispatch": [Function anonymous], "valueOf": [Function anonymous]}
+    Received
+           1
+              "unhandledRejection",
+              [Error: Test rejection],
+              {"exception": [Error: Test rejection], "inspect": [Function inspect], "promiseDispatch": [Function anonymous], "valueOf": [Function anonymous]},
+           2
+              "rejectionHandled",
+              undefined,
+              {"exception": [Error: Test rejection], "inspect": [Function inspect], "promiseDispatch": [Function anonymous], "valueOf": [Function anonymous]},
+
+    Number of calls: 2
+
+      34 |               // This should happen in the original code but not in the mutated code
+      35 |               // because the mutation changes the condition from `=== "function"` to `!== "function"`
+    > 36 |               expect(mockProcess.emit).toHaveBeenCalledWith(
+         |                                        ^
+      37 |                 'rejectionHandled',
+      38 |                 expect.any(String),
+      39 |                 rejectedPromise
+
+      at Timeout.toHaveBeenCalledWith [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-42b52b7/testCase.test.ts:36:40)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.802 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-42b52b7/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

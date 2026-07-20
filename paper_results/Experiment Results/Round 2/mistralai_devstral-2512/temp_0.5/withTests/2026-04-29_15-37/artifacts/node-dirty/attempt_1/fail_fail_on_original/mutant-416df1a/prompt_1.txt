@@ -1,0 +1,648 @@
+Your task is to write a Jest test case that exposes a specific mutation in a JavaScript/TypeScript project.
+
+MUTATION DETAILS
+The mutation affects the following file:
+lib/dirty/dirty.js
+Here is the full content of that file (shown with a <PLACEHOLDER> marker):
+'use strict';
+
+const fs = require('fs');
+const EventEmitter = require('events').EventEmitter;
+
+class Dirty extends EventEmitter {
+  constructor(path) {
+    super();
+
+    this.path = path;
+
+    this._data = new Map();
+    this._queue = new Map(); // Maps key to a list of callbacks.
+    this._readStream = null;
+    this._writeStream = null;
+    this._waitForDrain = false;
+    this._inFlightWrites = 0;
+
+    this._load();
+  }
+
+  /**
+   * set() stores a JSON object in the database at key
+   * cb is fired when the data is persisted.
+   * In memory, this is immediate - on disk, it will take some time.
+   */
+  set(key, val, cb) {
+    if (val === undefined) {
+      this._data.delete(key);
+    } else {
+      this._data.set(key, val);
+    }
+    if (this.path) {
+      const cbs = this._queue.get(key) || [];
+      if (cb) cbs.push(cb);
+      this._queue.set(key, cbs);
+      this._flush();
+    } else {
+      setImmediate(() => { if (cb) cb(); this.emit('drain'); });
+    }
+  }
+
+  /**
+   * Get the value stored at a key in the database
+   * This is synchronous since a cache is maintained in-memory
+   */
+  get(key) {
+    return this._data.get(key);
+  }
+
+  /**
+   * Get total number of stored keys
+   */
+  size() {
+    return this._data.size;
+  }
+
+  /**
+   * Remove a key and the value stored there
+   */
+  rm(key, cb) {
+    this.set(key, undefined, cb);
+  }
+
+  /**
+   * Iterate over keys, applying match function
+   */
+  forEach(fn) {
+    for (const [key, val] of this._data) {
+      if (fn(key, val) === false) break;
+    }
+  }
+
+  /**
+   * Update the value stored at a key in the database.
+   * This is synchronous since a cache is maintained in-memory
+   * cb is passed as per Dirty.prototype.set
+   */
+  update(key, updater, cb) {
+    this.set(key, updater(this.get(key)), cb);
+  }
+
+  /**
+   * Close dirty db file streams
+   */
+  close() {
+    if (this._queue.size || this._inFlightWrites > 0) {
+      this.once('drain', () => this.close());
+      return;
+    }
+    if (this._readStream) this._readStream.destroy();
+    if (this._writeStream) this._writeStream.end(() => this._writeStream.destroy());
+  }
+
+  // Called when a dirty connection is instantiated
+  _load() {
+    let buffer = '';
+
+    if (!this.path) {
+      process.nextTick(() => {
+        this.emit('load', 0);
+      });
+      return;
+    }
+
+    this._readStream = fs.createReadStream(this.path, {
+      encoding: 'utf-8',
+      flags: 'r',
+    });
+
+    this._readStream
+        .on('error', (err) => {
+          if (err.code === 'ENOENT') {
+            this.emit('load', 0);
+            return;
+          }
+
+          this.emit('error', err);
+        })
+        .on('data', (chunk) => {
+          buffer += chunk;
+          if (chunk.lastIndexOf('\n') === -1) return;
+          const arr = buffer.split('\n');
+          buffer = arr.pop();
+          arr.forEach((rowStr) => {
+            if (!rowStr) {
+              this.emit('error', new Error('Empty lines never appear in a healthy database'));
+              return;
+            }
+
+            let row;
+            try {
+              row = JSON.parse(rowStr);
+              if (!('key' in row)) {
+                throw new Error();
+              }
+            } catch (e) {
+              this.emit('error', new Error(`Could not load corrupted row: ${rowStr}`));
+              return '';
+            }
+
+            if (row.val === undefined) {
+              this._data.delete(row.key);
+            } else {
+              this._data.set(row.key, row.val);
+            }
+            return '';
+          });
+        })
+        .on('end', () => {
+          if (buffer.length) {
+            this.emit('error', new Error(`Corrupted row at the end of the db: ${buffer}`));
+          }
+          this.emit('load', this._data.size);
+        })
+        .on('close', () => {
+          this._readStream = null;
+          this.emit('read_close');
+        });
+
+    this._writeStream = fs.createWriteStream(this.path, {
+      encoding: 'utf-8',
+      flags: 'a',
+    });
+
+    this._writeStream.on('drain', () => {
+      this._waitForDrain = false;
+      if (!this._queue.size) {
+        if (this._inFlightWrites <= 0) this.emit('drain');
+      } else {
+        this._flush();
+      }
+    });
+
+    this._writeStream.on('close', () => {
+      this._writeStream = null;
+      this.emit('write_close');
+    });
+  }
+
+  _flush() {
+    if (!this._queue.size || this._waitForDrain) return;
+    this._writeStream.cork();
+    for (const [key, cbs] of this._queue) {
+      this._queue.delete(key);
+      const data = `${JSON.stringify({key, val: this._data.get(key)})}\n`;
+      ++this._inFlightWrites;
+      this._waitForDrain = !this._writeStream.write(data, (err) => {
+        <PLACEHOLDER>
+        if (--this._inFlightWrites <= 0 && !this._waitForDrain) this.emit('drain');
+        for (const cb of cbs) cb(err);
+      });
+      if (this._waitForDrain) break;
+    }
+    this._writeStream.uncork();
+  }
+}
+
+Dirty.Dirty = Dirty;
+// Trap `apply` for backwards compatibility with callers that don't use `new`.
+module.exports = exports = new Proxy(Dirty, {apply: (target, thisArg, args) => new Dirty(...args)});
+
+In the original code, <PLACEHOLDER> has the value:
+
+-           if (!cbs.length && err != null) this.emit('error', err);
+In the mutated code, <PLACEHOLDER> has the value:
+
++           if (cbs.length && err != null) this.emit('error', err);
+
+
+YOUR TASK
+Write one Jest test file that:
+    1. Passes when run against the original code.
+    2. Fails when run against the mutated code.
+    3. Tests the behavior of the mutated file in a way that reliably detects the mutation.
+The test will be saved at the following path, relative to this test-generation project’s root:
+llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-416df1a/testCase.test.ts
+
+RESOURCES AVAILABLE
+Existing test cases you may use for style or structure inspiration, focusing on how they reflect the project’s expected behavior and typical inputs:
+// test/tmp/chain.dirty
+
+{"key":"x","val":"y"}
+{"key":"p","val":"q"}
+
+
+---
+// test/config.js
+
+'use strict';
+
+const path = require('path');
+const fs = require('fs');
+const rimraf = require('rimraf');
+
+const TMP_PATH = path.join(__dirname, 'tmp');
+const LIB_DIRTY = path.join(__dirname, '../lib/dirty');
+
+rimraf.sync(TMP_PATH);
+fs.mkdirSync(TMP_PATH);
+
+module.exports = {
+  TMP_PATH,
+  LIB_DIRTY,
+};
+
+
+---
+// test/test-api.js
+
+'use strict';
+
+const config = require('./config');
+const fsp = require('fs').promises;
+const Dirty = require(config.LIB_DIRTY);
+const events = require('events');
+const assert = require('assert');
+
+const dirtyAPITests = (file) => {
+  const mode = (file) ? 'persistent' : 'transient';
+
+  describe(`dirty api (${mode} mode)`, function () {
+    const cleanup = async () => {
+      try {
+        await fsp.unlink(file);
+      } catch (err) { /* intentionally ignored */ }
+    };
+
+    before(cleanup);
+
+    it('constructor without new', async function () {
+      const db = Dirty(file); // eslint-disable-line new-cap
+      assert(db instanceof Dirty);
+      await cleanup();
+    });
+
+    describe('dirty constructor', function () {
+      let db;
+
+      before(async function () { db = new Dirty(file); });
+      after(cleanup);
+
+      it('is an event emitter', async function () {
+        assert.ok(db instanceof events.EventEmitter);
+      });
+
+      it('is a dirty', async function () {
+        assert.ok(db instanceof Dirty);
+      });
+    });
+
+    describe('events', function () {
+      afterEach(cleanup);
+
+      it('should fire load', function (done) {
+        const db = new Dirty(file);
+        db.on('load', (length) => {
+          assert.strictEqual(length, 0);
+          done();
+        });
+      });
+
+      it('should fire drain after write', function (done) {
+        const db = new Dirty(file);
+        db.on('load', (length) => {
+          assert.strictEqual(length, 0);
+
+          db.set('key', 'value');
+          db.on('drain', () => {
+            done();
+          });
+        });
+      });
+    });
+
+    describe('accessors', function (done) {
+      after(cleanup);
+      let db;
+
+      it('.set should trigger callback', function (done) {
+        db = new Dirty(file);
+        db.set('key', 'value', (err) => {
+          assert.ok(!err);
+          done();
+        });
+      });
+
+      it('.get should return value', async function () {
+        assert.strictEqual(db.get('key'), 'value');
+      });
+
+      it('.path is valid', async function () {
+        assert.strictEqual(db.path, file);
+      });
+
+      it('.forEach runs for all', async function () {
+        const total = 2; let
+          count = 0;
+        db.set('key1', 'value1');
+        db.set('delete', 'me');
+
+        db.rm('delete');
+
+        const keys = ['key', 'key1'];
+        const vals = ['value', 'value1'];
+
+        db.forEach((key, val) => {
+          assert.strictEqual(key, keys[count]);
+          assert.strictEqual(val, vals[count]);
+
+          count++;
+        });
+
+        assert.strictEqual(count, total);
+      });
+
+      it('.rm removes key/value pair', async function () {
+        db.set('test', 'test');
+        assert.strictEqual(db.get('test'), 'test');
+        db.rm('test');
+        assert.strictEqual(db.get('test'), undefined);
+      });
+
+      it('.rm of unknown key is a no-op', async function () {
+        db.rm('does not exist');
+        const got = [];
+        db.forEach((k, v) => { got.push([k, v]); });
+        assert.deepStrictEqual(got, [['key', 'value'], ['key1', 'value1']]);
+      });
+
+      it('will reload file from disk', function (done) {
+        if (!file) {
+          console.log('N/A in transient mode');
+          return done();
+        }
+
+        db = new Dirty(file);
+        db.on('load', (length) => {
+          assert.strictEqual(length, 2);
+          assert.strictEqual(db.get('key'), 'value');
+          assert.strictEqual(db.get('key1'), 'value1');
+          const got = [];
+          db.forEach((k, v) => { got.push([k, v]); });
+          assert.deepStrictEqual(got, [['key', 'value'], ['key1', 'value1']]);
+          done();
+        });
+      });
+    });
+
+    describe('db file close', function () {
+      after(cleanup);
+
+      it('close', function (done) {
+        if (!file) {
+          console.log('N/A in transient mode');
+          return done();
+        }
+        const db = new Dirty(file);
+        db.on('load', (length) => {
+          db.set('close', 'close');
+          db.on('drain', () => {
+            db.close();
+          });
+        });
+
+        db.on('write_close', () => {
+          done();
+        });
+      });
+    });
+  });
+};
+
+dirtyAPITests('');
+dirtyAPITests(`${config.TMP_PATH}/apitest.dirty`);
+
+---
+// test/test-nostore.js
+
+'use strict';
+
+const config = require('./config');
+const Dirty = require(config.LIB_DIRTY);
+const assert = require('assert');
+
+describe('test-load-event', function () {
+  it('should fire load event', function (done) {
+    const db = new Dirty();
+
+    db.on('load', () => {
+      done();
+    });
+  });
+});
+
+describe('test-set-callback', function () {
+  it('should trigger callback on set', function (done) {
+    const db = new Dirty();
+    let foo = '';
+
+    db.set('foo', 'bar', () => {
+      foo = db.get('foo');
+      assert.equal(foo, 'bar');
+      done();
+    });
+  });
+});
+
+---
+// test/test-system.js
+
+'use strict';
+
+const config = require('./config');
+const fs = require('fs');
+const fsp = fs.promises;
+const assert = require('assert');
+const Dirty = require(config.LIB_DIRTY);
+
+describe('test-flush', function () {
+  const file = `${config.TMP_PATH}/flush.dirty`;
+
+  afterEach(async function () {
+    await fsp.unlink(file);
+  });
+
+  it('should fire drain event on write', function (done) {
+    const db = new Dirty(file);
+    db.set('foo', 'bar');
+    db.on('drain', () => {
+      done();
+    });
+  });
+
+  it('should write to disk appropriately', function (done) {
+    const db = new Dirty(file);
+    db.set('foo1', 'bar1');
+    db.on('drain', () => {
+      const contents = fs.readFileSync(file, 'utf-8');
+
+      assert.strictEqual(
+          contents,
+          `${JSON.stringify({key: 'foo1', val: 'bar1'})}\n`
+      );
+
+      done();
+    });
+  });
+});
+
+describe('test-for-each', function () {
+  const db = new Dirty();
+
+  db.set(1, {test: 'foo'});
+  db.set(2, {test: 'bar'});
+  db.set(3, {test: 'foobar'});
+
+  it('should return each doc key and contents', async function () {
+    let i = 0;
+    db.forEach((key, doc) => {
+      i++;
+      assert.equal(key, i);
+      assert.strictEqual(doc, db.get(key));
+    });
+    assert.equal(i, 3);
+  });
+});
+
+describe('test-load', function () {
+  const file = `${config.TMP_PATH}/load.dirty`;
+  const db = new Dirty(file);
+
+  afterEach(async function () {
+    await fsp.unlink(file);
+  });
+
+  it('should load after write to disk', function (done) {
+    db.set(1, 'A');
+    db.set(2, 'B');
+    db.set(3, 'C');
+    db.rm(3);
+
+    db.on('drain', () => {
+      const db2 = new Dirty(file);
+
+      db2.on('load', (length) => {
+        assert.equal(length, 2);
+
+        assert.strictEqual(db2.get(1), 'A');
+        assert.strictEqual(db2.get(2), 'B');
+        assert.strictEqual(db2.get(3), undefined);
+        assert.strictEqual(db2._data.size, 2);
+        assert.ok(!db2._data.has('3'));
+        done();
+      });
+    });
+  });
+});
+
+
+describe('test-size', function () {
+  const db = new Dirty();
+
+  db.set(1, {test: 'foo'});
+  db.set(2, {test: 'bar'});
+  db.set(3, {test: 'foobar'});
+
+  it('should be equal to number of keys set', async function () {
+    assert.equal(db.size(), 3);
+  });
+});
+
+describe('test-chaining-of-constructor', function () {
+  const file = `${config.TMP_PATH}/chain.dirty`;
+  fs.existsSync(file) && fs.unlinkSync(file);
+
+  it('should allow .on load to chain to constructor', async function () {
+    let db = new Dirty(file);
+    await new Promise((resolve) => db.on('load', resolve));
+    db.set('x', 'y');
+    db.set('p', 'q');
+    db.close();
+
+    const size = await new Promise((resolve) => { db = new Dirty(file).on('load', resolve); });
+    assert.strictEqual(db.size(), 2);
+    assert.strictEqual(size, 2);
+  });
+});
+
+describe('test-update', function () {
+  it('updater receives old value and sets new value', async function () {
+    const db = new Dirty();
+    db.set('foo', 'bar');
+    db.update('foo', (bar) => {
+      assert.strictEqual(bar, 'bar');
+      return 'baz';
+    });
+    assert.strictEqual(db.get('foo'), 'baz');
+  });
+});
+
+---
+// test/test-types.js
+
+'use strict';
+
+const config = require('./config');
+const Dirty = require(config.LIB_DIRTY);
+const assert = require('assert');
+
+describe.skip('test-types', function () {
+  let db;
+
+  before(async function () { db = new Dirty(`${config.TMP_PATH}/test-types.dirty`); });
+
+  describe('keys', function () {
+    it('should prevent storage of an undefined key', async function () {
+      db.set(undefined, 'value');
+    });
+
+    it('should not return an undefined key', async function () {
+      assert(!db.get(undefined));
+    });
+  });
+});
+
+The test runner configuration (package.json):
+{
+  "name": "dirty",
+  "description": "A tiny & fast key value store with append-only disk log. Ideal for apps with < 1 million records.",
+  "version": "1.1.3",
+  "repository": "https://github.com/felixge/node-dirty.git",
+  "license": "MIT",
+  "dependencies": {},
+  "main": "./lib/dirty",
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-mocha": "^9.0.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-you-dont-need-lodash-underscore": "^6.12.0",
+    "mocha": "^9.1.1",
+    "rimraf": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=12.13.0"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "test": "mocha test/test-*.js -R list"
+  }
+}
+
+ALLOWED LIBRARIES
+You may use:
+    1. Any built-in Node.js modules (e.g., fs, path, crypto, etc.).
+    2. The following external libraries are explicitly permitted:
+    - rimraf
+You may not use any other third-party libraries.

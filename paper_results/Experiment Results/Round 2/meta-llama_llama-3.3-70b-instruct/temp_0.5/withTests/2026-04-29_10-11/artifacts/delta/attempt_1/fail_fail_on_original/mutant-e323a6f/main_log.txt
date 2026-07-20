@@ -1,0 +1,88 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-e323a6f/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2614: [0mModule '"../../../../../../../../../../../subject_repositories/delta/src/AttributeMap"' has no exported member 'AttributeMap'. Did you mean to use 'import AttributeMap from "../../../../../../../../../../../subject_repositories/delta/src/AttributeMap"' instead?
+
+[7m1[0m import { AttributeMap } from '../../../../../../../../../../../subject_repositories/delta/src/AttributeMap';
+[7m [0m [91m         ~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-e323a6f/testCase.test.ts
+  AttributeMap
+    ✕ transform function with priority (1 ms)
+    ✕ transform function without priority
+    ✕ transform function with empty objects (1 ms)
+    ✕ transform function with null values
+    ✕ transform function with falsey values
+
+  ● AttributeMap › transform function with priority
+
+    TypeError: Cannot read properties of undefined (reading 'transform')
+
+       5 |     const a: AttributeMap = { bold: true, color: 'red', font: null };
+       6 |     const b: AttributeMap = { color: 'blue', font: 'serif', italic: true };
+    >  7 |     const result = AttributeMap.transform(a, b, true);
+         |                                 ^
+       8 |     expect(result).toEqual({ italic: true });
+       9 |   });
+      10 |
+
+      at Object.transform (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-e323a6f/testCase.test.ts:7:33)
+
+  ● AttributeMap › transform function without priority
+
+    TypeError: Cannot read properties of undefined (reading 'transform')
+
+      12 |     const a: AttributeMap = { bold: true, color: 'red', font: null };
+      13 |     const b: AttributeMap = { color: 'blue', font: 'serif', italic: true };
+    > 14 |     const result = AttributeMap.transform(a, b, false);
+         |                                 ^
+      15 |     expect(result).toEqual(b);
+      16 |   });
+      17 |
+
+      at Object.transform (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-e323a6f/testCase.test.ts:14:33)
+
+  ● AttributeMap › transform function with empty objects
+
+    TypeError: Cannot read properties of undefined (reading 'transform')
+
+      19 |     const a: AttributeMap = { bold: true, color: 'red', font: null };
+      20 |     const b: AttributeMap = {};
+    > 21 |     const result = AttributeMap.transform(a, b, true);
+         |                                 ^
+      22 |     expect(result).toEqual({});
+      23 |   });
+      24 |
+
+      at Object.transform (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-e323a6f/testCase.test.ts:21:33)
+
+  ● AttributeMap › transform function with null values
+
+    TypeError: Cannot read properties of undefined (reading 'transform')
+
+      26 |     const a: AttributeMap = { bold: true, color: 'red', font: null };
+      27 |     const b: AttributeMap = { color: null, font: null };
+    > 28 |     const result = AttributeMap.transform(a, b, true);
+         |                                 ^
+      29 |     expect(result).toEqual({ color: null, font: null });
+      30 |   });
+      31 |
+
+      at Object.transform (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-e323a6f/testCase.test.ts:28:33)
+
+  ● AttributeMap › transform function with falsey values
+
+    TypeError: Cannot read properties of undefined (reading 'transform')
+
+      33 |     const a: AttributeMap = { bold: true, color: 'red', font: null };
+      34 |     const b: AttributeMap = { bold: false, color: '', font: 0 };
+    > 35 |     const result = AttributeMap.transform(a, b, true);
+         |                                 ^
+      36 |     expect(result).toEqual({ bold: false, color: '', font: 0 });
+      37 |   });
+      38 | });
+
+      at Object.transform (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-e323a6f/testCase.test.ts:35:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       5 failed, 5 total
+Snapshots:   0 total
+Time:        3.075 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-e323a6f/testCase.test.ts".

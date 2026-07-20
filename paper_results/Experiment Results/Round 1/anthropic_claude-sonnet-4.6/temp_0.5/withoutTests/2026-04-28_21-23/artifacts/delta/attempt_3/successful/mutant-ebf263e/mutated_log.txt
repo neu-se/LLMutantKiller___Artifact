@@ -1,0 +1,41 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-ebf263e/testCase.test.ts
+  Delta compose
+    ✕ preserves non-canonical op boundaries when other starts with plain retain (6 ms)
+
+  ● Delta compose › preserves non-canonical op boundaries when other starts with plain retain
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 4
+    + Received  + 1
+
+    @@ -1,11 +1,8 @@
+      Array [
+        Object {
+    -     "insert": "A",
+    -   },
+    -   Object {
+    -     "insert": "B",
+    +     "insert": "AB",
+        },
+        Object {
+          "retain": 5,
+        },
+        Object {
+
+       6 |     const other = new Delta([{ retain: 7 }]);
+       7 |     const result = base.compose(other);
+    >  8 |     expect(result.ops).toEqual([
+         |                        ^
+       9 |       { insert: "A" },
+      10 |       { insert: "B" },
+      11 |       { retain: 5 },
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-ebf263e/testCase.test.ts:8:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.499 s, estimated 4 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-ebf263e/testCase.test.ts".

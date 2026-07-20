@@ -1,0 +1,32 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_10/pending_category/mutant-620cbd1/testCase.test.ts
+  compose() with retain optimization
+    ✕ should trigger retain optimization when firstOther has numeric retain without attributes (5 ms)
+
+  ● compose() with retain optimization › should trigger retain optimization when firstOther has numeric retain without attributes
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+    -   "retain": 1,
+    +   "retain": 5,
+      }
+
+       9 |     // The mutation changes the condition from checking typeof firstOther.retain === 'number'
+      10 |     // to typeof firstOther.retain === "" which should fail
+    > 11 |     expect(result.ops[3]).toEqual({ retain: 1 });
+         |                           ^
+      12 |     expect(result.ops[4]).toEqual({ delete: 1 });
+      13 |   });
+      14 | });
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_10/pending_category/mutant-620cbd1/testCase.test.ts:11:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.86 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_10/pending_category/mutant-620cbd1/testCase.test.ts".

@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-340bfb0/testCase.test.ts
+  long stack traces
+    ✕ sets __minimumStackCounter__ on the error object when building long stack traces (11 ms)
+
+  ● long stack traces › sets __minimumStackCounter__ on the error object when building long stack traces
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      24 |       // With original code, __minimumStackCounter__ is set on the error.
+      25 |       // With mutated code, "" is set instead, so __minimumStackCounter__ remains undefined.
+    > 26 |       expect((capturedError as Record<string, unknown>)["__minimumStackCounter__"]).toBeDefined();
+         |                                                                                     ^
+      27 |     } finally {
+      28 |       Q.longStackSupport = false;
+      29 |     }
+
+      at Object.toBeDefined (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-340bfb0/testCase.test.ts:26:85)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.527 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-340bfb0/testCase.test.ts".

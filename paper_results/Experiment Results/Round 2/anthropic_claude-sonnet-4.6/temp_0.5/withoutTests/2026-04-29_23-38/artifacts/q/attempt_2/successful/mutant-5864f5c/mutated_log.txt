@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-5864f5c/testCase.test.ts
+  Q.async SpiderMonkey path isStopIteration
+    ✕ should reject when a non-StopIteration error is thrown in a generator (3 ms)
+
+  ● Q.async SpiderMonkey path isStopIteration › should reject when a non-StopIteration error is thrown in a generator
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: undefined
+
+      17 |       });
+      18 |       
+    > 19 |       await expect(asyncFn()).rejects.toThrow("real error");
+         |             ^
+      20 |     } finally {
+      21 |       delete (global as any).StopIteration;
+      22 |     }
+
+      at expect (node_modules/expect/build/index.js:113:15)
+      at Object.expect (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-5864f5c/testCase.test.ts:19:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.12 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-5864f5c/testCase.test.ts".

@@ -1,0 +1,41 @@
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-de5a53e/testCase.test.ts (6.133 s)
+  Dirty
+    ✕ should close the write stream properly (5004 ms)
+
+  ● Dirty › should close the write stream properly
+
+    Unhandled error. (Error: Corrupted row at the end of the db: test
+
+      150 |         .on('end', () => {
+      151 |           if (buffer.length) {
+    > 152 |             this.emit('error', new Error(`Corrupted row at the end of the db: ${buffer}`));
+          |                                ^
+      153 |           }
+      154 |           this.emit('load', this._data.size);
+      155 |         })
+
+      at ReadStream.<anonymous> (../subject_repositories/node-dirty/lib/dirty/dirty.js:152:32)
+      at processTicksAndRejections (node:internal/process/task_queues:82:21))
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:152:18)
+
+  ● Dirty › should close the write stream properly
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      3 |
+      4 | describe('Dirty', () => {
+    > 5 |   it('should close the write stream properly', (done) => {
+        |   ^
+      6 |     const dbPath = 'test.db';
+      7 |     const dirty = new Dirty(dbPath);
+      8 |
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-de5a53e/testCase.test.ts:5:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-de5a53e/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.305 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-de5a53e/testCase.test.ts".

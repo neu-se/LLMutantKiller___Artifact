@@ -1,0 +1,74 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-6d0900f/testCase.test.ts[0m:[93m6[0m:[93m11[0m - [91merror[0m[90m TS2339: [0mProperty 'untrackRejection' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'.
+
+[7m6[0m         Q.untrackRejection = function(promise) {
+[7m [0m [91m          ~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-6d0900f/testCase.test.ts[0m:[93m6[0m:[93m39[0m - [91merror[0m[90m TS7006: [0mParameter 'promise' implicitly has an 'any' type.
+
+[7m6[0m         Q.untrackRejection = function(promise) {
+[7m [0m [91m                                      ~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-6d0900f/testCase.test.ts[0m:[93m7[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'array_indexOf' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'.
+
+[7m7[0m             var at = Q.array_indexOf(Q.unhandledRejections, promise);
+[7m [0m [91m                       ~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-6d0900f/testCase.test.ts[0m:[93m7[0m:[93m40[0m - [91merror[0m[90m TS2551: [0mProperty 'unhandledRejections' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'. Did you mean 'resetUnhandledRejections'?
+
+[7m7[0m             var at = Q.array_indexOf(Q.unhandledRejections, promise);
+[7m [0m [91m                                       ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96m../subject_repositories/q/q.js[0m:[93m1114[0m:[93m1[0m
+    [7m1114[0m Q.resetUnhandledRejections = resetUnhandledRejections;
+    [7m    [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'resetUnhandledRejections' is declared here.
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-6d0900f/testCase.test.ts[0m:[93m9[0m:[93m19[0m - [91merror[0m[90m TS2551: [0mProperty 'unhandledRejections' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'. Did you mean 'resetUnhandledRejections'?
+
+[7m9[0m                 Q.unhandledRejections.splice(at, 1);
+[7m [0m [91m                  ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96m../subject_repositories/q/q.js[0m:[93m1114[0m:[93m1[0m
+    [7m1114[0m Q.resetUnhandledRejections = resetUnhandledRejections;
+    [7m    [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'resetUnhandledRejections' is declared here.
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-6d0900f/testCase.test.ts[0m:[93m10[0m:[93m19[0m - [91merror[0m[90m TS2551: [0mProperty 'unhandledReasons' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'. Did you mean 'getUnhandledReasons'?
+
+[7m10[0m                 Q.unhandledReasons.splice(at, 1);
+[7m  [0m [91m                  ~~~~~~~~~~~~~~~~[0m
+
+  [96m../subject_repositories/q/q.js[0m:[93m1116[0m:[93m1[0m
+    [7m1116[0m Q.getUnhandledReasons = function () {
+    [7m    [0m [96m~~~~~~~~~~~~~~~~~~~~~[0m
+    'getUnhandledReasons' is declared here.
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-6d0900f/testCase.test.ts[0m:[93m13[0m:[93m11[0m - [91merror[0m[90m TS2339: [0mProperty 'untrackRejection' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'.
+
+[7m13[0m         Q.untrackRejection(promise);
+[7m  [0m [91m          ~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-6d0900f/testCase.test.ts
+  Q
+    ✕ should track unhandled rejections correctly (1 ms)
+
+  ● Q › should track unhandled rejections correctly
+
+    TypeError: q_js_1.default.array_indexOf is not a function
+
+       5 |         var promise = Q.reject('test');
+       6 |         Q.untrackRejection = function(promise) {
+    >  7 |             var at = Q.array_indexOf(Q.unhandledRejections, promise);
+         |                        ^
+       8 |             if (at !== -1) {
+       9 |                 Q.unhandledRejections.splice(at, 1);
+      10 |                 Q.unhandledReasons.splice(at, 1);
+
+      at Function.array_indexOf [as untrackRejection] (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-6d0900f/testCase.test.ts:7:24)
+      at Object.untrackRejection (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-6d0900f/testCase.test.ts:13:11)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.989 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-6d0900f/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

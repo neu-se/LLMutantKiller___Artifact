@@ -1,0 +1,42 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_8/pending_category/mutant-de5a53e/testCase.test.ts (5.956 s)
+  write stream destruction verification
+    ✕ should properly destroy write stream when closed (5007 ms)
+
+  ● write stream destruction verification › should properly destroy write stream when closed
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      37 |           // Original code: destroy should be called with callback
+      38 |           // Mutated code: destroy is called but callback returns undefined
+    > 39 |           expect(destroyCalledWithCallback).toBe(true);
+         |                                             ^
+      40 |           done();
+      41 |         }, 200);
+      42 |       });
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_8/pending_category/mutant-de5a53e/testCase.test.ts:39:45)
+
+  ● write stream destruction verification › should properly destroy write stream when closed
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      15 |   });
+      16 |
+    > 17 |   it('should properly destroy write stream when closed', (done) => {
+         |   ^
+      18 |     db = new Dirty(testFile);
+      19 |
+      20 |     db.on('load', () => {
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_8/pending_category/mutant-de5a53e/testCase.test.ts:17:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_8/pending_category/mutant-de5a53e/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.093 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_8/pending_category/mutant-de5a53e/testCase.test.ts".

@@ -1,0 +1,34 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-31571d8/testCase.test.ts
+  makeStackTraceLong
+    ✕ should update stack when error propagates to an older promise context (23 ms)
+
+  ● makeStackTraceLong › should update stack when error propagates to an older promise context
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 2
+
+      37 |         // Original: since sc2 > sc1, adds p1.promise's stack, updates minimum to sc1
+      38 |         // Mutation: condition false, minimum stays sc2
+    > 39 |         expect((err as any).__minimumStackCounter__).toBe(sc1);
+         |                                                      ^
+      40 |         done();
+      41 |       } catch(e) {
+      42 |         done(e);
+
+      at toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-31571d8/testCase.test.ts:39:54)
+      at rejected (../subject_repositories/q/q.js:864:24)
+      at _rejected (../subject_repositories/q/q.js:890:30)
+      at Promise.rejected (../subject_repositories/q/q.js:1142:31)
+      at Promise.apply [as promiseDispatch] (../subject_repositories/q/q.js:808:41)
+      at apply (../subject_repositories/q/q.js:624:44)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.544 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-31571d8/testCase.test.ts".

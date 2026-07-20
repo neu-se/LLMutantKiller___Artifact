@@ -1,0 +1,49 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-33d8e1c/testCase.test.ts (6.765 s)
+  Q progress propagation
+    ✕ should propagate progress notifications through then() with a progressed callback (5002 ms)
+
+  ● Q progress propagation › should propagate progress notifications through then() with a progressed callback
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: 10
+    Received array: [1, 2, NaN, NaN]
+
+      36 |         // The second .then's progress handler should have received transformed values (value * 10)
+      37 |         // This only works if progress propagation works correctly
+    > 38 |         expect(progressValues).toContain(10); // 1 * 10
+         |                                ^
+      39 |         expect(progressValues).toContain(20); // 2 * 10
+      40 |         done();
+      41 |       }, 100);
+
+      at Timeout.toContain [as _onTimeout] (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-33d8e1c/testCase.test.ts:38:32)
+
+  ● Q progress propagation › should propagate progress notifications through then() with a progressed callback
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("Q progress propagation", () => {
+    > 4 |   it("should propagate progress notifications through then() with a progressed callback", (done) => {
+        |   ^
+      5 |     const deferred = Q.defer();
+      6 |     const progressValues: number[] = [];
+      7 |
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-33d8e1c/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-33d8e1c/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.966 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-33d8e1c/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

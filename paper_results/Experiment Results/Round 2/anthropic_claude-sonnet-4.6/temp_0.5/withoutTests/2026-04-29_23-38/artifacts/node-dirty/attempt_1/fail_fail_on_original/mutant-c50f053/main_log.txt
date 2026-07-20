@@ -1,0 +1,60 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-c50f053/testCase.test.ts[0m:[93m22[0m:[93m29[0m - [91merror[0m[90m TS18047: [0m'db._writeStream' is possibly 'null'.
+
+[7m22[0m       const originalWrite = db._writeStream.write.bind(db._writeStream);
+[7m  [0m [91m                            ~~~~~~~~~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-c50f053/testCase.test.ts[0m:[93m23[0m:[93m7[0m - [91merror[0m[90m TS18047: [0m'db._writeStream' is possibly 'null'.
+
+[7m23[0m       db._writeStream.write = (data, encoding, callback) => {
+[7m  [0m [91m      ~~~~~~~~~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-c50f053/testCase.test.ts[0m:[93m23[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '(data: any, encoding: BufferEncoding, callback: ((error: Error | null | undefined) => void) | undefined) => false' is not assignable to type '{ (chunk: any, callback?: ((error: Error | null | undefined) => void) | undefined): boolean; (chunk: any, encoding: BufferEncoding, callback?: ((error: Error | null | undefined) => void) | undefined): boolean; }'.
+  Target signature provides too few arguments. Expected 3 or more, but got 2.
+
+[7m23[0m       db._writeStream.write = (data, encoding, callback) => {
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-c50f053/testCase.test.ts[0m:[93m25[0m:[93m9[0m - [91merror[0m[90m TS18047: [0m'db._writeStream' is possibly 'null'.
+
+[7m25[0m         db._writeStream.destroy(new Error('Simulated write error'));
+[7m  [0m [91m        ~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-c50f053/testCase.test.ts (6.495 s)
+  Dirty error emission without callbacks
+    ✕ should emit error event when write fails and there are no callbacks for the key (5001 ms)
+
+  ● Dirty error emission without callbacks › should emit error event when write fails and there are no callbacks for the key
+
+    expect(jest.fn()).toHaveBeenCalled()
+
+    Expected number of calls: >= 1
+    Received number of calls:    0
+
+      32 |       
+      33 |       setTimeout(() => {
+    > 34 |         expect(errorSpy).toHaveBeenCalled();
+         |                          ^
+      35 |         if (existsSync(tmpPath)) rmSync(tmpPath);
+      36 |         done();
+      37 |       }, 200);
+
+      at Timeout.toHaveBeenCalled [as _onTimeout] (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-c50f053/testCase.test.ts:34:26)
+
+  ● Dirty error emission without callbacks › should emit error event when write fails and there are no callbacks for the key
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       6 |
+       7 | describe('Dirty error emission without callbacks', () => {
+    >  8 |   it('should emit error event when write fails and there are no callbacks for the key', (done) => {
+         |   ^
+       9 |     const tmpPath = join(tmpdir(), `dirty-test-${Date.now()}.db`);
+      10 |     
+      11 |     const db = new Dirty(tmpPath);
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-c50f053/testCase.test.ts:8:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-c50f053/testCase.test.ts:7:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.67 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-c50f053/testCase.test.ts".

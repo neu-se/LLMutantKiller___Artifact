@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-7fd38b7/testCase.test.ts
+  resetUnhandledRejections re-enables tracking
+    ✕ should re-enable rejection tracking after stopUnhandledRejectionTracking is called and then resetUnhandledRejections is called (3 ms)
+
+  ● resetUnhandledRejections re-enables tracking › should re-enable rejection tracking after stopUnhandledRejectionTracking is called and then resetUnhandledRejections is called
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 1
+    Received: 0
+
+      19 |         // Original: tracking was re-enabled by resetUnhandledRejections, so this should be 1
+      20 |         // Mutated: tracking is still disabled, so this would be 0
+    > 21 |         expect(Q.getUnhandledReasons().length).toEqual(1);
+         |                                                ^
+      22 |
+      23 |         // Clean up
+      24 |         Q.resetUnhandledRejections();
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-7fd38b7/testCase.test.ts:21:48)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.502 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-7fd38b7/testCase.test.ts".

@@ -1,0 +1,64 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-8f6b188/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/sinks/drain.js"' has no exported member 'drain'.
+
+[7m1[0m import { drain } from "../../../../../../../../../../../subject_repositories/pull-stream/sinks/drain.js"
+[7m [0m [91m         ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-8f6b188/testCase.test.ts
+  drain
+    ✕ should handle end condition correctly (1 ms)
+    ✕ should handle end condition with end === true correctly
+    ✕ should throw an error when end is not true and done is not provided (13 ms)
+
+  ● drain › should handle end condition correctly
+
+    TypeError: (0 , drain_js_1.drain) is not a function
+
+      4 |   it('should handle end condition correctly', () => {
+      5 |     const done = jest.fn();
+    > 6 |     const sink = drain((data: any) => true, done);
+        |                       ^
+      7 |     sink(null, (end: any, data: any) => {
+      8 |       if (end) {
+      9 |         expect(end).toBe(true);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-8f6b188/testCase.test.ts:6:23)
+
+  ● drain › should handle end condition with end === true correctly
+
+    TypeError: (0 , drain_js_1.drain) is not a function
+
+      17 |   it('should handle end condition with end === true correctly', () => {
+      18 |     const done = jest.fn();
+    > 19 |     const sink = drain((data: any) => false, done);
+         |                       ^
+      20 |     sink(true, (end: any, data: any) => {
+      21 |       if (end) {
+      22 |         expect(end).toBe(true);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-8f6b188/testCase.test.ts:19:23)
+
+  ● drain › should throw an error when end is not true and done is not provided
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "no done callback supplied"
+    Received message:   "Cannot read properties of undefined (reading 'default')"
+
+          29 |
+          30 |   it('should throw an error when end is not true and done is not provided', () => {
+        > 31 |     expect(() => drain.default((data: any) => true)).toThrowError('no done callback supplied');
+             |                        ^
+          32 |   });
+          33 | });
+
+      at default (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-8f6b188/testCase.test.ts:31:24)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-8f6b188/testCase.test.ts:31:54)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-8f6b188/testCase.test.ts:31:54)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        1.814 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-8f6b188/testCase.test.ts".

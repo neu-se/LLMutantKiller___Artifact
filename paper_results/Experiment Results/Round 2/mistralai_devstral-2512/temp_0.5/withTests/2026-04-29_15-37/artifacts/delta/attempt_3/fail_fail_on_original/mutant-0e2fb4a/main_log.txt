@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-0e2fb4a/testCase.test.ts
+  invert() with object retain
+    ✕ should handle object retain with null value correctly (6 ms)
+
+  ● invert() with object retain › should handle object retain with null value correctly
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 5
+    + Received  + 1
+
+    @@ -3,14 +3,10 @@
+          Object {
+            "attributes": Object {
+              "bold": false,
+            },
+            "retain": Object {
+    -         "delta": Array [
+    -           Object {
+    -             "delete": 1,
+    -           },
+    -         ],
+    +         "delta": Array [],
+            },
+          },
+        ],
+      }
+
+      16 |     const expected = new Delta().retain({ delta: [{ delete: 1 }] }, { bold: false });
+      17 |
+    > 18 |     expect(inverted).toEqual(expected);
+         |                      ^
+      19 |     expect(base.compose(delta).compose(inverted)).toEqual(base);
+      20 |
+      21 |     Delta.unregisterEmbed('delta');
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-0e2fb4a/testCase.test.ts:18:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.566 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_3/pending_category/mutant-0e2fb4a/testCase.test.ts".

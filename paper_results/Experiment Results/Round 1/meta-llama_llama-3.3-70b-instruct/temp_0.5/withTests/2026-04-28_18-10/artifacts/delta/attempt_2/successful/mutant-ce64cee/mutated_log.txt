@@ -1,0 +1,30 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) [96m../subject_repositories/delta/src/Delta.ts[0m:[93m45[0m:[93m29[0m - [91merror[0m[90m TS6133: [0m'embedType' is declared but its value is never read.
+
+[7m45[0m      static unregisterEmbed(embedType: string): void {}
+[7m  [0m [91m                            ~~~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-ce64cee/testCase.test.ts
+  unregisterEmbed
+    ✕ should remove the handler when unregisterEmbed is called (3 ms)
+
+  ● unregisterEmbed › should remove the handler when unregisterEmbed is called
+
+    expect(received).toBeUndefined()
+
+    Received: {"compose": [Function compose], "invert": [Function invert], "transform": [Function transform]}
+
+      10 |     const originalHandler = Delta.handlers['test'];
+      11 |     Delta.unregisterEmbed('test');
+    > 12 |     expect(Delta.handlers['test']).toBeUndefined();
+         |                                    ^
+      13 |     Delta.registerEmbed('test', originalHandler);
+      14 |     Delta.unregisterEmbed = () => {};
+      15 |     Delta.unregisterEmbed('test');
+
+      at Object.toBeUndefined (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-ce64cee/testCase.test.ts:12:36)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.674 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-ce64cee/testCase.test.ts".

@@ -1,0 +1,30 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-2d57ea8/testCase.test.ts
+  pull function
+    ✕ should throw a TypeError with a specific message when called twice (16 ms)
+
+  ● pull function › should throw a TypeError with a specific message when called twice
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "partial sink should only be called once!"
+    Received message:   "partialSink is not a function"
+
+           6 |     const sink = () => {};
+           7 |     const partialSink = pull.default(read, sink);
+        >  8 |     expect(() => partialSink(read)).toThrowError('partial sink should only be called once!');
+             |                  ^
+           9 |   });
+          10 | });
+
+      at partialSink (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-2d57ea8/testCase.test.ts:8:18)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-2d57ea8/testCase.test.ts:8:37)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-2d57ea8/testCase.test.ts:8:37)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.769 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-2d57ea8/testCase.test.ts".

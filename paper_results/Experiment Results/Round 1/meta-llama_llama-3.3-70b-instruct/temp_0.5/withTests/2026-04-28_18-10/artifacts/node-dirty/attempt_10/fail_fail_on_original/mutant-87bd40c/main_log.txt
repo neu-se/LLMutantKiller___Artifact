@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-87bd40c/testCase.test.ts
+  Dirty db file close
+    ✕ should destroy read stream when closing (6 ms)
+
+  ● Dirty db file close › should destroy read stream when closing
+
+    Failed: "Read stream was not destroyed"
+
+      16 |           try {
+      17 |             fs.appendFileSync(filePath, 'test');
+    > 18 |             done('Read stream was not destroyed');
+         |             ^
+      19 |           } catch (err: any) {
+      20 |             if (err.code === 'EPIPE') {
+      21 |               done();
+
+      at Dirty.done (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-87bd40c/testCase.test.ts:18:13)
+      at WriteStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:177:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.739 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-87bd40c/testCase.test.ts".

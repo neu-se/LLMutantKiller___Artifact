@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-92423c6/testCase.test.ts
+  Complex.js cosm1 function
+    ✕ should correctly compute cos(x) - 1 for small x values (2 ms)
+
+  ● Complex.js cosm1 function › should correctly compute cos(x) - 1 for small x values
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.10017508335367334
+    Received: 0.10517091807564763
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   0.0049958347219742905
+
+      13 |     // The mutation changes the sign in the Taylor series, affecting cos(x)-1
+      14 |     const expectedReal = Math.expm1(x) + (Math.cos(x) - 1);
+    > 15 |     expect(result.re).toBeCloseTo(expectedReal, 10);
+         |                       ^
+      16 |     expect(result.im).toBeCloseTo(0, 10);
+      17 |   });
+      18 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-92423c6/testCase.test.ts:15:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.215 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-92423c6/testCase.test.ts".

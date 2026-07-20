@@ -1,0 +1,1262 @@
+Your task is to write a Jest test case that exposes a specific mutation in a JavaScript/TypeScript project.
+
+MUTATION DETAILS
+The mutation affects the following file:
+util/prop.js
+Here is the full content of that file (shown with a <PLACEHOLDER> marker):
+module.exports = function prop (key) {
+  return key && (
+    'string' == typeof key
+    ? function (data) { return data[key] }
+    : 'object' === typeof key && 'function' === typeof key.exec //regexp
+       <PLACEHOLDER>
+
+    : key
+  )
+}
+
+In the original code, <PLACEHOLDER> has the value:
+
+-       ? function (data) { var v = key.exec(data); return v && v[0] }
+In the mutated code, <PLACEHOLDER> has the value:
+
++       ? function (data) { var v = key.exec(data); return false }
+
+
+YOUR TASK
+Write one Jest test file that:
+    1. Passes when run against the original code.
+    2. Fails when run against the mutated code.
+    3. Tests the behavior of the mutated file in a way that reliably detects the mutation.
+The test will be saved at the following path, relative to this test-generation project’s root:
+llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-94c4ece/testCase.test.ts
+
+RESOURCES AVAILABLE
+Existing test cases you may use for style or structure inspiration, focusing on how they reflect the project’s expected behavior and typical inputs:
+// test/abort-stalled.js
+
+
+
+var tape = require('tape')
+var pull = require('../')
+
+function hang (values, onAbort) {
+  var i = 0
+  return function (abort, cb) {
+    if(i < values.length)
+      cb(null, values[i++])
+    else if(!abort)
+      _cb = cb
+    else {
+      _cb(abort)
+      cb(abort) //??
+      onAbort && onAbort()
+    }
+  }
+}
+
+function abortable () {
+  var _read, aborted
+  function reader (read) {
+    _read = read
+    return function (abort, cb) {
+      if(abort) aborted = abort
+      read(abort, cb)
+    }
+  }
+
+  reader.abort = function (cb) {
+    cb = cb || function (err) {
+      if(err && err !== true) throw err
+    }
+    if(aborted)
+      cb(aborted)
+    else _read(true, cb)
+  }
+
+  return reader
+}
+
+function test (name, trx) {
+  tape('test abort:'+name, function (t) {
+    var a = abortable()
+
+    pull(
+      hang([1,2,3], function () {
+        t.end()
+      }),
+      trx,
+      a,
+      pull.drain(function (e) {
+        if(e === 3)
+          setImmediate(function () {
+            a.abort()
+          })
+      }, function (err) {
+      })
+    )
+  })
+}
+
+test('through', pull.through())
+test('map', pull.map(function (e) { return e }))
+test('take', pull.take(Boolean))
+
+
+---
+// test/async-map.js
+
+var pull = require('../')
+var tape =  require('tape')
+tape('async-map', function (t) {
+
+  pull(
+    pull.count(),
+    pull.take(21),
+    pull.asyncMap(function (data, cb) {
+      return cb(null, data + 1)
+    }),
+    pull.collect(function (err, ary) {
+      if (process.env.TEST_VERBOSE) console.log(ary)
+      t.equal(ary.length, 21)
+      t.end()
+    })
+  )
+})
+
+tape('abort async map', function (t) {
+  var err = new Error('abort')
+  t.plan(2)
+
+  var read = pull(
+    pull.infinite(),
+    pull.asyncMap(function (data, cb) {
+      setImmediate(function () {
+        cb(null, data)
+      })
+    })
+  )
+
+  read(null, function (end) {
+    if(!end) throw new Error('expected read to end')
+    t.ok(end, "read's callback")
+  })
+
+  read(err, function (end) {
+    if(!end) throw new Error('expected abort to end')
+    t.ok(end, "Abort's callback")
+    t.end()
+  })
+
+})
+
+tape('abort async map (source is slow to ack abort)', function (t) {
+  var err = new Error('abort')
+  t.plan(3)
+
+  function source(end, cb) {
+    if (end) setTimeout(function () { cb(end) }, 20)
+    else cb(null, 10)
+  }
+
+  var read = pull(
+    source,
+    pull.asyncMap(function (data, cb) {
+      setImmediate(function () {
+        cb(null, data)
+      })
+    })
+  )
+
+  var ended = false
+
+  read(null, function (end) {
+    if(!end) throw new Error('expected read to end')
+    ended = true
+    t.ok(end, "read's callback")
+  })
+
+  read(err, function (end) {
+    if(!end) throw new Error('expected abort to end')
+    t.ok(end, "Abort's callback")
+    t.ok(ended, 'read called back first')
+    t.end()
+  })
+
+})
+
+tape('abort async map (async source)', function (t) {
+  var err = new Error('abort')
+  t.plan(2)
+
+  var read = pull(
+    function(err, cb) {
+      setImmediate(function() {
+        if (err) return cb(err)
+        cb(null, 'x')
+      })
+    },
+    pull.asyncMap(function (data, cb) {
+      setImmediate(function () {
+        cb(null, data)
+      })
+    })
+  )
+
+  read(null, function (end) {
+    if(!end) throw new Error('expected read to end')
+    t.ok(end, "read's callback")
+  })
+
+  read(err, function (end) {
+    if(!end) throw new Error('expected abort to end')
+    t.ok(end, "Abort's callback")
+    t.end()
+  })
+
+})
+tape('asyncMap aborts when map errors', function (t) {
+  t.plan(2)
+  var ERR = new Error('abort')
+  pull(
+    pull.values([1,2,3], function (err) {
+      if (process.env.TEST_VERBOSE) console.log('on abort')
+      t.equal(err, ERR, 'abort gets error')
+      t.end()
+    }),
+    pull.asyncMap(function (data, cb) {
+      cb(ERR)
+    }),
+    pull.collect(function (err) {
+      t.equal(err, ERR, 'collect gets error')
+    })
+  )
+})
+
+tape("async map should pass its own error", function (t) {
+  var i = 0
+  var error = new Error('error on last call')
+
+  pull(
+    function (end, cb) {
+      end ? cb(true) : cb(null, i+1)
+    },
+    pull.asyncMap(function (data, cb) {
+      setTimeout(function () {
+        if(++i < 5) cb(null, data)
+        else {
+          cb(error)
+        }
+      }, 100)
+    }),
+    pull.collect(function (err, five) {
+      t.equal(err, error, 'should return err')
+      t.deepEqual(five, [1,2,3,4], 'should skip failed item')
+      t.end()
+    })
+  )
+})
+
+
+
+---
+// test/collect.js
+
+var pull = require('../')
+var test = require('tape')
+
+test('collect empty', function (t) {
+  pull(
+    pull.empty(),
+    pull.collect(function (err, ary) {
+      t.notOk(err)
+      t.deepEqual(ary, [])
+      t.end()
+    })
+  )
+})
+
+---
+// test/compose.js
+
+var pull = require('../')
+var test  = require('tape')
+//test through streams compose on pipe!
+
+test('join through streams with pipe', function (t) {
+
+  var map = pull.map
+
+  var pipeline =
+    pull(
+      map(function (d) {
+        //make exciting!
+        return d + '!'
+      }),
+      map(function (d) {
+        //make loud
+        return d.toUpperCase()
+      }),
+      map(function (d) {
+        //add sparkles
+        return '*** ' + d + ' ***'
+      })
+    )
+  //the pipe line does not have a source stream.
+  //so it should be a reader (function that accepts
+  //a read function)
+
+  t.equal('function', typeof pipeline)
+  t.equal(1, pipeline.length)
+
+  //if we pipe a read function to the pipeline,
+  //the pipeline will become readable!
+
+  var read =
+    pull(
+      pull.values(['billy', 'joe', 'zeke']),
+      pipeline
+    )
+
+  t.equal('function', typeof read)
+  //we will know it's a read function,
+  //because read takes two args.
+  t.equal(2, read.length)
+
+  pull(
+    read,
+    pull.collect(function (err, array) {
+      if (process.env.TEST_VERBOSE) console.log(array)
+      t.deepEqual(
+        array,
+        [ '*** BILLY! ***', '*** JOE! ***', '*** ZEKE! ***' ]
+      )
+      t.end()
+    })
+  )
+
+})
+
+---
+// test/concat.js
+
+var test = require('tape')
+var pull = require('../')
+
+test('concat', function (t) {
+  var n = 0
+  pull(
+    pull.values('hello there this is a test'.split(/([aeiou])/)),
+    pull.through(function () {
+      n++
+    }), 
+    pull.concat(function (err, mess) {
+      t.equal(mess, 'hello there this is a test')
+      t.equal(n, 17)
+      t.end()
+    })
+  )
+
+})
+
+---
+// test/continuable.js
+
+var pull = require('../pull')
+var count = require('../sources/count')
+var error = require('../sources/error')
+var map = require('../throughs/map')
+var test = require('tape')
+
+test('continuable stream', function (t) {
+  t.plan(2)
+
+  var continuable = function (read) {
+    return function (cb) {
+      read(null, function  next (end, data) {
+        if (end === true) return cb(null)
+        if (end) return cb(end)
+        read(end, next)
+      })
+    }
+  }
+
+  // With values:
+  pull(
+    count(5),
+    map(function (item) {
+      return item * 2
+    }),
+    continuable
+  )(function (err) {
+    t.false(err, 'no error')
+  })
+
+  // With error:
+  pull(
+    error(new Error('test error')),
+    continuable
+  )(function (err) {
+    t.is(err.message, 'test error', 'error')
+  })
+})
+
+---
+// test/drain-abort.js
+
+var pull = require('..')
+
+var tape = require('tape')
+
+tape('abort on drain', function (t) {
+
+  var c = 100
+  var drain = pull.drain(function () {
+    if(c < 0) throw new Error('stream should have aborted')
+    if(!--c) return false //drain.abort()
+  }, function () {
+    t.end()
+  })
+
+  pull(pull.infinite(), drain)
+
+})
+
+
+function delay () {
+  return pull.asyncMap(function (e, cb) {
+    setTimeout(function () { cb(null, e) })
+  })
+}
+
+tape('abort on drain - async', function (t) {
+
+  var c = 100
+  var drain = pull.drain(function () {
+    if(c < 0) throw new Error('stream should have aborted')
+    if(!--c) return drain.abort()
+  }, function () {
+    t.end()
+  })
+
+  pull(pull.infinite(), delay(), drain)
+
+})
+
+tape('abort on drain - sync', function (t) {
+
+  var c = 100
+  var drain = pull.drain(function () {
+    if(c < 0) throw new Error('stream should have aborted')
+    if(!--c) return drain.abort()
+  }, function () {
+    t.end()
+  })
+
+  pull(pull.infinite(), drain)
+
+})
+
+
+tape('abort on drain - async, out of cb', function (t) {
+
+  var c = 0, ERR = new Error('test ABORT')
+  var drain = pull.drain(function () {
+    --c
+  }, function (err) {
+    t.ok(c < 0)
+    t.equal(err, ERR)
+    t.end()
+  })
+
+  pull(pull.infinite(), delay(), drain)
+
+  setTimeout(function () {
+    drain.abort(ERR)
+  }, 100)
+
+})
+
+
+
+
+
+
+---
+// test/drain-if.js
+
+
+var pull = require('../')
+var test = require('tape')
+
+test('reduce becomes through', function (t) {
+  pull(
+    pull.values([1,2,3]),
+    pull.reduce(function (a, b) {return a + b}, 0, function (err, val) {
+      t.equal(val, 6)
+      t.end()
+    })
+  )
+})
+
+test('reduce without initial value', function (t) {
+  pull(
+    pull.values([1,2,3]),
+    pull.reduce(function (a, b) {return a + b}, function (err, val) {
+      t.equal(val, 6)
+      t.end()
+    })
+  )
+})
+
+
+test('reduce becomes drain', function (t) {
+  pull(
+    pull.values([1,2,3]),
+    pull.reduce(
+      function (a, b) {return a + b}, 
+      0,
+      function (err, acc) {
+        t.equal(acc, 6)
+        t.end()
+      }
+    )
+  )
+})
+
+
+
+---
+// test/filter.js
+
+
+var test = require('tape')
+var pull = require('../')
+
+test('filtered randomnes', function (t) {
+  pull(
+    pull.infinite(),
+    pull.filter(function (d) {
+      if (process.env.TEST_VERBOSE) console.log('f', d)
+      return d > 0.5
+    }),
+    pull.take(100),
+    pull.collect(function (err, array) {
+      t.equal(array.length, 100)
+      array.forEach(function (d) {
+        t.ok(d > 0.5)
+        t.ok(d <= 1)
+      })
+      if (process.env.TEST_VERBOSE) console.log(array)
+      t.end()
+    })
+  )
+})
+
+test('filter with regexp', function (t) {
+  pull(
+    pull.infinite(),
+    pull.map(function (d) {
+      return Math.round(d * 1000).toString(16)
+    }),
+    pull.filter(/^[^e]+$/i), //no E
+    pull.take(37),
+    pull.collect(function (err, array) {
+      t.equal(array.length, 37)
+      if (process.env.TEST_VERBOSE) console.log(array)
+      array.forEach(function (d) {
+        t.equal(d.indexOf('e'), -1)
+      })
+      t.end()
+    })
+  )
+})
+
+test('inverse filter with regexp', function (t) {
+  pull(
+    pull.infinite(),
+    pull.map(function (d) {
+      return Math.round(d * 1000).toString(16)
+    }),
+    pull.filterNot(/^[^e]+$/i), //no E
+    pull.take(37),
+    pull.collect(function (err, array) {
+      t.equal(array.length, 37)
+      array.forEach(function (d) {
+        t.notEqual(d.indexOf('e'), -1)
+      })
+      t.end()
+    })
+  )
+})
+
+
+---
+// test/find.js
+
+
+var pull = require('../')
+var test = require('tape')
+
+test('find 7', function (t) {
+  pull(
+    pull.values([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
+    pull.find(function (d) {
+      return d == 7
+    }, function (err, seven) {
+      t.equal(seven, 7)
+      t.notOk(err)
+      t.end()
+    })
+  )
+})
+
+var target = Math.random()
+test('find ' + target, function (t) {
+  var f = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(Math.random)
+
+  f.push(target)
+  pull(
+    pull.values(f.sort()),
+    pull.find(function (d) {
+      return d == target
+    }, function (err, found) {
+      t.equal(found, target)
+      t.notOk(err)
+      t.end()
+    })
+  )
+})
+
+test('find missing', function (t) {
+  var f = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+  pull(
+    pull.values(f.sort()),
+    pull.find(function (d) {
+      return d == target
+    }, function (err, found) {
+      t.equal(found, null)
+      t.notOk(err)
+      t.end()
+    })
+  )
+})
+
+
+test('there can only be one', function (t) {
+
+  pull(
+    pull.values([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
+    pull.asyncMap(function (e, cb) {
+      process.nextTick(function () {
+        cb(null, e)
+      })
+    }),
+    pull.find(function (d) {
+      return d >= 7
+    }, function (err, seven) {
+      t.equal(seven, 7)
+      t.notOk(err)
+      t.end()
+    })
+  )
+
+})
+
+test('find null', function (t) {
+  pull(
+    pull.values([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
+    pull.find(null, function (err, first) {
+      t.equal(first, 1)
+      t.notOk(err)
+      t.end()
+    })
+  )
+})
+---
+// test/flatten.js
+
+var pull = require('../')
+var test = require('tape')
+
+test('flatten arrays', function (t) {
+  pull(
+    pull.values([
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9]
+    ]),
+    pull.flatten(),
+    pull.collect(function (err, numbers) {
+      t.deepEqual([1, 2, 3, 4, 5, 6, 7, 8, 9], numbers)
+      t.end()
+    })
+  )
+})
+
+test('flatten - number of reads', function (t) {
+  var reads = 0
+  pull(
+    pull.values([
+      pull.values([1, 2, 3]),
+    ]),
+    pull.flatten(),
+    pull.through(function() {
+      reads++
+      if (process.env.TEST_VERBOSE) console.log('READ', reads)
+    }),
+    pull.take(2),
+    pull.collect(function (err, numbers) {
+      t.deepEqual([1, 2], numbers)
+      t.equal(reads, 2)
+      t.end()
+    })
+  )
+
+})
+test('flatten stream of streams', function (t) {
+
+  pull(
+    pull.values([
+      pull.values([1, 2, 3]),
+      pull.values([4, 5, 6]),
+      pull.values([7, 8, 9])
+    ]),
+    pull.flatten(),
+    pull.collect(function (err, numbers) {
+      t.deepEqual([1, 2, 3, 4, 5, 6, 7, 8, 9], numbers)
+      t.end()
+    })
+  )
+
+})
+
+test('flatten stream of broken streams', function (t) {
+  var _err = new Error('I am broken'), sosEnded
+  pull(
+    pull.values([
+      pull.error(_err)
+    ], function(err) {
+      sosEnded = err;
+    }),
+    pull.flatten(),
+    pull.onEnd(function (err) {
+      t.equal(err, _err)
+      process.nextTick(function() {
+        t.equal(sosEnded, null, 'should abort stream of streams')
+        t.end()
+      })
+    })
+  )
+})
+
+test('abort flatten', function (t) {
+  var sosEnded, s1Ended, s2Ended
+  var read = pull(
+    pull.values([
+      pull.values([1,2], function(err) {s1Ended = err}),
+      pull.values([3,4], function(err) {s2Ended = err}),
+    ], function(err) {
+      sosEnded = err;
+    }),
+    pull.flatten()
+  )
+
+  read(null, function(err, data) {
+    t.notOk(err)
+    t.equal(data,1)
+    read(true, function(err, data) {
+      t.equal(err, true)
+      process.nextTick(function() {
+        t.equal(sosEnded, null, 'should abort stream of streams')
+        t.equal(s1Ended, null, 'should abort current nested stream')
+        t.equal(s2Ended, undefined, 'should not abort queued nested stream')
+        t.end()
+      })
+    })
+  })
+})
+
+test('abort flatten before 1st read', function (t) {
+  var sosEnded, s1Ended
+  var read = pull(
+    pull.values([
+      pull.values([1,2], function(err) {s1Ended = err})
+    ], function(err) {
+      sosEnded = err;
+    }),
+    pull.flatten()
+  )
+
+  read(true, function(err, data) {
+    t.equal(err, true)
+    t.notOk(data)
+    process.nextTick(function() {
+      t.equal(sosEnded, null, 'should abort stream of streams')
+      t.equal(s1Ended, undefined, 'should abort current nested stream')
+      t.end()
+    })
+  })
+})
+
+test('flattern handles stream with normal objects', function (t) {
+  pull(
+    pull.values([
+      [1,2,3], 4, [5,6,7], 8, 9 ,10
+    ]),
+    pull.flatten(),
+    pull.collect(function (err, ary) {
+      t.deepEqual(ary, [1,2,3,4,5,6,7,8,9,10])
+      t.end()
+    })
+  )
+})
+
+---
+// test/keys.js
+
+var pull = require('../')
+var tape = require('tape')
+
+tape('keys', function (t) {
+  t.plan(2)
+
+  pull(
+    pull.keys({a:1, b:2, c:3}),
+    pull.collect(function (err, arr) {
+      t.notOk(err)
+      t.deepEqual(arr, ['a', 'b', 'c'])
+    })
+  )
+})
+
+---
+// test/map.js
+
+
+var tape = require('tape')
+
+var pull = require('../')
+
+
+tape('map throughs ends stream', function (t) {
+  var err = new Error('unwholesome number')
+  pull(
+    pull.values([1,2,3,3.4,4]),
+    pull.map(function (e) {
+      if(e !== ~~e)
+        throw err
+    }),
+    pull.drain(null, function (_err) {
+      t.equal(_err, err)
+      t.end()
+    })
+  )
+})
+
+---
+// test/pull.js
+
+var tape = require('tape')
+
+function curry (fun) {
+  return function () {
+    var args = [].slice.call(arguments)
+    return function (read) {
+      return fun.apply(null, [read].concat(args))
+    }
+  }
+}
+
+var pull = require('../')
+
+function values (array) {
+  var i = 0
+  return function (abort, cb) {
+    if(abort) i = array.length, cb(abort)
+    else if(i >= array.length) cb(true)
+    else cb(null, array[i++])
+  }
+}
+
+var map = curry(function (read, mapper) {
+    return function (abort, cb) {
+      read(abort, function (end, data) {
+        if(end) cb(end)
+        else cb(null, mapper(data))
+      })
+    }
+  })
+
+var sum = curry(function (read, done) {
+    var total = 0
+    read(null, function next (end, data) {
+        if(end) return done(end === true ? null : end, total)
+        total += data
+        read(null, next)
+      })
+  })
+
+var log = curry(function (read) {
+    return function (abort, cb) {
+      read(abort, function (end, data) {
+        if(end) return cb(end)
+        if (process.env.TEST_VERBOSE) console.error(data)
+        cb(null, data)
+      })
+    }
+  })
+
+tape('wrap pull streams into stream', function (t) {
+
+  pull(
+    values([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
+    map(function (e) { return e*e }),
+    log(),
+    sum(function (err, value) {
+      if (process.env.TEST_VERBOSE) console.log(value)
+      t.equal(value, 385)
+      t.end()
+    })
+  )
+
+})
+
+tape('turn pull(through,...) -> Through', function (t) {
+
+  pull(
+    values([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
+    pull(
+      map(function (e) { return e*e }),
+      log()
+    ),
+    sum(function (err, value) {
+      if (process.env.TEST_VERBOSE) console.log(value)
+      t.equal(value, 385)
+      t.end()
+    })
+  )
+
+})
+
+//  pull(
+//    values ([1 2 3 4 5 6 7 8 9 10])
+//    pull(
+//      map({x y;: e*e })
+//      log()
+//    )
+//    sum({
+//      err value:
+//        t.equal(value 385)
+//        t.end()
+//      })
+//  )
+//
+
+tape("writable pull() should throw when called twice", function (t) {
+  t.plan(2)
+
+  var stream = pull(
+    map(function (e) { return e*e }),
+    sum(function (err, value) {
+      if (process.env.TEST_VERBOSE) console.log(value)
+      t.equal(value, 385)
+    })
+  )
+
+  stream(values([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+
+  t.throws(function () {
+    stream(values([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+  }, TypeError)
+})
+
+---
+// test/take.js
+
+var pull = require('../')
+var test = require('tape')
+
+test('through - onEnd', function (t) {
+  t.plan(2)
+  var values = [1,2,3,4,5,6,7,8,9,10]
+
+  //read values, and then just stop!
+  //this is a subtle edge case for take!
+
+//I did have a thing that used this edge case,
+//but it broke take, actually. so removing it.
+//TODO: fix that thing - was a test for some level-db stream thing....
+
+//  pull.Source(function () {
+//    return function (end, cb) {
+//      if(end) cb(end)
+//      else if(values.length)
+//        cb(null, values.shift())
+//      else console.log('drop')
+//    }
+//  })()
+
+  pull(
+    pull.values(values),
+    pull.take(10),
+    pull.through(null, function (err) {
+      if (process.env.TEST_VERBOSE) console.log('end')
+      t.ok(true)
+      process.nextTick(function () {
+        t.end()
+      })
+    }),
+    pull.collect(function (err, ary) {
+      if (process.env.TEST_VERBOSE) console.log(ary)
+      t.ok(true)
+    })
+  )
+})
+
+
+test('take - exclude last (default)', function (t) {
+  pull(
+    pull.values([1,2,3,4,5,6,7,8,9,10]),
+    pull.take(function(n) {return n<5}),
+    pull.collect(function (err, four) {
+      t.deepEqual(four, [1,2,3,4])
+      t.end()
+    })
+  )
+})
+test('take - include last', function (t) {
+  pull(
+    pull.values([1,2,3,4,5,6,7,8,9,10]),
+    pull.take(function(n) {return n<5}, {last: true}),
+    pull.collect(function (err, five) {
+      t.deepEqual(five, [1,2,3,4,5])
+      t.end()
+    })
+  )
+})
+
+test('take 5 causes 5 reads upstream', function (t) {
+  var reads = 0
+  pull(
+    pull.values([1,2,3,4,5,6,7,8,9,10]),
+    function (read) {
+      return function (end, cb) {
+        if (end !== true) reads++
+        if (process.env.TEST_VERBOSE) console.log(reads, end)
+        read(end, cb)
+      }
+    },
+    pull.take(5),
+    pull.collect(function (err, five) {
+      t.deepEqual(five, [1,2,3,4,5])
+      process.nextTick(function() {
+          t.equal(reads, 5)
+          t.end()
+        })
+    })
+  )
+})
+
+test("take doesn't abort until the last read", function (t) {
+
+  var aborted = false
+
+  var ary = [1,2,3,4,5], i = 0
+
+  var read = pull(
+    function (abort, cb) {
+      if(abort) cb(aborted = true)
+      else if(i > ary.length) cb(true)
+      else cb(null, ary[i++])
+    },
+    pull.take(function (d) {
+      return d < 3
+    }, {last: true})
+  )
+
+  read(null, function (_, d) {
+    t.notOk(aborted, "hasn't aborted yet")
+    read(null, function (_, d) {
+      t.notOk(aborted, "hasn't aborted yet")
+      read(null, function (_, d) {
+        t.notOk(aborted, "hasn't aborted yet")
+        read(null, function (end, d) {
+          t.ok(end, 'stream ended')
+          t.equal(d, undefined, 'data undefined')
+          t.ok(aborted, "has aborted by now")
+          t.end()
+        })
+      })
+    })
+  })
+
+})
+
+test('take should throw error on last read', function (t) {
+  var i = 0
+  var error = new Error('error on last call')
+
+  pull(
+    pull.values([1,2,3,4,5,6,7,8,9,10]),
+    pull.take(function(n) {return n<5}, {last: true}),
+    // pull.take(5),
+    pull.asyncMap(function (data, cb) {
+      setTimeout(function () {
+        if(++i < 5) cb(null, data)
+        else cb(error)
+      }, 100)
+    }),
+    pull.collect(function (err, five) {
+      t.equal(err, error, 'should return err')
+      t.deepEqual(five, [1,2,3,4], 'should skip failed item')
+      t.end()
+    })
+  )
+})
+
+---
+// test/through.js
+
+
+
+var pull = require('../')
+require('tape')('through - onEnd', function (t) {
+  t.plan(2)
+  pull(
+    pull.infinite(),
+    pull.through(null, function (err) {
+      if (process.env.TEST_VERBOSE) console.log('end')
+      t.ok(true)
+      process.nextTick(function () {
+        t.end()
+      })
+    }),
+    pull.take(10),
+    pull.collect(function (err, ary) {
+      if (process.env.TEST_VERBOSE) console.log(ary)
+      t.ok(true)
+    })
+  )
+})
+
+---
+// test/unique.js
+
+
+var pull = require('../')
+var test = require('tape')
+
+test('unique', function (t) {
+  var numbers = [1, 2, 2, 3, 4, 5, 6, 4, 0, 6, 7, 8, 3, 1, 2, 9, 0]
+
+  pull(
+    pull.values(numbers),
+    pull.unique(),
+    pull.collect(function (err, ary) {
+      t.deepEqual(ary.sort(), [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+      t.end()
+    })
+  )
+})
+
+test('non-unique', function (t) {
+  var numbers = [1, 2, 2, 3, 4, 5, 6, 4, 0, 6, 7, 8, 3, 1, 2, 9, 0]
+
+  pull(
+    pull.values(numbers),
+    pull.nonUnique(),
+    pull.collect(function (err, ary) {
+      t.deepEqual(ary.sort(), [0, 1, 2, 2, 3, 4, 6])
+      t.end()
+    })
+  )
+
+
+})
+
+---
+// test/values.js
+
+
+
+var pull = require('../')
+var tape = require('tape')
+
+tape('values - array', function (t) {
+  pull(
+    pull.values([1,2,3]),
+    pull.collect(function (err, ary) {
+      t.notOk(err)
+      t.deepEqual(ary, [1, 2, 3])
+      t.end()
+    })
+  )
+})
+
+tape('values - object', function (t) {
+  pull(
+    pull.values({a:1,b:2,c:3}),
+    pull.collect(function (err, ary) {
+      t.notOk(err)
+      t.deepEqual(ary, [1, 2, 3])
+      t.end()
+    })
+  )
+
+})
+
+tape('values, abort', function (t) {
+
+  t.plan(3)
+
+  var err = new Error('intentional')
+
+  var read = pull.values([1,2,3], function (err) {
+    t.end()
+  })
+
+  read(null, function (_, one) {
+    t.notOk(_)
+    t.equal(one, 1)
+    read(err, function (_err) {
+      t.equal(_err, err)
+    })
+  })
+
+})
+
+
+The test runner configuration (package.json):
+{
+  "name": "pull-stream",
+  "description": "minimal pull stream",
+  "version": "3.6.14",
+  "homepage": "https://pull-stream.github.io",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pull-stream/pull-stream.git"
+  },
+  "devDependencies": {
+    "benchmark": "^2.1.4",
+    "expose-gc": "^1.0.0",
+    "faker": "^5.5.1",
+    "pretty-bytes": "^5.6.0",
+    "tap-bail": "^1.0.0",
+    "tap-spec": "^5.0.0",
+    "tape": "~5.2.2"
+  },
+  "scripts": {
+    "test": "tape test/*.js | tap-bail | tap-spec",
+    "test-verbose": "TEST_VERBOSE npm test"
+  },
+  "author": "Dominic Tarr <dominic.tarr@gmail.com> (http://dominictarr.com)",
+  "license": "MIT"
+}
+
+ALLOWED LIBRARIES
+You may use:
+    1. Any built-in Node.js modules (e.g., fs, path, crypto, etc.).
+    
+You may not use any other third-party libraries.

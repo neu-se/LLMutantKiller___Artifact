@@ -1,0 +1,24 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-87bd40c/testCase.test.ts
+  Dirty close()
+    ✕ emits read_close without emitting load when close() interrupts the read stream (2012 ms)
+
+  ● Dirty close() › emits read_close without emitting load when close() interrupts the read stream
+
+    load fired (true) - read stream was not destroyed by close()
+
+      34 |         done();
+      35 |       } else if (loadFired) {
+    > 36 |         done(new Error(`load fired (${loadFired}) - read stream was not destroyed by close()`));
+         |              ^
+      37 |       } else {
+      38 |         done(new Error(`read_close did not fire`));
+      39 |       }
+
+      at Timeout._onTimeout (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-87bd40c/testCase.test.ts:36:14)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.743 s, estimated 4 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-87bd40c/testCase.test.ts".

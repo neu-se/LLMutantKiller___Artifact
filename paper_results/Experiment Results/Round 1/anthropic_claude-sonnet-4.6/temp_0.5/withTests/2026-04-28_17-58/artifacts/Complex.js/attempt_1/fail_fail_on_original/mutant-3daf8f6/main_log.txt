@@ -1,0 +1,30 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-3daf8f6/testCase.test.ts
+  logHypot boundary
+    ✕ computes log correctly for large complex numbers where overflow matters (2 ms)
+
+  ● logHypot boundary › computes log correctly for large complex numbers where overflow matters
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 460.8635921890891
+    Received: Infinity
+
+    Expected precision:    5
+    Expected difference: < 0.000005
+    Received difference:   Infinity
+
+       9 |     // log(sqrt(2) * 1e200) = log(sqrt(2)) + 200*log(10)
+      10 |     const expected = Math.log(Math.sqrt(2)) + 200 * Math.log(10);
+    > 11 |     expect(result.re).toBeCloseTo(expected, 5);
+         |                       ^
+      12 |   });
+      13 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-3daf8f6/testCase.test.ts:11:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.731 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-3daf8f6/testCase.test.ts".

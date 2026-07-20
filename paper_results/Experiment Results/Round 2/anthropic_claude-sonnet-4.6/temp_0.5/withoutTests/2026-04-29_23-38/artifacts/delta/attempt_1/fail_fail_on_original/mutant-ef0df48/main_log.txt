@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-ef0df48/testCase.test.ts
+  AttributeMap.compose
+    ✕ should handle non-object b by treating it as empty object (1 ms)
+
+  ● AttributeMap.compose › should handle non-object b by treating it as empty object
+
+    TypeError: Cannot convert undefined or null to object
+        at Function.keys (<anonymous>)
+
+      20 |     let attributes = cloneDeep(b);
+      21 |     if (!keepNull) {
+    > 22 |       attributes = Object.keys(attributes).reduce<AttributeMap>((copy, key) => {
+         |                           ^
+      23 |         if (attributes[key] != null) {
+      24 |           copy[key] = attributes[key];
+      25 |         }
+
+      at Object.keys [as compose] (../subject_repositories/delta/src/AttributeMap.ts:22:27)
+      at Object.compose (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-ef0df48/testCase.test.ts:12:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.274 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-ef0df48/testCase.test.ts".

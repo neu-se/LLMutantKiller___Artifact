@@ -1,0 +1,59 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-1ee9ea2/testCase.test.ts[0m:[93m9[0m:[93m20[0m - [91merror[0m[90m TS7024: [0mFunction implicitly has return type 'any' because it does not have a return type annotation and is referenced directly or indirectly in one of its return expressions.
+
+[7m9[0m             return function () {
+[7m [0m [91m                   ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-1ee9ea2/testCase.test.ts[0m:[93m20[0m:[93m63[0m - [91merror[0m[90m TS7024: [0mFunction implicitly has return type 'any' because it does not have a return type annotation and is referenced directly or indirectly in one of its return expressions.
+
+[7m20[0m                     return Promise.resolve(result.value).then(() => asyncGenerator());
+[7m  [0m [91m                                                              ~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+
+<--- Last few GCs --->
+
+[73504:0x138008000]    45604 ms: Mark-Compact 4049.4 (4138.8) -> 4037.0 (4142.3) MB, 1626.08 / 0.00 ms  (average mu = 0.161, current mu = 0.008) allocation failure; scavenge might not succeed
+[73504:0x138008000]    48083 ms: Mark-Compact 4052.7 (4142.3) -> 4040.3 (4145.3) MB, 2467.12 / 0.00 ms  (average mu = 0.071, current mu = 0.005) allocation failure; scavenge might not succeed
+
+
+<--- JS stacktrace --->
+
+FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory
+----- Native stack trace -----
+
+ 1: 0x1003555b8 node::OOMErrorHandler(char const*, v8::OOMDetails const&) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 2: 0x100513968 v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, v8::OOMDetails const&) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 3: 0x1007217bc v8::internal::Heap::GarbageCollectionReasonToString(v8::internal::GarbageCollectionReason) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 4: 0x100720124 v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 5: 0x100715fc0 v8::internal::HeapAllocator::AllocateRawWithLightRetrySlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 6: 0x100716818 v8::internal::HeapAllocator::AllocateRawWithRetryOrFailSlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 7: 0x1006facf8 v8::internal::Factory::NewFillerObject(int, v8::internal::AllocationAlignment, v8::internal::AllocationType, v8::internal::AllocationOrigin) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 8: 0x100b07e30 v8::internal::Runtime_AllocateInYoungGeneration(int, unsigned long*, v8::internal::Isolate*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+ 9: 0x100e9cc44 Builtins_CEntry_Return1_ArgvOnStack_NoBuiltinExit [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+10: 0x105c6aac4 
+11: 0x100ef8fb8 Builtins_PromiseFulfillReactionJob [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+12: 0x100e3ab94 Builtins_RunMicrotasks [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+13: 0x100e123f4 Builtins_JSRunMicrotasksEntry [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+14: 0x10068c22c v8::internal::(anonymous namespace)::Invoke(v8::internal::Isolate*, v8::internal::(anonymous namespace)::InvokeParams const&) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+15: 0x10068cb58 v8::internal::(anonymous namespace)::InvokeWithTryCatch(v8::internal::Isolate*, v8::internal::(anonymous namespace)::InvokeParams const&) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+16: 0x10068cd44 v8::internal::Execution::TryRunMicrotasks(v8::internal::Isolate*, v8::internal::MicrotaskQueue*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+17: 0x1006b7a34 v8::internal::MicrotaskQueue::RunMicrotasks(v8::internal::Isolate*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+18: 0x1006b81c0 v8::internal::MicrotaskQueue::PerformCheckpoint(v8::Isolate*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+19: 0x10026cc84 node::InternalCallbackScope::Close() [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+20: 0x10026cfb4 node::InternalMakeCallback(node::Environment*, v8::Local<v8::Object>, v8::Local<v8::Object>, v8::Local<v8::Function>, int, v8::Local<v8::Value>*, node::async_context) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+21: 0x10028130c node::AsyncWrap::MakeCallback(v8::Local<v8::Function>, int, v8::Local<v8::Value>*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+22: 0x10035afc4 node::fs::FSReqCallback::Resolve(v8::Local<v8::Value>) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+23: 0x10035b8a4 node::fs::AfterStat(uv_fs_s*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+24: 0x10034e44c node::MakeLibuvRequestCallback<uv_fs_s, void (*)(uv_fs_s*)>::Wrapper(uv_fs_s*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+25: 0x100ded500 uv__work_done [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+26: 0x100df0f28 uv__async_io [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+27: 0x100e03bd0 uv__io_poll [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+28: 0x100df1490 uv_run [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+29: 0x10026d7e8 node::SpinEventLoopInternal(node::Environment*) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+30: 0x100399eec node::NodeMainInstance::Run() [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+31: 0x100317cfc node::Start(int, char**) [/Users/anon/.nvm/versions/node/v20.19.4/bin/node]
+32: 0x18cd9ab98 start [/usr/lib/dyld]
+
+---
+Please try again and give me a new test case.

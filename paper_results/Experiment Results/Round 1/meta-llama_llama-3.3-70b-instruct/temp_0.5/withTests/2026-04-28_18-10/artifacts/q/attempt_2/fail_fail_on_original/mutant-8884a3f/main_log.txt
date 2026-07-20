@@ -1,0 +1,67 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-8884a3f/testCase.test.ts[0m:[93m5[0m:[93m27[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type 'typeof export='.
+
+[7m5[0m         const promise = q.Q(5);
+[7m [0m [91m                          ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-8884a3f/testCase.test.ts[0m:[93m10[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type 'typeof export='.
+
+[7m10[0m         const f = q.Q.fulfill(5);
+[7m  [0m [91m                    ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-8884a3f/testCase.test.ts[0m:[93m11[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type 'typeof export='.
+
+[7m11[0m         const r = q.Q.reject(new Error("aaargh"));
+[7m  [0m [91m                    ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-8884a3f/testCase.test.ts[0m:[93m12[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type 'typeof export='.
+
+[7m12[0m         const p = q.Q.promise(function () { });
+[7m  [0m [91m                    ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-8884a3f/testCase.test.ts[0m:[93m14[0m:[93m18[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type 'typeof export='.
+
+[7m14[0m         expect(q.Q(f)).toBe(f);
+[7m  [0m [91m                 ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-8884a3f/testCase.test.ts[0m:[93m15[0m:[93m18[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type 'typeof export='.
+
+[7m15[0m         expect(q.Q(r)).toBe(r);
+[7m  [0m [91m                 ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-8884a3f/testCase.test.ts[0m:[93m16[0m:[93m18[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type 'typeof export='.
+
+[7m16[0m         expect(q.Q(p)).toBe(p);
+[7m  [0m [91m                 ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-8884a3f/testCase.test.ts
+  Q function
+    ✕ should result in a fulfilled promise when given a value (1 ms)
+    ✕ should be the identity when given promise
+
+  ● Q function › should result in a fulfilled promise when given a value
+
+    TypeError: q.Q is not a function
+
+      3 | describe('Q function', () => {
+      4 |     it('should result in a fulfilled promise when given a value', () => {
+    > 5 |         const promise = q.Q(5);
+        |                           ^
+      6 |         expect(promise.isFulfilled()).toBe(true);
+      7 |     });
+      8 |
+
+      at Object.Q (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-8884a3f/testCase.test.ts:5:27)
+
+  ● Q function › should be the identity when given promise
+
+    TypeError: Cannot read properties of undefined (reading 'fulfill')
+
+       8 |
+       9 |     it('should be the identity when given promise', () => {
+    > 10 |         const f = q.Q.fulfill(5);
+         |                       ^
+      11 |         const r = q.Q.reject(new Error("aaargh"));
+      12 |         const p = q.Q.promise(function () { });
+      13 |
+
+      at Object.fulfill (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-8884a3f/testCase.test.ts:10:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.377 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-8884a3f/testCase.test.ts".

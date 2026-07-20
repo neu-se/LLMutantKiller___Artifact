@@ -1,0 +1,39 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_7/pending_category/mutant-9dc7775/testCase.test.ts
+  transform
+    ✕ should correctly transform a delta with a retain and an embed (6 ms)
+
+  ● transform › should correctly transform a delta with a retain and an embed
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 3
+    + Received  + 0
+
+    @@ -1,11 +1,8 @@
+      Delta {
+        "ops": Array [
+          Object {
+    -       "attributes": Object {
+    -         "bold": true,
+    -       },
+            "retain": Object {
+              "embed": Object {
+                "test": "value",
+              },
+            },
+
+      11 |     const b = new Delta().retain({ embed: { test: 'value' } });
+      12 |     const expected = new Delta().retain({ embed: { test: 'value' } }, { bold: true });
+    > 13 |     expect(a.transform(b)).toEqual(expected);
+         |                            ^
+      14 |   });
+      15 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_7/pending_category/mutant-9dc7775/testCase.test.ts:13:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        4.224 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_7/pending_category/mutant-9dc7775/testCase.test.ts".

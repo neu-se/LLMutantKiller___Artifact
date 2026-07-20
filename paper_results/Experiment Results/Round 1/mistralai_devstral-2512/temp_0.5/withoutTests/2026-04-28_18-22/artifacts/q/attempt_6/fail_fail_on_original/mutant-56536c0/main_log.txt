@@ -1,0 +1,54 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-56536c0/testCase.test.ts[0m:[93m27[0m:[93m5[0m - [91merror[0m[90m TS2741: [0mProperty '__promisify__' is missing in type '(fn: () => void, delay?: number | undefined) => Timeout' but required in type 'typeof setTimeout'.
+
+[7m27[0m     global.setTimeout = function(fn: () => void, delay?: number): NodeJS.Timeout {
+[7m  [0m [91m    ~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/node/timers.d.ts[0m:[93m241[0m:[93m22[0m
+    [7m241[0m             export { __promisify__ };
+    [7m   [0m [96m                     ~~~~~~~~~~~~~[0m
+    '__promisify__' is declared here.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-56536c0/testCase.test.ts (11.255 s)
+  MessageChannel async behavior
+    ✕ should use MessageChannel when available for nextTick (10007 ms)
+
+  ● MessageChannel async behavior › should use MessageChannel when available for nextTick
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      37 |
+      38 |       if (typeof MessageChannel !== "undefined") {
+    > 39 |         expect(nextTickUsedMessageChannel).toBe(true);
+         |                                            ^
+      40 |         expect(nextTickUsedSetTimeout).toBe(false);
+      41 |       }
+      42 |       done();
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-56536c0/testCase.test.ts:39:44)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+  ● MessageChannel async behavior › should use MessageChannel when available for nextTick
+
+    thrown: "Exceeded timeout of 10000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("MessageChannel async behavior", () => {
+    > 4 |   it("should use MessageChannel when available for nextTick", (done) => {
+        |   ^
+      5 |     const originalMessageChannel = global.MessageChannel;
+      6 |     const originalSetTimeout = global.setTimeout;
+      7 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-56536c0/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-56536c0/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        11.423 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-56536c0/testCase.test.ts".

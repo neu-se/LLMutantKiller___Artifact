@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-917bc16/testCase.test.ts[0m:[93m14[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'toHaveLength' does not exist on type 'ArrayLikeMatchers<Op>'.
+
+[7m14[0m     expect(result.ops).toHaveLength(6);
+[7m  [0m [91m                       ~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-917bc16/testCase.test.ts
+  compose() optimization
+    ✕ should optimize when rest of other is just retain after delete (4 ms)
+
+  ● compose() optimization › should optimize when rest of other is just retain after delete
+
+    expect(received).toHaveLength(expected)
+
+    Expected length: 6
+    Received length: 7
+    Received array:  [{"attributes": {"bold": true}, "insert": "A"}, {"insert": "B"}, {"attributes": {"bold": true}, "insert": "C"}, {"retain": 1}, {"insert": "D"}, {"retain": 4}, {"delete": 1}]
+
+      12 |     const result = a.compose(b);
+      13 |     // The optimization should merge the retain operations
+    > 14 |     expect(result.ops).toHaveLength(6);
+         |                        ^
+      15 |     expect(result.ops[3]).toEqual({ retain: 1 });
+      16 |     expect(result.ops[4]).toEqual({ insert: 'D' });
+      17 |     expect(result.ops[5]).toEqual({ retain: 4 });
+
+      at Object.toHaveLength (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-917bc16/testCase.test.ts:14:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.877 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-917bc16/testCase.test.ts".

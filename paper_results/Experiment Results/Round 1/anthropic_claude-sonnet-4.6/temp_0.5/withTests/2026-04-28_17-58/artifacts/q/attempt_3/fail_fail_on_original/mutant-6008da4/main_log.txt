@@ -1,0 +1,46 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6008da4/testCase.test.ts[0m:[93m14[0m:[93m36[0m - [91merror[0m[90m TS2339: [0mProperty 'domain' does not exist on type 'Process'.
+
+[7m14[0m         domainDuringTask = process.domain;
+[7m  [0m [91m                                   ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6008da4/testCase.test.ts (6.621 s)
+  Q nextTick domain behavior
+    ✕ does not re-enter the scheduling domain when executing a nextTick task (5002 ms)
+
+  ● Q nextTick domain behavior › does not re-enter the scheduling domain when executing a nextTick task
+
+    expect(received).toBeNull()
+
+    Received: {"_events": {"newListener": [Function updateExceptionCapture], "removeListener": [Function updateExceptionCapture]}, "_eventsCount": 2, "_maxListeners": undefined, "members": [], Symbol(shapeMode): false, Symbol(kCapture): false, Symbol(kWeak): {}}
+
+      20 |       // Original: domainDuringTask is null (no domain.enter() called)
+      21 |       // Mutant: domainDuringTask is d (domain.enter() was called)
+    > 22 |       expect(domainDuringTask).toBeNull();
+         |                                ^
+      23 |       done();
+      24 |     }, 50);
+      25 |   });
+
+      at Timeout.toBeNull [as _onTimeout] (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6008da4/testCase.test.ts:22:32)
+
+  ● Q nextTick domain behavior › does not re-enter the scheduling domain when executing a nextTick task
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      3 |
+      4 | describe("Q nextTick domain behavior", () => {
+    > 5 |   it("does not re-enter the scheduling domain when executing a nextTick task", (done) => {
+        |   ^
+      6 |     const d = nodeDomain.create();
+      7 |     let domainDuringTask: any = "not-checked";
+      8 |
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6008da4/testCase.test.ts:5:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6008da4/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.808 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6008da4/testCase.test.ts".

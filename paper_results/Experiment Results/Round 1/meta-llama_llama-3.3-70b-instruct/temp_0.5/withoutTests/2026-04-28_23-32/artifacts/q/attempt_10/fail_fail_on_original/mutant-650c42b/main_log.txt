@@ -1,0 +1,65 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-650c42b/testCase.test.ts[0m:[93m7[0m:[93m43[0m - [91merror[0m[90m TS7006: [0mParameter 'object' implicitly has an 'any' type.
+
+[7m7[0m         const originalDispatch = function(object, op, args) {
+[7m [0m [91m                                          ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-650c42b/testCase.test.ts[0m:[93m7[0m:[93m51[0m - [91merror[0m[90m TS7006: [0mParameter 'op' implicitly has an 'any' type.
+
+[7m7[0m         const originalDispatch = function(object, op, args) {
+[7m [0m [91m                                                  ~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-650c42b/testCase.test.ts[0m:[93m7[0m:[93m55[0m - [91merror[0m[90m TS7006: [0mParameter 'args' implicitly has an 'any' type.
+
+[7m7[0m         const originalDispatch = function(object, op, args) {
+[7m [0m [91m                                                      ~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-650c42b/testCase.test.ts[0m:[93m20[0m:[93m42[0m - [91merror[0m[90m TS7006: [0mParameter 'object' implicitly has an 'any' type.
+
+[7m20[0m         const mutatedDispatch = function(object, op, args) {
+[7m  [0m [91m                                         ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-650c42b/testCase.test.ts[0m:[93m20[0m:[93m50[0m - [91merror[0m[90m TS7006: [0mParameter 'op' implicitly has an 'any' type.
+
+[7m20[0m         const mutatedDispatch = function(object, op, args) {
+[7m  [0m [91m                                                 ~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-650c42b/testCase.test.ts[0m:[93m20[0m:[93m54[0m - [91merror[0m[90m TS7006: [0mParameter 'args' implicitly has an 'any' type.
+
+[7m20[0m         const mutatedDispatch = function(object, op, args) {
+[7m  [0m [91m                                                     ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-650c42b/testCase.test.ts
+  dispatch function
+    ✕ should call the dispatch method of the object (2 ms)
+    ✕ should throw an error when dispatch method is not called (1 ms)
+
+  ● dispatch function › should call the dispatch method of the object
+
+    ReferenceError: Q is not defined
+
+       6 |
+       7 |         const originalDispatch = function(object, op, args) {
+    >  8 |             return Q(object).dispatch(op, args);
+         |             ^
+       9 |         };
+      10 |
+      11 |         originalDispatch(object, 'op', ['arg1', 'arg2']);
+
+      at originalDispatch (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-650c42b/testCase.test.ts:8:13)
+      at Object.originalDispatch (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-650c42b/testCase.test.ts:11:9)
+
+  ● dispatch function › should throw an error when dispatch method is not called
+
+    expect(received).toThrowError()
+
+    Received function did not throw
+
+      22 |         };
+      23 |
+    > 24 |         expect(() => mutatedDispatch(object, 'op', ['arg1', 'arg2'])).toThrowError();
+         |                                                                       ^
+      25 |     });
+      26 | });
+
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-650c42b/testCase.test.ts:24:71)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.815 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-650c42b/testCase.test.ts".

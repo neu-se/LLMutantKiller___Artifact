@@ -1,0 +1,41 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-738ecd8/testCase.test.ts
+  Promise join functionality
+    ✕ should join two promises and return a promise that is fulfilled with the same value if both promises are fulfilled with the same value (4 ms)
+    ✕ should throw an error when the promises are not fulfilled with the same value
+
+  ● Promise join functionality › should join two promises and return a promise that is fulfilled with the same value if both promises are fulfilled with the same value
+
+    Cannot find module '../../../../../../../../subject_repositories/q/q.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-738ecd8/testCase.test.ts'
+
+      1 | describe("Promise join functionality", () => {
+      2 |     it("should join two promises and return a promise that is fulfilled with the same value if both promises are fulfilled with the same value", () => {
+    > 3 |         const Q = require('../../../../../../../../subject_repositories/q/q.js');
+        |                   ^
+      4 |         const promise1 = Q(5);
+      5 |         const promise2 = Q(5);
+      6 |         return Q.join(promise1, promise2).then((value: any) => {
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-738ecd8/testCase.test.ts:3:19)
+
+  ● Promise join functionality › should throw an error when the promises are not fulfilled with the same value
+
+    Cannot find module '../../../../../../../../subject_repositories/q/q.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-738ecd8/testCase.test.ts'
+
+      10 |
+      11 |     it("should throw an error when the promises are not fulfilled with the same value", () => {
+    > 12 |         const Q = require('../../../../../../../../subject_repositories/q/q.js');
+         |                   ^
+      13 |         const promise1 = Q(5);
+      14 |         const promise2 = Q(10);
+      15 |         return Q.join(promise1, promise2).then(() => {
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-738ecd8/testCase.test.ts:12:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.481 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-738ecd8/testCase.test.ts".

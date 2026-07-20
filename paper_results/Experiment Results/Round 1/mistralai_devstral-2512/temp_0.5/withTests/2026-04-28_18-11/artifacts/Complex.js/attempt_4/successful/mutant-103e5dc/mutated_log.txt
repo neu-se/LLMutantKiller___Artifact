@@ -1,0 +1,30 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-103e5dc/testCase.test.ts
+  Complex.csc()
+    ✕ should correctly compute the cosecant for a complex number with real part 1 and imaginary part 0 (2 ms)
+
+  ● Complex.csc() › should correctly compute the cosecant for a complex number with real part 1 and imaginary part 0
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 1.0998
+    Received: 3.956066947618222
+
+    Expected precision:    3
+    Expected difference: < 0.0005
+    Received difference:   2.856266947618222
+
+      16 |     // Mutated d = 0.5 * cosh(0) - 0.5 * cos(1) = 0.5 - 0.5 * 0.5403 ≈ 0.5 - 0.2702 ≈ 0.2298
+      17 |     // This will produce different results
+    > 18 |     expect(result2.re).toBeCloseTo(1.0998, 3);
+         |                        ^
+      19 |     expect(result2.im).toBeCloseTo(0, 3);
+      20 |   });
+      21 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-103e5dc/testCase.test.ts:18:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.111 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-103e5dc/testCase.test.ts".

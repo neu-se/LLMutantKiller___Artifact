@@ -1,0 +1,2370 @@
+Your task is to write a Jest test case that exposes a specific mutation in a JavaScript/TypeScript project.
+
+MUTATION DETAILS
+The mutation affects the following file:
+src/Delta.ts
+Here is the full content of that file (shown with a <PLACEHOLDER> marker):
+import * as diff from 'fast-diff';
+import cloneDeep = require('lodash.clonedeep');
+import isEqual = require('lodash.isequal');
+import AttributeMap from './AttributeMap';
+import Op from './Op';
+import OpIterator from './OpIterator';
+
+const NULL_CHARACTER = String.fromCharCode(0); // Placeholder char for embed in diff()
+
+interface EmbedHandler<T> {
+  compose(a: T, b: T, keepNull: boolean): T;
+  invert(a: T, b: T): T;
+  transform(a: T, b: T, priority: boolean): T;
+}
+
+const getEmbedTypeAndData = (
+  a: Op['insert'] | Op['retain'],
+  b: Op['insert'],
+): [string, unknown, unknown] => {
+  if (typeof a !== 'object' || a === null) {
+    throw new Error(`cannot retain a ${typeof a}`);
+  }
+  if (typeof b !== 'object' || b === null) {
+    throw new Error(`cannot retain a ${typeof b}`);
+  }
+  const embedType = Object.keys(a)[0];
+  if (!embedType || embedType !== Object.keys(b)[0]) {
+    throw new Error(
+      `embed types not matched: ${embedType} != ${Object.keys(b)[0]}`,
+    );
+  }
+  return [embedType, a[embedType], b[embedType]];
+};
+
+class Delta {
+  static Op = Op;
+  static OpIterator = OpIterator;
+  static AttributeMap = AttributeMap;
+  private static handlers: { [embedType: string]: EmbedHandler<unknown> } = {};
+
+  static registerEmbed<T>(embedType: string, handler: EmbedHandler<T>): void {
+    this.handlers[embedType] = handler;
+  }
+
+  static unregisterEmbed(embedType: string): void {
+    delete this.handlers[embedType];
+  }
+
+  private static getHandler(embedType: string): EmbedHandler<unknown> {
+    const handler = this.handlers[embedType];
+    if (!handler) {
+      throw new Error(`no handlers for embed type "${embedType}"`);
+    }
+    return handler;
+  }
+
+  ops: Op[];
+  constructor(ops?: Op[] | { ops: Op[] }) {
+    // Assume we are given a well formed ops
+    if (Array.isArray(ops)) {
+      this.ops = ops;
+    } else if (ops != null && Array.isArray(ops.ops)) {
+      this.ops = ops.ops;
+    } else {
+      this.ops = [];
+    }
+  }
+
+  insert(
+    arg: string | Record<string, unknown>,
+    attributes?: AttributeMap | null,
+  ): this {
+    const newOp: Op = {};
+    if (typeof arg === 'string' && arg.length === 0) {
+      return this;
+    }
+    newOp.insert = arg;
+    if (
+      attributes != null &&
+      typeof attributes === 'object' &&
+      Object.keys(attributes).length > 0
+    ) {
+      newOp.attributes = attributes;
+    }
+    return this.push(newOp);
+  }
+
+  delete(length: number): this {
+    if (length <= 0) {
+      return this;
+    }
+    return this.push({ delete: length });
+  }
+
+  retain(
+    length: number | Record<string, unknown>,
+    attributes?: AttributeMap | null,
+  ): this {
+    <PLACEHOLDER>
+      return this;
+    }
+    const newOp: Op = { retain: length };
+    if (
+      attributes != null &&
+      typeof attributes === 'object' &&
+      Object.keys(attributes).length > 0
+    ) {
+      newOp.attributes = attributes;
+    }
+    return this.push(newOp);
+  }
+
+  push(newOp: Op): this {
+    let index = this.ops.length;
+    let lastOp = this.ops[index - 1];
+    newOp = cloneDeep(newOp);
+    if (typeof lastOp === 'object') {
+      if (
+        typeof newOp.delete === 'number' &&
+        typeof lastOp.delete === 'number'
+      ) {
+        this.ops[index - 1] = { delete: lastOp.delete + newOp.delete };
+        return this;
+      }
+      // Since it does not matter if we insert before or after deleting at the same index,
+      // always prefer to insert first
+      if (typeof lastOp.delete === 'number' && newOp.insert != null) {
+        index -= 1;
+        lastOp = this.ops[index - 1];
+        if (typeof lastOp !== 'object') {
+          this.ops.unshift(newOp);
+          return this;
+        }
+      }
+      if (isEqual(newOp.attributes, lastOp.attributes)) {
+        if (
+          typeof newOp.insert === 'string' &&
+          typeof lastOp.insert === 'string'
+        ) {
+          this.ops[index - 1] = { insert: lastOp.insert + newOp.insert };
+          if (typeof newOp.attributes === 'object') {
+            this.ops[index - 1].attributes = newOp.attributes;
+          }
+          return this;
+        } else if (
+          typeof newOp.retain === 'number' &&
+          typeof lastOp.retain === 'number'
+        ) {
+          this.ops[index - 1] = { retain: lastOp.retain + newOp.retain };
+          if (typeof newOp.attributes === 'object') {
+            this.ops[index - 1].attributes = newOp.attributes;
+          }
+          return this;
+        }
+      }
+    }
+    if (index === this.ops.length) {
+      this.ops.push(newOp);
+    } else {
+      this.ops.splice(index, 0, newOp);
+    }
+    return this;
+  }
+
+  chop(): this {
+    const lastOp = this.ops[this.ops.length - 1];
+    if (lastOp && typeof lastOp.retain === 'number' && !lastOp.attributes) {
+      this.ops.pop();
+    }
+    return this;
+  }
+
+  filter(predicate: (op: Op, index: number) => boolean): Op[] {
+    return this.ops.filter(predicate);
+  }
+
+  forEach(predicate: (op: Op, index: number) => void): void {
+    this.ops.forEach(predicate);
+  }
+
+  map<T>(predicate: (op: Op, index: number) => T): T[] {
+    return this.ops.map(predicate);
+  }
+
+  partition(predicate: (op: Op) => boolean): [Op[], Op[]] {
+    const passed: Op[] = [];
+    const failed: Op[] = [];
+    this.forEach((op) => {
+      const target = predicate(op) ? passed : failed;
+      target.push(op);
+    });
+    return [passed, failed];
+  }
+
+  reduce<T>(
+    predicate: (accum: T, curr: Op, index: number) => T,
+    initialValue: T,
+  ): T {
+    return this.ops.reduce(predicate, initialValue);
+  }
+
+  changeLength(): number {
+    return this.reduce((length, elem) => {
+      if (elem.insert) {
+        return length + Op.length(elem);
+      } else if (elem.delete) {
+        return length - elem.delete;
+      }
+      return length;
+    }, 0);
+  }
+
+  length(): number {
+    return this.reduce((length, elem) => {
+      return length + Op.length(elem);
+    }, 0);
+  }
+
+  slice(start = 0, end = Infinity): Delta {
+    const ops = [];
+    const iter = new OpIterator(this.ops);
+    let index = 0;
+    while (index < end && iter.hasNext()) {
+      let nextOp;
+      if (index < start) {
+        nextOp = iter.next(start - index);
+      } else {
+        nextOp = iter.next(end - index);
+        ops.push(nextOp);
+      }
+      index += Op.length(nextOp);
+    }
+    return new Delta(ops);
+  }
+
+  compose(other: Delta): Delta {
+    const thisIter = new OpIterator(this.ops);
+    const otherIter = new OpIterator(other.ops);
+    const ops = [];
+    const firstOther = otherIter.peek();
+    if (
+      firstOther != null &&
+      typeof firstOther.retain === 'number' &&
+      firstOther.attributes == null
+    ) {
+      let firstLeft = firstOther.retain;
+      while (
+           thisIter.peekType() === "" &&
+
+        thisIter.peekLength() <= firstLeft
+      ) {
+        firstLeft -= thisIter.peekLength();
+        ops.push(thisIter.next());
+      }
+      if (firstOther.retain - firstLeft > 0) {
+        otherIter.next(firstOther.retain - firstLeft);
+      }
+    }
+    const delta = new Delta(ops);
+    while (thisIter.hasNext() || otherIter.hasNext()) {
+      if (otherIter.peekType() === 'insert') {
+        delta.push(otherIter.next());
+      } else if (thisIter.peekType() === 'delete') {
+        delta.push(thisIter.next());
+      } else {
+        const length = Math.min(thisIter.peekLength(), otherIter.peekLength());
+        const thisOp = thisIter.next(length);
+        const otherOp = otherIter.next(length);
+        if (otherOp.retain) {
+          const newOp: Op = {};
+          if (typeof thisOp.retain === 'number') {
+            newOp.retain =
+              typeof otherOp.retain === 'number' ? length : otherOp.retain;
+          } else {
+            if (typeof otherOp.retain === 'number') {
+              if (thisOp.retain == null) {
+                newOp.insert = thisOp.insert;
+              } else {
+                newOp.retain = thisOp.retain;
+              }
+            } else {
+              const action = thisOp.retain == null ? 'insert' : 'retain';
+              const [embedType, thisData, otherData] = getEmbedTypeAndData(
+                thisOp[action],
+                otherOp.retain,
+              );
+              const handler = Delta.getHandler(embedType);
+              newOp[action] = {
+                [embedType]: handler.compose(
+                  thisData,
+                  otherData,
+                  action === 'retain',
+                ),
+              };
+            }
+          }
+          // Preserve null when composing with a retain, otherwise remove it for inserts
+          const attributes = AttributeMap.compose(
+            thisOp.attributes,
+            otherOp.attributes,
+            typeof thisOp.retain === 'number',
+          );
+          if (attributes) {
+            newOp.attributes = attributes;
+          }
+          delta.push(newOp);
+
+          // Optimization if rest of other is just retain
+          if (
+            !otherIter.hasNext() &&
+            isEqual(delta.ops[delta.ops.length - 1], newOp)
+          ) {
+            const rest = new Delta(thisIter.rest());
+            return delta.concat(rest).chop();
+          }
+
+          // Other op should be delete, we could be an insert or retain
+          // Insert + delete cancels out
+        } else if (
+          typeof otherOp.delete === 'number' &&
+          (typeof thisOp.retain === 'number' ||
+            (typeof thisOp.retain === 'object' && thisOp.retain !== null))
+        ) {
+          delta.push(otherOp);
+        }
+      }
+    }
+    return delta.chop();
+  }
+
+  concat(other: Delta): Delta {
+    const delta = new Delta(this.ops.slice());
+    if (other.ops.length > 0) {
+      delta.push(other.ops[0]);
+      delta.ops = delta.ops.concat(other.ops.slice(1));
+    }
+    return delta;
+  }
+
+  diff(other: Delta, cursor?: number | diff.CursorInfo): Delta {
+    if (this.ops === other.ops) {
+      return new Delta();
+    }
+    const strings = [this, other].map((delta) => {
+      return delta
+        .map((op) => {
+          if (op.insert != null) {
+            return typeof op.insert === 'string' ? op.insert : NULL_CHARACTER;
+          }
+          const prep = delta === other ? 'on' : 'with';
+          throw new Error('diff() called ' + prep + ' non-document');
+        })
+        .join('');
+    });
+    const retDelta = new Delta();
+    const diffResult = diff(strings[0], strings[1], cursor);
+    const thisIter = new OpIterator(this.ops);
+    const otherIter = new OpIterator(other.ops);
+    diffResult.forEach((component: diff.Diff) => {
+      let length = component[1].length;
+      while (length > 0) {
+        let opLength = 0;
+        switch (component[0]) {
+          case diff.INSERT:
+            opLength = Math.min(otherIter.peekLength(), length);
+            retDelta.push(otherIter.next(opLength));
+            break;
+          case diff.DELETE:
+            opLength = Math.min(length, thisIter.peekLength());
+            thisIter.next(opLength);
+            retDelta.delete(opLength);
+            break;
+          case diff.EQUAL:
+            opLength = Math.min(
+              thisIter.peekLength(),
+              otherIter.peekLength(),
+              length,
+            );
+            const thisOp = thisIter.next(opLength);
+            const otherOp = otherIter.next(opLength);
+            if (isEqual(thisOp.insert, otherOp.insert)) {
+              retDelta.retain(
+                opLength,
+                AttributeMap.diff(thisOp.attributes, otherOp.attributes),
+              );
+            } else {
+              retDelta.push(otherOp).delete(opLength);
+            }
+            break;
+        }
+        length -= opLength;
+      }
+    });
+    return retDelta.chop();
+  }
+
+  eachLine(
+    predicate: (
+      line: Delta,
+      attributes: AttributeMap,
+      index: number,
+    ) => boolean | void,
+    newline = '\n',
+  ): void {
+    const iter = new OpIterator(this.ops);
+    let line = new Delta();
+    let i = 0;
+    while (iter.hasNext()) {
+      if (iter.peekType() !== 'insert') {
+        return;
+      }
+      const thisOp = iter.peek();
+      const start = Op.length(thisOp) - iter.peekLength();
+      const index =
+        typeof thisOp.insert === 'string'
+          ? thisOp.insert.indexOf(newline, start) - start
+          : -1;
+      if (index < 0) {
+        line.push(iter.next());
+      } else if (index > 0) {
+        line.push(iter.next(index));
+      } else {
+        if (predicate(line, iter.next(1).attributes || {}, i) === false) {
+          return;
+        }
+        i += 1;
+        line = new Delta();
+      }
+    }
+    if (line.length() > 0) {
+      predicate(line, {}, i);
+    }
+  }
+
+  invert(base: Delta): Delta {
+    const inverted = new Delta();
+    this.reduce((baseIndex, op) => {
+      if (op.insert) {
+        inverted.delete(Op.length(op));
+      } else if (typeof op.retain === 'number' && op.attributes == null) {
+        inverted.retain(op.retain);
+        return baseIndex + op.retain;
+      } else if (op.delete || typeof op.retain === 'number') {
+        const length = (op.delete || op.retain) as number;
+        const slice = base.slice(baseIndex, baseIndex + length);
+        slice.forEach((baseOp) => {
+          if (op.delete) {
+            inverted.push(baseOp);
+          } else if (op.retain && op.attributes) {
+            inverted.retain(
+              Op.length(baseOp),
+              AttributeMap.invert(op.attributes, baseOp.attributes),
+            );
+          }
+        });
+        return baseIndex + length;
+      } else if (typeof op.retain === 'object' && op.retain !== null) {
+        const slice = base.slice(baseIndex, baseIndex + 1);
+        const baseOp = new OpIterator(slice.ops).next();
+        const [embedType, opData, baseOpData] = getEmbedTypeAndData(
+          op.retain,
+          baseOp.insert,
+        );
+        const handler = Delta.getHandler(embedType);
+        inverted.retain(
+          { [embedType]: handler.invert(opData, baseOpData) },
+          AttributeMap.invert(op.attributes, baseOp.attributes),
+        );
+        return baseIndex + 1;
+      }
+      return baseIndex;
+    }, 0);
+    return inverted.chop();
+  }
+
+  transform(index: number, priority?: boolean): number;
+  transform(other: Delta, priority?: boolean): Delta;
+  transform(arg: number | Delta, priority = false): typeof arg {
+    priority = !!priority;
+    if (typeof arg === 'number') {
+      return this.transformPosition(arg, priority);
+    }
+    const other: Delta = arg;
+    const thisIter = new OpIterator(this.ops);
+    const otherIter = new OpIterator(other.ops);
+    const delta = new Delta();
+    while (thisIter.hasNext() || otherIter.hasNext()) {
+      if (
+        thisIter.peekType() === 'insert' &&
+        (priority || otherIter.peekType() !== 'insert')
+      ) {
+        delta.retain(Op.length(thisIter.next()));
+      } else if (otherIter.peekType() === 'insert') {
+        delta.push(otherIter.next());
+      } else {
+        const length = Math.min(thisIter.peekLength(), otherIter.peekLength());
+        const thisOp = thisIter.next(length);
+        const otherOp = otherIter.next(length);
+        if (thisOp.delete) {
+          // Our delete either makes their delete redundant or removes their retain
+          continue;
+        } else if (otherOp.delete) {
+          delta.push(otherOp);
+        } else {
+          const thisData = thisOp.retain;
+          const otherData = otherOp.retain;
+          let transformedData: Op['retain'] =
+            typeof otherData === 'object' && otherData !== null
+              ? otherData
+              : length;
+          if (
+            typeof thisData === 'object' &&
+            thisData !== null &&
+            typeof otherData === 'object' &&
+            otherData !== null
+          ) {
+            const embedType = Object.keys(thisData)[0];
+            if (embedType === Object.keys(otherData)[0]) {
+              const handler = Delta.getHandler(embedType);
+              if (handler) {
+                transformedData = {
+                  [embedType]: handler.transform(
+                    thisData[embedType],
+                    otherData[embedType],
+                    priority,
+                  ),
+                };
+              }
+            }
+          }
+
+          // We retain either their retain or insert
+          delta.retain(
+            transformedData,
+            AttributeMap.transform(
+              thisOp.attributes,
+              otherOp.attributes,
+              priority,
+            ),
+          );
+        }
+      }
+    }
+    return delta.chop();
+  }
+
+  transformPosition(index: number, priority = false): number {
+    priority = !!priority;
+    const thisIter = new OpIterator(this.ops);
+    let offset = 0;
+    while (thisIter.hasNext() && offset <= index) {
+      const length = thisIter.peekLength();
+      const nextType = thisIter.peekType();
+      thisIter.next();
+      if (nextType === 'delete') {
+        index -= Math.min(length, index - offset);
+        continue;
+      } else if (nextType === 'insert' && (offset < index || !priority)) {
+        index += length;
+      }
+      offset += length;
+    }
+    return index;
+  }
+}
+
+export default Delta;
+
+export { Op, OpIterator, AttributeMap };
+
+if (typeof module === 'object') {
+  module.exports = Delta;
+  module.exports.default = Delta;
+}
+
+In the original code, <PLACEHOLDER> has the value:
+
+-       if (typeof length === 'number' && length <= 0) {
+In the mutated code, <PLACEHOLDER> has the value:
+
++       if (true && length <= 0) {
+
+
+YOUR TASK
+Write one Jest test file that:
+    1. Passes when run against the original code.
+    2. Fails when run against the mutated code.
+    3. Tests the behavior of the mutated file in a way that reliably detects the mutation.
+The test will be saved at the following path, relative to this test-generation project’s root:
+llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-ab00f15/testCase.test.ts
+
+RESOURCES AVAILABLE
+Existing test cases you may use for style or structure inspiration, focusing on how they reflect the project’s expected behavior and typical inputs:
+//test/delta/builder.ts
+
+import Delta from '../../src/Delta';
+
+describe('constructor', () => {
+  const ops = [
+    { insert: 'abc' },
+    { retain: 1, attributes: { color: 'red' } },
+    { delete: 4 },
+    { insert: 'def', attributes: { bold: true } },
+    { retain: 6 },
+  ];
+
+  it('empty', function () {
+    const delta = new Delta();
+    expect(delta).toBeDefined();
+    expect(delta.ops).toBeDefined();
+    expect(delta.ops.length).toEqual(0);
+  });
+
+  it('empty ops', function () {
+    const delta = new Delta().insert('').delete(0).retain(0);
+    expect(delta).toBeDefined();
+    expect(delta.ops).toBeDefined();
+    expect(delta.ops.length).toEqual(0);
+  });
+
+  it('array of ops', function () {
+    const delta = new Delta(ops);
+    expect(delta.ops).toEqual(ops);
+  });
+
+  it('delta in object form', function () {
+    const delta = new Delta({ ops: ops });
+    expect(delta.ops).toEqual(ops);
+  });
+
+  it('delta', function () {
+    const original = new Delta(ops);
+    const delta = new Delta(original);
+    expect(delta.ops).toEqual(original.ops);
+    expect(delta.ops).toEqual(ops);
+  });
+});
+
+describe('insert()', function () {
+  it('insert(text)', function () {
+    const delta = new Delta().insert('test');
+    expect(delta.ops.length).toEqual(1);
+    expect(delta.ops[0]).toEqual({ insert: 'test' });
+  });
+
+  it('insert(text, null)', function () {
+    const delta = new Delta().insert('test', null);
+    expect(delta.ops.length).toEqual(1);
+    expect(delta.ops[0]).toEqual({ insert: 'test' });
+  });
+
+  it('insert(embed)', function () {
+    const delta = new Delta().insert({ embed: 1 });
+    expect(delta.ops.length).toEqual(1);
+    expect(delta.ops[0]).toEqual({ insert: { embed: 1 } });
+  });
+
+  it('insert(embed, attributes)', function () {
+    const obj = { url: 'http://quilljs.com', alt: 'Quill' };
+    const delta = new Delta().insert({ embed: 1 }, obj);
+    expect(delta.ops.length).toEqual(1);
+    expect(delta.ops[0]).toEqual({ insert: { embed: 1 }, attributes: obj });
+  });
+
+  it('insert(embed) non-integer', function () {
+    const embed = { url: 'http://quilljs.com' };
+    const attr = { alt: 'Quill' };
+    const delta = new Delta().insert(embed, attr);
+    expect(delta.ops.length).toEqual(1);
+    expect(delta.ops[0]).toEqual({ insert: embed, attributes: attr });
+  });
+
+  it('insert(text, attributes)', function () {
+    const delta = new Delta().insert('test', { bold: true });
+    expect(delta.ops.length).toEqual(1);
+    expect(delta.ops[0]).toEqual({
+      insert: 'test',
+      attributes: { bold: true },
+    });
+  });
+
+  it('insert(text) after delete', function () {
+    const delta = new Delta().delete(1).insert('a');
+    const expected = new Delta().insert('a').delete(1);
+    expect(delta).toEqual(expected);
+  });
+
+  it('insert(text) after delete with merge', function () {
+    const delta = new Delta().insert('a').delete(1).insert('b');
+    const expected = new Delta().insert('ab').delete(1);
+    expect(delta).toEqual(expected);
+  });
+
+  it('insert(text) after delete no merge', function () {
+    const delta = new Delta().insert({ embed: 1 }).delete(1).insert('a');
+    const expected = new Delta().insert({ embed: 1 }).insert('a').delete(1);
+    expect(delta).toEqual(expected);
+  });
+
+  it('insert(text) after delete no merge', function () {
+    const delta = new Delta().insert({ embed: 1 }).delete(1).insert('a');
+    const expected = new Delta().insert({ embed: 1 }).insert('a').delete(1);
+    expect(delta).toEqual(expected);
+  });
+
+  it('insert(text, {})', function () {
+    const delta = new Delta().insert('a', {});
+    const expected = new Delta().insert('a');
+    expect(delta).toEqual(expected);
+  });
+});
+
+describe('delete()', function () {
+  it('delete(0)', function () {
+    const delta = new Delta().delete(0);
+    expect(delta.ops.length).toEqual(0);
+  });
+
+  it('delete(positive)', function () {
+    const delta = new Delta().delete(1);
+    expect(delta.ops.length).toEqual(1);
+    expect(delta.ops[0]).toEqual({ delete: 1 });
+  });
+});
+
+describe('retain()', function () {
+  it('retain(0)', function () {
+    const delta = new Delta().retain(0);
+    expect(delta.ops.length).toEqual(0);
+  });
+
+  it('retain(length)', function () {
+    const delta = new Delta().retain(2);
+    expect(delta.ops.length).toEqual(1);
+    expect(delta.ops[0]).toEqual({ retain: 2 });
+  });
+
+  it('retain(length, null)', function () {
+    const delta = new Delta().retain(2, null);
+    expect(delta.ops.length).toEqual(1);
+    expect(delta.ops[0]).toEqual({ retain: 2 });
+  });
+
+  it('retain(length, attributes)', function () {
+    const delta = new Delta().retain(1, { bold: true });
+    expect(delta.ops.length).toEqual(1);
+    expect(delta.ops[0]).toEqual({ retain: 1, attributes: { bold: true } });
+  });
+
+  it('retain(length, {})', function () {
+    const delta = new Delta().retain(2, {}).delete(1); // Delete prevents chop
+    const expected = new Delta().retain(2).delete(1);
+    expect(delta).toEqual(expected);
+  });
+});
+
+describe('push()', function () {
+  it('push(op) into empty', function () {
+    const delta = new Delta();
+    delta.push({ insert: 'test' });
+    expect(delta.ops.length).toEqual(1);
+  });
+
+  it('push(op) consecutive delete', function () {
+    const delta = new Delta().delete(2);
+    delta.push({ delete: 3 });
+    expect(delta.ops.length).toEqual(1);
+    expect(delta.ops[0]).toEqual({ delete: 5 });
+  });
+
+  it('push(op) consecutive text', function () {
+    const delta = new Delta().insert('a');
+    delta.push({ insert: 'b' });
+    expect(delta.ops.length).toEqual(1);
+    expect(delta.ops[0]).toEqual({ insert: 'ab' });
+  });
+
+  it('push(op) consecutive texts with matching attributes', function () {
+    const delta = new Delta().insert('a', { bold: true });
+    delta.push({ insert: 'b', attributes: { bold: true } });
+    expect(delta.ops.length).toEqual(1);
+    expect(delta.ops[0]).toEqual({ insert: 'ab', attributes: { bold: true } });
+  });
+
+  it('push(op) consecutive retains with matching attributes', function () {
+    const delta = new Delta().retain(1, { bold: true });
+    delta.push({ retain: 3, attributes: { bold: true } });
+    expect(delta.ops.length).toEqual(1);
+    expect(delta.ops[0]).toEqual({ retain: 4, attributes: { bold: true } });
+  });
+
+  it('push(op) consecutive texts with mismatched attributes', function () {
+    const delta = new Delta().insert('a', { bold: true });
+    delta.push({ insert: 'b' });
+    expect(delta.ops.length).toEqual(2);
+  });
+
+  it('push(op) consecutive retains with mismatched attributes', function () {
+    const delta = new Delta().retain(1, { bold: true });
+    delta.push({ retain: 3 });
+    expect(delta.ops.length).toEqual(2);
+  });
+
+  it('push(op) consecutive embeds with matching attributes', function () {
+    const delta = new Delta().insert({ embed: 1 }, { alt: 'Description' });
+    delta.push({
+      insert: { url: 'http://quilljs.com' },
+      attributes: { alt: 'Description' },
+    });
+    expect(delta.ops.length).toEqual(2);
+  });
+});
+
+---
+//test/delta/compose.ts
+
+import Delta from '../../src/Delta';
+import Op from '../../src/Op';
+
+describe('compose()', () => {
+  it('insert + insert', () => {
+    const a = new Delta().insert('A');
+    const b = new Delta().insert('B');
+    const expected = new Delta().insert('B').insert('A');
+    expect(a.compose(b)).toEqual(expected);
+  });
+
+  it('insert + retain', () => {
+    const a = new Delta().insert('A');
+    const b = new Delta().retain(1, { bold: true, color: 'red', font: null });
+    const expected = new Delta().insert('A', { bold: true, color: 'red' });
+    expect(a.compose(b)).toEqual(expected);
+  });
+
+  it('insert + delete', () => {
+    const a = new Delta().insert('A');
+    const b = new Delta().delete(1);
+    const expected = new Delta();
+    expect(a.compose(b)).toEqual(expected);
+  });
+
+  it('delete + insert', () => {
+    const a = new Delta().delete(1);
+    const b = new Delta().insert('B');
+    const expected = new Delta().insert('B').delete(1);
+    expect(a.compose(b)).toEqual(expected);
+  });
+
+  it('delete + retain', () => {
+    const a = new Delta().delete(1);
+    const b = new Delta().retain(1, { bold: true, color: 'red' });
+    const expected = new Delta()
+      .delete(1)
+      .retain(1, { bold: true, color: 'red' });
+    expect(a.compose(b)).toEqual(expected);
+  });
+
+  it('delete + delete', () => {
+    const a = new Delta().delete(1);
+    const b = new Delta().delete(1);
+    const expected = new Delta().delete(2);
+    expect(a.compose(b)).toEqual(expected);
+  });
+
+  it('retain + insert', () => {
+    const a = new Delta().retain(1, { color: 'blue' });
+    const b = new Delta().insert('B');
+    const expected = new Delta().insert('B').retain(1, { color: 'blue' });
+    expect(a.compose(b)).toEqual(expected);
+  });
+
+  it('retain + retain', () => {
+    const a = new Delta().retain(1, { color: 'blue' });
+    const b = new Delta().retain(1, { bold: true, color: 'red', font: null });
+    const expected = new Delta().retain(1, {
+      bold: true,
+      color: 'red',
+      font: null,
+    });
+    expect(a.compose(b)).toEqual(expected);
+  });
+
+  it('retain + delete', () => {
+    const a = new Delta().retain(1, { color: 'blue' });
+    const b = new Delta().delete(1);
+    const expected = new Delta().delete(1);
+    expect(a.compose(b)).toEqual(expected);
+  });
+
+  it('insert in middle of text', () => {
+    const a = new Delta().insert('Hello');
+    const b = new Delta().retain(3).insert('X');
+    const expected = new Delta().insert('HelXlo');
+    expect(a.compose(b)).toEqual(expected);
+  });
+
+  it('insert and delete ordering', () => {
+    const a = new Delta().insert('Hello');
+    const b = new Delta().insert('Hello');
+    const insertFirst = new Delta().retain(3).insert('X').delete(1);
+    const deleteFirst = new Delta().retain(3).delete(1).insert('X');
+    const expected = new Delta().insert('HelXo');
+    expect(a.compose(insertFirst)).toEqual(expected);
+    expect(b.compose(deleteFirst)).toEqual(expected);
+  });
+
+  it('insert embed', () => {
+    const a = new Delta().insert(
+      { embed: 1 },
+      { src: 'http://quilljs.com/image.png' },
+    );
+    const b = new Delta().retain(1, { alt: 'logo' });
+    const expected = new Delta().insert(
+      { embed: 1 },
+      {
+        src: 'http://quilljs.com/image.png',
+        alt: 'logo',
+      },
+    );
+    expect(a.compose(b)).toEqual(expected);
+  });
+
+  it('retain embed', () => {
+    const a = new Delta().retain(
+      { figure: true },
+      { src: 'http://quilljs.com/image.png' },
+    );
+    const b = new Delta().retain(1, { alt: 'logo' });
+    const expected = new Delta().retain(
+      { figure: true },
+      {
+        src: 'http://quilljs.com/image.png',
+        alt: 'logo',
+      },
+    );
+    expect(a.compose(b)).toEqual(expected);
+  });
+
+  it('delete entire text', () => {
+    const a = new Delta().retain(4).insert('Hello');
+    const b = new Delta().delete(9);
+    const expected = new Delta().delete(4);
+    expect(a.compose(b)).toEqual(expected);
+  });
+
+  it('retain more than length of text', () => {
+    const a = new Delta().insert('Hello');
+    const b = new Delta().retain(10);
+    const expected = new Delta().insert('Hello');
+    expect(a.compose(b)).toEqual(expected);
+  });
+
+  it('retain empty embed', () => {
+    const a = new Delta().insert({ embed: 1 });
+    const b = new Delta().retain(1);
+    const expected = new Delta().insert({ embed: 1 });
+    expect(a.compose(b)).toEqual(expected);
+  });
+
+  it('remove all attributes', () => {
+    const a = new Delta().insert('A', { bold: true });
+    const b = new Delta().retain(1, { bold: null });
+    const expected = new Delta().insert('A');
+    expect(a.compose(b)).toEqual(expected);
+  });
+
+  it('remove all embed attributes', () => {
+    const a = new Delta().insert({ embed: 2 }, { bold: true });
+    const b = new Delta().retain(1, { bold: null });
+    const expected = new Delta().insert({ embed: 2 });
+    expect(a.compose(b)).toEqual(expected);
+  });
+
+  it('immutability', () => {
+    const attr1 = { bold: true };
+    const attr2 = { bold: true };
+    const a1 = new Delta().insert('Test', attr1);
+    const a2 = new Delta().insert('Test', attr1);
+    const b1 = new Delta().retain(1, { color: 'red' }).delete(2);
+    const b2 = new Delta().retain(1, { color: 'red' }).delete(2);
+    const expected = new Delta()
+      .insert('T', { color: 'red', bold: true })
+      .insert('t', attr1);
+    expect(a1.compose(b1)).toEqual(expected);
+    expect(a1).toEqual(a2);
+    expect(b1).toEqual(b2);
+    expect(attr1).toEqual(attr2);
+  });
+
+  it('retain start optimization', () => {
+    const a = new Delta()
+      .insert('A', { bold: true })
+      .insert('B')
+      .insert('C', { bold: true })
+      .delete(1);
+    const b = new Delta().retain(3).insert('D');
+    const expected = new Delta()
+      .insert('A', { bold: true })
+      .insert('B')
+      .insert('C', { bold: true })
+      .insert('D')
+      .delete(1);
+    expect(a.compose(b)).toEqual(expected);
+  });
+
+  it('retain start optimization split', () => {
+    const a = new Delta()
+      .insert('A', { bold: true })
+      .insert('B')
+      .insert('C', { bold: true })
+      .retain(5)
+      .delete(1);
+    const b = new Delta().retain(4).insert('D');
+    const expected = new Delta()
+      .insert('A', { bold: true })
+      .insert('B')
+      .insert('C', { bold: true })
+      .retain(1)
+      .insert('D')
+      .retain(4)
+      .delete(1);
+    expect(a.compose(b)).toEqual(expected);
+  });
+
+  it('retain end optimization', () => {
+    const a = new Delta()
+      .insert('A', { bold: true })
+      .insert('B')
+      .insert('C', { bold: true });
+    const b = new Delta().delete(1);
+    const expected = new Delta().insert('B').insert('C', { bold: true });
+    expect(a.compose(b)).toEqual(expected);
+  });
+
+  it('retain end optimization join', () => {
+    const a = new Delta()
+      .insert('A', { bold: true })
+      .insert('B')
+      .insert('C', { bold: true })
+      .insert('D')
+      .insert('E', { bold: true })
+      .insert('F');
+    const b = new Delta().retain(1).delete(1);
+    const expected = new Delta()
+      .insert('AC', { bold: true })
+      .insert('D')
+      .insert('E', { bold: true })
+      .insert('F');
+    expect(a.compose(b)).toEqual(expected);
+  });
+
+  describe('custom embed handler', () => {
+    beforeEach(() => {
+      Delta.registerEmbed<Op[]>('delta', {
+        compose: (a, b) => new Delta(a).compose(new Delta(b)).ops,
+        transform: (a, b, priority) =>
+          new Delta(a).transform(new Delta(b), priority).ops,
+        invert: (a, b) => new Delta(a).invert(new Delta(b)).ops,
+      });
+    });
+
+    afterEach(() => {
+      Delta.unregisterEmbed('delta');
+    });
+
+    it('retain an embed with a number', () => {
+      const a = new Delta().insert({ delta: [{ insert: 'a' }] });
+      const b = new Delta().retain(1, { bold: true });
+      const expected = new Delta().insert(
+        { delta: [{ insert: 'a' }] },
+        { bold: true },
+      );
+      expect(a.compose(b)).toEqual(expected);
+    });
+
+    it('retain a number with an embed', () => {
+      const a = new Delta().retain(10, { bold: true });
+      const b = new Delta().retain({ delta: [{ insert: 'b' }] });
+      const expected = new Delta()
+        .retain({ delta: [{ insert: 'b' }] }, { bold: true })
+        .retain(9, { bold: true });
+      expect(a.compose(b)).toEqual(expected);
+    });
+
+    it('retain an embed with an embed', () => {
+      const a = new Delta().insert({ delta: [{ insert: 'a' }] });
+      const b = new Delta().retain({ delta: [{ insert: 'b' }] });
+      const expected = new Delta().insert({
+        delta: [{ insert: 'ba' }],
+      });
+      expect(a.compose(b)).toEqual(expected);
+    });
+
+    it('keeps other delete when this op is a retain', () => {
+      const a = new Delta().retain({ delta: [{ insert: 'a' }] });
+      const b = new Delta().insert('\n').delete(1);
+      const expected = new Delta().insert('\n').delete(1);
+      expect(a.compose(b)).toEqual(expected);
+    });
+
+    it('retain an embed with a number', () => {
+      const a = new Delta().insert({ delta: [{ insert: 'a' }] });
+      const b = new Delta().retain(1, { bold: true });
+      const expected = new Delta().insert(
+        { delta: [{ insert: 'a' }] },
+        { bold: true },
+      );
+      expect(a.compose(b)).toEqual(expected);
+    });
+
+    it('retain an embed with another type of embed', () => {
+      const a = new Delta().insert({ delta: [{ insert: 'a' }] });
+      const b = new Delta().retain({ otherdelta: [{ insert: 'b' }] });
+      expect(() => {
+        a.compose(b);
+      }).toThrowError('embed types not matched: delta != otherdelta');
+    });
+
+    it('retain a string with an embed', () => {
+      const a = new Delta().insert('a');
+      const b = new Delta().retain({ delta: [{ insert: 'b' }] });
+      expect(() => {
+        a.compose(b);
+      }).toThrowError('cannot retain a string');
+    });
+
+    it('retain embeds without a handler', () => {
+      const a = new Delta().insert({ mydelta: [{ insert: 'a' }] });
+      const b = new Delta().retain({ mydelta: [{ insert: 'b' }] });
+      expect(() => {
+        a.compose(b);
+      }).toThrowError('no handlers for embed type "mydelta"');
+    });
+  });
+});
+
+---
+//test/delta/diff.ts
+
+import Delta from '../../src/Delta';
+
+describe('diff()', () => {
+  it('insert', () => {
+    const a = new Delta().insert('A');
+    const b = new Delta().insert('AB');
+    const expected = new Delta().retain(1).insert('B');
+    expect(a.diff(b)).toEqual(expected);
+  });
+
+  it('delete', () => {
+    const a = new Delta().insert('AB');
+    const b = new Delta().insert('A');
+    const expected = new Delta().retain(1).delete(1);
+    expect(a.diff(b)).toEqual(expected);
+  });
+
+  it('retain', () => {
+    const a = new Delta().insert('A');
+    const b = new Delta().insert('A');
+    const expected = new Delta();
+    expect(a.diff(b)).toEqual(expected);
+  });
+
+  it('format', () => {
+    const a = new Delta().insert('A');
+    const b = new Delta().insert('A', { bold: true });
+    const expected = new Delta().retain(1, { bold: true });
+    expect(a.diff(b)).toEqual(expected);
+  });
+
+  it('object attributes', () => {
+    const a = new Delta().insert('A', {
+      font: { family: 'Helvetica', size: '15px' },
+    });
+    const b = new Delta().insert('A', {
+      font: { family: 'Helvetica', size: '15px' },
+    });
+    const expected = new Delta();
+    expect(a.diff(b)).toEqual(expected);
+  });
+
+  it('embed integer match', () => {
+    const a = new Delta().insert({ embed: 1 });
+    const b = new Delta().insert({ embed: 1 });
+    const expected = new Delta();
+    expect(a.diff(b)).toEqual(expected);
+  });
+
+  it('embed integer mismatch', () => {
+    const a = new Delta().insert({ embed: 1 });
+    const b = new Delta().insert({ embed: 2 });
+    const expected = new Delta().delete(1).insert({ embed: 2 });
+    expect(a.diff(b)).toEqual(expected);
+  });
+
+  it('embed object match', () => {
+    const a = new Delta().insert({ image: 'http://quilljs.com' });
+    const b = new Delta().insert({ image: 'http://quilljs.com' });
+    const expected = new Delta();
+    expect(a.diff(b)).toEqual(expected);
+  });
+
+  it('embed object mismatch', () => {
+    const a = new Delta().insert({
+      image: 'http://quilljs.com',
+      alt: 'Overwrite',
+    });
+    const b = new Delta().insert({ image: 'http://quilljs.com' });
+    const expected = new Delta()
+      .insert({ image: 'http://quilljs.com' })
+      .delete(1);
+    expect(a.diff(b)).toEqual(expected);
+  });
+
+  it('embed object change', () => {
+    const embed = { image: 'http://quilljs.com' };
+    const a = new Delta().insert(embed);
+    embed.image = 'http://github.com';
+    const b = new Delta().insert(embed);
+    const expected = new Delta()
+      .insert({ image: 'http://github.com' })
+      .delete(1);
+    expect(a.diff(b)).toEqual(expected);
+  });
+
+  it('embed false positive', () => {
+    const a = new Delta().insert({ embed: 1 });
+    const b = new Delta().insert(String.fromCharCode(0)); // Placeholder char for embed in diff()
+    const expected = new Delta().insert(String.fromCharCode(0)).delete(1);
+    expect(a.diff(b)).toEqual(expected);
+  });
+
+  it('error on non-documents', () => {
+    const a = new Delta().insert('A');
+    const b = new Delta().retain(1).insert('B');
+    expect(() => {
+      a.diff(b);
+    }).toThrow();
+    expect(() => {
+      b.diff(a);
+    }).toThrow();
+  });
+
+  it('inconvenient indexes', () => {
+    const a = new Delta()
+      .insert('12', { bold: true })
+      .insert('34', { italic: true });
+    const b = new Delta().insert('123', { color: 'red' });
+    const expected = new Delta()
+      .retain(2, { bold: null, color: 'red' })
+      .retain(1, { italic: null, color: 'red' })
+      .delete(1);
+    expect(a.diff(b)).toEqual(expected);
+  });
+
+  it('combination', () => {
+    const a = new Delta()
+      .insert('Bad', { color: 'red' })
+      .insert('cat', { color: 'blue' });
+    const b = new Delta()
+      .insert('Good', { bold: true })
+      .insert('dog', { italic: true });
+    const expected = new Delta()
+      .insert('Good', { bold: true })
+      .delete(2)
+      .retain(1, { italic: true, color: null })
+      .delete(3)
+      .insert('og', { italic: true });
+    expect(a.diff(b)).toEqual(expected);
+  });
+
+  it('same document', () => {
+    const a = new Delta().insert('A').insert('B', { bold: true });
+    const expected = new Delta();
+    expect(a.diff(a)).toEqual(expected);
+  });
+
+  it('immutability', () => {
+    const attr1 = { color: 'red' };
+    const attr2 = { color: 'red' };
+    const a1 = new Delta().insert('A', attr1);
+    const a2 = new Delta().insert('A', attr1);
+    const b1 = new Delta().insert('A', { bold: true }).insert('B');
+    const b2 = new Delta().insert('A', { bold: true }).insert('B');
+    const expected = new Delta()
+      .retain(1, { bold: true, color: null })
+      .insert('B');
+    expect(a1.diff(b1)).toEqual(expected);
+    expect(a1).toEqual(a2);
+    expect(b2).toEqual(b2);
+    expect(attr1).toEqual(attr2);
+  });
+
+  it('non-document', () => {
+    const a = new Delta().insert('Test');
+    const b = new Delta().delete(4);
+    expect(() => {
+      a.diff(b);
+    }).toThrow(new Error('diff() called on non-document'));
+  });
+});
+
+---
+//test/delta/helpers.ts
+
+import Delta from '../../src/Delta';
+
+describe('helpers', () => {
+  describe('concat()', () => {
+    it('empty delta', () => {
+      const delta = new Delta().insert('Test');
+      const concat = new Delta();
+      const expected = new Delta().insert('Test');
+      expect(delta.concat(concat)).toEqual(expected);
+    });
+
+    it('unmergeable', () => {
+      const delta = new Delta().insert('Test');
+      const original = new Delta(JSON.parse(JSON.stringify(delta)));
+      const concat = new Delta().insert('!', { bold: true });
+      const expected = new Delta().insert('Test').insert('!', { bold: true });
+      expect(delta.concat(concat)).toEqual(expected);
+      expect(delta).toEqual(original);
+    });
+
+    it('mergeable', () => {
+      const delta = new Delta().insert('Test', { bold: true });
+      const original = new Delta(JSON.parse(JSON.stringify(delta)));
+      const concat = new Delta().insert('!', { bold: true }).insert('\n');
+      const expected = new Delta().insert('Test!', { bold: true }).insert('\n');
+      expect(delta.concat(concat)).toEqual(expected);
+      expect(delta).toEqual(original);
+    });
+  });
+
+  describe('chop()', () => {
+    it('retain', () => {
+      const delta = new Delta().insert('Test').retain(4);
+      const expected = new Delta().insert('Test');
+      expect(delta.chop()).toEqual(expected);
+    });
+
+    it('insert', () => {
+      const delta = new Delta().insert('Test');
+      const expected = new Delta().insert('Test');
+      expect(delta.chop()).toEqual(expected);
+    });
+
+    it('formatted retain', () => {
+      const delta = new Delta().insert('Test').retain(4, { bold: true });
+      const expected = new Delta().insert('Test').retain(4, { bold: true });
+      expect(delta.chop()).toEqual(expected);
+    });
+  });
+
+  describe('eachLine()', () => {
+    it('expected', () => {
+      const spy = jasmine.createSpy();
+      const delta = new Delta()
+        .insert('Hello\n\n')
+        .insert('World', { bold: true })
+        .insert({ image: 'octocat.png' })
+        .insert('\n', { align: 'right' })
+        .insert('!');
+      delta.eachLine(spy);
+      expect(spy.calls.count()).toEqual(4);
+      expect(spy.calls.argsFor(0)).toEqual([
+        new Delta().insert('Hello'),
+        {},
+        0,
+      ]);
+      expect(spy.calls.argsFor(1)).toEqual([new Delta(), {}, 1]);
+      expect(spy.calls.argsFor(2)).toEqual([
+        new Delta()
+          .insert('World', { bold: true })
+          .insert({ image: 'octocat.png' }),
+        { align: 'right' },
+        2,
+      ]);
+      expect(spy.calls.argsFor(3)).toEqual([new Delta().insert('!'), {}, 3]);
+    });
+
+    it('trailing newline', () => {
+      const spy = jasmine.createSpy();
+      const delta = new Delta().insert('Hello\nWorld!\n');
+      delta.eachLine(spy);
+      expect(spy.calls.count()).toEqual(2);
+      expect(spy.calls.argsFor(0)).toEqual([
+        new Delta().insert('Hello'),
+        {},
+        0,
+      ]);
+      expect(spy.calls.argsFor(1)).toEqual([
+        new Delta().insert('World!'),
+        {},
+        1,
+      ]);
+    });
+
+    it('non-document', () => {
+      const spy = jasmine.createSpy();
+      const delta = new Delta().retain(1).delete(2);
+      delta.eachLine(spy);
+      expect(spy.calls.count()).toEqual(0);
+    });
+
+    it('early return', () => {
+      const delta = new Delta().insert('Hello\nNew\nWorld!');
+      let count = 0;
+      const spy = jasmine.createSpy().and.callFake(() => {
+        if (count === 1) return false;
+        count += 1;
+      });
+      delta.eachLine(spy);
+      expect(spy.calls.count()).toEqual(2);
+    });
+  });
+
+  describe('iteration', () => {
+    const delta = new Delta()
+      .insert('Hello')
+      .insert({ image: true })
+      .insert('World!');
+
+    it('filter()', () => {
+      const arr = delta.filter(function (op) {
+        return typeof op.insert === 'string';
+      });
+      expect(arr.length).toEqual(2);
+    });
+
+    it('forEach()', () => {
+      const spy = jasmine.createSpy();
+      delta.forEach(spy);
+      expect(spy.calls.count()).toEqual(3);
+    });
+
+    it('map()', () => {
+      const arr = delta.map((op) => {
+        return typeof op.insert === 'string' ? op.insert : '';
+      });
+      expect(arr).toEqual(['Hello', '', 'World!']);
+    });
+
+    it('partition()', () => {
+      const arr = delta.partition((op) => {
+        return typeof op.insert === 'string';
+      });
+      const passed = arr[0],
+        failed = arr[1];
+      expect(passed).toEqual([delta.ops[0], delta.ops[2]]);
+      expect(failed).toEqual([delta.ops[1]]);
+    });
+  });
+
+  describe('length()', () => {
+    it('document', () => {
+      const delta = new Delta()
+        .insert('AB', { bold: true })
+        .insert({ embed: 1 });
+      expect(delta.length()).toEqual(3);
+    });
+
+    it('mixed', () => {
+      const delta = new Delta()
+        .insert('AB', { bold: true })
+        .insert({ embed: 1 })
+        .retain(2, { bold: null })
+        .delete(1);
+      expect(delta.length()).toEqual(6);
+    });
+  });
+
+  describe('changeLength()', () => {
+    it('mixed', () => {
+      const delta = new Delta()
+        .insert('AB', { bold: true })
+        .retain(2, { bold: null })
+        .delete(1);
+      expect(delta.changeLength()).toEqual(1);
+    });
+  });
+
+  describe('slice()', () => {
+    it('start', () => {
+      const slice = new Delta().retain(2).insert('A').slice(2);
+      const expected = new Delta().insert('A');
+      expect(slice).toEqual(expected);
+    });
+
+    it('start and end chop', () => {
+      const slice = new Delta().insert('0123456789').slice(2, 7);
+      const expected = new Delta().insert('23456');
+      expect(slice).toEqual(expected);
+    });
+
+    it('start and end multiple chop', () => {
+      const slice = new Delta()
+        .insert('0123', { bold: true })
+        .insert('4567')
+        .slice(3, 5);
+      const expected = new Delta().insert('3', { bold: true }).insert('4');
+      expect(slice).toEqual(expected);
+    });
+
+    it('start and end', () => {
+      const slice = new Delta()
+        .retain(2)
+        .insert('A', { bold: true })
+        .insert('B')
+        .slice(2, 3);
+      const expected = new Delta().insert('A', { bold: true });
+      expect(slice).toEqual(expected);
+    });
+
+    it('no params', () => {
+      const delta = new Delta()
+        .retain(2)
+        .insert('A', { bold: true })
+        .insert('B');
+      const slice = delta.slice();
+      expect(slice).toEqual(delta);
+    });
+
+    it('split ops', () => {
+      const slice = new Delta()
+        .insert('AB', { bold: true })
+        .insert('C')
+        .slice(1, 2);
+      const expected = new Delta().insert('B', { bold: true });
+      expect(slice).toEqual(expected);
+    });
+
+    it('split ops multiple times', () => {
+      const slice = new Delta()
+        .insert('ABC', { bold: true })
+        .insert('D')
+        .slice(1, 2);
+      const expected = new Delta().insert('B', { bold: true });
+      expect(slice).toEqual(expected);
+    });
+  });
+});
+
+---
+//test/delta/invert.ts
+
+import Delta from '../../src/Delta';
+import Op from '../../src/Op';
+
+describe('invert()', () => {
+  it('insert', () => {
+    const delta = new Delta().retain(2).insert('A');
+    const base = new Delta().insert('123456');
+    const expected = new Delta().retain(2).delete(1);
+    const inverted = delta.invert(base);
+    expect(expected).toEqual(inverted);
+    expect(base.compose(delta).compose(inverted)).toEqual(base);
+  });
+
+  it('delete', () => {
+    const delta = new Delta().retain(2).delete(3);
+    const base = new Delta().insert('123456');
+    const expected = new Delta().retain(2).insert('345');
+    const inverted = delta.invert(base);
+    expect(expected).toEqual(inverted);
+    expect(base.compose(delta).compose(inverted)).toEqual(base);
+  });
+
+  it('retain', () => {
+    const delta = new Delta().retain(2).retain(3, { bold: true });
+    const base = new Delta().insert('123456');
+    const expected = new Delta().retain(2).retain(3, { bold: null });
+    const inverted = delta.invert(base);
+    expect(expected).toEqual(inverted);
+    expect(base.compose(delta).compose(inverted)).toEqual(base);
+  });
+
+  it('retain on a delta with different attributes', () => {
+    const base = new Delta().insert('123').insert('4', { bold: true });
+    const delta = new Delta().retain(4, { italic: true });
+    const expected = new Delta().retain(4, { italic: null });
+    const inverted = delta.invert(base);
+    expect(expected).toEqual(inverted);
+    expect(base.compose(delta).compose(inverted)).toEqual(base);
+  });
+
+  it('combined', () => {
+    const delta = new Delta()
+      .retain(2)
+      .delete(2)
+      .insert('AB', { italic: true })
+      .retain(2, { italic: null, bold: true })
+      .retain(2, { color: 'red' })
+      .delete(1);
+    const base = new Delta()
+      .insert('123', { bold: true })
+      .insert('456', { italic: true })
+      .insert('789', { color: 'red', bold: true });
+    const expected = new Delta()
+      .retain(2)
+      .insert('3', { bold: true })
+      .insert('4', { italic: true })
+      .delete(2)
+      .retain(2, { italic: true, bold: null })
+      .retain(2)
+      .insert('9', { color: 'red', bold: true });
+    const inverted = delta.invert(base);
+    expect(expected).toEqual(inverted);
+    expect(base.compose(delta).compose(inverted)).toEqual(base);
+  });
+
+  describe('custom embed handler', () => {
+    beforeEach(() => {
+      Delta.registerEmbed<Op[]>('delta', {
+        compose: (a, b) => new Delta(a).compose(new Delta(b)).ops,
+        transform: (a, b, priority) =>
+          new Delta(a).transform(new Delta(b), priority).ops,
+        invert: (a, b) => new Delta(a).invert(new Delta(b)).ops,
+      });
+    });
+
+    afterEach(() => {
+      Delta.unregisterEmbed('delta');
+    });
+
+    it('invert a normal change', () => {
+      const delta = new Delta().retain(1, { bold: true });
+      const base = new Delta().insert({ delta: [{ insert: 'a' }] });
+
+      const expected = new Delta().retain(1, { bold: null });
+      const inverted = delta.invert(base);
+      expect(expected).toEqual(inverted);
+      expect(base.compose(delta).compose(inverted)).toEqual(base);
+    });
+
+    it('invert an embed change', () => {
+      const delta = new Delta().retain({ delta: [{ insert: 'b' }] });
+      const base = new Delta().insert({ delta: [{ insert: 'a' }] });
+
+      const expected = new Delta().retain({
+        delta: [{ delete: 1 }],
+      });
+      const inverted = delta.invert(base);
+      expect(expected).toEqual(inverted);
+      expect(base.compose(delta).compose(inverted)).toEqual(base);
+    });
+
+    it('invert an embed change with numbers', () => {
+      const delta = new Delta()
+        .retain(1)
+        .retain(1, { bold: true })
+        .retain({ delta: [{ insert: 'b' }] });
+      const base = new Delta()
+        .insert('\n\n')
+        .insert({ delta: [{ insert: 'a' }] });
+
+      const expected = new Delta()
+        .retain(1)
+        .retain(1, { bold: null })
+        .retain({
+          delta: [{ delete: 1 }],
+        });
+      const inverted = delta.invert(base);
+      expect(expected).toEqual(inverted);
+      expect(base.compose(delta).compose(inverted)).toEqual(base);
+    });
+
+    it('respects base attributes', () => {
+      const delta = new Delta()
+        .delete(1)
+        .retain(1, { header: 2 })
+        .retain({ delta: [{ insert: 'b' }] }, { padding: 10, margin: 0 });
+      const base = new Delta()
+        .insert('\n')
+        .insert('\n', { header: 1 })
+        .insert({ delta: [{ insert: 'a' }] }, { margin: 10 });
+
+      const expected = new Delta()
+        .insert('\n')
+        .retain(1, { header: 1 })
+        .retain(
+          {
+            delta: [{ delete: 1 }],
+          },
+          { padding: null, margin: 10 },
+        );
+      const inverted = delta.invert(base);
+      expect(expected).toEqual(inverted);
+      expect(base.compose(delta).compose(inverted)).toEqual(base);
+    });
+
+    it('works with multiple embeds', () => {
+      const delta = new Delta()
+        .retain(1)
+        .retain({ delta: [{ delete: 1 }] })
+        .retain({ delta: [{ delete: 1 }] });
+
+      const base = new Delta()
+        .insert('\n')
+        .insert({ delta: [{ insert: 'a' }] })
+        .insert({ delta: [{ insert: 'b' }] });
+
+      const expected = new Delta()
+        .retain(1)
+        .retain({ delta: [{ insert: 'a' }] })
+        .retain({ delta: [{ insert: 'b' }] });
+
+      const inverted = delta.invert(base);
+      expect(expected).toEqual(inverted);
+      expect(base.compose(delta).compose(inverted)).toEqual(base);
+    });
+
+    it('invert a string', () => {
+      const delta = new Delta().retain({ delta: [{ insert: 'a' }] });
+      const base = new Delta().insert('a');
+
+      expect(() => delta.invert(base)).toThrowError('cannot retain a string');
+    });
+  });
+});
+
+---
+//test/delta/transform-position.ts
+
+import Delta from '../../src/Delta';
+
+describe('transformPosition()', () => {
+  it('insert before position', () => {
+    const delta = new Delta().insert('A');
+    expect(delta.transform(2)).toEqual(3);
+  });
+
+  it('insert after position', () => {
+    const delta = new Delta().retain(2).insert('A');
+    expect(delta.transform(1)).toEqual(1);
+  });
+
+  it('insert at position', () => {
+    const delta = new Delta().retain(2).insert('A');
+    expect(delta.transform(2, true)).toEqual(2);
+    expect(delta.transform(2, false)).toEqual(3);
+  });
+
+  it('delete before position', () => {
+    const delta = new Delta().delete(2);
+    expect(delta.transform(4)).toEqual(2);
+  });
+
+  it('delete after position', () => {
+    const delta = new Delta().retain(4).delete(2);
+    expect(delta.transform(2)).toEqual(2);
+  });
+
+  it('delete across position', () => {
+    const delta = new Delta().retain(1).delete(4);
+    expect(delta.transform(2)).toEqual(1);
+  });
+
+  it('insert and delete before position', () => {
+    const delta = new Delta().retain(2).insert('A').delete(2);
+    expect(delta.transform(4)).toEqual(3);
+  });
+
+  it('insert before and delete across position', () => {
+    const delta = new Delta().retain(2).insert('A').delete(4);
+    expect(delta.transform(4)).toEqual(3);
+  });
+
+  it('delete before and delete across position', () => {
+    const delta = new Delta().delete(1).retain(1).delete(4);
+    expect(delta.transform(4)).toEqual(1);
+  });
+});
+
+---
+//test/delta/transform.ts
+
+import Delta from '../../src/Delta';
+import Op from '../../src/Op';
+
+describe('transform()', () => {
+  it('insert + insert', () => {
+    const a1 = new Delta().insert('A');
+    const b1 = new Delta().insert('B');
+    const a2 = new Delta(a1);
+    const b2 = new Delta(b1);
+    const expected1 = new Delta().retain(1).insert('B');
+    const expected2 = new Delta().insert('B');
+    expect(a1.transform(b1, true)).toEqual(expected1);
+    expect(a2.transform(b2, false)).toEqual(expected2);
+  });
+
+  it('insert + retain', () => {
+    const a = new Delta().insert('A');
+    const b = new Delta().retain(1, { bold: true, color: 'red' });
+    const expected = new Delta()
+      .retain(1)
+      .retain(1, { bold: true, color: 'red' });
+    expect(a.transform(b, true)).toEqual(expected);
+  });
+
+  it('insert + delete', () => {
+    const a = new Delta().insert('A');
+    const b = new Delta().delete(1);
+    const expected = new Delta().retain(1).delete(1);
+    expect(a.transform(b, true)).toEqual(expected);
+  });
+
+  it('delete + insert', () => {
+    const a = new Delta().delete(1);
+    const b = new Delta().insert('B');
+    const expected = new Delta().insert('B');
+    expect(a.transform(b, true)).toEqual(expected);
+  });
+
+  it('delete + retain', () => {
+    const a = new Delta().delete(1);
+    const b = new Delta().retain(1, { bold: true, color: 'red' });
+    const expected = new Delta();
+    expect(a.transform(b, true)).toEqual(expected);
+  });
+
+  it('delete + delete', () => {
+    const a = new Delta().delete(1);
+    const b = new Delta().delete(1);
+    const expected = new Delta();
+    expect(a.transform(b, true)).toEqual(expected);
+  });
+
+  it('retain + insert', () => {
+    const a = new Delta().retain(1, { color: 'blue' });
+    const b = new Delta().insert('B');
+    const expected = new Delta().insert('B');
+    expect(a.transform(b, true)).toEqual(expected);
+  });
+
+  it('retain + retain', () => {
+    const a1 = new Delta().retain(1, { color: 'blue' });
+    const b1 = new Delta().retain(1, { bold: true, color: 'red' });
+    const a2 = new Delta().retain(1, { color: 'blue' });
+    const b2 = new Delta().retain(1, { bold: true, color: 'red' });
+    const expected1 = new Delta().retain(1, { bold: true });
+    const expected2 = new Delta();
+    expect(a1.transform(b1, true)).toEqual(expected1);
+    expect(b2.transform(a2, true)).toEqual(expected2);
+  });
+
+  it('retain + retain without priority', () => {
+    const a1 = new Delta().retain(1, { color: 'blue' });
+    const b1 = new Delta().retain(1, { bold: true, color: 'red' });
+    const a2 = new Delta().retain(1, { color: 'blue' });
+    const b2 = new Delta().retain(1, { bold: true, color: 'red' });
+    const expected1 = new Delta().retain(1, { bold: true, color: 'red' });
+    const expected2 = new Delta().retain(1, { color: 'blue' });
+    expect(a1.transform(b1, false)).toEqual(expected1);
+    expect(b2.transform(a2, false)).toEqual(expected2);
+  });
+
+  it('retain + delete', () => {
+    const a = new Delta().retain(1, { color: 'blue' });
+    const b = new Delta().delete(1);
+    const expected = new Delta().delete(1);
+    expect(a.transform(b, true)).toEqual(expected);
+  });
+
+  it('alternating edits', () => {
+    const a1 = new Delta().retain(2).insert('si').delete(5);
+    const b1 = new Delta()
+      .retain(1)
+      .insert('e')
+      .delete(5)
+      .retain(1)
+      .insert('ow');
+    const a2 = new Delta(a1);
+    const b2 = new Delta(b1);
+    const expected1 = new Delta()
+      .retain(1)
+      .insert('e')
+      .delete(1)
+      .retain(2)
+      .insert('ow');
+    const expected2 = new Delta().retain(2).insert('si').delete(1);
+    expect(a1.transform(b1, false)).toEqual(expected1);
+    expect(b2.transform(a2, false)).toEqual(expected2);
+  });
+
+  it('conflicting appends', () => {
+    const a1 = new Delta().retain(3).insert('aa');
+    const b1 = new Delta().retain(3).insert('bb');
+    const a2 = new Delta(a1);
+    const b2 = new Delta(b1);
+    const expected1 = new Delta().retain(5).insert('bb');
+    const expected2 = new Delta().retain(3).insert('aa');
+    expect(a1.transform(b1, true)).toEqual(expected1);
+    expect(b2.transform(a2, false)).toEqual(expected2);
+  });
+
+  it('prepend + append', () => {
+    const a1 = new Delta().insert('aa');
+    const b1 = new Delta().retain(3).insert('bb');
+    const expected1 = new Delta().retain(5).insert('bb');
+    const a2 = new Delta(a1);
+    const b2 = new Delta(b1);
+    const expected2 = new Delta().insert('aa');
+    expect(a1.transform(b1, false)).toEqual(expected1);
+    expect(b2.transform(a2, false)).toEqual(expected2);
+  });
+
+  it('trailing deletes with differing lengths', () => {
+    const a1 = new Delta().retain(2).delete(1);
+    const b1 = new Delta().delete(3);
+    const expected1 = new Delta().delete(2);
+    const a2 = new Delta(a1);
+    const b2 = new Delta(b1);
+    const expected2 = new Delta();
+    expect(a1.transform(b1, false)).toEqual(expected1);
+    expect(b2.transform(a2, false)).toEqual(expected2);
+  });
+
+  it('immutability', () => {
+    const a1 = new Delta().insert('A');
+    const a2 = new Delta().insert('A');
+    const b1 = new Delta().insert('B');
+    const b2 = new Delta().insert('B');
+    const expected = new Delta().retain(1).insert('B');
+    expect(a1.transform(b1, true)).toEqual(expected);
+    expect(a1).toEqual(a2);
+    expect(b1).toEqual(b2);
+  });
+
+  describe('custom embed handler', () => {
+    beforeEach(() => {
+      Delta.registerEmbed<Op[]>('delta', {
+        compose: (a, b) => new Delta(a).compose(new Delta(b)).ops,
+        transform: (a, b, priority) =>
+          new Delta(a).transform(new Delta(b), priority).ops,
+        invert: (a, b) => new Delta(a).invert(new Delta(b)).ops,
+      });
+    });
+
+    afterEach(() => {
+      Delta.unregisterEmbed('delta');
+    });
+
+    it('transform an embed change with number', () => {
+      const a = new Delta().retain(1);
+      const b = new Delta().retain({ delta: [{ insert: 'b' }] });
+      const expected = new Delta().retain({
+        delta: [{ insert: 'b' }],
+      });
+      expect(a.transform(b, true)).toEqual(expected);
+      expect(a.transform(b)).toEqual(expected);
+    });
+
+    it('transform an embed change', () => {
+      const a = new Delta().retain({ delta: [{ insert: 'a' }] });
+      const b = new Delta().retain({ delta: [{ insert: 'b' }] });
+      const expected1 = new Delta().retain({
+        delta: [{ retain: 1 }, { insert: 'b' }],
+      });
+      const expected2 = new Delta().retain({ delta: [{ insert: 'b' }] });
+      expect(a.transform(b, true)).toEqual(expected1);
+      expect(a.transform(b)).toEqual(expected2);
+    });
+  });
+});
+
+---
+//test/attributes.ts
+
+import AttributeMap from '../src/AttributeMap';
+
+describe('AttributeMap', () => {
+  describe('compose()', () => {
+    const attributes = { bold: true, color: 'red' };
+
+    it('left is undefined', () => {
+      expect(AttributeMap.compose(undefined, attributes)).toEqual(attributes);
+    });
+
+    it('right is undefined', () => {
+      expect(AttributeMap.compose(attributes, undefined)).toEqual(attributes);
+    });
+
+    it('both are undefined', () => {
+      expect(AttributeMap.compose(undefined, undefined)).toBe(undefined);
+    });
+
+    it('missing', () => {
+      expect(AttributeMap.compose(attributes, { italic: true })).toEqual({
+        bold: true,
+        italic: true,
+        color: 'red',
+      });
+    });
+
+    it('overwrite', () => {
+      expect(
+        AttributeMap.compose(attributes, { bold: false, color: 'blue' }),
+      ).toEqual({
+        bold: false,
+        color: 'blue',
+      });
+    });
+
+    it('remove', () => {
+      expect(AttributeMap.compose(attributes, { bold: null })).toEqual({
+        color: 'red',
+      });
+    });
+
+    it('remove to none', () => {
+      expect(
+        AttributeMap.compose(attributes, { bold: null, color: null }),
+      ).toEqual(undefined);
+    });
+
+    it('remove missing', () => {
+      expect(AttributeMap.compose(attributes, { italic: null })).toEqual(
+        attributes,
+      );
+    });
+  });
+
+  describe('diff()', () => {
+    const format = { bold: true, color: 'red' };
+
+    it('left is undefined', () => {
+      expect(AttributeMap.diff(undefined, format)).toEqual(format);
+    });
+
+    it('right is undefined', () => {
+      const expected = { bold: null, color: null };
+      expect(AttributeMap.diff(format, undefined)).toEqual(expected);
+    });
+
+    it('same format', () => {
+      expect(AttributeMap.diff(format, format)).toEqual(undefined);
+    });
+
+    it('add format', () => {
+      const added = { bold: true, italic: true, color: 'red' };
+      const expected = { italic: true };
+      expect(AttributeMap.diff(format, added)).toEqual(expected);
+    });
+
+    it('remove format', () => {
+      const removed = { bold: true };
+      const expected = { color: null };
+      expect(AttributeMap.diff(format, removed)).toEqual(expected);
+    });
+
+    it('overwrite format', () => {
+      const overwritten = { bold: true, color: 'blue' };
+      const expected = { color: 'blue' };
+      expect(AttributeMap.diff(format, overwritten)).toEqual(expected);
+    });
+  });
+
+  describe('invert()', () => {
+    it('attributes is undefined', () => {
+      const base = { bold: true };
+      expect(AttributeMap.invert(undefined, base)).toEqual({});
+    });
+
+    it('base is undefined', () => {
+      const attributes = { bold: true };
+      const expected = { bold: null };
+      expect(AttributeMap.invert(attributes, undefined)).toEqual(expected);
+    });
+
+    it('both undefined', () => {
+      expect(AttributeMap.invert()).toEqual({});
+    });
+
+    it('merge', () => {
+      const attributes = { bold: true };
+      const base = { italic: true };
+      const expected = { bold: null };
+      expect(AttributeMap.invert(attributes, base)).toEqual(expected);
+    });
+
+    it('null', () => {
+      const attributes = { bold: null };
+      const base = { bold: true };
+      const expected = { bold: true };
+      expect(AttributeMap.invert(attributes, base)).toEqual(expected);
+    });
+
+    it('replace', () => {
+      const attributes = { color: 'red' };
+      const base = { color: 'blue' };
+      const expected = base;
+      expect(AttributeMap.invert(attributes, base)).toEqual(expected);
+    });
+
+    it('noop', () => {
+      const attributes = { color: 'red' };
+      const base = { color: 'red' };
+      const expected = {};
+      expect(AttributeMap.invert(attributes, base)).toEqual(expected);
+    });
+
+    it('combined', () => {
+      const attributes = {
+        bold: true,
+        italic: null,
+        color: 'red',
+        size: '12px',
+      };
+      const base = { font: 'serif', italic: true, color: 'blue', size: '12px' };
+      const expected = { bold: null, italic: true, color: 'blue' };
+      expect(AttributeMap.invert(attributes, base)).toEqual(expected);
+    });
+  });
+
+  describe('transform()', () => {
+    const left = { bold: true, color: 'red', font: null };
+    const right = { color: 'blue', font: 'serif', italic: true };
+
+    it('left is undefined', () => {
+      expect(AttributeMap.transform(undefined, left, false)).toEqual(left);
+    });
+
+    it('right is undefined', () => {
+      expect(AttributeMap.transform(left, undefined, false)).toEqual(undefined);
+    });
+
+    it('both are undefined', () => {
+      expect(AttributeMap.transform(undefined, undefined, false)).toEqual(
+        undefined,
+      );
+    });
+
+    it('with priority', () => {
+      expect(AttributeMap.transform(left, right, true)).toEqual({
+        italic: true,
+      });
+    });
+
+    it('without priority', () => {
+      expect(AttributeMap.transform(left, right, false)).toEqual(right);
+    });
+  });
+});
+
+---
+//test/op-iterator.ts
+
+import Delta from '../src/Delta';
+import OpIterator from '../src/OpIterator';
+
+describe('OpIterator', () => {
+  const delta = new Delta()
+    .insert('Hello', { bold: true })
+    .retain(3)
+    .insert({ embed: 2 }, { src: 'http://quilljs.com/' })
+    .delete(4);
+
+  it('hasNext() true', () => {
+    const iter = new OpIterator(delta.ops);
+    expect(iter.hasNext()).toEqual(true);
+  });
+
+  it('hasNext() false', () => {
+    const iter = new OpIterator([]);
+    expect(iter.hasNext()).toEqual(false);
+  });
+
+  it('peekLength() offset === 0', () => {
+    const iter = new OpIterator(delta.ops);
+    expect(iter.peekLength()).toEqual(5);
+    iter.next();
+    expect(iter.peekLength()).toEqual(3);
+    iter.next();
+    expect(iter.peekLength()).toEqual(1);
+    iter.next();
+    expect(iter.peekLength()).toEqual(4);
+  });
+
+  it('peekLength() offset > 0', () => {
+    const iter = new OpIterator(delta.ops);
+    iter.next(2);
+    expect(iter.peekLength()).toEqual(5 - 2);
+  });
+
+  it('peekLength() no ops left', () => {
+    const iter = new OpIterator([]);
+    expect(iter.peekLength()).toEqual(Infinity);
+  });
+
+  it('peekType()', () => {
+    const iter = new OpIterator(delta.ops);
+    expect(iter.peekType()).toEqual('insert');
+    iter.next();
+    expect(iter.peekType()).toEqual('retain');
+    iter.next();
+    expect(iter.peekType()).toEqual('insert');
+    iter.next();
+    expect(iter.peekType()).toEqual('delete');
+    iter.next();
+    expect(iter.peekType()).toEqual('retain');
+  });
+
+  it('next()', () => {
+    const iter = new OpIterator(delta.ops);
+    for (let i = 0; i < delta.ops.length; i += 1) {
+      expect(iter.next()).toEqual(delta.ops[i]);
+    }
+    expect(iter.next()).toEqual({ retain: Infinity });
+    expect(iter.next(4)).toEqual({ retain: Infinity });
+    expect(iter.next()).toEqual({ retain: Infinity });
+  });
+
+  it('next(length)', () => {
+    const iter = new OpIterator(delta.ops);
+    expect(iter.next(2)).toEqual({
+      insert: 'He',
+      attributes: { bold: true },
+    });
+    expect(iter.next(10)).toEqual({
+      insert: 'llo',
+      attributes: { bold: true },
+    });
+    expect(iter.next(1)).toEqual({ retain: 1 });
+    expect(iter.next(2)).toEqual({ retain: 2 });
+  });
+
+  it('rest()', () => {
+    const iter = new OpIterator(delta.ops);
+    iter.next(2);
+    expect(iter.rest()).toEqual([
+      { insert: 'llo', attributes: { bold: true } },
+      { retain: 3 },
+      { insert: { embed: 2 }, attributes: { src: 'http://quilljs.com/' } },
+      { delete: 4 },
+    ]);
+    iter.next(3);
+    expect(iter.rest()).toEqual([
+      { retain: 3 },
+      { insert: { embed: 2 }, attributes: { src: 'http://quilljs.com/' } },
+      { delete: 4 },
+    ]);
+    iter.next(3);
+    iter.next(2);
+    iter.next(4);
+    expect(iter.rest()).toEqual([]);
+  });
+});
+
+---
+//test/op.ts
+
+import { Op } from '../src/Delta';
+
+describe('Op', () => {
+  describe('length()', () => {
+    it('delete', () => {
+      expect(Op.length({ delete: 5 })).toEqual(5);
+    });
+
+    it('retain', () => {
+      expect(Op.length({ retain: 2 })).toEqual(2);
+    });
+
+    it('insert text', () => {
+      expect(Op.length({ insert: 'text' })).toEqual(4);
+    });
+
+    it('insert embed', () => {
+      expect(Op.length({ insert: { embed: 2 } })).toEqual(1);
+    });
+  });
+});
+
+---
+The test runner configuration (package.json):
+{
+  "name": "quill-delta",
+  "version": "5.0.0",
+  "description": "Format for representing rich text documents and changes.",
+  "author": "Jason Chen <jhchen7@gmail.com>",
+  "homepage": "https://github.com/quilljs/delta",
+  "main": "dist/Delta.js",
+  "dependencies": {
+    "fast-diff": "1.2.0",
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.isequal": "^4.5.0"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^3.10.3",
+    "@types/lodash.clonedeep": "^4.5.6",
+    "@types/lodash.isequal": "^4.5.5",
+    "@types/node": "^17.0.21",
+    "@typescript-eslint/eslint-plugin": "^5.14.0",
+    "@typescript-eslint/parser": "^5.14.0",
+    "eslint": "^8.10.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jasmine": "^4.0.2",
+    "nyc": "^15.1.0",
+    "prettier": "^2.5.1",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.2"
+  },
+  "engines": {
+    "node": ">= 12.0.0"
+  },
+  "files": [
+    "tsconfig.json",
+    "dist",
+    "src"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "lint": "eslint 'src/**/*.ts'",
+    "test": "jasmine --config=jasmine.json",
+    "test:coverage": "nyc npm run test",
+    "test:coverage:report": "nyc report --reporter=lcov"
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+      "plugin:@typescript-eslint/recommended",
+      "plugin:prettier/recommended"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module"
+    },
+    "rules": {
+      "@typescript-eslint/no-namespace": "off"
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quilljs/delta"
+  },
+  "bugs": {
+    "url": "https://github.com/quilljs/delta/issues"
+  },
+  "keywords": [
+    "rich text",
+    "ot",
+    "operational transform",
+    "delta"
+  ]
+}
+
+ALLOWED LIBRARIES
+You may use:
+    1. Any built-in Node.js modules (e.g., fs, path, crypto, etc.).
+    2. The following external libraries are explicitly permitted:
+    - lodash.clonedeep
+    - lodash.isequal
+    - fast-diff
+You may not use any other third-party libraries.

@@ -1,0 +1,35 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_7/pending_category/mutant-620cbd1/testCase.test.ts
+  Delta compose
+    ✕ correctly composes when source delta has unmerged adjacent retains (5 ms)
+
+  ● Delta compose › correctly composes when source delta has unmerged adjacent retains
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 3
+
+      Array [
+        Object {
+          "insert": "A",
+        },
+    +   Object {
+    +     "retain": 1,
+    +   },
+      ]
+
+      19 |     const b = new Delta().retain(1);
+      20 |     const result = a.compose(b);
+    > 21 |     expect(result.ops).toEqual([{ insert: 'A' }]);
+         |                        ^
+      22 |   });
+      23 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_7/pending_category/mutant-620cbd1/testCase.test.ts:21:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.474 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_7/pending_category/mutant-620cbd1/testCase.test.ts".

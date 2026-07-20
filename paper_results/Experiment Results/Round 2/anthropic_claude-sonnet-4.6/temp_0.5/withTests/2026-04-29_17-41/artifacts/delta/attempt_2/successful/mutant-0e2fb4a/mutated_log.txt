@@ -1,0 +1,36 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-0e2fb4a/testCase.test.ts
+  invert()
+    ✕ should not throw when inverting a delta with a null retain op (28 ms)
+
+  ● invert() › should not throw when inverting a delta with a null retain op
+
+    expect(received).not.toThrow()
+
+    Error name:    "Error"
+    Error message: "cannot retain a object"
+
+          19 | ): [string, unknown, unknown] => {
+          20 |   if (typeof a !== 'object' || a === null) {
+        > 21 |     throw new Error(`cannot retain a ${typeof a}`);
+             |           ^
+          22 |   }
+          23 |   if (typeof b !== 'object' || b === null) {
+          24 |     throw new Error(`cannot retain a ${typeof b}`);
+
+      at getEmbedTypeAndData (../subject_repositories/delta/src/Delta.ts:21:11)
+      at getEmbedTypeAndData (../subject_repositories/delta/src/Delta.ts:460:49)
+                at Array.reduce (<anonymous>)
+      at Delta.reduce (../subject_repositories/delta/src/Delta.ts:199:21)
+      at Delta.reduce (../subject_repositories/delta/src/Delta.ts:436:10)
+      at invert (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-0e2fb4a/testCase.test.ts:10:24)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-0e2fb4a/testCase.test.ts:10:42)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-0e2fb4a/testCase.test.ts:10:42)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.7 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-0e2fb4a/testCase.test.ts".

@@ -1,0 +1,41 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-42472fb/testCase.test.ts
+  Delta
+    ✕ compose with multiple inserts and firstOther.retain is a number and thisIter.peekType is insert and firstOther.retain is greater than thisIter.peekLength (14 ms)
+
+  ● Delta › compose with multiple inserts and firstOther.retain is a number and thisIter.peekType is insert and firstOther.retain is greater than thisIter.peekLength
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 7
+
+      Delta {
+        "ops": Array [
+          Object {
+    -       "insert": "ABC",
+    +       "insert": "AB",
+    +     },
+    +     Object {
+    +       "retain": 1,
+    +     },
+    +     Object {
+    +       "insert": "C",
+          },
+        ],
+      }
+
+       6 |     const b = new Delta().retain(3).insert('C');
+       7 |     const expected = new Delta().insert('ABC');
+    >  8 |     expect(a.compose(b)).toEqual(expected);
+         |                          ^
+       9 |   });
+      10 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-42472fb/testCase.test.ts:8:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.724 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-42472fb/testCase.test.ts".

@@ -1,0 +1,49 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_9/pending_category/mutant-eb150b3/testCase.test.ts[0m:[93m1[0m:[93m19[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import Delta from '../../../../../../../../../../../subject_repositories/delta/src/Delta.ts';
+[7m [0m [91m                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_9/pending_category/mutant-eb150b3/testCase.test.ts[0m:[93m6[0m:[93m23[0m - [91merror[0m[90m TS6133: [0m'keepNull' is declared but its value is never read.
+
+[7m6[0m       compose: (a, b, keepNull) => {
+[7m [0m [91m                      ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_9/pending_category/mutant-eb150b3/testCase.test.ts[0m:[93m37[0m:[93m12[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m37[0m     expect(composed.ops[0].insert.test).toEqual({ a: 1, b: 2 });
+[7m  [0m [91m           ~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_9/pending_category/mutant-eb150b3/testCase.test.ts[0m:[93m37[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'test' does not exist on type 'string | Record<string, unknown>'.
+  Property 'test' does not exist on type 'string'.
+
+[7m37[0m     expect(composed.ops[0].insert.test).toEqual({ a: 1, b: 2 });
+[7m  [0m [91m                                  ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_9/pending_category/mutant-eb150b3/testCase.test.ts
+  Delta compose with embed handler
+    ✕ should compose embeds correctly (5 ms)
+
+  ● Delta compose with embed handler › should compose embeds correctly
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 0
+
+      Object {
+    -   "a": 1,
+        "b": 2,
+      }
+
+      35 |     const composed = delta1.compose(delta2);
+      36 |
+    > 37 |     expect(composed.ops[0].insert.test).toEqual({ a: 1, b: 2 });
+         |                                         ^
+      38 |
+      39 |     Delta.unregisterEmbed('test');
+      40 |   });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_9/pending_category/mutant-eb150b3/testCase.test.ts:37:41)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.867 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_9/pending_category/mutant-eb150b3/testCase.test.ts".

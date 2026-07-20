@@ -1,0 +1,30 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/countries-and-timezones/attempt_7/pending_category/mutant-36f4eda/testCase.test.ts[0m:[93m8[0m:[93m36[0m - [91merror[0m[90m TS7006: [0mParameter 'tz' implicitly has an 'any' type.
+
+[7m8[0m     const actualNames = result.map(tz => tz.name);
+[7m [0m [91m                                   ~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/countries-and-timezones/attempt_7/pending_category/mutant-36f4eda/testCase.test.ts
+  .getTimezonesForCountry
+    ✕ should return timezones for country with exact names (4 ms)
+
+  ● .getTimezonesForCountry › should return timezones for country with exact names
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: ArrayContaining ["America/Mexico_City", "America/Ensenada", "America/Santa_Isabel", "Mexico/BajaNorte", "Mexico/BajaSur", "Mexico/General", "America/Bahia_Banderas", "America/Cancun", "America/Chihuahua", "America/Tijuana", …]
+    Received: ["America/Bahia_Banderas", "America/Cancun", "America/Chihuahua", "America/Ciudad_Juarez", "America/Hermosillo", "America/Matamoros", "America/Mazatlan", "America/Merida", "America/Mexico_City", "America/Monterrey", …]
+
+       7 |     const expectedNames = ['America/Mexico_City', 'America/Ensenada', 'America/Santa_Isabel', 'Mexico/BajaNorte', 'Mexico/BajaSur', 'Mexico/General', 'America/Bahia_Banderas', 'America/Cancun', 'America/Chihuahua', 'America/Tijuana', 'America/Hermosillo', 'America/Matamoros', 'America/Mazatlan', 'America/Merida', 'America/Mexico_City', 'America/Monterrey', 'America/Ojinaga'];
+       8 |     const actualNames = result.map(tz => tz.name);
+    >  9 |     expect(actualNames).toEqual(expect.arrayContaining(expectedNames));
+         |                         ^
+      10 |   });
+      11 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/countries-and-timezones/attempt_7/pending_category/mutant-36f4eda/testCase.test.ts:9:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.243 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/countries-and-timezones/attempt_7/pending_category/mutant-36f4eda/testCase.test.ts".

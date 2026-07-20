@@ -1,0 +1,39 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-5095899/testCase.test.ts[0m:[93m1[0m:[93m19[0m - [91merror[0m[90m TS2307: [0mCannot find module './q.js' or its corresponding type declarations.
+
+[7m1[0m import { Q } from "./q.js";
+[7m [0m [91m                  ~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-5095899/testCase.test.ts[0m:[93m15[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ Q: undefined; }' is not assignable to type 'Window & typeof globalThis'.
+  Type '{ Q: undefined; }' is missing the following properties from type 'Window': clientInformation, closed, cookieStore, customElements, and 209 more.
+
+[7m15[0m       global.window = mockWindow;
+[7m  [0m [91m      ~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-5095899/testCase.test.ts[0m:[93m16[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ Q: undefined; }' is not assignable to type 'Window & typeof globalThis'.
+  Type '{ Q: undefined; }' is missing the following properties from type 'Window': clientInformation, closed, cookieStore, customElements, and 209 more.
+
+[7m16[0m       global.self = mockSelf;
+[7m  [0m [91m      ~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-5095899/testCase.test.ts
+  Q library initialization
+    ✕ should initialize Q on the correct global object when both window and self are defined (2 ms)
+
+  ● Q library initialization › should initialize Q on the correct global object when both window and self are defined
+
+    Cannot find module './q.js' from 'llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-5095899/testCase.test.ts'
+
+      17 |
+      18 |       // Clear any existing Q to force re-initialization
+    > 19 |       delete require.cache[require.resolve("./q.js")];
+         |                                    ^
+      20 |       const { Q: FreshQ } = require("./q.js");
+      21 |
+      22 |       // In original code, window should be preferred over self
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.resolve (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-5095899/testCase.test.ts:19:36)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.486 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-5095899/testCase.test.ts".

@@ -1,0 +1,31 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-56536c0/testCase.test.ts[0m:[93m8[0m:[93m11[0m - [91merror[0m[90m TS2540: [0mCannot assign to 'nextTick' because it is a read-only property.
+
+[7m8[0m         q.nextTick = () => {
+[7m [0m [91m          ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-56536c0/testCase.test.ts[0m:[93m17[0m:[93m15[0m - [91merror[0m[90m TS2540: [0mCannot assign to 'nextTick' because it is a read-only property.
+
+[7m17[0m             q.nextTick = originalNextTick;
+[7m  [0m [91m              ~~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-56536c0/testCase.test.ts
+  Q
+    ✕ should resolve a promise using MessageChannel (1 ms)
+
+  ● Q › should resolve a promise using MessageChannel
+
+    TypeError: Cannot set property nextTick of #<Object> which has only a getter
+
+       6 |         let resolved = false;
+       7 |         const originalNextTick = q.nextTick;
+    >  8 |         q.nextTick = () => {
+         |                   ^
+       9 |             throw new Error('nextTick was called');
+      10 |         };
+      11 |         q.nextTick(() => {
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-56536c0/testCase.test.ts:8:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.246 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-56536c0/testCase.test.ts".

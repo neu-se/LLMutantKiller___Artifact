@@ -1,0 +1,37 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-2e2e5e5/testCase.test.ts
+  diff() error message
+    ✕ should throw error with correct message when called with non-document (63 ms)
+
+  ● diff() error message › should throw error with correct message when called with non-document
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "diff() called with non-document"
+    Received message:   "diff() called  non-document"
+
+          349 |              const prep = delta === other ? 'on' : "";
+          350 |
+        > 351 |           throw new Error('diff() called ' + prep + ' non-document');
+              |                 ^
+          352 |         })
+          353 |         .join('');
+          354 |     });
+
+      at ../subject_repositories/delta/src/Delta.ts:351:17
+                at Array.map (<anonymous>)
+      at Delta.map (../subject_repositories/delta/src/Delta.ts:182:21)
+      at map (../subject_repositories/delta/src/Delta.ts:345:10)
+                at Array.map (<anonymous>)
+      at Delta.map [as diff] (../subject_repositories/delta/src/Delta.ts:343:35)
+      at diff (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-2e2e5e5/testCase.test.ts:8:9)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-2e2e5e5/testCase.test.ts:9:8)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-2e2e5e5/testCase.test.ts:9:8)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.764 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-2e2e5e5/testCase.test.ts".

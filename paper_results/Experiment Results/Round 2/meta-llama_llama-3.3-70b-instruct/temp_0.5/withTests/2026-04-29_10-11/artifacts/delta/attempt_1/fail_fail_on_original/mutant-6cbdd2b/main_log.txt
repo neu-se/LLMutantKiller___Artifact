@@ -1,0 +1,59 @@
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-6cbdd2b/testCase.test.ts
+  Delta
+    ✕ should compose correctly when firstOther.retain is a number (5 ms)
+    ✕ should throw an error when firstOther.retain is not a number and firstOther.attributes is null (18 ms)
+
+  ● Delta › should compose correctly when firstOther.retain is a number
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Delta {
+        "ops": Array [
+          Object {
+    -       "insert": "BA",
+    +       "insert": "AB",
+          },
+        ],
+      }
+
+       6 |     const b = new Delta().retain(1).insert('B');
+       7 |     const expected = new Delta().insert('B').insert('A');
+    >  8 |     expect(a.compose(b)).toEqual(expected);
+         |                          ^
+       9 |   });
+      10 |
+      11 |   it('should throw an error when firstOther.retain is not a number and firstOther.attributes is null', () => {
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-6cbdd2b/testCase.test.ts:8:26)
+
+  ● Delta › should throw an error when firstOther.retain is not a number and firstOther.attributes is null
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "no handlers for embed type \"embed\""
+    Received message:   "cannot retain a string"
+
+          19 | ): [string, unknown, unknown] => {
+          20 |   if (typeof a !== 'object' || a === null) {
+        > 21 |     throw new Error(`cannot retain a ${typeof a}`);
+             |           ^
+          22 |   }
+          23 |   if (typeof b !== 'object' || b === null) {
+          24 |     throw new Error(`cannot retain a ${typeof b}`);
+
+      at getEmbedTypeAndData (../subject_repositories/delta/src/Delta.ts:21:11)
+      at Delta.getEmbedTypeAndData [as compose] (../subject_repositories/delta/src/Delta.ts:282:56)
+      at compose (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-6cbdd2b/testCase.test.ts:14:20)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-6cbdd2b/testCase.test.ts:14:32)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-6cbdd2b/testCase.test.ts:14:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.781 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_1/pending_category/mutant-6cbdd2b/testCase.test.ts".

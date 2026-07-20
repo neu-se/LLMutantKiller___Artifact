@@ -1,0 +1,39 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_2/pending_category/mutant-2626324/testCase.test.ts[0m:[93m1[0m:[93m23[0m - [91merror[0m[90m TS2306: [0mFile '/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/image-downloader/index.d.ts' is not a module.
+
+[7m1[0m import { image } from "../../../../../../../../../../../subject_repositories/image-downloader/index.js";
+[7m [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_2/pending_category/mutant-2626324/testCase.test.ts[0m:[93m16[0m:[93m11[0m - [91merror[0m[90m TS18046: [0m'error' is of type 'unknown'.
+
+[7m16[0m       if (error.code !== 'EEXIST') {
+[7m  [0m [91m          ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+(node:62760) [DEP0147] DeprecationWarning: In future versions of Node.js, fs.rmdir(path, { recursive: true }) will be removed. Use fs.rm(path, { recursive: true }) instead
+(Use `node --trace-deprecation ...` to show where the warning was created)
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_2/pending_category/mutant-2626324/testCase.test.ts
+  image downloader
+    ✕ should resolve relative destination path to absolute path (170 ms)
+
+  ● image downloader › should resolve relative destination path to absolute path
+
+    expect(received).resolves.not.toThrow()
+
+    Received promise rejected instead of resolved
+    Rejected to value: [Error: Request Failed.
+    Status Code: 404]
+
+      22 |       // Call the image function with a relative destination path
+      23 |       const promise = image({ url, dest: join(testDir, dest) });
+    > 24 |       await expect(promise).resolves.not.toThrow();
+         |             ^
+      25 |
+      26 |       // Check if the file exists at the expected absolute path
+      27 |       const absolutePath = join(process.cwd(), testDir, dest);
+
+      at expect (node_modules/expect/build/index.js:113:15)
+      at Object.expect (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_2/pending_category/mutant-2626324/testCase.test.ts:24:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.19 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_2/pending_category/mutant-2626324/testCase.test.ts".

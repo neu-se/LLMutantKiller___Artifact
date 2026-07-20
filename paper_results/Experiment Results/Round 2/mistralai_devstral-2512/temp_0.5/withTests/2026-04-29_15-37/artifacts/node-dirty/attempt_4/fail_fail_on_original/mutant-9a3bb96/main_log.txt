@@ -1,0 +1,40 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-9a3bb96/testCase.test.ts (6.442 s)
+  close behavior with pending operations
+    ✕ should delay close when there are pending writes (5003 ms)
+
+  ● close behavior with pending operations › should delay close when there are pending writes
+
+    ReferenceError: fail is not defined
+
+      36 |         if (writeCloseFired) {
+      37 |           // Mutated code behavior - close happened immediately
+    > 38 |           fail('Close should not have fired immediately with pending writes');
+         |           ^
+      39 |         } else {
+      40 |           // Original code behavior - close is delayed
+      41 |           done();
+
+      at Timeout.fail [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-9a3bb96/testCase.test.ts:38:11)
+
+  ● close behavior with pending operations › should delay close when there are pending writes
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      18 |   });
+      19 |
+    > 20 |   it('should delay close when there are pending writes', (done) => {
+         |   ^
+      21 |     const db = new Dirty(testFile);
+      22 |     let closeAttempted = false;
+      23 |     let writeCloseFired = false;
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-9a3bb96/testCase.test.ts:20:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-9a3bb96/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.649 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-9a3bb96/testCase.test.ts".

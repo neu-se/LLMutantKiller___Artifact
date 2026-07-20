@@ -1,0 +1,37 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-5a40200/testCase.test.ts
+  Complex.cosh
+    ✕ should use the 1-x approximation for values below 1e-9 (2 ms)
+
+  ● Complex.cosh › should use the 1-x approximation for values below 1e-9
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.9999999995
+    Received: 1
+
+    Expected precision:    15
+    Expected difference: < 5e-16
+    Received difference:   5.000000413701855e-10
+
+       9 |     // Mutant code uses the correct formula for |x| < 1e-9
+      10 |     // We test that the original behavior (1-x) is preserved
+    > 11 |     expect(result.re).toBeCloseTo(1 - 0.5e-9, 15);
+         |                       ^
+      12 |     expect(result.im).toBe(0);
+      13 |   });
+      14 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-5a40200/testCase.test.ts:11:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.254 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-5a40200/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-0b74576/testCase.test.ts
+  tester
+    ✕ should return the input value unchanged when test is null (identity fallback) (1 ms)
+
+  ● tester › should return the input value unchanged when test is null (identity fallback)
+
+    TypeError: Cannot read properties of null (reading 'test')
+
+       5 | module.exports = function tester (test) {
+       6 |   return (
+    >  7 |     'object' === typeof test && 'function' === typeof test.test //regexp
+         |                                                            ^
+       8 |     ? function (data) { return test.test(data) }
+       9 |     : prop (test) || id
+      10 |   )
+
+      at test (../subject_repositories/pull-stream/util/tester.js:7:60)
+      at Object.tester (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-0b74576/testCase.test.ts:7:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.235 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-0b74576/testCase.test.ts".

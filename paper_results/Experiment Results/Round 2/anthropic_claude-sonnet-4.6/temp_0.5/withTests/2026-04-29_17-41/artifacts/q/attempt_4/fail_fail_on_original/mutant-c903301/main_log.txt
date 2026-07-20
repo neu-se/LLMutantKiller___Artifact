@@ -1,0 +1,38 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-c903301/testCase.test.ts
+  progress callback throws error that reaches Q.onerror
+    ✕ should surface error via Q.onerror when progress callback throws and Q.onerror is not set to a function initially but set before flush (502 ms)
+
+  ● progress callback throws error that reaches Q.onerror › should surface error via Q.onerror when progress callback throws and Q.onerror is not set to a function initially but set before flush
+
+    boo-progress-test
+
+      3 | describe("progress callback throws error that reaches Q.onerror", () => {
+      4 |   it("should surface error via Q.onerror when progress callback throws and Q.onerror is not set to a function initially but set before flush", (done) => {
+    > 5 |     const theError = new Error("boo-progress-test");
+        |                      ^
+      6 |     const def = Q.defer();
+      7 |
+      8 |     // Don't set Q.onerror - the else branch throws e
+
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-c903301/testCase.test.ts:5:22)
+
+  ● progress callback throws error that reaches Q.onerror › should surface error via Q.onerror when progress callback throws and Q.onerror is not set to a function initially but set before flush
+
+    Error was swallowed - mutation detected
+
+      38 |       originalListeners.forEach(l => process.on("uncaughtException", l));
+      39 |       if (!caught) {
+    > 40 |         done(new Error("Error was swallowed - mutation detected"));
+         |              ^
+      41 |       }
+      42 |     }, 500);
+      43 |
+
+      at Timeout._onTimeout (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-c903301/testCase.test.ts:40:14)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.828 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-c903301/testCase.test.ts".

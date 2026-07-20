@@ -1,0 +1,29 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-0f62f95/testCase.test.ts[0m:[93m1[0m:[93m41[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../../../../../../subject_repositories/crawler-url-parser/crawler-url-parser.js' or its corresponding type declarations.
+
+[7m1[0m import { parse, extract, gettype } from '../../../../../../../../../subject_repositories/crawler-url-parser/crawler-url-parser.js';
+[7m [0m [91m                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-0f62f95/testCase.test.ts
+  parse function basic behavior
+    ✕ should correctly parse a valid HTTP URL (2 ms)
+
+  ● parse function basic behavior › should correctly parse a valid HTTP URL
+
+    Cannot find module '../../../../../../../../../subject_repositories/crawler-url-parser/crawler-url-parser.js' from 'llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-0f62f95/testCase.test.ts'
+
+       5 |     const consoleSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
+       6 |
+    >  7 |     const modulePath = require.resolve('../../../../../../../../../subject_repositories/crawler-url-parser/crawler-url-parser.js');
+         |                                ^
+       8 |     delete require.cache[modulePath];
+       9 |     require('../../../../../../../../../subject_repositories/crawler-url-parser/crawler-url-parser.js');
+      10 |
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.resolve (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-0f62f95/testCase.test.ts:7:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.487 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-0f62f95/testCase.test.ts".

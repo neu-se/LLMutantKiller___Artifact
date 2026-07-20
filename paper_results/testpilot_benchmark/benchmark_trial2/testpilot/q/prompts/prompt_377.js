@@ -1,0 +1,32 @@
+The test:
+```
+let mocha = require('mocha');
+let assert = require('assert');
+let q = require('q');
+
+describe('test q', function() {
+    it('test q.set - should return the modified object', function(done) {
+        let obj = {};
+        let result = q.set(obj, 'test', 'value');
+        assert.strictEqual(result, obj);
+        assert.strictEqual(obj.test, 'value');
+        done();
+    });
+});
+``` 
+failed with the following error message:
+```
+Expected "actual" to be reference-equal to "expected":
++ actual - expected
+
++ Promise {
++   inspect: [Function (anonymous)],
++   promiseDispatch: [Function (anonymous)],
++   valueOf: [Function (anonymous)]
++ }
+- {}  
+```
+
+Your task is to modify the above code to fix the test. 
+
+Provide your answer as a fenced code block.

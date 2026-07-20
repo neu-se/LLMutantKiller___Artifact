@@ -1,0 +1,34 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-8303b1e/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/util/prop.js"' has no exported member 'prop'.
+
+[7m1[0m import { prop } from "../../../../../../../../../../../subject_repositories/pull-stream/util/prop.js";
+[7m [0m [91m         ~~~~[0m
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/pull-stream/util/prop.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/pull-stream/util/prop.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-8303b1e/testCase.test.ts
+  prop function with regular expression key
+    ✕ should return a function that extracts the first match when key is a RegExp (1 ms)
+
+  ● prop function with regular expression key › should return a function that extracts the first match when key is a RegExp
+
+    TypeError: (0 , prop_js_1.prop) is not a function
+
+       5 |     const regex = /hello (\w+)/;
+       6 |     const data = "hello world";
+    >  7 |     const getValue = prop(regex);
+         |                          ^
+       8 |     const result = getValue(data);
+       9 |     expect(result).toBe("hello world");
+      10 |   });
+
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-8303b1e/testCase.test.ts:7:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.306 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-8303b1e/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

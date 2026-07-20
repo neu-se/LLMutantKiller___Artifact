@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-4ad8d65/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-4ad8d65/testCase.test.ts[0m:[93m6[0m:[93m45[0m - [91merror[0m[90m TS7006: [0mParameter 'result' implicitly has an 'any' type.
+
+[7m6[0m         return Q.fcall(func, 1, 2, 3).then((result) => {
+[7m [0m [91m                                            ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-4ad8d65/testCase.test.ts
+  Q.fcall
+    ✕ should call a function with correct arguments (1 ms)
+
+  ● Q.fcall › should call a function with correct arguments
+
+    TypeError: Cannot read properties of undefined (reading 'fcall')
+
+      4 |     it('should call a function with correct arguments', () => {
+      5 |         const func = jest.fn((a, b, c) => a + b + c);
+    > 6 |         return Q.fcall(func, 1, 2, 3).then((result) => {
+        |                  ^
+      7 |             expect(func).toHaveBeenCalledTimes(1);
+      8 |             expect(func).toHaveBeenCalledWith(1, 2, 3);
+      9 |             expect(result).toBe(6);
+
+      at Object.fcall (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-4ad8d65/testCase.test.ts:6:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.516 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-4ad8d65/testCase.test.ts".

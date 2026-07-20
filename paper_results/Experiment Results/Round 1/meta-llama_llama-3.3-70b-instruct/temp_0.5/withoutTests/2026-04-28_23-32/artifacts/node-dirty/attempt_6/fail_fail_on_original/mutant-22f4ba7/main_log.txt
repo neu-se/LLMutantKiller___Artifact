@@ -1,0 +1,71 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-22f4ba7/testCase.test.ts[0m:[93m4[0m:[93m20[0m - [91merror[0m[90m TS2307: [0mCannot find module 'rimraf' or its corresponding type declarations.
+
+[7m4[0m import rimraf from 'rimraf';
+[7m [0m [91m                   ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-22f4ba7/testCase.test.ts[0m:[93m30[0m:[93m11[0m - [91merror[0m[90m TS2794: [0mExpected 1 arguments, but got 0. Did you forget to include 'void' in your type argument to 'Promise'?
+
+[7m30[0m           resolve();
+[7m  [0m [91m          ~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.es2015.promise.d.ts[0m:[93m31[0m:[93m34[0m
+    [7m31[0m     new <T>(executor: (resolve: (value: T | PromiseLike<T>) => void, reject: (reason?: any) => void) => void): Promise<T>;
+    [7m  [0m [96m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'value' was not provided.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-22f4ba7/testCase.test.ts
+  Dirty
+    ✕ should close streams when queue is not empty and there are in-flight writes after setting a value and waiting for drain (1003 ms)
+
+  ● Dirty › should close streams when queue is not empty and there are in-flight writes after setting a value and waiting for drain
+
+    write after end
+
+      186 |       const data = `${JSON.stringify({key, val: this._data.get(key)})}\n`;
+      187 |       ++this._inFlightWrites;
+    > 188 |       this._waitForDrain = !this._writeStream.write(data, (err) => {
+          |                                               ^
+      189 |         if (!cbs.length && err != null) this.emit('error', err);
+      190 |         if (--this._inFlightWrites <= 0 && !this._waitForDrain) this.emit('drain');
+      191 |         for (const cb of cbs) cb(err);
+
+      at Dirty.write [as _flush] (../subject_repositories/node-dirty/lib/dirty/dirty.js:188:47)
+      at Dirty._flush [as set] (../subject_repositories/node-dirty/lib/dirty/dirty.js:37:12)
+      at set (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-22f4ba7/testCase.test.ts:14:13)
+      at cb (../subject_repositories/node-dirty/lib/dirty/dirty.js:191:31)
+
+  ● Dirty › should close streams when queue is not empty and there are in-flight writes after setting a value and waiting for drain
+
+    write after end
+
+      186 |       const data = `${JSON.stringify({key, val: this._data.get(key)})}\n`;
+      187 |       ++this._inFlightWrites;
+    > 188 |       this._waitForDrain = !this._writeStream.write(data, (err) => {
+          |                                               ^
+      189 |         if (!cbs.length && err != null) this.emit('error', err);
+      190 |         if (--this._inFlightWrites <= 0 && !this._waitForDrain) this.emit('drain');
+      191 |         for (const cb of cbs) cb(err);
+
+      at Dirty.write [as _flush] (../subject_repositories/node-dirty/lib/dirty/dirty.js:188:47)
+      at Dirty._flush [as set] (../subject_repositories/node-dirty/lib/dirty/dirty.js:37:12)
+      at set (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-22f4ba7/testCase.test.ts:14:13)
+      at cb (../subject_repositories/node-dirty/lib/dirty/dirty.js:191:31)
+
+  ● Dirty › should close streams when queue is not empty and there are in-flight writes after setting a value and waiting for drain
+
+    Write stream was not closed
+
+      26 |       setTimeout(() => {
+      27 |         if (!closed) {
+    > 28 |           reject(new Error('Write stream was not closed'));
+         |                  ^
+      29 |         } else {
+      30 |           resolve();
+      31 |         }
+
+      at Timeout._onTimeout (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-22f4ba7/testCase.test.ts:28:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.397 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-22f4ba7/testCase.test.ts".

@@ -1,0 +1,24 @@
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_4/pending_category/mutant-d9833fc/testCase.test.ts
+  jsonfile
+    ✕ should use fs when graceful-fs fails to load (1 ms)
+
+  ● jsonfile › should use fs when graceful-fs fails to load
+
+    Property `require` does not exist in the provided object
+
+       5 | describe('jsonfile', () => {
+       6 |   it('should use fs when graceful-fs fails to load', () => {
+    >  7 |     jest.spyOn(global, 'require').mockImplementation((module) => {
+         |          ^
+       8 |       if (module === 'graceful-fs') {
+       9 |         throw new Error();
+      10 |       }
+
+      at ModuleMocker.spyOn (node_modules/jest-mock/build/index.js:731:13)
+      at Object.spyOn (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_4/pending_category/mutant-d9833fc/testCase.test.ts:7:10)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.402 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_4/pending_category/mutant-d9833fc/testCase.test.ts".

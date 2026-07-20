@@ -1,0 +1,39 @@
+Your task is to write a Jest test case that exposes a specific mutation in a JavaScript/TypeScript project.
+
+MUTATION DETAILS
+The mutation affects the following file:
+util/prop.js
+Here is the full content of that file (shown with a <PLACEHOLDER> marker):
+module.exports = function prop (key) {
+  return key && (
+    <PLACEHOLDER>
+    ? function (data) { return data[key] }
+    : 'object' === typeof key && 'function' === typeof key.exec //regexp
+    ? function (data) { var v = key.exec(data); return v && v[0] }
+    : key
+  )
+}
+
+In the original code, <PLACEHOLDER> has the value:
+
+-       'string' == typeof key
+In the mutated code, <PLACEHOLDER> has the value:
+
++       false
+
+
+YOUR TASK
+Write one Jest test file that:
+    1. Passes when run against the original code.
+    2. Fails when run against the mutated code.
+    3. Tests the behavior of the mutated file in a way that reliably detects the mutation.
+The test will be saved at the following path, relative to this test-generation project’s root:
+llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-9f13fb3/testCase.test.ts
+
+ALLOWED LIBRARIES
+You may use:
+    1. Any built-in Node.js modules (e.g., fs, path, crypto, etc.).
+    
+You may not use any other third-party libraries.
+
+

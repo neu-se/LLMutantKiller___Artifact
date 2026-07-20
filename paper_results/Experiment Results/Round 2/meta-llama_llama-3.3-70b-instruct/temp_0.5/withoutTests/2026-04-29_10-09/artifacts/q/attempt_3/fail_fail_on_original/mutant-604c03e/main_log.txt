@@ -1,0 +1,51 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-604c03e/testCase.test.ts[0m:[93m7[0m:[93m11[0m - [91merror[0m[90m TS2339: [0mProperty 'trackRejection' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'.
+
+[7m7[0m         Q.trackRejection(promise, reason);
+[7m [0m [91m          ~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-604c03e/testCase.test.ts[0m:[93m8[0m:[93m18[0m - [91merror[0m[90m TS2551: [0mProperty 'unhandledRejections' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'. Did you mean 'resetUnhandledRejections'?
+
+[7m8[0m         expect(Q.unhandledRejections.length).toBe(1);
+[7m [0m [91m                 ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96m../subject_repositories/q/q.js[0m:[93m1115[0m:[93m1[0m
+    [7m1115[0m Q.resetUnhandledRejections = resetUnhandledRejections;
+    [7m    [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'resetUnhandledRejections' is declared here.
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-604c03e/testCase.test.ts[0m:[93m9[0m:[93m11[0m - [91merror[0m[90m TS2339: [0mProperty 'untrackRejection' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'.
+
+[7m9[0m         Q.untrackRejection(promise);
+[7m [0m [91m          ~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-604c03e/testCase.test.ts[0m:[93m10[0m:[93m18[0m - [91merror[0m[90m TS2551: [0mProperty 'unhandledRejections' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'. Did you mean 'resetUnhandledRejections'?
+
+[7m10[0m         expect(Q.unhandledRejections.length).toBe(0);
+[7m  [0m [91m                 ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96m../subject_repositories/q/q.js[0m:[93m1115[0m:[93m1[0m
+    [7m1115[0m Q.resetUnhandledRejections = resetUnhandledRejections;
+    [7m    [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'resetUnhandledRejections' is declared here.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/q/q.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/q/q.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-604c03e/testCase.test.ts
+  Q
+    ✕ should handle unhandled rejections correctly (1 ms)
+
+  ● Q › should handle unhandled rejections correctly
+
+    TypeError: q_js_1.default.trackRejection is not a function
+
+       5 |         const promise = Q.defer().promise;
+       6 |         const reason = new Error('Test reason');
+    >  7 |         Q.trackRejection(promise, reason);
+         |           ^
+       8 |         expect(Q.unhandledRejections.length).toBe(1);
+       9 |         Q.untrackRejection(promise);
+      10 |         expect(Q.unhandledRejections.length).toBe(0);
+
+      at Object.trackRejection (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-604c03e/testCase.test.ts:7:11)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        4.331 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-604c03e/testCase.test.ts".

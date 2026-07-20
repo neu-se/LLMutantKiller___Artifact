@@ -1,0 +1,37 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_8/pending_category/mutant-cebca80/testCase.test.ts
+  Delta invert
+    ✕ invert correctly tracks base index across multiple ops (5 ms)
+
+  ● Delta invert › invert correctly tracks base index across multiple ops
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 3
+    + Received  + 0
+
+      Delta {
+        "ops": Array [
+          Object {
+            "insert": "Hello",
+          },
+    -     Object {
+    -       "retain": 6,
+    -     },
+        ],
+      }
+
+      11 |     // Mutated (no return): delete(5) → inverted gets insert('Hello'), baseIndex stays 0
+      12 |     //           retain(6) → inverted retains from base[0..6] = 'Hello ' instead of base[5..11]
+    > 13 |     expect(inverted).toEqual(new Delta().insert('Hello').retain(6));
+         |                      ^
+      14 |   });
+      15 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_8/pending_category/mutant-cebca80/testCase.test.ts:13:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.681 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_8/pending_category/mutant-cebca80/testCase.test.ts".

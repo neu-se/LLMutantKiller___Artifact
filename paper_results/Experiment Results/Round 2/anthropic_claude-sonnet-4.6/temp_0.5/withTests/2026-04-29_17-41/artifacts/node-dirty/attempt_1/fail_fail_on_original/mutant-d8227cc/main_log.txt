@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-d8227cc/testCase.test.ts (6.547 s)
+  dirty file loading
+    ✕ should correctly load records from a file where the chunk contains a newline not at index 1 (5004 ms)
+
+  ● dirty file loading › should correctly load records from a file where the chunk contains a newline not at index 1
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       7 |
+       8 | describe('dirty file loading', () => {
+    >  9 |   it('should correctly load records from a file where the chunk contains a newline not at index 1', (done) => {
+         |   ^
+      10 |     const file = path.join(os.tmpdir(), `dirty-mutant-test-${process.pid}.dirty`);
+      11 |     // Write a file with a record. The JSON {"key":"ab","val":"cd"}\n has \n at index 22, not 1.
+      12 |     // Original: chunk has \n (not -1), so it proceeds to parse. Data loads correctly.
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-d8227cc/testCase.test.ts:9:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-d8227cc/testCase.test.ts:8:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.734 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-d8227cc/testCase.test.ts".

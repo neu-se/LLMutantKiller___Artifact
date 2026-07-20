@@ -1,0 +1,41 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-1fb1f37/testCase.test.ts[0m:[93m9[0m:[93m12[0m - [91merror[0m[90m TS2790: [0mThe operand of a 'delete' operator must be optional.
+
+[7m9[0m     delete Math.cosh;
+[7m [0m [91m           ~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-1fb1f37/testCase.test.ts
+  Complex.cosh
+    ✕ should use Taylor approximation for very small values when Math.cosh is not available (2 ms)
+
+  ● Complex.cosh › should use Taylor approximation for very small values when Math.cosh is not available
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.9999999999
+    Received: 1
+
+    Expected precision:    15
+    Expected difference: < 5e-16
+    Received difference:   1.000000082740371e-10
+
+      18 |       const expectedGeneral = (Math.exp(1e-10) + Math.exp(-1e-10)) * 0.5;
+      19 |       // The original should be exactly the Taylor approximation
+    > 20 |       expect(result.re).toBeCloseTo(expectedTaylor, 15);
+         |                         ^
+      21 |       expect(result.im).toBe(0);
+      22 |     } finally {
+      23 |       // Restore original Math.cosh
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-1fb1f37/testCase.test.ts:20:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.298 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-1fb1f37/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

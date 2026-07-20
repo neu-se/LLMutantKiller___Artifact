@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-028c3db/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2614: [0mModule '"../../../../../../../../../../../subject_repositories/delta/src/Delta"' has no exported member 'Delta'. Did you mean to use 'import Delta from "../../../../../../../../../../../subject_repositories/delta/src/Delta"' instead?
+
+[7m1[0m import { Delta } from '../../../../../../../../../../../subject_repositories/delta/src/Delta';
+[7m [0m [91m         ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-028c3db/testCase.test.ts
+  Delta
+    ✕ should compose correctly with a leading retain (2 ms)
+
+  ● Delta › should compose correctly with a leading retain
+
+    TypeError: Delta_1.Delta is not a constructor
+
+      3 | describe('Delta', () => {
+      4 |   it('should compose correctly with a leading retain', () => {
+    > 5 |     const delta1 = new Delta().retain(1);
+        |                    ^
+      6 |     const delta2 = new Delta().retain(1);
+      7 |     const composed = delta1.compose(delta2);
+      8 |     expect(composed.ops.length).toBe(1);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-028c3db/testCase.test.ts:5:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.204 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-028c3db/testCase.test.ts".

@@ -1,0 +1,30 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-f918cff/testCase.test.ts
+  Promise descriptor exception handling
+    ✕ should properly handle exceptions in promise descriptors (2 ms)
+
+  ● Promise descriptor exception handling › should properly handle exceptions in promise descriptors
+
+    UNEXPECTED_FULFILLMENT
+
+      14 |       () => {
+      15 |         // In the mutated version, this will be called because the exception is swallowed
+    > 16 |         throw new Error("UNEXPECTED_FULFILLMENT");
+         |               ^
+      17 |       },
+      18 |       (rejectedError: Error) => {
+      19 |         // In the original version, this should be called
+
+      at llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-f918cff/testCase.test.ts:16:15
+      at fulfilled (../subject_repositories/q/q.js:854:54)
+      at _fulfilled (../subject_repositories/q/q.js:883:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:816:13)
+      at promiseDispatch (../subject_repositories/q/q.js:877:14)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.465 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-f918cff/testCase.test.ts".

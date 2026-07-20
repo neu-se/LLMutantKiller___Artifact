@@ -1,0 +1,88 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-53fc850/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/util/tester.js"' has no exported member 'tester'.
+
+[7m1[0m import { tester } from "../../../../../../../../../../../subject_repositories/pull-stream/util/tester.js";
+[7m [0m [91m         ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-53fc850/testCase.test.ts
+  tester function
+    ✕ should return a function when test is an object with a test function (1 ms)
+    ✕ should return the prop function when test is an object but not with a test function in the original code
+    ✕ should return the id function when test is not an object in the original code (1 ms)
+    ✕ should return the id function when test is an object but not with a test function in the mutated code
+    ✕ should return the prop function when test is not an object in the mutated code
+
+  ● tester function › should return a function when test is an object with a test function
+
+    TypeError: (0 , tester_js_1.tester) is not a function
+
+      4 |   it('should return a function when test is an object with a test function', () => {
+      5 |     const test = { test: jest.fn() };
+    > 6 |     const result = tester(test);
+        |                          ^
+      7 |     expect(typeof result).toBe('function');
+      8 |     expect(result({})).toBeUndefined();
+      9 |   });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-53fc850/testCase.test.ts:6:26)
+
+  ● tester function › should return the prop function when test is an object but not with a test function in the original code
+
+    TypeError: (0 , tester_js_1.tester) is not a function
+
+      11 |   it('should return the prop function when test is an object but not with a test function in the original code', () => {
+      12 |     const test = { foo: 'bar' };
+    > 13 |     const result = tester(test);
+         |                          ^
+      14 |     expect(result).not.toBeUndefined();
+      15 |   });
+      16 |
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-53fc850/testCase.test.ts:13:26)
+
+  ● tester function › should return the id function when test is not an object in the original code
+
+    TypeError: (0 , tester_js_1.tester) is not a function
+
+      17 |   it('should return the id function when test is not an object in the original code', () => {
+      18 |     const test = 'not an object';
+    > 19 |     const result = tester(test);
+         |                          ^
+      20 |     expect(result).not.toBeUndefined();
+      21 |   });
+      22 |
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-53fc850/testCase.test.ts:19:26)
+
+  ● tester function › should return the id function when test is an object but not with a test function in the mutated code
+
+    TypeError: (0 , tester_js_1.tester) is not a function
+
+      23 |   it('should return the id function when test is an object but not with a test function in the mutated code', () => {
+      24 |     const test = { foo: 'bar' };
+    > 25 |     const result = tester(test);
+         |                          ^
+      26 |     expect(result).not.toBeUndefined();
+      27 |   });
+      28 |
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-53fc850/testCase.test.ts:25:26)
+
+  ● tester function › should return the prop function when test is not an object in the mutated code
+
+    TypeError: (0 , tester_js_1.tester) is not a function
+
+      29 |   it('should return the prop function when test is not an object in the mutated code', () => {
+      30 |     const test = 'not an object';
+    > 31 |     const result = tester(test);
+         |                          ^
+      32 |     expect(result).not.toBeUndefined();
+      33 |   });
+      34 | });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-53fc850/testCase.test.ts:31:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       5 failed, 5 total
+Snapshots:   0 total
+Time:        1.912 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-53fc850/testCase.test.ts".

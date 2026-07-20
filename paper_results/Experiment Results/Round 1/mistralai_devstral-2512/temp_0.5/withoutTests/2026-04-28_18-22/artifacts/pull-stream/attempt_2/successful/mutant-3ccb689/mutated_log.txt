@@ -1,0 +1,35 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/subject_repositories/pull-stream/throughs/async-map.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/subject_repositories/pull-stream/throughs/async-map.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-3ccb689/testCase.test.ts
+  asyncMap mutation test
+    ✕ should handle aborted state before data processing (18 ms)
+
+  ● asyncMap mutation test › should handle aborted state before data processing
+
+    Expected 'ABORT_ERROR' on subsequent read, got true
+
+      37 |             mappedSource(null, (end: any, data: any) => {
+      38 |               if (end !== 'ABORT_ERROR') {
+    > 39 |                 done(new Error(`Expected 'ABORT_ERROR' on subsequent read, got ${end}`));
+         |                      ^
+      40 |               } else {
+      41 |                 done();
+      42 |               }
+
+      at llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-3ccb689/testCase.test.ts:39:22
+      at cb (../subject_repositories/pull-stream/throughs/async-map.js:29:19)
+      at cb (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-3ccb689/testCase.test.ts:18:9)
+      at read (../subject_repositories/pull-stream/throughs/async-map.js:28:9)
+      at mappedSource (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-3ccb689/testCase.test.ts:37:13)
+      at cb (../subject_repositories/pull-stream/throughs/async-map.js:19:11)
+      at cb (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-3ccb689/testCase.test.ts:14:9)
+      at read (../subject_repositories/pull-stream/throughs/async-map.js:16:19)
+      at mappedSource (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-3ccb689/testCase.test.ts:32:9)
+      at cb (../subject_repositories/pull-stream/throughs/async-map.js:40:20)
+      at Timeout.cb [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-3ccb689/testCase.test.ts:7:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.502 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-3ccb689/testCase.test.ts".

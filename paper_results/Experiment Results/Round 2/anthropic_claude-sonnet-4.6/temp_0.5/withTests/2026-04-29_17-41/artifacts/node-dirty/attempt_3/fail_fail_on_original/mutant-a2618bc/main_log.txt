@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-a2618bc/testCase.test.ts (6.187 s)
+  dirty _flush backpressure handling
+    ✕ should correctly persist all queued items to disk even when backpressure occurs (5002 ms)
+
+  ● dirty _flush backpressure handling › should correctly persist all queued items to disk even when backpressure occurs
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 200
+    Received: 199
+
+      25 |       db.once('drain', () => {
+      26 |         // All callbacks must have fired before drain
+    > 27 |         expect(callbackCount).toBe(N);
+         |                               ^
+      28 |
+      29 |         // Reload and verify all data persisted correctly
+      30 |         const db2 = new Dirty(file);
+
+      at Dirty.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-a2618bc/testCase.test.ts:27:31)
+      at Object.emit [as callback] (../subject_repositories/node-dirty/lib/dirty/dirty.js:190:70)
+
+  ● dirty _flush backpressure handling › should correctly persist all queued items to disk even when backpressure occurs
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 |
+      5 | describe('dirty _flush backpressure handling', () => {
+    > 6 |   it('should correctly persist all queued items to disk even when backpressure occurs', (done) => {
+        |   ^
+      7 |     const Dirty = require('../../../../../../../../../../../subject_repositories/node-dirty/lib/dirty/dirty.js');
+      8 |     const file = path.join(os.tmpdir(), `dirty-bp-persist-${process.pid}.dirty`);
+      9 |
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-a2618bc/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-a2618bc/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.349 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-a2618bc/testCase.test.ts".

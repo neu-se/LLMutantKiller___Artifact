@@ -1,0 +1,14 @@
+import { Complex } from '../../complex.js';
+
+describe('Complex', () => {
+  it('should correctly handle atanh calculation for a = -1', () => {
+    const complex = new Complex(-1, 0);
+    const result = complex.atanh();
+    expect(result.re).toBeCloseTo(0, 10);
+    expect(result.im).toBeCloseTo(-Infinity, 10);
+  });
+
+  it('should throw an error when a is not a number', () => {
+    expect(() => new Complex('a', 0).atanh()).toThrowError();
+  });
+});

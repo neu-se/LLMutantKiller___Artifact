@@ -1,0 +1,46 @@
+let assert = require('assert');
+let zip_a_folder = require('zip-a-folder');
+let fs = require('fs');
+let path = require('path');
+let os = require('os');
+
+describe('test zip_a_folder', function() {
+    let testDir;
+    let zipPath;
+    
+    beforeEach(function() {
+        // Create a temporary directory for testing
+        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));
+        zipPath = path.join(testDir, 'test.zip');
+        
+        // Create test folder structure
+        let sourceDir = path.join(testDir, 'source');
+        fs.mkdirSync(sourceDir);
+        fs.writeFileSync(path.join(sourceDir, 'file1.txt'), 'Hello World');
+        fs.writeFileSync(path.join(sourceDir, 'file2.txt'), 'Test Content');
+        
+        let subDir = path.join(sourceDir, 'subdir');
+        fs.mkdirSync(subDir);
+        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');
+    });
+    
+    afterEach(function() {
+        // Clean up test files
+        if (fs.existsSync(testDir)) {
+            fs.rmSync(testDir, { recursive: true, force: true });
+        }
+    });
+
+    it('should reject when source folder does not exist', function(done) {
+        let zipper = new zip_a_folder.ZipAFolder();
+        let nonExistentDir = path.join(testDir, 'nonexistent');
+        
+        zipper.zip(nonExistentDir, zipPath).then(() => {
+            done(new Error('Should have rejected'));
+        }).catch((err) => {
+            assert(err instanceof Error);
+            done();
+        });
+    });
+
+});

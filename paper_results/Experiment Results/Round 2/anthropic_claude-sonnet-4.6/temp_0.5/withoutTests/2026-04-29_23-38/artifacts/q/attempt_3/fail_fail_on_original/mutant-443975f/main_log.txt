@@ -1,0 +1,50 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-443975f/testCase.test.ts[0m:[93m10[0m:[93m35[0m - [91merror[0m[90m TS2345: [0mArgument of type 'any[]' is not assignable to parameter of type '[callback: (_: void) => void]'.
+  Target requires 1 element(s) but source may have fewer.
+
+[7m10[0m       return original.apply(this, args);
+[7m  [0m [91m                                  ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-443975f/testCase.test.ts (6.166 s)
+  Q setImmediate scheduling
+    ✕ uses setImmediate for nextTick, observable via setImmediate spy (5004 ms)
+
+  ● Q setImmediate scheduling › uses setImmediate for nextTick, observable via setImmediate spy
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      13 |     Q.nextTick(() => {
+      14 |       (global as any).setImmediate = original;
+    > 15 |       expect(setImmediateCalled).toBe(true);
+         |                                  ^
+      16 |       done();
+      17 |     });
+      18 |   });
+
+      at toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-443975f/testCase.test.ts:15:34)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+  ● Q setImmediate scheduling › uses setImmediate for nextTick, observable via setImmediate spy
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("Q setImmediate scheduling", () => {
+    > 4 |   it("uses setImmediate for nextTick, observable via setImmediate spy", (done) => {
+        |   ^
+      5 |     const original = global.setImmediate;
+      6 |     let setImmediateCalled = false;
+      7 |     
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-443975f/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-443975f/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.331 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-443975f/testCase.test.ts".

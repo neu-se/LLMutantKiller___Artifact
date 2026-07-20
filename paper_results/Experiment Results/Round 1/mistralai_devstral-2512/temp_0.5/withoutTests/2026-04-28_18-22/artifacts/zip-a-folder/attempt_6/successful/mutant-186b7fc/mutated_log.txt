@@ -1,0 +1,31 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_6/pending_category/mutant-186b7fc/testCase.test.ts[0m:[93m4[0m:[93m1[0m - [91merror[0m[90m TS6133: [0m'archiver' is declared but its value is never read.
+
+[7m4[0m import * as archiver from 'archiver';
+[7m [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_6/pending_category/mutant-186b7fc/testCase.test.ts
+  ZipAFolder.tar with uncompressed option
+    ✕ should create an uncompressed tar archive without gzip when compression is set to uncompressed (12 ms)
+
+  ● ZipAFolder.tar with uncompressed option › should create an uncompressed tar archive without gzip when compression is set to uncompressed
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      26 |     const fileContent = await fs.promises.readFile(outputFile);
+      27 |     const isGzipped = fileContent[0] === 0x1f && fileContent[1] === 0x8b;
+    > 28 |     expect(isGzipped).toBe(false);
+         |                       ^
+      29 |
+      30 |     // Cleanup
+      31 |     await fs.promises.rm(testDir, { recursive: true, force: true });
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_6/pending_category/mutant-186b7fc/testCase.test.ts:28:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.035 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_6/pending_category/mutant-186b7fc/testCase.test.ts".

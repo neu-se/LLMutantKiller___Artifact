@@ -1,0 +1,39 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-8b62e54/testCase.test.ts
+  Q.any
+    ✕ should resolve when at least one promise is resolved (2 ms)
+    ✕ should not reject when all promises are rejected in the mutated code (1 ms)
+
+  ● Q.any › should resolve when at least one promise is resolved
+
+    ReferenceError: Q is not defined
+
+      1 | describe('Q.any', () => {
+      2 |     it('should resolve when at least one promise is resolved', async () => {
+    > 3 |         const promise1 = Q.reject('error1');
+        |                          ^
+      4 |         const promise2 = Q.resolve('success');
+      5 |
+      6 |         await expect(Q.any([promise1, promise2])).resolves.toEqual('success');
+
+      at Object.Q (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-8b62e54/testCase.test.ts:3:26)
+
+  ● Q.any › should not reject when all promises are rejected in the mutated code
+
+    ReferenceError: Q is not defined
+
+       8 |
+       9 |     it('should not reject when all promises are rejected in the mutated code', async () => {
+    > 10 |         const promise1 = Q.reject('error1');
+         |                          ^
+      11 |         const promise2 = Q.reject('error2');
+      12 |
+      13 |         try {
+
+      at Object.Q (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-8b62e54/testCase.test.ts:10:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        2.821 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-8b62e54/testCase.test.ts".

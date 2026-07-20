@@ -1,0 +1,36 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_8/pending_category/mutant-7fe957d/testCase.test.ts
+  GeoPoint
+    ✕ should calculate distance correctly for two points with a large difference in latitude (7 ms)
+
+  ● GeoPoint › should calculate distance correctly for two points with a large difference in latitude
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 20015088.706
+    Received: 20014097.079529796
+
+    Expected precision:    5
+    Expected difference: < 0.000005
+    Received difference:   991.6264702044427
+
+       7 |
+       8 |     const distance = GeoPoint.calculateDistance(p1, p2);
+    >  9 |     expect(distance).toBeCloseTo(20015088.706, 5);
+         |                      ^
+      10 |   });
+      11 | });
+
+      at Object.toBeCloseTo (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_8/pending_category/mutant-7fe957d/testCase.test.ts:9:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.673 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_8/pending_category/mutant-7fe957d/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

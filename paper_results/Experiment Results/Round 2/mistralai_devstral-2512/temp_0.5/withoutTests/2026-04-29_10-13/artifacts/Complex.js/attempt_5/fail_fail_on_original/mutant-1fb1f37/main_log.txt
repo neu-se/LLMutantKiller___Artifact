@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-1fb1f37/testCase.test.ts
+  Complex.cosh
+    ✕ should use Taylor approximation for very small values (2 ms)
+
+  ● Complex.cosh › should use Taylor approximation for very small values
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.9999999999
+    Received: 1
+
+    Expected precision:    10
+    Expected difference: < 5e-11
+    Received difference:   1.000000082740371e-10
+
+      10 |     // For x=1e-10, the Taylor approximation (1-x) should be used
+      11 |     // The general formula would give a different result
+    > 12 |     expect(result.re).toBeCloseTo(1 - 1e-10, 10);
+         |                       ^
+      13 |     expect(result.im).toBe(0);
+      14 |   });
+      15 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-1fb1f37/testCase.test.ts:12:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.219 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-1fb1f37/testCase.test.ts".

@@ -1,0 +1,24 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-2e094c4/testCase.test.ts
+  Q stack trace filtering
+    ✕ should correctly filter Node.js stack frames from error stacks (2 ms)
+
+  ● Q stack trace filtering › should correctly filter Node.js stack frames from error stacks
+
+    TypeError: Cannot read properties of undefined (reading 'filterStackString')
+
+      26 |
+      27 |       // The filtered stack should not contain Node.js internal frames
+    > 28 |       const filteredStack = Q.getUnhandledReasons()[0].filterStackString(newError.stack);
+         |                                                       ^
+      29 |       expect(filteredStack).not.toContain("(module.js:");
+      30 |       expect(filteredStack).not.toContain("(node.js:");
+      31 |     }
+
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-2e094c4/testCase.test.ts:28:55)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.172 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-2e094c4/testCase.test.ts".

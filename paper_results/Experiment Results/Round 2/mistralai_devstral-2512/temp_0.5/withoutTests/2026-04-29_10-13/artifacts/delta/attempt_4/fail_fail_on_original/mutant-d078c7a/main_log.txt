@@ -1,0 +1,40 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-d078c7a/testCase.test.ts[0m:[93m6[0m:[93m35[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ retain: null; }[]' is not assignable to parameter of type 'Op[]'.
+  Type '{ retain: null; }' is not assignable to type 'Op'.
+    Types of property 'retain' are incompatible.
+      Type 'null' is not assignable to type 'number | Record<string, unknown> | undefined'.
+
+[7m6[0m     const iterator = new Iterator(ops);
+[7m [0m [91m                                  ~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-d078c7a/testCase.test.ts[0m:[93m8[0m:[93m20[0m - [91merror[0m[90m TS2339: [0mProperty 'toHaveProperty' does not exist on type 'Matchers<Op>'.
+
+[7m8[0m     expect(result).toHaveProperty('retain');
+[7m [0m [91m                   ~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-d078c7a/testCase.test.ts
+  Iterator next() with retain object
+    ✕ should correctly handle retain object with null value (3 ms)
+
+  ● Iterator next() with retain object › should correctly handle retain object with null value
+
+    expect(received).toHaveProperty(path)
+
+    Expected path: "retain"
+    Received path: []
+
+    Received value: {"insert": undefined}
+
+       6 |     const iterator = new Iterator(ops);
+       7 |     const result = iterator.next();
+    >  8 |     expect(result).toHaveProperty('retain');
+         |                    ^
+       9 |     expect(result.retain).toBeNull();
+      10 |   });
+      11 | });
+
+      at Object.toHaveProperty (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-d078c7a/testCase.test.ts:8:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.479 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-d078c7a/testCase.test.ts".

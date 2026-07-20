@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-89f7a90/testCase.test.ts
+  parse function with baseUrl containing fragment
+    ✕ should correctly handle baseUrl with fragment and not include replacement string (3 ms)
+
+  ● parse function with baseUrl containing fragment › should correctly handle baseUrl with fragment and not include replacement string
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "http://example.com/base/relative/path"
+    Received: "http://example.com/relative/path"
+
+      4 |   it("should correctly handle baseUrl with fragment and not include replacement string", () => {
+      5 |     const result = parse("relative/path", "http://example.com/base#fragment");
+    > 6 |     expect(result?.url).toBe("http://example.com/base/relative/path");
+        |                         ^
+      7 |     expect(result?.baseurl).toBe("http://example.com/base");
+      8 |   });
+      9 | });
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-89f7a90/testCase.test.ts:6:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.271 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-89f7a90/testCase.test.ts".

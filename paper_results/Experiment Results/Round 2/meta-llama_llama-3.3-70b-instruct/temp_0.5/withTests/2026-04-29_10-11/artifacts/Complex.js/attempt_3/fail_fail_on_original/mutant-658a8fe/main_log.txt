@@ -1,0 +1,46 @@
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-658a8fe/testCase.test.ts
+  Complex
+    ✕ should correctly calculate the complex acsch for a non-zero input (2 ms)
+    ✕ should throw an error for acsch when denominator is zero
+
+  ● Complex › should correctly calculate the complex acsch for a non-zero input
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.48121182505960347
+    Received: 1.4436354751788103
+
+    Expected precision:    5
+    Expected difference: < 0.000005
+    Received difference:   0.9624236501192068
+
+       5 |     const complex = new Complex(2, 0);
+       6 |     const result = complex.acsch();
+    >  7 |     expect(result.re).toBeCloseTo(0.48121182505960347, 5);
+         |                       ^
+       8 |     expect(result.im).toBeCloseTo(0, 5);
+       9 |   });
+      10 |
+
+      at Object.toBeCloseTo (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-658a8fe/testCase.test.ts:7:23)
+
+  ● Complex › should throw an error for acsch when denominator is zero
+
+    expect(received).toThrow()
+
+    Received function did not throw
+
+      11 |   it('should throw an error for acsch when denominator is zero', () => {
+      12 |     const complex = new Complex(0, 0);
+    > 13 |     expect(() => complex.acsch()).toThrow();
+         |                                   ^
+      14 |   });
+      15 | });
+
+      at Object.toThrow (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-658a8fe/testCase.test.ts:13:35)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.533 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-658a8fe/testCase.test.ts".

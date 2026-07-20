@@ -1,0 +1,38 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-e2b44ad/testCase.test.ts
+  Promise.prototype.done domain support
+    ✕ should bind onUnhandledError to domain so errors are caught even when domain has exited (508 ms)
+
+  ● Promise.prototype.done domain support › should bind onUnhandledError to domain so errors are caught even when domain has exited
+
+    domain binding test error
+
+       5 |   it("should bind onUnhandledError to domain so errors are caught even when domain has exited", (done) => {
+       6 |     const d = domain.create();
+    >  7 |     const expectedError = new Error("domain binding test error");
+         |                           ^
+       8 |
+       9 |     (Q as any).onerror = null;
+      10 |
+
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-e2b44ad/testCase.test.ts:7:27)
+
+  ● Promise.prototype.done domain support › should bind onUnhandledError to domain so errors are caught even when domain has exited
+
+    Domain error handler was never called - expected domain to catch error
+
+      10 |
+      11 |     const timeout = setTimeout(() => {
+    > 12 |       done(new Error("Domain error handler was never called - expected domain to catch error"));
+         |            ^
+      13 |     }, 500);
+      14 |
+      15 |     d.on("error", (err: Error) => {
+
+      at Timeout._onTimeout (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-e2b44ad/testCase.test.ts:12:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.763 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-e2b44ad/testCase.test.ts".

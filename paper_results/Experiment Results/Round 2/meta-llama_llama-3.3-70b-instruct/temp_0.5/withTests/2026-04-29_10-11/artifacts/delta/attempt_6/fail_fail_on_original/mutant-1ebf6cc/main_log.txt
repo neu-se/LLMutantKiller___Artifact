@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_6/pending_category/mutant-1ebf6cc/testCase.test.ts[0m:[93m1[0m:[93m16[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import Op from '../../../../../../../../../../../subject_repositories/delta/src/Op.ts';
+[7m [0m [91m               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_6/pending_category/mutant-1ebf6cc/testCase.test.ts
+  Op length function
+    ✕ should throw an error for an op with retain and undefined value in the mutated code (1 ms)
+
+  ● Op length function › should throw an error for an op with retain and undefined value in the mutated code
+
+    expect(received).toThrowError()
+
+    Received function did not throw
+
+      4 |   it('should throw an error for an op with retain and undefined value in the mutated code', () => {
+      5 |     const op = { retain: undefined };
+    > 6 |     expect(() => Op.length(op)).toThrowError();
+        |                                 ^
+      7 |   });
+      8 | });
+
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_6/pending_category/mutant-1ebf6cc/testCase.test.ts:6:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.077 s, estimated 2 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_6/pending_category/mutant-1ebf6cc/testCase.test.ts".

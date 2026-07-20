@@ -1,0 +1,30 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-7fe957d/testCase.test.ts
+  GeoPoint
+    ✕ should calculate distance correctly for points with different longitudes (2 ms)
+
+  ● GeoPoint › should calculate distance correctly for points with different longitudes
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 20015019.74
+    Received: 20016321.115207795
+
+    Expected precision:    1
+    Expected difference: < 0.05
+    Received difference:   1301.3752077966928
+
+       6 |     const point2 = new GeoPoint(0, 180);
+       7 |     const distance = GeoPoint.calculateDistance(point1, point2);
+    >  8 |     expect(distance).toBeCloseTo(20015019.74, 1); // distance in meters, allowing for a small margin of error
+         |                      ^
+       9 |   });
+      10 | });
+
+      at Object.toBeCloseTo (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-7fe957d/testCase.test.ts:8:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.135 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_3/pending_category/mutant-7fe957d/testCase.test.ts".

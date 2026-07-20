@@ -1,0 +1,36 @@
+[
+  [
+    "readFile",
+    [
+      "const jsonfile = require('jsonfile')\nconst file = '/tmp/data.json'\njsonfile.readFile(file, function (err, obj) {\n  if (err) console.error(err)\n  console.dir(obj)\n})",
+      "const jsonfile = require('jsonfile')\nconst file = '/tmp/data.json'\njsonfile.readFile(file)\n  .then(obj => console.dir(obj))\n  .catch(error => console.error(error))"
+    ]
+  ],
+  [
+    "readFileSync",
+    [
+      "const jsonfile = require('jsonfile')\nconst file = '/tmp/data.json'\n\nconsole.dir(jsonfile.readFileSync(file))"
+    ]
+  ],
+  [
+    "writeFile",
+    [
+      "const jsonfile = require('jsonfile')\n\nconst file = '/tmp/data.json'\nconst obj = { name: 'JP' }\n\njsonfile.writeFile(file, obj, function (err) {\n  if (err) console.error(err)\n})",
+      "const jsonfile = require('jsonfile')\n\nconst file = '/tmp/data.json'\nconst obj = { name: 'JP' }\n\njsonfile.writeFile(file, obj)\n  .then(res => {\n    console.log('Write complete')\n  })\n  .catch(error => console.error(error))",
+      "const jsonfile = require('jsonfile')\n\nconst file = '/tmp/data.json'\nconst obj = { name: 'JP' }\n\njsonfile.writeFile(file, obj, { spaces: 2 }, function (err) {\n  if (err) console.error(err)\n})",
+      "const jsonfile = require('jsonfile')\n\nconst file = '/tmp/data.json'\nconst obj = { name: 'JP' }\n\njsonfile.writeFile(file, obj, { spaces: 2, EOL: '\\r\\n' }, function (err) {\n  if (err) console.error(err)\n})",
+      "const jsonfile = require('jsonfile')\n\nconst file = '/tmp/data.json'\nconst obj = { name: 'JP' }\n\njsonfile.writeFile(file, obj, { spaces: 2, finalEOL: false }, function (err) {\n  if (err) console.log(err)\n})",
+      "const jsonfile = require('jsonfile')\n\nconst file = '/tmp/mayAlreadyExistedData.json'\nconst obj = { name: 'JP' }\n\njsonfile.writeFile(file, obj, { flag: 'a' }, function (err) {\n  if (err) console.error(err)\n})"
+    ]
+  ],
+  [
+    "writeFileSync",
+    [
+      "const jsonfile = require('jsonfile')\n\nconst file = '/tmp/data.json'\nconst obj = { name: 'JP' }\n\njsonfile.writeFileSync(file, obj)",
+      "const jsonfile = require('jsonfile')\n\nconst file = '/tmp/data.json'\nconst obj = { name: 'JP' }\n\njsonfile.writeFileSync(file, obj, { spaces: 2 })",
+      "const jsonfile = require('jsonfile')\n\nconst file = '/tmp/data.json'\nconst obj = { name: 'JP' }\n\njsonfile.writeFileSync(file, obj, { spaces: 2, EOL: '\\r\\n' })",
+      "const jsonfile = require('jsonfile')\n\nconst file = '/tmp/data.json'\nconst obj = { name: 'JP' }\n\njsonfile.writeFileSync(file, obj, { spaces: 2, finalEOL: false })",
+      "const jsonfile = require('jsonfile')\n\nconst file = '/tmp/mayAlreadyExistedData.json'\nconst obj = { name: 'JP' }\n\njsonfile.writeFileSync(file, obj, { flag: 'a' })"
+    ]
+  ]
+]

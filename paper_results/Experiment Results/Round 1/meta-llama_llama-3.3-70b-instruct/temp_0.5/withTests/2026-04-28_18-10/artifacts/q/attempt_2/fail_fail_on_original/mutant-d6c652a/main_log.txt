@@ -1,0 +1,58 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-d6c652a/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-d6c652a/testCase.test.ts
+  captureLine function
+    ✕ should return a line number when hasStacks is true (1 ms)
+    ✕ should return undefined when hasStacks is false in the original code
+    ✕ should not return undefined when hasStacks is false in the mutated code
+
+  ● captureLine function › should return a line number when hasStacks is true
+
+    TypeError: Cannot read properties of undefined (reading 'captureLine')
+
+       5 |         // Arrange
+       6 |         let hasStacks = true;
+    >  7 |         let originalCaptureLine = Q.captureLine;
+         |                                     ^
+       8 |
+       9 |         // Act
+      10 |         Q.captureLine = function () {
+
+      at Object.captureLine (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-d6c652a/testCase.test.ts:7:37)
+
+  ● captureLine function › should return undefined when hasStacks is false in the original code
+
+    TypeError: Cannot read properties of undefined (reading 'captureLine')
+
+      24 |         // Arrange
+      25 |         let hasStacks = false;
+    > 26 |         let originalCaptureLine = Q.captureLine;
+         |                                     ^
+      27 |
+      28 |         // Act
+      29 |         Q.captureLine = function () {
+
+      at Object.captureLine (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-d6c652a/testCase.test.ts:26:37)
+
+  ● captureLine function › should not return undefined when hasStacks is false in the mutated code
+
+    TypeError: Cannot read properties of undefined (reading 'captureLine')
+
+      47 |         // Arrange
+      48 |         let hasStacks = false;
+    > 49 |         let originalCaptureLine = Q.captureLine;
+         |                                     ^
+      50 |
+      51 |         // Act
+      52 |         Q.captureLine = function () {
+
+      at Object.captureLine (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-d6c652a/testCase.test.ts:49:37)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        1.489 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-d6c652a/testCase.test.ts".

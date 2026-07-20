@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-a2618bc/testCase.test.ts
+  Dirty flush backpressure behavior
+    ✕ should emit drain only after all write callbacks have been called (14 ms)
+
+  ● Dirty flush backpressure behavior › should emit drain only after all write callbacks have been called
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 500
+    Received: 499
+
+      19 |         drainFired = true;
+      20 |         try {
+    > 21 |           expect(callbacksFired).toBe(numKeys);
+         |                                  ^
+      22 |           // Cleanup
+      23 |           try { fs.rmSync(tmpDir, { recursive: true, force: true }); } catch {}
+      24 |           done();
+
+      at Dirty.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-a2618bc/testCase.test.ts:21:34)
+      at Object.emit [as callback] (../subject_repositories/node-dirty/lib/dirty/dirty.js:190:70)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.454 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-a2618bc/testCase.test.ts".

@@ -1,0 +1,45 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/node-dirty/lib/dirty/dirty.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/node-dirty/lib/dirty/dirty.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-403a79a/testCase.test.ts (6.688 s)
+  dirty empty line error message
+    ✕ should emit an error with a specific non-empty message when an empty line is encountered in the database file (5002 ms)
+
+  ● dirty empty line error message › should emit an error with a specific non-empty message when an empty line is encountered in the database file
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Empty lines never appear in a healthy database"
+    Received: ""
+
+      27 |       // The mutated code emits: ''
+      28 |       expect(errorMessage).not.toBeNull();
+    > 29 |       expect(errorMessage).toBe('Empty lines never appear in a healthy database');
+         |                            ^
+      30 |       done();
+      31 |     });
+      32 |   });
+
+      at Dirty.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-403a79a/testCase.test.ts:29:28)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:155:16)
+
+  ● dirty empty line error message › should emit an error with a specific non-empty message when an empty line is encountered in the database file
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       5 |
+       6 | describe('dirty empty line error message', () => {
+    >  7 |   it('should emit an error with a specific non-empty message when an empty line is encountered in the database file', (done) => {
+         |   ^
+       8 |     const tmpDir = os.tmpdir();
+       9 |     const tmpFile = path.join(tmpDir, `test-empty-line-${process.pid}.dirty`);
+      10 |
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-403a79a/testCase.test.ts:7:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-403a79a/testCase.test.ts:6:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.859 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-403a79a/testCase.test.ts".

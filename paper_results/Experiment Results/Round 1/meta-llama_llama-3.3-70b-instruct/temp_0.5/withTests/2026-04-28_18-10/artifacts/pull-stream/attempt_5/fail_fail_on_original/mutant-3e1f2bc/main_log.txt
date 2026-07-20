@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-3e1f2bc/testCase.test.ts[0m:[93m5[0m:[93m25[0m - [91merror[0m[90m TS2339: [0mProperty 'values' does not exist on type '(a: any, ...args: any[]) => any'.
+
+[7m5[0m     const source = pull.values([1, 2, 3]);
+[7m [0m [91m                        ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-3e1f2bc/testCase.test.ts[0m:[93m6[0m:[93m23[0m - [91merror[0m[90m TS2339: [0mProperty 'collect' does not exist on type '(a: any, ...args: any[]) => any'.
+
+[7m6[0m     const sink = pull.collect((err: any, ary: any) => {
+[7m [0m [91m                      ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-3e1f2bc/testCase.test.ts
+  pull-stream
+    ✕ should pass when run against the original code and fail when run against the mutated code (1 ms)
+
+  ● pull-stream › should pass when run against the original code and fail when run against the mutated code
+
+    TypeError: pull_js_1.default.values is not a function
+
+      3 | describe('pull-stream', () => {
+      4 |   it('should pass when run against the original code and fail when run against the mutated code', () => {
+    > 5 |     const source = pull.values([1, 2, 3]);
+        |                         ^
+      6 |     const sink = pull.collect((err: any, ary: any) => {
+      7 |       expect(err).toBeNull();
+      8 |       expect(ary).toEqual([1, 2, 3]);
+
+      at Object.values (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-3e1f2bc/testCase.test.ts:5:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        4.019 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-3e1f2bc/testCase.test.ts".

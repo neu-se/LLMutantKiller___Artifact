@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/node-dirty/lib/dirty/dirty.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/node-dirty/lib/dirty/dirty.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-b3ca093/testCase.test.ts (6.67 s)
+  Dirty
+    ✕ should write to disk when _waitForDrain is false and _queue.size is greater than 0 (5002 ms)
+
+  ● Dirty › should write to disk when _waitForDrain is false and _queue.size is greater than 0
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 3
+    Received: 5
+
+      17 |         } else {
+      18 |           const lines = data.split('\n');
+    > 19 |           expect(lines.length).toBe(3); // 2 lines for key-value pairs and 1 empty line
+         |                                ^
+      20 |           expect(lines[0]).toBe(`{"key":"key1","val":"value1"}`);
+      21 |           expect(lines[1]).toBe(`{"key":"key2","val":"value2"}`);
+      22 |           done();
+
+      at toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-b3ca093/testCase.test.ts:19:32)
+
+  ● Dirty › should write to disk when _waitForDrain is false and _queue.size is greater than 0
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 |
+      5 | describe('Dirty', () => {
+    > 6 |   it('should write to disk when _waitForDrain is false and _queue.size is greater than 0', (done) => {
+        |   ^
+      7 |     const filePath = path.join(__dirname, 'test.dirty');
+      8 |     const db = new Dirty(filePath);
+      9 |
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-b3ca093/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-b3ca093/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.903 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_1/pending_category/mutant-b3ca093/testCase.test.ts".

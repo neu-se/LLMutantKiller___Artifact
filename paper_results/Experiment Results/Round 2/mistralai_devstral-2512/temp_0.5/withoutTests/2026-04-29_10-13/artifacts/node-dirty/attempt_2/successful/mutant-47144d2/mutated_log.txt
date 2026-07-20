@@ -1,0 +1,47 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/subject_repositories/node-dirty/lib/dirty/dirty.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/subject_repositories/node-dirty/lib/dirty/dirty.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-47144d2/testCase.test.ts (6.239 s)
+  Dirty database empty line handling
+    ✕ should emit error when encountering empty lines in database file (5003 ms)
+
+  ● Dirty database empty line handling › should emit error when encountering empty lines in database file
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Empty lines never appear in a healthy database"
+    Received string:    "Could not load corrupted row: "
+
+      29 |       errorEmitted = true;
+      30 |       expect(err).toBeInstanceOf(Error);
+    > 31 |       expect(err.message).toContain('Empty lines never appear in a healthy database');
+         |                           ^
+      32 |       done();
+      33 |     });
+      34 |
+
+      at Dirty.toContain (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-47144d2/testCase.test.ts:31:27)
+      at emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:136:20)
+          at Array.forEach (<anonymous>)
+      at ReadStream.forEach (../subject_repositories/node-dirty/lib/dirty/dirty.js:125:15)
+
+  ● Dirty database empty line handling › should emit error when encountering empty lines in database file
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      19 |   });
+      20 |
+    > 21 |   it('should emit error when encountering empty lines in database file', (done) => {
+         |   ^
+      22 |     // Create a database file with an empty line
+      23 |     fs.writeFileSync(dbPath, '{"key":"test","val":"value"}\n\n{"key":"test2","val":"value2"}\n');
+      24 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-47144d2/testCase.test.ts:21:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-47144d2/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.396 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-47144d2/testCase.test.ts".

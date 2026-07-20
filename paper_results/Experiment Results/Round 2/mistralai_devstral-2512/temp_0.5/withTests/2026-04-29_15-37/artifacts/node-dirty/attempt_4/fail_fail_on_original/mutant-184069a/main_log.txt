@@ -1,0 +1,43 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-184069a/testCase.test.ts (6.005 s)
+  mutant detection test
+    ✕ should emit error event for permission errors during file read (5002 ms)
+
+  ● mutant detection test › should emit error event for permission errors during file read
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "EPERM"
+    Received: "EACCES"
+
+      24 |       // Original code should emit EPERM error
+      25 |       // Mutant code will incorrectly treat all errors as ENOENT and emit load instead
+    > 26 |       expect(err.code).toBe('EPERM');
+         |                        ^
+      27 |       done();
+      28 |     });
+      29 |
+
+      at Dirty.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-184069a/testCase.test.ts:26:24)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:118:16)
+
+  ● mutant detection test › should emit error event for permission errors during file read
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      14 |   });
+      15 |
+    > 16 |   it('should emit error event for permission errors during file read', (done) => {
+         |   ^
+      17 |     // Create a file with read-only permissions to trigger EPERM error
+      18 |     fs.writeFileSync(testFile, '', 'utf-8');
+      19 |     fs.chmodSync(testFile, 0o200); // Write-only permissions
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-184069a/testCase.test.ts:16:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-184069a/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.142 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-184069a/testCase.test.ts".

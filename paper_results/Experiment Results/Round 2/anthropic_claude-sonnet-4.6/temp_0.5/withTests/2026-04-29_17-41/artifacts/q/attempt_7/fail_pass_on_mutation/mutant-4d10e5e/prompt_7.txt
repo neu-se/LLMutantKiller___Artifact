@@ -1,0 +1,31 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-4d10e5e/testCase.test.ts
+  hasStacks mutation detection
+    ✕ hasStacks initial value preserved when Error.stack getter throws during Q module init (9 ms)
+
+  ● hasStacks mutation detection › hasStacks initial value preserved when Error.stack getter throws during Q module init
+
+    expect(received).toBeNull()
+
+    Received: [Error: no stack]
+
+      27 |     // Original: hasStacks stays false -> captureLine returns early -> no crash
+      28 |     // Mutation: hasStacks stays true -> captureLine tries e.stack.split() -> crashes
+    > 29 |     expect(loadError).toBeNull();
+         |                       ^
+      30 |   });
+      31 | });
+
+      at Object.toBeNull (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-4d10e5e/testCase.test.ts:29:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.381 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_6/pending_category/mutant-4d10e5e/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

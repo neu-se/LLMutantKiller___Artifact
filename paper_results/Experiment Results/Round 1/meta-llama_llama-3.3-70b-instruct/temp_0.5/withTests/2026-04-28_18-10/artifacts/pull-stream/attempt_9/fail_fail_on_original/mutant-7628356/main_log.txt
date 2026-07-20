@@ -1,0 +1,41 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-7628356/testCase.test.ts
+  tester function
+    ✕ should return a function when test is an object with a test function (3 ms)
+    ✕ should not return a function when test is an empty string in the mutated code (1 ms)
+
+  ● tester function › should return a function when test is an object with a test function
+
+    Cannot find module '../../../../../../subject_repositories/pull-stream/util/tester.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-7628356/testCase.test.ts'
+
+      2 |   it('should return a function when test is an object with a test function', () => {
+      3 |     const test = { test: jest.fn() };
+    > 4 |     const tester = require('../../../../../../subject_repositories/pull-stream/util/tester.js');
+        |                    ^
+      5 |     const result = tester(test);
+      6 |     expect(typeof result).toBe('function');
+      7 |     result('data');
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-7628356/testCase.test.ts:4:20)
+
+  ● tester function › should not return a function when test is an empty string in the mutated code
+
+    Cannot find module '../../../../../../subject_repositories/pull-stream/util/tester.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-7628356/testCase.test.ts'
+
+      12 |   it('should not return a function when test is an empty string in the mutated code', () => {
+      13 |     const test = "";
+    > 14 |     const tester = require('../../../../../../subject_repositories/pull-stream/util/tester.js');
+         |                    ^
+      15 |     const result = tester(test);
+      16 |     expect(result).not.toBeInstanceOf(Function);
+      17 |   });
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-7628356/testCase.test.ts:14:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        3.43 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-7628356/testCase.test.ts".

@@ -1,0 +1,38 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-72fa361/testCase.test.ts[0m:[93m11[0m:[93m7[0m - [91merror[0m[90m TS2339: [0mProperty 'onerror' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'.
+
+[7m11[0m     Q.onerror = (error: Error) => {
+[7m  [0m [91m      ~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-72fa361/testCase.test.ts[0m:[93m41[0m:[93m7[0m - [91merror[0m[90m TS2339: [0mProperty 'onerror' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'.
+
+[7m41[0m     Q.onerror = null;
+[7m  [0m [91m      ~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-72fa361/testCase.test.ts
+  makeStackTraceLong functionality
+    ✕ should extend error stack traces with promise chain information when long stack support is enabled (113 ms)
+
+  ● makeStackTraceLong functionality › should extend error stack traces with promise chain information when long stack support is enabled
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Test error"
+    Received string:    "Error: Initial rejection
+
+      25 |
+      26 |     // Reject the first deferred to trigger the chain
+    > 27 |     deferred1.reject(new Error("Initial rejection"));
+         |                      ^
+      28 |
+      29 |     // Wait for the error to propagate
+      30 |     await new Promise(resolve => setTimeout(resolve, 100));
+
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-72fa361/testCase.test.ts:27:22)
+      From previous event:
+      at Object.then (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-72fa361/testCase.test.ts:21:8)
+      at Object.toContain (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-72fa361/testCase.test.ts:36:35)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.25 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-72fa361/testCase.test.ts".

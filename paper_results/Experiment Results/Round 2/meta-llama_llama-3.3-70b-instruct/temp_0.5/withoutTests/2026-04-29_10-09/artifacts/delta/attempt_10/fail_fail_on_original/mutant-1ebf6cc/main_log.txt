@@ -1,0 +1,38 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_10/pending_category/mutant-1ebf6cc/testCase.test.ts[0m:[93m5[0m:[93m11[0m - [91merror[0m[90m TS6133: [0m'op' is declared but its value is never read.
+
+[7m5[0m     const op: Op = {
+[7m [0m [91m          ~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_10/pending_category/mutant-1ebf6cc/testCase.test.ts[0m:[93m14[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'number | Record<string, unknown> | undefined'.
+
+[7m14[0m       retain: "test",
+[7m  [0m [91m      ~~~~~~[0m
+
+  [96m../subject_repositories/delta/src/Op.ts[0m:[93m7[0m:[93m3[0m
+    [7m7[0m   retain?: number | Record<string, unknown>;
+    [7m [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'retain' which is declared here on type 'Op'
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_10/pending_category/mutant-1ebf6cc/testCase.test.ts
+  Op
+    ✕ should correctly calculate the length of an op with a retain object (2 ms)
+
+  ● Op › should correctly calculate the length of an op with a retain object
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 4
+    Received: 1
+
+      14 |       retain: "test",
+      15 |     };
+    > 16 |     expect(Op.length(op2)).toBe(4);
+         |                            ^
+      17 |   });
+      18 | });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_10/pending_category/mutant-1ebf6cc/testCase.test.ts:16:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.332 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_10/pending_category/mutant-1ebf6cc/testCase.test.ts".

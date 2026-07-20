@@ -1,0 +1,26 @@
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_9/pending_category/mutant-c653c55/testCase.test.ts
+  Zip-A-Folder Test
+    ✕ should create an uncompressed zip file with store option (15 ms)
+
+  ● Zip-A-Folder Test › should create an uncompressed zip file with store option
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 92
+
+      26 |         // Check the extra field length
+      27 |         const extraFieldLength = parseInt(zipBufferString.slice(localFileHeaderStart + 26, localFileHeaderStart + 28), 16);
+    > 28 |         expect(extraFieldLength).toBe(0); // No extra field
+         |                                  ^
+      29 |         fs.rmdirSync(src, { recursive: true });
+      30 |         await fs.promises.unlink(testUNCOMPRESSEDZIP);
+      31 |     });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_9/pending_category/mutant-c653c55/testCase.test.ts:28:34)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.318 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_9/pending_category/mutant-c653c55/testCase.test.ts".

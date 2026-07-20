@@ -1,0 +1,51 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-028c3db/testCase.test.ts[0m:[93m1[0m:[93m19[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import Delta from "../../../../../../../../../../../subject_repositories/delta/src/Delta.ts";
+[7m [0m [91m                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-028c3db/testCase.test.ts[0m:[93m9[0m:[93m11[0m - [91merror[0m[90m TS6133: [0m'delta1' is declared but its value is never read.
+
+[7m9[0m     const delta1 = new Delta().insert("AB").retain(3);
+[7m [0m [91m          ~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-028c3db/testCase.test.ts[0m:[93m10[0m:[93m11[0m - [91merror[0m[90m TS6133: [0m'delta2' is declared but its value is never read.
+
+[7m10[0m     const delta2 = new Delta().retain(5);
+[7m  [0m [91m          ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-028c3db/testCase.test.ts
+  Delta.compose
+    ✕ should apply the insert-before-retain optimization when composing (24 ms)
+
+  ● Delta.compose › should apply the insert-before-retain optimization when composing
+
+    expect(received).not.toThrow()
+
+    Error name:    "Error"
+    Error message: "expect(received).toEqual(expected) // deep equality·
+    - Expected  - 1
+    + Received  + 5·
+    - Array []
+    + Array [
+    +   Object {
+    +     \"insert\": \"Hello\",
+    +   },
+    + ]"
+
+          25 |       const result = delta3.compose(delta4);
+          26 |       // result should be an empty delta (insert composed with nothing = nothing retained = empty after chop)
+        > 27 |       expect(result.ops).toEqual([]);
+             |                          ^
+          28 |     }).not.toThrow();
+          29 |   });
+          30 | });
+
+      at toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-028c3db/testCase.test.ts:27:26)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-028c3db/testCase.test.ts:28:12)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-028c3db/testCase.test.ts:28:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.233 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-028c3db/testCase.test.ts".

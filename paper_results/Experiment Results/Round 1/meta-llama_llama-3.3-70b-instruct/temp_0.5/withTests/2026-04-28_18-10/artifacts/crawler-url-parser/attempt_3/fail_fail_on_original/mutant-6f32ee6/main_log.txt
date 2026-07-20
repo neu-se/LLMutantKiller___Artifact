@@ -1,0 +1,62 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-6f32ee6/testCase.test.ts
+  gettype function
+    ✕ should return "internal" when linkurl and pageurl have the same domain and subdomain (3 ms)
+    ✕ should return "subdomain" when linkurl_subdomain_len is greater than pageurl_subdomain_len (1 ms)
+    ✕ should return "updomain" when linkurl_subdomain_len is less than pageurl_subdomain_len in original code but not in mutated code
+
+  ● gettype function › should return "internal" when linkurl and pageurl have the same domain and subdomain
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "internal"
+    Received: "samelevel"
+
+       6 |         let pageurl = { subdomain: 'sub', domain: 'example', path: '/path' };
+       7 |         let result = gettype(linkurl, pageurl);
+    >  8 |         expect(result).toBe('internal');
+         |                        ^
+       9 |     });
+      10 |
+      11 |     it('should return "subdomain" when linkurl_subdomain_len is greater than pageurl_subdomain_len', function () {
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-6f32ee6/testCase.test.ts:8:24)
+
+  ● gettype function › should return "subdomain" when linkurl_subdomain_len is greater than pageurl_subdomain_len
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "subdomain"
+    Received: "samelevel"
+
+      13 |         let pageurl = { subdomain: 'sub', domain: 'example', path: '/path' };
+      14 |         let result = gettype(linkurl, pageurl);
+    > 15 |         expect(result).toBe('subdomain');
+         |                        ^
+      16 |     });
+      17 |
+      18 |     it('should return "updomain" when linkurl_subdomain_len is less than pageurl_subdomain_len in original code but not in mutated code', function () {
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-6f32ee6/testCase.test.ts:15:24)
+
+  ● gettype function › should return "updomain" when linkurl_subdomain_len is less than pageurl_subdomain_len in original code but not in mutated code
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "updomain"
+    Received: "samelevel"
+
+      20 |         let pageurl = { subdomain: 'sub.sub', domain: 'example', path: '/path' };
+      21 |         let result = gettype(linkurl, pageurl);
+    > 22 |         expect(result).toBe('updomain');
+         |                        ^
+      23 |     });
+      24 | });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-6f32ee6/testCase.test.ts:22:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        1.251 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-6f32ee6/testCase.test.ts".

@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-36cda1c/testCase.test.ts[0m:[93m7[0m:[93m27[0m - [91merror[0m[90m TS6133: [0m'attributes' is declared but its value is never read.
+
+[7m7[0m     delta.eachLine((line, attributes, idx) => {
+[7m [0m [91m                          ~~~~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-36cda1c/testCase.test.ts
+  Delta
+    ✕ eachLine() with newline at the end and index check (4 ms)
+
+  ● Delta › eachLine() with newline at the end and index check
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "Hello"
+    Received: "[object Object]"
+
+       8 |       count += 1;
+       9 |       if (idx === 0) {
+    > 10 |         expect(line.toString()).toEqual('Hello');
+         |                                 ^
+      11 |       } else if (idx === 1) {
+      12 |         expect(line.toString()).toEqual('World!');
+      13 |       } else if (idx === 2) {
+
+      at toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-36cda1c/testCase.test.ts:10:33)
+      at Delta.predicate [as eachLine] (../subject_repositories/delta/src/Delta.ts:422:13)
+      at Object.eachLine (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-36cda1c/testCase.test.ts:7:11)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.395 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-36cda1c/testCase.test.ts".

@@ -1,0 +1,29 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-697096c/testCase.test.ts
+  Empty line handling in database file
+    ✕ should emit error when encountering empty lines in database file (11 ms)
+
+  ● Empty line handling in database file › should emit error when encountering empty lines in database file
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Empty lines never appear in a healthy database"
+    Received: "Could not load corrupted row: "
+
+      31 |       try {
+      32 |         expect(err).toBeInstanceOf(Error);
+    > 33 |         expect(err.message).toBe('Empty lines never appear in a healthy database');
+         |                             ^
+      34 |         done();
+      35 |       } catch (error) {
+      36 |         done(error);
+
+      at Dirty.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-697096c/testCase.test.ts:33:29)
+      at emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:139:20)
+          at Array.forEach (<anonymous>)
+      at ReadStream.forEach (../subject_repositories/node-dirty/lib/dirty/dirty.js:125:15)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.985 s, estimated 1 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-697096c/testCase.test.ts".

@@ -1,0 +1,32 @@
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_8/pending_category/mutant-fdd344b/testCase.test.ts
+  matcher
+    ✕ accepts paths with valid wildcards (14 ms)
+
+  ● matcher › accepts paths with valid wildcards
+
+    expect(received).not.toThrowError()
+
+    Error name:    "Error"
+    Error message: "Path contains invalid characters"
+
+          11 |   constructor (spec: string, version: '1' | '1.0' | '1.1' = '1.1') {
+          12 |     if (spec.match(/^[a-zA-Z0-9_/:~.$+*-]*$/) === null) {
+        > 13 |       throw new Error('Path contains invalid characters')
+             |             ^
+          14 |     }
+          15 |     if (spec.match(/^\//) === null) {
+          16 |       throw new Error('Path must begin with a slash')
+
+      at new Matcher (../subject_repositories/spacl-core/src/matcher.ts:13:13)
+      at Function.for (../subject_repositories/spacl-core/src/matcher.ts:49:12)
+      at llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_8/pending_category/mutant-fdd344b/testCase.test.ts:6:29
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_8/pending_category/mutant-fdd344b/testCase.test.ts:6:43)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_8/pending_category/mutant-fdd344b/testCase.test.ts:6:43)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.316 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_8/pending_category/mutant-fdd344b/testCase.test.ts".

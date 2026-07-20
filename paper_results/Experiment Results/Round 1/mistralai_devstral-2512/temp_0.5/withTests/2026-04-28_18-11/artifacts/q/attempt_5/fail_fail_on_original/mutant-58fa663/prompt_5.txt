@@ -1,0 +1,42 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-58fa663/testCase.test.ts[0m:[93m32[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'null' is not assignable to type '{ (event: "beforeExit", code: number): boolean; (event: "disconnect"): boolean; (event: "exit", code: number): boolean; (event: "rejectionHandled", promise: Promise<unknown>): boolean; (event: "uncaughtException", error: Error): boolean; (event: "uncaughtExceptionMonitor", error: Error): boolean; (event: "unhandledR...'.
+
+[7m32[0m         emit: null // emit exists but is not a function
+[7m  [0m [91m        ~~~~[0m
+
+  [96mnode_modules/@types/node/process.d.ts[0m:[93m1964[0m:[93m17[0m
+    [7m1964[0m                 emit(event: "beforeExit", code: number): boolean;
+    [7m    [0m [96m                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    The expected type comes from property 'emit' which is declared here on type 'Process'
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-58fa663/testCase.test.ts
+  unhandled rejection tracking mutation test
+    ✕ should not track rejections when process is undefined (5 ms)
+
+  ● unhandled rejection tracking mutation test › should not track rejections when process is undefined
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      40 |       // In original: typeof process.emit === "function" is false, so no tracking
+      41 |       // In mutated: typeof process === "object" is true, so it would track
+    > 42 |       expect(Q.getUnhandledReasons().length).toBe(0);
+         |                                              ^
+      43 |     } finally {
+      44 |       // Restore original process
+      45 |       // @ts-ignore - Restoring original process
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-58fa663/testCase.test.ts:42:46)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.573 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-58fa663/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

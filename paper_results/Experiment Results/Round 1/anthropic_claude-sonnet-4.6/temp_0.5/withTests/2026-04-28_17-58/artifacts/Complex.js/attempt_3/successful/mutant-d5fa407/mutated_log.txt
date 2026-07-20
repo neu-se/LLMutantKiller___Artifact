@@ -1,0 +1,25 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-d5fa407/testCase.test.ts
+  Complex acot
+    ✕ detects mutation in acot d=0 branch using subnormal b where b*b underflows (2 ms)
+
+  ● Complex acot › detects mutation in acot d=0 branch using subnormal b where b*b underflows
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      12 |     // new Complex(0, -Infinity).atan() produces NaN
+      13 |     // Mutated: (false), so imaginary = 0, new Complex(0,0).atan() = Complex(0,0)
+    > 14 |     expect(result.isNaN()).toBe(true);
+         |                            ^
+      15 |   });
+      16 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-d5fa407/testCase.test.ts:14:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.598 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-d5fa407/testCase.test.ts".

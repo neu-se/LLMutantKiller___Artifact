@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-85dac84/testCase.test.ts
+  thenReject mutation test
+    ✕ should reject with the provided reason when thenReject is called (6 ms)
+
+  ● thenReject mutation test › should reject with the provided reason when thenReject is called
+
+    expect(received).rejects.toThrow()
+
+    Matcher error: received value must be a promise or a function returning a promise
+
+    Received has value: undefined
+
+      5 |     const reason = new Error("test rejection");
+      6 |     const promise = Q.resolve(42).thenReject(reason);
+    > 7 |     await expect(promise).rejects.toThrow(reason);
+        |                                   ^
+      8 |   });
+      9 | });
+
+      at Object.toThrow (node_modules/expect/build/index.js:204:13)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-85dac84/testCase.test.ts:7:35)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.964 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-85dac84/testCase.test.ts".

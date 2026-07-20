@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-186b7fc/testCase.test.ts
+  tar uncompressed branch
+    ✕ should create a plain tar (not gzip) when COMPRESSION_LEVEL.uncompressed is specified (108 ms)
+
+  ● tar uncompressed branch › should create a plain tar (not gzip) when COMPRESSION_LEVEL.uncompressed is specified
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      25 |             // Mutated code: always uses gzip - WILL have gzip magic bytes
+      26 |             const isGzip = fileBuffer[0] === GZIP_MAGIC_BYTE_1 && fileBuffer[1] === GZIP_MAGIC_BYTE_2;
+    > 27 |             expect(isGzip).toBe(false);
+         |                            ^
+      28 |         } finally {
+      29 |             if (fs.existsSync(uncompressedTarPath)) fs.unlinkSync(uncompressedTarPath);
+      30 |         }
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-186b7fc/testCase.test.ts:27:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.343 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_3/pending_category/mutant-186b7fc/testCase.test.ts".

@@ -1,0 +1,31 @@
+import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+
+describe("Q library array_reduce shim", () => {
+  it("should throw TypeError when reduce is called on empty array without initial value", () => {
+    // Create an array-like object that will trigger the array_reduce shim
+    const emptyArrayLike: any = {
+      length: 0
+    };
+
+    // Force use of the shim by temporarily removing native reduce
+    const originalReduce = Array.prototype.reduce;
+    delete Array.prototype.reduce;
+
+    try {
+      // Directly test the array_reduce function by creating a promise that will use it
+      const testPromise = Q.defer();
+      const testArray: any = Object.create(emptyArrayLike);
+      testArray[0] = undefined;
+      testArray[1] = undefined;
+
+      // This should trigger the shim's initial value determination
+      // which will increment index past length in the empty array
+      expect(() => {
+        Q.all(testArray);
+      }).toThrow(TypeError);
+    } finally {
+      // Restore original reduce
+      Array.prototype.reduce = originalReduce;
+    }
+  });
+});

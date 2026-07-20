@@ -1,0 +1,29 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_10/pending_category/mutant-401702c/testCase.test.ts[0m:[93m7[0m:[93m16[0m - [91merror[0m[90m TS18047: [0m'resultOriginal' is possibly 'null'.
+
+[7m7[0m         expect(resultOriginal.url).toBe('http://_example.com/');
+[7m [0m [91m               ~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_10/pending_category/mutant-401702c/testCase.test.ts
+  parse function
+    ✕ should correctly handle URLs without a protocol and with a character that is matched by w but not by W (4 ms)
+
+  ● parse function › should correctly handle URLs without a protocol and with a character that is matched by w but not by W
+
+    expect(received).toBeNull()
+
+    Received: {"baseurl": null, "domain": "_example.com", "host": "_example.com", "path": "/", "protocol": "http:", "querycount": 0, "search": null, "subdomain": null, "url": "http://_example.com/"}
+
+       7 |         expect(resultOriginal.url).toBe('http://_example.com/');
+       8 |         const resultMutated = parse(url); // run this test case on the mutated code
+    >  9 |         expect(resultMutated).toBeNull(); // this should fail
+         |                               ^
+      10 |     });
+      11 | });
+
+      at Object.toBeNull (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_10/pending_category/mutant-401702c/testCase.test.ts:9:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.002 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_10/pending_category/mutant-401702c/testCase.test.ts".

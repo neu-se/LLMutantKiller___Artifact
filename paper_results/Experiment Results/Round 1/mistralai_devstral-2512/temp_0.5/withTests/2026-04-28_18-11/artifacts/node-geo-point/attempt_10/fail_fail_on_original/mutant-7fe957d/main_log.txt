@@ -1,0 +1,30 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_10/pending_category/mutant-7fe957d/testCase.test.ts
+  GeoPoint distance calculation
+    ✕ should correctly handle floating point precision when r > 1 (2 ms)
+
+  ● GeoPoint distance calculation › should correctly handle floating point precision when r > 1
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 20015086.796
+    Received: 20016321.115207795
+
+    Expected precision:    -2
+    Expected difference: < 50
+    Received difference:   1234.3192077949643
+
+      12 |     // With the mutant, this will produce NaN when r > 1
+      13 |     expect(Number.isNaN(distance)).toBe(false);
+    > 14 |     expect(distance).toBeCloseTo(20015086.796, -2);
+         |                      ^
+      15 |   });
+      16 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_10/pending_category/mutant-7fe957d/testCase.test.ts:14:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.804 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_10/pending_category/mutant-7fe957d/testCase.test.ts".

@@ -1,0 +1,42 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-22bddba/testCase.test.ts[0m:[93m17[0m:[93m20[0m - [91merror[0m[90m TS7006: [0mParameter 'definition' implicitly has an 'any' type.
+
+[7m17[0m         function Q(definition) {
+[7m  [0m [91m                   ~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-22bddba/testCase.test.ts[0m:[93m40[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'undefined' is not assignable to type 'Window & typeof globalThis'.
+  Type 'undefined' is not assignable to type 'Window'.
+
+[7m40[0m         global.window = undefined;
+[7m  [0m [91m        ~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-22bddba/testCase.test.ts[0m:[93m41[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'undefined' is not assignable to type 'Window & typeof globalThis'.
+  Type 'undefined' is not assignable to type 'Window'.
+
+[7m41[0m         global.self = undefined;
+[7m  [0m [91m        ~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-22bddba/testCase.test.ts
+  Q library
+    ✕ should correctly set the Q global in a browser environment (2 ms)
+
+  ● Q library › should correctly set the Q global in a browser environment
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "This environment was not anticipated by Q. Please file a bug."
+
+    Received function did not throw
+
+      43 |         expect(() => {
+      44 |             Q(definition);
+    > 45 |         }).toThrowError("This environment was not anticipated by Q. Please file a bug.");
+         |            ^
+      46 |
+      47 |         global.window = originalWindow;
+      48 |         global.self = originalSelf;
+
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-22bddba/testCase.test.ts:45:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.259 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-22bddba/testCase.test.ts".

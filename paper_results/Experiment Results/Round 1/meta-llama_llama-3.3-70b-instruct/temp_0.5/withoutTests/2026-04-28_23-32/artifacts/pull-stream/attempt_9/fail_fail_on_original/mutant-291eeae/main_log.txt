@@ -1,0 +1,93 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-291eeae/testCase.test.ts
+  ● Test suite failed to run
+
+    ReferenceError: /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-291eeae/testCase.test.ts: The module factory of `jest.mock()` is not allowed to reference any out-of-scope variables.
+    Invalid variable access: drain
+    Allowed objects: AbortController, AbortSignal, AggregateError, Array, ArrayBuffer, Atomics, BigInt, BigInt64Array, BigUint64Array, Blob, Boolean, BroadcastChannel, Buffer, ByteLengthQueuingStrategy, CompressionStream, CountQueuingStrategy, Crypto, CryptoKey, CustomEvent, DOMException, DataView, Date, DecompressionStream, Error, EvalError, Event, EventTarget, File, FinalizationRegistry, Float32Array, Float64Array, FormData, Function, Generator, GeneratorFunction, Headers, Infinity, Int16Array, Int32Array, Int8Array, InternalError, Intl, JSON, Map, Math, MessageChannel, MessageEvent, MessagePort, NaN, Number, Object, Performance, PerformanceEntry, PerformanceMark, PerformanceMeasure, PerformanceObserver, PerformanceObserverEntryList, PerformanceResourceTiming, Promise, Proxy, RangeError, ReadableByteStreamController, ReadableStream, ReadableStreamBYOBReader, ReadableStreamBYOBRequest, ReadableStreamDefaultController, ReadableStreamDefaultReader, ReferenceError, Reflect, RegExp, Request, Response, Set, SharedArrayBuffer, String, SubtleCrypto, Symbol, SyntaxError, TextDecoder, TextDecoderStream, TextEncoder, TextEncoderStream, TransformStream, TransformStreamDefaultController, TypeError, URIError, URL, URLSearchParams, Uint16Array, Uint32Array, Uint8Array, Uint8ClampedArray, WeakMap, WeakRef, WeakSet, WebAssembly, WritableStream, WritableStreamDefaultController, WritableStreamDefaultWriter, __dirname, __filename, arguments, atob, btoa, clearImmediate, clearInterval, clearTimeout, console, crypto, decodeURI, decodeURIComponent, encodeURI, encodeURIComponent, escape, eval, expect, exports, fetch, global, globalThis, isFinite, isNaN, jest, module, parseFloat, parseInt, performance, process, queueMicrotask, require, setImmediate, setInterval, setTimeout, structuredClone, undefined, unescape.
+    Note: This is a precaution to guard against uninitialized mock variables. If it is ensured that the mock is required lazily, variable names prefixed with `mock` (case insensitive) are permitted.
+
+       7 | describe('log function', () => {
+       8 |     it('should log data to the console', () => {
+    >  9 |         jest.mock('../../../../../../../../../../subject_repositories/pull-stream/sinks/drain.js', () => ({ __esModule: true, default: drain }));
+         |                                                                                                                                        ^^^^^
+      10 |         const consoleLogSpy = jest.spyOn(console, 'log');
+      11 |         const done = jest.fn();
+      12 |         (0, log_js_1.default)(done);
+
+      at File.buildCodeFrameError (node_modules/@babel/core/src/transformation/file/file.ts:257:12)
+      at NodePath.buildError [as buildCodeFrameError] (node_modules/@babel/traverse/src/path/index.ts:157:21)
+      at call (node_modules/@babel/traverse/src/visitors.ts:303:14)
+      at NodePath.call [as _call] (node_modules/@babel/traverse/src/path/context.ts:36:20)
+      at NodePath.call (node_modules/@babel/traverse/src/path/context.ts:21:18)
+      at NodePath.call [as visit] (node_modules/@babel/traverse/src/path/context.ts:97:31)
+      at TraversalContext.visit [as visitQueue] (node_modules/@babel/traverse/src/context.ts:148:16)
+      at TraversalContext.visitQueue [as visitMultiple] (node_modules/@babel/traverse/src/context.ts:99:17)
+      at TraversalContext.visitMultiple [as visit] (node_modules/@babel/traverse/src/context.ts:178:19)
+      at visit (node_modules/@babel/traverse/src/traverse-node.ts:208:17)
+      at NodePath.visit (node_modules/@babel/traverse/src/path/context.ts:104:33)
+      at TraversalContext.visit [as visitQueue] (node_modules/@babel/traverse/src/context.ts:148:16)
+      at TraversalContext.visitQueue [as visitSingle] (node_modules/@babel/traverse/src/context.ts:109:19)
+      at TraversalContext.visitSingle [as visit] (node_modules/@babel/traverse/src/context.ts:180:19)
+      at visit (node_modules/@babel/traverse/src/traverse-node.ts:208:17)
+      at NodePath.visit (node_modules/@babel/traverse/src/path/context.ts:104:33)
+      at TraversalContext.visit [as visitQueue] (node_modules/@babel/traverse/src/context.ts:148:16)
+      at TraversalContext.visitQueue [as visitMultiple] (node_modules/@babel/traverse/src/context.ts:99:17)
+      at TraversalContext.visitMultiple [as visit] (node_modules/@babel/traverse/src/context.ts:178:19)
+      at visit (node_modules/@babel/traverse/src/traverse-node.ts:208:17)
+      at NodePath.visit (node_modules/@babel/traverse/src/path/context.ts:104:33)
+      at TraversalContext.visit [as visitQueue] (node_modules/@babel/traverse/src/context.ts:148:16)
+      at TraversalContext.visitQueue [as visitSingle] (node_modules/@babel/traverse/src/context.ts:109:19)
+      at TraversalContext.visitSingle [as visit] (node_modules/@babel/traverse/src/context.ts:180:19)
+      at visit (node_modules/@babel/traverse/src/traverse-node.ts:208:17)
+      at NodePath.visit (node_modules/@babel/traverse/src/path/context.ts:104:33)
+      at TraversalContext.visit [as visitQueue] (node_modules/@babel/traverse/src/context.ts:148:16)
+      at TraversalContext.visitQueue [as visitMultiple] (node_modules/@babel/traverse/src/context.ts:99:17)
+      at TraversalContext.visitMultiple [as visit] (node_modules/@babel/traverse/src/context.ts:178:19)
+      at visit (node_modules/@babel/traverse/src/traverse-node.ts:208:17)
+      at NodePath.visit (node_modules/@babel/traverse/src/path/context.ts:104:33)
+      at TraversalContext.visit [as visitQueue] (node_modules/@babel/traverse/src/context.ts:148:16)
+      at TraversalContext.visitQueue [as visitSingle] (node_modules/@babel/traverse/src/context.ts:109:19)
+      at TraversalContext.visitSingle [as visit] (node_modules/@babel/traverse/src/context.ts:180:19)
+      at visit (node_modules/@babel/traverse/src/traverse-node.ts:208:17)
+      at NodePath.visit (node_modules/@babel/traverse/src/path/context.ts:104:33)
+      at TraversalContext.visit [as visitQueue] (node_modules/@babel/traverse/src/context.ts:148:16)
+      at TraversalContext.visitQueue [as visitMultiple] (node_modules/@babel/traverse/src/context.ts:99:17)
+      at TraversalContext.visitMultiple [as visit] (node_modules/@babel/traverse/src/context.ts:178:19)
+      at visit (node_modules/@babel/traverse/src/traverse-node.ts:208:17)
+      at NodePath.visit (node_modules/@babel/traverse/src/path/context.ts:104:33)
+      at TraversalContext.visit [as visitQueue] (node_modules/@babel/traverse/src/context.ts:148:16)
+      at TraversalContext.visitQueue [as visitSingle] (node_modules/@babel/traverse/src/context.ts:109:19)
+      at TraversalContext.visitSingle [as visit] (node_modules/@babel/traverse/src/context.ts:180:19)
+      at visit (node_modules/@babel/traverse/src/traverse-node.ts:208:17)
+      at NodePath.visit (node_modules/@babel/traverse/src/path/context.ts:104:33)
+      at TraversalContext.visit [as visitQueue] (node_modules/@babel/traverse/src/context.ts:148:16)
+      at TraversalContext.visitQueue [as visitMultiple] (node_modules/@babel/traverse/src/context.ts:99:17)
+      at TraversalContext.visitMultiple [as visit] (node_modules/@babel/traverse/src/context.ts:178:19)
+      at visit (node_modules/@babel/traverse/src/traverse-node.ts:208:17)
+      at NodePath.visit (node_modules/@babel/traverse/src/path/context.ts:104:33)
+      at TraversalContext.visit [as visitQueue] (node_modules/@babel/traverse/src/context.ts:148:16)
+      at TraversalContext.visitQueue [as visitSingle] (node_modules/@babel/traverse/src/context.ts:109:19)
+      at TraversalContext.visitSingle [as visit] (node_modules/@babel/traverse/src/context.ts:180:19)
+      at visit (node_modules/@babel/traverse/src/traverse-node.ts:208:17)
+      at traverse (node_modules/@babel/traverse/src/index.ts:84:15)
+      at transformFile (node_modules/@babel/core/src/transformation/index.ts:119:15)
+          at transformFile.next (<anonymous>)
+      at transformFile (node_modules/@babel/core/src/transformation/index.ts:49:12)
+          at run.next (<anonymous>)
+      at transform (node_modules/@babel/core/src/transform.ts:29:20)
+          at transform.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at sync (node_modules/gensync/index.js:89:14)
+      at fn (node_modules/@babel/core/src/errors/rewrite-stack-trace.ts:99:14)
+      at transformSync (node_modules/@babel/core/src/transform.ts:66:52)
+      at TsJestTransformer.process (node_modules/ts-jest/dist/legacy/ts-jest-transformer.js:135:32)
+      at ScriptTransformer.transformSource (node_modules/@jest/transform/build/ScriptTransformer.js:545:31)
+      at ScriptTransformer._transformAndBuildScript (node_modules/@jest/transform/build/ScriptTransformer.js:674:40)
+      at ScriptTransformer.transform (node_modules/@jest/transform/build/ScriptTransformer.js:726:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        1.912 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-291eeae/testCase.test.ts".

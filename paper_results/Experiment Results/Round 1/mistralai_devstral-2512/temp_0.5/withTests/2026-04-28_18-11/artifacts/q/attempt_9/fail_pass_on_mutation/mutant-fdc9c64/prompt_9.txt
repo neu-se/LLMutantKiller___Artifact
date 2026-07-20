@@ -1,0 +1,40 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-fdc9c64/testCase.test.ts
+  isInternalFrame mutation detection
+    ✕ should correctly filter stack frames with line numbers outside range (4 ms)
+
+  ● isInternalFrame mutation detection › should correctly filter stack frames with line numbers outside range
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 2
+    Received: 3
+
+      36 |       // With mutated code: line 1 would be kept because of the OR condition
+      37 |       // We expect the original to filter more aggressively
+    > 38 |       expect(qJsFrames.length).toBe(2);
+         |                                ^
+      39 |
+      40 |       // Verify line 1 is filtered out in original but kept in mutated
+      41 |       const hasLine1 = stackLines.some(line => line.includes('q.js:1:10'));
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-fdc9c64/testCase.test.ts:38:32)
+      at rejected (../subject_repositories/q/q.js:864:24)
+      at _rejected (../subject_repositories/q/q.js:890:30)
+      at Promise.rejected (../subject_repositories/q/q.js:1142:31)
+      at Promise.apply [as promiseDispatch] (../subject_repositories/q/q.js:808:41)
+      at apply (../subject_repositories/q/q.js:570:49)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.072 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-fdc9c64/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

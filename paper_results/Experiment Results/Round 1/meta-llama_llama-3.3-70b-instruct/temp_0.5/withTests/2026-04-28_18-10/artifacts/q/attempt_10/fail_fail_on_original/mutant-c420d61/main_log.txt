@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-c420d61/testCase.test.ts[0m:[93m7[0m:[93m41[0m - [91merror[0m[90m TS2339: [0mProperty 'getFileNameAndLineNumber' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'.
+
+[7m7[0m         const fileNameAndLineNumber = q.getFileNameAndLineNumber(stackLine);
+[7m [0m [91m                                        ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-c420d61/testCase.test.ts[0m:[93m10[0m:[93m18[0m - [91merror[0m[90m TS2339: [0mProperty 'isInternalFrame' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'.
+
+[7m10[0m         expect(q.isInternalFrame(stackLine)).toBe(true);
+[7m  [0m [91m                 ~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-c420d61/testCase.test.ts
+  q
+    ✕ should filter out internal frames (2 ms)
+
+  ● q › should filter out internal frames
+
+    TypeError: q_js_1.default.getFileNameAndLineNumber is not a function
+
+       5 |         const error = new Error("Test error");
+       6 |         const stackLine = "    at isInternalFrame (q.js:1234:12)";
+    >  7 |         const fileNameAndLineNumber = q.getFileNameAndLineNumber(stackLine);
+         |                                         ^
+       8 |         expect(fileNameAndLineNumber[0]).toBeDefined();
+       9 |         expect(fileNameAndLineNumber[1]).toBeDefined();
+      10 |         expect(q.isInternalFrame(stackLine)).toBe(true);
+
+      at Object.getFileNameAndLineNumber (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-c420d61/testCase.test.ts:7:41)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.818 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-c420d61/testCase.test.ts".

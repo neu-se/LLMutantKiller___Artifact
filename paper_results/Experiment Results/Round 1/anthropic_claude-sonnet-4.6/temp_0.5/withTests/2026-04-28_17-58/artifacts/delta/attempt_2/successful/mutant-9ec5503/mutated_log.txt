@@ -1,0 +1,32 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-9ec5503/testCase.test.ts
+  compose()
+    ✕ should correctly compose a delta with an empty other delta without throwing (41 ms)
+
+  ● compose() › should correctly compose a delta with an empty other delta without throwing
+
+    expect(received).not.toThrow()
+
+    Error name:    "TypeError"
+    Error message: "Cannot read properties of undefined (reading 'retain')"
+
+          242 |          true &&
+          243 |
+        > 244 |       typeof firstOther.retain === 'number' &&
+              |                         ^
+          245 |       firstOther.attributes == null
+          246 |     ) {
+          247 |       let firstLeft = firstOther.retain;
+
+      at Delta.retain [as compose] (../subject_repositories/delta/src/Delta.ts:244:25)
+      at compose (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-9ec5503/testCase.test.ts:10:20)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-9ec5503/testCase.test.ts:10:36)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-9ec5503/testCase.test.ts:10:36)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.268 s, estimated 4 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-9ec5503/testCase.test.ts".

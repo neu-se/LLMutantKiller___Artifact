@@ -1,0 +1,33 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-9d0cdac/testCase.test.ts[0m:[93m7[0m:[93m16[0m - [91merror[0m[90m TS18047: [0m'result' is possibly 'null'.
+
+[7m7[0m         expect(result.url).toBe("http://www.google.com/");
+[7m [0m [91m               ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/crawler-url-parser/crawler-url-parser.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/crawler-url-parser/crawler-url-parser.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+(node:21501) [DEP0170] DeprecationWarning: The URL http://www:google.com is invalid. Future versions of Node.js will throw an error.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-9d0cdac/testCase.test.ts
+  parse function
+    ✓ should pass when the input URL does not have a protocol and the condition is met (2 ms)
+    ✕ should fail when the input URL does not have a protocol and the condition is not met (1 ms)
+
+  ● parse function › should fail when the input URL does not have a protocol and the condition is not met
+
+    expect(received).toBeNull()
+
+    Received: {"baseurl": null, "domain": null, "host": "www", "path": "/:google.com", "protocol": "http:", "querycount": 0, "search": null, "subdomain": null, "url": "http://www/:google.com"}
+
+      11 |         const url = "www:google.com";
+      12 |         const result = parse(url);
+    > 13 |         expect(result).toBeNull();
+         |                        ^
+      14 |     });
+      15 | });
+
+      at Object.toBeNull (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-9d0cdac/testCase.test.ts:13:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 passed, 2 total
+Snapshots:   0 total
+Time:        3.404 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-9d0cdac/testCase.test.ts".

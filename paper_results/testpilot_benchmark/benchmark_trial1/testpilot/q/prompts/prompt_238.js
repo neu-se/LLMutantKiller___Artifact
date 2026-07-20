@@ -1,0 +1,40 @@
+The test:
+```
+let mocha = require('mocha');
+let assert = require('assert');
+let q = require('q');
+
+describe('test q', function() {
+    it('test q.makePromise.prototype.denodeify - success case', function(done) {
+        // Mock a Node.js-style function that succeeds
+        function mockAsyncFunction(data, callback) {
+            setTimeout(() => {
+                callback(null, `processed: ${data}`);
+            }, 10);
+        }
+
+        // Create a promise and use denodeify on it
+        let promise = q.makePromise(function(resolve, reject) {
+            resolve(mockAsyncFunction);
+        });
+
+        let denodeified = promise.denodeify();
+        
+        denodeified('test data')
+            .then(result => {
+                assert.strictEqual(result, 'processed: test data');
+                done();
+            })
+            .catch(done);
+    });
+
+    })
+``` 
+failed with the following error message:
+```
+Function.prototype.apply was called on [object Object], which is an object and not a function  
+```
+
+Your task is to modify the above code to fix the test. 
+
+Provide your answer as a fenced code block.

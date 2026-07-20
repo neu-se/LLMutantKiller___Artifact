@@ -1,0 +1,34 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/pull-stream/sinks/find.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/pull-stream/sinks/find.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-da35eb1/testCase.test.ts
+  find - error propagation when no match found
+    ✕ should pass the actual error to callback when stream ends with an error and no item was found (2 ms)
+
+  ● find - error propagation when no match found › should pass the actual error to callback when stream ends with an error and no item was found
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: [Error: stream error]
+    Received: null
+
+      13 |       (d: any) => d === 'never-matches',
+      14 |       (err: any, data: any) => {
+    > 15 |         expect(err).toBe(expectedError);
+         |                     ^
+      16 |         expect(data).toBeNull();
+      17 |         done();
+      18 |       }
+
+      at toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-da35eb1/testCase.test.ts:15:21)
+      at cb (../subject_repositories/pull-stream/sinks/find.js:22:8)
+      at done (../subject_repositories/pull-stream/sinks/drain.js:26:24)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-da35eb1/testCase.test.ts:9:7)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:45:8)
+      at Object.sink (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-da35eb1/testCase.test.ts:21:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.094 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-da35eb1/testCase.test.ts".

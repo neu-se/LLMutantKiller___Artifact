@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-9937593/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/sinks/drain.js"' has no exported member 'drain'.
+
+[7m1[0m import { drain } from '../../../../../../../../../../../subject_repositories/pull-stream/sinks/drain.js';
+[7m [0m [91m         ~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-9937593/testCase.test.ts[0m:[93m2[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/sources/values.js"' has no exported member 'values'.
+
+[7m2[0m import { values } from '../../../../../../../../../../../subject_repositories/pull-stream/sources/values.js';
+[7m [0m [91m         ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-9937593/testCase.test.ts
+  drain
+    ✕ should call done with error when end is an error (1 ms)
+
+  ● drain › should call done with error when end is an error
+
+    TypeError: (0 , drain_js_1.drain) is not a function
+
+       5 |   it('should call done with error when end is an error', () => {
+       6 |     const done = jest.fn();
+    >  7 |     const drainStream = drain(() => true, done);
+         |                              ^
+       8 |
+       9 |     const read = jest.fn((end, cb) => {
+      10 |       cb(new Error('test error'), null);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-9937593/testCase.test.ts:7:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.054 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_5/pending_category/mutant-9937593/testCase.test.ts".

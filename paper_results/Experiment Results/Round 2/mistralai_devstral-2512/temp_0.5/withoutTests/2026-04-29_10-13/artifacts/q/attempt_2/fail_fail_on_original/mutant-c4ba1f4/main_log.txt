@@ -1,0 +1,61 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-c4ba1f4/testCase.test.ts[0m:[93m11[0m:[93m9[0m - [91merror[0m[90m TS2741: [0mProperty '__promisify__' is missing in type '(callback: (...args: any[]) => void) => void' but required in type 'typeof setImmediate'.
+
+[7m11[0m         global.setImmediate = function(callback: (...args: any[]) => void) {
+[7m  [0m [91m        ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/node/timers.d.ts[0m:[93m180[0m:[93m22[0m
+    [7m180[0m             export { __promisify__ };
+    [7m   [0m [96m                     ~~~~~~~~~~~~~[0m
+    '__promisify__' is declared here.
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-c4ba1f4/testCase.test.ts[0m:[93m20[0m:[93m15[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 0.
+
+[7m20[0m             Q.resolve().then(() => {
+[7m  [0m [91m              ~~~~~~~[0m
+
+  [96m../subject_repositories/q/q.js[0m:[93m497[0m:[93m12[0m
+    [7m497[0m function Q(value) {
+    [7m   [0m [96m           ~~~~~[0m
+    An argument for 'value' was not provided.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-c4ba1f4/testCase.test.ts (6.159 s)
+  Q.nextTick behavior with setImmediate
+    ✕ should use setImmediate when available for scheduling tasks (5003 ms)
+
+  ● Q.nextTick behavior with setImmediate › should use setImmediate when available for scheduling tasks
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      29 |                 // In the original code, setImmediate should have been called
+      30 |                 // In the mutated code, it won't be called
+    > 31 |                 expect(setImmediateCalled).toBe(true);
+         |                                            ^
+      32 |                 expect(resolved).toBe(true);
+      33 |                 done();
+      34 |             }, 50);
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-c4ba1f4/testCase.test.ts:31:44)
+
+  ● Q.nextTick behavior with setImmediate › should use setImmediate when available for scheduling tasks
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      3 |
+      4 | describe("Q.nextTick behavior with setImmediate", () => {
+    > 5 |     it("should use setImmediate when available for scheduling tasks", (done) => {
+        |     ^
+      6 |         // Store original setImmediate if it exists
+      7 |         const originalSetImmediate = global.setImmediate;
+      8 |         let setImmediateCalled = false;
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-c4ba1f4/testCase.test.ts:5:5)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-c4ba1f4/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.315 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-c4ba1f4/testCase.test.ts".

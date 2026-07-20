@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-e6b7943/testCase.test.ts
+  isStopIteration mutation detection
+    ✕ should reject with a regular error, not resolve, when a non-QReturnValue error is thrown in SpiderMonkey path (11 ms)
+
+  ● isStopIteration mutation detection › should reject with a regular error, not resolve, when a non-QReturnValue error is thrown in SpiderMonkey path
+
+    expect(received).rejects.toBe()
+
+    Received promise resolved instead of rejected
+    Resolved to value: undefined
+
+      15 |       });
+      16 |       
+    > 17 |       await expect(asyncFn()).rejects.toBe(error);
+         |             ^
+      18 |     } finally {
+      19 |       delete (global as any).StopIteration;
+      20 |     }
+
+      at expect (node_modules/expect/build/index.js:113:15)
+      at Object.expect (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-e6b7943/testCase.test.ts:17:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.738 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-e6b7943/testCase.test.ts".

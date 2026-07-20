@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-4f30cd1/testCase.test.ts
+  extract function
+    ✕ should exclude links with href shorter than 3 characters (8 ms)
+
+  ● extract function › should exclude links with href shorter than 3 characters
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      18 |     // In mutated: "ab" has length < 3 but doesn't match javascript/mailto/ftp, so AND is false, NOT skipped
+      19 |     // "ab" relative to "http://example.com" resolves to "http://example.com/ab"
+    > 20 |     expect(urls.some((url: string) => url.includes("/ab"))).toBe(false);
+         |                                                             ^
+      21 |   });
+      22 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-4f30cd1/testCase.test.ts:20:61)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.698 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-4f30cd1/testCase.test.ts".

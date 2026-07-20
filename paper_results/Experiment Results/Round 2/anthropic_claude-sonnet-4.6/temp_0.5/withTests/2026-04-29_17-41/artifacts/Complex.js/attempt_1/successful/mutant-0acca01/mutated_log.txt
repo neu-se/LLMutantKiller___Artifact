@@ -1,0 +1,30 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-0acca01/testCase.test.ts
+  Complex acoth mutation test
+    ✕ should correctly compute acoth(2) as atanh(0.5) (3 ms)
+
+  ● Complex acoth mutation test › should correctly compute acoth(2) as atanh(0.5)
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.5493061443340548
+    Received: 0.12565721414045308
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   0.4236489301936017
+
+       9 |     const result = new Complex(2, 0).acoth();
+      10 |     const expected = Math.atanh(0.5); // ≈ 0.5493061443340548
+    > 11 |     expect(result.re).toBeCloseTo(expected, 10);
+         |                       ^
+      12 |     expect(result.im).toBeCloseTo(0, 10);
+      13 |   });
+      14 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-0acca01/testCase.test.ts:11:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-0acca01/testCase.test.ts".

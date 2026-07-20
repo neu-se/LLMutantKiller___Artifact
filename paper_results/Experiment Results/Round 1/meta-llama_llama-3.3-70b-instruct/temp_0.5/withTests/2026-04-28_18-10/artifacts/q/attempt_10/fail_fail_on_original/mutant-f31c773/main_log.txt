@@ -1,0 +1,41 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-f31c773/testCase.test.ts
+  Q.set function
+    ✕ should set a property on an object and return a promise for undefined (2 ms)
+    ✕ should set a property on an object with the correct value when called with an array (1 ms)
+
+  ● Q.set function › should set a property on an object and return a promise for undefined
+
+    Cannot find module '../../../../q.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-f31c773/testCase.test.ts'
+
+       5 |         const value = "testValue";
+       6 |
+    >  7 |         const Q = require('../../../../q.js');
+         |                   ^
+       8 |         return Q(object).set(key, value).then((result: any) => {
+       9 |             expect(result).toBeUndefined();
+      10 |             expect(object[key]).toBe(value);
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-f31c773/testCase.test.ts:7:19)
+
+  ● Q.set function › should set a property on an object with the correct value when called with an array
+
+    Cannot find module '../../../../q.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-f31c773/testCase.test.ts'
+
+      17 |         const value = "testValue";
+      18 |
+    > 19 |         const Q = require('../../../../q.js');
+         |                   ^
+      20 |         return Q(object).set(key, [value]).then((result: any) => {
+      21 |             expect(result).toBeUndefined();
+      22 |             expect(object[key]).toEqual([value]);
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-f31c773/testCase.test.ts:19:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.483 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-f31c773/testCase.test.ts".

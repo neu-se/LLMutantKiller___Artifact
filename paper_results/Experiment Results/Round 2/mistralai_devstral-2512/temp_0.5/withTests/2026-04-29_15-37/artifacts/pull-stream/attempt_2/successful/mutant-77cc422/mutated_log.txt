@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/pull-stream/sources/count.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/pull-stream/sources/count.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-77cc422/testCase.test.ts (6.809 s)
+  count source end handling
+    ✕ should properly handle end signal in count source (5002 ms)
+
+  ● count source end handling › should properly handle end signal in count source
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      14 |
+      15 |     setImmediate(() => {
+    > 16 |       expect(endHandled).toBe(true);
+         |                          ^
+      17 |       done();
+      18 |     });
+      19 |   });
+
+      at Immediate.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-77cc422/testCase.test.ts:16:26)
+
+  ● count source end handling › should properly handle end signal in count source
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe('count source end handling', () => {
+    > 4 |   it('should properly handle end signal in count source', (done) => {
+        |   ^
+      5 |     const count = require("../../../../../../../../../../../subject_repositories/pull-stream/sources/count.js");
+      6 |     const source = count(5);
+      7 |     let endHandled = false;
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-77cc422/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-77cc422/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.988 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-77cc422/testCase.test.ts".

@@ -1,0 +1,31 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_7/pending_category/mutant-f4e8972/testCase.test.ts
+  extract function input type handling
+    ✕ should differentiate between string and non-string input types (6 ms)
+
+  ● extract function input type handling › should differentiate between string and non-string input types
+
+    TypeError: $ is not a function
+
+      86 |
+      87 | 	let $ = typeof data === "string" ? cheerio.load(data) : data;
+    > 88 | 	let embedBaseUrlStr = $('base').attr('href');
+         | 	                      ^
+      89 | 	let embedBaseUrl = parse(embedBaseUrlStr);
+      90 | 	baseUrl = embedBaseUrl ? embedBaseUrl : baseUrl;
+      91 | 	let baseUrlStr = baseUrl ? baseUrl.url : null;
+
+      at $ (../subject_repositories/crawler-url-parser/crawler-url-parser.js:88:24)
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_7/pending_category/mutant-f4e8972/testCase.test.ts:9:36)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.604 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_7/pending_category/mutant-f4e8972/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-c4ba1f4/testCase.test.ts
+  Q setImmediate branch
+    ✕ should use setImmediate for scheduling when available, firing after process.nextTick (6 ms)
+
+  ● Q setImmediate branch › should use setImmediate for scheduling when available, firing after process.nextTick
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+    -   "native-nextTick",
+        "Q",
+    +   "native-nextTick",
+      ]
+
+      23 |           try {
+      24 |             // Original (setImmediate): native-nextTick runs before Q's setImmediate
+    > 25 |             expect(order).toEqual(["native-nextTick", "Q"]);
+         |                           ^
+      26 |             resolve();
+      27 |           } catch (e) {
+      28 |             reject(e);
+
+      at Immediate.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-c4ba1f4/testCase.test.ts:25:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.22 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-c4ba1f4/testCase.test.ts".

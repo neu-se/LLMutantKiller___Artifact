@@ -1,0 +1,15 @@
+describe('Q', () => {
+    it('should correctly parse stack line with line number', () => {
+        var error = new Error();
+        error.stack = "Error\n    at test (file.js:10:11)";
+        var stackLines = error.stack.split("\n");
+        var line = stackLines[1];
+        var attempt3 = /.*@(.+):(\d+):(\d+)$/.exec(line);
+        if (attempt3 === null) {
+            throw new Error("attempt3 is null");
+        }
+        expect(attempt3[2]).toBe('11');
+        var attempt4 = /.*@(.+):(\D+):(\d+)$/.exec(line);
+        expect(attempt4).toBeNull();
+    });
+});

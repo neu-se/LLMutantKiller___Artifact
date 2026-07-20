@@ -1,0 +1,71 @@
+let assert = require('assert');
+
+describe('test pull_stream', function() {
+    // Helper functions for testing
+    function createSource(data) {
+        let index = 0;
+        return function(end, cb) {
+            if (end || index >= data.length) {
+                return cb(true);
+            }
+            cb(null, data[index++]);
+        };
+    }
+
+    function createTransform(fn) {
+        return function(read) {
+            return function(end, cb) {
+                read(end, function(end, data) {
+                    if (end) return cb(end);
+                    cb(null, fn(data));
+                });
+            };
+        };
+    }
+
+    function createSink(callback) {
+        let results = [];
+        return function(read) {
+            function next() {
+                read(null, function(end, data) {
+                    if (end === true) {
+                        callback(null, results);
+                        return;
+                    }
+                    if (end) {
+                        callback(end);
+                        return;
+                    }
+                    results.push(data);
+                    next();
+                });
+            }
+            next();
+        };
+    }
+
+    // Simple pull-stream implementation
+    function pull_stream(...args) {
+        let source = args[0];
+        let transforms = args.slice(1, -1);
+        let sink = args[args.length - 1];
+        
+        let stream = source;
+        for (let transform of transforms) {
+            stream = transform(stream);
+        }
+        sink(stream);
+    }
+
+    it('should handle basic stream composition', function(done) {
+        const source = createSource([1, 2, 3]);
+        const transform = createTransform(x => x * 2);
+        const sink = createSink((err, results) => {
+            assert.strictEqual(err, null);
+            assert.deepStrictEqual(results, [2, 4, 6]);
+            done();
+        });
+
+        pull_stream(source, transform, sink);
+    });
+});

@@ -1,0 +1,29 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-3310a58/testCase.test.ts[0m:[93m1[0m:[93m19[0m - [91merror[0m[90m TS2307: [0mCannot find module './q' or its corresponding type declarations.
+
+[7m1[0m import { Q } from "./q";
+[7m [0m [91m                  ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-3310a58/testCase.test.ts
+  Q long stack support
+    ✕ should enable long stack support when Q_DEBUG is set in process.env (2 ms)
+
+  ● Q long stack support › should enable long stack support when Q_DEBUG is set in process.env
+
+    Cannot find module './q' from 'llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-3310a58/testCase.test.ts'
+
+      11 |     // Reset Q to pick up the new environment variable
+      12 |     // We need to re-import Q to ensure the module is re-evaluated with the new env
+    > 13 |     delete require.cache[require.resolve("./q")];
+         |                                  ^
+      14 |     const { Q: QWithDebug } = require("./q");
+      15 |
+      16 |     // Verify that long stack support is enabled
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.resolve (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-3310a58/testCase.test.ts:13:34)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.314 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-3310a58/testCase.test.ts".

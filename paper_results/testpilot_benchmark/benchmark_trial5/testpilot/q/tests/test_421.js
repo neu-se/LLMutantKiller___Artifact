@@ -1,0 +1,19 @@
+let mocha = require('mocha');
+let assert = require('assert');
+let q = require('q');
+
+describe('test q', function() {
+    it('test q.spread with array values', function(done) {
+        let promise = q.resolve([1, 2, 3]);
+        
+        q.spread(promise, function(a, b, c) {
+            assert.equal(a, 1);
+            assert.equal(b, 2);
+            assert.equal(c, 3);
+            done();
+        }, function(error) {
+            done(error);
+        });
+    });
+
+    })

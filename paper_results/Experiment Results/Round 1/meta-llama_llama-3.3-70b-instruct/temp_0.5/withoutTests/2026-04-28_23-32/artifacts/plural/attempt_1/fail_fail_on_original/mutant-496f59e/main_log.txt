@@ -1,0 +1,32 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/plural/attempt_1/pending_category/mutant-496f59e/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2616: [0m'plural' can only be imported by using 'import plural = require("../../../../../../../../../../../subject_repositories/plural/index.js")' or a default import.
+
+[7m1[0m import { plural } from "../../../../../../../../../../../subject_repositories/plural/index.js";
+[7m [0m [91m         ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/plural/attempt_1/pending_category/mutant-496f59e/testCase.test.ts[0m:[93m9[0m:[93m39[0m - [91merror[0m[90m TS7006: [0mParameter 'w' implicitly has an 'any' type.
+
+[7m9[0m     plural.addRule(testRule, function(w) { return testResult });
+[7m [0m [91m                                      ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/plural/attempt_1/pending_category/mutant-496f59e/testCase.test.ts
+  plural function
+    ✕ should correctly handle rules with functions (1 ms)
+
+  ● plural function › should correctly handle rules with functions
+
+    TypeError: Cannot read properties of undefined (reading 'rules')
+
+       6 |     const testRule = /test$/i;
+       7 |     const testResult = 'tested';
+    >  8 |     const originalRulesLength = plural.rules.length;
+         |                                        ^
+       9 |     plural.addRule(testRule, function(w) { return testResult });
+      10 |     expect(plural(testWord, 2)).toBe(testResult);
+      11 |     expect(plural.rules.length).toBe(originalRulesLength + 1);
+
+      at Object.rules (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/plural/attempt_1/pending_category/mutant-496f59e/testCase.test.ts:8:40)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.827 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/plural/attempt_1/pending_category/mutant-496f59e/testCase.test.ts".

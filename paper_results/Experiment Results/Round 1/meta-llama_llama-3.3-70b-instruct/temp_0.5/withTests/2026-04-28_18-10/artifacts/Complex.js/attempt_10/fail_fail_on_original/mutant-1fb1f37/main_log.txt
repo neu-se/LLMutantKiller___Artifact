@@ -1,0 +1,29 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-1fb1f37/testCase.test.ts
+  Complex.js
+    ✕ should return the correct result for cosh function (3 ms)
+
+  ● Complex.js › should return the correct result for cosh function
+
+    expect(received).not.toContain(expected) // indexOf
+
+    Expected substring: not "return x"
+    Received string:        "function (x) {
+          return x;
+        }"
+
+       8 |     const originalCosh = Math.cosh;
+       9 |     Math.cosh = function(x) { return x; };
+    > 10 |     expect(Math.cosh.toString()).not.toContain('return x');
+         |                                      ^
+      11 |     Math.cosh = originalCosh;
+      12 |   });
+      13 | });
+
+      at Object.toContain (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-1fb1f37/testCase.test.ts:10:38)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.204 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_10/pending_category/mutant-1fb1f37/testCase.test.ts".

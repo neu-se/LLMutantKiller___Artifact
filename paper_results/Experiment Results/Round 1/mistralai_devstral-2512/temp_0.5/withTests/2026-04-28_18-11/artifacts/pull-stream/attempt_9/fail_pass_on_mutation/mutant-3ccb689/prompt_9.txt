@@ -1,0 +1,32 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-3ccb689/testCase.test.ts
+  asyncMap abort behavior
+    ✕ should immediately return abort error when aborted while not busy (19 ms)
+
+  ● asyncMap abort behavior › should immediately return abort error when aborted while not busy
+
+    Abort callback should be immediate (<5ms) when not busy
+
+      45 |         // So we can detect the mutation by checking the timing
+      46 |         if (elapsed > 5) {
+    > 47 |           done(new Error('Abort callback should be immediate (<5ms) when not busy'));
+         |                ^
+      48 |           return;
+      49 |         }
+      50 |
+
+      at llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-3ccb689/testCase.test.ts:47:16
+      at cb (../subject_repositories/pull-stream/throughs/async-map.js:18:11)
+      at Timeout.cb [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-3ccb689/testCase.test.ts:11:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.637 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-3ccb689/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

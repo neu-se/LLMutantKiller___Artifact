@@ -1,0 +1,35 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-5212880/testCase.test.ts[0m:[93m18[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 4 arguments, but got 2.
+
+[7m18[0m     Q.done(promise, function(value: number) {
+[7m  [0m [91m      ~~~~[0m
+
+  [96m../subject_repositories/q/q.js[0m:[93m1799[0m:[93m42[0m
+    [7m1799[0m    Q.done = function (object, fulfilled, rejected, progress) {};
+    [7m    [0m [96m                                         ~~~~~~~~[0m
+    An argument for 'rejected' was not provided.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-5212880/testCase.test.ts (6.174 s)
+  Q.done
+    ✕ should forward to the promise's done method and throw unhandled rejections (5003 ms)
+
+  ● Q.done › should forward to the promise's done method and throw unhandled rejections
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("Q.done", () => {
+    > 4 |   it("should forward to the promise's done method and throw unhandled rejections", async () => {
+        |   ^
+      5 |     // In the original code, Q.done(object, fulfilled, rejected, progress) calls
+      6 |     // Q(object).done(fulfilled, rejected, progress)
+      7 |     // In the mutated code, Q.done is a no-op function that does nothing
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-5212880/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-5212880/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.333 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-5212880/testCase.test.ts".

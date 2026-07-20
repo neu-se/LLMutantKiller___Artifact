@@ -1,0 +1,36 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_8/pending_category/mutant-a95e7e4/testCase.test.ts[0m:[93m30[0m:[93m15[0m - [91merror[0m[90m TS6133: [0m'statsUncompressed' is declared but its value is never read.
+
+[7m30[0m         const statsUncompressed = fs.statSync(testUNCOMPRESSEDZIP);
+[7m  [0m [91m              ~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_8/pending_category/mutant-a95e7e4/testCase.test.ts[0m:[93m31[0m:[93m44[0m - [91merror[0m[90m TS2552: [0mCannot find name 'testUNcompressedZIP'. Did you mean 'testUNCOMPRESSEDZIP'?
+
+[7m31[0m         const fileBuffer = fs.readFileSync(testUNcompressedZIP);
+[7m  [0m [91m                                           ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_8/pending_category/mutant-a95e7e4/testCase.test.ts[0m:[93m7[0m:[93m11[0m
+    [7m7[0m     const testUNCOMPRESSEDZIP = path.resolve(__dirname, 'testUNCOMPRESSED.zip');
+    [7m [0m [96m          ~~~~~~~~~~~~~~~~~~~[0m
+    'testUNCOMPRESSEDZIP' is declared here.
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_8/pending_category/mutant-a95e7e4/testCase.test.ts
+  Zip-A-Folder Test
+    ✕ should create an uncompressed zip file when compression level is set to uncompressed (15 ms)
+
+  ● Zip-A-Folder Test › should create an uncompressed zip file when compression level is set to uncompressed
+
+    ReferenceError: testUNcompressedZIP is not defined
+
+      29 |         });
+      30 |         const statsUncompressed = fs.statSync(testUNCOMPRESSEDZIP);
+    > 31 |         const fileBuffer = fs.readFileSync(testUNcompressedZIP);
+         |                                            ^
+      32 |         let isStoreMethodUsed = false;
+      33 |         for (let i = 0; i < fileBuffer.length; i++) {
+      34 |             if (fileBuffer[i] === 0x00 && fileBuffer[i + 1] === 0x00) {
+
+      at Object.testUNcompressedZIP (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_8/pending_category/mutant-a95e7e4/testCase.test.ts:31:44)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.796 s, estimated 2 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_8/pending_category/mutant-a95e7e4/testCase.test.ts".

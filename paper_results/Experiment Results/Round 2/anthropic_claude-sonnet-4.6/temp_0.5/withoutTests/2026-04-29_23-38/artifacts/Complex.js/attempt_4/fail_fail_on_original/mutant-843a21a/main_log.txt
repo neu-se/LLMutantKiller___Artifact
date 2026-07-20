@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-843a21a/testCase.test.ts
+  Complex asech
+    ✕ should return Infinity real part for subnormal input where d underflows to zero (3 ms)
+
+  ● Complex asech › should return Infinity real part for subnormal input where d underflows to zero
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: Infinity
+    Received: NaN
+
+       7 |     // Mutated:  fallback uses a*0 = 0       => Complex(0, 0).acosh()       => re=0
+       8 |     const result = new Complex(Number.MIN_VALUE, 0).asech();
+    >  9 |     expect(result.re).toBe(Infinity);
+         |                       ^
+      10 |     expect(result.im).toBe(0);
+      11 |   });
+      12 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-843a21a/testCase.test.ts:9:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.416 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-843a21a/testCase.test.ts".

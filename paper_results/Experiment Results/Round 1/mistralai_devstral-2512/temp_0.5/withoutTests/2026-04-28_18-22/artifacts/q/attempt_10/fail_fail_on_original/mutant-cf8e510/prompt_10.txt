@@ -1,0 +1,34 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_9/pending_category/mutant-cf8e510/testCase.test.ts
+  makeStackTraceLong mutation test
+    ✕ should correctly handle error object with stack trace (4 ms)
+
+  ● makeStackTraceLong mutation test › should correctly handle error object with stack trace
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "From previous event:"
+    Received string:    "Error: Test error
+
+       5 |   it("should correctly handle error object with stack trace", async () => {
+       6 |     // Create a rejected promise with an error object that has a stack trace
+    >  7 |     const error = new Error("Test error");
+         |                   ^
+       8 |     const promise = Q.reject(error);
+       9 |
+      10 |     // Force long stack traces to be enabled
+
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_9/pending_category/mutant-cf8e510/testCase.test.ts:7:19)
+      at Object.toContain (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_9/pending_category/mutant-cf8e510/testCase.test.ts:39:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.494 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_9/pending_category/mutant-cf8e510/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

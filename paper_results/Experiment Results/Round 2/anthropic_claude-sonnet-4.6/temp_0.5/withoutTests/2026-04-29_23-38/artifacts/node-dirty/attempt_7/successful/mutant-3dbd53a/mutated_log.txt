@@ -1,0 +1,52 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-3dbd53a/testCase.test.ts[0m:[93m17[0m:[93m34[0m - [91merror[0m[90m TS2339: [0mProperty 'readable' does not exist on type 'Writable'.
+
+[7m17[0m       if (this.writable && !this.readable) {
+[7m  [0m [91m                                 ~~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-3dbd53a/testCase.test.ts[0m:[93m20[0m:[93m52[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'BufferEncoding'.
+
+[7m20[0m       return originalSetDefaultEncoding.call(this, encoding);
+[7m  [0m [91m                                                   ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-3dbd53a/testCase.test.ts (6.224 s)
+  Dirty write stream encoding
+    ✕ should call setDefaultEncoding with utf-8 when creating write stream (5003 ms)
+
+  ● Dirty write stream encoding › should call setDefaultEncoding with utf-8 when creating write stream
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "utf-8"
+    Received: undefined
+
+      26 |       Writable.prototype.setDefaultEncoding = originalSetDefaultEncoding;
+      27 |       
+    > 28 |       expect(writeStreamSetDefaultEncodingArg).toBe('utf-8');
+         |                                                ^
+      29 |       
+      30 |       db.close();
+      31 |       db.once('write_close', () => {
+
+      at Dirty.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-3dbd53a/testCase.test.ts:28:48)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:114:18)
+
+  ● Dirty write stream encoding › should call setDefaultEncoding with utf-8 when creating write stream
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       6 |
+       7 | describe('Dirty write stream encoding', () => {
+    >  8 |   it('should call setDefaultEncoding with utf-8 when creating write stream', (done) => {
+         |   ^
+       9 |     const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'dirty-test-'));
+      10 |     const dbPath = path.join(tmpDir, 'test.db');
+      11 |     
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-3dbd53a/testCase.test.ts:8:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-3dbd53a/testCase.test.ts:7:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.388 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_7/pending_category/mutant-3dbd53a/testCase.test.ts".

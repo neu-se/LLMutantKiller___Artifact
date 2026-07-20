@@ -1,0 +1,39 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-56cf9b4/testCase.test.ts[0m:[93m1[0m:[93m19[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import Delta from "../../../../../../../../../../../subject_repositories/delta/src/Delta.ts";
+[7m [0m [91m                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-56cf9b4/testCase.test.ts
+  Delta invert
+    ✕ should not add spurious retain ops when inverting a delta with retain(falsy-attrs) followed by delete (4 ms)
+
+  ● Delta invert › should not add spurious retain ops when inverting a delta with retain(falsy-attrs) followed by delete
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 3
+
+      Array [
+        Object {
+    +     "retain": 5,
+    +   },
+    +   Object {
+          "insert": "world",
+        },
+      ]
+
+      13 |     // Mutated: retain(5, {}) added before insert, giving [{retain:5}, {insert:'world'}]
+      14 |     //          chop() doesn't remove {retain:5} since last op is {insert:'world'}
+    > 15 |     expect(inverted.ops).toEqual([{ insert: 'world' }]);
+         |                          ^
+      16 |   });
+      17 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-56cf9b4/testCase.test.ts:15:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.392 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_4/pending_category/mutant-56cf9b4/testCase.test.ts".

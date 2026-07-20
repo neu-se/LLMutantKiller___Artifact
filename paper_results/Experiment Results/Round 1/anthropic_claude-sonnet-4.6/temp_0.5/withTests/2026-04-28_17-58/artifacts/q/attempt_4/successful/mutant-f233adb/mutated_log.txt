@@ -1,0 +1,25 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-f233adb/testCase.test.ts
+  ses environment handling
+    ✕ should assign definition to ses.makeQ when ses is defined and ses.ok() returns true (3 ms)
+
+  ● ses environment handling › should assign definition to ses.makeQ when ses is defined and ses.ok() returns true
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "function"
+    Received: "undefined"
+
+      49 |     // Original: ses.ok() returns true → ses.makeQ = definition (a function)
+      50 |     // Mutated:  ses block is empty → ses.makeQ remains undefined
+    > 51 |     expect(typeof fakeSes.makeQ).toBe("function");
+         |                                  ^
+      52 |   });
+      53 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-f233adb/testCase.test.ts:51:34)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.936 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-f233adb/testCase.test.ts".

@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/subject_repositories/q/q.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/subject_repositories/q/q.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-4fe37a5/testCase.test.ts
+  Promise fallback behavior
+    ✕ should reject with an error when an unsupported operation is performed (13 ms)
+
+  ● Promise fallback behavior › should reject with an error when an unsupported operation is performed
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected substring: "Promise does not support operation: unsupportedOperation"
+    Received message:   "Cannot read properties of undefined (reading 'call')"
+
+          803 |                 result = descriptor[op].apply(promise, args);
+          804 |             } else {
+        > 805 |                 result = fallback.call(promise, op, args);
+              |                                   ^
+          806 |             }
+          807 |         } catch (exception) {
+          808 |             result = reject(exception);
+
+      at Promise.call [as promiseDispatch] (../subject_repositories/q/q.js:805:35)
+      at promiseDispatch (../subject_repositories/q/q.js:1406:14)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+      at Object.toThrow (node_modules/expect/build/index.js:218:22)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-4fe37a5/testCase.test.ts:6:73)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.806 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-4fe37a5/testCase.test.ts".

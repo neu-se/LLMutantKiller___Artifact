@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_2/pending_category/mutant-3b7b12c/testCase.test.ts
+  readFile async with string encoding option
+    ✕ should correctly decode and parse JSON when encoding string is passed as option (4 ms)
+
+  ● readFile async with string encoding option › should correctly decode and parse JSON when encoding string is passed as option
+
+    SyntaxError: /var/folders/hj/385qyhcj33q7n5tssd7_jvkh0000gn/T/jsonfile-tests-mutant-3b7b12c/test.json: Expected property name or '}' in JSON at position 1
+        at JSON.parse (<anonymous>)
+
+      24 |   let obj
+      25 |   try {
+    > 26 |     obj = JSON.parse(data, options ? options.reviver : null)
+         |                ^
+      27 |   } catch (err) {
+      28 |     if (shouldThrow) {
+      29 |       err.message = `${file}: ${err.message}`
+
+      at Object.parse (../subject_repositories/node-jsonfile/index.js:26:16)
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_2/pending_category/mutant-3b7b12c/testCase.test.ts:21:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.469 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_2/pending_category/mutant-3b7b12c/testCase.test.ts".

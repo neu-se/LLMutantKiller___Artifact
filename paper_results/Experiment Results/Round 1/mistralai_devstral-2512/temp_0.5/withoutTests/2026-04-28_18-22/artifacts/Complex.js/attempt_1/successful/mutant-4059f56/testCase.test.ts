@@ -1,0 +1,11 @@
+// llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-4059f56/testCase.test.ts
+import { Complex } from "../../../../../../../../../../../subject_repositories/Complex.js/complex.js";
+
+describe('Complex clone method', () => {
+  it('should create a new Complex instance with the same real and imaginary parts', () => {
+    const original = new Complex(3, 4);
+    const cloned = original.clone();
+    expect(cloned.re).toBe(3);
+    expect(cloned.im).toBe(4);
+  });
+});

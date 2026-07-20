@@ -1,0 +1,31 @@
+describe('Complex.js', () => {
+  it('should calculate cosm1 correctly', () => {
+    const x = 0.1;
+    const complex = new (require('./complex.js').Complex)(x, 0);
+    const result = Math.cos(x) - 1.0;
+    const expected = Math.cos(x) - 1.0;
+    expect(result).toBeCloseTo(expected, 10);
+    const cosm1 = function(x) {
+      var b = Math.PI / 4;
+      if (-b > x || x > b) {
+        return Math.cos(x) - 1.0;
+      }
+
+      var xx = x * x;
+      return xx * (
+        xx * (
+          xx * (
+            xx * (
+              xx * (
+                xx * (
+                  xx / 20922789888000
+                  - 1 / 87178291200)
+                + 1 / 479001600)
+              + 1 / 362880)
+            - 1 / 720)
+          + 1 / 24)
+        - 1 / 2);
+    };
+    expect(cosm1(x)).toBeCloseTo(result, 10);
+  });
+});

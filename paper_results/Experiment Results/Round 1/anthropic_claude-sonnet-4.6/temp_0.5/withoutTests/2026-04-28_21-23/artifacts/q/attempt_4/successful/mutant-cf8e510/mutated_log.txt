@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-cf8e510/testCase.test.ts (7.381 s)
+  makeStackTraceLong mutation detection
+    ✕ handles string rejection in a then chain with longStackSupport enabled (5004 ms)
+
+  ● makeStackTraceLong mutation detection › handles string rejection in a then chain with longStackSupport enabled
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("makeStackTraceLong mutation detection", () => {
+    > 4 |   it("handles string rejection in a then chain with longStackSupport enabled", async () => {
+        |   ^
+      5 |     Q.longStackSupport = true;
+      6 |
+      7 |     const result = await Q.fcall((): string => { throw "string error"; })
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-cf8e510/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-cf8e510/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.586 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-cf8e510/testCase.test.ts".

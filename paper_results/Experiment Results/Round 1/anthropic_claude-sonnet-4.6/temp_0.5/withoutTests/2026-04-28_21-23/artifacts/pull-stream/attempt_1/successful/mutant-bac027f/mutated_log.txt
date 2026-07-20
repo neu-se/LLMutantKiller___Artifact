@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-bac027f/testCase.test.ts
+  pull with source object
+    ✕ should extract source from an object with a source function when passed as first argument (1 ms)
+
+  ● pull with source object › should extract source from an object with a source function when passed as first argument
+
+    TypeError: read is not a function
+
+      24 |     const sink = (read: Function) => {
+      25 |       const drain = () => {
+    > 26 |         read(null, (end: any, data: any) => {
+         |         ^
+      27 |           if (end === true) return
+      28 |           if (end) throw end
+      29 |           collected.push(data)
+
+      at read (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-bac027f/testCase.test.ts:26:9)
+      at drain (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-bac027f/testCase.test.ts:33:7)
+      at s (../subject_repositories/pull-stream/pull.js:42:14)
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-bac027f/testCase.test.ts:38:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.082 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-bac027f/testCase.test.ts".

@@ -1,0 +1,38 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-c903301/testCase.test.ts
+  progress error re-throw
+    ✕ should re-throw errors from progress callbacks to process when Q.onerror is not set (305 ms)
+
+  ● progress error re-throw › should re-throw errors from progress callbacks to process when Q.onerror is not set
+
+    progress error sentinel
+
+      3 | describe("progress error re-throw", () => {
+      4 |   it("should re-throw errors from progress callbacks to process when Q.onerror is not set", (done) => {
+    > 5 |     const theError = new Error("progress error sentinel");
+        |                      ^
+      6 |     const def = Q.defer();
+      7 |
+      8 |     (Q as any).onerror = null;
+
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-c903301/testCase.test.ts:5:22)
+
+  ● progress error re-throw › should re-throw errors from progress callbacks to process when Q.onerror is not set
+
+    Expected error to propagate but it was swallowed
+
+      30 |         finished = true;
+      31 |         originalListeners.forEach((l: any) => process.on("uncaughtException", l));
+    > 32 |         done(new Error("Expected error to propagate but it was swallowed"));
+         |              ^
+      33 |       }
+      34 |     }, 300);
+      35 |
+
+      at Timeout._onTimeout (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-c903301/testCase.test.ts:32:14)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.837 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-c903301/testCase.test.ts".

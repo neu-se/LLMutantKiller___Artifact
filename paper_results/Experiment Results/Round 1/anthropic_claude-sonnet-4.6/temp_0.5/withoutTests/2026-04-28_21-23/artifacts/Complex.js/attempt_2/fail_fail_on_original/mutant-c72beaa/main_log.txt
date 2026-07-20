@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-c72beaa/testCase.test.ts
+  acot with subnormal inputs causing d underflow
+    ✕ should return Infinity real part when both a and b are subnormal causing d to underflow to zero (2 ms)
+
+  ● acot with subnormal inputs causing d underflow › should return Infinity real part when both a and b are subnormal causing d to underflow to zero
+
+    expect(received).not.toBeNaN()
+
+    Received: NaN
+
+       9 |     // With mutated code: d=0, a*0=0, so new Complex(0, -Infinity).atan()
+      10 |     // These should produce different results
+    > 11 |     expect(result.re).not.toBeNaN();
+         |                           ^
+      12 |     // In original: Complex(Infinity, -Infinity) is infinite -> atan of infinite
+      13 |     // Let's check what atan(Infinity, -Infinity) gives vs atan(0, -Infinity)
+      14 |     const originalPath = new Complex(Infinity, -Infinity).atan();
+
+      at Object.toBeNaN (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-c72beaa/testCase.test.ts:11:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.802 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-c72beaa/testCase.test.ts".

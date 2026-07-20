@@ -1,0 +1,44 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-c903301/testCase.test.ts
+  progress callback error propagation
+    ✕ throws error from progress callback when Q.onerror is not set (503 ms)
+
+  ● progress callback error propagation › throws error from progress callback when Q.onerror is not set
+
+    test progress error
+
+      4 |   it("throws error from progress callback when Q.onerror is not set", (done) => {
+      5 |     const deferred = Q.defer();
+    > 6 |     const error = new Error("test progress error");
+        |                   ^
+      7 |     // Ensure Q.onerror is not set
+      8 |     (Q as any).onerror = null;
+      9 |
+
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-c903301/testCase.test.ts:6:19)
+
+  ● progress callback error propagation › throws error from progress callback when Q.onerror is not set
+
+    Expected uncaughtException to be thrown but it was swallowed
+
+      12 |       // If we reach here, the error was NOT thrown (mutated behavior)
+      13 |       process.removeListener("uncaughtException", handler);
+    > 14 |       done(new Error("Expected uncaughtException to be thrown but it was swallowed"));
+         |            ^
+      15 |     }, 500);
+      16 |
+      17 |     function handler(e: Error) {
+
+      at Timeout._onTimeout (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-c903301/testCase.test.ts:14:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.621 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-c903301/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

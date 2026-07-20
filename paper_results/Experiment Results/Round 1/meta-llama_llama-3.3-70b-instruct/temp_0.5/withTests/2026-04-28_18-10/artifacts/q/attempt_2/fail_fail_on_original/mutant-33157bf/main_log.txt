@@ -1,0 +1,38 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-33157bf/testCase.test.ts[0m:[93m1[0m:[93m19[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../q.js' or its corresponding type declarations.
+
+[7m1[0m import { Q } from '../../../q.js';
+[7m [0m [91m                  ~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-33157bf/testCase.test.ts[0m:[93m6[0m:[93m28[0m - [91merror[0m[90m TS2322: [0mType '() => void' is not assignable to type '{ (event: "beforeExit", code: number): boolean; (event: "disconnect"): boolean; (event: "exit", code: number): boolean; (event: "rejectionHandled", promise: Promise<unknown>): boolean; (event: "uncaughtException", error: Error): boolean; (event: "uncaughtExceptionMonitor", error: Error): boolean; (event: "unhandledR...'.
+  Type 'void' is not assignable to type 'boolean'.
+
+[7m6[0m         global.process = { emit: () => {} };
+[7m [0m [91m                           ~~~~[0m
+
+  [96mnode_modules/@types/node/process.d.ts[0m:[93m1964[0m:[93m17[0m
+    [7m1964[0m                 emit(event: "beforeExit", code: number): boolean;
+    [7m    [0m [96m                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    The expected type comes from property 'emit' which is declared here on type 'Process'
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-33157bf/testCase.test.ts[0m:[93m21[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'null' is not assignable to type 'Process'.
+
+[7m21[0m         global.process = null;
+[7m  [0m [91m        ~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-33157bf/testCase.test.ts
+  ● Test suite failed to run
+
+    Cannot find module '../../../q.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-33157bf/testCase.test.ts'
+
+    > 1 | import { Q } from '../../../q.js';
+        | ^
+      2 |
+      3 | describe('Q', () => {
+      4 |     it('should track unhandled rejections correctly when process is an object', () => {
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-33157bf/testCase.test.ts:1:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        1.474 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-33157bf/testCase.test.ts".

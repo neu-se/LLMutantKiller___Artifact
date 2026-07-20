@@ -1,0 +1,42 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-bd61080/testCase.test.ts[0m:[93m3[0m:[93m18[0m - [91merror[0m[90m TS2307: [0mCannot find module 'nock' or its corresponding type declarations.
+
+[7m3[0m import nock from 'nock';
+[7m [0m [91m                 ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-bd61080/testCase.test.ts[0m:[93m5[0m:[93m29[0m - [91merror[0m[90m TS2307: [0mCannot find module 'follow-redirects' or its corresponding type declarations.
+
+[7m5[0m import { http, https } from 'follow-redirects';
+[7m [0m [91m                            ~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/image-downloader/lib/request.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/image-downloader/lib/request.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-bd61080/testCase.test.ts
+  request
+    ✕ should reject with a meaningful error message when the status code is not 200 (15 ms)
+
+  ● request › should reject with a meaningful error message when the status code is not 200
+
+    expect(received).rejects.toThrowError(expected)
+
+    Expected substring: "Status Code: 404"
+    Received message:   "Request Failed.
+    "
+
+          11 |         // Consume response data to free up memory
+          12 |         res.resume();
+        > 13 |         reject(new Error('Request Failed.\n' +
+             |                ^
+          14 |                             ``));
+          15 |
+          16 |
+
+      at RedirectableRequest.<anonymous> (../subject_repositories/image-downloader/lib/request.js:13:16)
+      at RedirectableRequest.Object.<anonymous>.RedirectableRequest._processResponse (../subject_repositories/image-downloader/node_modules/follow-redirects/index.js:346:10)
+      at OverriddenClientRequest.RedirectableRequest._onNativeResponse (../subject_repositories/image-downloader/node_modules/follow-redirects/index.js:57:10)
+      at Timeout.respond [as _onTimeout] (../subject_repositories/image-downloader/node_modules/nock/lib/playback_interceptor.js:307:11)
+      at Object.toThrowError (node_modules/expect/build/index.js:218:22)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-bd61080/testCase.test.ts:18:50)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.259 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_1/pending_category/mutant-bd61080/testCase.test.ts".

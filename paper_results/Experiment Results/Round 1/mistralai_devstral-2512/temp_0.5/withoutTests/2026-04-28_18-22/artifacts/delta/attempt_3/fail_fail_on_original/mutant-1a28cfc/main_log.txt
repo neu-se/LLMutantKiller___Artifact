@@ -1,0 +1,36 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-1a28cfc/testCase.test.ts[0m:[93m6[0m:[93m33[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'number | Record<string, unknown> | undefined'.
+
+[7m6[0m     const delta2 = new Delta([{ retain: 'invalid' }]);
+[7m [0m [91m                                ~~~~~~[0m
+
+  [96m../subject_repositories/delta/src/Op.ts[0m:[93m7[0m:[93m3[0m
+    [7m7[0m   retain?: number | Record<string, unknown>;
+    [7m [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'retain' which is declared here on type 'Op'
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-1a28cfc/testCase.test.ts
+  Delta
+    ✕ should throw an error when composing with non-object embed (3 ms)
+
+  ● Delta › should throw an error when composing with non-object embed
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "cannot retain a string"
+
+    Received function did not throw
+
+       7 |     expect(() => {
+       8 |       delta1.compose(delta2);
+    >  9 |     }).toThrow('cannot retain a string');
+         |        ^
+      10 |   });
+      11 | });
+
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-1a28cfc/testCase.test.ts:9:8)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.627 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_3/pending_category/mutant-1a28cfc/testCase.test.ts".

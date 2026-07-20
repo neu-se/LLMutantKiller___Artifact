@@ -1,0 +1,53 @@
+{
+  "file": "q.js",
+  "startLine": 1592,
+  "startColumn": 20,
+  "endLine": 1608,
+  "endColumn": 16,
+  "originalCode": "\n-               } else {\n-                   ++pendingCount;\n-                   when(\n-                       promise,\n-                       function (value) {\n-                           promises[index] = value;\n-                           if (--pendingCount === 0) {\n-                               deferred.resolve(promises);\n-                           }\n-                       },\n-                       deferred.reject,\n-                       function (progress) {\n-                           deferred.notify({ index: index, value: progress });\n-                       }\n-                   );\n-               }",
+  "replacement": "\n+               } else {}\n",
+  "removedLines": [
+    "               } else {",
+    "                   ++pendingCount;",
+    "                   when(",
+    "                       promise,",
+    "                       function (value) {",
+    "                           promises[index] = value;",
+    "                           if (--pendingCount === 0) {",
+    "                               deferred.resolve(promises);",
+    "                           }",
+    "                       },",
+    "                       deferred.reject,",
+    "                       function (progress) {",
+    "                           deferred.notify({ index: index, value: progress });",
+    "                       }",
+    "                   );",
+    "               }"
+  ],
+  "addedLines": [
+    "               } else {}",
+    ""
+  ],
+  "lineSummary": [
+    "-               } else {",
+    "-                   ++pendingCount;",
+    "-                   when(",
+    "-                       promise,",
+    "-                       function (value) {",
+    "-                           promises[index] = value;",
+    "-                           if (--pendingCount === 0) {",
+    "-                               deferred.resolve(promises);",
+    "-                           }",
+    "-                       },",
+    "-                       deferred.reject,",
+    "-                       function (progress) {",
+    "-                           deferred.notify({ index: index, value: progress });",
+    "-                       }",
+    "-                   );",
+    "-               }",
+    "+               } else {}",
+    ""
+  ],
+  "mutatorName": "BlockStatement",
+  "strykerMutationId": "879"
+}

@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-7190cb4/testCase.test.ts
+  Complex acsc
+    ✕ detects sign mutation via subnormal imaginary input causing d=0 branch (3 ms)
+
+  ● Complex acsc › detects sign mutation via subnormal imaginary input causing d=0 branch
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+       8 |     // mutated:  new Complex(0, +tiny/0).asin() = new Complex(0, +Inf).asin() => NaN
+       9 |     const result = new Complex(0, tiny).acsc();
+    > 10 |     expect(isNaN(result.re)).toBe(false);
+         |                              ^
+      11 |     expect(isNaN(result.im)).toBe(false);
+      12 |     expect(result.re).toBe(0);
+      13 |     expect(result.im).toBe(-Infinity);
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-7190cb4/testCase.test.ts:10:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.345 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-7190cb4/testCase.test.ts".

@@ -1,0 +1,47 @@
+{
+  "file": "q.js",
+  "startLine": 386,
+  "startColumn": 7,
+  "endLine": 399,
+  "endColumn": 8,
+  "originalCode": "\n-       ) {\n-           var stacks = [];\n-           for (var p = promise; !!p; p = p.source) {\n-               if (p.stack && (!error.__minimumStackCounter__ || error.__minimumStackCounter__ > p.stackCounter)) {\n-                   object_defineProperty(error, \"__minimumStackCounter__\", {value: p.stackCounter, configurable: true});\n-                   stacks.unshift(p.stack);\n-               }\n-           }\n-           stacks.unshift(error.stack);\n-           var concatedStacks = stacks.join(\"\\n\" + STACK_JUMP_SEPARATOR + \"\\n\");\n-           var stack = filterStackString(concatedStacks);\n-           object_defineProperty(error, \"stack\", {value: stack, configurable: true});\n-       }",
+  "replacement": "\n+       ) {}\n",
+  "removedLines": [
+    "       ) {",
+    "           var stacks = [];",
+    "           for (var p = promise; !!p; p = p.source) {",
+    "               if (p.stack && (!error.__minimumStackCounter__ || error.__minimumStackCounter__ > p.stackCounter)) {",
+    "                   object_defineProperty(error, \"__minimumStackCounter__\", {value: p.stackCounter, configurable: true});",
+    "                   stacks.unshift(p.stack);",
+    "               }",
+    "           }",
+    "           stacks.unshift(error.stack);",
+    "           var concatedStacks = stacks.join(\"\\n\" + STACK_JUMP_SEPARATOR + \"\\n\");",
+    "           var stack = filterStackString(concatedStacks);",
+    "           object_defineProperty(error, \"stack\", {value: stack, configurable: true});",
+    "       }"
+  ],
+  "addedLines": [
+    "       ) {}",
+    ""
+  ],
+  "lineSummary": [
+    "-       ) {",
+    "-           var stacks = [];",
+    "-           for (var p = promise; !!p; p = p.source) {",
+    "-               if (p.stack && (!error.__minimumStackCounter__ || error.__minimumStackCounter__ > p.stackCounter)) {",
+    "-                   object_defineProperty(error, \"__minimumStackCounter__\", {value: p.stackCounter, configurable: true});",
+    "-                   stacks.unshift(p.stack);",
+    "-               }",
+    "-           }",
+    "-           stacks.unshift(error.stack);",
+    "-           var concatedStacks = stacks.join(\"\\n\" + STACK_JUMP_SEPARATOR + \"\\n\");",
+    "-           var stack = filterStackString(concatedStacks);",
+    "-           object_defineProperty(error, \"stack\", {value: stack, configurable: true});",
+    "-       }",
+    "+       ) {}",
+    ""
+  ],
+  "mutatorName": "BlockStatement",
+  "strykerMutationId": "241"
+}

@@ -1,0 +1,47 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-c15634f/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'deprecate'.
+
+[7m1[0m import { deprecate } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-c15634f/testCase.test.ts[0m:[93m20[0m:[93m16[0m - [91merror[0m[90m TS2790: [0mThe operand of a 'delete' operator must be optional.
+
+[7m20[0m         delete globalThis.console;
+[7m  [0m [91m               ~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-c15634f/testCase.test.ts
+  deprecate function
+    ✕ should call the callback with a deprecation warning when console is defined (1 ms)
+    ✕ should not call console.warn when console is not defined (1 ms)
+
+  ● deprecate function › should call the callback with a deprecation warning when console is defined
+
+    TypeError: (0 , q_js_1.deprecate) is not a function
+
+       7 |
+       8 |         const callback = jest.fn();
+    >  9 |         deprecate(callback, 'test', 'alternative')();
+         |                  ^
+      10 |
+      11 |         expect(callback).toHaveBeenCalledTimes(1);
+      12 |         expect(console.warn).toHaveBeenCalledTimes(1);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-c15634f/testCase.test.ts:9:18)
+
+  ● deprecate function › should not call console.warn when console is not defined
+
+    TypeError: (0 , q_js_1.deprecate) is not a function
+
+      21 |
+      22 |         const callback = jest.fn();
+    > 23 |         deprecate(callback, 'test', 'alternative')();
+         |                  ^
+      24 |
+      25 |         expect(callback).toHaveBeenCalledTimes(1);
+      26 |
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-c15634f/testCase.test.ts:23:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        3.369 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-c15634f/testCase.test.ts".

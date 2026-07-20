@@ -1,0 +1,43 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-7cd0f61/testCase.test.ts
+  Delta diff method
+    ✕ should throw the correct error message when diff is called on a non-document Delta (35 ms)
+
+  ● Delta diff method › should throw the correct error message when diff is called on a non-document Delta
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "diff() called with non-document"
+    Received message:   "diff() called on non-document"
+
+          348 |           }
+          349 |           const prep = delta === other ? 'on' : 'with';
+        > 350 |           throw new Error('diff() called ' + prep + ' non-document');
+              |                 ^
+          351 |         })
+          352 |         .join('');
+          353 |     });
+
+      at ../subject_repositories/delta/src/Delta.ts:350:17
+                at Array.map (<anonymous>)
+      at Delta.map (../subject_repositories/delta/src/Delta.ts:182:21)
+      at map (../subject_repositories/delta/src/Delta.ts:345:10)
+                at Array.map (<anonymous>)
+      at Delta.map [as diff] (../subject_repositories/delta/src/Delta.ts:343:35)
+      at diff (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-7cd0f61/testCase.test.ts:9:14)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-7cd0f61/testCase.test.ts:10:8)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-7cd0f61/testCase.test.ts:10:8)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.714 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-7cd0f61/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

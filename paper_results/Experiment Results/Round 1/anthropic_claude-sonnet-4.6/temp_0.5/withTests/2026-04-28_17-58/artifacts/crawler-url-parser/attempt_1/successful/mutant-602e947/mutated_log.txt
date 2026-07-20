@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-602e947/testCase.test.ts
+  parse URL with colon in path but no protocol
+    ✕ should prepend http:// to a relative URL containing a colon in the middle when no baseUrl is provided (4 ms)
+
+  ● parse URL with colon in path but no protocol › should prepend http:// to a relative URL containing a colon in the middle when no baseUrl is provided
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "http://abc/def:ghi"
+    Received: "abc/def:ghi"
+
+      14 |     // Mutated: NOT prepended (matched \w+: in middle) -> stays as "abc/def:ghi" -> no host -> url is "abc/def:ghi"
+      15 |     expect(result).not.toBeNull();
+    > 16 |     expect(result!.url).toBe("http://abc/def:ghi");
+         |                         ^
+      17 |   });
+      18 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-602e947/testCase.test.ts:16:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.89 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-602e947/testCase.test.ts".

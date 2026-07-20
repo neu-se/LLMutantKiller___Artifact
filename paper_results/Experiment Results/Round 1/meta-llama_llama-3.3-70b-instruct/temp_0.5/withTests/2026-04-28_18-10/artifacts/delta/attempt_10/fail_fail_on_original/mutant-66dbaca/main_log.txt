@@ -1,0 +1,29 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_10/pending_category/mutant-66dbaca/testCase.test.ts[0m:[93m1[0m:[93m1[0m - [91merror[0m[90m TS6133: [0m'Delta' is declared but its value is never read.
+
+[7m1[0m import Delta from '../../../../../../../../../../../subject_repositories/delta/src/Delta';
+[7m [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_10/pending_category/mutant-66dbaca/testCase.test.ts
+  Delta
+    ✕ should export Delta as a module (10 ms)
+
+  ● Delta › should export Delta as a module
+
+    Cannot find module '../../../../../../../../../subject_repositories/delta/src/Delta' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_10/pending_category/mutant-66dbaca/testCase.test.ts'
+
+      4 |   it('should export Delta as a module', () => {
+      5 |     const moduleExportsBefore = module.exports;
+    > 6 |     require('../../../../../../../../../subject_repositories/delta/src/Delta');
+        |     ^
+      7 |     const moduleExportsAfter = module.exports;
+      8 |     expect(moduleExportsBefore).not.toEqual(moduleExportsAfter);
+      9 |   });
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_10/pending_category/mutant-66dbaca/testCase.test.ts:6:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.152 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_10/pending_category/mutant-66dbaca/testCase.test.ts".

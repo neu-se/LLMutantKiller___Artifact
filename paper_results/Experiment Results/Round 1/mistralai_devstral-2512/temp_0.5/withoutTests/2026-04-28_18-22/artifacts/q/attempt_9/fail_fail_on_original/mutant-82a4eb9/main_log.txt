@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_9/pending_category/mutant-82a4eb9/testCase.test.ts
+  Q module export behavior
+    ✕ should only export Q when both exports and module are objects (AND condition) (2 ms)
+
+  ● Q module export behavior › should only export Q when both exports and module are objects (AND condition)
+
+    expect(received).not.toBeNull()
+
+    Received: null
+
+      39 |         // In mutated code (OR condition), Q might be exported
+      40 |         // The original code should throw an error in this case
+    > 41 |         expect(requireError).not.toBeNull();
+         |                                  ^
+      42 |         expect((requireError as Error).message).toContain("This environment was not anticipated by Q");
+      43 |
+      44 |         // Now test the normal case where both are objects
+
+      at Object.toBeNull (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_9/pending_category/mutant-82a4eb9/testCase.test.ts:41:34)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_9/pending_category/mutant-82a4eb9/testCase.test.ts".

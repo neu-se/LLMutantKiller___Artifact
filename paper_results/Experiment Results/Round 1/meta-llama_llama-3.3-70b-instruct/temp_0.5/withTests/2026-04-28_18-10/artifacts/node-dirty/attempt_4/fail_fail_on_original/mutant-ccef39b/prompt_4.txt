@@ -1,0 +1,40 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+PASS llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-ccef39b/testCase.test.ts
+  Dirty db close
+    ✓ should close db file streams when queue is empty and there are in-flight writes (31 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        2.807 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-ccef39b/testCase.test.ts".
+node:events:502
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: write after end
+    at _write (node:internal/streams/writable:489:11)
+    at WriteStream.Writable.write (node:internal/streams/writable:510:10)
+    at Dirty.write [as _flush] (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/subject_repositories/node-dirty/lib/dirty/dirty.js:188:47)
+    at Dirty._flush [as set] (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/subject_repositories/node-dirty/lib/dirty/dirty.js:37:12)
+    at set (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-ccef39b/testCase.test.ts:15:14)
+    at cb (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/subject_repositories/node-dirty/lib/dirty/dirty.js:191:31)
+    at afterWrite (node:internal/streams/writable:710:5)
+    at onwrite (node:internal/streams/writable:688:7)
+    at node:internal/fs/streams:485:5
+    at node:internal/fs/streams:441:7
+    at FSReqCallback.wrapper [as oncomplete] (node:fs:825:5)
+Emitted 'error' event on WriteStream instance at:
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'ERR_STREAM_WRITE_AFTER_END'
+}
+
+Node.js v20.19.4
+
+---
+Please try again and give me a new test case.

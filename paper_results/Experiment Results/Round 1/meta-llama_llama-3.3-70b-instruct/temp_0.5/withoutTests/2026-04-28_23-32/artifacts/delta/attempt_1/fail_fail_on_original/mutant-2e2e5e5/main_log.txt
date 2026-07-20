@@ -1,0 +1,41 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-2e2e5e5/testCase.test.ts[0m:[93m1[0m:[93m19[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import Delta from "../../../../../../../../../../../subject_repositories/delta/src/Delta.ts";
+[7m [0m [91m                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-2e2e5e5/testCase.test.ts
+  Delta
+    ✕ should throw an error when diff is called with non-document (29 ms)
+
+  ● Delta › should throw an error when diff is called with non-document
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "diff() called with non-document"
+    Received message:   "diff() called on non-document"
+
+          348 |           }
+          349 |           const prep = delta === other ? 'on' : 'with';
+        > 350 |           throw new Error('diff() called ' + prep + ' non-document');
+              |                 ^
+          351 |         })
+          352 |         .join('');
+          353 |     });
+
+      at ../subject_repositories/delta/src/Delta.ts:350:17
+                at Array.map (<anonymous>)
+      at Delta.map (../subject_repositories/delta/src/Delta.ts:182:21)
+      at map (../subject_repositories/delta/src/Delta.ts:345:10)
+                at Array.map (<anonymous>)
+      at Delta.map [as diff] (../subject_repositories/delta/src/Delta.ts:343:35)
+      at diff (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-2e2e5e5/testCase.test.ts:7:25)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-2e2e5e5/testCase.test.ts:7:39)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-2e2e5e5/testCase.test.ts:7:39)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-2e2e5e5/testCase.test.ts".

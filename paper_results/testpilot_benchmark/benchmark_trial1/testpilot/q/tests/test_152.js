@@ -1,0 +1,24 @@
+let mocha = require('mocha');
+let assert = require('assert');
+let q = require('q');
+
+describe('test q', function() {
+    it('test q.makePromise.prototype.invoke - method that throws error', function(done) {
+        let testObj = {
+            throwError: function() {
+                throw new Error('Test error');
+            }
+        };
+        
+        let promise = q.fcall(testObj.throwError.bind(testObj));
+        
+        promise
+            .then(function(result) {
+                done(new Error('Should have thrown an error'));
+            })
+            .catch(function(error) {
+                assert.strictEqual(error.message, 'Test error');
+                done();
+            });
+    });
+});

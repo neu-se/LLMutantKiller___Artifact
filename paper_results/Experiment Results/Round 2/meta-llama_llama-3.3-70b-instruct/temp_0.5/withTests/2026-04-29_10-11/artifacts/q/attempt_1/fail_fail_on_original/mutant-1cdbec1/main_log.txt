@@ -1,0 +1,54 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts[0m:[93m11[0m:[93m28[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 3, '(object: typeof globalThis, method: "Object" | "Function" | "String" | "Boolean" | "Number" | "Date" | "RegExp" | "Error" | "EvalError" | "RangeError" | "ReferenceError" | "SyntaxError" | ... 673 more ... | "exports"): SpyInstance<...>', gave the following error.
+    Argument of type '"Q"' is not assignable to parameter of type '"Object" | "Function" | "String" | "Boolean" | "Number" | "Date" | "RegExp" | "Error" | "EvalError" | "RangeError" | "ReferenceError" | "SyntaxError" | "TypeError" | "URIError" | ... 671 more ... | "exports"'.
+  Overload 2 of 3, '(object: typeof globalThis, method: "eval" | "parseInt" | "parseFloat" | "isNaN" | "isFinite" | "decodeURI" | "decodeURIComponent" | "encodeURI" | "encodeURIComponent" | "escape" | ... 79 more ... | "clearImmediate"): SpyInstance<...>', gave the following error.
+    Argument of type '"Q"' is not assignable to parameter of type '"eval" | "parseInt" | "parseFloat" | "isNaN" | "isFinite" | "decodeURI" | "decodeURIComponent" | "encodeURI" | "encodeURIComponent" | "escape" | "unescape" | "Symbol" | "Object" | ... 76 more ... | "clearImmediate"'.
+
+[7m11[0m         jest.spyOn(global, 'Q').mockImplementation(() => {
+[7m  [0m [91m                           ~~~[0m
+
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts[0m:[93m47[0m:[93m40[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type '{}'.
+
+[7m47[0m                 var previousQ = global.Q;
+[7m  [0m [91m                                       ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts[0m:[93m48[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type '{}'.
+
+[7m48[0m                 global.Q = originalQ();
+[7m  [0m [91m                       ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts[0m:[93m52[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type '{}'.
+
+[7m52[0m                 global.Q.noConflict = function () {
+[7m  [0m [91m                       ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts[0m:[93m53[0m:[93m28[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type '{}'.
+
+[7m53[0m                     global.Q = previousQ;
+[7m  [0m [91m                           ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts
+  Q function
+    ✕ should be able to handle window and self correctly (1 ms)
+
+  ● Q function › should be able to handle window and self correctly
+
+    Property `Q` does not exist in the provided object
+
+       9 |         // Spy on the Q function to check if it's called with the correct global object
+      10 |         const originalQ = Q;
+    > 11 |         jest.spyOn(global, 'Q').mockImplementation(() => {
+         |              ^
+      12 |             return originalQ;
+      13 |         });
+      14 |
+
+      at ModuleMocker.spyOn (node_modules/jest-mock/build/index.js:731:13)
+      at Object.spyOn (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts:11:14)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.93 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1cdbec1/testCase.test.ts".

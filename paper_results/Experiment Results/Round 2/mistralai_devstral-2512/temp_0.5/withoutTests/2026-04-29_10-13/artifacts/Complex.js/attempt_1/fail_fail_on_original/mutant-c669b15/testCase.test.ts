@@ -1,0 +1,11 @@
+import { Complex } from "./complex.js";
+
+describe("Complex division", () => {
+  it("should correctly handle division when |c| == |d|", () => {
+    const a = new Complex(1, 1);
+    const b = new Complex(1, -1);
+    const result = a.div(b);
+    expect(result.re).toBeCloseTo(0);
+    expect(result.im).toBeCloseTo(1);
+  });
+});

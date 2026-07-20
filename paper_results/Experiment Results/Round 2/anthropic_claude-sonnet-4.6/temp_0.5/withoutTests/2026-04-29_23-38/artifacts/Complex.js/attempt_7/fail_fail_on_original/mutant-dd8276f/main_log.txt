@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-dd8276f/testCase.test.ts
+  Complex acsc mutation detection
+    ✕ acsc of subnormal complex number where d underflows to zero (2 ms)
+
+  ● Complex acsc mutation detection › acsc of subnormal complex number where d underflows to zero
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: NaN
+    Received: NaN
+
+    Expected precision:    5
+    Expected difference: < 0.000005
+    Received difference:   NaN
+
+       7 |     const result = new Complex(1e-200, 1e-200).acsc();
+       8 |     const resultOriginal = new Complex(0, -Infinity).asin();
+    >  9 |     expect(result.re).toBeCloseTo(resultOriginal.re, 5);
+         |                       ^
+      10 |     expect(result.im).toBeCloseTo(resultOriginal.im, 5);
+      11 |   });
+      12 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-dd8276f/testCase.test.ts:9:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.266 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-dd8276f/testCase.test.ts".

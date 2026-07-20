@@ -1,0 +1,46 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-56cf9b4/testCase.test.ts
+  invert() with mixed operations
+    ✕ should correctly invert a delta with insert, delete, and retain operations (6 ms)
+
+  ● invert() with mixed operations › should correctly invert a delta with insert, delete, and retain operations
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 10
+    + Received  +  0
+
+    @@ -23,17 +23,7 @@
+              "bold": null,
+              "italic": true,
+            },
+            "retain": 2,
+          },
+    -     Object {
+    -       "retain": 2,
+    -     },
+    -     Object {
+    -       "attributes": Object {
+    -         "bold": true,
+    -         "color": "red",
+    -       },
+    -       "insert": "9",
+    -     },
+        ],
+      }
+
+      21 |       .insert('9', { color: 'red', bold: true });
+      22 |     const inverted = delta.invert(base);
+    > 23 |     expect(inverted).toEqual(expected);
+         |                      ^
+      24 |     expect(base.compose(delta).compose(inverted)).toEqual(base);
+      25 |   });
+      26 | });
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-56cf9b4/testCase.test.ts:23:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.111 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_5/pending_category/mutant-56cf9b4/testCase.test.ts".

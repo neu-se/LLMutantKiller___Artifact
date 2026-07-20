@@ -1,0 +1,41 @@
+{
+  "file": "q.js",
+  "startLine": 200,
+  "startColumn": 52,
+  "endLine": 210,
+  "endColumn": 58,
+  "originalCode": "\n-       } else if (typeof setImmediate === \"function\") {\n-           // In IE10, Node.js 0.9+, or https://github.com/NobleJS/setImmediate\n-           if (typeof window !== \"undefined\") {\n-               requestTick = setImmediate.bind(window, flush);\n-           } else {\n-               requestTick = function () {\n-                   setImmediate(flush);\n-               };\n-           }\n-       } else if (typeof MessageChannel !== \"undefined\") {",
+  "replacement": "\n+       } else if (typeof setImmediate === \"function\") {} else if (typeof MessageChannel !== \"undefined\") {\n",
+  "removedLines": [
+    "       } else if (typeof setImmediate === \"function\") {",
+    "           // In IE10, Node.js 0.9+, or https://github.com/NobleJS/setImmediate",
+    "           if (typeof window !== \"undefined\") {",
+    "               requestTick = setImmediate.bind(window, flush);",
+    "           } else {",
+    "               requestTick = function () {",
+    "                   setImmediate(flush);",
+    "               };",
+    "           }",
+    "       } else if (typeof MessageChannel !== \"undefined\") {"
+  ],
+  "addedLines": [
+    "       } else if (typeof setImmediate === \"function\") {} else if (typeof MessageChannel !== \"undefined\") {",
+    ""
+  ],
+  "lineSummary": [
+    "-       } else if (typeof setImmediate === \"function\") {",
+    "-           // In IE10, Node.js 0.9+, or https://github.com/NobleJS/setImmediate",
+    "-           if (typeof window !== \"undefined\") {",
+    "-               requestTick = setImmediate.bind(window, flush);",
+    "-           } else {",
+    "-               requestTick = function () {",
+    "-                   setImmediate(flush);",
+    "-               };",
+    "-           }",
+    "-       } else if (typeof MessageChannel !== \"undefined\") {",
+    "+       } else if (typeof setImmediate === \"function\") {} else if (typeof MessageChannel !== \"undefined\") {",
+    ""
+  ],
+  "mutatorName": "BlockStatement",
+  "strykerMutationId": "116"
+}

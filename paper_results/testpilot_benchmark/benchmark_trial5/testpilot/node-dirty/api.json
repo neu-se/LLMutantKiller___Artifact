@@ -1,0 +1,376 @@
+[
+  {
+    "accessPath": "dirty",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function () { [native code] }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty",
+    "descriptor": {
+      "type": "function",
+      "signature": "(path)",
+      "implementation": "class Dirty extends EventEmitter {\n  constructor(path) {\n    super();\n\n    this.path = path;\n\n    this._data = new Map();\n    this._queue = new Map(); // Maps key to a list of callbacks.\n    this._readStream = null;\n    this._writeStream = null;\n    this._waitForDrain = false;\n    this._inFlightWrites = 0;\n\n    this._load();\n  }\n\n  /**\n   * set() stores a JSON object in the database at key\n   * cb is fired when the data is persisted.\n   * In memory, this is immediate - on disk, it will take some time.\n   */\n  set(key, val, cb) {\n    if (val === undefined) {\n      this._data.delete(key);\n    } else {\n      this._data.set(key, val);\n    }\n    if (this.path) {\n      const cbs = this._queue.get(key) || [];\n      if (cb) cbs.push(cb);\n      this._queue.set(key, cbs);\n      this._flush();\n    } else {\n      setImmediate(() => { if (cb) cb(); this.emit('drain'); });\n    }\n  }\n\n  /**\n   * Get the value stored at a key in the database\n   * This is synchronous since a cache is maintained in-memory\n   */\n  get(key) {\n    return this._data.get(key);\n  }\n\n  /**\n   * Get total number of stored keys\n   */\n  size() {\n    return this._data.size;\n  }\n\n  /**\n   * Remove a key and the value stored there\n   */\n  rm(key, cb) {\n    this.set(key, undefined, cb);\n  }\n\n  /**\n   * Iterate over keys, applying match function\n   */\n  forEach(fn) {\n    for (const [key, val] of this._data) {\n      if (fn(key, val) === false) break;\n    }\n  }\n\n  /**\n   * Update the value stored at a key in the database.\n   * This is synchronous since a cache is maintained in-memory\n   * cb is passed as per Dirty.prototype.set\n   */\n  update(key, updater, cb) {\n    this.set(key, updater(this.get(key)), cb);\n  }\n\n  /**\n   * Close dirty db file streams\n   */\n  close() {\n    if (this._queue.size || this._inFlightWrites > 0) {\n      this.once('drain', () => this.close());\n      return;\n    }\n    if (this._readStream) this._readStream.destroy();\n    if (this._writeStream) this._writeStream.end(() => this._writeStream.destroy());\n  }\n\n  // Called when a dirty connection is instantiated\n  _load() {\n    let buffer = '';\n\n    if (!this.path) {\n      process.nextTick(() => {\n        this.emit('load', 0);\n      });\n      return;\n    }\n\n    this._readStream = fs.createReadStream(this.path, {\n      encoding: 'utf-8',\n      flags: 'r',\n    });\n\n    this._readStream\n        .on('error', (err) => {\n          if (err.code === 'ENOENT') {\n            this.emit('load', 0);\n            return;\n          }\n\n          this.emit('error', err);\n        })\n        .on('data', (chunk) => {\n          buffer += chunk;\n          if (chunk.lastIndexOf('\\n') === -1) return;\n          const arr = buffer.split('\\n');\n          buffer = arr.pop();\n          arr.forEach((rowStr) => {\n            if (!rowStr) {\n              this.emit('error', new Error('Empty lines never appear in a healthy database'));\n              return;\n            }\n\n            let row;\n            try {\n              row = JSON.parse(rowStr);\n              if (!('key' in row)) {\n                throw new Error();\n              }\n            } catch (e) {\n              this.emit('error', new Error(`Could not load corrupted row: ${rowStr}`));\n              return '';\n            }\n\n            if (row.val === undefined) {\n              this._data.delete(row.key);\n            } else {\n              this._data.set(row.key, row.val);\n            }\n            return '';\n          });\n        })\n        .on('end', () => {\n          if (buffer.length) {\n            this.emit('error', new Error(`Corrupted row at the end of the db: ${buffer}`));\n          }\n          this.emit('load', this._data.size);\n        })\n        .on('close', () => {\n          this._readStream = null;\n          this.emit('read_close');\n        });\n\n    this._writeStream = fs.createWriteStream(this.path, {\n      encoding: 'utf-8',\n      flags: 'a',\n    });\n\n    this._writeStream.on('drain', () => {\n      this._waitForDrain = false;\n      if (!this._queue.size) {\n        if (this._inFlightWrites <= 0) this.emit('drain');\n      } else {\n        this._flush();\n      }\n    });\n\n    this._writeStream.on('close', () => {\n      this._writeStream = null;\n      this.emit('write_close');\n    });\n  }\n\n  _flush() {\n    if (!this._queue.size || this._waitForDrain) return;\n    this._writeStream.cork();\n    for (const [key, cbs] of this._queue) {\n      this._queue.delete(key);\n      const data = `${JSON.stringify({key, val: this._data.get(key)})}\\n`;\n      ++this._inFlightWrites;\n      this._waitForDrain = !this._writeStream.write(data, (err) => {\n        if (!cbs.length && err != null) this.emit('error', err);\n        if (--this._inFlightWrites <= 0 && !this._waitForDrain) this.emit('drain');\n        for (const cb of cbs) cb(err);\n      });\n      if (this._waitForDrain) break;\n    }\n    this._writeStream.uncork();\n  }\n}",
+      "isAsync": false,
+      "isConstructor": true
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.addAbortListener",
+    "descriptor": {
+      "type": "function",
+      "signature": "(signal, listener)",
+      "implementation": "function addAbortListener(signal, listener) {\n  if (signal === undefined) {\n    throw new ERR_INVALID_ARG_TYPE('signal', 'AbortSignal', signal);\n  }\n  validateAbortSignal(signal, 'signal');\n  validateFunction(listener, 'listener');\n\n  let removeEventListener;\n  if (signal.aborted) {\n    queueMicrotask ??= require('internal/process/task_queues').queueMicrotask;\n    queueMicrotask(() => listener());\n  } else {\n    kResistStopPropagation ??= require('internal/event_target').kResistStopPropagation;\n    // TODO(atlowChemi) add { subscription: true } and return directly\n    signal.addEventListener('abort', listener, { __proto__: null, once: true, [kResistStopPropagation]: true });\n    removeEventListener = () => {\n      signal.removeEventListener('abort', listener);\n    };\n  }\n  return {\n    __proto__: null,\n    [SymbolDispose]() {\n      removeEventListener?.();\n    },\n  };\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.once",
+    "descriptor": {
+      "type": "function",
+      "signature": "(emitter, name, options = kEmptyObject)",
+      "implementation": "async function once(emitter, name, options = kEmptyObject) {\n  validateObject(options, 'options');\n  const signal = options?.signal;\n  validateAbortSignal(signal, 'options.signal');\n  if (signal?.aborted)\n    throw new AbortError(undefined, { cause: signal?.reason });\n  return new Promise((resolve, reject) => {\n    const errorListener = (err) => {\n      emitter.removeListener(name, resolver);\n      if (signal != null) {\n        eventTargetAgnosticRemoveListener(signal, 'abort', abortListener);\n      }\n      reject(err);\n    };\n    const resolver = (...args) => {\n      if (typeof emitter.removeListener === 'function') {\n        emitter.removeListener('error', errorListener);\n      }\n      if (signal != null) {\n        eventTargetAgnosticRemoveListener(signal, 'abort', abortListener);\n      }\n      resolve(args);\n    };\n\n    kResistStopPropagation ??= require('internal/event_target').kResistStopPropagation;\n    const opts = { __proto__: null, once: true, [kResistStopPropagation]: true };\n    eventTargetAgnosticAddListener(emitter, name, resolver, opts);\n    if (name !== 'error' && typeof emitter.once === 'function') {\n      // EventTarget does not have `error` event semantics like Node\n      // EventEmitters, we listen to `error` events only on EventEmitters.\n      emitter.once('error', errorListener);\n    }\n    function abortListener() {\n      eventTargetAgnosticRemoveListener(emitter, name, resolver);\n      eventTargetAgnosticRemoveListener(emitter, 'error', errorListener);\n      reject(new AbortError(undefined, { cause: signal?.reason }));\n    }\n    if (signal != null) {\n      eventTargetAgnosticAddListener(\n        signal, 'abort', abortListener, { __proto__: null, once: true, [kResistStopPropagation]: true });\n    }\n  });\n}",
+      "isAsync": true,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.on",
+    "descriptor": {
+      "type": "function",
+      "signature": "(emitter, event, options = kEmptyObject)",
+      "implementation": "function on(emitter, event, options = kEmptyObject) {\n  // Parameters validation\n  validateObject(options, 'options');\n  const signal = options.signal;\n  validateAbortSignal(signal, 'options.signal');\n  if (signal?.aborted)\n    throw new AbortError(undefined, { cause: signal?.reason });\n  // Support both highWaterMark and highWatermark for backward compatibility\n  const highWatermark = options.highWaterMark ?? options.highWatermark ?? NumberMAX_SAFE_INTEGER;\n  validateInteger(highWatermark, 'options.highWaterMark', 1);\n  // Support both lowWaterMark and lowWatermark for backward compatibility\n  const lowWatermark = options.lowWaterMark ?? options.lowWatermark ?? 1;\n  validateInteger(lowWatermark, 'options.lowWaterMark', 1);\n\n  // Preparing controlling queues and variables\n  FixedQueue ??= require('internal/fixed_queue');\n  const unconsumedEvents = new FixedQueue();\n  const unconsumedPromises = new FixedQueue();\n  let paused = false;\n  let error = null;\n  let finished = false;\n  let size = 0;\n\n  const iterator = ObjectSetPrototypeOf({\n    next() {\n      // First, we consume all unread events\n      if (size) {\n        const value = unconsumedEvents.shift();\n        size--;\n        if (paused && size < lowWatermark) {\n          emitter.resume();\n          paused = false;\n        }\n        return PromiseResolve(createIterResult(value, false));\n      }\n\n      // Then we error, if an error happened\n      // This happens one time if at all, because after 'error'\n      // we stop listening\n      if (error) {\n        const p = PromiseReject(error);\n        // Only the first element errors\n        error = null;\n        return p;\n      }\n\n      // If the iterator is finished, resolve to done\n      if (finished) return closeHandler();\n\n      // Wait until an event happens\n      return new Promise(function(resolve, reject) {\n        unconsumedPromises.push({ resolve, reject });\n      });\n    },\n\n    return() {\n      return closeHandler();\n    },\n\n    throw(err) {\n      if (!err || !(err instanceof Error)) {\n        throw new ERR_INVALID_ARG_TYPE('EventEmitter.AsyncIterator',\n                                       'Error', err);\n      }\n      errorHandler(err);\n    },\n    [SymbolAsyncIterator]() {\n      return this;\n    },\n    [kWatermarkData]: {\n      /**\n       * The current queue size\n       */\n      get size() {\n        return size;\n      },\n      /**\n       * The low watermark. The emitter is resumed every time size is lower than it\n       */\n      get low() {\n        return lowWatermark;\n      },\n      /**\n       * The high watermark. The emitter is paused every time size is higher than it\n       */\n      get high() {\n        return highWatermark;\n      },\n      /**\n       * It checks whether the emitter is paused by the watermark controller or not\n       */\n      get isPaused() {\n        return paused;\n      },\n    },\n  }, AsyncIteratorPrototype);\n\n  // Adding event handlers\n  const { addEventListener, removeAll } = listenersController();\n  kFirstEventParam ??= require('internal/events/symbols').kFirstEventParam;\n  addEventListener(emitter, event, options[kFirstEventParam] ? eventHandler : function(...args) {\n    return eventHandler(args);\n  });\n  if (event !== 'error' && typeof emitter.on === 'function') {\n    addEventListener(emitter, 'error', errorHandler);\n  }\n  const closeEvents = options?.close;\n  if (closeEvents?.length) {\n    for (let i = 0; i < closeEvents.length; i++) {\n      addEventListener(emitter, closeEvents[i], closeHandler);\n    }\n  }\n\n  const abortListenerDisposable = signal ? addAbortListener(signal, abortListener) : null;\n\n  return iterator;\n\n  function abortListener() {\n    errorHandler(new AbortError(undefined, { cause: signal?.reason }));\n  }\n\n  function eventHandler(value) {\n    if (unconsumedPromises.isEmpty()) {\n      size++;\n      if (!paused && size > highWatermark) {\n        paused = true;\n        emitter.pause();\n      }\n      unconsumedEvents.push(value);\n    } else unconsumedPromises.shift().resolve(createIterResult(value, false));\n  }\n\n  function errorHandler(err) {\n    if (unconsumedPromises.isEmpty()) error = err;\n    else unconsumedPromises.shift().reject(err);\n\n    closeHandler();\n  }\n\n  function closeHandler() {\n    abortListenerDisposable?.[SymbolDispose]();\n    removeAll();\n    finished = true;\n    const doneResult = createIterResult(undefined, true);\n    while (!unconsumedPromises.isEmpty()) {\n      unconsumedPromises.shift().resolve(doneResult);\n    }\n\n    return PromiseResolve(doneResult);\n  }\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.getEventListeners",
+    "descriptor": {
+      "type": "function",
+      "signature": "(emitterOrTarget, type)",
+      "implementation": "function getEventListeners(emitterOrTarget, type) {\n  // First check if EventEmitter\n  if (typeof emitterOrTarget.listeners === 'function') {\n    return emitterOrTarget.listeners(type);\n  }\n  // Require event target lazily to avoid always loading it\n  const { isEventTarget, kEvents } = require('internal/event_target');\n  if (isEventTarget(emitterOrTarget)) {\n    const root = emitterOrTarget[kEvents].get(type);\n    const listeners = [];\n    let handler = root?.next;\n    while (handler?.listener !== undefined) {\n      const listener = handler.listener?.deref ?\n        handler.listener.deref() : handler.listener;\n      listeners.push(listener);\n      handler = handler.next;\n    }\n    return listeners;\n  }\n  throw new ERR_INVALID_ARG_TYPE('emitter',\n                                 ['EventEmitter', 'EventTarget'],\n                                 emitterOrTarget);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.getMaxListeners",
+    "descriptor": {
+      "type": "function",
+      "signature": "(emitterOrTarget)",
+      "implementation": "function getMaxListeners(emitterOrTarget) {\n  if (typeof emitterOrTarget?.getMaxListeners === 'function') {\n    return _getMaxListeners(emitterOrTarget);\n  } else if (emitterOrTarget?.[kMaxEventTargetListeners]) {\n    return emitterOrTarget[kMaxEventTargetListeners];\n  }\n\n  throw new ERR_INVALID_ARG_TYPE('emitter',\n                                 ['EventEmitter', 'EventTarget'],\n                                 emitterOrTarget);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.EventEmitter",
+    "descriptor": {
+      "type": "function",
+      "signature": "(opts)",
+      "implementation": "function EventEmitter(opts) {\n  EventEmitter.init.call(this, opts);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.EventEmitter.EventEmitterAsyncResource",
+    "descriptor": {
+      "type": "function",
+      "signature": "(options = undefined)",
+      "implementation": "class EventEmitterAsyncResource extends EventEmitter {\n        /**\n         * @param {{\n         *   name?: string,\n         *   triggerAsyncId?: number,\n         *   requireManualDestroy?: boolean,\n         * }} [options]\n         */\n        constructor(options = undefined) {\n          let name;\n          if (typeof options === 'string') {\n            name = options;\n            options = undefined;\n          } else {\n            if (new.target === EventEmitterAsyncResource) {\n              validateString(options?.name, 'options.name');\n            }\n            name = options?.name || new.target.name;\n          }\n          super(options);\n\n          this[kAsyncResource] =\n            new EventEmitterReferencingAsyncResource(this, name, options);\n        }\n\n        /**\n         * @param {symbol,string} event\n         * @param  {...any} args\n         * @returns {boolean}\n         */\n        emit(event, ...args) {\n          if (this[kAsyncResource] === undefined)\n            throw new ERR_INVALID_THIS('EventEmitterAsyncResource');\n          const { asyncResource } = this;\n          ArrayPrototypeUnshift(args, super.emit, this, event);\n          return ReflectApply(asyncResource.runInAsyncScope, asyncResource,\n                              args);\n        }\n\n        /**\n         * @returns {void}\n         */\n        emitDestroy() {\n          if (this[kAsyncResource] === undefined)\n            throw new ERR_INVALID_THIS('EventEmitterAsyncResource');\n          this.asyncResource.emitDestroy();\n        }\n\n        /**\n         * @type {number}\n         */\n        get asyncId() {\n          if (this[kAsyncResource] === undefined)\n            throw new ERR_INVALID_THIS('EventEmitterAsyncResource');\n          return this.asyncResource.asyncId();\n        }\n\n        /**\n         * @type {number}\n         */\n        get triggerAsyncId() {\n          if (this[kAsyncResource] === undefined)\n            throw new ERR_INVALID_THIS('EventEmitterAsyncResource');\n          return this.asyncResource.triggerAsyncId();\n        }\n\n        /**\n         * @type {EventEmitterReferencingAsyncResource}\n         */\n        get asyncResource() {\n          if (this[kAsyncResource] === undefined)\n            throw new ERR_INVALID_THIS('EventEmitterAsyncResource');\n          return this[kAsyncResource];\n        }\n      }",
+      "isAsync": false,
+      "isConstructor": true
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.EventEmitter.EventEmitterAsyncResource.setMaxListeners",
+    "descriptor": {
+      "type": "function",
+      "signature": "(n = defaultMaxListeners, ...eventTargets)",
+      "implementation": "function(n = defaultMaxListeners, ...eventTargets) {\n    validateNumber(n, 'setMaxListeners', 0);\n    if (eventTargets.length === 0) {\n      defaultMaxListeners = n;\n    } else {\n      if (isEventTarget === undefined)\n        isEventTarget = require('internal/event_target').isEventTarget;\n\n      for (let i = 0; i < eventTargets.length; i++) {\n        const target = eventTargets[i];\n        if (isEventTarget(target)) {\n          target[kMaxEventTargetListeners] = n;\n          target[kMaxEventTargetListenersWarned] = false;\n        } else if (typeof target.setMaxListeners === 'function') {\n          target.setMaxListeners(n);\n        } else {\n          throw new ERR_INVALID_ARG_TYPE(\n            'eventTargets',\n            ['EventEmitter', 'EventTarget'],\n            target);\n        }\n      }\n    }\n  }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.EventEmitter.EventEmitterAsyncResource.init",
+    "descriptor": {
+      "type": "function",
+      "signature": "(opts)",
+      "implementation": "function(opts) {\n\n  if (this._events === undefined ||\n      this._events === ObjectGetPrototypeOf(this)._events) {\n    this._events = { __proto__: null };\n    this._eventsCount = 0;\n    this[kShapeMode] = false;\n  } else {\n    this[kShapeMode] = true;\n  }\n\n  this._maxListeners = this._maxListeners || undefined;\n\n\n  if (opts?.captureRejections) {\n    validateBoolean(opts.captureRejections, 'options.captureRejections');\n    this[kCapture] = Boolean(opts.captureRejections);\n  } else {\n    // Assigning the kCapture property directly saves an expensive\n    // prototype lookup in a very sensitive hot path.\n    this[kCapture] = EventEmitter.prototype[kCapture];\n  }\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.EventEmitter.EventEmitterAsyncResource.listenerCount",
+    "descriptor": {
+      "type": "function",
+      "signature": "(emitter, type)",
+      "implementation": "function(emitter, type) {\n  if (typeof emitter.listenerCount === 'function') {\n    return emitter.listenerCount(type);\n  }\n  return FunctionPrototypeCall(listenerCount, emitter, type);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.EventEmitter.EventEmitterAsyncResource.prototype.setMaxListeners",
+    "descriptor": {
+      "type": "function",
+      "signature": "(n)",
+      "implementation": "function setMaxListeners(n) {\n  validateNumber(n, 'setMaxListeners', 0);\n  this._maxListeners = n;\n  return this;\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.EventEmitter.EventEmitterAsyncResource.prototype.getMaxListeners",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function getMaxListeners() {\n  return _getMaxListeners(this);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.EventEmitter.EventEmitterAsyncResource.prototype.addListener",
+    "descriptor": {
+      "type": "function",
+      "signature": "(type, listener)",
+      "implementation": "function addListener(type, listener) {\n  return _addListener(this, type, listener, false);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.EventEmitter.EventEmitterAsyncResource.prototype.prependListener",
+    "descriptor": {
+      "type": "function",
+      "signature": "(type, listener)",
+      "implementation": "function prependListener(type, listener) {\n      return _addListener(this, type, listener, true);\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.EventEmitter.EventEmitterAsyncResource.prototype.once",
+    "descriptor": {
+      "type": "function",
+      "signature": "(type, listener)",
+      "implementation": "function once(type, listener) {\n  checkListener(listener);\n\n  this.on(type, _onceWrap(this, type, listener));\n  return this;\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.EventEmitter.EventEmitterAsyncResource.prototype.prependOnceListener",
+    "descriptor": {
+      "type": "function",
+      "signature": "(type, listener)",
+      "implementation": "function prependOnceListener(type, listener) {\n      checkListener(listener);\n\n      this.prependListener(type, _onceWrap(this, type, listener));\n      return this;\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.EventEmitter.EventEmitterAsyncResource.prototype.removeListener",
+    "descriptor": {
+      "type": "function",
+      "signature": "(type, listener)",
+      "implementation": "function removeListener(type, listener) {\n      checkListener(listener);\n\n      const events = this._events;\n      if (events === undefined)\n        return this;\n\n      const list = events[type];\n      if (list === undefined)\n        return this;\n\n      if (list === listener || list.listener === listener) {\n        this._eventsCount -= 1;\n\n        if (this[kShapeMode]) {\n          events[type] = undefined;\n        } else if (this._eventsCount === 0) {\n          this._events = { __proto__: null };\n        } else {\n          delete events[type];\n          if (events.removeListener)\n            this.emit('removeListener', type, list.listener || listener);\n        }\n      } else if (typeof list !== 'function') {\n        let position = -1;\n\n        for (let i = list.length - 1; i >= 0; i--) {\n          if (list[i] === listener || list[i].listener === listener) {\n            position = i;\n            break;\n          }\n        }\n\n        if (position < 0)\n          return this;\n\n        if (position === 0)\n          list.shift();\n        else {\n          if (spliceOne === undefined)\n            spliceOne = require('internal/util').spliceOne;\n          spliceOne(list, position);\n        }\n\n        if (list.length === 1)\n          events[type] = list[0];\n\n        if (events.removeListener !== undefined)\n          this.emit('removeListener', type, listener);\n      }\n\n      return this;\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.EventEmitter.EventEmitterAsyncResource.prototype.removeAllListeners",
+    "descriptor": {
+      "type": "function",
+      "signature": "(type)",
+      "implementation": "function removeAllListeners(type) {\n      const events = this._events;\n      if (events === undefined)\n        return this;\n\n      // Not listening for removeListener, no need to emit\n      if (events.removeListener === undefined) {\n        if (arguments.length === 0) {\n          this._events = { __proto__: null };\n          this._eventsCount = 0;\n        } else if (events[type] !== undefined) {\n          if (--this._eventsCount === 0)\n            this._events = { __proto__: null };\n          else\n            delete events[type];\n        }\n        this[kShapeMode] = false;\n        return this;\n      }\n\n      // Emit removeListener for all listeners on all events\n      if (arguments.length === 0) {\n        for (const key of ReflectOwnKeys(events)) {\n          if (key === 'removeListener') continue;\n          this.removeAllListeners(key);\n        }\n        this.removeAllListeners('removeListener');\n        this._events = { __proto__: null };\n        this._eventsCount = 0;\n        this[kShapeMode] = false;\n        return this;\n      }\n\n      const listeners = events[type];\n\n      if (typeof listeners === 'function') {\n        this.removeListener(type, listeners);\n      } else if (listeners !== undefined) {\n        // LIFO order\n        for (let i = listeners.length - 1; i >= 0; i--) {\n          this.removeListener(type, listeners[i]);\n        }\n      }\n\n      return this;\n    }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.EventEmitter.EventEmitterAsyncResource.prototype.listeners",
+    "descriptor": {
+      "type": "function",
+      "signature": "(type)",
+      "implementation": "function listeners(type) {\n  return _listeners(this, type, true);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.EventEmitter.EventEmitterAsyncResource.prototype.rawListeners",
+    "descriptor": {
+      "type": "function",
+      "signature": "(type)",
+      "implementation": "function rawListeners(type) {\n  return _listeners(this, type, false);\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.EventEmitter.EventEmitterAsyncResource.prototype.listenerCount",
+    "descriptor": {
+      "type": "function",
+      "signature": "(type, listener)",
+      "implementation": "function listenerCount(type, listener) {\n  const events = this._events;\n\n  if (events !== undefined) {\n    const evlistener = events[type];\n\n    if (typeof evlistener === 'function') {\n      if (listener != null) {\n        return listener === evlistener || listener === evlistener.listener ? 1 : 0;\n      }\n\n      return 1;\n    } else if (evlistener !== undefined) {\n      if (listener != null) {\n        let matching = 0;\n\n        for (let i = 0, l = evlistener.length; i < l; i++) {\n          if (evlistener[i] === listener || evlistener[i].listener === listener) {\n            matching++;\n          }\n        }\n\n        return matching;\n      }\n\n      return evlistener.length;\n    }\n  }\n\n  return 0;\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.EventEmitter.EventEmitterAsyncResource.prototype.eventNames",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "function eventNames() {\n  return this._eventsCount > 0 ? ReflectOwnKeys(this._events) : [];\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.EventEmitter.EventEmitterAsyncResource.prototype.emit",
+    "descriptor": {
+      "type": "function",
+      "signature": "(event, ...args)",
+      "implementation": "emit(event, ...args) {\n          if (this[kAsyncResource] === undefined)\n            throw new ERR_INVALID_THIS('EventEmitterAsyncResource');\n          const { asyncResource } = this;\n          ArrayPrototypeUnshift(args, super.emit, this, event);\n          return ReflectApply(asyncResource.runInAsyncScope, asyncResource,\n                              args);\n        }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.EventEmitter.EventEmitterAsyncResource.prototype.emitDestroy",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "emitDestroy() {\n          if (this[kAsyncResource] === undefined)\n            throw new ERR_INVALID_THIS('EventEmitterAsyncResource');\n          this.asyncResource.emitDestroy();\n        }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.EventEmitter.prototype.emit",
+    "descriptor": {
+      "type": "function",
+      "signature": "(type, ...args)",
+      "implementation": "function emit(type, ...args) {\n  let doError = (type === 'error');\n\n  const events = this._events;\n  if (events !== undefined) {\n    if (doError && events[kErrorMonitor] !== undefined)\n      this.emit(kErrorMonitor, ...args);\n    doError = (doError && events.error === undefined);\n  } else if (!doError)\n    return false;\n\n  // If there is no 'error' event listener then throw.\n  if (doError) {\n    let er;\n    if (args.length > 0)\n      er = args[0];\n    if (er instanceof Error) {\n      try {\n        const capture = {};\n        ErrorCaptureStackTrace(capture, EventEmitter.prototype.emit);\n        ObjectDefineProperty(er, kEnhanceStackBeforeInspector, {\n          __proto__: null,\n          value: FunctionPrototypeBind(enhanceStackTrace, this, er, capture),\n          configurable: true,\n        });\n      } catch {\n        // Continue regardless of error.\n      }\n\n      // Note: The comments on the `throw` lines are intentional, they show\n      // up in Node's output if this results in an unhandled exception.\n      throw er; // Unhandled 'error' event\n    }\n\n    let stringifiedEr;\n    try {\n      stringifiedEr = inspect(er);\n    } catch {\n      stringifiedEr = er;\n    }\n\n    // At least give some kind of context to the user\n    const err = new ERR_UNHANDLED_ERROR(stringifiedEr);\n    err.context = er;\n    throw err; // Unhandled 'error' event\n  }\n\n  const handler = events[type];\n\n  if (handler === undefined)\n    return false;\n\n  if (typeof handler === 'function') {\n    const result = handler.apply(this, args);\n\n    // We check if result is undefined first because that\n    // is the most common case so we do not pay any perf\n    // penalty\n    if (result !== undefined && result !== null) {\n      addCatch(this, result, type, args);\n    }\n  } else {\n    const len = handler.length;\n    const listeners = arrayClone(handler);\n    for (let i = 0; i < len; ++i) {\n      const result = listeners[i].apply(this, args);\n\n      // We check if result is undefined first because that\n      // is the most common case so we do not pay any perf\n      // penalty.\n      // This code is duplicated because extracting it away\n      // would make it non-inlineable.\n      if (result !== undefined && result !== null) {\n        addCatch(this, result, type, args);\n      }\n    }\n  }\n\n  return true;\n}",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.prototype.set",
+    "descriptor": {
+      "type": "function",
+      "signature": "(key, val, cb)",
+      "implementation": "set(key, val, cb) {\n    if (val === undefined) {\n      this._data.delete(key);\n    } else {\n      this._data.set(key, val);\n    }\n    if (this.path) {\n      const cbs = this._queue.get(key) || [];\n      if (cb) cbs.push(cb);\n      this._queue.set(key, cbs);\n      this._flush();\n    } else {\n      setImmediate(() => { if (cb) cb(); this.emit('drain'); });\n    }\n  }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.prototype.get",
+    "descriptor": {
+      "type": "function",
+      "signature": "(key)",
+      "implementation": "get(key) {\n    return this._data.get(key);\n  }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.prototype.size",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "size() {\n    return this._data.size;\n  }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.prototype.rm",
+    "descriptor": {
+      "type": "function",
+      "signature": "(key, cb)",
+      "implementation": "rm(key, cb) {\n    this.set(key, undefined, cb);\n  }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.prototype.forEach",
+    "descriptor": {
+      "type": "function",
+      "signature": "(fn)",
+      "implementation": "forEach(fn) {\n    for (const [key, val] of this._data) {\n      if (fn(key, val) === false) break;\n    }\n  }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.prototype.update",
+    "descriptor": {
+      "type": "function",
+      "signature": "(key, updater, cb)",
+      "implementation": "update(key, updater, cb) {\n    this.set(key, updater(this.get(key)), cb);\n  }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  },
+  {
+    "accessPath": "dirty.Dirty.prototype.close",
+    "descriptor": {
+      "type": "function",
+      "signature": "()",
+      "implementation": "close() {\n    if (this._queue.size || this._inFlightWrites > 0) {\n      this.once('drain', () => this.close());\n      return;\n    }\n    if (this._readStream) this._readStream.destroy();\n    if (this._writeStream) this._writeStream.end(() => this._writeStream.destroy());\n  }",
+      "isAsync": false,
+      "isConstructor": false
+    },
+    "packageName": "dirty"
+  }
+]

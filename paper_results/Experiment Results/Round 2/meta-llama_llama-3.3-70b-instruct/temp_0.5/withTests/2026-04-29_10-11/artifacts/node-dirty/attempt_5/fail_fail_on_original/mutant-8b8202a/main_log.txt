@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-8b8202a/testCase.test.ts
+  Dirty
+    ✕ should only emit drain when there are no in-flight writes (4 ms)
+
+  ● Dirty › should only emit drain when there are no in-flight writes
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 2
+
+      16 |           expect(drainCount).toBe(1);
+      17 |           db.set('key3', 'value3', () => {
+    > 18 |             expect(drainCount).toBe(1);
+         |                                ^
+      19 |           });
+      20 |           db.on('drain', () => {
+      21 |             expect(drainCount).toBe(2);
+
+      at toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-8b8202a/testCase.test.ts:18:32)
+      at cb (../subject_repositories/node-dirty/lib/dirty/dirty.js:191:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.298 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-8b8202a/testCase.test.ts".

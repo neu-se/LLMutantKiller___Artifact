@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-390f195/testCase.test.ts
+  long stack traces
+    ✕ does not duplicate lines when rethrowing an error - func1 appears exactly once (6 ms)
+
+  ● long stack traces › does not duplicate lines when rethrowing an error - func1 appears exactly once
+
+    expect(received).toBe(expected) // Object.is equality
+    Expected: 1
+    Received: 5
+
+      31 |         // so all stacks are re-traversed each time - func1 appears multiple times.
+      32 |         const func1Count = (stack.match(/func1/g) || []).length;
+    > 33 |         expect(func1Count).toBe(1);
+         |                            ^
+      34 |       });
+      35 |   });
+      36 | });
+
+      at toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-390f195/testCase.test.ts:33:28)
+      From previous event:
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-390f195/testCase.test.ts:24:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.475 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-390f195/testCase.test.ts".

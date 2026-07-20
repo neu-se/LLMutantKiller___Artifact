@@ -1,0 +1,39 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-2a78613/testCase.test.ts
+  Complex
+    ✕ should correctly multiply two complex numbers when both are real (1 ms)
+    ✕ should return NaN when the placeholder code is empty (1 ms)
+
+  ● Complex › should correctly multiply two complex numbers when both are real
+
+    ReferenceError: Complex is not defined
+
+      1 | describe('Complex', () => {
+      2 |   it('should correctly multiply two complex numbers when both are real', () => {
+    > 3 |     const c1 = new Complex(2, 0);
+        |                ^
+      4 |     const c2 = new Complex(3, 0);
+      5 |     const result = c1.mul(c2);
+      6 |     expect(result.re).toBe(6);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-2a78613/testCase.test.ts:3:16)
+
+  ● Complex › should return NaN when the placeholder code is empty
+
+    ReferenceError: Complex is not defined
+
+       9 |
+      10 |   it('should return NaN when the placeholder code is empty', () => {
+    > 11 |     const c1 = new Complex(2, 0);
+         |                ^
+      12 |     const c2 = new Complex(3, 0);
+      13 |     const originalMul = Complex.prototype.mul;
+      14 |     Complex.prototype.mul = function(a: any, b: any) {
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-2a78613/testCase.test.ts:11:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.521 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-2a78613/testCase.test.ts".

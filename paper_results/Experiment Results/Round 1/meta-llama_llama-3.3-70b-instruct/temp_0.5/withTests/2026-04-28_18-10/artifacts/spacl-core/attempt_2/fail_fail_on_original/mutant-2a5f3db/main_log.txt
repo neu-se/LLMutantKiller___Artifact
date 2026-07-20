@@ -1,0 +1,34 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-2a5f3db/testCase.test.ts[0m:[93m1[0m:[93m18[0m - [91merror[0m[90m TS2459: [0mModule '"../../../../../../../../../../../subject_repositories/spacl-core/src/policy"' declares 'Rule' locally, but it is not exported.
+
+[7m1[0m import { Policy, Rule } from '../../../../../../../../../../../subject_repositories/spacl-core/src/policy';
+[7m [0m [91m                 ~~~~[0m
+
+  [96m../subject_repositories/spacl-core/src/policy.ts[0m:[93m1[0m:[93m10[0m
+    [7m1[0m import { Rule } from './rule'
+    [7m [0m [96m         ~~~~[0m
+    'Rule' is declared here.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-2a5f3db/testCase.test.ts
+  policy clone
+    ✕ should clone policy correctly with deep cloning (11 ms)
+
+  ● policy clone › should clone policy correctly with deep cloning
+
+    Cannot find module '../../../../../../../../../subject_repositories/spacl-core/src/rule' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-2a5f3db/testCase.test.ts'
+
+       5 | describe('policy clone', () => {
+       6 |   it('should clone policy correctly with deep cloning', () => {
+    >  7 |     const originalRule = new (require('../../../../../../../../../subject_repositories/spacl-core/src/rule')).Rule('/test').allow('foo', 'bar');
+         |                               ^
+       8 |     const originalPolicy = new Policy('original', originalRule);
+       9 |     const clonedPolicy = originalPolicy.clone('cloned', true);
+      10 |     originalRule.deny('foo', 'bar', 'boo');
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at Object.require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-2a5f3db/testCase.test.ts:7:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.209 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-2a5f3db/testCase.test.ts".

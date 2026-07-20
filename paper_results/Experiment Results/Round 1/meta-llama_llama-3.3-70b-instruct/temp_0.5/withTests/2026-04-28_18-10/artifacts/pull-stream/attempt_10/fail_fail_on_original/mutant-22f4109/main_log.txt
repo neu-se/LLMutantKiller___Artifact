@@ -1,0 +1,40 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-22f4109/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/sinks/drain.js"' has no exported member 'drain'.
+
+[7m1[0m import { drain } from "../../../../../../../../../../../subject_repositories/pull-stream/sinks/drain.js";
+[7m [0m [91m         ~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-22f4109/testCase.test.ts[0m:[93m2[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/sources/values.js"' has no exported member 'values'.
+
+[7m2[0m import { values } from "../../../../../../../../../../../subject_repositories/pull-stream/sources/values.js";
+[7m [0m [91m         ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-22f4109/testCase.test.ts[0m:[93m8[0m:[93m30[0m - [91merror[0m[90m TS7006: [0mParameter 'end' implicitly has an 'any' type.
+
+[7m8[0m     values([1, 2, 3])(null, (end, data) => {
+[7m [0m [91m                             ~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-22f4109/testCase.test.ts[0m:[93m8[0m:[93m35[0m - [91merror[0m[90m TS7006: [0mParameter 'data' implicitly has an 'any' type.
+
+[7m8[0m     values([1, 2, 3])(null, (end, data) => {
+[7m [0m [91m                                  ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-22f4109/testCase.test.ts
+  drain
+    ✕ should call done when done callback is supplied and no error occurs (1 ms)
+
+  ● drain › should call done when done callback is supplied and no error occurs
+
+    TypeError: (0 , drain_js_1.drain) is not a function
+
+       5 |   it('should call done when done callback is supplied and no error occurs', () => {
+       6 |     const spy = jest.fn();
+    >  7 |     const sink = drain(() => true, spy);
+         |                       ^
+       8 |     values([1, 2, 3])(null, (end, data) => {
+       9 |       if (end) {
+      10 |         spy();
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-22f4109/testCase.test.ts:7:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_10/pending_category/mutant-22f4109/testCase.test.ts".

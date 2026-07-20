@@ -1,0 +1,34 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-5680e2c/testCase.test.ts
+  through onEnd callback
+    ✕ should call onEnd with null when stream ends normally, not with the abort=true value (2 ms)
+
+  ● through onEnd callback › should call onEnd with null when stream ends normally, not with the abort=true value
+
+    expect(received).toBeNull()
+
+    Received: true
+
+      40 |         // mutated code would call onEnd(true) instead of onEnd(null)
+      41 |         expect(onEndArgs.length).toBe(1);
+    > 42 |         expect(onEndArgs[0]).toBeNull();
+         |                              ^
+      43 |         done();
+      44 |       });
+      45 |     });
+
+      at toBeNull (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-5680e2c/testCase.test.ts:42:30)
+      at cb (../subject_repositories/pull-stream/throughs/through.js:20:9)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-5680e2c/testCase.test.ts:24:9)
+      at read (../subject_repositories/pull-stream/throughs/through.js:17:14)
+      at readable (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-5680e2c/testCase.test.ts:36:7)
+      at cb (../subject_repositories/pull-stream/throughs/through.js:20:9)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-5680e2c/testCase.test.ts:22:9)
+      at read (../subject_repositories/pull-stream/throughs/through.js:17:14)
+      at Object.readable (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-5680e2c/testCase.test.ts:31:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.776 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-5680e2c/testCase.test.ts".

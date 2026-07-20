@@ -1,0 +1,30 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_7/pending_category/mutant-cf7ede4/testCase.test.ts[0m:[93m11[0m:[93m80[0m - [91merror[0m[90m TS2339: [0mProperty 'toString' does not exist on type 'void | Error'.
+  Property 'toString' does not exist on type 'void'.
+
+[7m11[0m         expect((await zip(path.resolve(__dirname, './'), testUNCOMPRESSEDZIP)).toString()).not.toContain('compression');
+[7m  [0m [91m                                                                               ~~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_7/pending_category/mutant-cf7ede4/testCase.test.ts
+  Zip-A-Folder Test
+    ✕ should use the default compression level when no compression level is provided (1 ms)
+
+  ● Zip-A-Folder Test › should use the default compression level when no compression level is provided
+
+    Source and target folder must be different.
+
+      116 |
+      117 |             if (targetBasePath === src) {
+    > 118 |                 throw new Error('Source and target folder must be different.');
+          |                       ^
+      119 |             }
+      120 |             try {
+      121 |                 if (!isGlob(src)) {
+
+      at Function.compress (../subject_repositories/zip-a-folder/lib/ZipAFolder.ts:118:23)
+      at compress (../subject_repositories/zip-a-folder/lib/ZipAFolder.ts:85:30)
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_7/pending_category/mutant-cf7ede4/testCase.test.ts:9:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.217 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_7/pending_category/mutant-cf7ede4/testCase.test.ts".

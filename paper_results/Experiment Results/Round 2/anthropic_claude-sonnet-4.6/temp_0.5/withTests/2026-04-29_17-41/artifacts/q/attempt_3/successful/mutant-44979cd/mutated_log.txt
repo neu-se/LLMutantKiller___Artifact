@@ -1,0 +1,25 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-44979cd/testCase.test.ts
+  Q CommonJS loading condition
+    ✕ requires exports to be an object to load via CommonJS branch (6 ms)
+
+  ● Q CommonJS loading condition › requires exports to be an object to load via CommonJS branch
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      31 |     // Mutated code: true && typeof module === "object" is true
+      32 |     // → enters CommonJS branch → sets module.exports = Q → does NOT throw
+    > 33 |     expect(threw).toBe(true);
+         |                   ^
+      34 |   });
+      35 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-44979cd/testCase.test.ts:33:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.906 s, estimated 1 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-44979cd/testCase.test.ts".

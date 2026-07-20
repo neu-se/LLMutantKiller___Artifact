@@ -1,0 +1,26 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-90b49f6/testCase.test.ts
+  Complex number parsing
+    ✕ should correctly parse complex numbers with balanced plus and minus operators (2 ms)
+
+  ● Complex number parsing › should correctly parse complex numbers with balanced plus and minus operators
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: SyntaxError
+
+    Received function did not throw
+
+       8 |     // When we have "1+2-3i-", the original code detects remaining operators (1+1=2>0)
+       9 |     // but the mutated code would not (1-1=0), causing it to incorrectly accept the input
+    > 10 |     expect(() => new Complex("1+2-3i-")).toThrow(SyntaxError);
+         |                                          ^
+      11 |   });
+      12 | });
+
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-90b49f6/testCase.test.ts:10:42)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.039 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-90b49f6/testCase.test.ts".

@@ -1,0 +1,57 @@
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/countries-and-timezones/attempt_4/pending_category/mutant-dc12450/testCase.test.ts
+  buildCountry function
+    ✕ should return the same result when called multiple times with the same input, even if data is modified in between (5 ms)
+
+  ● buildCountry function › should return the same result when called multiple times with the same input, even if data is modified in between
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 3
+
+    @@ -7,16 +7,18 @@
+          "America/Ensenada",
+          "America/Hermosillo",
+          "America/Matamoros",
+          "America/Mazatlan",
+          "America/Merida",
+    +     "America/Mexico_City",
+          "America/Monterrey",
+          "America/Ojinaga",
+          "America/Santa_Isabel",
+          "America/Tijuana",
+          "Mexico/BajaNorte",
+          "Mexico/BajaSur",
+    +     "Mexico/General",
+        ],
+        "id": "MX",
+        "name": "Mexico",
+        "timezones": Array [
+          "America/Bahia_Banderas",
+    @@ -25,10 +27,11 @@
+          "America/Ciudad_Juarez",
+          "America/Hermosillo",
+          "America/Matamoros",
+          "America/Mazatlan",
+          "America/Merida",
+    +     "America/Mexico_City",
+          "America/Monterrey",
+          "America/Ojinaga",
+          "America/Tijuana",
+        ],
+      }
+
+       7 |     data.timezones['America/Mexico_City'].c = ['US'];
+       8 |     const result2 = buildCountry(data, 'MX');
+    >  9 |     expect(result1).toEqual(result2);
+         |                     ^
+      10 |   });
+      11 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/countries-and-timezones/attempt_4/pending_category/mutant-dc12450/testCase.test.ts:9:21)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.253 s, estimated 2 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/countries-and-timezones/attempt_4/pending_category/mutant-dc12450/testCase.test.ts".

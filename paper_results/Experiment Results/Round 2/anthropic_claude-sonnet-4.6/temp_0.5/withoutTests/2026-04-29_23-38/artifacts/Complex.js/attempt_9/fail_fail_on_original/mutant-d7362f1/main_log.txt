@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-d7362f1/testCase.test.ts
+  Complex mul
+    ✕ should return Infinity real part when multiplying two infinite real numbers via optimization (2 ms)
+
+  ● Complex mul › should return Infinity real part when multiplying two infinite real numbers via optimization
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: Infinity
+
+      22 |     // Original: takes optimization path, returns new Complex(Infinity, 0)
+      23 |     // Mutated: uses general formula, im = Infinity*0 + 0*Infinity = NaN
+    > 24 |     expect(result.im).toBe(0);
+         |                       ^
+      25 |     expect(isNaN(result.im)).toBe(false);
+      26 |   });
+      27 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-d7362f1/testCase.test.ts:24:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.364 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_9/pending_category/mutant-d7362f1/testCase.test.ts".

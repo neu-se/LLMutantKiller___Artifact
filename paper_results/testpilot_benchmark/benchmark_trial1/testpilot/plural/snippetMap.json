@@ -1,0 +1,26 @@
+[
+  [
+    "plural",
+    [
+      "var plural = require('plural')\n\nconsole.log(plural('zebra', 1)) // returns singular 'zebra'\nconsole.log(plural('zebra', 2)) // returns 'zebras'\nconsole.log(plural('zebra')) // returns 'zebras' (if no parameters, always returns plural)",
+      "var plural = require('plural')\nplural.monkeyPatch()\n\nconsole.log('zebra'.plural(1))\nconsole.log('zebra'.plural(2))\nconsole.log('zebra'.plural())",
+      "'use strict';\n// create a new rule that converts any word ending\n// with 'p' and appends 'ius' to the word\n\nvar plural = require('./index.js')\n\nplural.addRule(/p{1,2}$/i, function(w) { return w + 'ius' })\n\nconsole.log(plural('stop'))\n"
+    ]
+  ],
+  [
+    "addRule",
+    [
+      "'use strict';\n// create a new rule that converts any word ending\n// with 'p' and appends 'ius' to the word\n\nvar plural = require('./index.js')\n\nplural.addRule(/p{1,2}$/i, function(w) { return w + 'ius' })\n\nconsole.log(plural('stop'))\n"
+    ]
+  ],
+  [
+    "unmonkeyPatch",
+    []
+  ],
+  [
+    "monkeyPatch",
+    [
+      "var plural = require('plural')\nplural.monkeyPatch()\n\nconsole.log('zebra'.plural(1))\nconsole.log('zebra'.plural(2))\nconsole.log('zebra'.plural())"
+    ]
+  ]
+]

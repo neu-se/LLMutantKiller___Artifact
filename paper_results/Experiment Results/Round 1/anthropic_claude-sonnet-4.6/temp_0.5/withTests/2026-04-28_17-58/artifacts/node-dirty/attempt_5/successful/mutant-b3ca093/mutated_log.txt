@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-b3ca093/testCase.test.ts (6.515 s)
+  dirty _flush backpressure guard
+    ✕ should emit drain exactly once when set is called during backpressure (5003 ms)
+
+  ● dirty _flush backpressure guard › should emit drain exactly once when set is called during backpressure
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 2
+
+      57 |       
+      58 |       setImmediate(() => {
+    > 59 |         expect(drainCount).toBe(1);
+         |                            ^
+      60 |         try { fs.unlinkSync(file); } catch (e) {}
+      61 |         done();
+      62 |       });
+
+      at Immediate.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-b3ca093/testCase.test.ts:59:28)
+
+  ● dirty _flush backpressure guard › should emit drain exactly once when set is called during backpressure
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 |
+      5 | describe('dirty _flush backpressure guard', () => {
+    > 6 |   it('should emit drain exactly once when set is called during backpressure', (done) => {
+        |   ^
+      7 |     const Dirty = require('../../../../../../../../../../../subject_repositories/node-dirty/lib/dirty/dirty.js');
+      8 |     const file = path.join(os.tmpdir(), `dirty-bp-${process.pid}.dirty`);
+      9 |     try { fs.unlinkSync(file); } catch (e) {}
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-b3ca093/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-b3ca093/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.696 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-b3ca093/testCase.test.ts".

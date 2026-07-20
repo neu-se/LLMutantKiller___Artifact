@@ -1,0 +1,54 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-64b9e85/testCase.test.ts
+  find function
+    ✕ should call callback with null error when no error occurs and the test function returns true (6 ms)
+    ✕ should call callback with error when error occurs
+    ✕ should call callback with null error when false is passed as error (1 ms)
+
+  ● find function › should call callback with null error when no error occurs and the test function returns true
+
+    TypeError: findStream.default is not a function
+
+       5 |     const values = [1, 2, 3];
+       6 |     const findStream = require('../../../../../../../../../../../subject_repositories/pull-stream/sinks/find');
+    >  7 |     findStream.default(test, cb);
+         |                       ^
+       8 |     expect(cb).toHaveBeenCalledTimes(1);
+       9 |     expect(cb).toHaveBeenCalledWith(null, 1);
+      10 |   });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-64b9e85/testCase.test.ts:7:23)
+
+  ● find function › should call callback with error when error occurs
+
+    TypeError: findStream.default is not a function
+
+      15 |     const err = new Error('test error');
+      16 |     const findStream = require('../../../../../../../../../../../subject_repositories/pull-stream/sinks/find');
+    > 17 |     findStream.default(test, cb);
+         |                       ^
+      18 |     expect(cb).toHaveBeenCalledTimes(1);
+      19 |     expect(cb).toHaveBeenCalledWith(null, 1);
+      20 |   });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-64b9e85/testCase.test.ts:17:23)
+
+  ● find function › should call callback with null error when false is passed as error
+
+    TypeError: findStream.default is not a function
+
+      24 |     const cb = jest.fn();
+      25 |     const findStream = require('../../../../../../../../../../../subject_repositories/pull-stream/sinks/find');
+    > 26 |     findStream.default(test, cb);
+         |                       ^
+      27 |     expect(cb).toHaveBeenCalledTimes(1);
+      28 |     expect(cb).toHaveBeenCalledWith(null, 1);
+      29 |   });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-64b9e85/testCase.test.ts:26:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        2.563 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-64b9e85/testCase.test.ts".

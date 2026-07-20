@@ -1,0 +1,51 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-e96da6b/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-e96da6b/testCase.test.ts[0m:[93m5[0m:[93m42[0m - [91merror[0m[90m TS7006: [0mParameter 'value' implicitly has an 'any' type.
+
+[7m5[0m         return Q.delay("what", 50).then((value) => {
+[7m [0m [91m                                         ~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-e96da6b/testCase.test.ts[0m:[93m11[0m:[93m56[0m - [91merror[0m[90m TS7006: [0mParameter 'error' implicitly has an 'any' type.
+
+[7m11[0m         return Q.reject("error").delay(50).then(null, (error) => {
+[7m  [0m [91m                                                       ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-e96da6b/testCase.test.ts
+  Q.delay
+    ✕ should delay fulfillment (1 ms)
+    ✕ should not delay rejection
+
+  ● Q.delay › should delay fulfillment
+
+    TypeError: Cannot read properties of undefined (reading 'delay')
+
+      3 | describe("Q.delay", () => {
+      4 |     it("should delay fulfillment", () => {
+    > 5 |         return Q.delay("what", 50).then((value) => {
+        |                  ^
+      6 |             expect(value).toBe("what");
+      7 |         });
+      8 |     });
+
+      at Object.delay (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-e96da6b/testCase.test.ts:5:18)
+
+  ● Q.delay › should not delay rejection
+
+    TypeError: Cannot read properties of undefined (reading 'reject')
+
+       9 |
+      10 |     it("should not delay rejection", () => {
+    > 11 |         return Q.reject("error").delay(50).then(null, (error) => {
+         |                  ^
+      12 |             expect(error).toBe("error");
+      13 |         });
+      14 |     });
+
+      at Object.reject (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-e96da6b/testCase.test.ts:11:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        3.45 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-e96da6b/testCase.test.ts".

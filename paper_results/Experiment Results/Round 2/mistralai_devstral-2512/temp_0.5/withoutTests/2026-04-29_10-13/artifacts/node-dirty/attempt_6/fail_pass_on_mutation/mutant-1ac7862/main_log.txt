@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-1ac7862/testCase.test.ts[0m:[93m34[0m:[93m29[0m - [91merror[0m[90m TS18047: [0m'db._writeStream' is possibly 'null'.
+
+[7m34[0m       const originalWrite = db._writeStream.write.bind(db._writeStream);
+[7m  [0m [91m                            ~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-1ac7862/testCase.test.ts[0m:[93m35[0m:[93m7[0m - [91merror[0m[90m TS18047: [0m'db._writeStream' is possibly 'null'.
+
+[7m35[0m       db._writeStream.write = function(data, cb) {
+[7m  [0m [91m      ~~~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-1ac7862/testCase.test.ts[0m:[93m37[0m:[93m36[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 2, '(chunk: any, callback?: ((error: Error | null | undefined) => void) | undefined): boolean', gave the following error.
+    Argument of type 'BufferEncoding | ((error: Error | null | undefined) => void) | undefined' is not assignable to parameter of type '((error: Error | null | undefined) => void) | undefined'.
+      Type 'string' is not assignable to type '(error: Error | null | undefined) => void'.
+  Overload 2 of 2, '(chunk: any, encoding: BufferEncoding, callback?: ((error: Error | null | undefined) => void) | undefined): boolean', gave the following error.
+    Argument of type 'BufferEncoding | ((error: Error | null | undefined) => void) | undefined' is not assignable to parameter of type 'BufferEncoding'.
+      Type 'undefined' is not assignable to type 'BufferEncoding'.
+
+[7m37[0m         return originalWrite(data, cb);
+[7m  [0m [91m                                   ~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+PASS llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-1ac7862/testCase.test.ts
+  Dirty database flush behavior
+    ✓ should process all queued items in a single flush cycle when buffer is available (107 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        1.683 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-1ac7862/testCase.test.ts".

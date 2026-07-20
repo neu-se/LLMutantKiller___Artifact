@@ -1,0 +1,51 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-1f17b8d/testCase.test.ts (7.741 s)
+  Q.all
+    ✕ should not resolve until pending promises fulfill, resolving with values not promises (5001 ms)
+
+  ● Q.all › should not resolve until pending promises fulfill, resolving with values not promises
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      28 |           deferred1.resolve(42);
+      29 |           Q.nextTick(function() {
+    > 30 |             expect(resolved).toBe(true);
+         |                              ^
+      31 |             expect(resolvedValue[0]).toBe(42);
+      32 |             done();
+      33 |           });
+
+      at toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-1f17b8d/testCase.test.ts:30:30)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+  ● Q.all › should not resolve until pending promises fulfill, resolving with values not promises
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("Q.all", () => {
+    > 4 |   it("should not resolve until pending promises fulfill, resolving with values not promises", (done) => {
+        |   ^
+      5 |     const deferred1 = Q.defer();
+      6 |
+      7 |     const result = Q.all([deferred1.promise]);
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-1f17b8d/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-1f17b8d/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.966 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-1f17b8d/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,32 @@
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-d5b8874/testCase.test.ts
+  Delta
+    ✕ should handle delete and retain correctly (4 ms)
+
+  ● Delta › should handle delete and retain correctly
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 5
+    + Received  + 1
+
+    - Array [
+    -   Object {
+    -     "delete": 1,
+    -   },
+    - ]
+    + Array []
+
+       6 |     const delta2 = new Delta().delete(1);
+       7 |     const composedDelta = delta1.compose(delta2);
+    >  8 |     expect(composedDelta.ops).toEqual([{ delete: 1 }]);
+         |                               ^
+       9 |   });
+      10 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-d5b8874/testCase.test.ts:8:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.315 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_5/pending_category/mutant-d5b8874/testCase.test.ts".

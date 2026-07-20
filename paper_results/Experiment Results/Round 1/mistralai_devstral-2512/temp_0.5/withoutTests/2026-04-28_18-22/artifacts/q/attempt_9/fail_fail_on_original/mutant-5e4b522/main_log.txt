@@ -1,0 +1,30 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_9/pending_category/mutant-5e4b522/testCase.test.ts[0m:[93m37[0m:[93m34[0m - [91merror[0m[90m TS2367: [0mThis comparison appears to be unintentional because the types '"string" | "number" | "bigint" | "boolean" | "symbol" | "undefined" | "object" | "function"' and '""' have no overlap.
+
+[7m37[0m         const mutatedCondition = typeof globalObj.window !== "" || typeof globalObj.self !== "undefined";
+[7m  [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_9/pending_category/mutant-5e4b522/testCase.test.ts
+  Q library initialization
+    ✕ should properly detect browser environment with window object (2 ms)
+
+  ● Q library initialization › should properly detect browser environment with window object
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      38 |         // In mutated version, typeof window !== "" should be false (since typeof returns "object")
+      39 |         // So the mutated condition should be false
+    > 40 |         expect(mutatedCondition).toBe(false);
+         |                                  ^
+      41 |     });
+      42 | });
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_9/pending_category/mutant-5e4b522/testCase.test.ts:40:34)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.377 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_9/pending_category/mutant-5e4b522/testCase.test.ts".

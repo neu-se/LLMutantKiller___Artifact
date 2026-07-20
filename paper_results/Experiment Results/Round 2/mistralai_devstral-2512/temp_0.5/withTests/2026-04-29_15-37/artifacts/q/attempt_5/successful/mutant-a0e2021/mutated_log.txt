@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/q/q.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/q/q.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-a0e2021/testCase.test.ts
+  Q long stack support
+    ✕ should handle missing process.env gracefully (464 ms)
+
+  ● Q long stack support › should handle missing process.env gracefully
+
+    TypeError: Cannot read properties of undefined (reading 'cwd')
+
+      29 |       // In mutated: tries to access undefined.env.Q_DEBUG, throws TypeError
+      30 |       const Q = require("../../../../../../../../../../../subject_repositories/q/q.js");
+    > 31 |     }).not.toThrow();
+         |            ^
+      32 |
+      33 |     // Restore
+      34 |     (global as any).process = originalProcess;
+
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-a0e2021/testCase.test.ts:31:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.663 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-a0e2021/testCase.test.ts".

@@ -1,0 +1,936 @@
+Your task is to write a Jest test case that exposes a specific mutation in a JavaScript/TypeScript project.
+
+MUTATION DETAILS
+The mutation affects the following file:
+src/index.js
+Here is the full content of that file (shown with a <PLACEHOLDER> marker):
+import data from './data.json';
+import buildCountry from './build-country';
+import buildTimezone from './build-timezone';
+
+const totalTimezones = Object.keys(data.timezones).length;
+const countries = {};
+const timezones = {};
+let memoizedTimezones = 0;
+
+export function getAllCountries(options = {}) {
+  return Object.keys(data.countries).reduce((prev, id) => {
+    return Object.assign(prev, { [id]: getCountry(id, options) });
+  }, {});
+}
+
+export function getAllTimezones(options = {}) {
+  if (totalTimezones !== memoizedTimezones) Object.keys(data.timezones).forEach(getTimezone);
+  return deliverTimezones(timezones, options);
+}
+
+export function getCountry(id, options = {}) {
+  if (!countries[id]) memoizeCountry(buildCountry(data, id));
+  return deliverCountry(countries[id], options);
+}
+
+function memoizeCountry(country) {
+  if (!country) return;
+  countries[country.id] = country;
+}
+
+export function getTimezone(name) {
+  if (!timezones[name]) memoizeTimezone(buildTimezone(data, name));
+  return timezones[name] ? { ...timezones[name] } : null;
+}
+
+function memoizeTimezone(timezone) {
+  if (!timezone) return;
+  timezones[timezone.name] = timezone;
+  memoizedTimezones = Object.keys(timezone).length;
+}
+
+export function getCountriesForTimezone(tzName, options = {}) {
+  const timezone = getTimezone(tzName) || {};
+  const values = timezone.countries || [];
+  return values.map((c) => getCountry(c, options));
+}
+
+export function getCountryForTimezone(tzName, options = {}) {
+  const [main] = getCountriesForTimezone(tzName, options);
+  return main || null;
+}
+
+export function getTimezonesForCountry(countryId, options = {}) {
+  const country = getCountry(countryId, options);
+  if (!country) return null;
+  <PLACEHOLDER>
+  return values.map(getTimezone);
+}
+
+function deliverTimezones(tzs, options) {
+  const { deprecated } = options || {};
+  if (deprecated === true) return tzs;
+  return Object.keys(tzs).reduce((prev, key) => {
+    if (!tzs[key].deprecated) Object.assign(prev, { [key]: tzs[key] });
+    return prev;
+  }, {});
+}
+
+function deliverCountry(country, options) {
+  if (!country) return null;
+  const { deprecated } = options || {};
+  const { allTimezones, ...other } = country;
+  const tz = deprecated ? country.allTimezones : country.timezones;
+  return { ...other, timezones: tz };
+}
+
+export default {
+  getCountry,
+  getTimezone,
+  getAllCountries,
+  getAllTimezones,
+  getTimezonesForCountry,
+  getCountriesForTimezone,
+  getCountryForTimezone,
+};
+
+In the original code, <PLACEHOLDER> has the value:
+
+-     const values = country.timezones || [];
+In the mutated code, <PLACEHOLDER> has the value:
+
++     const values = country.timezones || ["Stryker was here"];
+
+
+YOUR TASK
+Write one Jest test file that:
+    1. Passes when run against the original code.
+    2. Fails when run against the mutated code.
+    3. Tests the behavior of the mutated file in a way that reliably detects the mutation.
+The test will be saved at the following path, relative to this test-generation project’s root:
+llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/countries-and-timezones/attempt_1/pending_category/mutant-36f4eda/testCase.test.ts
+
+RESOURCES AVAILABLE
+Existing test cases you may use for style or structure inspiration, focusing on how they reflect the project’s expected behavior and typical inputs:
+// test/unit/countries-cache.js
+
+import sinon from 'sinon';
+import proxyquire from 'proxyquire';
+import buildCountry from '../../src/build-country';
+import { countries } from '../../src/data.json';
+
+const totalCountries = Object.keys(countries).length;
+
+describe('Countries cache', () => {
+  const buildCountrySpy = sinon.spy(buildCountry);
+  let ct;
+
+  beforeEach(() => {
+    buildCountrySpy.resetHistory();
+
+    ct = proxyquire('../../src', {
+      './build-country': {
+        __esModule: true,
+        default: buildCountrySpy,
+      }
+    });
+  });
+
+  it('should call "buildCountry" once when requesting a single country', () => {
+    ct.getCountry('MX');
+    expect(buildCountrySpy.callCount).to.be.equal(1);
+  });
+
+  it('should call "buildCountry" once when requesting the same country multiple times', () => {
+    ct.getCountry('MX');
+    ct.getCountry('MX');
+    expect(buildCountrySpy.callCount).to.be.equal(1);
+  });
+
+  it('should call "buildCountry" method once for each country when requesting all', () => {
+    ct.getAllCountries();
+    expect(buildCountrySpy.callCount).to.be.equal(totalCountries);
+  });
+
+  it('should cache all countries to minimize "buildCountry" calls', () => {
+    ct.getAllCountries();
+    ct.getAllCountries();
+    expect(buildCountrySpy.callCount).to.be.equal(totalCountries);
+  });
+
+  it('should cache countries incrementally', () => {
+    ct.getCountry('MX');
+    expect(buildCountrySpy.callCount).to.be.equal(1);
+    ct.getCountry('MX');
+    expect(buildCountrySpy.callCount).to.be.equal(1);
+    ct.getCountry('US');
+    expect(buildCountrySpy.callCount).to.be.equal(2);
+    ct.getAllCountries();
+    expect(buildCountrySpy.callCount).to.be.equal(totalCountries);
+    ct.getCountry('MX');
+    expect(buildCountrySpy.callCount).to.be.equal(totalCountries);
+    ct.getAllCountries();
+    expect(buildCountrySpy.callCount).to.be.equal(totalCountries);
+  });
+});
+
+----
+// test/unit/get-all-countries.js
+
+import * as ct from '../../src';
+import data from '../../src/data.json';
+import { getDeprecatedTimezones } from '../utils';
+
+const DEPRECATED_TIMEZONES = getDeprecatedTimezones(data.timezones);
+
+describe('.getAllCountries', () => {
+  it('returns an object containing full countries data', () => {
+    const expectedLength = Object.keys(data.countries).length;
+    const countries = ct.getAllCountries();
+    expect(countries).to.be.an('object');
+    expect(Object.keys(countries).length).to.be.equal(expectedLength);
+
+    Object.values(countries).forEach(expectCountry);
+  });
+
+  it('does not include any deprecated timezone when "deprecated" options is false', () => {
+    const countries = ct.getAllCountries({ deprecated: false });
+    expect(hasDeprecatedTimezones(countries)).to.be.equal(false);
+  });
+
+  it('includes deprecated timezones when "deprecated" options is true', () => {
+    const countries = ct.getAllCountries({ deprecated: true });
+    expect(hasDeprecatedTimezones(countries)).to.be.equal(true);
+  });
+});
+
+function expectCountry(country) {
+  expect(country.id).to.be.a('string');
+  expect(country.name).to.be.a('string');
+  expect(country.timezones).to.be.an('array');
+  expect(country.id.length).to.be.equal(2);
+  expect(country.name.length > 0).to.be.equal(true);
+}
+
+function hasDeprecatedTimezones(countries) {
+  return Object.values(countries).some(({ timezones }) => {
+    return timezones.some((tz) => DEPRECATED_TIMEZONES[tz]);
+  });
+}
+
+----
+// test/unit/get-all-timezones.js
+
+import * as ct from '../../src';
+import data from '../../src/data.json';
+import { countDeprecatedTimezones } from '../utils';
+
+const TOTAL_TIMEZONES = Object.keys(data.timezones).length;
+const DEPRECATED_TIMEZONES = countDeprecatedTimezones(data.timezones);
+const TZ_WITHOUT_COUNTRIES = [
+  'GMT', 'UTC', 'UCT', 'CET', 'CST6CDT', 'EET', 'EST', 'EST5EDT', 'Factory', 'HST',
+  'MET', 'MST', 'MST7MDT', 'PST8PDT', 'WET', 'Greenwich', 'Universal', 'Zulu'
+];
+
+describe('.getAllTimezones', () => {
+  it('should return an object containing current timezones data', () => {
+    const expectedLength = TOTAL_TIMEZONES - DEPRECATED_TIMEZONES;
+    const timezones = ct.getAllTimezones();
+    expect(timezones).to.be.an('object');
+    expect(Object.keys(timezones).length).to.be.equal(expectedLength);
+    expect(countDeprecatedTimezones(timezones)).to.be.equal(0);
+
+    Object.values(timezones).forEach(timezone => {
+      const aliasTz = timezone.aliasOf ? timezones[timezone.aliasOf] : null;
+      expectTimezone(timezone, aliasTz);
+    });
+  });
+
+  it('should return an object containing full timezones data, even deprecated ones', () => {
+    const timezones = ct.getAllTimezones({ deprecated: true });
+    expect(timezones).to.be.an('object');
+    expect(Object.keys(timezones).length).to.be.equal(TOTAL_TIMEZONES);
+    expect(countDeprecatedTimezones(timezones)).to.be.equal(DEPRECATED_TIMEZONES);
+
+    Object.values(timezones).forEach(timezone => {
+      const aliasTz = timezone.aliasOf ? timezones[timezone.aliasOf] : null;
+      expectTimezone(timezone, aliasTz);
+    });
+  });
+});
+
+function expectTimezone(timezone, aliasTz) {
+  expect(timezone.name).to.be.a('string');
+  expect(timezone.utcOffset).to.be.a('number');
+  expect(timezone.utcOffsetStr).to.be.a('string');
+  expect(timezone.dstOffset).to.be.a('number');
+  expect(timezone.dstOffsetStr).to.be.a('string');
+  expect(timezone.utcOffsetStr).to.match(/^(\+|\-)\d{2}:\d{2}$/);
+  expect(timezone.dstOffsetStr).to.match(/^(\+|\-)\d{2}:\d{2}$/);
+  if (aliasTz) expectAlias(timezone, aliasTz);
+  if (shouldHaveCountry(timezone.name)) {
+    expect(timezone.countries).to.be.an('array');
+    expect(timezone.countries.length > 0).to.be.equal(true);
+    timezone.countries.forEach((country) => {
+      expect(country).to.be.a('string');
+      expect(country.length).to.be.equal(2);
+    });
+  }
+}
+
+function shouldHaveCountry(name) {
+  return !name.includes('Etc/')
+    && !name.includes('GMT')
+    && !TZ_WITHOUT_COUNTRIES.includes(name);
+}
+
+function expectAlias(timezone, aliasTz) {
+  expect(timezone.aliasOf).to.be.equal(aliasTz.name);
+  expect(timezone.utcOffset).to.be.equal(aliasTz.utcOffset);
+  expect(timezone.utcOffsetStr).to.be.equal(aliasTz.utcOffsetStr);
+  expect(timezone.dstOffset).to.be.equal(aliasTz.dstOffset);
+  expect(timezone.dstOffsetStr).to.be.equal(aliasTz.dstOffsetStr);
+}
+
+----
+// test/unit/get-countries-for-timezone.js
+
+import * as ct from '../../src';
+
+const TEST_CASES = {
+  'America/Mexico_City': ['MX'],
+  'America/Anchorage': ['US'],
+  'America/Los_Angeles': ['US'],
+  'America/North_Dakota/New_Salem': ['US'],
+  'Europe/Zurich': ['CH', 'DE', 'LI']
+};
+
+describe('.getCountriesForTimezone', () => {
+  Object.keys(TEST_CASES).forEach(testCase => {
+    it(`returns correct countries for timezone "${testCase}"`, () => {
+      const result = ct.getCountriesForTimezone(testCase);
+      const expectedResult = TEST_CASES[testCase].map(id => ct.getCountry(id));
+      expect(result).to.be.eql(expectedResult);
+    });
+
+    it(`includes deprecated timezones on countries for "${testCase}" with deprecated option`, () => {
+      const options = { deprecated: true };
+      const result = ct.getCountriesForTimezone(testCase, options);
+      const expectedResult = TEST_CASES[testCase].map(id => ct.getCountry(id, options));
+      expect(result).to.be.eql(expectedResult);
+    });
+  });
+
+  it('should return null for timezone without country', () => {
+    const result = ct.getCountriesForTimezone('UTC');
+    expect(result).to.be.eql([]);
+  });
+
+  it('should return null for not existent timezone', () => {
+    const result = ct.getCountriesForTimezone('NOT_EXISTENT_TZ');
+    expect(result).to.be.eql([]);
+  });
+});
+
+----
+// test/unit/get-country-for-timezone.js
+
+import * as ct from '../../src';
+
+const US = {
+  id: 'US',
+  name: 'United States of America',
+  timezones: [
+    "America/Atka",
+    "US/Aleutian",
+    "US/Alaska",
+    "US/Central",
+    "America/Shiprock",
+    "Navajo",
+    "US/Mountain",
+    "US/Michigan",
+    "America/Indiana/Indianapolis",
+    "America/Knox_IN",
+    "US/Indiana-Starke",
+    "America/Louisville",
+    "US/Pacific",
+    "US/Eastern",
+    "US/Arizona",
+    "Pacific/Johnston",
+    "US/Hawaii",
+    'America/Adak',
+    'America/Anchorage',
+    'America/Boise',
+    'America/Chicago',
+    'America/Denver',
+    'America/Detroit',
+    'America/Indiana/Knox',
+    'America/Indiana/Marengo',
+    'America/Indiana/Petersburg',
+    'America/Indiana/Tell_City',
+    'America/Indiana/Vevay',
+    'America/Indiana/Vincennes',
+    'America/Indiana/Winamac',
+    'America/Juneau',
+    'America/Kentucky/Louisville',
+    'America/Kentucky/Monticello',
+    'America/Los_Angeles',
+    'America/Menominee',
+    'America/Metlakatla',
+    'America/New_York',
+    'America/Nome',
+    'America/North_Dakota/Beulah',
+    'America/North_Dakota/Center',
+    'America/North_Dakota/New_Salem',
+    'America/Phoenix',
+    'America/Sitka',
+    'America/Yakutat',
+    'Pacific/Honolulu'
+  ]
+};
+
+const MX = {
+  id: 'MX',
+  name: 'Mexico',
+  timezones: [
+    "Mexico/BajaSur",
+    "Mexico/General",
+    "America/Ensenada",
+    "America/Santa_Isabel",
+    "Mexico/BajaNorte",
+    'America/Bahia_Banderas',
+    'America/Cancun',
+    'America/Chihuahua',
+    'America/Tijuana',
+    'America/Hermosillo',
+    'America/Matamoros',
+    'America/Mazatlan',
+    'America/Merida',
+    'America/Mexico_City',
+    'America/Monterrey',
+    'America/Ojinaga'
+  ]
+};
+
+const CH = {
+  id: 'CH',
+  name: 'Switzerland',
+  timezones: [
+    'Europe/Zurich',
+  ]
+};
+
+const TEST_CASES = {
+  'America/Mexico_City': 'MX',
+  'America/Anchorage': 'US',
+  'America/Los_Angeles': 'US',
+  'America/North_Dakota/New_Salem': 'US',
+  'Europe/Zurich': 'CH',
+};
+
+describe('.getCountryForTimezone', () => {
+  Object.keys(TEST_CASES).forEach(testCase => {
+    it(`returns the correct country for timezone "${testCase}"`, () => {
+      const result = ct.getCountryForTimezone(testCase);
+      const expectedResult = ct.getCountry(TEST_CASES[testCase]);
+      expect(result).to.be.eql(expectedResult);
+    });
+
+    it(`includes deprecated timezones in the country for "${testCase}" with deprecated option`, () => {
+      const options = { deprecated: true };
+      const result = ct.getCountryForTimezone(testCase, options);
+      const expectedResult = ct.getCountry(TEST_CASES[testCase], options);
+      expect(result).to.be.eql(expectedResult);
+    });
+  });
+
+  it('should return null for timezone without country', () => {
+    const result = ct.getCountryForTimezone('UTC');
+    expect(result).to.be.eql(null);
+  });
+
+  it('should return null for not existent timezone', () => {
+    const result = ct.getCountryForTimezone('NOT_EXISTENT_TZ');
+    expect(result).to.be.eql(null);
+  });
+});
+
+----
+// test/unit/get-country.js
+
+import * as ct from '../../src/index';
+
+const TEST_CASES = {
+  MX: {
+    id: 'MX',
+    name: 'Mexico',
+    timezones: [
+      'America/Bahia_Banderas',
+      'America/Cancun',
+      'America/Chihuahua',
+      'America/Ciudad_Juarez',
+      'America/Hermosillo',
+      'America/Matamoros',
+      'America/Mazatlan',
+      'America/Merida',
+      'America/Mexico_City',
+      'America/Monterrey',
+      'America/Ojinaga',
+      'America/Tijuana',
+    ]
+  },
+  US: {
+    id: 'US',
+    name: 'United States of America',
+    timezones: [
+      'America/Adak',
+      'America/Anchorage',
+      'America/Boise',
+      'America/Chicago',
+      'America/Denver',
+      'America/Detroit',
+      "America/Indiana/Indianapolis",
+      'America/Indiana/Knox',
+      'America/Indiana/Marengo',
+      'America/Indiana/Petersburg',
+      'America/Indiana/Tell_City',
+      'America/Indiana/Vevay',
+      'America/Indiana/Vincennes',
+      'America/Indiana/Winamac',
+      'America/Juneau',
+      'America/Kentucky/Louisville',
+      'America/Kentucky/Monticello',
+      'America/Los_Angeles',
+      'America/Menominee',
+      'America/Metlakatla',
+      'America/New_York',
+      'America/Nome',
+      'America/North_Dakota/Beulah',
+      'America/North_Dakota/Center',
+      'America/North_Dakota/New_Salem',
+      'America/Phoenix',
+      'America/Sitka',
+      'America/Yakutat',
+      'Pacific/Honolulu'
+    ]
+  },
+  KR: {
+    id: 'KR',
+    name: 'South Korea',
+    timezones: [
+      'Asia/Seoul'
+    ]
+  }
+};
+
+const DEPRECATED = {
+  MX: [
+    "America/Ensenada",
+    "America/Santa_Isabel",
+    "Mexico/BajaNorte",
+    "Mexico/BajaSur",
+    "Mexico/General",
+  ],
+  US: [
+    "America/Atka",
+    "America/Fort_Wayne",
+    "America/Indianapolis",
+    "America/Knox_IN",
+    "America/Louisville",
+    "America/Shiprock",
+    "Navajo",
+    'Pacific/Johnston',
+    "US/Alaska",
+    "US/Aleutian",
+    "US/Arizona",
+    "US/Central",
+    "US/East-Indiana",
+    "US/Eastern",
+    "US/Hawaii",
+    "US/Indiana-Starke",
+    "US/Michigan",
+    "US/Mountain",
+    "US/Pacific",
+  ],
+  KR: [
+    'ROK',
+  ],
+};
+
+describe('.getCountry', () => {
+  Object.keys(TEST_CASES).forEach(testCase => {
+    it(`should return correct data for country "${testCase}"`, () => {
+      const result = ct.getCountry(testCase);
+      const expectedResult = TEST_CASES[testCase];
+      expect(result).to.be.eql(expectedResult);
+    });
+
+    it(`should return correct data for country "${testCase}" with deprecated option`, () => {
+      const result = ct.getCountry(testCase, { deprecated: true });
+      const expectedResult = TEST_CASES[testCase];
+      expectedResult.timezones = [...expectedResult.timezones, ...DEPRECATED[testCase]].sort();
+      expect(result).to.be.eql(expectedResult);
+    });
+  });
+
+  it('should return null for not existent country', () => {
+    const result = ct.getCountry('NOT_EXISTENT_COUNTRY');
+    expect(result).to.be.eql(null);
+  });
+});
+
+----
+// test/unit/get-timezone.js
+
+import * as ct from '../../src/index';
+
+const TEST_CASES = {
+  'America/Mexico_City': {
+    name: 'America/Mexico_City',
+    countries: ['MX'],
+    utcOffset: -360,
+    utcOffsetStr: '-06:00',
+    dstOffset: -360,
+    dstOffsetStr: '-06:00',
+    aliasOf: null,
+  },
+  'Indian/Comoro': {
+    name: 'Indian/Comoro',
+    countries: ['KM'],
+    utcOffset: 180,
+    utcOffsetStr: '+03:00',
+    dstOffset: 180,
+    dstOffsetStr: '+03:00',
+    aliasOf: 'Africa/Nairobi',
+    deprecated: true,
+  },
+  UTC: {
+    name: 'UTC',
+    countries: [],
+    utcOffset: 0,
+    utcOffsetStr: '+00:00',
+    dstOffset: 0,
+    dstOffsetStr: '+00:00',
+    aliasOf: 'Etc/UTC',
+    deprecated: true,
+  },
+  'Asia/Jerusalem': {
+    name: 'Asia/Jerusalem',
+    countries: ['IL'],
+    utcOffset: 120,
+    utcOffsetStr: '+02:00',
+    dstOffset: 180,
+    dstOffsetStr: '+03:00',
+    aliasOf: null,
+  },
+};
+
+describe('.getTimezone', () => {
+  Object.keys(TEST_CASES).forEach((testCase) => {
+    it(`should return correct data for timezone "${testCase}"`, () => {
+      const result = ct.getTimezone(testCase);
+      const expectedResult = TEST_CASES[testCase];
+      expect(result).to.be.eql(expectedResult);
+    });
+  });
+
+  it('should return null for not existent timezone', () => {
+    const result = ct.getTimezone('NOT_EXISTENT_TZ');
+    expect(result).to.be.eql(null);
+  });
+});
+
+----
+// test/unit/get-timezones-for-country.js
+
+import * as ct from '../../src/index';
+
+const TEST_CASES = {
+  KR: [
+    {
+      name: 'Asia/Seoul',
+      countries: ['KR'],
+      utcOffset: 540,
+      utcOffsetStr: '+09:00',
+      dstOffset: 540,
+      dstOffsetStr: '+09:00',
+      aliasOf: null
+    },
+  ],
+  IS: [
+    {
+      name: 'Africa/Abidjan',
+      countries: ['CI', 'BF', 'GH', 'GM', 'GN', 'IS', 'ML', 'MR', 'SH', 'SL', 'SN', 'TG'],
+      utcOffset: 0,
+      utcOffsetStr: '+00:00',
+      dstOffset: 0,
+      dstOffsetStr: '+00:00',
+      aliasOf: null
+    }
+  ],
+  DE: [
+    {
+      name: 'Europe/Berlin',
+      countries: ['DE', 'DK', 'NO', 'SE', 'SJ'],
+      utcOffset: 60,
+      utcOffsetStr: '+01:00',
+      dstOffset: 120,
+      dstOffsetStr: '+02:00',
+      aliasOf: null
+    },
+    {
+      name: 'Europe/Zurich',
+      countries: ['CH', 'DE', 'LI'],
+      utcOffset: 60,
+      utcOffsetStr: '+01:00',
+      dstOffset: 120,
+      dstOffsetStr: '+02:00',
+      aliasOf: null
+    },
+  ]
+};
+
+const DEPRECATED = {
+  KR: [
+    {
+      name: 'ROK',
+      countries: ['KR'],
+      utcOffset: 540,
+      utcOffsetStr: '+09:00',
+      dstOffset: 540,
+      dstOffsetStr: '+09:00',
+      aliasOf: 'Asia/Seoul',
+      deprecated: true,
+    },
+  ],
+  IS: [
+    {
+      name: 'Atlantic/Reykjavik',
+      countries: ['IS'],
+      utcOffset: 0,
+      utcOffsetStr: '+00:00',
+      dstOffset: 0,
+      dstOffsetStr: '+00:00',
+      aliasOf: 'Africa/Abidjan',
+      deprecated: true,
+    },
+    {
+      name: 'Iceland',
+      countries: ['IS'],
+      utcOffset: 0,
+      utcOffsetStr: '+00:00',
+      dstOffset: 0,
+      dstOffsetStr: '+00:00',
+      aliasOf: 'Africa/Abidjan',
+      deprecated: true,
+    },
+  ],
+  DE: [
+    {
+      name: 'Europe/Busingen',
+      countries: ['DE'],
+      utcOffset: 60,
+      utcOffsetStr: '+01:00',
+      dstOffset: 120,
+      dstOffsetStr: '+02:00',
+      aliasOf: 'Europe/Zurich',
+      deprecated: true,
+    },
+  ],
+};
+
+describe('.getTimezonesForCountry', () => {
+  Object.keys(TEST_CASES).forEach(testCase => {
+    it(`should return correct timezones for country "${testCase}"`, () => {
+      const result = ct.getTimezonesForCountry(testCase);
+      const expectedResult = TEST_CASES[testCase];
+      expect(result).to.be.eql(expectedResult);
+    });
+
+    it(`should return correct timezones for country "${testCase}" with deprecated option`, () => {
+      const result = ct.getTimezonesForCountry(testCase, { deprecated: true });
+      const expectedResult = [...TEST_CASES[testCase], ...DEPRECATED[testCase]]
+        .sort((a, b) => a.name > b.name ? 1 : -1);
+      expect(result).to.be.eql(expectedResult);
+    });
+  });
+
+  it('should return null for not existent country', () => {
+    const result = ct.getTimezonesForCountry('NOT_EXISTENT_COUNTRY');
+    expect(result).to.be.eql(null);
+  });
+});
+
+----
+// test/unit/timezones-cache.js
+
+import sinon from 'sinon';
+import proxyquire from 'proxyquire';
+import buildTimezone from '../../src/build-timezone';
+import { timezones } from '../../src/data.json';
+
+const totalTimezones = Object.keys(timezones).length;
+
+describe('Timezones cache', () => {
+  const buildTimezoneSpy = sinon.spy(buildTimezone);
+  let ct;
+
+  beforeEach(() => {
+    buildTimezoneSpy.resetHistory();
+    ct = proxyquire('../../src', {
+      './build-timezone': {
+        __esModule: true,
+        default: buildTimezoneSpy
+      }
+    });
+  });
+
+  it('should call "buildTimezone" once when requesting a single timezone', () => {
+    ct.getTimezone('America/New_York');
+    expect(buildTimezoneSpy.callCount).to.be.equal(1);
+  });
+
+  it('should call "buildTimezone" once when requesting the same timezone multiple times', () => {
+    ct.getTimezone('America/New_York');
+    ct.getTimezone('America/New_York');
+    expect(buildTimezoneSpy.callCount).to.be.equal(1);
+  });
+
+  it('should call "buildTimezone" method once for each timezone when requesting all', () => {
+    ct.getAllTimezones();
+    expect(buildTimezoneSpy.callCount).to.be.equal(totalTimezones);
+  });
+
+  it('should cache all timezones to minimize "buildTimezone" calls', () => {
+    ct.getAllTimezones();
+    ct.getAllTimezones();
+    expect(buildTimezoneSpy.callCount).to.be.equal(totalTimezones);
+  });
+
+  it('should cache timezones incrementally', () => {
+    ct.getTimezone('America/New_York');
+    expect(buildTimezoneSpy.callCount).to.be.equal(1);
+    ct.getTimezone('America/New_York');
+    expect(buildTimezoneSpy.callCount).to.be.equal(1);
+    ct.getTimezone('UTC');
+    expect(buildTimezoneSpy.callCount).to.be.equal(2);
+    ct.getAllTimezones();
+    expect(buildTimezoneSpy.callCount).to.be.equal(totalTimezones);
+    ct.getTimezone('America/New_York');
+    expect(buildTimezoneSpy.callCount).to.be.equal(totalTimezones);
+    ct.getAllTimezones();
+    expect(buildTimezoneSpy.callCount).to.be.equal(totalTimezones);
+  });
+});
+
+----
+// test/utils/countDeprecatedTimezones.js
+
+import { getDeprecatedTimezones } from './getDeprecatedTimezones';
+
+export const countDeprecatedTimezones = (timezones) => {
+  return Object.keys(getDeprecatedTimezones(timezones)).length;
+}
+
+----
+// test/utils/getDeprecatedTimezones.js
+
+export const getDeprecatedTimezones = (timezones) => {
+  return Object.keys(timezones).reduce((prev, key) => {
+    const tz = timezones[key];
+    if (tz.deprecated || tz.r) Object.assign(prev, { [key]: true });
+    return prev;
+  }, {});
+}
+
+
+----
+// test/utils/index.js
+
+export * from './countDeprecatedTimezones';
+export * from './getDeprecatedTimezones';
+
+
+----
+// setup.js
+
+import chai from 'chai';
+
+global.expect = chai.expect;
+
+
+The test runner configuration (package.json):
+{
+  "name": "countries-and-timezones",
+  "version": "3.5.1",
+  "description": "Minimalistic library to work with countries and timezones data.",
+  "main": "./dist/index.js",
+  "module": "./esm/index.js",
+  "types": "./esm/types.d.ts",
+  "exports": {
+    "types": "./esm/types.d.ts",
+    "require": "./dist/index.js",
+    "import": "./esm/index.js"
+  },
+  "files": [
+    "dist",
+    "esm"
+  ],
+  "scripts": {
+    "build": "rollup -c && sh .fixTypes.sh",
+    "prepack": "yarn run build",
+    "test:unit": "mocha",
+    "test:types": "dtslint types",
+    "test": "yarn run test:unit && yarn run test:types"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manuelmhtr/countries-and-timezones.git"
+  },
+  "engines": {
+    "node": ">=8.x",
+    "npm": ">=5.x"
+  },
+  "keywords": [
+    "Countries",
+    "Timezones",
+    "Country",
+    "Timezone",
+    "Time",
+    "Date",
+    "DST",
+    "IANA",
+    "ICANN"
+  ],
+  "author": "Manuel de la Torre",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/manuelmhtr/countries-and-timezones/issues"
+  },
+  "homepage": "https://github.com/manuelmhtr/countries-and-timezones#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.13.16",
+    "@babel/preset-env": "^7.13.15",
+    "@babel/register": "^7.15.3",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^18.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "chai": "^4.3.4",
+    "dtslint": "^4.1.3",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.0",
+    "mocha": "^8.3.2",
+    "proxyquire": "^2.1.3",
+    "rollup": "^2.45.2",
+    "rollup-plugin-dts": "^3.0.2",
+    "rollup-plugin-terser": "^7.0.2",
+    "sinon": "^10.0.0",
+    "typescript": "^4.3.5"
+  }
+}
+
+ALLOWED LIBRARIES
+You may use:
+    1. Any built-in Node.js modules (e.g., fs, path, crypto, etc.).
+    2. The following external libraries are explicitly permitted:
+    - sinson
+    - proxyquire
+You may not use any other third-party libraries.

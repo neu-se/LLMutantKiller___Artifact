@@ -1,0 +1,128 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts
+  pull-stream
+    ✕ should handle two arguments correctly (1 ms)
+
+  ● pull-stream › should handle two arguments correctly
+
+    RangeError: Maximum call stack size exceeded
+
+       8 |     pull(
+       9 |       function (end: any, cb: any) {
+    > 10 |         if (end) return cb(end)
+         |         ^
+      11 |         cb(null, values.shift())
+      12 |       },
+      13 |       function (read: any) {
+
+      at llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:10:9
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:16:11)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:32:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:18:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:11:9)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:16:11)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:32:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:18:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:11:9)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:16:11)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:32:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:18:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:11:9)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:16:11)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:32:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:18:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:11:9)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:16:11)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:32:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:18:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:11:9)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:16:11)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:32:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:18:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:11:9)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:16:11)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:32:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:18:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:11:9)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:16:11)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:32:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:18:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:11:9)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:16:11)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:32:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:18:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:11:9)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:16:11)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:32:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:18:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:11:9)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:16:11)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:32:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:18:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:11:9)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:16:11)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:32:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:18:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:11:9)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:16:11)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:32:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:18:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:11:9)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:16:11)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:32:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:18:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:11:9)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:16:11)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:32:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:18:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:11:9)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:16:11)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:32:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:18:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:11:9)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:16:11)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:32:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:18:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:11:9)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:16:11)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:32:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:18:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:11:9)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:16:11)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:32:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:18:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:11:9)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:16:11)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:32:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:18:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:11:9)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:16:11)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:32:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:18:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:11:9)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:16:11)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:32:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:18:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:11:9)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:16:11)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:32:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:18:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:11:9)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:16:11)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:32:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:18:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:11:9)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:16:11)
+      at read (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:32:13)
+      at cb (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts:18:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.982 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-9e28478/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

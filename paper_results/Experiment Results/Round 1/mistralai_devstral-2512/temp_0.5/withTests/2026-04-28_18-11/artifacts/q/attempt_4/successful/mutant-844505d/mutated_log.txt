@@ -1,0 +1,46 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-844505d/testCase.test.ts (6.265 s)
+  Q.done domain handling
+    ✕ should properly handle errors when process.domain is available (5003 ms)
+
+  ● Q.done domain handling › should properly handle errors when process.domain is available
+
+    expect(jest.fn()).toHaveBeenCalled()
+
+    Expected number of calls: >= 1
+    Received number of calls:    0
+
+      37 |
+      38 |       // Verify that domain.bind was called (proving the domain check worked)
+    > 39 |       expect(mockDomain.bind).toHaveBeenCalled();
+         |                               ^
+      40 |
+      41 |       // Restore original process
+      42 |       (global as any).process = globalProcess;
+
+      at Function.toHaveBeenCalled [as onerror] (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-844505d/testCase.test.ts:39:31)
+      at onerror (../subject_repositories/q/q.js:1810:19)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+  ● Q.done domain handling › should properly handle errors when process.domain is available
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      3 |
+      4 | describe("Q.done domain handling", () => {
+    > 5 |   it("should properly handle errors when process.domain is available", (done) => {
+        |   ^
+      6 |     // This test verifies that the original code checks for process.domain
+      7 |     // The mutated code changes this check to `if (false)`, which would prevent domain binding
+      8 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-844505d/testCase.test.ts:5:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-844505d/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.455 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-844505d/testCase.test.ts".

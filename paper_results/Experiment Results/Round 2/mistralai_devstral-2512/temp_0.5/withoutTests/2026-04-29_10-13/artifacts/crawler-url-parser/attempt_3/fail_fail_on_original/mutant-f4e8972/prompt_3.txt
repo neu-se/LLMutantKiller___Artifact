@@ -1,0 +1,42 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-f4e8972/testCase.test.ts
+  extract function
+    ✕ should correctly process string HTML input (9 ms)
+
+  ● extract function › should correctly process string HTML input
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        Object {
+          "text": "Test Link",
+    -     "type": "sublevel",
+    +     "type": "samelevel",
+          "url": "https://example.com/test",
+        },
+      ]
+
+      15 |
+      16 |     const result = extract(html, "https://example.com");
+    > 17 |     expect(result).toEqual([{
+         |                    ^
+      18 |       url: "https://example.com/test",
+      19 |       text: "Test Link",
+      20 |       type: "sublevel"
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-f4e8972/testCase.test.ts:17:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.391 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-f4e8972/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

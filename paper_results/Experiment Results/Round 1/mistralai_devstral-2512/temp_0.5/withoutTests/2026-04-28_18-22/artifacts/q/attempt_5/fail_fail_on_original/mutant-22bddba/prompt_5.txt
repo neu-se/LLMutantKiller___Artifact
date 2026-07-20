@@ -1,0 +1,33 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-22bddba/testCase.test.ts
+  Q library global export behavior
+    ✕ should attach Q to self when window is undefined but self exists (2 ms)
+
+  ● Q library global export behavior › should attach Q to self when window is undefined but self exists
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: [Function Q]
+    Received: undefined
+
+      24 |       // The key test: Q should be attached to self when window is undefined
+      25 |       // This will pass on original code but fail on mutated code
+    > 26 |       expect(globalAny.self.Q).toBe(qModule);
+         |                                ^
+      27 |
+      28 |       // Verify basic functionality works through self.Q
+      29 |       const promise = globalAny.self.Q.resolve(42);
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-22bddba/testCase.test.ts:26:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.357 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_4/pending_category/mutant-22bddba/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-1ac7862/testCase.test.ts (6.484 s)
+  test flush behavior with drain condition
+    ✕ should emit drain event after all writes complete (5002 ms)
+
+  ● test flush behavior with drain condition › should emit drain event after all writes complete
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 3
+    Received: 2
+
+      47 |
+      48 |         // All callbacks should have been executed
+    > 49 |         expect(callbackCount).toBe(totalCallbacks);
+         |                               ^
+      50 |
+      51 |         // Verify all items were written to disk
+      52 |         const contents = fs.readFileSync(testFile, 'utf-8');
+
+      at Dirty.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-1ac7862/testCase.test.ts:49:31)
+      at Object.emit [as callback] (../subject_repositories/node-dirty/lib/dirty/dirty.js:190:70)
+
+  ● test flush behavior with drain condition › should emit drain event after all writes complete
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      18 |   });
+      19 |
+    > 20 |   it('should emit drain event after all writes complete', (done) => {
+         |   ^
+      21 |     const db = new Dirty(testFile);
+      22 |
+      23 |     db.on('load', () => {
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-1ac7862/testCase.test.ts:20:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-1ac7862/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.66 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-1ac7862/testCase.test.ts".

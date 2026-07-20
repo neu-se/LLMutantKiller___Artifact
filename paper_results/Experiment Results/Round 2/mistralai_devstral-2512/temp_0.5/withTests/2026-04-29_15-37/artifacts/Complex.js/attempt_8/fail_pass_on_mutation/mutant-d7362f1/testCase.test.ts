@@ -1,0 +1,16 @@
+// llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-d7362f1/testCase.test.ts
+import { Complex } from "../../../../../../../../../../../subject_repositories/Complex.js/complex.js";
+
+describe("Complex multiplication optimization path", () => {
+  it("should correctly multiply two real numbers without producing NaN", () => {
+    const a = new Complex(2.5, 0);
+    const b = new Complex(4, 0);
+    const result = a.mul(b);
+    // The mutant will fail because accessing this[""] returns undefined
+    // which breaks the optimization condition and causes undefined * 0 = NaN
+    expect(isNaN(result.re)).toBe(false);
+    expect(isNaN(result.im)).toBe(false);
+    expect(result.re).toBeCloseTo(10);
+    expect(result.im).toBe(0);
+  });
+});

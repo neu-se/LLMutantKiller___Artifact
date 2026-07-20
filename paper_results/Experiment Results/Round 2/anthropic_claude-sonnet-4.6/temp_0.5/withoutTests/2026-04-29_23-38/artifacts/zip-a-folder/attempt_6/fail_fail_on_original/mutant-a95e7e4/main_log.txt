@@ -1,0 +1,31 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_6/pending_category/mutant-a95e7e4/testCase.test.ts[0m:[93m24[0m:[93m82[0m - [91merror[0m[90m TS2345: [0mArgument of type '(format: string, options: archiverLib.ArchiverOptions) => any' is not assignable to parameter of type '(...args: unknown[]) => any'.
+  Types of parameters 'format' and 'args' are incompatible.
+    Type 'unknown' is not assignable to type 'string'.
+
+[7m24[0m         const spy = jest.spyOn(archiverLib as any, 'default').mockImplementation((format: string, options: archiverLib.ArchiverOptions) => {
+[7m  [0m [91m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_6/pending_category/mutant-a95e7e4/testCase.test.ts
+  ZipAFolder.zip with COMPRESSION_LEVEL.uncompressed
+    ✕ should call archiver with store:true when compression is uncompressed (1 ms)
+
+  ● ZipAFolder.zip with COMPRESSION_LEVEL.uncompressed › should call archiver with store:true when compression is uncompressed
+
+    Property `default` does not exist in the provided object
+
+      22 |
+      23 |         // Spy on the archiver module
+    > 24 |         const spy = jest.spyOn(archiverLib as any, 'default').mockImplementation((format: string, options: archiverLib.ArchiverOptions) => {
+         |                          ^
+      25 |             capturedOptions.push(options);
+      26 |             return originalDefault(format, options);
+      27 |         });
+
+      at ModuleMocker.spyOn (node_modules/jest-mock/build/index.js:731:13)
+      at Object.spyOn (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_6/pending_category/mutant-a95e7e4/testCase.test.ts:24:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.288 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_6/pending_category/mutant-a95e7e4/testCase.test.ts".

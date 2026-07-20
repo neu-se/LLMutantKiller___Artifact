@@ -1,0 +1,44 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-08a5bab/testCase.test.ts[0m:[93m17[0m:[93m15[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m17[0m       .catch((e) => {
+[7m  [0m [91m              ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-08a5bab/testCase.test.ts[0m:[93m23[0m:[93m51[0m - [91merror[0m[90m TS7006: [0mParameter 'line' implicitly has an 'any' type.
+
+[7m23[0m         const qInternalFrames = stackLines.filter(line =>
+[7m  [0m [91m                                                  ~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-08a5bab/testCase.test.ts[0m:[93m38[0m:[93m49[0m - [91merror[0m[90m TS7006: [0mParameter 'line' implicitly has an 'any' type.
+
+[7m38[0m         const hasUsefulFrames = stackLines.some(line =>
+[7m  [0m [91m                                                ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-08a5bab/testCase.test.ts (7.271 s)
+  Stack trace filtering behavior
+    ✕ should maintain correct stack frame filtering for Q internal frames (5026 ms)
+
+  ● Stack trace filtering behavior › should maintain correct stack frame filtering for Q internal frames
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      3 |
+      4 | describe("Stack trace filtering behavior", () => {
+    > 5 |   it("should maintain correct stack frame filtering for Q internal frames", () => {
+        |   ^
+      6 |     // Create a scenario that generates a stack trace through Q's promise chain
+      7 |     const deferred = Q.defer();
+      8 |     const error = new Error("Test error");
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-08a5bab/testCase.test.ts:5:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-08a5bab/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.577 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_4/pending_category/mutant-08a5bab/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

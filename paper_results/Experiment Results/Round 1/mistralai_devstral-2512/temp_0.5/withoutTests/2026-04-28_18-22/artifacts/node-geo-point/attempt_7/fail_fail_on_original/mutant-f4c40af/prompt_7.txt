@@ -1,0 +1,37 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_6/pending_category/mutant-f4c40af/testCase.test.ts
+  GeoPoint.calculateDestination
+    ✕ should calculate correct destination point for given coordinate, distance, and bearing (3 ms)
+
+  ● GeoPoint.calculateDestination › should calculate correct destination point for given coordinate, distance, and bearing
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 89.0089831528412
+    Received: 89.00899321605927
+
+    Expected precision:    6
+    Expected difference: < 0.0000005
+    Received difference:   0.000010063218070399671
+
+      12 |     // will produce significantly different results that should fail this test
+      13 |     // Original formula should produce a latitude very close to 89.00898315284119
+    > 14 |     expect(result.latitude).toBeCloseTo(89.00898315284119, 6);
+         |                             ^
+      15 |     expect(result.longitude).toBeCloseTo(0, 6);
+      16 |   });
+      17 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_6/pending_category/mutant-f4c40af/testCase.test.ts:14:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.094 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-geo-point/attempt_6/pending_category/mutant-f4c40af/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

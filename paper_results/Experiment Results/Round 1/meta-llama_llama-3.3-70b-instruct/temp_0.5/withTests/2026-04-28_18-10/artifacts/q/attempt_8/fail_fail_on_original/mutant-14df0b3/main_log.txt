@@ -1,0 +1,39 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-14df0b3/testCase.test.ts
+  Q.delete
+    ✕ should delete a property from an object (1 ms)
+    ✕ should return undefined
+
+  ● Q.delete › should delete a property from an object
+
+    ReferenceError: Q is not defined
+
+      2 |     it("should delete a property from an object", () => {
+      3 |         const obj = { a: 1, b: 2 };
+    > 4 |         const promise = Q(obj).delete("a");
+        |                         ^
+      5 |         return promise.then(() => {
+      6 |             expect(obj).toEqual({ b: 2 });
+      7 |         });
+
+      at Object.Q (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-14df0b3/testCase.test.ts:4:25)
+
+  ● Q.delete › should return undefined
+
+    ReferenceError: Q is not defined
+
+      10 |     it("should return undefined", () => {
+      11 |         const obj = { a: 1, b: 2 };
+    > 12 |         const promise = Q(obj).delete("a");
+         |                         ^
+      13 |         return promise.then((result: any) => {
+      14 |             expect(result).toBeUndefined();
+      15 |         });
+
+      at Object.Q (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-14df0b3/testCase.test.ts:12:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.457 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_8/pending_category/mutant-14df0b3/testCase.test.ts".

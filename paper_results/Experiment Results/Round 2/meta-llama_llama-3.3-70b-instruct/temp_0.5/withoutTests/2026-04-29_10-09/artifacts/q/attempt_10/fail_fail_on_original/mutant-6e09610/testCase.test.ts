@@ -1,0 +1,17 @@
+import { Q } from "../../../q.js";
+
+describe('Q promise', () => {
+    it('should resolve with the correct value', () => {
+        const promise = Q('test value');
+        return promise.then((value: string) => {
+            expect(value).toBe('test value');
+        });
+    });
+
+    it('should resolve with the correct value after thenResolve', () => {
+        const promise = Q('test value');
+        return promise.thenResolve('new value').then((value: string) => {
+            expect(value).toBe('new value');
+        });
+    });
+});

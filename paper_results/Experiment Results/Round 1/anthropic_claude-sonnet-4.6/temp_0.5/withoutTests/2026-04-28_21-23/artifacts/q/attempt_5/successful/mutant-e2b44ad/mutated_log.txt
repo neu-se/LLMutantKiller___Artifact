@@ -1,0 +1,30 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+(node:59799) [DEP0097] DeprecationWarning: Using a domain property in MakeCallback is deprecated. Use the async_context variant of MakeCallback or the AsyncResource class instead. (Triggered by calling processImmediate on process.)
+(Use `node --trace-deprecation ...` to show where the warning was created)
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-e2b44ad/testCase.test.ts
+  Promise.prototype.done
+    ✕ calls process.domain.bind on onUnhandledError when an active domain exists (6 ms)
+
+  ● Promise.prototype.done › calls process.domain.bind on onUnhandledError when an active domain exists
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      24 |
+      25 |       // Check synchronously since the if-block in done() runs synchronously
+    > 26 |       expect(bindCalled).toBe(true);
+         |                          ^
+      27 |       done();
+      28 |     });
+      29 |   });
+
+      at Domain.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-e2b44ad/testCase.test.ts:26:26)
+      at Object.run (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-e2b44ad/testCase.test.ts:9:7)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.746 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-e2b44ad/testCase.test.ts".

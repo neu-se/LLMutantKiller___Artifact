@@ -1,0 +1,37 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-0af9d8e/testCase.test.ts[0m:[93m23[0m:[93m33[0m - [91merror[0m[90m TS18047: [0m'db._writeStream' is possibly 'null'.
+
+[7m23[0m           const originalWrite = db._writeStream.write.bind(db._writeStream);
+[7m  [0m [91m                                ~~~~~~~~~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-0af9d8e/testCase.test.ts[0m:[93m25[0m:[93m11[0m - [91merror[0m[90m TS18047: [0m'db._writeStream' is possibly 'null'.
+
+[7m25[0m           db._writeStream.write = function(data: any, cb: any) {
+[7m  [0m [91m          ~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-0af9d8e/testCase.test.ts (6.342 s)
+  drain event emission path via write stream drain event
+    ✕ should emit exactly one drain event after writes complete under backpressure conditions (5002 ms)
+
+  ● drain event emission path via write stream drain event › should emit exactly one drain event after writes complete under backpressure conditions
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       6 |
+       7 | describe('drain event emission path via write stream drain event', () => {
+    >  8 |   it('should emit exactly one drain event after writes complete under backpressure conditions', async () => {
+         |   ^
+       9 |     const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'dirty-drain-test-'));
+      10 |     const file = path.join(tmpDir, 'backpressure.dirty');
+      11 |
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-0af9d8e/testCase.test.ts:8:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-0af9d8e/testCase.test.ts:7:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.519 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-0af9d8e/testCase.test.ts".
+Jest did not exit one second after the test run has completed.
+
+'This usually means that there are asynchronous operations that weren't stopped in your tests. Consider running Jest with `--detectOpenHandles` to troubleshoot this issue.

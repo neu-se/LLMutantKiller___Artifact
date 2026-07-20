@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-f16e4a1/testCase.test.ts (6.234 s)
+  reduce function
+    ✕ should handle ended stream with no initial value correctly (5002 ms)
+
+  ● reduce function › should handle ended stream with no initial value correctly
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 1
+    Received number of calls: 0
+
+      26 |     reduced(source);
+      27 |     setTimeout(() => {
+    > 28 |       expect(cb).toHaveBeenCalledTimes(1);
+         |                  ^
+      29 |       done();
+      30 |     }, 10);
+      31 |   });
+
+      at Timeout.toHaveBeenCalledTimes [as _onTimeout] (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-f16e4a1/testCase.test.ts:28:18)
+
+  ● reduce function › should handle ended stream with no initial value correctly
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe('reduce function', () => {
+    > 4 |   it('should handle ended stream with no initial value correctly', (done) => {
+        |   ^
+      5 |     const reducer = (acc: any, data: any) => data;
+      6 |     const cb = jest.fn((err: any, result: any) => {
+      7 |       if (err) {
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-f16e4a1/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-f16e4a1/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.451 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_9/pending_category/mutant-f16e4a1/testCase.test.ts".

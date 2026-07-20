@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-f3b57be/testCase.test.ts[0m:[93m2[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m2[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-f3b57be/testCase.test.ts
+  Q library array_reduce shim behavior
+    ✕ should handle single argument reduce correctly (1 ms)
+
+  ● Q library array_reduce shim behavior › should handle single argument reduce correctly
+
+    TypeError: Cannot read properties of undefined (reading 'resolve')
+
+       7 |     // checking for single argument case. The mutation changes `if (arguments.length === 1)`
+       8 |     // to `if (false)`, which breaks the single-argument reduce behavior.
+    >  9 |     return Q.resolve([1, 2, 3, 4]).then((arr: number[]) => {
+         |              ^
+      10 |       // Using reduce with just a callback (single argument)
+      11 |       // This should work in the original code but fail in the mutated version
+      12 |       const result = arr.reduce((acc: number, val: number) => acc + val);
+
+      at Object.resolve (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-f3b57be/testCase.test.ts:9:14)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.564 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-f3b57be/testCase.test.ts".

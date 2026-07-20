@@ -1,0 +1,35 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_2/pending_category/mutant-e2c57f9/testCase.test.ts[0m:[93m3[0m:[93m1[0m - [91merror[0m[90m TS6133: [0m'path' is declared but its value is never read.
+
+[7m3[0m import * as path from 'path';
+[7m [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_2/pending_category/mutant-e2c57f9/testCase.test.ts[0m:[93m6[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"jest-extended"' has no exported member 'expect'.
+
+[7m6[0m import { expect } from 'jest-extended';
+[7m [0m [91m         ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_2/pending_category/mutant-e2c57f9/testCase.test.ts[0m:[93m18[0m:[93m15[0m - [91merror[0m[90m TS6133: [0m'zipBuffer' is declared but its value is never read.
+
+[7m18[0m         const zipBuffer = await fs.promises.readFile(zipFilePath);
+[7m  [0m [91m              ~~~~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_2/pending_category/mutant-e2c57f9/testCase.test.ts
+  ZipAFolder
+    ✕ should create a zip archive with store option set to true (2 ms)
+
+  ● ZipAFolder › should create a zip archive with store option set to true
+
+    EEXIST: file already exists, mkdir '/var/folders/hj/385qyhcj33q7n5tssd7_jvkh0000gn/T/test-folder'
+
+      11 |         const src = `${tmpdir()}/test-folder`;
+      12 |         const zipFilePath = `${tmpdir()}/test.zip`;
+    > 13 |         await fs.promises.mkdir(src);
+         |         ^
+      14 |         await fs.promises.writeFile(`${src}/test.txt`, 'Hello World!');
+      15 |         
+      16 |         await zip(src, zipFilePath);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_2/pending_category/mutant-e2c57f9/testCase.test.ts:13:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.459 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_2/pending_category/mutant-e2c57f9/testCase.test.ts".

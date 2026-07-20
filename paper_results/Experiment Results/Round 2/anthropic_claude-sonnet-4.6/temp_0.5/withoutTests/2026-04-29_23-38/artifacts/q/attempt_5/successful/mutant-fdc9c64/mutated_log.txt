@@ -1,0 +1,35 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-fdc9c64/testCase.test.ts[0m:[93m18[0m:[93m25[0m - [91merror[0m[90m TS2558: [0mExpected 0 type arguments, but got 1.
+
+[7m18[0m       const d = Q.defer<void>();
+[7m  [0m [91m                        ~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-fdc9c64/testCase.test.ts[0m:[93m30[0m:[93m20[0m - [91merror[0m[90m TS2352: [0mConversion of type 'null' to type 'Error' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+
+[7m30[0m     const stack = (capturedError as Error).stack!;
+[7m  [0m [91m                   ~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-fdc9c64/testCase.test.ts
+  isInternalFrame
+    ✕ should not filter frames from non-Q files based on line number alone (3 ms)
+
+  ● isInternalFrame › should not filter frames from non-Q files based on line number alone
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      36 |     const frameLines = stack.split("\n").filter(l => /\s+at\s/.test(l));
+      37 |     const thisFileFrames = frameLines.filter(l => l.includes("testCase.test"));
+    > 38 |     expect(thisFileFrames.length).toBeGreaterThan(0);
+         |                                   ^
+      39 |
+      40 |     Q.longStackSupport = false;
+      41 |   });
+
+      at Object.toBeGreaterThan (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-fdc9c64/testCase.test.ts:38:35)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.107 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-fdc9c64/testCase.test.ts".

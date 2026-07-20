@@ -1,0 +1,46 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-c4ba1f4/testCase.test.ts[0m:[93m22[0m:[93m9[0m - [91merror[0m[90m TS2741: [0mProperty '__promisify__' is missing in type '(...args: any[]) => Immediate' but required in type 'typeof setImmediate'.
+
+[7m22[0m         global.setImmediate = function(...args) {
+[7m  [0m [91m        ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/node/timers.d.ts[0m:[93m180[0m:[93m22[0m
+    [7m180[0m             export { __promisify__ };
+    [7m   [0m [96m                     ~~~~~~~~~~~~~[0m
+    '__promisify__' is declared here.
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-c4ba1f4/testCase.test.ts[0m:[93m22[0m:[93m40[0m - [91merror[0m[90m TS7019: [0mRest parameter 'args' implicitly has an 'any[]' type.
+
+[7m22[0m         global.setImmediate = function(...args) {
+[7m  [0m [91m                                       ~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-c4ba1f4/testCase.test.ts[0m:[93m24[0m:[93m53[0m - [91merror[0m[90m TS2345: [0mArgument of type 'any[]' is not assignable to parameter of type '[callback: (_: void) => void]'.
+  Target requires 1 element(s) but source may have fewer.
+
+[7m24[0m             return originalSetImmediate.apply(this, args);
+[7m  [0m [91m                                                    ~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-c4ba1f4/testCase.test.ts[0m:[93m32[0m:[93m62[0m - [91merror[0m[90m TS2774: [0mThis condition will always return true since this function is always defined. Did you mean to call it instead?
+
+[7m32[0m                 process.toString() === "[object process]" && process.nextTick) {
+[7m  [0m [91m                                                             ~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-c4ba1f4/testCase.test.ts
+  Q.nextTick setImmediate detection
+    ✕ should detect when setImmediate is not being used as fallback (1 ms)
+
+  ● Q.nextTick setImmediate detection › should detect when setImmediate is not being used as fallback
+
+    setImmediate fallback not being used - mutation detected
+
+      47 |         // In mutated code, it will be false because the branch is removed
+      48 |         if (!setImmediateCalled) {
+    > 49 |             throw new Error("setImmediate fallback not being used - mutation detected");
+         |                   ^
+      50 |         }
+      51 |     });
+      52 | });
+
+      at Object.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-c4ba1f4/testCase.test.ts:49:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.087 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_5/pending_category/mutant-c4ba1f4/testCase.test.ts".

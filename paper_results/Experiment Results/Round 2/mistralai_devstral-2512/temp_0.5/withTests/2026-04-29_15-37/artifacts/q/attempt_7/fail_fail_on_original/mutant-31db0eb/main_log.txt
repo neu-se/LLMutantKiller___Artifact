@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-31db0eb/testCase.test.ts (11.129 s)
+  Q library environment detection
+    ✕ should correctly detect browser environment and use setImmediate when available (10003 ms)
+
+  ● Q library environment detection › should correctly detect browser environment and use setImmediate when available
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      36 |                 // In the mutated code, it will always try to use setImmediate regardless of window
+      37 |                 // This test verifies the environment detection works correctly
+    > 38 |                 expect(setImmediateCalled).toBe(true);
+         |                                            ^
+      39 |                 resolve();
+      40 |             }, 100);
+      41 |         });
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-31db0eb/testCase.test.ts:38:44)
+
+  ● Q library environment detection › should correctly detect browser environment and use setImmediate when available
+
+    thrown: "Exceeded timeout of 10000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      3 |
+      4 | describe("Q library environment detection", () => {
+    > 5 |     it("should correctly detect browser environment and use setImmediate when available", () => {
+        |     ^
+      6 |         // Save the original setImmediate if it exists
+      7 |         const originalSetImmediate = typeof setImmediate === "function" ? setImmediate : undefined;
+      8 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-31db0eb/testCase.test.ts:5:5)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-31db0eb/testCase.test.ts:4:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        11.3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-31db0eb/testCase.test.ts".

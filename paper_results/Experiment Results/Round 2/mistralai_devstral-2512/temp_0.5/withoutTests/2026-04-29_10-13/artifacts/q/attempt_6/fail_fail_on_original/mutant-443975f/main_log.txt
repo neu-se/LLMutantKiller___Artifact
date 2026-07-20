@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-443975f/testCase.test.ts
+  Q.nextTick behavior with setImmediate
+    ✕ should use setImmediate when available for nextTick (55 ms)
+
+  ● Q.nextTick behavior with setImmediate › should use setImmediate when available for nextTick
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: "setImmediate"
+    Received array: ["setTimeout", "nextTick-callback", "setTimeout-callback"]
+
+      39 |           // In the mutated code, it will fall back to setTimeout
+      40 |           if (typeof global.setImmediate === 'function') {
+    > 41 |             expect(executionOrder).toContain("setImmediate");
+         |                                    ^
+      42 |           }
+      43 |           done();
+      44 |         } catch (error) {
+
+      at toContain (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-443975f/testCase.test.ts:41:36)
+      at Timeout.callback [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-443975f/testCase.test.ts:26:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.879 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-443975f/testCase.test.ts".

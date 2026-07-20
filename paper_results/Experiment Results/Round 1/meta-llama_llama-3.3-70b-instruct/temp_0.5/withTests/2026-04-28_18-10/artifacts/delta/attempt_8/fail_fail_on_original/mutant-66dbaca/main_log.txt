@@ -1,0 +1,41 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-66dbaca/testCase.test.ts[0m:[93m6[0m:[93m13[0m - [91merror[0m[90m TS6133: [0m'originalModule' is declared but its value is never read.
+
+[7m6[0m       const originalModule = module;
+[7m [0m [91m            ~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-66dbaca/testCase.test.ts[0m:[93m8[0m:[93m13[0m - [91merror[0m[90m TS6133: [0m'delta' is declared but its value is never read.
+
+[7m8[0m       const delta = new Delta();
+[7m [0m [91m            ~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-66dbaca/testCase.test.ts[0m:[93m9[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'toHaveProperty' does not exist on type 'FunctionMatchers<any>'.
+
+[7m9[0m       expect(module.exports).toHaveProperty('default');
+[7m [0m [91m                             ~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-66dbaca/testCase.test.ts
+  Delta
+    ✕ should export Delta as a module (4 ms)
+
+  ● Delta › should export Delta as a module
+
+    expect(received).toHaveProperty(path)
+
+    Expected path: "default"
+    Received path: []
+
+    Received value: {}
+
+       7 |       const originalExports = { ...module.exports };
+       8 |       const delta = new Delta();
+    >  9 |       expect(module.exports).toHaveProperty('default');
+         |                              ^
+      10 |       expect(module.exports.default).toBe(Delta);
+      11 |       module.exports = originalExports;
+      12 |     }
+
+      at Object.toHaveProperty (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-66dbaca/testCase.test.ts:9:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.582 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-66dbaca/testCase.test.ts".

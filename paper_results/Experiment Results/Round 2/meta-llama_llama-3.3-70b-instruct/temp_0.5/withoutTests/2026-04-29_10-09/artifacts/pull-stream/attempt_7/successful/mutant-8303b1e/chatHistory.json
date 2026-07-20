@@ -1,0 +1,62 @@
+[
+  {
+    "role": "system",
+    "content": "You are a test generation tool that produces unit tests designed to kill mutants by exposing observable behavioral differences between the original and mutated versions of a program.\n\nThe generated tests must have the following characteristics:\n\n- Tests are deterministic (no randomness, timing dependencies, or reliance on the system clock)\n- Tests appear natural and idiomatic, as written by an experienced human developer\n- Tests use the Jest testing framework\n- Tests are written in TypeScript\n- When importing modules from the project, use relative paths only, e.g.:\n  import { Something } from \"../../../../../../../../../../../subject_repositories/pull-stream/util/prop.js\"\n- Tests assert only on externally observable behavior, not implementation details\n\nThe generated tests must NOT:\n\n- Inspect or analyze source code to detect whether a mutation is present\n- Use absolute file paths\n- Use any external libraries except Jest, the standard language/runtime, and those explicitly mentioned in the prompt\n- The use of mocks and spies is permitted, but should be used only as a last resort when direct observation of behavior is not possible.\n\nFINAL OUTPUT REQUIREMENT\n\n- Return one Jest test file with exactly one describe and exactly one test/it. Avoid adding extra suites/cases\n- The response must consist of only a single fenced code block:\n```typescript\n// <Jest test file containing exactly one test case>\n```\n\nDo not include any text, explanations, or comments outside the code block.\n\n "
+  },
+  {
+    "role": "user",
+    "content": "Your task is to write a Jest test case that exposes a specific mutation in a JavaScript/TypeScript project.\n\nMUTATION DETAILS\nThe mutation affects the following file:\nutil/prop.js\nHere is the full content of that file (shown with a <PLACEHOLDER> marker):\nmodule.exports = function prop (key) {\n  return key && (\n    'string' == typeof key\n    ? function (data) { return data[key] }\n    <PLACEHOLDER>\n    ? function (data) { var v = key.exec(data); return v && v[0] }\n    : key\n  )\n}\n\nIn the original code, <PLACEHOLDER> has the value:\n\n-       : 'object' === typeof key && 'function' === typeof key.exec //regexp\nIn the mutated code, <PLACEHOLDER> has the value:\n\n+       : \"\" === typeof key && 'function' === typeof key.exec //regexp\n\n\nYOUR TASK\nWrite one Jest test file that:\n    1. Passes when run against the original code.\n    2. Fails when run against the mutated code.\n    3. Tests the behavior of the mutated file in a way that reliably detects the mutation.\nThe test will be saved at the following path, relative to this test-generation project’s root:\nllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-8303b1e/testCase.test.ts\n\nALLOWED LIBRARIES\nYou may use:\n    1. Any built-in Node.js modules (e.g., fs, path, crypto, etc.).\n    \nYou may not use any other third-party libraries.\n\n\n"
+  },
+  {
+    "role": "assistant",
+    "content": "```typescript\nimport { prop } from \"../../../../../../../../../../../subject_repositories/pull-stream/util/prop.js\";\n\ndescribe('prop function', () => {\n  it('should throw an error when key is an empty string and has an exec function', () => {\n    const key = { exec: () => {} };\n    Object.defineProperty(key, 'toString', { value: () => '' });\n    expect(() => prop(key)({})).toThrowError();\n  });\n});\n```"
+  },
+  {
+    "role": "user",
+    "content": "This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)\n \nWhile the test case passes on the original code, it also passes on the mutated code.\n\n\nPlease try again and give me a new test case."
+  },
+  {
+    "role": "assistant",
+    "content": "```typescript\nimport { prop } from \"../../../../../../../../../../../subject_repositories/pull-stream/util/prop.js\";\n\ndescribe('prop function', () => {\n  it('should return a function when key is an object with an exec function', () => {\n    const key = { exec: () => ['value'] };\n    expect(typeof prop(key)).toBe('function');\n    expect(prop(key)({})).toBe('value');\n  });\n});\n```"
+  },
+  {
+    "role": "user",
+    "content": "This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)\n \nThis test case fails on the original code with the following log:\nts-jest[ts-compiler] (WARN) \u001b[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-8303b1e/testCase.test.ts\u001b[0m:\u001b[93m1\u001b[0m:\u001b[93m10\u001b[0m - \u001b[91merror\u001b[0m\u001b[90m TS2305: \u001b[0mModule '\"../../../../../../../../../../../subject_repositories/pull-stream/util/prop.js\"' has no exported member 'prop'.\n\n\u001b[7m1\u001b[0m import { prop } from \"../../../../../../../../../../../subject_repositories/pull-stream/util/prop.js\";\n\u001b[7m \u001b[0m \u001b[91m         ~~~~\u001b[0m\nFAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-8303b1e/testCase.test.ts\n  prop function\n    ✕ should return a function when key is an object with an exec function\n\n  ● prop function › should return a function when key is an object with an exec function\n\n    TypeError: (0 , prop_js_1.prop) is not a function\n\n      4 |   it('should return a function when key is an object with an exec function', () => {\n      5 |     const key = { exec: () => ['value'] };\n    > 6 |     expect(typeof prop(key)).toBe('function');\n        |                       ^\n      7 |     expect(prop(key)({})).toBe('value');\n      8 |   });\n      9 | });\n\n      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-8303b1e/testCase.test.ts:6:23)\n\nTest Suites: 1 failed, 1 total\nTests:       1 failed, 1 total\nSnapshots:   0 total\nTime:        1.256 s\nRan all test suites within paths \"/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-8303b1e/testCase.test.ts\".\n\n---\nPlease try again and give me a new test case."
+  },
+  {
+    "role": "assistant",
+    "content": "```typescript\nimport prop from \"../../../../../../../../../../../subject_repositories/pull-stream/util/prop.js\";\n\ndescribe('prop function', () => {\n  it('should return a function when key is a string', () => {\n    const key = 'test';\n    expect(typeof prop(key)).toBe('function');\n    expect(prop(key)({ test: 'value' })).toBe('value');\n  });\n});\n```"
+  },
+  {
+    "role": "user",
+    "content": "This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)\n \nWhile the test case passes on the original code, it also passes on the mutated code.\n\n\nPlease try again and give me a new test case."
+  },
+  {
+    "role": "assistant",
+    "content": "```typescript\nimport prop from \"../../../../../../../../../../../subject_repositories/pull-stream/util/prop.js\";\n\ndescribe('prop function', () => {\n  it('should return the key itself when key is an empty string', () => {\n    const key = \"\";\n    expect(prop(key)).toBe(key);\n  });\n});\n```"
+  },
+  {
+    "role": "user",
+    "content": "This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)\n \nWhile the test case passes on the original code, it also passes on the mutated code.\n\n\nPlease try again and give me a new test case."
+  },
+  {
+    "role": "assistant",
+    "content": "```typescript\nimport prop from \"../../../../../../../../../../../subject_repositories/pull-stream/util/prop.js\";\n\ndescribe('prop function', () => {\n  it('should return the key itself when key is not a string, object with exec function, or undefined', () => {\n    const key = {};\n    expect(prop(key)).toBe(key);\n    const key2 = \"\";\n    expect(prop(key2)).toBe(key2);\n  });\n});\n```"
+  },
+  {
+    "role": "user",
+    "content": "This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)\n \nWhile the test case passes on the original code, it also passes on the mutated code.\n\n\nPlease try again and give me a new test case."
+  },
+  {
+    "role": "assistant",
+    "content": "```typescript\nimport prop from \"../../../../../../../../../../../subject_repositories/pull-stream/util/prop.js\";\n\ndescribe('prop function', () => {\n  it('should return the key itself when key is an empty string', () => {\n    const key = \"\";\n    expect(prop(key)).toBe(key);\n    const key2 = { exec: () => null };\n    expect(prop(key2)).toBe(key2);\n  });\n});\n```"
+  },
+  {
+    "role": "user",
+    "content": "This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)\n \nThis test case fails on the original code with the following log:\nFAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-8303b1e/testCase.test.ts\n  prop function\n    ✕ should return the key itself when key is an empty string (3 ms)\n\n  ● prop function › should return the key itself when key is an empty string\n\n    expect(received).toBe(expected) // Object.is equality\n\n    Expected: {\"exec\": [Function exec]}\n    Received: [Function anonymous]\n\n       6 |     expect(prop(key)).toBe(key);\n       7 |     const key2 = { exec: () => null };\n    >  8 |     expect(prop(key2)).toBe(key2);\n         |                        ^\n       9 |   });\n      10 | });\n\n      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-8303b1e/testCase.test.ts:8:24)\n\nTest Suites: 1 failed, 1 total\nTests:       1 failed, 1 total\nSnapshots:   0 total\nTime:        1.256 s\nRan all test suites within paths \"/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-8303b1e/testCase.test.ts\".\n\n---\nPlease try again and give me a new test case."
+  },
+  {
+    "role": "assistant",
+    "content": "```typescript\nimport prop from \"../../../../../../../../../../../subject_repositories/pull-stream/util/prop.js\";\n\ndescribe('prop function', () => {\n  it('should return the key itself when key is an object without an exec function', () => {\n    const key = { foo: 'bar' };\n    expect(prop(key)).toBe(key);\n    const key2 = { exec: () => null, toString: () => '' };\n    expect(prop(key2)).not.toBe(key2);\n  });\n});\n```"
+  }
+]

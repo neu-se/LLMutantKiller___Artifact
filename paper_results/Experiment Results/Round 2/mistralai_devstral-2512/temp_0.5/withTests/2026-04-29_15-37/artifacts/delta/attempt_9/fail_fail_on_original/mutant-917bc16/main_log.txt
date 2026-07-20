@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_9/pending_category/mutant-917bc16/testCase.test.ts
+  compose() optimization
+    ✕ should apply retain end optimization when rest of other is just retain (4 ms)
+
+  ● compose() optimization › should apply retain end optimization when rest of other is just retain
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 6
+    Received: 7
+
+      12 |     const result = a.compose(b);
+      13 |     // The optimization should merge the retain operations
+    > 14 |     expect(result.ops.length).toBe(6);
+         |                               ^
+      15 |     expect(result.ops[3]).toEqual({ retain: 1 });
+      16 |     expect(result.ops[4]).toEqual({ insert: 'D' });
+      17 |     expect(result.ops[5]).toEqual({ retain: 4 });
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_9/pending_category/mutant-917bc16/testCase.test.ts:14:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.547 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/delta/attempt_9/pending_category/mutant-917bc16/testCase.test.ts".

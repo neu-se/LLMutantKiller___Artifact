@@ -1,0 +1,36 @@
+import * as pull from "../../../../../../../../../../../subject_repositories/pull-stream/pull.js";
+
+describe('drain mutation test', () => {
+  it('should pass the correct abort value when op returns false', (done) => {
+    let abortValue: any = null;
+    let readCalls = 0;
+
+    const source = (abort: any, cb: (end: any, data?: any) => void) => {
+      if (abort) {
+        abortValue = abort;
+        return cb(abort);
+      }
+      readCalls++;
+      if (readCalls === 1) {
+        cb(null, 'data');
+      } else {
+        cb(true);
+      }
+    };
+
+    const op = (data: any) => {
+      return false;
+    };
+
+    const doneCallback = (err: any) => {
+      expect(abortValue).toBe(true);
+      expect(readCalls).toBe(2);
+      done();
+    };
+
+    pull(
+      source,
+      pull.drain(op, doneCallback)
+    );
+  });
+});

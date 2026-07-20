@@ -1,0 +1,10 @@
+import { Complex } from '../../../../../../../../subject_repositories/Complex.js/complex.js';
+
+describe('Complex.js', () => {
+  it('should return the correct result for the cosm1 function', () => {
+    const x = 0.000001;
+    const result = Complex.prototype.cosm1(x);
+    const expected = -x * x / 2 - x * x * x * x / 24 - x * x * x * x * x * x / 720;
+    expect(result).toBeCloseTo(expected, 10);
+  });
+});

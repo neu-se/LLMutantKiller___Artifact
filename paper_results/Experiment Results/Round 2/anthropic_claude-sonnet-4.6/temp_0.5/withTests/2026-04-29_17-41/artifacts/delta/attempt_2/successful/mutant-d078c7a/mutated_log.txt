@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-d078c7a/testCase.test.ts
+  OpIterator next() with null retain
+    ✕ should fall through to insert branch when retain is null, not treat null as object retain (6 ms)
+
+  ● OpIterator next() with null retain › should fall through to insert branch when retain is null, not treat null as object retain
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 3
+    + Received  + 1
+
+      Object {
+    -   "insert": Object {
+    -     "embed": 1,
+    -   },
+    +   "retain": null,
+      }
+
+      17 |     // Original: null !== null is false, falls to else: retOp.insert = nextOp.insert
+      18 |     // Mutated: true, enters object retain branch: retOp.retain = null
+    > 19 |     expect(result).toEqual({ insert: { embed: 1 } });
+         |                    ^
+      20 |   });
+      21 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-d078c7a/testCase.test.ts:19:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.048 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-d078c7a/testCase.test.ts".

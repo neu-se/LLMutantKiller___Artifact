@@ -1,0 +1,30 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-246ab6e/testCase.test.ts
+  Complex cosh fallback behavior
+    ✕ should correctly compute cos of purely imaginary number using correct cosh formula (7 ms)
+
+  ● Complex cosh fallback behavior › should correctly compute cos of purely imaginary number using correct cosh formula
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 3.7621956910836314
+    Received: 7.38905609893065
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   3.626860407847019
+
+      24 |     Math.cosh = originalCosh;
+      25 |     
+    > 26 |     expect(result.re).toBeCloseTo(Math.cosh(2), 10);
+         |                       ^
+      27 |     expect(result.im).toBeCloseTo(0, 10);
+      28 |   });
+      29 | });
+
+      at Object.toBeCloseTo (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-246ab6e/testCase.test.ts:26:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.864 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-246ab6e/testCase.test.ts".

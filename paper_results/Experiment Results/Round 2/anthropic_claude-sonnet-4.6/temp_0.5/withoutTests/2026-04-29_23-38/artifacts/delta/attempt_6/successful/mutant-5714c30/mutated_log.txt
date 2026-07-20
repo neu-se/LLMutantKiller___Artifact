@@ -1,0 +1,31 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-5714c30/testCase.test.ts[0m:[93m7[0m:[93m52[0m - [91merror[0m[90m TS7006: [0mParameter 'obj' implicitly has an 'any' type.
+
+[7m7[0m     jest.spyOn(Object, 'keys').mockImplementation((obj) => {
+[7m [0m [91m                                                   ~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-5714c30/testCase.test.ts
+  Delta transform
+    ✕ should not call Object.keys on non-object retain values (3 ms)
+
+  ● Delta transform › should not call Object.keys on non-object retain values
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      23 |     // Mutated: Object.keys IS called with a number (3)
+      24 |     const calledWithNumber = calls.some(c => typeof c === 'number');
+    > 25 |     expect(calledWithNumber).toBe(false);
+         |                              ^
+      26 |
+      27 |     jest.restoreAllMocks();
+      28 |     Delta.unregisterEmbed('image');
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-5714c30/testCase.test.ts:25:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.525 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-5714c30/testCase.test.ts".

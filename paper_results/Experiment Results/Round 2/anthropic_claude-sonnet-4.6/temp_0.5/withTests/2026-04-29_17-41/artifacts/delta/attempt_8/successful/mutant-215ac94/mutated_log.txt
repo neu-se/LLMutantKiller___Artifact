@@ -1,0 +1,36 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-215ac94/testCase.test.ts
+  transform()
+    ✕ should not call embed handler when thisData is a numeric retain and otherData is empty object (5 ms)
+
+  ● transform() › should not call embed handler when thisData is a numeric retain and otherData is empty object
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+      Array [
+        Object {
+    -     "retain": Object {},
+    +     "retain": Object {
+    +       "undefined": "mutated",
+    +     },
+        },
+      ]
+
+      17 |       //           match! → handler called → transformedData = {"undefined": "mutated"}
+      18 |       //           result: [{retain: {"undefined": "mutated"}}]
+    > 19 |       expect(result.ops).toEqual([{ retain: {} }]);
+         |                          ^
+      20 |     } finally {
+      21 |       Delta.unregisterEmbed('undefined');
+      22 |     }
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-215ac94/testCase.test.ts:19:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.997 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-215ac94/testCase.test.ts".

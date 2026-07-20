@@ -1,0 +1,25 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-1a0e683/testCase.test.ts
+  Complex pow
+    ✕ should handle 0^(positive real) correctly without NaN (2 ms)
+
+  ● Complex pow › should handle 0^(positive real) correctly without NaN
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      12 |     // Original: placeholder fires (a=0,b=0,z.re=1.5>0,z.im=0>=0) → returns ZERO
+      13 |     // Mutated: placeholder doesn't fire (z.im=0 not > 0) → falls through to NaN computation
+    > 14 |     expect(result.isNaN()).toBe(false);
+         |                            ^
+      15 |   });
+      16 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-1a0e683/testCase.test.ts:14:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.855 s, estimated 1 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_5/pending_category/mutant-1a0e683/testCase.test.ts".

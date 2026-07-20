@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_8/pending_category/mutant-894c254/testCase.test.ts
+  parse function query parameter handling
+    ✕ should handle mixed case UTM parameters (3 ms)
+
+  ● parse function query parameter handling › should handle mixed case UTM parameters
+
+    expect(received).not.toContain(expected) // indexOf
+
+    Expected substring: not "UtM_CaMpAiGn"
+    Received string:        "http://example.com/path?UtM_CaMpAiGn=test&ref=abc&other=value"
+
+      10 |       // The original code with case-insensitive regex should remove UtM_CaMpAiGn
+      11 |       // The mutated code with case-sensitive regex would keep it
+    > 12 |       expect(result.url).not.toContain("UtM_CaMpAiGn");
+         |                              ^
+      13 |       expect(result.search).not.toContain("UtM_CaMpAiGn");
+      14 |       expect(result.url).toContain("other=value");
+      15 |     }
+
+      at Object.toContain (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_8/pending_category/mutant-894c254/testCase.test.ts:12:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.512 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_8/pending_category/mutant-894c254/testCase.test.ts".

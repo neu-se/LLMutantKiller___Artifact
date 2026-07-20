@@ -1,0 +1,32 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-091a7fb/testCase.test.ts
+  Q.any
+    ✕ should reject when all promises are rejected (1006 ms)
+
+  ● Q.any › should reject when all promises are rejected
+
+    expect(received).rejects.toMatchObject(expected)
+
+    - Expected  - 3
+    + Received  + 1
+
+    - Object {
+    -   "message": StringNotContaining "timeout",
+    - }
+    + [Error: timeout]
+
+       9 |     const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error("timeout")), 1000));
+      10 |     
+    > 11 |     await expect(Promise.race([Q.any([p1, p2, p3]), timeoutPromise])).rejects.toMatchObject({ message: expect.not.stringContaining("timeout") });
+         |                                                                               ^
+      12 |   });
+      13 | });
+
+      at Object.toMatchObject (node_modules/expect/build/index.js:218:22)
+      at Object.toMatchObject (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-091a7fb/testCase.test.ts:11:79)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.319 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-091a7fb/testCase.test.ts".

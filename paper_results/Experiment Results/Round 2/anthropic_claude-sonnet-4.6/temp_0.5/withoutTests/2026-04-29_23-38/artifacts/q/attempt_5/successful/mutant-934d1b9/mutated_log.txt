@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-934d1b9/testCase.test.ts
+  Q.defer notify guard
+    ✕ should not call progress listeners after promise is resolved (1 ms)
+
+  ● Q.defer notify guard › should not call progress listeners after promise is resolved
+
+    TypeError: Array.prototype.reduce called on null or undefined
+        at reduce (<anonymous>)
+
+      261 | function uncurryThis(f) {
+      262 |     return function () {
+    > 263 |         return call.apply(f, arguments);
+          |                     ^
+      264 |     };
+      265 | }
+      266 | // This is equivalent, but slower:
+
+      at apply (../subject_repositories/q/q.js:263:21)
+      at defer.array_reduce [as notify] (../subject_repositories/q/q.js:661:9)
+      at Object.notify (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-934d1b9/testCase.test.ts:17:14)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.118 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-934d1b9/testCase.test.ts".

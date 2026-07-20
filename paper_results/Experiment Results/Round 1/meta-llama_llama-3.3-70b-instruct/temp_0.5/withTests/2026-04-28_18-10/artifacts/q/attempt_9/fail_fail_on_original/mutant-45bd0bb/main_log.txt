@@ -1,0 +1,47 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-45bd0bb/testCase.test.ts[0m:[93m22[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'null' is not assignable to type '{ (o: object | null): any; (o: object | null, properties: PropertyDescriptorMap & ThisType<any>): any; }'.
+
+[7m22[0m         Object.create = null;
+[7m  [0m [91m        ~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-45bd0bb/testCase.test.ts
+  Q
+    ✕ should use Object.create when available (3 ms)
+    ✕ should not use Object.create when not available (1 ms)
+
+  ● Q › should use Object.create when available
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 2
+    Received number of calls: 0
+
+      12 |         const createSpy = jest.spyOn(Object, 'create');
+      13 |         q.defer();
+    > 14 |         expect(createSpy).toHaveBeenCalledTimes(2);
+         |                           ^
+      15 |     });
+      16 |
+      17 |     it("should not use Object.create when not available", () => {
+
+      at Object.toHaveBeenCalledTimes (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-45bd0bb/testCase.test.ts:14:27)
+
+  ● Q › should not use Object.create when not available
+
+    Property `create` does not exist in the provided object
+
+      29 |
+      30 |         // Check if Object.create is not called when creating a promise
+    > 31 |         const createSpy = jest.spyOn(Object, 'create');
+         |                                ^
+      32 |         q.defer();
+      33 |         expect(createSpy).not.toHaveBeenCalled();
+      34 |
+
+      at ModuleMocker.spyOn (node_modules/jest-mock/build/index.js:731:13)
+      at Object.spyOn (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-45bd0bb/testCase.test.ts:31:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.658 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-45bd0bb/testCase.test.ts".

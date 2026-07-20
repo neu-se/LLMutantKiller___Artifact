@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/pull-stream/sinks/drain.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/pull-stream/sinks/drain.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-bebac4a/testCase.test.ts
+  drain sink.abort() before source is connected
+    ✕ should not throw when abort is called before the sink is connected to a source (16 ms)
+
+  ● drain sink.abort() before source is connected › should not throw when abort is called before the sink is connected to a source
+
+    expect(received).not.toThrow()
+
+    Error name:    "TypeError"
+    Error message: "read is not a function"
+
+          50 |       cb = err, err = true
+          51 |     abort = err || true
+        > 52 |        if(true) return read(abort, cb || function () {})
+             |                        ^
+          53 |
+          54 |   }
+          55 |
+
+      at Function.read [as abort] (../subject_repositories/pull-stream/sinks/drain.js:52:24)
+      at abort (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-bebac4a/testCase.test.ts:14:12)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-bebac4a/testCase.test.ts:15:12)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-bebac4a/testCase.test.ts:15:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.814 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-bebac4a/testCase.test.ts".

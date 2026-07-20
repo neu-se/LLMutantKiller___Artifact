@@ -1,0 +1,24 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-5c7557f/testCase.test.ts
+  drain event via write stream backpressure path
+    ✕ should emit drain event through the write stream drain handler when backpressure occurs (1 ms)
+
+  ● drain event via write stream backpressure path › should emit drain event through the write stream drain handler when backpressure occurs
+
+    TypeError: Cannot set property createWriteStream of #<Object> which has only a getter
+
+      12 |     // Override fs.createWriteStream to use a tiny highWaterMark to force backpressure
+      13 |     const originalCreateWriteStream = fs.createWriteStream.bind(fs);
+    > 14 |     (fs as any).createWriteStream = function(p: any, opts: any) {
+         |                                  ^
+      15 |       if (p === file && opts && opts.flags === 'a') {
+      16 |         opts = { ...opts, highWaterMark: 1 }; // 1 byte forces backpressure
+      17 |       }
+
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-5c7557f/testCase.test.ts:14:34)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.875 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_5/pending_category/mutant-5c7557f/testCase.test.ts".

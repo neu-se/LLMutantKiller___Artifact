@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-a201b28/testCase.test.ts
+  dirty db
+    ✕ should emit error event with a message when a corrupted row is encountered (104 ms)
+
+  ● dirty db › should emit error event with a message when a corrupted row is encountered
+
+    write after end
+
+      186 |       const data = `${JSON.stringify({key, val: this._data.get(key)})}\n`;
+      187 |       ++this._inFlightWrites;
+    > 188 |       this._waitForDrain = !this._writeStream.write(data, (err) => {
+          |                                               ^
+      189 |         if (!cbs.length && err != null) this.emit('error', err);
+      190 |         if (--this._inFlightWrites <= 0 && !this._waitForDrain) this.emit('drain');
+      191 |         for (const cb of cbs) cb(err);
+
+      at Dirty.write [as _flush] (../subject_repositories/node-dirty/lib/dirty/dirty.js:188:47)
+      at Dirty._flush [as set] (../subject_repositories/node-dirty/lib/dirty/dirty.js:37:12)
+      at Dirty.set (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-a201b28/testCase.test.ts:22:10)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:154:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.525 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_6/pending_category/mutant-a201b28/testCase.test.ts".

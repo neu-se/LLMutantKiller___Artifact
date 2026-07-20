@@ -1,0 +1,26 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-3310a58/testCase.test.ts
+  Q module initialization guard for process
+    ✕ should load without error when process is not an object (35 ms)
+
+  ● Q module initialization guard for process › should load without error when process is not an object
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "success"
+    Received: "error: Cannot read properties of undefined (reading 'env')"
+
+      32 |     try {
+      33 |       const result = spawnSync(process.execPath, [scriptPath], { encoding: "utf8" });
+    > 34 |       expect(result.stdout.trim()).toBe("success");
+         |                                    ^
+      35 |       expect(result.status).toBe(0);
+      36 |     } finally {
+      37 |       fs.unlinkSync(scriptPath);
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-3310a58/testCase.test.ts:34:36)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.856 s, estimated 1 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-3310a58/testCase.test.ts".

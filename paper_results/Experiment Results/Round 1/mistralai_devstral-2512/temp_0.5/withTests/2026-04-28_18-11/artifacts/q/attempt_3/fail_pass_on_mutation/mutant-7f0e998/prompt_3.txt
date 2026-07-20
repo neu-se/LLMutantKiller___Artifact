@@ -1,0 +1,34 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-7f0e998/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-7f0e998/testCase.test.ts
+  filterStackString behavior
+    ✕ should include internal frames in stack traces when mutation is present (1 ms)
+
+  ● filterStackString behavior › should include internal frames in stack traces when mutation is present
+
+    TypeError: Cannot read properties of undefined (reading 'reject')
+
+       5 |         // Create a scenario that generates a stack trace with internal frames
+       6 |         const error = new Error("Test error");
+    >  7 |         const promise = Q.reject(error);
+         |                           ^
+       8 |
+       9 |         try {
+      10 |             await promise;
+
+      at Object.reject (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-7f0e998/testCase.test.ts:7:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.914 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-7f0e998/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

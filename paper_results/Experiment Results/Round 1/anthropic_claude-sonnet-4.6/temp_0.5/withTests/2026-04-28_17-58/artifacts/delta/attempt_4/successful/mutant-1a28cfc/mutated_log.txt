@@ -1,0 +1,36 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-1a28cfc/testCase.test.ts
+  getEmbedTypeAndData null b check
+    ✕ throws "cannot retain a object" when b is null, not a generic TypeError (46 ms)
+
+  ● getEmbedTypeAndData null b check › throws "cannot retain a object" when b is null, not a generic TypeError
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "cannot retain a object"
+    Received message:   "Cannot convert undefined or null to object"
+
+          26 |   }
+          27 |   const embedType = Object.keys(a)[0];
+        > 28 |   if (!embedType || embedType !== Object.keys(b)[0]) {
+             |                                          ^
+          29 |     throw new Error(
+          30 |       `embed types not matched: ${embedType} != ${Object.keys(b)[0]}`,
+          31 |     );
+
+      at keys (../subject_repositories/delta/src/Delta.ts:28:42)
+      at getEmbedTypeAndData (../subject_repositories/delta/src/Delta.ts:460:49)
+                at Array.reduce (<anonymous>)
+      at Delta.reduce (../subject_repositories/delta/src/Delta.ts:200:21)
+      at Delta.reduce (../subject_repositories/delta/src/Delta.ts:437:10)
+      at invert (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-1a28cfc/testCase.test.ts:23:26)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-1a28cfc/testCase.test.ts:23:40)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-1a28cfc/testCase.test.ts:23:40)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.25 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-1a28cfc/testCase.test.ts".

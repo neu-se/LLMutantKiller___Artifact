@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_8/pending_category/mutant-132f30f/testCase.test.ts[0m:[93m9[0m:[93m12[0m - [91merror[0m[90m TS18047: [0m'result' is possibly 'null'.
+
+[7m9[0m     expect(result.host).toBe('www.example.com');
+[7m [0m [91m           ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_8/pending_category/mutant-132f30f/testCase.test.ts
+  parse function
+    ✕ should not strip www from the host when stripWWW is false (1 ms)
+
+  ● parse function › should not strip www from the host when stripWWW is false
+
+    ReferenceError: result_normalize_options is not defined
+
+      3 | describe('parse function', () => {
+      4 |   it('should not strip www from the host when stripWWW is false', () => {
+    > 5 |     const originalStripWWW = result_normalize_options.stripWWW;
+        |                              ^
+      6 |     result_normalize_options.stripWWW = false;
+      7 |     const url = 'http://www.example.com';
+      8 |     const result = parse(url);
+
+      at Object.result_normalize_options (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_8/pending_category/mutant-132f30f/testCase.test.ts:5:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.373 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_8/pending_category/mutant-132f30f/testCase.test.ts".

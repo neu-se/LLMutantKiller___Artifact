@@ -1,0 +1,34 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-5e79ecd/testCase.test.ts[0m:[93m12[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type '(event: string, ...args: any[]) => true | (false & Process)' is not assignable to parameter of type '(event: "worker", listener: WorkerListener) => Process'.
+  Type 'true | (false & Process)' is not assignable to type 'Process'.
+    Type 'boolean' is not assignable to type 'Process'.
+
+[7m12[0m       function(event: string, ...args: any[]) {
+[7m  [0m [91m      ~~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-5e79ecd/testCase.test.ts[0m:[93m19[0m:[93m29[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'Signals'.
+
+[7m19[0m         return originalEmit(event, ...args);
+[7m  [0m [91m                            ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-5e79ecd/testCase.test.ts
+  done
+    ✕ should untrack rejection within one tick when called with no callbacks (8 ms)
+
+  ● done › should untrack rejection within one tick when called with no callbacks
+
+    test rejection
+
+       5 |     Q.resetUnhandledRejections();
+       6 |     
+    >  7 |     const reason = new Error("test rejection");
+         |                    ^
+       8 |     
+       9 |     // Mock process.emit to suppress the specific uncaughtException from onUnhandledError
+      10 |     const originalEmit = process.emit.bind(process);
+
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-5e79ecd/testCase.test.ts:7:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.357 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-5e79ecd/testCase.test.ts".

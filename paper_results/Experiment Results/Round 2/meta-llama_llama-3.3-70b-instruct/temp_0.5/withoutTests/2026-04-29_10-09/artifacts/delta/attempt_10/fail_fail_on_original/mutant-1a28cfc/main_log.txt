@@ -1,0 +1,48 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_10/pending_category/mutant-1a28cfc/testCase.test.ts[0m:[93m1[0m:[93m1[0m - [91merror[0m[90m TS6133: [0m'Delta' is declared but its value is never read.
+
+[7m1[0m import Delta from "../../../../../../../../../../../subject_repositories/delta/src/Delta";
+[7m [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_10/pending_category/mutant-1a28cfc/testCase.test.ts[0m:[93m25[0m:[93m14[0m - [91merror[0m[90m TS6133: [0m'embedType' is declared but its value is never read.
+
+[7m25[0m       const [embedType, thisData, otherData] = getEmbedTypeAndData(op1.retain, op2.retain);
+[7m  [0m [91m             ~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_10/pending_category/mutant-1a28cfc/testCase.test.ts[0m:[93m25[0m:[93m25[0m - [91merror[0m[90m TS6133: [0m'thisData' is declared but its value is never read.
+
+[7m25[0m       const [embedType, thisData, otherData] = getEmbedTypeAndData(op1.retain, op2.retain);
+[7m  [0m [91m                        ~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_10/pending_category/mutant-1a28cfc/testCase.test.ts[0m:[93m25[0m:[93m35[0m - [91merror[0m[90m TS6133: [0m'otherData' is declared but its value is never read.
+
+[7m25[0m       const [embedType, thisData, otherData] = getEmbedTypeAndData(op1.retain, op2.retain);
+[7m  [0m [91m                                  ~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_10/pending_category/mutant-1a28cfc/testCase.test.ts
+  Delta
+    ✕ should correctly handle null condition in getEmbedTypeAndData function (16 ms)
+
+  ● Delta › should correctly handle null condition in getEmbedTypeAndData function
+
+    expect(received).toThrowError(expected)
+
+    Expected substring: "Test should pass"
+    Received message:   "cannot retain a object"
+
+          12 |       }
+          13 |       if (typeof b !== 'object' || b === null) {
+        > 14 |         throw new Error(`cannot retain a ${typeof b}`);
+             |               ^
+          15 |       }
+          16 |       const embedType = Object.keys(a)[0];
+          17 |       if (!embedType || embedType !== Object.keys(b)[0]) {
+
+      at getEmbedTypeAndData (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_10/pending_category/mutant-1a28cfc/testCase.test.ts:14:15)
+      at getEmbedTypeAndData (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_10/pending_category/mutant-1a28cfc/testCase.test.ts:25:48)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrowError] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_10/pending_category/mutant-1a28cfc/testCase.test.ts:29:8)
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_10/pending_category/mutant-1a28cfc/testCase.test.ts:29:8)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.898 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_10/pending_category/mutant-1a28cfc/testCase.test.ts".

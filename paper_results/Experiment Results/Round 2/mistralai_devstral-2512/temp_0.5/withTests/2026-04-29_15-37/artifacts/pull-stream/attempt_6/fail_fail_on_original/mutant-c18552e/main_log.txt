@@ -1,0 +1,36 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-c18552e/testCase.test.ts
+  through onEnd behavior
+    ✕ should call onEnd with null when stream ends normally (3 ms)
+
+  ● through onEnd behavior › should call onEnd with null when stream ends normally
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 5
+    + Received  + 1
+
+    - Array [
+    -   1,
+    -   2,
+    -   3,
+    - ]
+    + Array []
+
+      27 |     const sink = (end: any, cb: any) => {
+      28 |       if (end) {
+    > 29 |         expect(results).toEqual([1, 2, 3]);
+         |                         ^
+      30 |         expect(onEndValue).toBe(null);
+      31 |         cb(end);
+      32 |         done();
+
+      at toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-c18552e/testCase.test.ts:29:25)
+      at s (../subject_repositories/pull-stream/pull.js:41:14)
+      at Object.pull (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-c18552e/testCase.test.ts:38:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.076 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_6/pending_category/mutant-c18552e/testCase.test.ts".

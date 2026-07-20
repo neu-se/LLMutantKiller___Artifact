@@ -1,0 +1,26 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-0fdda52/testCase.test.ts
+  Complex abs overflow in hypot
+    ✕ should not overflow when |im| >> |re| with large values (2 ms)
+
+  ● Complex abs overflow in hypot › should not overflow when |im| >> |re| with large values
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       9 |     const c = new Complex(3001, 1e200);
+      10 |     const absValue = c.abs();
+    > 11 |     expect(isFinite(absValue)).toBe(true);
+         |                                ^
+      12 |     expect(absValue).toBeCloseTo(1e200, -195);
+      13 |   });
+      14 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-0fdda52/testCase.test.ts:11:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.672 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_4/pending_category/mutant-0fdda52/testCase.test.ts".

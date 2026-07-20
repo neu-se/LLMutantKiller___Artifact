@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-6f32ee6/testCase.test.ts
+  gettype subdomain detection
+    ✕ should return "subdomain" when link and page have equal-length subdomains on the same domain (5 ms)
+
+  ● gettype subdomain detection › should return "subdomain" when link and page have equal-length subdomains on the same domain
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "subdomain"
+    Received: "updomain"
+
+       9 |     // Mutated: linkurl_subdomain_len (3) <= pageurl_subdomain_len (3) is true -> returns "updomain"
+      10 |     const result = gettype('http://sub.example.com/path', 'http://www.example.com/path');
+    > 11 |     expect(result).toBe('subdomain');
+         |                    ^
+      12 |   });
+      13 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-6f32ee6/testCase.test.ts:11:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.706 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-6f32ee6/testCase.test.ts".

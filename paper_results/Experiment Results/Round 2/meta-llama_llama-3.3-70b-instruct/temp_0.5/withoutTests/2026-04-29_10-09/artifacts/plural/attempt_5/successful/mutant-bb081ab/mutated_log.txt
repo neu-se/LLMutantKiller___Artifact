@@ -1,0 +1,30 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/plural/attempt_5/pending_category/mutant-bb081ab/testCase.test.ts[0m:[93m6[0m:[93m39[0m - [91merror[0m[90m TS7006: [0mParameter 'w' implicitly has an 'any' type.
+
+[7m6[0m     plural.addRule('custom', function(w) { return w + 's' });
+[7m [0m [91m                                      ~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/plural/attempt_5/pending_category/mutant-bb081ab/testCase.test.ts
+  plural function
+    ✕ should return the correct plural form for a custom rule (3 ms)
+
+  ● plural function › should return the correct plural form for a custom rule
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "customs"
+    Received: [Function anonymous]
+
+       5 |     const originalRule = plural.addRule;
+       6 |     plural.addRule('custom', function(w) { return w + 's' });
+    >  7 |     expect(plural('custom')).toBe('customs');
+         |                              ^
+       8 |     plural.addRule = originalRule;
+       9 |   });
+      10 | });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/plural/attempt_5/pending_category/mutant-bb081ab/testCase.test.ts:7:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.27 s, estimated 2 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/plural/attempt_5/pending_category/mutant-bb081ab/testCase.test.ts".

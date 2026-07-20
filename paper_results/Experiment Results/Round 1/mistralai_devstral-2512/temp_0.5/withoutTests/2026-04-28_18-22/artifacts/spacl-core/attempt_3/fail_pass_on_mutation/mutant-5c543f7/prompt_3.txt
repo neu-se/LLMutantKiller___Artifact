@@ -1,0 +1,42 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-5c543f7/testCase.test.ts[0m:[93m1[0m:[93m25[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import { Matcher } from "../../../../../../../../../../../subject_repositories/spacl-core/src/matcher.ts";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-5c543f7/testCase.test.ts
+  Matcher
+    ✕ should correctly handle path specifications with empty property names (13 ms)
+
+  ● Matcher › should correctly handle path specifications with empty property names
+
+    expect(received).not.toThrow()
+
+    Error name:    "Error"
+    Error message: "Path contains malformed captures"
+
+          25 |     }
+          26 |     if (spec.match(/[^/]:|:\/|:$/) !== null) {
+        > 27 |       throw new Error('Path contains malformed captures')
+             |             ^
+          28 |     }
+          29 |     if (spec.match(/^.+\/$/) !== null) {
+          30 |       throw new Error('Path must not end with a slash')
+
+      at new Matcher (../subject_repositories/spacl-core/src/matcher.ts:27:13)
+      at llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-5c543f7/testCase.test.ts:5:18
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-5c543f7/testCase.test.ts:5:41)
+      at Object.toThrow (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-5c543f7/testCase.test.ts:5:41)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.128 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-5c543f7/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,58 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-3b6af17/testCase.test.ts[0m:[93m1[0m:[93m19[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import Delta from "../../../../../../../../../../../subject_repositories/delta/src/Delta.ts";
+[7m [0m [91m                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-3b6af17/testCase.test.ts[0m:[93m7[0m:[93m33[0m - [91merror[0m[90m TS6133: [0m'keepNull' is declared but its value is never read.
+
+[7m7[0m       compose: (a: any, b: any, keepNull: boolean) => ({ ...a, ...b }),
+[7m [0m [91m                                ~~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-3b6af17/testCase.test.ts[0m:[93m8[0m:[93m16[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m8[0m       invert: (a: any, b: any) => b,
+[7m [0m [91m               ~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-3b6af17/testCase.test.ts[0m:[93m9[0m:[93m19[0m - [91merror[0m[90m TS6133: [0m'a' is declared but its value is never read.
+
+[7m9[0m       transform: (a: any, b: any, priority: boolean) => b,
+[7m [0m [91m                  ~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-3b6af17/testCase.test.ts[0m:[93m9[0m:[93m35[0m - [91merror[0m[90m TS6133: [0m'priority' is declared but its value is never read.
+
+[7m9[0m       transform: (a: any, b: any, priority: boolean) => b,
+[7m [0m [91m                                  ~~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-3b6af17/testCase.test.ts[0m:[93m14[0m:[93m11[0m - [91merror[0m[90m TS6133: [0m'thisDelta' is declared but its value is never read.
+
+[7m14[0m     const thisDelta = new Delta().retain(1);
+[7m  [0m [91m          ~~~~~~~~~[0m
+[96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-3b6af17/testCase.test.ts[0m:[93m15[0m:[93m11[0m - [91merror[0m[90m TS6133: [0m'otherDelta' is declared but its value is never read.
+
+[7m15[0m     const otherDelta = new Delta().retain({ image: { src: "test.png" } });
+[7m  [0m [91m          ~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) [96m../subject_repositories/delta/src/Delta.ts[0m:[93m517[0m:[93m43[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 2, '(o: {}): string[]', gave the following error.
+    Argument of type 'number | Record<string, unknown> | undefined' is not assignable to parameter of type '{}'.
+      Type 'undefined' is not assignable to type '{}'.
+  Overload 2 of 2, '(o: object): string[]', gave the following error.
+    Argument of type 'number | Record<string, unknown> | undefined' is not assignable to parameter of type 'object'.
+      Type 'undefined' is not assignable to type 'object'.
+
+[7m517[0m             const embedType = Object.keys(thisData)[0];
+[7m   [0m [91m                                          ~~~~~~~~[0m
+
+[96m../subject_repositories/delta/src/Delta.ts[0m:[93m523[0m:[93m21[0m - [91merror[0m[90m TS18048: [0m'thisData' is possibly 'undefined'.
+
+[7m523[0m                     thisData[embedType],
+[7m   [0m [91m                    ~~~~~~~~[0m
+[96m../subject_repositories/delta/src/Delta.ts[0m:[93m523[0m:[93m21[0m - [91merror[0m[90m TS7053: [0mElement implicitly has an 'any' type because expression of type 'string' can't be used to index type 'number | Record<string, unknown>'.
+  No index signature with a parameter of type 'string' was found on type 'number | Record<string, unknown>'.
+
+[7m523[0m                     thisData[embedType],
+[7m   [0m [91m                    ~~~~~~~~~~~~~~~~~~~[0m
+PASS llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-3b6af17/testCase.test.ts
+  Delta transform with mixed retain types
+    ✓ should correctly transform when this has number retain and other has object retain (embed) (2 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        1.66 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/delta/attempt_1/pending_category/mutant-3b6af17/testCase.test.ts".

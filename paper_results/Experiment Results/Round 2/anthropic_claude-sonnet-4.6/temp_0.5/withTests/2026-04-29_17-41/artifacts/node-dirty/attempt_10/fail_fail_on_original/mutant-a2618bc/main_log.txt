@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-a2618bc/testCase.test.ts (6.246 s)
+  dirty _flush backpressure handling
+    ✕ should leave remaining items in queue when backpressure occurs mid-flush (5002 ms)
+
+  ● dirty _flush backpressure handling › should leave remaining items in queue when backpressure occurs mid-flush
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      59 |           // But both eventually call write #3... we need timing.
+      60 |           // Let's check: was write #3 called before the drain event for write #2?
+    > 61 |           expect(write3WasCalled).toBe(false);
+         |                                   ^
+      62 |           try { fs.unlinkSync(file); } catch (e) { /* ignore */ }
+      63 |           done();
+      64 |         }
+
+      at toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-a2618bc/testCase.test.ts:61:35)
+      at cb (../subject_repositories/node-dirty/lib/dirty/dirty.js:191:31)
+
+  ● dirty _flush backpressure handling › should leave remaining items in queue when backpressure occurs mid-flush
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 |
+      5 | describe('dirty _flush backpressure handling', () => {
+    > 6 |   it('should leave remaining items in queue when backpressure occurs mid-flush', (done) => {
+        |   ^
+      7 |     const Dirty = require('../../../../../../../../../../../subject_repositories/node-dirty/lib/dirty/dirty.js');
+      8 |     const file = path.join(os.tmpdir(), `dirty-sync-queue-${process.pid}.dirty`);
+      9 |     try { fs.unlinkSync(file); } catch (e) { /* ignore */ }
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-a2618bc/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-a2618bc/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.416 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-a2618bc/testCase.test.ts".

@@ -1,0 +1,47 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/node-dirty/lib/dirty/dirty.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/node-dirty/lib/dirty/dirty.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-47144d2/testCase.test.ts (6.321 s)
+  Dirty
+    ✕ should emit an error for empty lines in the database (5003 ms)
+
+  ● Dirty › should emit an error for empty lines in the database
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Empty lines never appear in a healthy database"
+    Received: "Could not load corrupted row: "
+
+      11 |     dirty.on('error', (err) => {
+      12 |       errorEmitted = true;
+    > 13 |       expect(err.message).toBe('Empty lines never appear in a healthy database');
+         |                           ^
+      14 |       done();
+      15 |     });
+      16 |     dirty.on('load', () => {
+
+      at Dirty.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-47144d2/testCase.test.ts:13:27)
+      at emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:136:20)
+          at Array.forEach (<anonymous>)
+      at ReadStream.forEach (../subject_repositories/node-dirty/lib/dirty/dirty.js:125:15)
+
+  ● Dirty › should emit an error for empty lines in the database
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 |
+      5 | describe('Dirty', () => {
+    > 6 |   it('should emit an error for empty lines in the database', (done) => {
+        |   ^
+      7 |     const dbPath = 'test.db';
+      8 |     fs.writeFileSync(dbPath, '\n');
+      9 |     const dirty = new Dirty(dbPath);
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-47144d2/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-47144d2/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.51 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-47144d2/testCase.test.ts".

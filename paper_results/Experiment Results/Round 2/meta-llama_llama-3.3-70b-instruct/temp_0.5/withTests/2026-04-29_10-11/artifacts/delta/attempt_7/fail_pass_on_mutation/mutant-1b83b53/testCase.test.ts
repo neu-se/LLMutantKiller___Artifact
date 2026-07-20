@@ -1,0 +1,54 @@
+import Delta from '../../../../../../../../../../../subject_repositories/delta/src/Delta';
+
+describe('Delta', () => {
+  it('compose with custom embed handler', () => {
+    Delta.registerEmbed('test', {
+      compose: (a: any, b: any, keepNull: boolean) => {
+        if (keepNull) {
+          return { ...a, ...b };
+        }
+        return { ...a, ...b };
+      },
+      transform: (a: any, b: any, priority: boolean) => {
+        return { ...a, ...b };
+      },
+      invert: (a: any, b: any) => {
+        return { ...a, ...b };
+      },
+    });
+
+    const delta1 = new Delta().insert({ test: { foo: 'bar' } });
+    const delta2 = new Delta().retain({ test: { baz: 'qux' } });
+
+    const composed = delta1.compose(delta2);
+    expect(composed.ops[0].insert).toEqual({ test: { foo: 'bar', baz: 'qux' } });
+
+    Delta.unregisterEmbed('test');
+  });
+
+  it.skip('compose with custom embed handler and action is not retain', () => {
+    Delta.registerEmbed('test', {
+      compose: (a: any, b: any, keepNull: boolean) => {
+        if (keepNull) {
+          return { ...a, ...b };
+        }
+        return { ...a, ...b };
+      },
+      transform: (a: any, b: any, priority: boolean) => {
+        return { ...a, ...b };
+      },
+      invert: (a: any, b: any) => {
+        return { ...a, ...b };
+      },
+    });
+
+    const delta1 = new Delta().insert({ test: { foo: 'bar' } });
+    const delta2 = new Delta().insert({ test: { baz: 'qux' } });
+
+    const composed = delta1.compose(delta2);
+    expect(composed.ops[0].insert).toEqual({ test: { foo: 'bar' } });
+    expect(composed.ops[1].insert).toEqual({ test: { baz: 'qux' } });
+
+    Delta.unregisterEmbed('test');
+  });
+});

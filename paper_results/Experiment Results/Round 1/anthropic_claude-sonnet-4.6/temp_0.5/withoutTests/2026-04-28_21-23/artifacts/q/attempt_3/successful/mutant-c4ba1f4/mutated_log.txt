@@ -1,0 +1,32 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-c4ba1f4/testCase.test.ts
+  Q setImmediate branch for requestTick
+    ✕ should use setImmediate as requestTick when setImmediate exists but process is not real Node.js (44 ms)
+
+  ● Q setImmediate branch for requestTick › should use setImmediate as requestTick when setImmediate exists but process is not real Node.js
+
+    expect(received).not.toThrow()
+
+    Error name:    "TypeError"
+    Error message: "requestTick is not a function"
+
+          178 |         if (!flushing) {
+          179 |             flushing = true;
+        > 180 |             requestTick();
+              |             ^
+          181 |         }
+          182 |     };
+          183 |
+
+      at Function.requestTick [as nextTick] (../subject_repositories/q/q.js:180:13)
+      at nextTick (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-c4ba1f4/testCase.test.ts:22:9)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-c4ba1f4/testCase.test.ts:25:12)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-c4ba1f4/testCase.test.ts:25:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.923 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-c4ba1f4/testCase.test.ts".

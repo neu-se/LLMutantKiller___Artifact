@@ -1,0 +1,41 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-39d04b6/testCase.test.ts[0m:[93m10[0m:[93m38[0m - [91merror[0m[90m TS2683: [0m'this' implicitly has type 'any' because it does not have a type annotation.
+
+[7m10[0m         function fallback() { return this; }
+[7m  [0m [91m                                     ~~~~[0m
+
+  [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-39d04b6/testCase.test.ts[0m:[93m10[0m:[93m18[0m
+    [7m10[0m         function fallback() { return this; }
+    [7m  [0m [96m                 ~~~~~~~~[0m
+    An outer value of 'this' is shadowed by this container.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-39d04b6/testCase.test.ts
+  Q.makePromise without inspect
+    ✕ should not throw when Promise is constructed without an inspect function (11 ms)
+
+  ● Q.makePromise without inspect › should not throw when Promise is constructed without an inspect function
+
+    expect(received).not.toThrow()
+
+    Error name:    "TypeError"
+    Error message: "Cannot read properties of undefined (reading 'state')"
+
+          822 |     if (inspect) {
+          823 |         var inspected = inspect();
+        > 824 |         if (inspected.state === "rejected") {
+              |                       ^
+          825 |             promise.exception = inspected.reason;
+          826 |         }
+          827 |
+
+      at Function.state [as makePromise] (../subject_repositories/q/q.js:824:23)
+      at makePromise (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-39d04b6/testCase.test.ts:8:9)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-39d04b6/testCase.test.ts:13:12)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-39d04b6/testCase.test.ts:13:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.429 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-39d04b6/testCase.test.ts".

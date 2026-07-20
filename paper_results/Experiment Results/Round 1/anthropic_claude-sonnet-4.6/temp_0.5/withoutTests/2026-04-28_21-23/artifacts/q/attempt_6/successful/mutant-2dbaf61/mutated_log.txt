@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-2dbaf61/testCase.test.ts
+  Q hasStacks initialization
+    ✕ throws error in try block during initialization (original) vs not (mutated) (9 ms)
+
+  ● Q hasStacks initialization › throws error in try block during initialization (original) vs not (mutated)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      18 |     // In mutated: try {} → no Error thrown → prepareStackTrace NOT called (for hasStacks init)
+      19 |     // BUT captureLine() also throws errors, so this might be called regardless
+    > 20 |     expect(errorCreatedDuringInit).toBe(true); // both would be true
+         |                                    ^
+      21 |   });
+      22 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-2dbaf61/testCase.test.ts:20:36)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.789 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-2dbaf61/testCase.test.ts".

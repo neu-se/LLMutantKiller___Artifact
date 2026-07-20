@@ -1,0 +1,39 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-ebf263e/testCase.test.ts[0m:[93m7[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType 'null' is not assignable to type 'AttributeMap | undefined'.
+
+[7m7[0m     b.ops[0].attributes = null;
+[7m [0m [91m    ~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-ebf263e/testCase.test.ts
+  compose
+    ✕ should handle firstOther.retain correctly when firstOther is not null and firstOther.retain is a number and firstOther.attributes is null (6 ms)
+
+  ● compose › should handle firstOther.retain correctly when firstOther is not null and firstOther.retain is a number and firstOther.attributes is null
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Delta {
+        "ops": Array [
+          Object {
+    -       "insert": "HelloWorld",
+    +       "insert": "WorldHello",
+          },
+        ],
+      }
+
+       8 |     const c = new Delta().insert('World');
+       9 |     const expected = new Delta().insert('Hello').insert('World');
+    > 10 |     expect(a.compose(b).compose(c)).toEqual(expected);
+         |                                     ^
+      11 |   });
+      12 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-ebf263e/testCase.test.ts:10:37)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.204 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_8/pending_category/mutant-ebf263e/testCase.test.ts".

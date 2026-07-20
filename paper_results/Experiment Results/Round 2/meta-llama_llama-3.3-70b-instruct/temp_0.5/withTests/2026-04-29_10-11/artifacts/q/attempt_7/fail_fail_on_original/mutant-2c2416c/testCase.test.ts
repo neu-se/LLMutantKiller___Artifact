@@ -1,0 +1,11 @@
+import { Q } from '../../../q.js';
+
+describe("Q deprecate function", () => {
+    it("should log a deprecation warning with the correct message when the deprecated function is called", () => {
+        const consoleWarnSpy = jest.spyOn(console, "warn");
+        const deprecatedFunction = Q.deprecate(function () {}, "test", "alternative");
+        deprecatedFunction();
+        expect(consoleWarnSpy).toHaveBeenCalledTimes(1);
+        expect(consoleWarnSpy).toHaveBeenCalledWith("test is deprecated, use alternative instead.");
+    });
+});

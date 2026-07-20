@@ -1,0 +1,27 @@
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/node-jsonfile/utils.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/node-jsonfile/utils.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-jsonfile/attempt_1/pending_category/mutant-44b6d2c/testCase.test.ts
+  stripBom
+    ✕ should only remove BOM at the start of the content (3 ms)
+
+  ● stripBom › should only remove BOM at the start of the content
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "{\"key\":\"﻿value\"}"
+    Received: "{\"key\":\"value\"}"
+
+      13 |     // Test content with BOM in the middle (should not be removed)
+      14 |     const result2 = stripBom(contentWithBomInMiddle);
+    > 15 |     expect(result2).toBe("{\"key\":\"\uFEFFvalue\"}");
+         |                     ^
+      16 |
+      17 |     // Test content with BOM at the end (should not be removed)
+      18 |     const result3 = stripBom(contentWithBomAtEnd);
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-jsonfile/attempt_1/pending_category/mutant-44b6d2c/testCase.test.ts:15:21)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.262 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-jsonfile/attempt_1/pending_category/mutant-44b6d2c/testCase.test.ts".

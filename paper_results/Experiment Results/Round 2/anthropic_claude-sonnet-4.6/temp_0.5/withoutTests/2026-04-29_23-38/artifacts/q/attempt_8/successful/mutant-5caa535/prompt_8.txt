@@ -1,0 +1,43 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-5caa535/testCase.test.ts
+  Q array_indexOf fallback off-by-one
+    ✕ detects mutation: fallback indexOf should not access arr[arr.length] (10 ms)
+
+  ● Q array_indexOf fallback off-by-one › detects mutation: fallback indexOf should not access arr[arr.length]
+
+    TypeError: Cannot set property 0 of [object Array] which has only a getter
+        at Array.push (<anonymous>)
+
+      84 |     throw new Error();
+      85 | } catch (e) {
+    > 86 |     hasStacks = !!e.stack;
+         |                     ^
+      87 | }
+      88 |
+      89 | // All code after this point will be filtered from stack traces reported
+
+      at ArraySet_add [as add] (node_modules/source-map/lib/array-set.js:54:17)
+      at Function.ArraySet_fromArray [as fromArray] (node_modules/source-map/lib/array-set.js:29:9)
+      at new BasicSourceMapConsumer (node_modules/source-map/lib/source-map-consumer.js:334:26)
+      at new SourceMapConsumer (node_modules/source-map/lib/source-map-consumer.js:22:7)
+      at mapSourcePosition (node_modules/source-map-support/source-map-support.js:190:14)
+      at wrapCallSite (node_modules/source-map-support/source-map-support.js:358:20)
+      at node_modules/source-map-support/source-map-support.js:399:26
+          at Array.map (<anonymous>)
+      at Function.prepareStackTrace (node_modules/source-map-support/source-map-support.js:398:30)
+      at stack (../subject_repositories/q/q.js:86:21)
+      at definition (../subject_repositories/q/q.js:43:26)
+      at Object.<anonymous> (../subject_repositories/q/q.js:79:2)
+      at Object.require (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-5caa535/testCase.test.ts:30:17)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.573 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_7/pending_category/mutant-5caa535/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,27 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-9cc6e1f/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2614: [0mModule '"../../../../../../../../../../../subject_repositories/delta/src/Delta"' has no exported member 'Delta'. Did you mean to use 'import Delta from "../../../../../../../../../../../subject_repositories/delta/src/Delta"' instead?
+
+[7m1[0m import { Delta } from '../../../../../../../../../../../subject_repositories/delta/src/Delta';
+[7m [0m [91m         ~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-9cc6e1f/testCase.test.ts
+  Delta
+    ✕ should handle embed types correctly (1 ms)
+
+  ● Delta › should handle embed types correctly
+
+    TypeError: Delta_1.Delta is not a constructor
+
+      3 | describe('Delta', () => {
+      4 |   it('should handle embed types correctly', () => {
+    > 5 |     const delta1 = new Delta().insert({ embed: 'value1' });
+        |                    ^
+      6 |     const delta2 = new Delta().insert({ other: 'value2' });
+      7 |     const transformedDelta = delta1.transform(delta2, true);
+      8 |     expect(transformedDelta.ops[0].insert).toEqual({ embed: 'value1' });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-9cc6e1f/testCase.test.ts:5:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.28 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-9cc6e1f/testCase.test.ts".

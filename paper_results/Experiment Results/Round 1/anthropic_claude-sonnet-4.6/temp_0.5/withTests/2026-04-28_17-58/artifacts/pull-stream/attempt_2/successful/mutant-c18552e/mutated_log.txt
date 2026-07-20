@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-c18552e/testCase.test.ts
+  through
+    ✕ should pass the actual error object to onEnd when stream ends with an error (not true) (3 ms)
+
+  ● through › should pass the actual error object to onEnd when stream ends with an error (not true)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: [Error: stream error]
+    Received: null
+
+      21 |       // original: onEnd(actualError === true ? null : actualError) => onEnd(actualError)
+      22 |       // mutated:  onEnd(true ? null : actualError) => onEnd(null)
+    > 23 |       expect(receivedByOnEnd).toBe(actualError);
+         |                               ^
+      24 |       done();
+      25 |     });
+      26 |   });
+
+      at toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-c18552e/testCase.test.ts:23:31)
+      at cb (../subject_repositories/pull-stream/throughs/through.js:20:9)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-c18552e/testCase.test.ts:14:7)
+      at read (../subject_repositories/pull-stream/throughs/through.js:17:14)
+      at Object.readable (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-c18552e/testCase.test.ts:19:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.525 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_2/pending_category/mutant-c18552e/testCase.test.ts".

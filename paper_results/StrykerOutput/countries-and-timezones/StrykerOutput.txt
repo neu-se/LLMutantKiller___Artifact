@@ -1,0 +1,95 @@
+node v20.19.4
+npm 11.5.1
+$ ./node_modules/.bin/stryker run stryker.batch.config.json
+
+Generated stryker.batch.config.json:
+{
+  "reporters": [
+    "clear-text",
+    "progress",
+    "html",
+    "json"
+  ],
+  "coverageAnalysis": "off",
+  "concurrency": 1,
+  "timeoutMS": 30000,
+  "mutate": [
+    "src/build-country.js",
+    "src/build-timezone.js",
+    "src/index.js"
+  ],
+  "commandRunner": {
+    "command": "npm run test:unit"
+  }
+}
+
+[32m18:35:38 (62975) INFO ProjectReader[39m Found 3 of 47 file(s) to be mutated.
+[32m18:35:38 (62975) INFO Instrumenter[39m Instrumented 3 source file(s) with 140 mutant(s)
+[32m18:35:38 (62975) INFO ConcurrencyTokenProvider[39m Creating 1 test runner process(es).
+[32m18:35:38 (62975) INFO BroadcastReporter[39m Detected that current console does not support the "progress" reporter, downgrading to "progress-append-only" reporter
+[32m18:35:38 (62975) INFO DryRunExecutor[39m Starting initial test run (command test runner with "off" coverage analysis). This may take a while.
+[32m18:35:39 (62975) INFO DryRunExecutor[39m Initial test run succeeded. Ran 1 tests in 1 second (net 1000 ms, overhead 0 ms).
+Mutation testing 9% (elapsed: <1m, remaining: ~1m) 13/140 tested (1 survived, 0 timed out)
+Mutation testing 19% (elapsed: <1m, remaining: ~1m) 27/140 tested (3 survived, 0 timed out)
+Mutation testing 30% (elapsed: <1m, remaining: ~1m) 42/140 tested (3 survived, 0 timed out)
+Mutation testing 40% (elapsed: <1m, remaining: <1m) 57/140 tested (3 survived, 0 timed out)
+Mutation testing 52% (elapsed: <1m, remaining: <1m) 73/140 tested (3 survived, 0 timed out)
+Mutation testing 62% (elapsed: ~1m, remaining: <1m) 88/140 tested (4 survived, 0 timed out)
+Mutation testing 73% (elapsed: ~1m, remaining: <1m) 103/140 tested (4 survived, 0 timed out)
+Mutation testing 83% (elapsed: ~1m, remaining: <1m) 117/140 tested (4 survived, 0 timed out)
+Mutation testing 94% (elapsed: ~1m, remaining: <1m) 132/140 tested (5 survived, 0 timed out)
+
+All tests
+  ✓ All tests (killed 134)
+
+[Survived] ArrayDeclaration
+src/build-country.js:12:33
+-       timezones: tzMap.current || [],
++       timezones: tzMap.current || ["Stryker was here"],
+
+[Survived] ArrayDeclaration
+src/build-country.js:13:32
+-       allTimezones: tzMap.all || [],
++       allTimezones: tzMap.all || ["Stryker was here"],
+
+[Survived] ConditionalExpression
+src/build-country.js:18:7
+-     if (!timezonesMap) timezonesMap = buildTimezonesMap(data);
++     if (true) timezonesMap = buildTimezonesMap(data);
+
+[Survived] ConditionalExpression
+src/index.js:17:7
+-     if (totalTimezones !== memoizedTimezones) Object.keys(data.timezones).forEach(getTimezone);
++     if (true) Object.keys(data.timezones).forEach(getTimezone);
+
+[Survived] ArrayDeclaration
+src/index.js:56:39
+-     const values = country.timezones || [];
++     const values = country.timezones || ["Stryker was here"];
+
+[Survived] ObjectLiteral
+src/index.js:77:16
+-   export default {
+-     getCountry,
+-     getTimezone,
+-     getAllCountries,
+-     getAllTimezones,
+-     getTimezonesForCountry,
+-     getCountriesForTimezone,
+-     getCountryForTimezone,
+-   };
++   export default {};
+
+Ran 1.00 tests per mutant on average.
+-------------------|------------------|----------|-----------|------------|----------|----------|
+                   | % Mutation score |          |           |            |          |          |
+File               |  total | covered | # killed | # timeout | # survived | # no cov | # errors |
+-------------------|--------|---------|----------|-----------|------------|----------|----------|
+All files          |  95.71 |   95.71 |      134 |         0 |          6 |        0 |        0 |
+ build-country.js  |  92.86 |   92.86 |       39 |         0 |          3 |        0 |        0 |
+ build-timezone.js | 100.00 |  100.00 |       31 |         0 |          0 |        0 |        0 |
+ index.js          |  95.52 |   95.52 |       64 |         0 |          3 |        0 |        0 |
+-------------------|--------|---------|----------|-----------|------------|----------|----------|
+[32m18:37:14 (62975) INFO JsonReporter[39m Your report can be found at: file:///Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/countries-and-timezones/reports/mutation/mutation.json
+[32m18:37:14 (62975) INFO HtmlReporter[39m Your report can be found at: file:///Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/countries-and-timezones/reports/mutation/mutation.html
+[32m18:37:14 (62975) INFO MutationTestExecutor[39m Done in 1 minute and 36 seconds.

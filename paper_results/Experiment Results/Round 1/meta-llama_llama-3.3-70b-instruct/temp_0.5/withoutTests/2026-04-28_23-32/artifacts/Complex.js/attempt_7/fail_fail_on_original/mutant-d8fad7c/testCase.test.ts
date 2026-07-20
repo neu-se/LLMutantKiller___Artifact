@@ -1,0 +1,9 @@
+import { Complex } from "./complex.js";
+
+describe('Complex', () => {
+  it('should calculate acsch correctly', () => {
+    const complex = new Complex(2, 0);
+    const result = complex.acsch();
+    expect(isFinite(result.re)).toBe(true);
+  });
+});

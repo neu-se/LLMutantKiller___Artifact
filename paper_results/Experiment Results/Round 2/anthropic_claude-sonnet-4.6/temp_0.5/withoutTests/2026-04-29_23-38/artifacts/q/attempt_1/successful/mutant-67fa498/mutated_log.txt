@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-67fa498/testCase.test.ts (6.236 s)
+  Q.nextTick.runAfter
+    ✕ should execute tasks scheduled with runAfter (5003 ms)
+
+  ● Q.nextTick.runAfter › should execute tasks scheduled with runAfter
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: "runAfter"
+    Received array: []
+
+      15 |     }).then(function () {
+      16 |       setTimeout(function () {
+    > 17 |         expect(results).toContain("runAfter");
+         |                         ^
+      18 |         done();
+      19 |       }, 50);
+      20 |     });
+
+      at Timeout.toContain [as _onTimeout] (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-67fa498/testCase.test.ts:17:25)
+
+  ● Q.nextTick.runAfter › should execute tasks scheduled with runAfter
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("Q.nextTick.runAfter", () => {
+    > 4 |   it("should execute tasks scheduled with runAfter", (done) => {
+        |   ^
+      5 |     const results: string[] = [];
+      6 |     
+      7 |     Q.nextTick.runAfter(function () {
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-67fa498/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-67fa498/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.403 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-67fa498/testCase.test.ts".

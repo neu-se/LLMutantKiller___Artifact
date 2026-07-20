@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_10/pending_category/mutant-9e43d4c/testCase.test.ts
+  parse function with URL containing special characters in path
+    ✕ should correctly handle URLs with special characters in path when base URL is provided (2 ms)
+
+  ● parse function with URL containing special characters in path › should correctly handle URLs with special characters in path when base URL is provided
+
+    expect(received).not.toBeNull()
+
+    Received: null
+
+       5 |     it('should correctly handle URLs with special characters in path when base URL is provided', () => {
+       6 |         const result = parse("path/with spaces?q=test", "http://example.com");
+    >  7 |         expect(result).not.toBeNull();
+         |                            ^
+       8 |         if (result) {
+       9 |             expect(result.url).toBe("http://example.com/path/with%20spaces?q=test");
+      10 |             expect(result.path).toBe("/path/with spaces");
+
+      at Object.toBeNull (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_10/pending_category/mutant-9e43d4c/testCase.test.ts:7:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.131 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_10/pending_category/mutant-9e43d4c/testCase.test.ts".

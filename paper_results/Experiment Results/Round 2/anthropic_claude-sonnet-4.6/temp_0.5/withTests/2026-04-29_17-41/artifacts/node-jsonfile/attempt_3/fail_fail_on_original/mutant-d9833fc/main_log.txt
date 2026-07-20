@@ -1,0 +1,33 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_3/pending_category/mutant-d9833fc/testCase.test.ts[0m:[93m36[0m:[93m29[0m - [91merror[0m[90m TS2448: [0mBlock-scoped variable 'Module' used before its declaration.
+
+[7m36[0m     const originalRequire = Module.prototype.require;
+[7m  [0m [91m                            ~~~~~~[0m
+
+  [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_3/pending_category/mutant-d9833fc/testCase.test.ts[0m:[93m38[0m:[93m11[0m
+    [7m38[0m     const Module = require('module');
+    [7m  [0m [96m          ~~~~~~[0m
+    'Module' is declared here.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_3/pending_category/mutant-d9833fc/testCase.test.ts
+  jsonfile fallback to fs when graceful-fs is unavailable
+    ✕ should read a JSON file using the default fs when graceful-fs throws on require (3 ms)
+
+  ● jsonfile fallback to fs when graceful-fs is unavailable › should read a JSON file using the default fs when graceful-fs throws on require
+
+    ReferenceError: Cannot access 'Module' before initialization
+
+      34 |
+      35 |     // Use a proxy in the require cache that simulates graceful-fs not being installed
+    > 36 |     const originalRequire = Module.prototype.require;
+         |                             ^
+      37 |
+      38 |     const Module = require('module');
+      39 |     const origLoad = Module._load;
+
+      at Object.Module (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_3/pending_category/mutant-d9833fc/testCase.test.ts:36:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.504 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-jsonfile/attempt_3/pending_category/mutant-d9833fc/testCase.test.ts".

@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-c2b4160/testCase.test.ts
+  OpIterator
+    ✕ rest() returns original op object references when offset is 0 (3 ms)
+
+  ● OpIterator › rest() returns original op object references when offset is 0
+
+    expect(received).toBe(expected) // Object.is equality
+
+    If it should pass with deep equality, replace "toBe" with "toStrictEqual"
+
+    Expected: {"delete": 4}
+    Received: serializes to the same string
+
+      12 |     // Original code: returns ops.slice(0), so result[0] is the exact same object
+      13 |     // Mutated code: falls to else branch, calls next() which creates a NEW {delete: 4} object
+    > 14 |     expect(result[0]).toBe(ops[0]);
+         |                       ^
+      15 |   });
+      16 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-c2b4160/testCase.test.ts:14:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.519 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-c2b4160/testCase.test.ts".

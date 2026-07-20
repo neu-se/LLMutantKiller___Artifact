@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-6b1154a/testCase.test.ts (7.175 s)
+  done
+    ✕ should call the fulfilled callback when done is called with a fulfilled handler on a resolved promise (5002 ms)
+
+  ● done › should call the fulfilled callback when done is called with a fulfilled handler on a resolved promise
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      16 |     // Use a small delay to allow async resolution
+      17 |     setTimeout(function () {
+    > 18 |       expect(callbackCalled).toBe(true);
+         |                              ^
+      19 |       expect(receivedValue).toBe(fulfillmentValue);
+      20 |       done();
+      21 |     }, 100);
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-6b1154a/testCase.test.ts:18:30)
+
+  ● done › should call the fulfilled callback when done is called with a fulfilled handler on a resolved promise
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("done", () => {
+    > 4 |   it("should call the fulfilled callback when done is called with a fulfilled handler on a resolved promise", (done) => {
+        |   ^
+      5 |     const fulfillmentValue = 42;
+      6 |     let callbackCalled = false;
+      7 |     let receivedValue: number | undefined;
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-6b1154a/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-6b1154a/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.415 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-6b1154a/testCase.test.ts".

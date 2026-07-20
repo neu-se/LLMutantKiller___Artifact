@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-894c254/testCase.test.ts
+  removeQueryParameters regex anchor
+    ✕ should use anchored /^utm_\w+/i regex (with ^ anchor) in result_normalize_options (106 ms)
+
+  ● removeQueryParameters regex anchor › should use anchored /^utm_\w+/i regex (with ^ anchor) in result_normalize_options
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      37 |     // Find the utm regex among captured ones
+      38 |     const utmRegex = capturedRegexes.find(r => r.source.includes('utm_'));
+    > 39 |     expect(utmRegex).toBeDefined();
+         |                      ^
+      40 |     // Original has ^ anchor: source should be '^utm_\\w+'
+      41 |     // Mutated has no anchor: source would be 'utm_\\w+'
+      42 |     expect(utmRegex!.source).toBe('^utm_\\w+');
+
+      at Object.toBeDefined (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-894c254/testCase.test.ts:39:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.073 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-894c254/testCase.test.ts".

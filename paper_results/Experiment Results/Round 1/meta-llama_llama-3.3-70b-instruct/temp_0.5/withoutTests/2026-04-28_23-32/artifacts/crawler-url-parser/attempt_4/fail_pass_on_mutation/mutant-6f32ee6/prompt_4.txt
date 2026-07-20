@@ -1,0 +1,33 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-6f32ee6/testCase.test.ts
+  gettype function
+    ✕ should return "subdomain" when linkurl_subdomain_len is equal to pageurl_subdomain_len (6 ms)
+
+  ● gettype function › should return "subdomain" when linkurl_subdomain_len is equal to pageurl_subdomain_len
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "internal"
+    Received: "samelevel"
+
+       5 |     const linkurl = 'https://sub.domain.com';
+       6 |     const pageurl = 'https://sub.domain.com';
+    >  7 |     expect(gettype(linkurl, pageurl)).toBe('internal');
+         |                                       ^
+       8 |     const linkurl2 = 'https://sub.sub.domain.com';
+       9 |     const pageurl2 = 'https://sub.sub.domain.com';
+      10 |     expect(gettype(linkurl2, pageurl2)).toBe('internal');
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-6f32ee6/testCase.test.ts:7:39)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.095 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/crawler-url-parser/attempt_3/pending_category/mutant-6f32ee6/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

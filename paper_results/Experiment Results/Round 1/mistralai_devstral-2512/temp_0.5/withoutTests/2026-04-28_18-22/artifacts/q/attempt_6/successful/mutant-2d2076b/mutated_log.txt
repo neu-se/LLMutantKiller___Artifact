@@ -1,0 +1,32 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-2d2076b/testCase.test.ts
+  Q.delay behavior with undefined timeout
+    ✕ should behave differently based on timeout parameter (18 ms)
+
+  ● Q.delay behavior with undefined timeout › should behave differently based on timeout parameter
+
+    expect(received).toBeUndefined()
+
+    Received: "test"
+
+      15 |       // The original code should resolve immediately with undefined
+      16 |       // The mutated code might behave differently
+    > 17 |       expect(value).toBeUndefined();
+         |                     ^
+      18 |       done();
+      19 |     }).catch((error: unknown) => {
+      20 |       clearTimeout(timeout);
+
+      at toBeUndefined (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-2d2076b/testCase.test.ts:17:21)
+      at fulfilled (../subject_repositories/q/q.js:854:54)
+      at _fulfilled (../subject_repositories/q/q.js:883:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:816:13)
+      at apply (../subject_repositories/q/q.js:624:44)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.917 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_6/pending_category/mutant-2d2076b/testCase.test.ts".

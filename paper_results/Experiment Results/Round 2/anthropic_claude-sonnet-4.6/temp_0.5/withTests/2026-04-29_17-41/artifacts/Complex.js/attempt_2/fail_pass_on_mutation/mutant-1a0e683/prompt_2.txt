@@ -1,0 +1,33 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-1a0e683/testCase.test.ts
+  Complex pow mutation test
+    ✕ should return zero when raising zero to a positive real power (3 ms)
+
+  ● Complex pow mutation test › should return zero when raising zero to a positive real power
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: -0
+
+      4 |   it('should return zero when raising zero to a positive real power', () => {
+      5 |     const result = new Complex(0, 0).pow(new Complex(2, 0));
+    > 6 |     expect(result.re).toBe(0);
+        |                       ^
+      7 |     expect(result.im).toBe(0);
+      8 |     expect(result.isZero()).toBe(true);
+      9 |     // The key: with im=0 exponent, original returns ZERO singleton early
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-1a0e683/testCase.test.ts:6:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.921 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-1a0e683/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

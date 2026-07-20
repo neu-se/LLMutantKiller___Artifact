@@ -1,0 +1,69 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1f17b8d/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1f17b8d/testCase.test.ts[0m:[93m9[0m:[93m60[0m - [91merror[0m[90m TS7006: [0mParameter 'values' implicitly has an 'any' type.
+
+[7m9[0m         return Q.all([promise1, promise2, promise3]).then((values) => {
+[7m [0m [91m                                                           ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1f17b8d/testCase.test.ts[0m:[93m21[0m:[93m13[0m - [91merror[0m[90m TS7006: [0mParameter 'error' implicitly has an 'any' type.
+
+[7m21[0m         }, (error) => {
+[7m  [0m [91m            ~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1f17b8d/testCase.test.ts[0m:[93m31[0m:[93m60[0m - [91merror[0m[90m TS7006: [0mParameter 'values' implicitly has an 'any' type.
+
+[7m31[0m         return Q.all([promise1, promise2, promise3]).then((values) => {
+[7m  [0m [91m                                                           ~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1f17b8d/testCase.test.ts
+  Q.all
+    ✕ should resolve with an array of values when all promises are resolved
+    ✕ should reject with the first error when any promise is rejected (1 ms)
+    ✕ should resolve with an array of values when promises are resolved in any order
+
+  ● Q.all › should resolve with an array of values when all promises are resolved
+
+    TypeError: Cannot read properties of undefined (reading 'resolve')
+
+      3 | describe("Q.all", () => {
+      4 |     it("should resolve with an array of values when all promises are resolved", () => {
+    > 5 |         const promise1 = Q.resolve(1);
+        |                            ^
+      6 |         const promise2 = Q.resolve(2);
+      7 |         const promise3 = Q.resolve(3);
+      8 |
+
+      at Object.resolve (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1f17b8d/testCase.test.ts:5:28)
+
+  ● Q.all › should reject with the first error when any promise is rejected
+
+    TypeError: Cannot read properties of undefined (reading 'resolve')
+
+      13 |
+      14 |     it("should reject with the first error when any promise is rejected", () => {
+    > 15 |         const promise1 = Q.resolve(1);
+         |                            ^
+      16 |         const promise2 = Q.reject(new Error("Error"));
+      17 |         const promise3 = Q.resolve(3);
+      18 |
+
+      at Object.resolve (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1f17b8d/testCase.test.ts:15:28)
+
+  ● Q.all › should resolve with an array of values when promises are resolved in any order
+
+    TypeError: Cannot read properties of undefined (reading 'delay')
+
+      25 |
+      26 |     it("should resolve with an array of values when promises are resolved in any order", () => {
+    > 27 |         const promise1 = Q.delay(50).then(() => 1);
+         |                            ^
+      28 |         const promise2 = Q.delay(20).then(() => 2);
+      29 |         const promise3 = Q.delay(100).then(() => 3);
+      30 |
+
+      at Object.delay (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1f17b8d/testCase.test.ts:27:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        1.116 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-1f17b8d/testCase.test.ts".

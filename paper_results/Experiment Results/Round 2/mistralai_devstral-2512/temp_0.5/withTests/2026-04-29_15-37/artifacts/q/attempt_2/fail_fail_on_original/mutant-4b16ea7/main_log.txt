@@ -1,0 +1,37 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-4b16ea7/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-4b16ea7/testCase.test.ts[0m:[93m12[0m:[93m5[0m - [91merror[0m[90m TS2741: [0mProperty '__promisify__' is missing in type '(callback: Function) => NodeJS.Immediate' but required in type 'typeof setImmediate'.
+
+[7m12[0m     global.setImmediate = (callback: Function) => {
+[7m  [0m [91m    ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/node/timers.d.ts[0m:[93m180[0m:[93m22[0m
+    [7m180[0m             export { __promisify__ };
+    [7m   [0m [96m                     ~~~~~~~~~~~~~[0m
+    '__promisify__' is declared here.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-4b16ea7/testCase.test.ts
+  Q library setImmediate usage
+    ✕ should use setImmediate when available in browser environment (1 ms)
+
+  ● Q library setImmediate usage › should use setImmediate when available in browser environment
+
+    TypeError: Cannot read properties of undefined (reading 'defer')
+
+      17 |
+      18 |     // Use Q.defer to create a promise
+    > 19 |     const deferred = Q.defer();
+         |                        ^
+      20 |     let promiseResolved = false;
+      21 |
+      22 |     deferred.promise.then(() => {
+
+      at Object.defer (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-4b16ea7/testCase.test.ts:19:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.591 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-4b16ea7/testCase.test.ts".

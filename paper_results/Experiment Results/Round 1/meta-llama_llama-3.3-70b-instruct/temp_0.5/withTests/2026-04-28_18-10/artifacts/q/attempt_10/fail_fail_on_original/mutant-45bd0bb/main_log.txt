@@ -1,0 +1,49 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-45bd0bb/testCase.test.ts[0m:[93m22[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType '{}' is not assignable to type '{ (o: object | null): any; (o: object | null, properties: PropertyDescriptorMap & ThisType<any>): any; }'.
+  Type '{}' provides no match for the signature '(o: object | null): any'.
+
+[7m22[0m         Object.create = {};
+[7m  [0m [91m        ~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-45bd0bb/testCase.test.ts
+  Q
+    ✕ should use Object.create when available (3 ms)
+    ✕ should throw an error when Object.create is not a function (1 ms)
+
+  ● Q › should use Object.create when available
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 2
+    Received number of calls: 0
+
+      12 |         const createSpy = jest.spyOn(Object, 'create');
+      13 |         q.defer();
+    > 14 |         expect(createSpy).toHaveBeenCalledTimes(2);
+         |                           ^
+      15 |     });
+      16 |
+      17 |     it("should throw an error when Object.create is not a function", () => {
+
+      at Object.toHaveBeenCalledTimes (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-45bd0bb/testCase.test.ts:14:27)
+
+  ● Q › should throw an error when Object.create is not a function
+
+    expect(received).toThrowError()
+
+    Received function did not throw
+
+      25 |         expect(() => {
+      26 |             q.defer();
+    > 27 |         }).toThrowError();
+         |            ^
+      28 |
+      29 |         // Restore Object.create
+      30 |         Object.create = originalCreate;
+
+      at Object.toThrowError (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-45bd0bb/testCase.test.ts:27:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.8 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-45bd0bb/testCase.test.ts".

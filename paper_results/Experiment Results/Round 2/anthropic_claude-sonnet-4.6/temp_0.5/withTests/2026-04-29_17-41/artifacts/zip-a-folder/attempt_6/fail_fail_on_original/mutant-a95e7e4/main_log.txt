@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_6/pending_category/mutant-a95e7e4/testCase.test.ts
+  ZIP uncompressed uses store option
+    ✕ should call archiver with store:true when compression is uncompressed (1 ms)
+
+  ● ZIP uncompressed uses store option › should call archiver with store:true when compression is uncompressed
+
+    Property `default` does not exist in the provided object
+
+      12 |         const originalArchiver = archiver as any;
+      13 |         const calls: any[] = [];
+    > 14 |         const archiverSpy = jest.spyOn(originalArchiver, 'default').mockImplementation((format: any, options: any) => {
+         |                                  ^
+      15 |             calls.push({ format, options });
+      16 |             return originalArchiver.default.wrappedMethod
+      17 |                 ? originalArchiver.default.wrappedMethod(format, options)
+
+      at ModuleMocker.spyOn (node_modules/jest-mock/build/index.js:731:13)
+      at Object.spyOn (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_6/pending_category/mutant-a95e7e4/testCase.test.ts:14:34)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.478 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_6/pending_category/mutant-a95e7e4/testCase.test.ts".

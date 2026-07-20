@@ -1,0 +1,38 @@
+// Test case to detect the mutation in q.js
+const Q = require("../../../../../../../../../../../subject_repositories/q/q.js");
+
+describe("unhandled rejection tracking", () => {
+  it("should not attempt to call process.emit when it's not a function", () => {
+    // Save the original process.emit
+    const originalEmit = process.emit;
+    let errorThrown = false;
+
+    // Mock process.emit to be a non-function value that will throw if called
+    process.emit = "not a function" as any;
+
+    // Reset unhandled rejections tracking
+    Q.resetUnhandledRejections();
+
+    // Create a rejected promise that won't be handled
+    const rejectedPromise = Q.reject(new Error("test error"));
+
+    // In the original code, process.emit should NOT be called because
+    // the condition checks for typeof process.emit === "function"
+    // In the mutated code, the condition is always true, so it will try to call
+    // process.emit which will throw an error
+    return Q.delay(50)
+      .then(() => {
+        // Restore process.emit
+        process.emit = originalEmit;
+        // If we reach here without error, the original code is working correctly
+        expect(true).toBe(true);
+      })
+      .catch((error) => {
+        // Restore process.emit
+        process.emit = originalEmit;
+        // If we get here, the mutated code tried to call process.emit
+        errorThrown = true;
+        throw error;
+      });
+  });
+});

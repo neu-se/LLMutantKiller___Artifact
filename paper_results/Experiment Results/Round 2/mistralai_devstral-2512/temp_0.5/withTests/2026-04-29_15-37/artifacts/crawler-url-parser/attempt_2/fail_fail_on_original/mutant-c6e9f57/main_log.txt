@@ -1,0 +1,30 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-c6e9f57/testCase.test.ts[0m:[93m7[0m:[93m16[0m - [91merror[0m[90m TS18047: [0m'result' is possibly 'null'.
+
+[7m7[0m         expect(result.url).toBe("http://www.example.com/path?param=value");
+[7m [0m [91m               ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-c6e9f57/testCase.test.ts
+  parse function with URL normalization options
+    ✕ should normalize URLs by removing query parameters like utm_source (4 ms)
+
+  ● parse function with URL normalization options › should normalize URLs by removing query parameters like utm_source
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "http://www.example.com/path?param=value"
+    Received: "http://www.example.com/path?utm_source=test&param=value"
+
+      5 |     it('should normalize URLs by removing query parameters like utm_source', () => {
+      6 |         const result = parse("http://www.example.com/path?utm_source=test&param=value");
+    > 7 |         expect(result.url).toBe("http://www.example.com/path?param=value");
+        |                            ^
+      8 |     });
+      9 | });
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-c6e9f57/testCase.test.ts:7:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.512 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-c6e9f57/testCase.test.ts".

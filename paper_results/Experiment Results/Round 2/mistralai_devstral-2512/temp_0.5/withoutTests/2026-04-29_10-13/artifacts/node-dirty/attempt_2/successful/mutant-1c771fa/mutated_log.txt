@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/subject_repositories/node-dirty/lib/dirty/dirty.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/subject_repositories/node-dirty/lib/dirty/dirty.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-1c771fa/testCase.test.ts (6.246 s)
+  Dirty database error handling
+    ✕ should emit error event when encountering corrupted data during load (5002 ms)
+
+  ● Dirty database error handling › should emit error event when encountering corrupted data during load
+
+    TypeError: Cannot read properties of undefined (reading 'val')
+
+      138 |
+      139 |
+    > 140 |             if (row.val === undefined) {
+          |                     ^
+      141 |               this._data.delete(row.key);
+      142 |             } else {
+      143 |               this._data.set(row.key, row.val);
+
+      at val (../subject_repositories/node-dirty/lib/dirty/dirty.js:140:21)
+          at Array.forEach (<anonymous>)
+      at ReadStream.forEach (../subject_repositories/node-dirty/lib/dirty/dirty.js:125:15)
+
+  ● Dirty database error handling › should emit error event when encountering corrupted data during load
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      22 |   });
+      23 |
+    > 24 |   it('should emit error event when encountering corrupted data during load', (done) => {
+         |   ^
+      25 |     // Create a corrupted database file with invalid JSON
+      26 |     fs.writeFileSync(dbPath, '{"key":"test","val":"value"\n{"invalid":json\n');
+      27 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-1c771fa/testCase.test.ts:24:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-1c771fa/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.413 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-1c771fa/testCase.test.ts".

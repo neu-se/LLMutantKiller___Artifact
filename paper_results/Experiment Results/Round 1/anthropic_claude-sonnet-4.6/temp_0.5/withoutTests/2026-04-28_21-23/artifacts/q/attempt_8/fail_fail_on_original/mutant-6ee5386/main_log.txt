@@ -1,0 +1,38 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-6ee5386/testCase.test.ts
+  Q runSingle threw mutation
+    ✕ errors thrown in nextTick tasks should propagate as uncaught exceptions (103 ms)
+
+  ● Q runSingle threw mutation › errors thrown in nextTick tasks should propagate as uncaught exceptions
+
+    task error
+
+      3 | describe("Q runSingle threw mutation", () => {
+      4 |   it("errors thrown in nextTick tasks should propagate as uncaught exceptions", (done) => {
+    > 5 |     const taskError = new Error("task error");
+        |                       ^
+      6 |     let errorCaught = false;
+      7 |
+      8 |     const handler = (e: Error) => {
+
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-6ee5386/testCase.test.ts:5:23)
+
+  ● Q runSingle threw mutation › errors thrown in nextTick tasks should propagate as uncaught exceptions
+
+    Expected uncaught exception but none occurred - mutation detected
+
+      27 |       process.removeListener("uncaughtException", handler);
+      28 |       if (!errorCaught) {
+    > 29 |         done(new Error("Expected uncaught exception but none occurred - mutation detected"));
+         |              ^
+      30 |       }
+      31 |     }, 100);
+      32 |   });
+
+      at Timeout._onTimeout (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-6ee5386/testCase.test.ts:29:14)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.88 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-6ee5386/testCase.test.ts".

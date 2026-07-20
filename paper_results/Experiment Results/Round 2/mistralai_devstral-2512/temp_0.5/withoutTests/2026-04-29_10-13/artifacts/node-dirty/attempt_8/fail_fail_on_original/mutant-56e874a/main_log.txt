@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_8/pending_category/mutant-56e874a/testCase.test.ts (6.382 s)
+  Dirty database flush behavior
+    ✕ should not write when queue is empty (5004 ms)
+
+  ● Dirty database flush behavior › should not write when queue is empty
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 2
+
+      46 |           // In original code, _flush should return early when queue is empty
+      47 |           // In mutated code, it will proceed and call write
+    > 48 |           expect(writeCount).toBe(0);
+         |                              ^
+      49 |           done();
+      50 |         });
+      51 |       });
+
+      at Immediate.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_8/pending_category/mutant-56e874a/testCase.test.ts:48:30)
+
+  ● Dirty database flush behavior › should not write when queue is empty
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      25 |   });
+      26 |
+    > 27 |   it('should not write when queue is empty', (done) => {
+         |   ^
+      28 |     const db = new Dirty(dbPath);
+      29 |     let writeCount = 0;
+      30 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_8/pending_category/mutant-56e874a/testCase.test.ts:27:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_8/pending_category/mutant-56e874a/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.552 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_8/pending_category/mutant-56e874a/testCase.test.ts".

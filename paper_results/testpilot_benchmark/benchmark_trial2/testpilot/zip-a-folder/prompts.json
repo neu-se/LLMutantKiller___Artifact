@@ -1,0 +1,330 @@
+{
+  "metaData": {
+    "packageName": "zip-a-folder",
+    "useDocSnippets": true,
+    "useCodeSnippets": false,
+    "numSnippets": "all",
+    "snippetLength": 20,
+    "numCompletions": 5
+  },
+  "prompts": [
+    {
+      "id": 0,
+      "file": "prompt_0.js",
+      "temperature": 0,
+      "completions": [
+        "```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let zipPath;\n    \n    beforeEach(function() {\n        // Create a temporary directory for testing\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        zipPath = path.join(testDir, 'test.zip');\n        \n        // Create test folder structure\n        const sourceDir = path.join(testDir, 'source');\n        fs.mkdirSync(sourceDir);\n        fs.writeFileSync(path.join(sourceDir, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(sourceDir, 'file2.txt'), 'Test Content');\n        \n        const subDir = path.join(sourceDir, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n    \n    afterEach(function() {\n        // Clean up test files\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should create ZipAFolder instance', function() {\n        const zipper = new zip_a_folder.ZipAFolder();\n        assert(zipper instanceof zip_a_folder.ZipAFolder);\n    });\n\n    it('should zip a folder successfully', function(done) {\n        const zipper = new zip_a_folder.ZipAFolder();\n        const sourceDir = path.join(testDir, 'source');\n        \n        zipper.zip(sourceDir, zipPath)\n            .then(() => {\n                // Verify zip file was created\n                assert(fs.existsSync(zipPath));\n                assert(fs.statSync(zipPath).size > 0);\n                done();\n            })\n            .catch(done);\n    });\n\n    it('should handle empty folder', function(done) {\n        const zipper = new zip_a_folder.ZipAFolder();\n        const emptyDir = path.join(testDir, 'empty');\n        fs.mkdirSync(emptyDir);\n        \n        zipper.zip(emptyDir, zipPath)\n            .then(() => {\n                assert(fs.existsSync(zipPath));\n                done();\n            })\n            .catch(done);\n    });\n\n    it('should reject when source folder does not exist', function(done) {\n        const zipper = new zip_a_folder.ZipAFolder();\n        const nonExistentDir = path.join(testDir, 'nonexistent');\n        \n        zipper.zip(nonExistentDir, zipPath)\n            .then(() => {\n                done(new Error('Should have rejected'));\n            })\n            .catch((error) => {\n                assert(error instanceof Error);\n                done();\n            });\n    });\n\n    it('should reject when destination path is invalid', function(done) {\n        const zipper = new zip_a_folder.ZipAFolder();\n        const sourceDir = path.join(testDir, 'source');\n        const invalidPath = path.join('/invalid/path/that/does/not/exist', 'test.zip');\n        \n        zipper.zip(sourceDir, invalidPath)\n            .then(() => {\n                done(new Error('Should have rejected'));\n            })\n            .catch((error) => {\n                assert(error instanceof Error);\n                done();\n            });\n    });\n});\n```"
+      ],
+      "tests": [
+        "test_0.js"
+      ],
+      "provenance": []
+    },
+    {
+      "id": 1,
+      "file": "prompt_1.js",
+      "temperature": 0,
+      "completions": [
+        "```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let srcFolder;\n    let targetFolder;\n\n    beforeEach(async function() {\n        // Create temporary directories for testing\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(testDir, 'source');\n        targetFolder = path.join(testDir, 'target');\n        \n        fs.mkdirSync(srcFolder);\n        fs.mkdirSync(targetFolder);\n        \n        // Create test files in source folder\n        fs.writeFileSync(path.join(srcFolder, 'test1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'test2.txt'), 'Test content');\n        \n        // Create a subdirectory with a file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up test directories\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should create a zip file with default compression', async function() {\n        const zipPath = path.join(targetFolder, 'test.zip');\n        \n        await zip_a_folder.ZipAFolder.zip(srcFolder, zipPath);\n        \n        assert(fs.existsSync(zipPath), 'Zip file should be created');\n        assert(fs.statSync(zipPath).size > 0, 'Zip file should not be empty');\n    });\n\n    it('should create a zip file with uncompressed option', async function() {\n        const zipPath = path.join(targetFolder, 'test-uncompressed.zip');\n        const options = { compression: zip_a_folder.COMPRESSION_LEVEL.uncompressed };\n        \n        await zip_a_folder.ZipAFolder.zip(srcFolder, zipPath, options);\n        \n        assert(fs.existsSync(zipPath), 'Uncompressed zip file should be created');\n        assert(fs.statSync(zipPath).size > 0, 'Uncompressed zip file should not be empty');\n    });\n\n    it('should create a tar file with default compression', async function() {\n        const tarPath = path.join(targetFolder, 'test.tar.gz');\n        \n        await zip_a_folder.ZipAFolder.tar(srcFolder, tarPath);\n        \n        assert(fs.existsSync(tarPath), 'Tar file should be created');\n        assert(fs.statSync(tarPath).size > 0, 'Tar file should not be empty');\n    });\n\n    it('should create an uncompressed tar file', async function() {\n        const tarPath = path.join(targetFolder, 'test-uncompressed.tar');\n        const options = { compression: zip_a_folder.COMPRESSION_LEVEL.uncompressed };\n        \n        await zip_a_folder.ZipAFolder.tar(srcFolder, tarPath, options);\n        \n        assert(fs.existsSync(tarPath), 'Uncompressed tar file should be created');\n        assert(fs.statSync(tarPath).size > 0, 'Uncompressed tar file should not be empty');\n    });\n\n    it('should throw error when source and target are the same', async function() {\n        const zipPath = path.join(srcFolder, 'test.zip');\n        \n        try {\n            await zip_a_folder.ZipAFolder.zip(srcFolder, zipPath);\n            assert.fail('Should have thrown an error');\n        } catch (error) {\n            assert(error.message.includes('Source and target folder must be different'), \n                   'Should throw error about same source and target folder');\n        }\n    });\n\n    it('should work with custom write stream', async function() {\n        const zipPath = path.join(targetFolder, 'custom-stream.zip');\n        const writeStream = fs.createWriteStream(zipPath);\n        const options = { customWriteStream: writeStream };\n        \n        await zip_a_folder.ZipAFolder.compress({\n            srcFolder: srcFolder,\n            targetFilePath: null,\n            format: 'zip',\n            zipAFolderOptions: options\n        });\n        \n        assert(fs.existsSync(zipPath), 'Zip file should be created with custom stream');\n        assert(fs.statSync(zipPath).size > 0, 'Zip file should not be empty');\n    });\n\n    it('should throw error when no target path or custom stream provided', async function() {\n        try {\n            await zip_a_folder.ZipAFolder.compress({\n                srcFolder: srcFolder,\n                targetFilePath: null,\n                format: 'zip',\n                zipAFolderOptions: {}\n            });\n            assert.fail('Should have thrown an error');\n        } catch (error) {\n            assert(error.message.includes('You must either provide a target file path or a custom write stream'), \n                   'Should throw error about missing target or stream');\n        }\n    });\n});\n```"
+      ],
+      "tests": [
+        "test_1.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 0,
+          "test": 0,
+          "refiner": "FunctionBodyIncluder"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "file": "prompt_2.js",
+      "temperature": 0,
+      "completions": [
+        "```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let srcFolder;\n    let tarFilePath;\n\n    beforeEach(function() {\n        // Create a temporary directory for each test\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(testDir, 'source');\n        tarFilePath = path.join(testDir, 'output.tar');\n        \n        // Create source folder with test files\n        fs.mkdirSync(srcFolder);\n        fs.writeFileSync(path.join(srcFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'file2.txt'), 'Test Content');\n        \n        // Create a subdirectory with a file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up temporary directory\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should create tar file from folder', async function() {\n        await zip_a_folder.ZipAFolder.tar(srcFolder, tarFilePath);\n        \n        // Verify tar file was created\n        assert(fs.existsSync(tarFilePath), 'Tar file should exist');\n        \n        // Verify tar file has content (size > 0)\n        const stats = fs.statSync(tarFilePath);\n        assert(stats.size > 0, 'Tar file should not be empty');\n    });\n\n    it('should create tar file with custom options', async function() {\n        const options = {\n            compression: 'gzip'\n        };\n        \n        await zip_a_folder.ZipAFolder.tar(srcFolder, tarFilePath, options);\n        \n        // Verify tar file was created\n        assert(fs.existsSync(tarFilePath), 'Tar file should exist');\n        \n        const stats = fs.statSync(tarFilePath);\n        assert(stats.size > 0, 'Tar file should not be empty');\n    });\n\n    it('should handle empty folder', async function() {\n        const emptyFolder = path.join(testDir, 'empty');\n        fs.mkdirSync(emptyFolder);\n        \n        await zip_a_folder.ZipAFolder.tar(emptyFolder, tarFilePath);\n        \n        // Verify tar file was created even for empty folder\n        assert(fs.existsSync(tarFilePath), 'Tar file should exist for empty folder');\n    });\n\n    it('should throw error for non-existent source folder', async function() {\n        const nonExistentFolder = path.join(testDir, 'does-not-exist');\n        \n        try {\n            await zip_a_folder.ZipAFolder.tar(nonExistentFolder, tarFilePath);\n            assert.fail('Should have thrown an error for non-existent folder');\n        } catch (error) {\n            assert(error instanceof Error, 'Should throw an Error object');\n        }\n    });\n\n    it('should create tar file in non-existent directory', async function() {\n        const nestedTarPath = path.join(testDir, 'nested', 'dir', 'output.tar');\n        \n        await zip_a_folder.ZipAFolder.tar(srcFolder, nestedTarPath);\n        \n        // Verify tar file was created and directories were created\n        assert(fs.existsSync(nestedTarPath), 'Tar file should exist in nested directory');\n        \n        const stats = fs.statSync(nestedTarPath);\n        assert(stats.size > 0, 'Tar file should not be empty');\n    });\n});\n```"
+      ],
+      "tests": [
+        "test_2.js"
+      ],
+      "provenance": []
+    },
+    {
+      "id": 3,
+      "file": "prompt_3.js",
+      "temperature": 0,
+      "completions": [
+        "```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let srcFolder;\n    \n    beforeEach(function() {\n        // Create a temporary directory for each test\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(testDir, 'source');\n        fs.mkdirSync(srcFolder);\n        \n        // Create some test files\n        fs.writeFileSync(path.join(srcFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'file2.txt'), 'Test Content');\n        \n        // Create a subdirectory with a file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n    \n    afterEach(function() {\n        // Clean up temporary directory\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with default compression', async function() {\n        const tarFilePath = path.join(testDir, 'output.tar.gz');\n        \n        await zip_a_folder.ZipAFolder.tar(srcFolder, tarFilePath);\n        \n        // Verify the tar file was created\n        assert(fs.existsSync(tarFilePath), 'Tar file should be created');\n        \n        // Verify the file has content (not empty)\n        const stats = fs.statSync(tarFilePath);\n        assert(stats.size > 0, 'Tar file should not be empty');\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with high compression', async function() {\n        const tarFilePath = path.join(testDir, 'output-high.tar.gz');\n        const options = { compression: zip_a_folder.COMPRESSION_LEVEL.high };\n        \n        await zip_a_folder.ZipAFolder.tar(srcFolder, tarFilePath, options);\n        \n        // Verify the tar file was created\n        assert(fs.existsSync(tarFilePath), 'Tar file should be created');\n        \n        // Verify the file has content\n        const stats = fs.statSync(tarFilePath);\n        assert(stats.size > 0, 'Tar file should not be empty');\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with uncompressed option', async function() {\n        const tarFilePath = path.join(testDir, 'output-uncompressed.tar');\n        const options = { compression: zip_a_folder.COMPRESSION_LEVEL.uncompressed };\n        \n        await zip_a_folder.ZipAFolder.tar(srcFolder, tarFilePath, options);\n        \n        // Verify the tar file was created\n        assert(fs.existsSync(tarFilePath), 'Tar file should be created');\n        \n        // Verify the file has content\n        const stats = fs.statSync(tarFilePath);\n        assert(stats.size > 0, 'Tar file should not be empty');\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with medium compression', async function() {\n        const tarFilePath = path.join(testDir, 'output-medium.tar.gz');\n        const options = { compression: zip_a_folder.COMPRESSION_LEVEL.medium };\n        \n        await zip_a_folder.ZipAFolder.tar(srcFolder, tarFilePath, options);\n        \n        // Verify the tar file was created\n        assert(fs.existsSync(tarFilePath), 'Tar file should be created');\n        \n        // Verify the file has content\n        const stats = fs.statSync(tarFilePath);\n        assert(stats.size > 0, 'Tar file should not be empty');\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with empty source folder', async function() {\n        const emptyFolder = path.join(testDir, 'empty');\n        fs.mkdirSync(emptyFolder);\n        const tarFilePath = path.join(testDir, 'empty.tar.gz');\n        \n        await zip_a_folder.ZipAFolder.tar(emptyFolder, tarFilePath);\n        \n        // Verify the tar file was created even for empty folder\n        assert(fs.existsSync(tarFilePath), 'Tar file should be created for empty folder');\n    });\n});\n```"
+      ],
+      "tests": [
+        "test_3.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 2,
+          "test": 2,
+          "refiner": "FunctionBodyIncluder"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "file": "prompt_4.js",
+      "temperature": 0,
+      "completions": [
+        "```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let srcFolder;\n    let tarFilePath;\n\n    beforeEach(function() {\n        // Create a temporary directory for testing\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(testDir, 'source');\n        tarFilePath = path.join(testDir, 'archive.tar.gz');\n        \n        // Create source folder with test files\n        fs.mkdirSync(srcFolder);\n        fs.writeFileSync(path.join(srcFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'file2.txt'), 'Test Content');\n        \n        // Create a subdirectory with a file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'file3.txt'), 'Nested Content');\n    });\n\n    afterEach(function() {\n        // Clean up temporary directory\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with default compression', function(done) {\n        zip_a_folder.ZipAFolder.tar(srcFolder, tarFilePath)\n            .then(() => {\n                // Verify the tar file was created\n                assert(fs.existsSync(tarFilePath), 'Tar file should be created');\n                assert(fs.statSync(tarFilePath).size > 0, 'Tar file should not be empty');\n                done();\n            })\n            .catch(done);\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with high compression', function(done) {\n        const options = { compression: zip_a_folder.COMPRESSION_LEVEL.high };\n        \n        zip_a_folder.ZipAFolder.tar(srcFolder, tarFilePath, options)\n            .then(() => {\n                // Verify the tar file was created\n                assert(fs.existsSync(tarFilePath), 'Tar file should be created');\n                assert(fs.statSync(tarFilePath).size > 0, 'Tar file should not be empty');\n                done();\n            })\n            .catch(done);\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with uncompressed option', function(done) {\n        const options = { compression: zip_a_folder.COMPRESSION_LEVEL.uncompressed };\n        const uncompressedTarPath = path.join(testDir, 'archive.tar');\n        \n        zip_a_folder.ZipAFolder.tar(srcFolder, uncompressedTarPath, options)\n            .then(() => {\n                // Verify the tar file was created\n                assert(fs.existsSync(uncompressedTarPath), 'Uncompressed tar file should be created');\n                assert(fs.statSync(uncompressedTarPath).size > 0, 'Tar file should not be empty');\n                done();\n            })\n            .catch(done);\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with medium compression', function(done) {\n        const options = { compression: zip_a_folder.COMPRESSION_LEVEL.medium };\n        \n        zip_a_folder.ZipAFolder.tar(srcFolder, tarFilePath, options)\n            .then(() => {\n                // Verify the tar file was created\n                assert(fs.existsSync(tarFilePath), 'Tar file should be created');\n                assert(fs.statSync(tarFilePath).size > 0, 'Tar file should not be empty');\n                done();\n            })\n            .catch(done);\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with non-existent source folder', function(done) {\n        const nonExistentFolder = path.join(testDir, 'does-not-exist');\n        \n        zip_a_folder.ZipAFolder.tar(nonExistentFolder, tarFilePath)\n            .then(() => {\n                done(new Error('Should have thrown an error for non-existent folder'));\n            })\n            .catch((error) => {\n                assert(error, 'Should throw an error for non-existent source folder');\n                done();\n            });\n    });\n});\n```"
+      ],
+      "tests": [
+        "test_4.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 3,
+          "test": 3,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 5,
+          "test": 5,
+          "refiner": "FunctionBodyIncluder"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "file": "prompt_5.js",
+      "temperature": 0,
+      "completions": [
+        "```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    let tarFilePath;\n\n    beforeEach(function() {\n        // Create temporary directory for testing\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        tarFilePath = path.join(tempDir, 'test-archive.tgz');\n        \n        // Create test folder structure\n        fs.mkdirSync(testFolder);\n        fs.writeFileSync(path.join(testFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(testFolder, 'file2.txt'), 'Test Content');\n        \n        // Create subdirectory\n        const subDir = path.join(testFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar creates tar file', async function() {\n        await zip_a_folder.ZipAFolder.tar(testFolder, tarFilePath);\n        \n        // Verify tar file was created\n        assert(fs.existsSync(tarFilePath), 'Tar file should be created');\n        \n        // Verify tar file has content (size > 0)\n        const stats = fs.statSync(tarFilePath);\n        assert(stats.size > 0, 'Tar file should not be empty');\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with empty folder', async function() {\n        const emptyFolder = path.join(tempDir, 'empty-folder');\n        fs.mkdirSync(emptyFolder);\n        \n        await zip_a_folder.ZipAFolder.tar(emptyFolder, tarFilePath);\n        \n        // Verify tar file was created even for empty folder\n        assert(fs.existsSync(tarFilePath), 'Tar file should be created for empty folder');\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar with options', async function() {\n        const options = { compression: 'gzip' };\n        \n        await zip_a_folder.ZipAFolder.tar(testFolder, tarFilePath, options);\n        \n        // Verify tar file was created\n        assert(fs.existsSync(tarFilePath), 'Tar file should be created with options');\n        \n        const stats = fs.statSync(tarFilePath);\n        assert(stats.size > 0, 'Tar file should not be empty');\n    });\n\n    it('test zip-a-folder.ZipAFolder.tar throws error for non-existent folder', async function() {\n        const nonExistentFolder = path.join(tempDir, 'does-not-exist');\n        \n        try {\n            await zip_a_folder.ZipAFolder.tar(nonExistentFolder, tarFilePath);\n            assert.fail('Should have thrown an error for non-existent folder');\n        } catch (error) {\n            assert(error instanceof Error, 'Should throw an Error object');\n        }\n    });\n});\n```"
+      ],
+      "tests": [
+        "test_5.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 2,
+          "test": 2,
+          "refiner": "SnippetIncluder"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "file": "prompt_6.js",
+      "temperature": 0,
+      "completions": [
+        "```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let testDir;\n    let zipFilePath;\n\n    beforeEach(function() {\n        // Create a temporary directory for each test\n        testDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        zipFilePath = path.join(testDir, 'test.zip');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files and directories\n        if (fs.existsSync(zipFilePath)) {\n            fs.unlinkSync(zipFilePath);\n        }\n        if (fs.existsSync(testDir)) {\n            fs.rmSync(testDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should zip a folder with a single file', async function() {\n        // Create test folder structure\n        const srcFolder = path.join(testDir, 'source');\n        fs.mkdirSync(srcFolder);\n        fs.writeFileSync(path.join(srcFolder, 'test.txt'), 'Hello World');\n\n        // Zip the folder\n        await zip_a_folder.ZipAFolder.zip(srcFolder, zipFilePath);\n\n        // Verify zip file was created\n        assert(fs.existsSync(zipFilePath), 'Zip file should exist');\n        assert(fs.statSync(zipFilePath).size > 0, 'Zip file should not be empty');\n    });\n\n    it('should zip a folder with multiple files and subdirectories', async function() {\n        // Create test folder structure\n        const srcFolder = path.join(testDir, 'source');\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(srcFolder);\n        fs.mkdirSync(subDir);\n        \n        fs.writeFileSync(path.join(srcFolder, 'file1.txt'), 'Content 1');\n        fs.writeFileSync(path.join(srcFolder, 'file2.txt'), 'Content 2');\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested content');\n\n        // Zip the folder\n        await zip_a_folder.ZipAFolder.zip(srcFolder, zipFilePath);\n\n        // Verify zip file was created\n        assert(fs.existsSync(zipFilePath), 'Zip file should exist');\n        assert(fs.statSync(zipFilePath).size > 0, 'Zip file should not be empty');\n    });\n\n    it('should zip an empty folder', async function() {\n        // Create empty test folder\n        const srcFolder = path.join(testDir, 'empty');\n        fs.mkdirSync(srcFolder);\n\n        // Zip the folder\n        await zip_a_folder.ZipAFolder.zip(srcFolder, zipFilePath);\n\n        // Verify zip file was created\n        assert(fs.existsSync(zipFilePath), 'Zip file should exist');\n    });\n\n    it('should handle zip options parameter', async function() {\n        // Create test folder structure\n        const srcFolder = path.join(testDir, 'source');\n        fs.mkdirSync(srcFolder);\n        fs.writeFileSync(path.join(srcFolder, 'test.txt'), 'Hello World');\n\n        const options = { compression: 'DEFLATE' };\n\n        // Zip the folder with options\n        await zip_a_folder.ZipAFolder.zip(srcFolder, zipFilePath, options);\n\n        // Verify zip file was created\n        assert(fs.existsSync(zipFilePath), 'Zip file should exist');\n        assert(fs.statSync(zipFilePath).size > 0, 'Zip file should not be empty');\n    });\n\n    it('should throw error for non-existent source folder', async function() {\n        const nonExistentFolder = path.join(testDir, 'does-not-exist');\n\n        try {\n            await zip_a_folder.ZipAFolder.zip(nonExistentFolder, zipFilePath);\n            assert.fail('Should have thrown an error for non-existent folder');\n        } catch (error) {\n            assert(error instanceof Error, 'Should throw an Error object');\n        }\n    });\n});\n```"
+      ],
+      "tests": [
+        "test_6.js"
+      ],
+      "provenance": []
+    },
+    {
+      "id": 7,
+      "file": "prompt_7.js",
+      "temperature": 0,
+      "completions": [
+        "```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let srcFolder;\n    let zipFilePath;\n\n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(tempDir, 'source');\n        zipFilePath = path.join(tempDir, 'test.zip');\n        \n        // Create source folder with test files\n        fs.mkdirSync(srcFolder);\n        fs.writeFileSync(path.join(srcFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'file2.txt'), 'Test Content');\n        \n        // Create subdirectory with file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'file3.txt'), 'Nested File');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should zip folder with default high compression', async function() {\n        await zip_a_folder.ZipAFolder.zip(srcFolder, zipFilePath);\n        \n        // Verify zip file was created\n        assert(fs.existsSync(zipFilePath), 'Zip file should be created');\n        \n        // Verify zip file has content (size > 0)\n        const stats = fs.statSync(zipFilePath);\n        assert(stats.size > 0, 'Zip file should not be empty');\n    });\n\n    it('should zip folder with uncompressed option', async function() {\n        const options = {\n            compression: zip_a_folder.COMPRESSION_LEVEL.uncompressed\n        };\n        \n        await zip_a_folder.ZipAFolder.zip(srcFolder, zipFilePath, options);\n        \n        // Verify zip file was created\n        assert(fs.existsSync(zipFilePath), 'Zip file should be created');\n        \n        const stats = fs.statSync(zipFilePath);\n        assert(stats.size > 0, 'Zip file should not be empty');\n    });\n\n    it('should zip folder with medium compression', async function() {\n        const options = {\n            compression: zip_a_folder.COMPRESSION_LEVEL.medium\n        };\n        \n        await zip_a_folder.ZipAFolder.zip(srcFolder, zipFilePath, options);\n        \n        // Verify zip file was created\n        assert(fs.existsSync(zipFilePath), 'Zip file should be created');\n        \n        const stats = fs.statSync(zipFilePath);\n        assert(stats.size > 0, 'Zip file should not be empty');\n    });\n\n    it('should handle empty source folder', async function() {\n        const emptyFolder = path.join(tempDir, 'empty');\n        fs.mkdirSync(emptyFolder);\n        const emptyZipPath = path.join(tempDir, 'empty.zip');\n        \n        await zip_a_folder.ZipAFolder.zip(emptyFolder, emptyZipPath);\n        \n        // Verify zip file was created even for empty folder\n        assert(fs.existsSync(emptyZipPath), 'Zip file should be created for empty folder');\n    });\n\n    it('should handle null zipAFolderOptions parameter', async function() {\n        await zip_a_folder.ZipAFolder.zip(srcFolder, zipFilePath, null);\n        \n        // Verify zip file was created with default options\n        assert(fs.existsSync(zipFilePath), 'Zip file should be created with null options');\n        \n        const stats = fs.statSync(zipFilePath);\n        assert(stats.size > 0, 'Zip file should not be empty');\n    });\n});\n```"
+      ],
+      "tests": [
+        "test_7.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 6,
+          "test": 6,
+          "refiner": "FunctionBodyIncluder"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "file": "prompt_8.js",
+      "temperature": 0,
+      "completions": [
+        "```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    let zipFilePath;\n\n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        zipFilePath = path.join(tempDir, 'test.zip');\n        \n        // Create test folder structure\n        fs.mkdirSync(testFolder, { recursive: true });\n        fs.writeFileSync(path.join(testFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(testFolder, 'file2.json'), '{\"test\": true}');\n        \n        const subDir = path.join(testFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'file3.txt'), 'Nested file');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should zip folder with default compression', async function() {\n        await zip_a_folder.ZipAFolder.zip(testFolder, zipFilePath);\n        \n        // Verify zip file was created\n        assert(fs.existsSync(zipFilePath), 'Zip file should exist');\n        \n        // Verify zip file has content\n        const stats = fs.statSync(zipFilePath);\n        assert(stats.size > 0, 'Zip file should not be empty');\n    });\n\n    it('should zip folder with high compression', async function() {\n        await zip_a_folder.ZipAFolder.zip(testFolder, zipFilePath, {\n            compression: zip_a_folder.COMPRESSION_LEVEL.high\n        });\n        \n        assert(fs.existsSync(zipFilePath), 'Zip file should exist');\n        const stats = fs.statSync(zipFilePath);\n        assert(stats.size > 0, 'Zip file should not be empty');\n    });\n\n    it('should zip folder with uncompressed option', async function() {\n        await zip_a_folder.ZipAFolder.zip(testFolder, zipFilePath, {\n            compression: zip_a_folder.COMPRESSION_LEVEL.uncompressed\n        });\n        \n        assert(fs.existsSync(zipFilePath), 'Zip file should exist');\n        const stats = fs.statSync(zipFilePath);\n        assert(stats.size > 0, 'Zip file should not be empty');\n    });\n\n    it('should zip folder with custom write stream', async function() {\n        const customZipPath = path.join(tempDir, 'custom.zip');\n        const customWS = fs.createWriteStream(customZipPath);\n        \n        await zip_a_folder.ZipAFolder.zip(testFolder, undefined, {\n            customWriteStream: customWS\n        });\n        \n        assert(fs.existsSync(customZipPath), 'Custom zip file should exist');\n        const stats = fs.statSync(customZipPath);\n        assert(stats.size > 0, 'Custom zip file should not be empty');\n    });\n\n    it('should handle empty options object', async function() {\n        await zip_a_folder.ZipAFolder.zip(testFolder, zipFilePath, {});\n        \n        assert(fs.existsSync(zipFilePath), 'Zip file should exist');\n        const stats = fs.statSync(zipFilePath);\n        assert(stats.size > 0, 'Zip file should not be empty');\n    });\n\n    it('should handle null options', async function() {\n        await zip_a_folder.ZipAFolder.zip(testFolder, zipFilePath, null);\n        \n        assert(fs.existsSync(zipFilePath), 'Zip file should exist');\n        const stats = fs.statSync(zipFilePath);\n        assert(stats.size > 0, 'Zip file should not be empty');\n    });\n});\n```"
+      ],
+      "tests": [
+        "test_8.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 7,
+          "test": 7,
+          "refiner": "SnippetIncluder"
+        },
+        {
+          "originalPrompt": 9,
+          "test": 9,
+          "refiner": "FunctionBodyIncluder"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "file": "prompt_9.js",
+      "temperature": 0,
+      "completions": [
+        "```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    \n    beforeEach(function() {\n        // Create temporary directory for tests\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        fs.mkdirSync(testFolder);\n        \n        // Create test files\n        fs.writeFileSync(path.join(testFolder, 'file1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(testFolder, 'file2.json'), '{\"test\": true}');\n        \n        // Create subdirectory with file\n        const subDir = path.join(testFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'file3.txt'), 'Nested file');\n    });\n    \n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should zip a folder with default options', async function() {\n        const zipPath = path.join(tempDir, 'test.zip');\n        \n        await zip_a_folder.zip(testFolder, zipPath);\n        \n        assert(fs.existsSync(zipPath), 'Zip file should be created');\n        assert(fs.statSync(zipPath).size > 0, 'Zip file should not be empty');\n    });\n\n    it('should zip a folder with high compression', async function() {\n        const zipPath = path.join(tempDir, 'test-compressed.zip');\n        \n        await zip_a_folder.zip(testFolder, zipPath, {\n            compression: zip_a_folder.COMPRESSION_LEVEL.high\n        });\n        \n        assert(fs.existsSync(zipPath), 'Compressed zip file should be created');\n        assert(fs.statSync(zipPath).size > 0, 'Compressed zip file should not be empty');\n    });\n\n    it('should zip using custom write stream', async function() {\n        const zipPath = path.join(tempDir, 'custom-stream.zip');\n        const customWS = fs.createWriteStream(zipPath);\n        \n        await zip_a_folder.zip(testFolder, undefined, {\n            customWriteStream: customWS\n        });\n        \n        assert(fs.existsSync(zipPath), 'Zip file should be created with custom stream');\n        assert(fs.statSync(zipPath).size > 0, 'Zip file should not be empty');\n    });\n\n    it('should zip specific file patterns', async function() {\n        const zipPath = path.join(tempDir, 'pattern.zip');\n        \n        // Test zipping only JSON files\n        await zip_a_folder.zip('**/*.json', zipPath);\n        \n        assert(fs.existsSync(zipPath), 'Pattern-based zip file should be created');\n        assert(fs.statSync(zipPath).size > 0, 'Pattern-based zip file should not be empty');\n    });\n\n    it('should handle empty folder', async function() {\n        const emptyFolder = path.join(tempDir, 'empty');\n        fs.mkdirSync(emptyFolder);\n        const zipPath = path.join(tempDir, 'empty.zip');\n        \n        await zip_a_folder.zip(emptyFolder, zipPath);\n        \n        assert(fs.existsSync(zipPath), 'Zip file should be created even for empty folder');\n    });\n\n    it('should throw error for non-existent folder', async function() {\n        const nonExistentFolder = path.join(tempDir, 'does-not-exist');\n        const zipPath = path.join(tempDir, 'error.zip');\n        \n        try {\n            await zip_a_folder.zip(nonExistentFolder, zipPath);\n            assert.fail('Should have thrown an error for non-existent folder');\n        } catch (error) {\n            assert(error instanceof Error, 'Should throw an Error object');\n        }\n    });\n});\n```"
+      ],
+      "tests": [
+        "test_9.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 6,
+          "test": 6,
+          "refiner": "SnippetIncluder"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "file": "prompt_10.js",
+      "temperature": 0,
+      "completions": [
+        "```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    \n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        fs.mkdirSync(testFolder);\n    });\n    \n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should compress a folder with a single file', async function() {\n        // Create test file\n        const testFile = path.join(testFolder, 'test.txt');\n        fs.writeFileSync(testFile, 'Hello World');\n        \n        const targetZip = path.join(tempDir, 'output.zip');\n        \n        await zip_a_folder.ZipAFolder.compress({\n            srcFolder: testFolder,\n            targetFilePath: targetZip\n        });\n        \n        // Verify zip file was created\n        assert(fs.existsSync(targetZip), 'Zip file should be created');\n        assert(fs.statSync(targetZip).size > 0, 'Zip file should not be empty');\n    });\n\n    it('should compress a folder with multiple files and subdirectories', async function() {\n        // Create test structure\n        fs.writeFileSync(path.join(testFolder, 'file1.txt'), 'Content 1');\n        fs.writeFileSync(path.join(testFolder, 'file2.txt'), 'Content 2');\n        \n        const subDir = path.join(testFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested content');\n        \n        const targetZip = path.join(tempDir, 'multi-file.zip');\n        \n        await zip_a_folder.ZipAFolder.compress({\n            srcFolder: testFolder,\n            targetFilePath: targetZip\n        });\n        \n        assert(fs.existsSync(targetZip), 'Zip file should be created');\n        assert(fs.statSync(targetZip).size > 0, 'Zip file should not be empty');\n    });\n\n    it('should handle empty folder compression', async function() {\n        const targetZip = path.join(tempDir, 'empty.zip');\n        \n        await zip_a_folder.ZipAFolder.compress({\n            srcFolder: testFolder,\n            targetFilePath: targetZip\n        });\n        \n        assert(fs.existsSync(targetZip), 'Zip file should be created even for empty folder');\n    });\n\n    it('should accept custom archiver options', async function() {\n        fs.writeFileSync(path.join(testFolder, 'test.txt'), 'Test content for compression');\n        \n        const targetZip = path.join(tempDir, 'compressed.zip');\n        \n        await zip_a_folder.ZipAFolder.compress({\n            srcFolder: testFolder,\n            targetFilePath: targetZip,\n            archiverOptions: {\n                zlib: { level: 9 } // Maximum compression\n            }\n        });\n        \n        assert(fs.existsSync(targetZip), 'Zip file should be created with custom options');\n        assert(fs.statSync(targetZip).size > 0, 'Zip file should not be empty');\n    });\n\n    it('should throw error for non-existent source folder', async function() {\n        const nonExistentFolder = path.join(tempDir, 'does-not-exist');\n        const targetZip = path.join(tempDir, 'should-fail.zip');\n        \n        try {\n            await zip_a_folder.ZipAFolder.compress({\n                srcFolder: nonExistentFolder,\n                targetFilePath: targetZip\n            });\n            assert.fail('Should have thrown an error for non-existent folder');\n        } catch (error) {\n            assert(error instanceof Error, 'Should throw an Error object');\n        }\n    });\n});\n```"
+      ],
+      "tests": [
+        "test_10.js",
+        "test_11.js",
+        "test_12.js",
+        "test_13.js",
+        "test_14.js"
+      ],
+      "provenance": []
+    },
+    {
+      "id": 11,
+      "file": "prompt_11.js",
+      "temperature": 0,
+      "completions": [
+        "```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let srcFolder;\n    let targetFilePath;\n\n    beforeEach(async function() {\n        // Create temporary directory structure for testing\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        srcFolder = path.join(tempDir, 'source');\n        targetFilePath = path.join(tempDir, 'output.zip');\n        \n        // Create source folder with test files\n        fs.mkdirSync(srcFolder);\n        fs.writeFileSync(path.join(srcFolder, 'test1.txt'), 'Hello World');\n        fs.writeFileSync(path.join(srcFolder, 'test2.txt'), 'Test Content');\n        \n        // Create subdirectory with file\n        const subDir = path.join(srcFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested file content');\n    });\n\n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should successfully compress a folder to zip format', async function() {\n        await zip_a_folder.ZipAFolder.compress({\n            srcFolder: srcFolder,\n            targetFilePath: targetFilePath,\n            format: 'zip'\n        });\n        \n        // Verify the zip file was created\n        assert(fs.existsSync(targetFilePath), 'Zip file should be created');\n        assert(fs.statSync(targetFilePath).size > 0, 'Zip file should not be empty');\n    });\n\n    it('should throw error when source and target are in same directory', async function() {\n        const invalidTargetPath = path.join(srcFolder, 'output.zip');\n        \n        try {\n            await zip_a_folder.ZipAFolder.compress({\n                srcFolder: srcFolder,\n                targetFilePath: invalidTargetPath,\n                format: 'zip'\n            });\n            assert.fail('Should have thrown an error');\n        } catch (error) {\n            assert(error.message.includes('Source and target folder must be different'));\n        }\n    });\n\n    it('should throw error when no target file path or custom write stream provided', async function() {\n        try {\n            await zip_a_folder.ZipAFolder.compress({\n                srcFolder: srcFolder,\n                format: 'zip'\n            });\n            assert.fail('Should have thrown an error');\n        } catch (error) {\n            assert(error.message.includes('You must either provide a target file path or a custom write stream'));\n        }\n    });\n\n    it('should work with custom write stream', async function() {\n        const customStream = fs.createWriteStream(targetFilePath);\n        \n        await zip_a_folder.ZipAFolder.compress({\n            srcFolder: srcFolder,\n            format: 'zip',\n            zipAFolderOptions: {\n                customWriteStream: customStream\n            }\n        });\n        \n        // Verify the zip file was created\n        assert(fs.existsSync(targetFilePath), 'Zip file should be created');\n        assert(fs.statSync(targetFilePath).size > 0, 'Zip file should not be empty');\n    });\n\n    it('should throw permission error for non-existent source folder', async function() {\n        const nonExistentFolder = path.join(tempDir, 'nonexistent');\n        \n        try {\n            await zip_a_folder.ZipAFolder.compress({\n                srcFolder: nonExistentFolder,\n                targetFilePath: targetFilePath,\n                format: 'zip'\n            });\n            assert.fail('Should have thrown an error');\n        } catch (error) {\n            assert(error.message.includes('Permission error'));\n        }\n    });\n\n    it('should work with archiver options', async function() {\n        await zip_a_folder.ZipAFolder.compress({\n            srcFolder: srcFolder,\n            targetFilePath: targetFilePath,\n            format: 'zip',\n            archiverOptions: {\n                zlib: { level: 9 }\n            }\n        });\n        \n        // Verify the zip file was created\n        assert(fs.existsSync(targetFilePath), 'Zip file should be created');\n        assert(fs.statSync(targetFilePath).size > 0, 'Zip file should not be empty');\n    });\n});\n```"
+      ],
+      "tests": [
+        "test_15.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 10,
+          "test": 14,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 10,
+          "test": 13,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 12,
+          "test": 16,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 10,
+          "test": 12,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 13,
+          "test": 17,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 10,
+          "test": 11,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 14,
+          "test": 18,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 10,
+          "test": 10,
+          "refiner": "FunctionBodyIncluder"
+        },
+        {
+          "originalPrompt": 15,
+          "test": 19,
+          "refiner": "FunctionBodyIncluder"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "file": "prompt_12.js",
+      "temperature": 0,
+      "completions": [
+        "Looking at the error message \"create(undefined): format not registered\", this suggests that the `zip-a-folder` library is not properly handling the archiver options or the format is not being specified correctly.\n\nThe issue is likely that when custom `archiverOptions` are provided, the library needs to know what format to use. Let me fix the test by adding the `format` option:\n\n```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    \n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        fs.mkdirSync(testFolder);\n    });\n    \n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should accept custom archiver options', async function() {\n        fs.writeFileSync(path.join(testFolder, 'test.txt'), 'Test content for compression');\n        \n        const targetZip = path.join(tempDir, 'compressed.zip');\n        \n        await zip_a_folder.ZipAFolder.compress({\n            srcFolder: testFolder,\n            targetFilePath: targetZip,\n            archiverOptions: {\n                format: 'zip',\n                zlib: { level: 9 } // Maximum compression\n            }\n        });\n        \n        assert(fs.existsSync(targetZip), 'Zip file should be created with custom options');\n        assert(fs.statSync(targetZip).size > 0, 'Zip file should not be empty');\n    });\n\n});\n```\n\nThe key change is adding `format: 'zip'` to the `archiverOptions` object. This tells the archiver library what format to use when creating the archive, which should resolve the \"format not registered\" error."
+      ],
+      "tests": [
+        "test_16.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 10,
+          "test": 13,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "file": "prompt_13.js",
+      "temperature": 0,
+      "completions": [
+        "Looking at the error message \"create(undefined): format not registered\", this suggests that the `zip-a-folder` library is having issues with the compression format or method being used. The error typically occurs when the library can't determine the proper compression format.\n\nHere's the fixed test code:\n\n```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    \n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        fs.mkdirSync(testFolder);\n    });\n    \n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should handle empty folder compression', async function() {\n        const targetZip = path.join(tempDir, 'empty.zip');\n        \n        await zip_a_folder.zip(testFolder, targetZip);\n        \n        assert(fs.existsSync(targetZip), 'Zip file should be created even for empty folder');\n    });\n\n});\n```\n\nThe key changes made:\n\n1. **Changed the API call**: Instead of using `zip_a_folder.ZipAFolder.compress()` with an options object, I used the simpler `zip_a_folder.zip()` method which takes the source folder and target zip file path as direct parameters.\n\n2. **Fixed the closing brace**: Added the missing closing brace for the `describe` block.\n\nThe `zip-a-folder` library typically exports a simple `zip` function that takes two parameters: the source folder path and the destination zip file path. The original code was trying to use a more complex API that may not exist or may not be properly configured, leading to the format registration error."
+      ],
+      "tests": [
+        "test_17.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 10,
+          "test": 12,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "file": "prompt_14.js",
+      "temperature": 0,
+      "completions": [
+        "Looking at the error message \"create(undefined): format not registered\", this suggests that the `zip-a-folder` library might not be properly initialized or there could be an issue with how it's being called. Let me fix the test by adding proper error handling and using the correct API:\n\n```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    \n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        fs.mkdirSync(testFolder);\n    });\n    \n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should compress a folder with multiple files and subdirectories', async function() {\n        // Create test structure\n        fs.writeFileSync(path.join(testFolder, 'file1.txt'), 'Content 1');\n        fs.writeFileSync(path.join(testFolder, 'file2.txt'), 'Content 2');\n        \n        const subDir = path.join(testFolder, 'subdir');\n        fs.mkdirSync(subDir);\n        fs.writeFileSync(path.join(subDir, 'nested.txt'), 'Nested content');\n        \n        const targetZip = path.join(tempDir, 'multi-file.zip');\n        \n        // Use the correct API method\n        await zip_a_folder.zip(testFolder, targetZip);\n        \n        assert(fs.existsSync(targetZip), 'Zip file should be created');\n        assert(fs.statSync(targetZip).size > 0, 'Zip file should not be empty');\n    });\n});\n```\n\nThe main change is replacing:\n```javascript\nawait zip_a_folder.ZipAFolder.compress({\n    srcFolder: testFolder,\n    targetFilePath: targetZip\n});\n```\n\nwith:\n```javascript\nawait zip_a_folder.zip(testFolder, targetZip);\n```\n\nThe `zip-a-folder` library's main API method is `zip(sourceFolder, targetZipFile)`, not the `ZipAFolder.compress()` method that was being used in the original test."
+      ],
+      "tests": [
+        "test_18.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 10,
+          "test": 11,
+          "refiner": "RetryWithError"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "file": "prompt_15.js",
+      "temperature": 0,
+      "completions": [
+        "Looking at the error message \"create(undefined): format not registered\", this suggests that the `zip-a-folder` library is not properly handling the compression format or the API is being used incorrectly.\n\nLet me fix the test by using the correct API for the `zip-a-folder` library:\n\n```javascript\nlet mocha = require('mocha');\nlet assert = require('assert');\nlet zip_a_folder = require('zip-a-folder');\nlet fs = require('fs');\nlet path = require('path');\nlet os = require('os');\n\ndescribe('test zip_a_folder', function() {\n    let tempDir;\n    let testFolder;\n    \n    beforeEach(function() {\n        // Create temporary directory for each test\n        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'zip-test-'));\n        testFolder = path.join(tempDir, 'test-folder');\n        fs.mkdirSync(testFolder);\n    });\n    \n    afterEach(function() {\n        // Clean up temporary files\n        if (fs.existsSync(tempDir)) {\n            fs.rmSync(tempDir, { recursive: true, force: true });\n        }\n    });\n\n    it('should compress a folder with a single file', async function() {\n        // Create test file\n        const testFile = path.join(testFolder, 'test.txt');\n        fs.writeFileSync(testFile, 'Hello World');\n        \n        const targetZip = path.join(tempDir, 'output.zip');\n        \n        await zip_a_folder.zip(testFolder, targetZip);\n        \n        // Verify zip file was created\n        assert(fs.existsSync(targetZip), 'Zip file should be created');\n        assert(fs.statSync(targetZip).size > 0, 'Zip file should not be empty');\n    });\n\n});\n```\n\nThe key changes made:\n1. Changed `zip_a_folder.ZipAFolder.compress({srcFolder: testFolder, targetFilePath: targetZip})` to `zip_a_folder.zip(testFolder, targetZip)`\n2. Fixed the missing closing brace for the `describe` block\n\nThe `zip-a-folder` library typically exports a simple `zip` function that takes the source folder and target zip file path as parameters, rather than the object-based API that was being used in the original test."
+      ],
+      "tests": [
+        "test_19.js"
+      ],
+      "provenance": [
+        {
+          "originalPrompt": 10,
+          "test": 10,
+          "refiner": "RetryWithError"
+        }
+      ]
+    }
+  ]
+}

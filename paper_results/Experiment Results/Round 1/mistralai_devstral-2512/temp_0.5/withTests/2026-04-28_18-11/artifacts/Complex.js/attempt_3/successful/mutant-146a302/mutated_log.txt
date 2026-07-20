@@ -1,0 +1,30 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-146a302/testCase.test.ts
+  Complex.sec()
+    ✕ should correctly compute sec(0.5 + 0.5i) (2 ms)
+
+  ● Complex.sec() › should correctly compute sec(0.5 + 0.5i)
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 0.9499788676154947
+    Received: 2.2251938425709237
+
+    Expected precision:    10
+    Expected difference: < 0.00000000005
+    Received difference:   1.275214974955429
+
+      12 |     const expectedRe = Math.cos(0.5) * Math.cosh(0.5) / (0.5 * Math.cosh(1) + 0.5 * Math.cos(1));
+      13 |     const expectedIm = Math.sin(0.5) * Math.sinh(0.5) / (0.5 * Math.cosh(1) + 0.5 * Math.cos(1));
+    > 14 |     expect(result.re).toBeCloseTo(expectedRe, 10);
+         |                       ^
+      15 |     expect(result.im).toBeCloseTo(expectedIm, 10);
+      16 |   });
+      17 | });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-146a302/testCase.test.ts:14:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.268 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-146a302/testCase.test.ts".

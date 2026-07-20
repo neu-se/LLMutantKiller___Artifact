@@ -1,0 +1,75 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-5e4b522/testCase.test.ts[0m:[93m7[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type 'typeof globalThis'.
+
+[7m7[0m     const originalQ = global.Q;
+[7m [0m [91m                             ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-5e4b522/testCase.test.ts[0m:[93m12[0m:[93m23[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type 'typeof globalThis'.
+
+[7m12[0m         delete global.Q;
+[7m  [0m [91m                      ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-5e4b522/testCase.test.ts[0m:[93m14[0m:[93m16[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type 'typeof globalThis'.
+
+[7m14[0m         global.Q = originalQ;
+[7m  [0m [91m               ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-5e4b522/testCase.test.ts[0m:[93m19[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{}' is not assignable to type 'Window & typeof globalThis'.
+  Type '{}' is missing the following properties from type 'Window': clientInformation, closed, cookieStore, customElements, and 209 more.
+
+[7m19[0m     global.window = {};
+[7m  [0m [91m    ~~~~~~~~~~~~~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-5e4b522/testCase.test.ts[0m:[93m26[0m:[93m26[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type 'typeof globalThis'.
+
+[7m26[0m     expect(typeof global.Q).toBe("function");
+[7m  [0m [91m                         ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-5e4b522/testCase.test.ts[0m:[93m27[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type 'typeof globalThis'.
+
+[7m27[0m     expect(global.Q).toBe(Q);
+[7m  [0m [91m                  ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-5e4b522/testCase.test.ts[0m:[93m30[0m:[93m29[0m - [91merror[0m[90m TS2339: [0mProperty 'Q' does not exist on type 'typeof globalThis'.
+
+[7m30[0m     const deferred = global.Q.defer();
+[7m  [0m [91m                            ~[0m
+[96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-5e4b522/testCase.test.ts[0m:[93m35[0m:[93m12[0m - [91merror[0m[90m TS2790: [0mThe operand of a 'delete' operator must be optional.
+
+[7m35[0m     delete global.window;
+[7m  [0m [91m           ~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-5e4b522/testCase.test.ts
+  Q library initialization in browser environment
+    ✕ should properly initialize Q when window is defined (3 ms)
+
+  ● Q library initialization in browser environment › should properly initialize Q when window is defined
+
+    Hooks cannot be defined inside tests. Hook of type "afterAll" is nested within "should properly initialize Q when window is defined".
+
+       8 |
+       9 |     // Clean up after test
+    > 10 |     afterAll(() => {
+         |     ^
+      11 |       if (originalQ === undefined) {
+      12 |         delete global.Q;
+      13 |       } else {
+
+      at eventHandler (node_modules/jest-circus/build/eventHandler.js:97:11)
+      at Object.afterAll (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-5e4b522/testCase.test.ts:10:5)
+
+  ● Q library initialization in browser environment › should properly initialize Q when window is defined
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "function"
+    Received: "undefined"
+
+      24 |
+      25 |     // Verify Q is properly initialized as a global
+    > 26 |     expect(typeof global.Q).toBe("function");
+         |                             ^
+      27 |     expect(global.Q).toBe(Q);
+      28 |
+      29 |     // Verify basic functionality works
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-5e4b522/testCase.test.ts:26:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.574 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-5e4b522/testCase.test.ts".

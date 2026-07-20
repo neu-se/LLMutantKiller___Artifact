@@ -1,0 +1,36 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_4/pending_category/mutant-9d6a1b2/testCase.test.ts[0m:[93m1[0m:[93m26[0m - [91merror[0m[90m TS5097: [0mAn import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+[7m1[0m import { GeoPoint } from "../../../../../../../../../../../subject_repositories/node-geo-point/src/geo-point.ts";
+[7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_4/pending_category/mutant-9d6a1b2/testCase.test.ts
+  GeoPoint.fromObject
+    ✕ should throw TypeError with specific message when non-object is passed (17 ms)
+
+  ● GeoPoint.fromObject › should throw TypeError with specific message when non-object is passed
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "GeoPoint: Argument must be an object"
+    Received message:   "Object must have latitude and longitude"
+
+          89 |
+          90 |     if (!object.hasOwnProperty('latitude') || !object.hasOwnProperty('longitude')) {
+        > 91 |       throw new TypeError('Object must have latitude and longitude');
+             |             ^
+          92 |     }
+          93 |
+          94 |     return new GeoPoint(object.latitude, object.longitude);
+
+      at Function.fromObject (../subject_repositories/node-geo-point/src/geo-point.ts:91:13)
+      at fromObject (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_4/pending_category/mutant-9d6a1b2/testCase.test.ts:6:16)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_4/pending_category/mutant-9d6a1b2/testCase.test.ts:7:8)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_4/pending_category/mutant-9d6a1b2/testCase.test.ts:7:8)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.967 s, estimated 1 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-geo-point/attempt_4/pending_category/mutant-9d6a1b2/testCase.test.ts".

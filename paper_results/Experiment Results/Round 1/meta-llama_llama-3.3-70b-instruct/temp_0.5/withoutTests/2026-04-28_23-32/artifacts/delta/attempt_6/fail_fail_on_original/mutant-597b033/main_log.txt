@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-597b033/testCase.test.ts[0m:[93m6[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType 'null' is not assignable to type 'NodeModule'.
+
+[7m6[0m     global.module = null;
+[7m [0m [91m    ~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-597b033/testCase.test.ts
+  Delta
+    ✕ should only export module when it is an object (1 ms)
+
+  ● Delta › should only export module when it is an object
+
+    TypeError: Cannot read properties of null (reading 'exports')
+
+       7 |     const delta = new Delta();
+       8 |     expect(delta).toBeInstanceOf(Delta);
+    >  9 |     expect(global.module.exports).toBeUndefined();
+         |                          ^
+      10 |     global.module = originalModule;
+      11 |   });
+      12 | });
+
+      at Object.exports (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-597b033/testCase.test.ts:9:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.254 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_6/pending_category/mutant-597b033/testCase.test.ts".

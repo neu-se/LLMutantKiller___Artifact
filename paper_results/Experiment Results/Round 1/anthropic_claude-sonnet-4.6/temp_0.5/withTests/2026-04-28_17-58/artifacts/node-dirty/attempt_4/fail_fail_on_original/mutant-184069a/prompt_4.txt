@@ -1,0 +1,30 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-184069a/testCase.test.ts
+  dirty non-ENOENT error handling
+    ✕ should emit error event (not load) when read stream fails with non-ENOENT error (1 ms)
+
+  ● dirty non-ENOENT error handling › should emit error event (not load) when read stream fails with non-ENOENT error
+
+    TypeError: Cannot set property createReadStream of #<Object> which has only a getter
+
+      17 |     const originalCreateReadStream = fs.createReadStream;
+      18 |     
+    > 19 |     (fs as any).createReadStream = (...args: any[]) => {
+         |                                 ^
+      20 |       readStreamCallCount++;
+      21 |       // Restore original so nothing else is affected
+      22 |       (fs as any).createReadStream = originalCreateReadStream;
+
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-184069a/testCase.test.ts:19:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.532 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-184069a/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

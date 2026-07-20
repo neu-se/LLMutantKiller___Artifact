@@ -1,0 +1,49 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-d8fda87/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/pull-stream/sources/once.js"' has no exported member 'once'.
+
+[7m1[0m import { once } from '../../../../../../../../../../../subject_repositories/pull-stream/sources/once.js';
+[7m [0m [91m         ~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-d8fda87/testCase.test.ts
+  once
+    ✕ should call abortCb when abort is true (1 ms)
+    ✕ should not call abortCb when abort is false
+
+  ● once › should call abortCb when abort is true
+
+    TypeError: (0 , once_js_1.once) is not a function
+
+       5 |     const abortCbSpy = jest.fn();
+       6 |     const onAbortSpy = jest.fn();
+    >  7 |     const onceFn = once(null, onAbortSpy);
+         |                        ^
+       8 |     onceFn(true, abortCbSpy);
+       9 |     expect(abortCbSpy).toHaveBeenCalledTimes(1);
+      10 |     expect(onAbortSpy).toHaveBeenCalledTimes(1);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-d8fda87/testCase.test.ts:7:24)
+
+  ● once › should not call abortCb when abort is false
+
+    TypeError: (0 , once_js_1.once) is not a function
+
+      14 |     const abortCbSpy = jest.fn();
+      15 |     const onAbortSpy = jest.fn();
+    > 16 |     const onceFn = once(null, onAbortSpy);
+         |                        ^
+      17 |     onceFn(false, abortCbSpy);
+      18 |     expect(abortCbSpy).toHaveBeenCalledTimes(0);
+      19 |     expect(onAbortSpy).toHaveBeenCalledTimes(0);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-d8fda87/testCase.test.ts:16:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        3.61 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-d8fda87/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

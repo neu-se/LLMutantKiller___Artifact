@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+(node:16649) [DEP0170] DeprecationWarning: The URL http://ab:test is invalid. Future versions of Node.js will throw an error.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_5/pending_category/mutant-9d0cdac/testCase.test.ts
+  mutation detection for protocol regex
+    ✕ should handle URL with two-letter scheme and base URL correctly (3 ms)
+
+  ● mutation detection for protocol regex › should handle URL with two-letter scheme and base URL correctly
+
+    expect(received).toBeNull()
+
+    Received: {"baseurl": null, "domain": null, "host": "ab", "path": "/:test", "protocol": "http:", "querycount": 0, "search": null, "subdomain": null, "url": "http://ab/:test"}
+
+      12 |     // With base: original returns null (invalid protocol ab:), mutated returns non-null
+      13 |     expect(resultWithBase).toBeNull();
+    > 14 |     expect(resultNoBase).toBeNull();
+         |                          ^
+      15 |   });
+      16 | });
+
+      at Object.toBeNull (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_5/pending_category/mutant-9d0cdac/testCase.test.ts:14:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.754 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_5/pending_category/mutant-9d0cdac/testCase.test.ts".

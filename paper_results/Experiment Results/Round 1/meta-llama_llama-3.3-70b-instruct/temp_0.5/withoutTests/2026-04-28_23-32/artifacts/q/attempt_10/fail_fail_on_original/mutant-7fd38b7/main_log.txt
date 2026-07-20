@@ -1,0 +1,33 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-7fd38b7/testCase.test.ts[0m:[93m13[0m:[93m11[0m - [91merror[0m[90m TS2551: [0mProperty 'startUnhandledRejectionTracking' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'. Did you mean 'stopUnhandledRejectionTracking'?
+
+[7m13[0m         Q.startUnhandledRejectionTracking();
+[7m  [0m [91m          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96m../subject_repositories/q/q.js[0m:[93m1121[0m:[93m1[0m
+    [7m1121[0m Q.stopUnhandledRejectionTracking = function () {
+    [7m    [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'stopUnhandledRejectionTracking' is declared here.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-7fd38b7/testCase.test.ts
+  Q
+    ✕ should reset unhandled rejections tracking correctly (2 ms)
+
+  ● Q › should reset unhandled rejections tracking correctly
+
+    TypeError: q_1.default.startUnhandledRejectionTracking is not a function
+
+      11 |         Q.resetUnhandledRejections();
+      12 |         expect(Q.getUnhandledReasons()).toEqual([]);
+    > 13 |         Q.startUnhandledRejectionTracking();
+         |           ^
+      14 |         Q.reject("test");
+      15 |         expect(Q.getUnhandledReasons()).not.toEqual([]);
+      16 |     });
+
+      at Object.startUnhandledRejectionTracking (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-7fd38b7/testCase.test.ts:13:11)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.817 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/five/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-7fd38b7/testCase.test.ts".

@@ -1,0 +1,13 @@
+import { find } from '../../../sinks/find';
+
+describe('find', () => {
+  it('should pass when run against the original code and fail when run against the mutated code', () => {
+    const test = (data: any) => data === true;
+    const cb = (err: any, data: any) => {
+      if (err === true) {
+        throw new Error('Expected error not to be true');
+      }
+    };
+    find(test, cb);
+  });
+});

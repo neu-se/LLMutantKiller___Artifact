@@ -1,0 +1,43 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-ec2c0fd/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-ec2c0fd/testCase.test.ts
+  Q.async function
+    ✕ should work correctly with a generator function (1 ms)
+    ✕ should throw an error if StopIteration is not handled (1 ms)
+
+  ● Q.async function › should work correctly with a generator function
+
+    TypeError: Cannot read properties of undefined (reading 'async')
+
+      13 |         }
+      14 |
+    > 15 |         const asyncGenerator = Q.async(generator);
+         |                                  ^
+      16 |         const result = await asyncGenerator();
+      17 |         expect(result).toBe("Hello, World!");
+      18 |     });
+
+      at Object.async (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-ec2c0fd/testCase.test.ts:15:34)
+
+  ● Q.async function › should throw an error if StopIteration is not handled
+
+    TypeError: Cannot read properties of undefined (reading 'async')
+
+      28 |         }
+      29 |
+    > 30 |         const asyncGenerator = Q.async(generator);
+         |                                  ^
+      31 |         await expect(asyncGenerator()).rejects.toThrow(StopIteration);
+      32 |     });
+      33 | });
+
+      at Object.async (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-ec2c0fd/testCase.test.ts:30:34)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        3.604 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_9/pending_category/mutant-ec2c0fd/testCase.test.ts".

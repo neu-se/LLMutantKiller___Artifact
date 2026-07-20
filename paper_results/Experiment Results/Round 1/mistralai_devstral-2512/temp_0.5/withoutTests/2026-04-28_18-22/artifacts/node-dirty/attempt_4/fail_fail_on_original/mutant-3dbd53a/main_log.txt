@@ -1,0 +1,61 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-3dbd53a/testCase.test.ts
+  Dirty database encoding
+    ✕ should correctly handle non-ASCII characters with UTF-8 encoding (111 ms)
+
+  ● Dirty database encoding › should correctly handle non-ASCII characters with UTF-8 encoding
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 23
+    + Received  +  0
+
+    @@ -1,32 +1,9 @@
+      Object {
+        "data": Array [
+          123,
+          34,
+    -     107,
+    -     101,
+    -     121,
+    -     34,
+    -     58,
+    -     34,
+    -     116,
+    -     101,
+    -     115,
+    -     116,
+    -     75,
+    -     101,
+    -     121,
+    -     34,
+    -     44,
+    -     34,
+    -     118,
+    -     97,
+    -     108,
+    -     34,
+    -     58,
+    -     123,
+    -     34,
+          109,
+          101,
+          115,
+          115,
+          97,
+
+      50 |             // Verify the raw bytes match UTF-8 encoding
+      51 |             const expectedBytes = Buffer.from(JSON.stringify({key: testKey, val: testValue}) + '\n', 'utf-8');
+    > 52 |             expect(rawData.slice(rawData.lastIndexOf(expectedBytes[0]))).toEqual(expectedBytes);
+         |                                                                          ^
+      53 |
+      54 |             db.close();
+      55 |             done();
+
+      at Timeout.toEqual [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-3dbd53a/testCase.test.ts:52:74)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.449 s, estimated 7 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-3dbd53a/testCase.test.ts".

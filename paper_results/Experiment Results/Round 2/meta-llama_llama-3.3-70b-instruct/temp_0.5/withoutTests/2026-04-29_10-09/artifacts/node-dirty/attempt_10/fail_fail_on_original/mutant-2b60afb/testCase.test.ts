@@ -1,0 +1,28 @@
+import { Dirty } from "../../../../../../../../../../../subject_repositories/node-dirty/lib/dirty/dirty.js";
+import fs from 'fs';
+
+describe('Dirty', () => {
+  it('should emit drain event when queue is empty', () => {
+    const path = 'test.db';
+    fs.writeFileSync(path, '');
+    const dirty = new Dirty(path);
+
+    let drainCalled = false;
+    dirty.on('load', () => {
+      dirty.set('key', 'value', () => {
+        dirty.on('drain', () => {
+          drainCalled = true;
+          dirty.close();
+          fs.unlinkSync(path);
+        });
+      });
+    });
+
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        expect(drainCalled).toBe(true);
+        resolve();
+      }, 1000);
+    });
+  });
+});

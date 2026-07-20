@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-bcb1a1b/testCase.test.ts
+  reduce sink
+    ✕ should use first emitted value as initial accumulator when no initial value provided (1 ms)
+
+  ● reduce sink › should use first emitted value as initial accumulator when no initial value provided
+
+    TypeError: acc.concat is not a function
+
+      19 |     // Mutated: acc starts as null, null.concat([1]) throws or produces wrong result
+      20 |     const sink = reduce(
+    > 21 |       (acc: number[], data: number) => acc.concat([data]),
+         |                                            ^
+      22 |       (err: any, result: number[]) => {
+      23 |         expect(err).toBeNull();
+      24 |         expect(result).toEqual([1, 2, 3]);
+
+      at concat (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-bcb1a1b/testCase.test.ts:21:44)
+      at reducer (../subject_repositories/pull-stream/sinks/reduce.js:8:11)
+      at op (../subject_repositories/pull-stream/sinks/drain.js:32:37)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-bcb1a1b/testCase.test.ts:13:9)
+      at read (../subject_repositories/pull-stream/sinks/drain.js:22:11)
+      at sink (../subject_repositories/pull-stream/sinks/drain.js:45:8)
+      at sink (../subject_repositories/pull-stream/sinks/reduce.js:17:21)
+      at cb (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-bcb1a1b/testCase.test.ts:13:9)
+      at source (../subject_repositories/pull-stream/sinks/reduce.js:14:7)
+      at Object.sink (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-bcb1a1b/testCase.test.ts:29:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.444 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_3/pending_category/mutant-bcb1a1b/testCase.test.ts".

@@ -1,0 +1,33 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-aafc8eb/testCase.test.ts[0m:[93m7[0m:[93m28[0m - [91merror[0m[90m TS2551: [0mProperty 'cosm1' does not exist on type 'Complex'. Did you mean 'cos'?
+
+[7m7[0m     const result = complex.cosm1();
+[7m [0m [91m                           ~~~~~[0m
+
+  [96m../subject_repositories/Complex.js/complex.d.ts[0m:[93m122[0m:[93m3[0m
+    [7m122[0m   cos(): Complex;
+    [7m   [0m [96m  ~~~[0m
+    'cos' is declared here.
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-aafc8eb/testCase.test.ts
+  Complex
+    ✕ should calculate cos(x) - 1 using Taylor series correctly (1 ms)
+
+  ● Complex › should calculate cos(x) - 1 using Taylor series correctly
+
+    TypeError: complex.cosm1 is not a function
+
+       5 |     const x = 0.0001;
+       6 |     const complex = new Complex(x);
+    >  7 |     const result = complex.cosm1();
+         |                            ^
+       8 |     const expected = complex.expm1().div(new Complex(2)).mul(new Complex(Math.sin(x)));
+       9 |     expect(Math.abs(result.re - expected.re) < 1e-10 && Math.abs(result.im - expected.im) < 1e-10).toBe(true);
+      10 |   });
+
+      at Object.cosm1 (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-aafc8eb/testCase.test.ts:7:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.378 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_3/pending_category/mutant-aafc8eb/testCase.test.ts".

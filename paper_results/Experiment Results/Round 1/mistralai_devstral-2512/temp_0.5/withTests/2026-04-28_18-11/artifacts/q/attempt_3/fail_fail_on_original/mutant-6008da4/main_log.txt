@@ -1,0 +1,47 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6008da4/testCase.test.ts[0m:[93m17[0m:[93m11[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m17[0m       }, (e) => {
+[7m  [0m [91m          ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6008da4/testCase.test.ts (6.913 s)
+  NodeJS environment detection
+    ✕ should correctly handle errors in non-NodeJS environment (5003 ms)
+
+  ● NodeJS environment detection › should correctly handle errors in non-NodeJS environment
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      33 |     // Since we're running in Jest (Node.js), we need to verify the async behavior
+      34 |     setTimeout(() => {
+    > 35 |       expect(errorHandledSynchronously).toBe(true);
+         |                                         ^
+      36 |       done();
+      37 |     }, 10);
+      38 |   });
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6008da4/testCase.test.ts:35:41)
+
+  ● NodeJS environment detection › should correctly handle errors in non-NodeJS environment
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("NodeJS environment detection", () => {
+    > 4 |   it("should correctly handle errors in non-NodeJS environment", (done) => {
+        |   ^
+      5 |     // This test verifies that Q correctly handles errors when not in a NodeJS environment
+      6 |     // The mutation changes isNodeJS from false to true, which would change error handling behavior
+      7 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6008da4/testCase.test.ts:4:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6008da4/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.075 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-6008da4/testCase.test.ts".

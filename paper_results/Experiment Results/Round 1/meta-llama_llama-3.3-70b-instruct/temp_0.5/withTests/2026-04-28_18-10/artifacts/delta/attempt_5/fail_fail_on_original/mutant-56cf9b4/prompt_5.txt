@@ -1,0 +1,45 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-56cf9b4/testCase.test.ts
+  Delta
+    ✕ should correctly handle the invert method when op.retain and op.delete are present (7 ms)
+
+  ● Delta › should correctly handle the invert method when op.retain and op.delete are present
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+    @@ -2,9 +2,9 @@
+        "ops": Array [
+          Object {
+            "retain": 2,
+          },
+          Object {
+    -       "insert": "1",
+    +       "insert": "3",
+          },
+        ],
+      }
+
+       7 |     const expected = new Delta().retain(2).insert('1');
+       8 |     const inverted = delta.invert(base);
+    >  9 |     expect(inverted).toEqual(expected);
+         |                      ^
+      10 |     expect(base.compose(delta).compose(inverted)).toEqual(base);
+      11 |   });
+      12 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-56cf9b4/testCase.test.ts:9:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.907 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-56cf9b4/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

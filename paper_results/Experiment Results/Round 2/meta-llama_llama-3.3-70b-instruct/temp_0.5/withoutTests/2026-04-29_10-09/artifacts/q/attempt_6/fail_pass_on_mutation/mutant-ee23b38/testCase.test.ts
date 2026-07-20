@@ -1,0 +1,9 @@
+import q from "../../../../../../../../../../../subject_repositories/q/q";
+
+describe("Q", () => {
+    it("should correctly set a property on a promise", () => {
+        const promise = q({ foo: "bar" });
+        const result = promise.set("foo", "baz");
+        expect(result).not.toBeNull();
+    });
+});

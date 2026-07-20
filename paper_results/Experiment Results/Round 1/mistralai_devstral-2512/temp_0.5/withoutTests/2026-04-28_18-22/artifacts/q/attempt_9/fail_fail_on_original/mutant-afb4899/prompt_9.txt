@@ -1,0 +1,34 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-afb4899/testCase.test.ts
+  Q stack trace parsing
+    ✕ should correctly parse stack traces with line numbers (4 ms)
+
+  ● Q stack trace parsing › should correctly parse stack traces with line numbers
+
+    expect(received).toBe(expected) // Object.is equality
+    Expected: false
+    Received: true
+
+      48 |                         // We need to check if the stack contains the malformed line
+      49 |                         const hasMalformedLine = malformedErr.stack!.includes("malformed.js:99:99) EXTRA_TEXT");
+    > 50 |                         expect(hasMalformedLine).toBe(false);
+         |                                                  ^
+      51 |
+      52 |                         return Q.resolve();
+      53 |                     }
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-afb4899/testCase.test.ts:50:50)
+      From previous event:
+      at Object.then (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-afb4899/testCase.test.ts:21:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.178 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-afb4899/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

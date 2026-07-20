@@ -1,0 +1,74 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-a02b4fd/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-a02b4fd/testCase.test.ts[0m:[93m6[0m:[93m29[0m - [91merror[0m[90m TS7006: [0mParameter 'value' implicitly has an 'any' type.
+
+[7m6[0m             post: function (value) {
+[7m [0m [91m                            ~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-a02b4fd/testCase.test.ts[0m:[93m10[0m:[93m59[0m - [91merror[0m[90m TS7006: [0mParameter 'result' implicitly has an 'any' type.
+
+[7m10[0m         return Q(subject).post(null, [10]).then(function (result) {
+[7m  [0m [91m                                                          ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-a02b4fd/testCase.test.ts[0m:[93m17[0m:[93m28[0m - [91merror[0m[90m TS7006: [0mParameter 'value' implicitly has an 'any' type.
+
+[7m17[0m             foo: function (value) {
+[7m  [0m [91m                           ~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-a02b4fd/testCase.test.ts[0m:[93m21[0m:[93m60[0m - [91merror[0m[90m TS7006: [0mParameter 'result' implicitly has an 'any' type.
+
+[7m21[0m         return Q(subject).post("foo", [10]).then(function (result) {
+[7m  [0m [91m                                                           ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-a02b4fd/testCase.test.ts
+  Q function post method
+    ✕ should handle post with no name (1 ms)
+    ✕ should handle post with a name
+    ✕ should reject if the method does not exist
+
+  ● Q function post method › should handle post with no name
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+       8 |             }
+       9 |         };
+    > 10 |         return Q(subject).post(null, [10]).then(function (result) {
+         |                 ^
+      11 |             expect(result).toBe(10);
+      12 |         });
+      13 |     });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-a02b4fd/testCase.test.ts:10:17)
+
+  ● Q function post method › should handle post with a name
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      19 |             }
+      20 |         };
+    > 21 |         return Q(subject).post("foo", [10]).then(function (result) {
+         |                 ^
+      22 |             expect(result).toBe(10);
+      23 |         });
+      24 |     });
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-a02b4fd/testCase.test.ts:21:17)
+
+  ● Q function post method › should reject if the method does not exist
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      26 |     it("should reject if the method does not exist", () => {
+      27 |         var subject = {};
+    > 28 |         return Q(subject).post("foo", [10]).then(function () {
+         |                 ^
+      29 |             expect(true).toBe(false);
+      30 |         }, function () {
+      31 |             expect(true).toBe(true);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-a02b4fd/testCase.test.ts:28:17)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        3.549 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-a02b4fd/testCase.test.ts".

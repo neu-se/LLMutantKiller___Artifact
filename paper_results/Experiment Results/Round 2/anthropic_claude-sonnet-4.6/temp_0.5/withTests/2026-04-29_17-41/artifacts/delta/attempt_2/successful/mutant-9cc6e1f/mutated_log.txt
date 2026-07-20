@@ -1,0 +1,37 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-9cc6e1f/testCase.test.ts[0m:[93m2[0m:[93m1[0m - [91merror[0m[90m TS6133: [0m'Op' is declared but its value is never read.
+
+[7m2[0m import Op from "../../../../../../../../../../../subject_repositories/delta/src/Op";
+[7m [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-9cc6e1f/testCase.test.ts
+  transform() with mismatched embed types
+    ✕ should retain otherData unchanged when embed types differ between thisOp and otherOp (19 ms)
+
+  ● transform() with mismatched embed types › should retain otherData unchanged when embed types differ between thisOp and otherOp
+
+    expect(received).not.toThrow()
+
+    Error name:    "Error"
+    Error message: "transform handler should not be called for mismatched embed types"
+
+          11 |         // In the mutated code (if true), this will be called with wrong embed type
+          12 |         // causing it to look up 'typeA' handler but apply it to 'typeB' data
+        > 13 |         throw new Error('transform handler should not be called for mismatched embed types');
+             |               ^
+          14 |       },
+          15 |     });
+          16 |
+
+      at Object.transform (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-9cc6e1f/testCase.test.ts:13:15)
+      at Delta.transform (../subject_repositories/delta/src/Delta.ts:522:40)
+      at transform (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-9cc6e1f/testCase.test.ts:28:11)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-9cc6e1f/testCase.test.ts:29:14)
+      at Object.toThrow (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-9cc6e1f/testCase.test.ts:29:14)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.346 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_2/pending_category/mutant-9cc6e1f/testCase.test.ts".

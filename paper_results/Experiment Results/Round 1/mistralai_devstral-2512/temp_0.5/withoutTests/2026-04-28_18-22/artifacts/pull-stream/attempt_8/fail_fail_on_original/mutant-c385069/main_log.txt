@@ -1,0 +1,37 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-c385069/testCase.test.ts
+  asyncMap abort behavior
+    ✕ should immediately abort when not busy without calling mapper (3 ms)
+
+  ● asyncMap abort behavior › should immediately abort when not busy without calling mapper
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      24 |         // Original code should call read with abort immediately without calling mapper
+      25 |         // Mutated code (if(false)) will go to else branch and call mapper
+    > 26 |         expect(mapperCalled).toBe(false);
+         |                              ^
+      27 |         done();
+      28 |       });
+      29 |     });
+
+      at toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-c385069/testCase.test.ts:26:30)
+      at cb (../subject_repositories/pull-stream/throughs/async-map.js:18:11)
+      at cb (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-c385069/testCase.test.ts:8:9)
+      at read (../subject_repositories/pull-stream/throughs/async-map.js:15:19)
+      at read (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-c385069/testCase.test.ts:22:7)
+      at cb (../subject_repositories/pull-stream/throughs/async-map.js:39:20)
+      at cb (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-c385069/testCase.test.ts:16:7)
+      at map (../subject_repositories/pull-stream/throughs/async-map.js:32:13)
+      at cb (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-c385069/testCase.test.ts:10:9)
+      at read (../subject_repositories/pull-stream/throughs/async-map.js:27:9)
+      at Object.read (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-c385069/testCase.test.ts:20:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.424 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_8/pending_category/mutant-c385069/testCase.test.ts".

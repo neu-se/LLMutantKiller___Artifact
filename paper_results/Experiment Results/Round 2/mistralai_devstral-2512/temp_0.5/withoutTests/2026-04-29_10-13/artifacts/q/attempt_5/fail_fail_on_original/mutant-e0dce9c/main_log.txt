@@ -1,0 +1,49 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-e0dce9c/testCase.test.ts
+  Q promise valueOf behavior
+    ✕ should return the promise itself when state is rejected (7 ms)
+
+  ● Q promise valueOf behavior › should return the promise itself when state is rejected
+
+    expect(received).toBe(expected) // Object.is equality
+
+    - Expected  - 1
+    + Received  + 2
+
+    @@ -8,18 +8,19 @@
+        "delay": [Function anonymous],
+        "delete": [Function anonymous],
+        "denodeify": [Function anonymous],
+        "dispatch": [Function anonymous],
+        "done": [Function anonymous],
+    +   "exception": [Error: test error],
+        "fail": [Function anonymous],
+        "fapply": [Function anonymous],
+        "fbind": [Function anonymous],
+        "fcall": [Function anonymous],
+        "fin": [Function anonymous],
+        "finally": [Function anonymous],
+        "get": [Function anonymous],
+    -   "inspect": [Function anonymous],
+    +   "inspect": [Function inspect],
+        "invoke": [Function anonymous],
+        "isFulfilled": [Function anonymous],
+        "isPending": [Function anonymous],
+        "isRejected": [Function anonymous],
+        "join": [Function anonymous],
+
+      11 |     // In the mutated code, it would return the inspected value instead
+      12 |     const result = promise.valueOf();
+    > 13 |     expect(result).toBe(promise);
+         |                    ^
+      14 |     expect(result).not.toBeInstanceOf(Error);
+      15 |   });
+      16 | });
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-e0dce9c/testCase.test.ts:13:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.442 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-e0dce9c/testCase.test.ts".

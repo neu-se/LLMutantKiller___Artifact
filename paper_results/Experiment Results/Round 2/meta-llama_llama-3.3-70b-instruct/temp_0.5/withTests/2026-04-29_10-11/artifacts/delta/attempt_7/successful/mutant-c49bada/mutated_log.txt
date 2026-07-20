@@ -1,0 +1,41 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_7/pending_category/mutant-c49bada/testCase.test.ts[0m:[93m9[0m:[93m33[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'AttributeMap'.
+
+[7m9[0m     expect(AttributeMap.compose('string', { b: 2 })).toEqual({ b: 2 });
+[7m [0m [91m                                ~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_7/pending_category/mutant-c49bada/testCase.test.ts
+  AttributeMap compose function
+    ✓ should return the correct result when the first argument is an object and the second argument is an object (35 ms)
+    ✕ should return the correct result when the first argument is not an object and the second argument is an object (3 ms)
+
+  ● AttributeMap compose function › should return the correct result when the first argument is not an object and the second argument is an object
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 6
+
+      Object {
+    +   "0": "s",
+    +   "1": "t",
+    +   "2": "r",
+    +   "3": "i",
+    +   "4": "n",
+    +   "5": "g",
+        "b": 2,
+      }
+
+       7 |
+       8 |   it('should return the correct result when the first argument is not an object and the second argument is an object', () => {
+    >  9 |     expect(AttributeMap.compose('string', { b: 2 })).toEqual({ b: 2 });
+         |                                                      ^
+      10 |   });
+      11 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_7/pending_category/mutant-c49bada/testCase.test.ts:9:54)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 passed, 2 total
+Snapshots:   0 total
+Time:        3.024 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_7/pending_category/mutant-c49bada/testCase.test.ts".

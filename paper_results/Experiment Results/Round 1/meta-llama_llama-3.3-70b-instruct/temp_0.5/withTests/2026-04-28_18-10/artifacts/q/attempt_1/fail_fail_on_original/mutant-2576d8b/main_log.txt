@@ -1,0 +1,27 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-2576d8b/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-2576d8b/testCase.test.ts
+  makeStackTraceLong
+    ✕ should correctly build a long stack trace (1 ms)
+
+  ● makeStackTraceLong › should correctly build a long stack trace
+
+    TypeError: (0 , q_js_1.Q) is not a function
+
+      4 |     it("should correctly build a long stack trace", () => {
+      5 |         var error = new Error("Test error");
+    > 6 |         var promise = Q();
+        |                        ^
+      7 |         promise.stackCounter = 1;
+      8 |         makeStackTraceLong(error, promise);
+      9 |         expect(error.stack).toContain("makeStackTraceLong");
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-2576d8b/testCase.test.ts:6:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.953 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_1/pending_category/mutant-2576d8b/testCase.test.ts".

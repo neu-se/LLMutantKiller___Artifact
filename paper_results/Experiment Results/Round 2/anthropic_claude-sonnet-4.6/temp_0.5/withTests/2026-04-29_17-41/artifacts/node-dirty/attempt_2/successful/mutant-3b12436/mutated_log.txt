@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-3b12436/testCase.test.ts (6.52 s)
+  dirty loading row without key property
+    ✕ should emit an error event when loading a row that has no key field (5003 ms)
+
+  ● dirty loading row without key property › should emit an error event when loading a row that has no key field
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      21 |     db.on('load', () => {
+      22 |       try { fs.unlinkSync(filePath); } catch (e) { /* ignore */ }
+    > 23 |       expect(errorEmitted).toBe(true);
+         |                            ^
+      24 |       done();
+      25 |     });
+      26 |   });
+
+      at Dirty.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-3b12436/testCase.test.ts:23:28)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:153:16)
+
+  ● dirty loading row without key property › should emit an error event when loading a row that has no key field
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       5 |
+       6 | describe('dirty loading row without key property', () => {
+    >  7 |   it('should emit an error event when loading a row that has no key field', (done) => {
+         |   ^
+       8 |     const filePath = path.join(os.tmpdir(), `test-no-key-mutant-${process.pid}.dirty`);
+       9 |
+      10 |     // Write a row that has no 'key' field
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-3b12436/testCase.test.ts:7:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-3b12436/testCase.test.ts:6:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.698 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-3b12436/testCase.test.ts".

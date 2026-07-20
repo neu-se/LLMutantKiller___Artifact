@@ -1,0 +1,30 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-7681580/testCase.test.ts[0m:[93m9[0m:[93m12[0m - [91merror[0m[90m TS18047: [0m'res' is possibly 'null'.
+
+[7m9[0m     expect(res.url).toBe("localhost://something");
+[7m [0m [91m           ~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-7681580/testCase.test.ts
+  parse localhost URL with protocol
+    ✕ should correctly parse localhost:// URL (3 ms)
+
+  ● parse localhost URL with protocol › should correctly parse localhost:// URL
+
+    expect(received).not.toBeNull()
+
+    Received: null
+
+       6 |     // Original: no http:// prepended, parsed as-is
+       7 |     // Mutated: http:// inserted mid-string, corrupting the URL
+    >  8 |     expect(res).not.toBeNull();
+         |                     ^
+       9 |     expect(res.url).toBe("localhost://something");
+      10 |   });
+      11 | });
+
+      at Object.toBeNull (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-7681580/testCase.test.ts:8:21)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.562 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_2/pending_category/mutant-7681580/testCase.test.ts".

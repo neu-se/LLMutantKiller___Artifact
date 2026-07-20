@@ -1,0 +1,13 @@
+// Test case to detect the mutation in the sech method
+import { Complex } from "../../../../../../../../../../../subject_repositories/Complex.js/complex.js";
+
+describe('Complex.sech() method', () => {
+  it('should correctly compute sech for a complex number with non-zero real and imaginary parts', () => {
+    const c = new Complex(1, 1);
+    const result = c.sech();
+    const expectedRe = 0.4199743416490265;
+    const expectedIm = -0.4199743416490265;
+    expect(result.re).toBeCloseTo(expectedRe, 10);
+    expect(result.im).toBeCloseTo(expectedIm, 10);
+  });
+});

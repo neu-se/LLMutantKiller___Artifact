@@ -1,0 +1,37 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_9/pending_category/mutant-8e468c1/testCase.test.ts
+  compose() retain start optimization
+    ✕ detects mutation: this starts with plain retain, other is plain retain (5 ms)
+
+  ● compose() retain start optimization › detects mutation: this starts with plain retain, other is plain retain
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 3
+
+      Delta {
+        "ops": Array [
+          Object {
+    +       "retain": 2,
+    +     },
+    +     Object {
+            "insert": "Hello",
+          },
+        ],
+      }
+
+       8 |     // Mutated: loop copies retain(2) early, result includes retain(2) before insert('Hello')
+       9 |     const expected = new Delta().insert('Hello');
+    > 10 |     expect(a.compose(b)).toEqual(expected);
+         |                          ^
+      11 |   });
+      12 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_9/pending_category/mutant-8e468c1/testCase.test.ts:10:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.625 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_9/pending_category/mutant-8e468c1/testCase.test.ts".

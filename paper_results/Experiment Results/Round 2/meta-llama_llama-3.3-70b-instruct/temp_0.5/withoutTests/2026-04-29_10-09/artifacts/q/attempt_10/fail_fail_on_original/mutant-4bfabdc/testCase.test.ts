@@ -1,0 +1,16 @@
+describe("Q.filterStackString", () => {
+    it("should filter out internal and Node frames correctly", () => {
+        const Q = require('../../q.js');
+        const error = new Error();
+        error.stack = `Error
+    at foo (internal/index.js:1:1)
+    at bar (node:internal/process/promises:1:1)
+    at baz (example.js:1:1)`;
+        const filteredStack = Q.filterStackString(error.stack);
+        const lines = filteredStack.split('\n');
+        expect(lines.length).toBe(1);
+        expect(lines[0]).toContain('example.js');
+        expect(lines[0]).not.toContain('internal/index.js');
+        expect(lines[0]).not.toContain('node:internal/process/promises');
+    });
+});

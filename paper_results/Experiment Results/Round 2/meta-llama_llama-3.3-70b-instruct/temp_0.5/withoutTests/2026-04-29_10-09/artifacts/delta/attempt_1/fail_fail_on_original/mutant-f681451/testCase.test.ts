@@ -1,0 +1,10 @@
+import Delta from '../../../../../../../../../../../subject_repositories/delta/src/Delta';
+
+describe('Delta', () => {
+  it('should transform correctly when there are deletes', () => {
+    const delta1 = new Delta().insert('Hello World', { bold: true });
+    const delta2 = new Delta().delete(6);
+    const transformed = delta1.transform(delta2);
+    expect(transformed.ops).toEqual([{ delete: 6 }, { insert: 'World', attributes: { bold: true } }]);
+  });
+});

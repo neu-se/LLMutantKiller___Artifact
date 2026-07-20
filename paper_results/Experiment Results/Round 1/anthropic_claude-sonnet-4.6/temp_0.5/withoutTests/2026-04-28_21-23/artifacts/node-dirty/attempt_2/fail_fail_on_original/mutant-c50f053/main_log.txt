@@ -1,0 +1,41 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-c50f053/testCase.test.ts[0m:[93m28[0m:[93m7[0m - [91merror[0m[90m TS18047: [0m'db._writeStream' is possibly 'null'.
+
+[7m28[0m       db._writeStream.end(() => {
+[7m  [0m [91m      ~~~~~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+PASS llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-c50f053/testCase.test.ts
+  Dirty error emission without callbacks
+    ✓ should emit error event when write fails and no callback is provided (6 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        1.41 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-c50f053/testCase.test.ts".
+node:events:502
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: write after end
+    at _write (node:internal/streams/writable:489:11)
+    at WriteStream.Writable.write (node:internal/streams/writable:510:10)
+    at Dirty.write [as _flush] (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/node-dirty/lib/dirty/dirty.js:188:47)
+    at Dirty._flush [as set] (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/node-dirty/lib/dirty/dirty.js:37:12)
+    at Array.set (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-c50f053/testCase.test.ts:30:12)
+    at callFinishedCallbacks (node:internal/streams/writable:982:25)
+    at finish (node:internal/streams/writable:953:3)
+    at finishMaybe (node:internal/streams/writable:943:9)
+    at WritableState.onConstructed (node:internal/streams/writable:388:5)
+    at WriteStream.<anonymous> (node:internal/streams/writable:433:42)
+    at Object.onceWrapper (node:events:638:28)
+    at WriteStream.emit (node:events:524:28)
+    at onConstruct (node:internal/streams/destroy:294:14)
+    at processTicksAndRejections (node:internal/process/task_queues:81:21)
+Emitted 'error' event on WriteStream instance at:
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'ERR_STREAM_WRITE_AFTER_END'
+}
+
+Node.js v20.19.4

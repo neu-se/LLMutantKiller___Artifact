@@ -1,0 +1,26 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-d14a698/testCase.test.ts
+  Complex asec
+    ✕ passes correct sign of imaginary infinity to acos in else branch when d underflows (2 ms)
+
+  ● Complex asec › passes correct sign of imaginary infinity to acos in else branch when d underflows
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: -Infinity
+    Received: Infinity
+
+      18 |       const v = Number.MIN_VALUE;
+      19 |       new Complex(v, v).asec();
+    > 20 |       expect(capturedIm).toBe(-Infinity);
+         |                          ^
+      21 |     } finally {
+      22 |       Complex.prototype['acos'] = originalAcos;
+      23 |     }
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-d14a698/testCase.test.ts:20:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.977 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_6/pending_category/mutant-d14a698/testCase.test.ts".

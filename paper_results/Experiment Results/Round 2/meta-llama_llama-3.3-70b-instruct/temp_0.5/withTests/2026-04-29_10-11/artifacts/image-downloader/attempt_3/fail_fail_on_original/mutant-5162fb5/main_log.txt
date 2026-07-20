@@ -1,0 +1,39 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_3/pending_category/mutant-5162fb5/testCase.test.ts[0m:[93m1[0m:[93m23[0m - [91merror[0m[90m TS2306: [0mFile '/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/image-downloader/index.d.ts' is not a module.
+
+[7m1[0m import { image } from '../../../../../../../../../../../subject_repositories/image-downloader/index.js';
+[7m [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_3/pending_category/mutant-5162fb5/testCase.test.ts[0m:[93m4[0m:[93m18[0m - [91merror[0m[90m TS2307: [0mCannot find module 'nock' or its corresponding type declarations.
+
+[7m4[0m import nock from 'nock';
+[7m [0m [91m                 ~~~~~~[0m
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_3/pending_category/mutant-5162fb5/testCase.test.ts (6.343 s)
+  image downloader
+    ✕ should resolve the destination path correctly (5001 ms)
+
+  ● image downloader › should resolve the destination path correctly
+
+    ENOENT: no such file or directory, open '/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_3/pending_category/mutant-5162fb5/image-success.png'
+
+
+
+  ● image downloader › should resolve the destination path correctly
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       5 |
+       6 | describe('image downloader', () => {
+    >  7 |   it('should resolve the destination path correctly', async () => {
+         |   ^
+       8 |     const url = 'http://someurl.com/image-success.png';
+       9 |     const dest = '/tmp/image-success.png';
+      10 |     nock('http://someurl.com')
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_3/pending_category/mutant-5162fb5/testCase.test.ts:7:3)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_3/pending_category/mutant-5162fb5/testCase.test.ts:6:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.534 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_3/pending_category/mutant-5162fb5/testCase.test.ts".

@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-5b2a054/testCase.test.ts
+  Error handling in browser environment
+    ✕ should re-throw uncaught exceptions asynchronously in browsers (1 ms)
+
+  ● Error handling in browser environment › should re-throw uncaught exceptions asynchronously in browsers
+
+    The error below may be caused by using the wrong test environment, see https://jestjs.io/docs/configuration#testenvironment-string.
+    Consider using the "jsdom" test environment.
+
+    ReferenceError: window is not defined
+
+       9 |     // Set up error handler
+      10 |     let errorCaught = false;
+    > 11 |     const originalOnerror = (window as any).onerror;
+         |                              ^
+      12 |     (window as any).onerror = function(message: string, source: string, lineno: number, colno: number, error: Error) {
+      13 |       if (error && error.message === originalError.message) {
+      14 |         errorCaught = true;
+
+      at Object.window (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-5b2a054/testCase.test.ts:11:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.473 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/q/attempt_2/pending_category/mutant-5b2a054/testCase.test.ts".

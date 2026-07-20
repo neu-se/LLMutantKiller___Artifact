@@ -1,0 +1,29 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-d078c7a/testCase.test.ts[0m:[93m14[0m:[93m34[0m - [91merror[0m[90m TS2322: [0mType 'null' is not assignable to type 'ExpectedRecursive<number | Record<string, unknown> | undefined>'.
+
+[7m14[0m     expect(result).not.toEqual({ retain: null });
+[7m  [0m [91m                                 ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-d078c7a/testCase.test.ts
+  OpIterator
+    ✕ next() with null retain should fall to else branch, not object retain branch (3 ms)
+
+  ● OpIterator › next() with null retain should fall to else branch, not object retain branch
+
+    expect(received).not.toEqual(expected) // deep equality
+
+    Expected: not {"retain": null}
+
+      12 |     // falls to final else branch, returns {}
+      13 |     // Mutated: null retain satisfies `true`, returns { retain: null }
+    > 14 |     expect(result).not.toEqual({ retain: null });
+         |                        ^
+      15 |   });
+      16 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-d078c7a/testCase.test.ts:14:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.888 s, estimated 3 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/delta/attempt_4/pending_category/mutant-d078c7a/testCase.test.ts".

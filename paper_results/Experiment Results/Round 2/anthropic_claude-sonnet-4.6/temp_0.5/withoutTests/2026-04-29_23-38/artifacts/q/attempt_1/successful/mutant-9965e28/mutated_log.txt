@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-9965e28/testCase.test.ts
+  trackRejection stores correct reason in unhandledReasons
+    ✕ should store the stack trace string when rejection reason has a stack property (55 ms)
+
+  ● trackRejection stores correct reason in unhandledReasons › should store the stack trace string when rejection reason has a stack property
+
+    expect(received).not.toMatch(expected)
+
+    Expected pattern: not /^\(no stack\)/
+    Received string:      "(no stack) Error: test rejection error"
+
+      28 |     // Original: stores error.stack (a string containing stack trace info)
+      29 |     // Mutated: stores "(no stack) Error: test rejection error"
+    > 30 |     expect(storedReason).not.toMatch(/^\(no stack\)/);
+         |                              ^
+      31 |     expect(storedReason).toBe(error.stack);
+      32 |   });
+      33 | });
+
+      at Object.toMatch (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-9965e28/testCase.test.ts:30:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.403 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-9965e28/testCase.test.ts".

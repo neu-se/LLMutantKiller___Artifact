@@ -1,0 +1,9 @@
+import { Matcher } from "../../../../../../../../../../../subject_repositories/spacl-core/src/matcher.ts";
+
+describe('Matcher', () => {
+  it('should correctly handle optional segments in path matching', () => {
+    const matcher = Matcher.for('/a/+b', '1.1');
+    expect(matcher.test('/a/x')).toBe(true);
+    expect(matcher.test('/a/')).toBe(false);
+  });
+});

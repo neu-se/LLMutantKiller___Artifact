@@ -1,0 +1,25 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-f3b57be/testCase.test.ts
+  array_reduce polyfill
+    ✕ uses first element as basis when called without initial value (8 ms)
+
+  ● array_reduce polyfill › uses first element as basis when called without initial value
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 6
+    Received: NaN
+
+      25 |     // Mutated: basis = undefined, result = NaN
+      26 |     const result = QFresh.__array_reduce([1, 2, 3], (a: number, b: number) => a + b);
+    > 27 |     expect(result).toBe(6);
+         |                    ^
+      28 |   });
+      29 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-f3b57be/testCase.test.ts:27:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.985 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/q/attempt_7/pending_category/mutant-f3b57be/testCase.test.ts".

@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-ae6d9ca/testCase.test.ts
+  AttributeMap.diff
+    ✕ should handle non-object 'a' parameter by treating it as empty object (1 ms)
+
+  ● AttributeMap.diff › should handle non-object 'a' parameter by treating it as empty object
+
+    TypeError: Cannot convert undefined or null to object
+        at Function.keys (<anonymous>)
+
+      45 |       b = {};
+      46 |     }
+    > 47 |     const attributes = Object.keys(a)
+         |                               ^
+      48 |       .concat(Object.keys(b))
+      49 |       .reduce<AttributeMap>((attrs, key) => {
+      50 |         if (!isEqual(a[key], b[key])) {
+
+      at Object.keys (../subject_repositories/delta/src/AttributeMap.ts:47:31)
+      at Object.diff (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-ae6d9ca/testCase.test.ts:5:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.443 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-ae6d9ca/testCase.test.ts".

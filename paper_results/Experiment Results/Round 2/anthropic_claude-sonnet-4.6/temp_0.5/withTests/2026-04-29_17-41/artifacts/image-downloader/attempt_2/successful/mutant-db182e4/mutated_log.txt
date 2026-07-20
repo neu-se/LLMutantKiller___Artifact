@@ -1,0 +1,27 @@
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/image-downloader/index.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/image-downloader/index.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_2/pending_category/mutant-db182e4/testCase.test.ts
+  path.isAbsolute mutation detection
+    ✕ should not normalize an already absolute dest path that contains ".." segments (8 ms)
+
+  ● path.isAbsolute mutation detection › should not normalize an already absolute dest path that contains ".." segments
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "/tmp/../tmp/image-success.png"
+    Received: "/tmp/image-success.png"
+
+      26 |     // Original code: dest is absolute, so path.resolve is NOT applied, filename stays unnormalized
+      27 |     // Mutated code: path.resolve is always applied, normalizing to '/tmp/image-success.png'
+    > 28 |     expect(result.filename).toEqual('/tmp/../tmp/image-success.png');
+         |                             ^
+      29 |   }, 10000);
+      30 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_2/pending_category/mutant-db182e4/testCase.test.ts:28:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.077 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_2/pending_category/mutant-db182e4/testCase.test.ts".

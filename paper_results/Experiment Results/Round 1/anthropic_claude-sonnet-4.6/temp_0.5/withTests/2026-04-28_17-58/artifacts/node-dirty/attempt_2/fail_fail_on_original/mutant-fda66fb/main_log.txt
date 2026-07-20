@@ -1,0 +1,44 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-fda66fb/testCase.test.ts (6.44 s)
+  dirty write stream drain with backpressure
+    ✕ should call all set callbacks and emit drain after writes complete under backpressure (5005 ms)
+
+  ● dirty write stream drain with backpressure › should call all set callbacks and emit drain after writes complete under backpressure
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 80
+    Received: 79
+
+      26 |         // On original code: drain fires only after all writes and callbacks complete
+      27 |         // On mutated code: drain logic is inverted, so callbacks may not all be called
+    > 28 |         expect(callbackCount).toBe(totalWrites);
+         |                               ^
+      29 |         try { fs.unlinkSync(file); } catch (e) { /* ignore */ }
+      30 |         done();
+      31 |       });
+
+      at Dirty.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-fda66fb/testCase.test.ts:28:31)
+      at emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:190:70)
+
+  ● dirty write stream drain with backpressure › should call all set callbacks and emit drain after writes complete under backpressure
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+       5 |
+       6 | describe('dirty write stream drain with backpressure', () => {
+    >  7 |   it('should call all set callbacks and emit drain after writes complete under backpressure', (done) => {
+         |   ^
+       8 |     const file = path.join(os.tmpdir(), `dirty-drain-mutation-${process.pid}.dirty`);
+       9 |     try { fs.unlinkSync(file); } catch (e) { /* ignore */ }
+      10 |
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-fda66fb/testCase.test.ts:7:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-fda66fb/testCase.test.ts:6:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.618 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_2/pending_category/mutant-fda66fb/testCase.test.ts".

@@ -1,0 +1,28 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-d65a538/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'Q'.
+
+[7m1[0m import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-d65a538/testCase.test.ts
+  Q
+    ✕ should set qFileName correctly (1 ms)
+
+  ● Q › should set qFileName correctly
+
+    TypeError: Cannot read properties of undefined (reading 'captureLine')
+
+      4 |     it('should set qFileName correctly', () => {
+      5 |         // Call the captureLine function
+    > 6 |         const originalCaptureLine = (Q as any).captureLine;
+        |                                                ^
+      7 |         (Q as any).captureLine = jest.fn();
+      8 |         
+      9 |         // Mock the getFileNameAndLineNumber function to return a value
+
+      at Object.captureLine (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-d65a538/testCase.test.ts:6:48)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.845 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_2/pending_category/mutant-d65a538/testCase.test.ts".

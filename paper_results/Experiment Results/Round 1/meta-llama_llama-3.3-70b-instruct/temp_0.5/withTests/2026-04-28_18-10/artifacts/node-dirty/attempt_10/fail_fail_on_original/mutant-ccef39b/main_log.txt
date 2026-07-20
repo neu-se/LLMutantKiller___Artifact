@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-ccef39b/testCase.test.ts
+  Dirty db close
+    ✕ should close db file streams when queue is empty and there are no in-flight writes, but not close when queue is not empty (20 ms)
+
+  ● Dirty db close › should close db file streams when queue is empty and there are no in-flight writes, but not close when queue is not empty
+
+    Write stream should not be closed
+
+      14 |           db.close();
+      15 |           db.once('write_close', () => {
+    > 16 |             done(new Error('Write stream should not be closed'));
+         |                  ^
+      17 |           });
+      18 |           setTimeout(() => {
+      19 |             done();
+
+      at Dirty.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-ccef39b/testCase.test.ts:16:18)
+      at WriteStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:177:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.671 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-ccef39b/testCase.test.ts".

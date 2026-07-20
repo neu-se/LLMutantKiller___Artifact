@@ -1,0 +1,26 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-3d2d5aa/testCase.test.ts
+  Complex acoth fallback branch
+    ✕ should return Infinity re part when a is non-zero but d underflows to zero (3 ms)
+
+  ● Complex acoth fallback branch › should return Infinity re part when a is non-zero but d underflows to zero
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: Infinity
+    Received: NaN
+
+       9 |     // In original: (a !== 0) ? a/0 : 0 => Infinity (since a > 0)
+      10 |     // In mutant: (false) ? -b/0 : 0 => 0
+    > 11 |     expect(result.re).toBe(Infinity);
+         |                       ^
+      12 |   });
+      13 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-3d2d5aa/testCase.test.ts:11:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.684 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_1/pending_category/mutant-3d2d5aa/testCase.test.ts".

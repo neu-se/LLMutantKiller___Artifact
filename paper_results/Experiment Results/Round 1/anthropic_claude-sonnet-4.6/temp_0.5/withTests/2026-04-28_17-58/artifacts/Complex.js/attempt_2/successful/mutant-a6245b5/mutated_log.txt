@@ -1,0 +1,25 @@
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-a6245b5/testCase.test.ts
+  Complex atanh mutation detection
+    ✕ should return a non-NaN imaginary part for atanh(1 + 0i) (2 ms)
+
+  ● Complex atanh mutation detection › should return a non-NaN imaginary part for atanh(1 + 0i)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+       9 |     // But with mutation, x['im'] starts as NaN -> result is NaN
+      10 |     const result = new Complex(1, 0).atanh();
+    > 11 |     expect(result.isNaN()).toBe(false);
+         |                            ^
+      12 |   });
+      13 | });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-a6245b5/testCase.test.ts:11:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.39 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-a6245b5/testCase.test.ts".

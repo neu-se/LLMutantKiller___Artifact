@@ -1,0 +1,32 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_7/pending_category/mutant-894c254/testCase.test.ts
+  URL query parameter normalization
+    ✕ should remove lowercase UTM parameters but preserve uppercase ones (7 ms)
+
+  ● URL query parameter normalization › should remove lowercase UTM parameters but preserve uppercase ones
+
+    expect(received).not.toContain(expected) // indexOf
+
+    Expected substring: not "utm_source=test"
+    Received string:        "http://example.com/path?utm_source=test&UTM_SOURCE=test2&ref=abc"
+
+       7 |         const result = parse(urlWithUTM);
+       8 |         expect(result).not.toBeNull();
+    >  9 |         expect(result!.url).not.toContain("utm_source=test");
+         |                                 ^
+      10 |         expect(result!.url).toContain("UTM_SOURCE=test2");
+      11 |     });
+      12 | });
+
+      at Object.toContain (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_7/pending_category/mutant-894c254/testCase.test.ts:9:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.614 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_7/pending_category/mutant-894c254/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

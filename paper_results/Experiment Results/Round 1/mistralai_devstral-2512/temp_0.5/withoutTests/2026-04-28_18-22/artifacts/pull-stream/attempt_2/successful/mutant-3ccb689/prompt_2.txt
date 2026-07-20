@@ -1,0 +1,33 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/subject_repositories/pull-stream/throughs/async-map.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/subject_repositories/pull-stream/throughs/async-map.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-3ccb689/testCase.test.ts
+  asyncMap mutation test
+    ✕ should handle aborted state correctly (16 ms)
+
+  ● asyncMap mutation test › should handle aborted state correctly
+
+    Expected 5, got 10
+
+      24 |         done(new Error('Unexpected end on first call'));
+      25 |       } else if (data !== 5) {
+    > 26 |         done(new Error(`Expected 5, got ${data}`));
+         |              ^
+      27 |       } else {
+      28 |         // Now abort the stream
+      29 |         mappedSource('ABORT_ERROR', (err: any) => {
+
+      at llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-3ccb689/testCase.test.ts:26:14
+      at cb (../subject_repositories/pull-stream/throughs/async-map.js:39:20)
+      at Timeout.cb [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-3ccb689/testCase.test.ts:7:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.121 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_1/pending_category/mutant-3ccb689/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

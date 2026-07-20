@@ -1,0 +1,15 @@
+import { Complex } from '../complex.js';
+
+describe('Complex', () => {
+  it('should calculate log correctly', () => {
+    const c = new Complex('1+0i');
+    const result = c.log();
+    expect(result.re).toBeCloseTo(0);
+    expect(result.im).toBeCloseTo(0);
+
+    const c2 = new Complex('2+0i');
+    const result2 = c2.log();
+    expect(result2.re).toBeCloseTo(Math.log(2));
+    expect(result2.im).toBeCloseTo(0);
+  });
+});

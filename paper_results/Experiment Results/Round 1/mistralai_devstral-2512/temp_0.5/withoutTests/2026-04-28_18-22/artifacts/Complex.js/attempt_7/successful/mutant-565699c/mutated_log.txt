@@ -1,0 +1,30 @@
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-565699c/testCase.test.ts
+  Complex cosm1 function
+    ✕ should correctly compute cos(x) - 1 for small x values in the Taylor series range (2 ms)
+
+  ● Complex cosm1 function › should correctly compute cos(x) - 1 for small x values in the Taylor series range
+
+    expect(received).toBeCloseTo(expected, precision)
+
+    Expected: -0.0049958347219742905
+    Received: -0.0029035557331742318
+
+    Expected precision:    8
+    Expected difference: < 0.000000005
+    Received difference:   0.0020922789888000587
+
+      11 |     const expectedCosm1 = Math.cos(x) - 1;
+      12 |     const actualCosm1 = result.re - Math.expm1(0) * Math.cos(x);
+    > 13 |     expect(actualCosm1).toBeCloseTo(expectedCosm1, 8);
+         |                         ^
+      14 |     // Additional check that the value is reasonable (mutation would make this fail)
+      15 |     expect(Math.abs(actualCosm1)).toBeLessThan(0.01);
+      16 |   });
+
+      at Object.toBeCloseTo (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-565699c/testCase.test.ts:13:25)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.337 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_7/pending_category/mutant-565699c/testCase.test.ts".

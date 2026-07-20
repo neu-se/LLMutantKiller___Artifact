@@ -1,0 +1,43 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-aa360cc/testCase.test.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../../../../../../../../../../subject_repositories/q/q.js"' has no exported member 'deprecate'.
+
+[7m1[0m import { deprecate } from "../../../../../../../../../../../subject_repositories/q/q.js";
+[7m [0m [91m         ~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-aa360cc/testCase.test.ts
+  deprecate
+    ✕ should call the callback and log a deprecation warning (17 ms)
+    ✕ should not log a deprecation warning if console.warn is not a function
+
+  ● deprecate › should call the callback and log a deprecation warning
+
+    TypeError: (0 , q_js_1.deprecate) is not a function
+
+       6 |         const alternative = "newFunction";
+       7 |         const name = "oldFunction";
+    >  8 |         const oldDeprecate = deprecate(callback, name, alternative);
+         |                                       ^
+       9 |         oldDeprecate();
+      10 |         expect(callback).toHaveBeenCalledTimes(1);
+      11 |         expect(console.warn).toHaveBeenCalledTimes(1);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-aa360cc/testCase.test.ts:8:39)
+
+  ● deprecate › should not log a deprecation warning if console.warn is not a function
+
+    TypeError: (0 , q_js_1.deprecate) is not a function
+
+      16 |         const alternative = "newFunction";
+      17 |         const name = "oldFunction";
+    > 18 |         const oldDeprecate = deprecate(callback, name, alternative);
+         |                                       ^
+      19 |         (console.warn as any) = undefined;
+      20 |         oldDeprecate();
+      21 |         expect(callback).toHaveBeenCalledTimes(1);
+
+      at Object.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-aa360cc/testCase.test.ts:18:39)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        2.546 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_3/pending_category/mutant-aa360cc/testCase.test.ts".

@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ts-jest[ts-compiler] (WARN) Unable to process '/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/crawler-url-parser/crawler-url-parser.js', falling back to original file content. You can also configure Jest config option `transformIgnorePatterns` to ignore /Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/subject_repositories/crawler-url-parser/crawler-url-parser.js from transformation or make sure that `outDir` in your tsconfig is neither `''` or `'.'`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-dbaf125/testCase.test.ts
+  extract function duplicate text handling
+    ✕ should not concatenate text when the same text already exists (9 ms)
+
+  ● extract function duplicate text handling › should not concatenate text when the same text already exists
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Test Link"
+    Received: "Test Link Test Link"
+
+      14 |         const result = extract(html, "http://example.com");
+      15 |         const page1Link = result.find(link => link.url === "http://example.com/page1");
+    > 16 |         expect(page1Link?.text).toBe("Test Link");
+         |                                 ^
+      17 |     });
+      18 | });
+
+      at Object.toBe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-dbaf125/testCase.test.ts:16:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.791 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/crawler-url-parser/attempt_1/pending_category/mutant-dbaf125/testCase.test.ts".

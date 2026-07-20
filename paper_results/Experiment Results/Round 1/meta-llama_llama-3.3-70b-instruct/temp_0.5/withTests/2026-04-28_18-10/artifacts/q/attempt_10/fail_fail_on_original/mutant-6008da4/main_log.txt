@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-6008da4/testCase.test.ts (6.054 s)
+  q.js
+    ✕ should detect the mutation in nextTick function (5002 ms)
+
+  ● q.js › should detect the mutation in nextTick function
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      16 |         setTimeout(() => {
+      17 |             // If the mutation is not present, nextTick should not be called immediately
+    > 18 |             expect(called).toBe(false);
+         |                            ^
+      19 |             done();
+      20 |         }, 0);
+      21 |     });
+
+      at Timeout.toBe [as _onTimeout] (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-6008da4/testCase.test.ts:18:28)
+
+  ● q.js › should detect the mutation in nextTick function
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      2 |
+      3 | describe("q.js", () => {
+    > 4 |     it("should detect the mutation in nextTick function", (done) => {
+        |     ^
+      5 |         // Create a deferred object
+      6 |         const deferred = q.defer();
+      7 |
+
+      at it (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-6008da4/testCase.test.ts:4:5)
+      at Object.describe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-6008da4/testCase.test.ts:3:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.186 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/six/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/q/attempt_10/pending_category/mutant-6008da4/testCase.test.ts".

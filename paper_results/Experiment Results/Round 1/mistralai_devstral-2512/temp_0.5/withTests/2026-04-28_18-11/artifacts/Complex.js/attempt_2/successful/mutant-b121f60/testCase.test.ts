@@ -1,0 +1,9 @@
+import { Complex } from "../../../../../../../../../../../subject_repositories/Complex.js/complex.js";
+
+describe("Complex number parsing", () => {
+  it("should correctly parse scientific notation with two-digit exponents", () => {
+    const result = new Complex("1.5e+10");
+    expect(result.re).toBe(1.5e+10);
+    expect(result.im).toBe(0);
+  });
+});

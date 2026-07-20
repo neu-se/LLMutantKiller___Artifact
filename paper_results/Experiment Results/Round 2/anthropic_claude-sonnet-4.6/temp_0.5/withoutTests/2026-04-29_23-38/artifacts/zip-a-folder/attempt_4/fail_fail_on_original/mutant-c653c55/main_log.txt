@@ -1,0 +1,27 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_4/pending_category/mutant-c653c55/testCase.test.ts
+  ZipAFolder zip store option behavior
+    ✕ should produce a valid zip file with store:true that differs from no options (16 ms)
+
+  ● ZipAFolder zip store option behavior › should produce a valid zip file with store:true that differs from no options
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      40 |         // Original (store:true): data descriptor bit should be 0 (sizes known upfront)
+      41 |         // Mutated ({}): data descriptor bit should be 1 (streaming mode)
+    > 42 |         expect(dataDescriptorBit).toBe(false);
+         |                                   ^
+      43 |
+      44 |         // Cleanup
+      45 |         fs.rmSync(tmpDir, { recursive: true });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_4/pending_category/mutant-c653c55/testCase.test.ts:42:35)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.526 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/zip-a-folder/attempt_4/pending_category/mutant-c653c55/testCase.test.ts".

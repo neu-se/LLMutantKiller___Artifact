@@ -1,0 +1,40 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-5c7557f/testCase.test.ts (7.558 s)
+  Dirty database drain event
+    ✕ should emit drain event when all writes complete and queue is empty (5007 ms)
+
+  ● Dirty database drain event › should emit drain event when all writes complete and queue is empty
+
+    Test timed out - drain event not emitted as expected
+
+      50 |     // Timeout to prevent hanging
+      51 |     setTimeout(() => {
+    > 52 |       throw new Error('Test timed out - drain event not emitted as expected');
+         |             ^
+      53 |     }, 1000);
+      54 |   });
+      55 | });
+
+      at Timeout._onTimeout (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-5c7557f/testCase.test.ts:52:13)
+
+  ● Dirty database drain event › should emit drain event when all writes complete and queue is empty
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      25 |   });
+      26 |
+    > 27 |   it('should emit drain event when all writes complete and queue is empty', (done) => {
+         |   ^
+      28 |     const db = new Dirty(dbPath);
+      29 |     let drainCount = 0;
+      30 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-5c7557f/testCase.test.ts:27:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-5c7557f/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        7.887 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-5c7557f/testCase.test.ts".

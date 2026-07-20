@@ -1,0 +1,38 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[eval]:1
+       const originalProcess = global.process;       global.process = null;       try {         require("/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js");         process.stdout.write("success");       } catch (e) {         process.stdout.write("error: " + e.message);       } finally {         global.process = originalProcess;       }     
+                                                                                                                                                                                                                                                                                                      ^
+
+TypeError: Cannot read properties of null (reading 'stdout')
+    at [eval]:1:295
+    at runScriptInThisContext (node:internal/vm:209:10)
+    at node:internal/process/execution:118:14
+    at [eval]-wrapper:6:24
+    at runScript (node:internal/process/execution:101:62)
+    at evalScript (node:internal/process/execution:133:3)
+    at node:internal/main/eval_string:51:3
+
+Node.js v20.19.4
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-3310a58/testCase.test.ts
+  Q module initialization with missing process
+    ✕ should not throw when process is null/undefined during module load (40 ms)
+
+  ● Q module initialization with missing process › should not throw when process is null/undefined during module load
+
+    Command failed: node -e "       const originalProcess = global.process;       global.process = null;       try {         require(\"/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js\");         process.stdout.write(\"success\");       } catch (e) {         process.stdout.write(\"error: \" + e.message);       } finally {         global.process = originalProcess;       }     "
+    [eval]:1
+           const originalProcess = global.process;       global.process = null;       try {         require("/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/subject_repositories/q/q.js");         process.stdout.write("success");       } catch (e) {         process.stdout.write("error: " + e.message);       } finally {         global.process = originalProcess;       }     
+                                                                                                                                                                                                                                                                                                          ^
+
+    TypeError: Cannot read properties of null (reading 'stdout')
+
+      at [eval]:1:295
+      at [eval]-wrapper:6:24
+      Node.js v20.19.4
+      at Object.<anonymous> (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-3310a58/testCase.test.ts:19:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.089 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/q/attempt_1/pending_category/mutant-3310a58/testCase.test.ts".

@@ -1,0 +1,31 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-cfcbab6/testCase.test.ts
+  pull
+    ✕ should apply the last through stream twice due to nested loop structure in original (3 ms)
+
+  ● pull › should apply the last through stream twice due to nested loop structure in original
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+    -   12,
+    +   6,
+      ]
+
+      31 |     // so 3 * 2 * 2 = 12
+      32 |     // Mutated: double is applied once, so 3 * 2 = 6
+    > 33 |     expect(values).toEqual([12]);
+         |                    ^
+      34 |   });
+      35 | });
+
+      at Object.toEqual (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-cfcbab6/testCase.test.ts:33:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.569 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/pull-stream/attempt_4/pending_category/mutant-cfcbab6/testCase.test.ts".

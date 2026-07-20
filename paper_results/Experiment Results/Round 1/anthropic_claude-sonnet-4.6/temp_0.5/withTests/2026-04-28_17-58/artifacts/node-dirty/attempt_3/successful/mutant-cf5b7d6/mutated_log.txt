@@ -1,0 +1,28 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-cf5b7d6/testCase.test.ts
+  dirty db forEach callback return value
+    ✕ should return empty string from the forEach callback during data loading (16 ms)
+
+  ● dirty db forEach callback return value › should return empty string from the forEach callback during data loading
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: ""
+    Received: "Stryker was here!"
+
+      37 |         // Every return value from the forEach callback should be '' (empty string)
+      38 |         for (const val of returnValues) {
+    > 39 |           expect(val).toBe('');
+         |                       ^
+      40 |         }
+      41 |         fs.unlinkSync(file);
+      42 |         done();
+
+      at Dirty.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-cf5b7d6/testCase.test.ts:39:23)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:155:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.97 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_3/pending_category/mutant-cf5b7d6/testCase.test.ts".

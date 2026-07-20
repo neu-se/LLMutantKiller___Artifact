@@ -1,0 +1,43 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-ccef39b/testCase.test.ts (6.573 s)
+  close() with in-flight writes
+    ✕ should not call _writeStream.end() while writes are still in flight (5003 ms)
+
+  ● close() with in-flight writes › should not call _writeStream.end() while writes are still in flight
+
+    write after end
+
+      187 |       const data = `${JSON.stringify({key, val: this._data.get(key)})}\n`;
+      188 |       ++this._inFlightWrites;
+    > 189 |       this._waitForDrain = !this._writeStream.write(data, (err) => {
+          |                                               ^
+      190 |         if (!cbs.length && err != null) this.emit('error', err);
+      191 |         if (--this._inFlightWrites <= 0 && !this._waitForDrain) this.emit('drain');
+      192 |         for (const cb of cbs) cb(err);
+
+      at Dirty.write [as _flush] (../subject_repositories/node-dirty/lib/dirty/dirty.js:189:47)
+      at Dirty._flush [as set] (../subject_repositories/node-dirty/lib/dirty/dirty.js:37:12)
+      at Dirty.set (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-ccef39b/testCase.test.ts:27:12)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:115:18)
+
+  ● close() with in-flight writes › should not call _writeStream.end() while writes are still in flight
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      4 |
+      5 | describe('close() with in-flight writes', () => {
+    > 6 |   it('should not call _writeStream.end() while writes are still in flight', (done) => {
+        |   ^
+      7 |     const Dirty = require('../../../../../../../../../../../subject_repositories/node-dirty/lib/dirty/dirty.js');
+      8 |     const file = path.join(os.tmpdir(), `dirty-mutant-${process.pid}.dirty`);
+      9 |
+
+      at it (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-ccef39b/testCase.test.ts:6:3)
+      at Object.describe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-ccef39b/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.75 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_4/pending_category/mutant-ccef39b/testCase.test.ts".

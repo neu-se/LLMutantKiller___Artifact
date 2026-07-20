@@ -1,0 +1,25 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-b49a520/testCase.test.ts
+  dirty database newline handling in data chunks
+    ✕ should handle chunks without newlines by buffering them (13 ms)
+
+  ● dirty database newline handling in data chunks › should handle chunks without newlines by buffering them
+
+    Mutated code should not reach this point
+
+      38 |         // Mutated code will fail here because it checks for empty string
+      39 |         // which will always be true, causing it to try processing incomplete lines
+    > 40 |         done(new Error('Mutated code should not reach this point'));
+         |              ^
+      41 |       }
+      42 |     });
+      43 |
+
+      at Dirty.<anonymous> (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-b49a520/testCase.test.ts:40:14)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:152:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.482 s, estimated 2 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_10/pending_category/mutant-b49a520/testCase.test.ts".

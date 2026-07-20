@@ -1,0 +1,36 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_10/pending_category/mutant-cebca80/testCase.test.ts
+  invert()
+    ✕ should correctly invert a delta with a retain operation (6 ms)
+
+  ● invert() › should correctly invert a delta with a retain operation
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 5
+    + Received  + 1
+
+      Delta {
+    -   "ops": Array [
+    -     Object {
+    -       "retain": 1,
+    -     },
+    -   ],
+    +   "ops": Array [],
+      }
+
+       7 |     const expected = new Delta().retain(1);
+       8 |     const inverted = delta.invert(base);
+    >  9 |     expect(inverted).toEqual(expected);
+         |                      ^
+      10 |     expect(() => delta.invert(new Delta().retain(1))).toThrowError();
+      11 |   });
+      12 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_10/pending_category/mutant-cebca80/testCase.test.ts:9:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        4.314 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/delta/attempt_10/pending_category/mutant-cebca80/testCase.test.ts".

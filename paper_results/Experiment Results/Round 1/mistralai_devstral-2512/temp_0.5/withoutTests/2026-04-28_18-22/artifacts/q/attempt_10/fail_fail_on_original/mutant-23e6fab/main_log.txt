@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-23e6fab/testCase.test.ts
+  Q library stack trace parsing
+    ✕ should correctly parse Firefox-style stack traces with attempt3 pattern (3 ms)
+
+  ● Q library stack trace parsing › should correctly parse Firefox-style stack traces with attempt3 pattern
+
+    expect(received).not.toBeNull()
+
+    Received: null
+
+      34 |           // The mutated code changes this to "if (true)" which would always execute
+      35 |           // This test verifies the regex matching works as expected
+    > 36 |           expect(match).not.toBeNull();
+         |                             ^
+      37 |           if (match) {
+      38 |             expect(match[1]).toBe("http://example.com/test.js");
+      39 |             // This should be "100" but the regex uses \D+ which won't match digits
+
+      at toBeNull (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-23e6fab/testCase.test.ts:36:29)
+      at rejected (../subject_repositories/q/q.js:864:24)
+      at _rejected (../subject_repositories/q/q.js:890:30)
+      at Promise.rejected (../subject_repositories/q/q.js:1142:31)
+      at Promise.apply [as promiseDispatch] (../subject_repositories/q/q.js:808:41)
+      at promiseDispatch (../subject_repositories/q/q.js:877:14)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.311 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_10/pending_category/mutant-23e6fab/testCase.test.ts".

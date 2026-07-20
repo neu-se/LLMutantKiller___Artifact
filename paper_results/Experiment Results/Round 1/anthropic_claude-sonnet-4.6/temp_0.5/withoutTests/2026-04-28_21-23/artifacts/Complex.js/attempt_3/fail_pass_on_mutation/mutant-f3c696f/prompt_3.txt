@@ -1,0 +1,32 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-f3c696f/testCase.test.ts
+  acot mutation test
+    ✕ should return negative infinity imaginary part when d underflows to zero with positive b (2 ms)
+
+  ● acot mutation test › should return negative infinity imaginary part when d underflows to zero with positive b
+
+    expect(received).toBeLessThan(expected)
+
+    Expected: < 0
+    Received:   NaN
+
+      11 |     // Mutated: +b/0 = +Infinity (b > 0), so im part of atan input is +Infinity
+      12 |     // The sign of the infinity matters for atan result
+    > 13 |     expect(result.im).toBeLessThan(0);
+         |                       ^
+      14 |   });
+      15 | });
+
+      at Object.toBeLessThan (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-f3c696f/testCase.test.ts:13:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.466 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withoutTests/cached/artifacts/Complex.js/attempt_2/pending_category/mutant-f3c696f/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

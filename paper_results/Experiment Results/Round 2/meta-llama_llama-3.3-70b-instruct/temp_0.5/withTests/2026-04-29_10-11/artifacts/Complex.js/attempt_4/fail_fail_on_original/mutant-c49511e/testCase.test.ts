@@ -1,0 +1,11 @@
+import { Complex } from './complex.js';
+
+describe('Complex', () => {
+  it('should calculate the cosecans correctly', () => {
+    const complex = new Complex(1, 1);
+    const result = complex.csc();
+    expect(result.re).not.toBeNaN();
+    expect(result.im).not.toBeNaN();
+    expect(complex.im).toBe(1);
+  });
+});

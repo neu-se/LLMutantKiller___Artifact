@@ -1,0 +1,70 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-c125836/testCase.test.ts[0m:[93m6[0m:[93m46[0m - [91merror[0m[90m TS7006: [0mParameter 'result' implicitly has an 'any' type.
+
+[7m6[0m         return Q.allResolved(promises).then((result) => {
+[7m [0m [91m                                             ~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-c125836/testCase.test.ts[0m:[93m8[0m:[93m19[0m - [91merror[0m[90m TS7006: [0mParameter 'error' implicitly has an 'any' type.
+
+[7m8[0m         }).catch((error) => {
+[7m [0m [91m                  ~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+  console.warn
+    allResolved is deprecated, use allSettled instead. Error: 
+        at Function.allResolved (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/subject_repositories/q/q.js:483:39)
+        at Object.allResolved (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-c125836/testCase.test.ts:6:18)
+        at Promise.then.completed (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/node_modules/jest-circus/build/utils.js:298:28)
+        at new Promise (<anonymous>)
+        at callAsyncCircusFn (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/node_modules/jest-circus/build/utils.js:231:10)
+        at _callCircusTest (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/node_modules/jest-circus/build/run.js:316:40)
+        at _runTest (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/node_modules/jest-circus/build/run.js:252:3)
+        at _runTestsForDescribeBlock (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/node_modules/jest-circus/build/run.js:126:9)
+        at _runTestsForDescribeBlock (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/node_modules/jest-circus/build/run.js:121:9)
+        at run (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/node_modules/jest-circus/build/run.js:71:3)
+        at runAndTransformResultsToJestFormat (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+        at jestAdapter (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+        at runTestInternal (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/node_modules/jest-runner/build/runTest.js:367:16)
+        at runTest (/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/node_modules/jest-runner/build/runTest.js:444:34)
+
+      480 |         if (typeof console !== "undefined" &&
+      481 |             typeof console.warn === "function") {
+    > 482 |             console.warn(name + " is deprecated, use " + alternative +
+          |                     ^
+      483 |                          " instead.", new Error("").stack);
+      484 |         }
+      485 |         return callback.apply(callback, arguments);
+
+      at Function.warn [as allResolved] (../subject_repositories/q/q.js:482:21)
+      at Object.allResolved (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-c125836/testCase.test.ts:6:18)
+
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-c125836/testCase.test.ts
+  Q.allResolved function
+    ✕ should reject when any of the promises are rejected (22 ms)
+
+  ● Q.allResolved function › should reject when any of the promises are rejected
+
+    expect(received).toBeUndefined()
+
+    Received: [Error: expect(received).toBeUndefined()·
+    Received: [{"inspect": [Function inspect], "promiseDispatch": [Function anonymous], "valueOf": [Function anonymous]}, {"exception": 2, "inspect": [Function inspect], "promiseDispatch": [Function anonymous], "valueOf": [Function anonymous]}, {"inspect": [Function inspect], "promiseDispatch": [Function anonymous], "valueOf": [Function anonymous]}]]
+
+       7 |             expect(result).toBeUndefined();
+       8 |         }).catch((error) => {
+    >  9 |             expect(error).toBeUndefined();
+         |                           ^
+      10 |         });
+      11 |     });
+      12 | });
+
+      at toBeUndefined (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-c125836/testCase.test.ts:9:27)
+      at rejected (../subject_repositories/q/q.js:864:24)
+      at _rejected (../subject_repositories/q/q.js:890:30)
+      at Promise.rejected (../subject_repositories/q/q.js:1142:31)
+      at Promise.apply [as promiseDispatch] (../subject_repositories/q/q.js:808:41)
+      at apply (../subject_repositories/q/q.js:624:44)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.313 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_5/pending_category/mutant-c125836/testCase.test.ts".

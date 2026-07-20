@@ -1,0 +1,14 @@
+const Q = require("../../../../../../../../../../../subject_repositories/q/q.js");
+
+describe("Q.race mutation test", () => {
+  it("should handle empty array correctly", () => {
+    return Q.race([]).then(
+      () => {
+        throw new Error("Promise should not resolve for empty array");
+      },
+      () => {
+        // Expected rejection
+      }
+    );
+  });
+});

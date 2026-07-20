@@ -1,0 +1,38 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_2/pending_category/mutant-186b7fc/testCase.test.ts[0m:[93m19[0m:[93m25[0m - [91merror[0m[90m TS2345: [0mArgument of type 'Buffer' is not assignable to parameter of type 'ArrayBufferView'.
+  Type 'Buffer' is not assignable to type 'Uint8Array<ArrayBufferLike> | DataView<ArrayBufferLike>'.
+    Type 'Buffer' is not assignable to type 'Uint8Array<ArrayBufferLike>'.
+      The types of 'slice(...).buffer' are incompatible between these types.
+        Type 'ArrayBufferLike' is not assignable to type 'ArrayBuffer'.
+          Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+            Types of property '[Symbol.toStringTag]' are incompatible.
+              Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.
+
+[7m19[0m         fs.readSync(fd, buffer, 0, 2, 0);
+[7m  [0m [91m                        ~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_2/pending_category/mutant-186b7fc/testCase.test.ts
+  tar uncompressed mutation detection
+    ✕ should create a non-gzip-compressed tar file when COMPRESSION_LEVEL.uncompressed is specified (482 ms)
+
+  ● tar uncompressed mutation detection › should create a non-gzip-compressed tar file when COMPRESSION_LEVEL.uncompressed is specified
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      22 |         // An uncompressed tar should NOT start with gzip magic bytes
+      23 |         const isGzip = buffer[0] === 0x1f && buffer[1] === 0x8b;
+    > 24 |         expect(isGzip).toBe(false);
+         |                        ^
+      25 |
+      26 |         if (fs.existsSync(uncompressedTar)) fs.unlinkSync(uncompressedTar);
+      27 |     });
+
+      at Object.toBe (llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_2/pending_category/mutant-186b7fc/testCase.test.ts:24:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.679 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/two/mutant-killer/llm-cache/anthropic_claude-sonnet-4.6/temp_0.5/withTests/cached/artifacts/zip-a-folder/attempt_2/pending_category/mutant-186b7fc/testCase.test.ts".

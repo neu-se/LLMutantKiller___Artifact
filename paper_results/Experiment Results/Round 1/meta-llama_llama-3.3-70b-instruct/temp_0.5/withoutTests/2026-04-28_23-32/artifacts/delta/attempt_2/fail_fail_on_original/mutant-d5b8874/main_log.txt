@@ -1,0 +1,37 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-d5b8874/testCase.test.ts
+  Delta
+    ✕ should correctly handle retain and delete operations (4 ms)
+
+  ● Delta › should correctly handle retain and delete operations
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Array [
+        Object {
+    -     "delete": 1,
+    +     "retain": 1,
+        },
+        Object {
+    -     "retain": 1,
+    +     "delete": 1,
+        },
+      ]
+
+       9 |     otherDelta.retain(1);
+      10 |     const composedDelta = delta.compose(otherDelta);
+    > 11 |     expect(composedDelta.ops).toEqual([{ delete: 1 }, { retain: 1 }]);
+         |                               ^
+      12 |   });
+      13 | });
+
+      at Object.toEqual (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-d5b8874/testCase.test.ts:11:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.192 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/delta/attempt_2/pending_category/mutant-d5b8874/testCase.test.ts".

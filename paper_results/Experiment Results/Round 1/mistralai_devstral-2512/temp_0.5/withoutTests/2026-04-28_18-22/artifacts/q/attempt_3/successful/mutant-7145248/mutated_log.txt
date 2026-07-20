@@ -1,0 +1,33 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-7145248/testCase.test.ts
+  Q.makeNodeResolver mutation test
+    ✕ should correctly handle Node-style callbacks with more than 2 arguments (3 ms)
+
+  ● Q.makeNodeResolver mutation test › should correctly handle Node-style callbacks with more than 2 arguments
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: ["arg1", "arg2"]
+    Received: "arg1"
+
+      12 |       // The original code should resolve with ["arg1", "arg2"]
+      13 |       // The mutated code would incorrectly not resolve with the array
+    > 14 |       expect(result).toEqual(["arg1", "arg2"]);
+         |                      ^
+      15 |       done();
+      16 |     }).catch((err: any) => {
+      17 |       done(err);
+
+      at toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-7145248/testCase.test.ts:14:22)
+      at fulfilled (../subject_repositories/q/q.js:855:54)
+      at _fulfilled (../subject_repositories/q/q.js:884:30)
+      at Promise.resolve [as promiseDispatch] (../subject_repositories/q/q.js:817:13)
+      at apply (../subject_repositories/q/q.js:570:49)
+      at task (../subject_repositories/q/q.js:137:13)
+      at runSingle (../subject_repositories/q/q.js:125:13)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.742 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/three/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/q/attempt_3/pending_category/mutant-7145248/testCase.test.ts".

@@ -1,0 +1,27 @@
+import { Q } from "../../../../../../../../../../../subject_repositories/q/q.js";
+
+describe("deprecate function behavior", () => {
+  it("should log deprecation warning when console.warn is available", () => {
+    // Store the original console.warn
+    const originalWarn = console.warn;
+    // Mock console.warn to track if it's called
+    let warnCalled = false;
+    console.warn = () => {
+      warnCalled = true;
+    };
+
+    // Create a deprecated function
+    const deprecatedFn = Q.deprecate(() => "result", "testFn", "use newFn");
+
+    // Call the deprecated function
+    const result = deprecatedFn();
+
+    // Restore console.warn
+    console.warn = originalWarn;
+
+    // Verify the function still works
+    expect(result).toBe("result");
+    // Verify console.warn was called (since it was available)
+    expect(warnCalled).toBe(true);
+  });
+});

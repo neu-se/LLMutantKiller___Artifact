@@ -1,0 +1,40 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_9/pending_category/mutant-0802500/testCase.test.ts
+  Delta compose optimization
+    ✕ should optimize when composing insert with retain when insert length <= retain length (4 ms)
+
+  ● Delta compose optimization › should optimize when composing insert with retain when insert length <= retain length
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        Object {
+    -     "retain": 1,
+    +     "insert": "ab",
+        },
+      ]
+
+       9 |     // and produce just the remaining retain (3-2=1)
+      10 |     // Mutated code won't recognize the insert type and won't optimize
+    > 11 |     expect(result.ops).toEqual([
+         |                        ^
+      12 |       { retain: 1 }
+      13 |     ]);
+      14 |   });
+
+      at Object.toEqual (llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_9/pending_category/mutant-0802500/testCase.test.ts:11:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.601 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withoutTests/cached/artifacts/delta/attempt_9/pending_category/mutant-0802500/testCase.test.ts".
+
+---
+Please try again and give me a new test case.

@@ -1,0 +1,44 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-0f64dd3/testCase.test.ts[0m:[93m5[0m:[93m37[0m - [91merror[0m[90m TS2339: [0mProperty 'captureLine' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'.
+
+[7m5[0m         var originalCaptureLine = q.captureLine;
+[7m [0m [91m                                    ~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-0f64dd3/testCase.test.ts[0m:[93m6[0m:[93m11[0m - [91merror[0m[90m TS2339: [0mProperty 'captureLine' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'.
+
+[7m6[0m         q.captureLine = function() {
+[7m [0m [91m          ~~~~~~~~~~~[0m
+[96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-0f64dd3/testCase.test.ts[0m:[93m12[0m:[93m11[0m - [91merror[0m[90m TS2339: [0mProperty 'captureLine' does not exist on type '{ (value: any): any; resolve: { (value: any): any; resolve: ...; nextTick: any; longStackSupport: boolean; defer: typeof defer; Promise: { (resolver: any): any; race: (answerPs: any) => any; all: (promises: any) => any; reject: (reason: any) => any; resolve: ...; }; ... 64 more ...; noConflict(): never; }; ... 68 mo...'.
+
+[7m12[0m         q.captureLine = originalCaptureLine;
+[7m  [0m [91m          ~~~~~~~~~~~[0m
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-0f64dd3/testCase.test.ts
+  q
+    ✕ should not throw an error when initializing the q module (26 ms)
+
+  ● q › should not throw an error when initializing the q module
+
+    expect(received).not.toThrow()
+
+    Error name:    "Error"
+    Error message: "Cannot find module '../../../../../../../../../subject_repositories/q/q.js' from 'llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-0f64dd3/testCase.test.ts'"
+
+           8 |         };
+           9 |         expect(() => {
+        > 10 |             var qModule = require("../../../../../../../../../subject_repositories/q/q.js");
+             |                           ^
+          11 |         }).not.toThrow();
+          12 |         q.captureLine = originalCaptureLine;
+          13 |     });
+
+      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)
+      at require (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-0f64dd3/testCase.test.ts:10:27)
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-0f64dd3/testCase.test.ts:11:16)
+      at Object.toThrow (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-0f64dd3/testCase.test.ts:11:16)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.105 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/one/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/q/attempt_8/pending_category/mutant-0f64dd3/testCase.test.ts".

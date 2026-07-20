@@ -1,0 +1,55 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_8/pending_category/mutant-d8227cc/testCase.test.ts (6.297 s)
+  test newline detection in data chunks
+    ✕ should correctly handle chunks without newlines during streaming (5003 ms)
+
+  ● test newline detection in data chunks › should correctly handle chunks without newlines during streaming
+
+    TypeError: done.fail is not a function
+
+      44 |             done.fail('Error should not be emitted after load');
+      45 |           } else {
+    > 46 |             done.fail(`Unexpected error: ${err.message}`);
+         |                  ^
+      47 |           }
+      48 |         });
+      49 |
+
+      at Dirty.fail (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_8/pending_category/mutant-d8227cc/testCase.test.ts:46:18)
+      at ReadStream.emit (../subject_repositories/node-dirty/lib/dirty/dirty.js:152:18)
+
+  ● test newline detection in data chunks › should correctly handle chunks without newlines during streaming
+
+    TypeError: done.fail is not a function
+
+      51 |         setTimeout(() => {
+      52 |           if (!loadCalled) {
+    > 53 |             done.fail('Load event was not called');
+         |                  ^
+      54 |           } else {
+      55 |             done();
+      56 |           }
+
+      at Timeout.fail [as _onTimeout] (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_8/pending_category/mutant-d8227cc/testCase.test.ts:53:18)
+
+  ● test newline detection in data chunks › should correctly handle chunks without newlines during streaming
+
+    thrown: "Exceeded timeout of 5000 ms for a test while waiting for `done()` to be called.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      18 |   });
+      19 |
+    > 20 |   it('should correctly handle chunks without newlines during streaming', (done) => {
+         |   ^
+      21 |     // Create initial file with complete line
+      22 |     fs.writeFileSync(testFile, '{"key":"test1","val":"data1"}\n', 'utf-8');
+      23 |
+
+      at it (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_8/pending_category/mutant-d8227cc/testCase.test.ts:20:3)
+      at Object.describe (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_8/pending_category/mutant-d8227cc/testCase.test.ts:5:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        6.475 s
+Ran all test suites within paths "/Users/anon/Documents/research/LLMTestGeneration/ExperimentRunning/four/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/node-dirty/attempt_8/pending_category/mutant-d8227cc/testCase.test.ts".

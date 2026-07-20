@@ -1,0 +1,22 @@
+import Q from "../../../../../../../../../../../subject_repositories/q/q.js";
+
+describe("Promise descriptor exception handling", () => {
+    it("should reject when an exception occurs in promise descriptor", () => {
+        const error = new Error("Test exception");
+        const deferred = Q.defer();
+        const promise = Q.makePromise({
+            "when": function () {
+                throw error;
+            }
+        }, deferred.resolve);
+
+        return promise.then(
+            () => {
+                throw new Error("Promise should have been rejected");
+            },
+            (caughtError: Error) => {
+                expect(caughtError).toBe(error);
+            }
+        );
+    });
+});

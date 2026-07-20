@@ -1,0 +1,43 @@
+ts-jest[ts-compiler] (WARN) [96mllm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_7/pending_category/mutant-2626324/testCase.test.ts[0m:[93m1[0m:[93m23[0m - [91merror[0m[90m TS2306: [0mFile '/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/image-downloader/index.d.ts' is not a module.
+
+[7m1[0m import { image } from "../../../../../../../../../../../subject_repositories/image-downloader/index.js";
+[7m [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+ReferenceError: You are trying to `import` a file after the Jest environment has been torn down. From llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_7/pending_category/mutant-2626324/testCase.test.ts.
+
+      17 |       }
+      18 |
+    > 19 |       res.pipe(createWriteStream(dest))
+         |           ^
+      20 |         .on('error', reject)
+      21 |         .once('close', () => resolve({ filename: dest }));
+      22 |     })
+
+      at Object.<anonymous>.module.exports (../subject_repositories/image-downloader/node_modules/follow-redirects/debug.js:7:15)
+      at Object.request (../subject_repositories/image-downloader/node_modules/follow-redirects/index.js:505:7)
+      at Object.get (../subject_repositories/image-downloader/node_modules/follow-redirects/index.js:511:44)
+      at ../subject_repositories/image-downloader/lib/request.js:19:11
+      at Object.<anonymous>.module.exports (../subject_repositories/image-downloader/lib/request.js:17:7)
+      at Object.<anonymous>.module.exports.image (../subject_repositories/image-downloader/index.js:27:10)
+      at Server.<anonymous> (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_7/pending_category/mutant-2626324/testCase.test.ts:26:34)
+PASS llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_7/pending_category/mutant-2626324/testCase.test.ts
+  image downloader
+    ✓ should resolve relative destination path (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        1.193 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withoutTests/cached/artifacts/image-downloader/attempt_7/pending_category/mutant-2626324/testCase.test.ts".
+node:internal/process/promises:391
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+[Error: ENOENT: no such file or directory, open '/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/image-downloader/non-existent-directory/image.jpg'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/ANON/Documents/research/LLMTestGeneration/subject_repositories/image-downloader/non-existent-directory/image.jpg'
+}
+
+Node.js v20.19.4

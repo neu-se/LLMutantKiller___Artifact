@@ -1,0 +1,26 @@
+FAIL llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-95bf3d3/testCase.test.ts
+  Matcher
+    ✕ should not match empty string when min is 0 (2 ms)
+
+  ● Matcher › should not match empty string when min is 0
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       5 |   it('should not match empty string when min is 0', () => {
+       6 |     const matcher = Matcher.for('/**');
+    >  7 |     expect(matcher.test('')).toBe(true); // This will pass on mutated code but fail on original code
+         |                              ^
+       8 |     const matcher2 = Matcher.for('/+');
+       9 |     expect(matcher2.test('')).toBe(false); // This will pass on both original and mutated code, but the first assertion will fail on original code
+      10 |   });
+
+      at Object.toBe (llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-95bf3d3/testCase.test.ts:7:30)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        1.366 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/meta-llama_llama-3.3-70b-instruct/temp_0.5/withTests/cached/artifacts/spacl-core/attempt_2/pending_category/mutant-95bf3d3/testCase.test.ts".

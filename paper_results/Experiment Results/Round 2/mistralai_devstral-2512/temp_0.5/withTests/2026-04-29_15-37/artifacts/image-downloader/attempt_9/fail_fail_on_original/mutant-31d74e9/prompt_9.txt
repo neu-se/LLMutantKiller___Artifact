@@ -1,0 +1,29 @@
+This test case doesn't meet the criteria (Reminder: The criteria is that the test case must pass on the original code,and fail on the mutated code.)
+ 
+This test case fails on the original code with the following log:
+FAIL llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_8/pending_category/mutant-31d74e9/testCase.test.ts
+  request error handling
+    ✕ should handle stream errors correctly (1 ms)
+
+  ● request error handling › should handle stream errors correctly
+
+    TypeError: request.get is not a function
+
+      54 |
+      55 |     const request = requestModule as unknown as typeof mockRequest;
+    > 56 |     await expect(request.get(mockUrl, {}, jest.fn())).rejects.toThrow('Pipe error');
+         |                          ^
+      57 |
+      58 |     // Clean up
+      59 |     if (fs.existsSync(dest)) {
+
+      at Object.get (llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_8/pending_category/mutant-31d74e9/testCase.test.ts:56:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.983 s
+Ran all test suites within paths "/Users/ANON/Documents/research/LLMTestGeneration/mutant-killer/llm-cache/mistralai_devstral-2512/temp_0.5/withTests/cached/artifacts/image-downloader/attempt_8/pending_category/mutant-31d74e9/testCase.test.ts".
+
+---
+Please try again and give me a new test case.
