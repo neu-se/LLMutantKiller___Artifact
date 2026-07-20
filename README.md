@@ -16,6 +16,8 @@ Farideh Khalili, Aidan Domondon, Harshit Garg, and Frank Tip. 2026.
 Mutants.** _Proc. ACM Softw. Eng. 3, ISSTA_, Article ISSTA007 (October 2026),
 23 pages. <https://doi.org/10.1145/3832098>
 
+You can also read the [full paper (PDF)](https://www.franktip.org/pubs/issta2026.pdf).
+
 If you use LLMutantKiller or these research materials, please cite the paper
 above.
 
