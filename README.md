@@ -1,10 +1,10 @@
 # LLMutantKiller Artifact
 
-This artifact accompanies the paper **LLMutantKiller: Using Large Language
-Models to Generate Tests that Kill Mutants**. It contains the LLMutantKiller
-implementation, Docker packaging, mutation metadata, prepared benchmark
-provenance, complete stored experiment outputs, evaluation artifacts, and
-TestPilot baseline results.
+This repository is the public paper companion and replication package for
+**LLMutantKiller: Using Large Language Models to Generate Tests that Kill
+Mutants**. It contains the LLMutantKiller implementation, Docker packaging,
+mutation metadata, prepared benchmark provenance, complete stored experiment
+outputs, evaluation materials, and TestPilot baseline results.
 
 The complete research artifact is also preserved in a public
 [Zenodo archive](https://doi.org/10.5281/zenodo.21055452). See
@@ -15,8 +15,21 @@ limitations.
 
 Farideh Khalili, Aidan Domondon, Harshit Garg, and Frank Tip. 2026.
 **LLMutantKiller: Using Large Language Models to Generate Tests That Kill
-Mutants.** *Proc. ACM Softw. Eng. 3, ISSTA*, Article ISSTA007 (October 2026),
+Mutants.** _Proc. ACM Softw. Eng. 3, ISSTA_, Article ISSTA007 (October 2026),
 23 pages. <https://doi.org/10.1145/3832098>
+
+If you use LLMutantKiller or these research materials, please cite the paper
+above.
+
+## What LLMutantKiller Does
+
+LLMutantKiller takes a JavaScript or TypeScript project and a description of a
+surviving mutant, including the affected file and the original and mutated code
+fragments. It asks an LLM to generate a Jest test, checks that the candidate
+passes on the original program and fails on the mutant, and provides targeted
+feedback to the LLM when an attempt is invalid or ineffective. It outputs
+mutant-killing tests together with the prompts, chat histories, execution logs,
+and reports needed to inspect each attempt.
 
 ## Artifact Contents
 
@@ -30,6 +43,7 @@ Mutants.** *Proc. ACM Softw. Eng. 3, ISSTA*, Article ISSTA007 (October 2026),
 | [`run-docker.sh`](run-docker.sh)                       | Convenience script that builds the image and starts an interactive container with persistent host-mounted output directories.      |
 | [`CLAIMS.md`](CLAIMS.md)                               | Claim-by-claim map from the paper's research questions and tables to artifact evidence, expected results, and reproduction status. |
 | [`REQUIREMENTS.md`](REQUIREMENTS.md)                   | Tested platform, container runtime, hardware, storage, network, runtime, and API-expense requirements.                             |
+| [`REPRODUCING.md`](REPRODUCING.md)                     | Detailed instructions and configurations for full live reproduction.                                                               |
 | [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md)             | Archived version, reproduction scope, and known limitations.                                                                       |
 | [`CITATION.cff`](CITATION.cff)                         | Citation metadata for the repository and its associated paper.                                                                     |
 | [`LICENSE`](LICENSE)                                   | License terms for software, data, documentation, and third-party material.                                                         |
@@ -100,8 +114,7 @@ cd ..
 ./run-docker.sh
 ```
 
-The local `.env` file is ignored by Git and must not be committed. Live
-LLMutantKiller runs require an OpenRouter-compatible chat completion endpoint.
+Live LLMutantKiller runs require an OpenRouter-compatible chat completion endpoint.
 Stored-result inspection and the smoke test do not make API calls.
 
 The supported environment variables, defaults, alternative authentication
@@ -176,65 +189,12 @@ available recomputation procedures.
 
 ### Workflow 4: Full Live Reproduction
 
-For full reproduction of the results reported in the paper, run LLMutantKiller
-on the 915 randomly sampled surviving mutants listed in
-`source-code/mutations/requiredSample_list.json`, which are drawn from the 13
-subject applications listed in
-[`subject_repositories.md`](subject_repositories.md). Tables 2–5 use four
-principal configurations: Claude Sonnet 4.6 with and without existing tests,
-Devstral 2512 without tests, and Llama 3.3 70B without tests. Repeat those four
-configurations as Round 2 to reproduce the paper's nondeterminism analysis.
-The stored results additionally include supplementary Devstral and Llama runs
-with existing tests in both rounds. Reproducing every stored principal and
-supplementary result therefore requires six configurations per round.
-
-All configurations use 10 attempts per mutant (`--attempts 10`), temperature
-0.5 (`--temperature 0.5`), and a 300-second timeout per attempt
-(`--timeout 300`), consistent with the paper.
-
-To reproduce all stored principal and supplementary results, each round has
-six configurations:
-
-- **3 models** (controlled via `--model`):
-  - `anthropic/claude-sonnet-4.6`
-  - `mistralai/devstral-2512`
-  - `meta-llama/llama-3.3-70b-instruct`
-
-- **2 prompt variants** (controlled via `--withTests`):
-  - `--withTests false` (excludes existing test suite from initial prompt)
-  - `--withTests true` (includes existing test suite in initial prompt)
-
-Example commands for one configuration:
-
-```bash
-cd /usr/src/app/source-code
-
-# Claude Sonnet 4.6, without tests (replicates Table 2, Round 1)
-node dist/src/run.js \
-  --mutationFilter ./mutations/requiredSample_list.json \
-  --model anthropic/claude-sonnet-4.6 \
-  --attempts 10 \
-  --temperature 0.5 \
-  --timeout 300 \
-  --withTests false
-
-# Claude Sonnet 4.6, with tests (replicates Table 3, Round 1)
-node dist/src/run.js \
-  --mutationFilter ./mutations/requiredSample_list.json \
-  --model anthropic/claude-sonnet-4.6 \
-  --attempts 10 \
-  --temperature 0.5 \
-  --timeout 300 \
-  --withTests true
-
-# Run Devstral and Llama without tests for Tables 4 and 5.
-# Repeat the four principal configurations for the Round 2 analysis.
-# The Devstral/Llama with-tests configurations are supplementary.
-```
-
-This workflow requires paid API access and substantial runtime. It is not expected to reproduce byte-identical generated tests because provider-hosted LLMs and API infrastructure are nondeterministic. The stored outputs in `paper_results/` are the reference record for the exact paper results.
-
-The `time` totals in the 12 stored run summaries (3 models × 2 prompt configurations × 2 rounds) sum to 1,643,788 seconds, or approximately 456.6 hours (19.0 days). The 13-mutant reduced workflow took 3 minutes in the native environment used for the experiments and 17 minutes in the provided Docker container, a factor of approximately 5.7. Applying that observed factor gives a rough estimate of 2,587 hours (about 108 days) to repeat all 12 runs sequentially in the Docker container. API and network conditions may change this estimate. Furthemore, earlier attempt successes and running configurations concurrently can reduce elapsed calendar time.
+Full live reproduction runs the paper configurations on the complete sampled
+set of surviving mutants. It requires paid API access and substantial runtime,
+and live results will not be byte-identical because hosted LLMs are
+nondeterministic. See [`REPRODUCING.md`](REPRODUCING.md) for the complete model
+matrix, commands, parameters, and runtime estimates. The stored outputs in
+`paper_results/` remain the reference record for the exact paper results.
 
 ## Running LLMutantKiller
 
@@ -296,7 +256,7 @@ This artifact is designed to be reusable beyond the paper's experiments. To appl
    - `source-code/templates/subject_allowed_libraries/<projectName>.txt`: List of third-party libraries already used in your project's test suite (one per line), restricting the LLM to use only these libraries
    - These files are included in the initial prompt only when `--withTests true` is specified, helping the LLM generate tests consistent with your project's testing conventions and dependencies
 
-The default model (`mistralai/devstral-2512`) can be used as-is, or you can select any OpenRouter-compatible model via the `--model` option. You can also experiment with different configurations using `--temperature` (default 0.2), `--attempts` (default 2), and `--timeout` (default 60 seconds).
+The default model (`mistralai/devstral-2512`) can be used as-is, or you can select any OpenRouter-compatible model via the `--model` option. You can also experiment with different configurations using `--temperature` (default 0.5), `--attempts` (default 10), and `--timeout` (default 300 seconds).
 
 The output structure is stable across all experiments: generated tests, prompts, logs, chat histories, per-attempt metadata, and aggregate reports are written to `generated_tests/`. See the [`Directory Structure`](source-code/README.md#-directory-structure) for the exact output structure.
 

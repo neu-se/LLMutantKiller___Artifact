@@ -17,8 +17,9 @@ Stored results under [`paper_results/`](paper_results/) can be inspected without
 API credentials. The smoke test verifies the packaged implementation without
 making LLM calls. Reduced and full live workflows exercise LLMutantKiller using
 user-supplied API credentials; see [`README.md`](README.md) and
-[`REQUIREMENTS.md`](REQUIREMENTS.md) for commands, requirements, expected
-runtimes, and historical cost information.
+[`REPRODUCING.md`](REPRODUCING.md) for commands and configurations, and
+[`REQUIREMENTS.md`](REQUIREMENTS.md) for requirements, expected runtimes, and
+historical cost information.
 
 Live reruns are not expected to produce byte-identical tests or outcomes. The
 stored outputs are the reference record for the results reported in the paper.

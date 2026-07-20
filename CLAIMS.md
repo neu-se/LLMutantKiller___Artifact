@@ -6,6 +6,11 @@ This artifact supports the 6 figures, 7 tables, and 7 research questions present
 2. **Interpretation**: How to read or validate it (if needed)
 3. **Reproduction**: How to reproduce it, or why exact reproduction is not possible
 
+Unless a section explicitly says otherwise, the files checked into this
+repository are the authoritative archived evidence. Google Sheets links are
+provided only as convenient browser-based views and are not required to inspect
+or validate the results.
+
 ---
 
 ## Figure 1: Overview of LLMutantKiller Approach
