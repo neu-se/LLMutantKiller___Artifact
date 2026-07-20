@@ -3,21 +3,21 @@
 Use these repositories when running the artifact. Each repository contains the `main`
 branch and the `mutant-<id>` branches referenced by `source-code/mutations/`.
 
-Organization: https://github.com/mutant-survivor-testgen-benchchmark
+Organization: https://github.com/neu-se-experiments
 
-1. Complex.js: https://github.com/mutant-survivor-testgen-benchchmark/Complex.js.git
-2. countries-and-timezones: https://github.com/mutant-survivor-testgen-benchchmark/countries-and-timezones.git
-3. crawler-url-parser: https://github.com/mutant-survivor-testgen-benchchmark/crawler-url-parser.git
-4. delta: https://github.com/mutant-survivor-testgen-benchchmark/delta.git
-5. image-downloader: https://github.com/mutant-survivor-testgen-benchchmark/image-downloader.git
-6. node-dirty: https://github.com/mutant-survivor-testgen-benchchmark/node-dirty.git
-7. node-geo-point: https://github.com/mutant-survivor-testgen-benchchmark/node-geo-point.git
-8. node-jsonfile: https://github.com/mutant-survivor-testgen-benchchmark/node-jsonfile.git
-9. plural: https://github.com/mutant-survivor-testgen-benchchmark/plural.git
-10. pull-stream: https://github.com/mutant-survivor-testgen-benchchmark/pull-stream.git
-11. q: https://github.com/mutant-survivor-testgen-benchchmark/q.git
-12. spacl-core: https://github.com/mutant-survivor-testgen-benchchmark/spacl-core.git
-13. zip-a-folder: https://github.com/mutant-survivor-testgen-benchchmark/zip-a-folder.git
+1. Complex.js: https://github.com/neu-se-experiments/Complex.js.git
+2. countries-and-timezones: https://github.com/neu-se-experiments/countries-and-timezones.git
+3. crawler-url-parser: https://github.com/neu-se-experiments/crawler-url-parser.git
+4. delta: https://github.com/neu-se-experiments/delta.git
+5. image-downloader: https://github.com/neu-se-experiments/image-downloader.git
+6. node-dirty: https://github.com/neu-se-experiments/node-dirty.git
+7. node-geo-point: https://github.com/neu-se-experiments/node-geo-point.git
+8. node-jsonfile: https://github.com/neu-se-experiments/node-jsonfile.git
+9. plural: https://github.com/neu-se-experiments/plural.git
+10. pull-stream: https://github.com/neu-se-experiments/pull-stream.git
+11. q: https://github.com/neu-se-experiments/q.git
+12. spacl-core: https://github.com/neu-se-experiments/spacl-core.git
+13. zip-a-folder: https://github.com/neu-se-experiments/zip-a-folder.git
 
 # Original upstream snapshots (provenance only)
 

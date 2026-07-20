@@ -44,7 +44,7 @@ npm run build
    took less than 2 minutes on the tested system; allow up to 15 minutes
    depending on network and GitHub performance.
    - Use the prepared benchmark repositories in the
-     [`mutant-survivor-testgen-benchchmark`](https://github.com/mutant-survivor-testgen-benchchmark)
+     [`neu-se-experiments`](https://github.com/neu-se-experiments)
      GitHub organization, not the original upstream repositories.
    - The prepared repositories
      contain the `main` branch and the `mutant-<id>` branches required by the runner.
@@ -57,7 +57,7 @@ npm run build
    ```bash
    mkdir -p ../subject_repositories
    cd ../subject_repositories
-   git clone https://github.com/mutant-survivor-testgen-benchchmark/zip-a-folder.git
+   git clone https://github.com/neu-se-experiments/zip-a-folder.git
    ```
 
 4. **Run**
