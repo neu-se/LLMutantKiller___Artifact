@@ -1,15 +1,12 @@
-# Reproducibility and Archival Information
+# Reproducibility Information
 
-## Archived Version
+## Preserved Evidence
 
-The complete research artifact is archived on Zenodo:
-
-<https://doi.org/10.5281/zenodo.21055452>
-
-The archive preserves the implementation, prompt templates, mutation metadata,
-stored experiment outputs, manual labels, aggregate analyses, and TestPilot
-baseline results associated with the paper. [`CLAIMS.md`](CLAIMS.md) maps the
-paper's research questions, tables, and figures to the corresponding evidence.
+This repository preserves the implementation, prompt templates, mutation
+metadata, stored experiment outputs, manual labels, aggregate analyses, and
+TestPilot baseline results associated with the paper. [`CLAIMS.md`](CLAIMS.md)
+maps the paper's research questions, tables, and figures to the corresponding
+evidence.
 
 ## Reproduction Scope
 

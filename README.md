@@ -6,10 +6,8 @@ Mutants**. It contains the LLMutantKiller implementation, Docker packaging,
 mutation metadata, prepared benchmark provenance, complete stored experiment
 outputs, evaluation materials, and TestPilot baseline results.
 
-The complete research artifact is also preserved in a public
-[Zenodo archive](https://doi.org/10.5281/zenodo.21055452). See
-[`REPRODUCIBILITY.md`](REPRODUCIBILITY.md) for the reproduction scope and known
-limitations.
+See [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md) for the reproduction scope and
+known limitations.
 
 ## Paper Reference
 
@@ -44,7 +42,7 @@ and reports needed to inspect each attempt.
 | [`CLAIMS.md`](CLAIMS.md)                               | Claim-by-claim map from the paper's research questions and tables to artifact evidence, expected results, and reproduction status. |
 | [`REQUIREMENTS.md`](REQUIREMENTS.md)                   | Tested platform, container runtime, hardware, storage, network, runtime, and API-expense requirements.                             |
 | [`REPRODUCING.md`](REPRODUCING.md)                     | Detailed instructions and configurations for full live reproduction.                                                               |
-| [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md)             | Archived version, reproduction scope, and known limitations.                                                                       |
+| [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md)             | Reproduction scope, preserved evidence, and known limitations.                                                                      |
 | [`CITATION.cff`](CITATION.cff)                         | Citation metadata for the repository and its associated paper.                                                                     |
 | [`LICENSE`](LICENSE)                                   | License terms for software, data, documentation, and third-party material.                                                         |
 

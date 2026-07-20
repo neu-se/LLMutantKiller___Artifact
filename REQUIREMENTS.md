@@ -42,7 +42,7 @@ Approximate storage sizes are:
 
 | Item                             |                 Size |
 | -------------------------------- | -------------------: |
-| Zenodo archive ZIP               | approximately 1.7 GB |
+| Compressed repository archive    | approximately 1.7 GB |
 | Extracted artifact tree          |   approximately 9 GB |
 | Built `linux/amd64` Docker image | approximately 1.5 GB |
 
@@ -75,7 +75,7 @@ installed with `npm ci` while building the image.
 
 Network access is required for the following operations:
 
-1. **Artifact download:** download the archive from Zenodo.
+1. **Repository download:** clone or download this public GitHub repository.
 2. **Container build:** retrieve the Node.js base image from Docker Hub,
    Debian packages from Debian mirrors, and npm packages from the npm
    registry.
