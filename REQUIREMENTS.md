@@ -92,10 +92,10 @@ Network access is required for the following operations:
 
 Inspection of the stored results under `paper_results/` does not require an
 OpenRouter key. Live LLM workflows require an OpenRouter API key with
-sufficient credit. Artifact reviewers may use the preconfigured key in
-`source-code/.env`, which has a USD 10 usage limit and is intended for the
-reduced artifact-evaluation workflow. A GitHub token is optional for the
-public benchmark repositories.
+sufficient credit. Copy `source-code/.env.example` to `source-code/.env` and
+provide your own key; the resulting local file is ignored by Git and must not
+be committed. A GitHub token is optional for the public benchmark
+repositories.
 
 ## Expected Runtime
 

@@ -73,8 +73,8 @@ https://doi.org/10.5281/zenodo.21055452
 
 ## Known Limitations
 
-- Live LLM runs require network access and an OpenRouter-compatible API. A
-  limited reviewer key is provided for the reduced workflow.
+- Live LLM runs require network access and user-supplied credentials for an
+  OpenRouter-compatible API.
 - Exact generated tests, kill counts, token usage, cost, and runtime may vary
   because of LLM nondeterminism, provider-side model updates, caching, rate
   limits, and network conditions.

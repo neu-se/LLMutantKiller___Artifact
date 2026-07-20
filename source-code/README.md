@@ -31,8 +31,7 @@ npm run build
 
 ### API Configuration
 
-- The artifact includes a preconfigured reviewer key in `.env`. It has a USD 10 usage limit and is intended for the reduced artifact-evaluation workflow.
-- To use your own credentials, copy `.env.example` to `.env` and fill in `OPENROUTER_API_KEY`. You can obtain an API key from OpenRouter at <https://openrouter.ai/workspaces/default/keys>.
+- Copy `.env.example` to `.env` and fill in your own `OPENROUTER_API_KEY`. You can obtain an API key from OpenRouter at <https://openrouter.ai/workspaces/default/keys>. The local `.env` file is ignored by Git and must not be committed.
 - Alternatively, set `OPENROUTER_LLM_AUTH_HEADERS` directly if you need custom authorization headers.
 - `OPENROUTER_LLM_API_ENDPOINT` defaults to OpenRouter's chat completions endpoint in the artifact Docker workflow.
 - `GITHUB_TOKEN` is optional and is not required for the default artifact workflow with public subject repositories. It is passed through to the environment for workflows that need authenticated GitHub access, such as private repository cloning or dependency installation.

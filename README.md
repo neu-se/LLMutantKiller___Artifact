@@ -80,10 +80,8 @@ recommended first installation check.
 Stored results under [`paper_results/`](paper_results/) can be inspected without
 API credentials.
 
-The artifact includes a preconfigured reviewer key in
-[`source-code/.env`](source-code/.env). The key has a USD 10 usage limit and is
-intended for the reduced artifact-evaluation workflow. To use your own
-credentials instead:
+Live runs use credentials supplied by the user. Copy the sanitized example
+configuration and add your own OpenRouter API key:
 
 ```bash
 cd source-code
@@ -93,8 +91,9 @@ cd ..
 ./run-docker.sh
 ```
 
-Live LLMutantKiller runs require an OpenRouter-compatible chat completion
-endpoint. Stored-result inspection and the smoke test do not make API calls.
+The local `.env` file is ignored by Git and must not be committed. Live
+LLMutantKiller runs require an OpenRouter-compatible chat completion endpoint.
+Stored-result inspection and the smoke test do not make API calls.
 
 The supported environment variables, defaults, alternative authentication
 method, and optional GitHub token are documented in the source-code README's
